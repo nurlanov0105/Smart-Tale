@@ -1,0 +1,31 @@
+.btn {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   height: 5.4rem;
+   padding: 10px;
+   background-color: pink;
+
+   span {
+      color: white;
+   }
+
+   svg {
+   }
+
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+      }
+   }
+
+   &:active {
+   }
+
+   &:disabled {
+   }
+
+   &_bordered {
+      border: 1px solid black;
+   }
+}

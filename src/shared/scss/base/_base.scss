@@ -1,0 +1,64 @@
+html {
+   font-size: 62.5%;
+   scroll-behavior: smooth;
+}
+
+body {
+   // font-family: 'Satoshi', sans-serif;
+   // color: $black-color;
+   font-size: $font-size-paragraph;
+   font-weight: 400;
+
+   text-rendering: optimizeSpeed;
+   text-rendering: optimizeLegibility;
+   -webkit-font-smoothing: antialiased;
+   -ms-text-size-adjust: 100%;
+   -moz-text-size-adjust: 100%;
+   -webkit-text-size-adjust: 100%;
+}
+
+/* Grid styles */
+
+.container {
+   max-width: 1236px;
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   padding-left: 16px;
+   padding-right: 16px;
+
+   // &--fluid {
+   //    max-width: unset;
+   // }
+
+   // &--no-padding {
+   //    padding: 0;
+   // }
+
+   // /* Tablet */
+   // @media (max-width: 1199px) {
+   //    width: 900px;
+   // }
+
+   // /* Mobile */
+   // @media (max-width: 768px) {
+   //    width: 100%;
+   // }
+}
+
+/* Utility */
+
+.none {
+   display: none !important;
+}
+
+.visually-hidden {
+   opacity: 0;
+   visibility: hidden;
+   width: 0px;
+   height: 0px;
+   display: block;
+   margin-left: -10000px;
+   background: transparent;
+   font-size: 0;
+}

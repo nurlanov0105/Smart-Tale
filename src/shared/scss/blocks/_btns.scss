@@ -1,0 +1,12 @@
+.btn {
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+      }
+   }
+
+   &:active {
+   }
+
+   &:disabled {
+   }
+}
