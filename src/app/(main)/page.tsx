@@ -1,9 +1,9 @@
-import Header from "@/widgets/header/ui/Header";
+import { Header } from "@/widgets/header";
 
 const Home = () => {
    return (
       <div>
-         <div>Work</div>
+         <div>Home</div>
          <Header />
       </div>
    );
