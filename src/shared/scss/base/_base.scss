@@ -4,8 +4,8 @@ html {
 }
 
 body {
-   // font-family: 'Satoshi', sans-serif;
-   // color: $black-color;
+   font-family: var(--font-sf_pro), sans-serif;
+   color: $common-black;
    font-size: $font-size-paragraph;
    font-weight: 400;
 

@@ -1,0 +1,44 @@
+.header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding: 3.2rem 0;
+   border-bottom: 1px solid $dark-grey;
+
+   &_mb {
+      margin-bottom: 3.2rem;
+   }
+
+   &__block {
+      display: flex;
+      align-items: center;
+      column-gap: 3.2rem;
+   }
+
+   &__account {
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+   }
+
+   &__img {
+      width: 5rem;
+      height: 5rem;
+      border-radius: 50%;
+      overflow: hidden;
+
+      @include bgImg;
+   }
+
+   &__name {
+      font-size: 14px;
+      font-weight: 400;
+   }
+
+   &_left {
+   }
+
+   &_right {
+      column-gap: 2rem;
+   }
+}
