@@ -1,0 +1,91 @@
+.card {
+   background-color: $common-white;
+   width: 100%;
+   overflow: hidden;
+   border-radius: 2rem;
+   cursor: pointer;
+
+   &__body {
+      display: flex;
+      flex-direction: column;
+      row-gap: 16px;
+      padding: 16px;
+   }
+
+   &__img {
+      height: 18.2rem;
+      width: 100%;
+
+      @include bgImg;
+   }
+
+   &__order {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &__title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      &_order {
+         color: $common-black;
+      }
+
+      &_cost {
+         color: #ff9500;
+      }
+   }
+
+   &__author {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+   }
+
+   &__avatar {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+
+      @include bgImg;
+   }
+
+   &__col {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+   }
+
+   &__name {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.08;
+   }
+
+   &__notice {
+      color: $dark-grey;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.08;
+   }
+
+   &__descr {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+
+      color: $dark-grey;
+      font-size: 14px;
+      line-height: 1.57;
+   }
+
+   &__btn {
+      width: 100%;
+      padding: 8px;
+      border-radius: 10px;
+      border: 0.5px solid #000;
+      background: $common-white;
+   }
+}

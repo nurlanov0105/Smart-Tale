@@ -1,3 +1,10 @@
 @mixin transition {
    transition: all 0.15s ease-in-out;
 }
+
+@mixin bgImg {
+   background-color: $dark-grey;
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position: center;
+}
