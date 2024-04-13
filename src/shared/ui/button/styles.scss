@@ -3,29 +3,99 @@
    align-items: center;
    justify-content: center;
 
-   height: 5.4rem;
-   padding: 10px;
-   background-color: pink;
+   padding: 1.6rem 3.2rem;
+   border-radius: 1rem;
+   background-color: $dark-blue;
+   overflow: hidden;
 
    span {
-      color: white;
+      color: $common-white;
+      font-weight: 500;
+      line-height: 1.5;
    }
-
-   svg {
-   }
+   @include transition;
 
    @media (hover: hover) and (pointer: fine) {
       &:hover {
+         background-color: #2b3c9b;
       }
    }
 
    &:active {
+      background-color: #2b3c9b;
    }
 
    &:disabled {
+      background-color: #5261b4;
+      cursor: default;
+   }
+
+   &.active {
+      background-color: $dark-blue;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $dark-blue;
+         }
+      }
+
+      &:active {
+         background-color: $dark-blue;
+      }
+
+      &:disabled {
+         background-color: #5261b4;
+         cursor: default;
+      }
+   }
+
+   &_danger {
+      background-color: $danger-color;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: #c62119;
+         }
+      }
+
+      &:active {
+         background-color: #c62119;
+      }
+
+      &:disabled {
+         background-color: rgb(215, 95, 89);
+         cursor: default;
+      }
    }
 
    &_bordered {
-      border: 1px solid black;
+      border: 0.5px solid $dark-blue;
+      background: $common-white;
+
+      span {
+         color: $common-black;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $dark-blue;
+
+            span {
+               color: $common-white;
+            }
+         }
+      }
+
+      &:active {
+         background-color: $dark-blue;
+         span {
+            color: $common-white;
+         }
+      }
+
+      &:disabled {
+         background-color: #5261b4;
+         cursor: default;
+      }
    }
 }

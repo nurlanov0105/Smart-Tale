@@ -1,21 +1,25 @@
 "use client";
-import { useOutside } from "@/shared/lib";
-import { showModal } from "@/widgets/modal";
+
+import { HeaderIntro } from "@/entities/headerIntro";
+import { NoticeBtn } from "@/entities/noticeBtn";
+import { useAuth } from "@/shared/lib";
+
+import styles from "./styles.module.scss";
+import clsx from "clsx";
+import { Search } from "@/features/search";
 
 const Header = () => {
-   const { ref, isShown, toggleShow } = useOutside(false);
-   const handleClick = () => {
-      showModal("");
-   };
-
+   const isAuth = useAuth();
    return (
-      <>
-         <div onClick={handleClick}>Header</div>
-         <div>
-            <button onClick={toggleShow}>Toggle</button>
-            {isShown && <div ref={ref}>This is the content</div>}
+      <div className={clsx(styles.header, styles.header_mb)}>
+         <div className={clsx(styles.header__block, styles.header_left)}>
+            <HeaderIntro />
          </div>
-      </>
+         <div className={clsx(styles.header__block, styles.header_right)}>
+            <Search />
+            <NoticeBtn />
+         </div>
+      </div>
    );
 };
 

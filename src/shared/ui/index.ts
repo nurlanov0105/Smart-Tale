@@ -1,2 +1,3 @@
 import Button from "./button/Button";
-export { Button };
+import BtnBordered from "./btnBordered/BtnBordered";
+export { Button, BtnBordered };

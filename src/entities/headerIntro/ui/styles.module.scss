@@ -1,0 +1,13 @@
+.intro {
+   display: flex;
+   flex-direction: column;
+   row-gap: 2px;
+   flex-shrink: 0;
+   cursor: pointer;
+
+   span {
+      color: $dark-grey;
+      font-size: 14px;
+      line-height: 1.71;
+   }
+}
