@@ -1,7 +1,6 @@
 .main {
    height: 100vh;
    padding-right: 3.2rem;
-   padding-left: 3.2rem;
 
    display: grid;
    grid-template-columns: 25.2rem 1fr;
@@ -20,7 +19,7 @@
    }
 
    &__content {
-      height: 100%;
+      height: calc(100% - 183px);
       overflow-y: auto;
       scrollbar-width: none;
    }

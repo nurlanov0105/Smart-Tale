@@ -1,6 +1,7 @@
+import { FC } from "react";
 import styles from "./styles.module.scss";
 
-const PurchasesPage = () => {
+const PurchasesPage: FC = () => {
    return <div>PurchasesPage</div>;
 };
 

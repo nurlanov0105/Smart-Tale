@@ -1,6 +1,7 @@
+import { FC } from "react";
 import styles from "./styles.module.scss";
 
-const OrderPage = () => {
+const OrderPage: FC = () => {
    return <div>OrderPage</div>;
 };
 

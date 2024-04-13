@@ -1,6 +1,7 @@
+import { FC } from "react";
 import styles from "./styles.module.scss";
 
-const ListingsPage = () => {
+const ListingsPage: FC = () => {
    return <div>ListingsPage</div>;
 };
 

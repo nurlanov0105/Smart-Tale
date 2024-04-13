@@ -1,6 +1,7 @@
+import { FC } from "react";
 import styles from "./styles.module.scss";
 
-const ProfilePage = () => {
+const ProfilePage: FC = () => {
    return <div>ProfilePage</div>;
 };
 

@@ -1,6 +1,7 @@
+import { FC } from "react";
 import styles from "./styles.module.scss";
 
-const ServiePage = () => {
+const ServiePage: FC = () => {
    return <div>ServiePage</div>;
 };
 
