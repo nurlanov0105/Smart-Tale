@@ -5,7 +5,7 @@ const HeaderIntro = () => {
    return (
       <div className={styles.intro}>
          <span>Маркетплейс/Услуги</span>
-         <h1 className="h1">Услуги</h1>
+         <h2 className="h2">Услуги</h2>
       </div>
    );
 };
