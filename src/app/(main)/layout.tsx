@@ -1,10 +1,14 @@
 import React, { FC } from "react";
 import { ChildrenComponent } from "@/shared/lib";
+import {Navbar} from "@/widgets/navbar/index"
 
 const MainLayout: FC<ChildrenComponent> = ({ children }) => {
    return (
-      <div>
-         <h2>MainLayout</h2>
+      <div style={{
+          display: "grid",
+          gridTemplateColumns: "25rem auto"
+      }}>
+         <Navbar/>
          {children}
       </div>
    );

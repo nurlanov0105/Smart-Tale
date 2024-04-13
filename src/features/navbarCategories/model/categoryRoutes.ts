@@ -1,50 +1,87 @@
-import { DASHBOARD } from "@/shared/lib";
+import {DASHBOARD, ROUTES} from "@/shared/lib";
+import {User, Clipboard, ShoppingCart} from "lucide-react";
+import {TypeCategories} from "../index";
 
-export const CategoryRoutes = [
+export const CategoryRoutes: TypeCategories[] = [
    {
-      title: "lc",
       id: 1,
+      title: "Личный кабинет",
+      Icon: User,
       routes: [
          {
             parentId: 1,
-            subtitle: "profile",
-            link: DASHBOARD.PROFILE,
-            isSubscride: false,
+            subtitle: "Профиль",
+            link: ROUTES.HOME,
+            isSubscribe: false,
          },
          {
-            subtitle: "profile",
+            parentId: 1,
+            subtitle: "Мои объявления",
             link: DASHBOARD.SEARCH,
-            isSubscride: false,
+            isSubscribe: false,
          },
          {
-            subtitle: "profile",
+            parentId: 1,
+            subtitle: "Мои покупки",
             link: DASHBOARD.HOME,
-            isSubscride: true,
+            isSubscribe: true,
          },
          {
-            subtitle: "profile",
+            parentId: 1,
+            subtitle: "История заказов",
             link: DASHBOARD.HOME,
-            isSubscride: true,
+            isSubscribe: true,
+         },
+         {
+            parentId: 1,
+            subtitle: "Организация",
+            link: DASHBOARD.HOME,
+            isSubscribe: true,
          },
       ],
    },
    {
-      title: "orders",
+      title: "Заказы",
       id: 2,
+      Icon: Clipboard,
       routes: [
          {
             parentId: 2,
-            subtitle: "order 1",
+            subtitle: "Текущие заказы",
             link: DASHBOARD.PROFILE,
+            isSubscribe: false
          },
          {
-            subtitle: "order 2",
+            parentId: 2,
+            subtitle: "История",
             link: DASHBOARD.SEARCH,
-         },
-         {
-            subtitle: "order 2",
-            link: DASHBOARD.HOME,
-         },
+            isSubscribe: false
+         }
       ],
    },
+   {
+      title: "Маркетплейс",
+      id: 3,
+      Icon: ShoppingCart,
+      routes: [
+         {
+            parentId: 3,
+            subtitle: "Оборудование",
+            link: DASHBOARD.PROFILE,
+            isSubscribe: false
+         },
+         {
+            parentId: 3,
+            subtitle: "Услуги",
+            link: DASHBOARD.SEARCH,
+            isSubscribe: false
+         },
+         {
+            parentId: 3,
+            subtitle: "Разместить заказ",
+            link: DASHBOARD.SEARCH,
+            isSubscribe: false
+         }
+      ],
+   }
 ];

@@ -5,7 +5,7 @@ export enum DASHBOARD {
 }
 
 export enum ROUTES {
-   HOME = "/home",
+   HOME = "/",
    SIGN_UP = "/auth/register",
    SIGN_IN = "/auth/login",
    DETAILS = "/detail",
