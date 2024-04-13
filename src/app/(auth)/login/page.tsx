@@ -1,3 +1,5 @@
+import styles from "./styles.module.scss";
+
 const LoginPage = () => {
    return <div>LoginPage</div>;
 };

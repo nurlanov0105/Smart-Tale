@@ -1,0 +1,26 @@
+.main {
+   height: 100vh;
+   padding-right: 3.2rem;
+
+   display: grid;
+   grid-template-columns: 25.2rem 1fr;
+   column-gap: 3.2rem;
+   overflow: hidden;
+
+   background-color: $bg-color;
+
+   &_fill {
+      grid-template-columns: 1fr;
+   }
+
+   &__wrapper {
+      height: 100%;
+      overflow: hidden;
+   }
+
+   &__content {
+      height: calc(100% - 183px);
+      overflow-y: auto;
+      scrollbar-width: none;
+   }
+}

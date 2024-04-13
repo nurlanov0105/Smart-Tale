@@ -1,7 +1,7 @@
 export function useAuth() {
-   const accessToken = "11";
+   const refreshToken = false;
 
-   if (accessToken) {
+   if (refreshToken) {
       return true;
    } else {
       return false;
