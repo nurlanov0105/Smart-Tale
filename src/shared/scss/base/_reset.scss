@@ -91,6 +91,8 @@ input[type='submit'] {
    cursor: pointer;
 }
 
+textarea:focus,
+textarea:active,
 input:focus,
 input:active,
 button:focus,

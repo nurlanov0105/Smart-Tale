@@ -1,7 +1,6 @@
 import { DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
 import { User, Clipboard, ShoppingCart } from "lucide-react";
 import { TypeCategories } from "../index";
-
 export const CategoryRoutes: TypeCategories[] = [
    {
       id: 1,
@@ -79,7 +78,7 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Разместить заказ",
-            link: MARKETPLACE.ORDER,
+            link: MARKETPLACE.CREATE_ORDER,
             isSubscribe: false,
          },
       ],

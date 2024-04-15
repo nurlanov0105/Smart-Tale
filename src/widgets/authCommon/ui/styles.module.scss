@@ -1,0 +1,33 @@
+.section {
+   height: 100%;
+   width: 100%;
+
+   position: relative;
+
+   &::after {
+      position: absolute;
+      z-index: 1;
+      background-color: rgba(0, 0, 0, 0.5);
+   }
+
+   @include bgImg;
+   &__box {
+      z-index: 2;
+      max-width: 31.2rem;
+      width: 100%;
+      text-align: center;
+      color: $common-white;
+   }
+
+   &__title {
+      font-size: 4rem;
+      font-weight: 700;
+      line-height: 0.91;
+      margin-bottom: 2rem;
+   }
+
+   &__descr {
+      font-size: 2.3rem;
+      font-weight: 400;
+   }
+}
