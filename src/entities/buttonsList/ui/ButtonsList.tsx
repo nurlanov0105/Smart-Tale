@@ -10,7 +10,7 @@ const ButtonsList = ({type, setType, values}: ButtonsProps) => {
     const handleType = (newType: string) => setType(newType)
     const isActive = (value: string) => {
         return clsx(styles.order__button, {
-            ['btn-bordered.active']: value === type,
+            ['active']: value === type,
         })
     }
 

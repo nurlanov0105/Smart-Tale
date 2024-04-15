@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from "./styles.module.scss"
 import {OrderItem} from "@/entities/orderItem";
+import styles from "./styles.module.scss"
 
 
 const OrderList = () => {

@@ -1,4 +1,3 @@
-
 export enum MARKETPLACE {
    EQUIPMENT = "/marketplace/equipment",
    SERVICE = `/marketplace/service`,
@@ -19,7 +18,6 @@ export enum ORDERS {
 }
 
 export enum ROUTES {
-
    HOME = "/",
    SIGN_UP = "/auth/register",
    SIGN_IN = "/auth/login",
@@ -27,6 +25,7 @@ export enum ROUTES {
    AUTHOR = "/author",
    CONFIRMATION = "/auth/confirmation",
    CONFIRMED = "/auth/confirmed",
+
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
    MARKETPLACE_SERVICE = `/marketplace/service`,
    MARKETPLACE_ORDER = `/marketplace/order`,
@@ -38,5 +37,5 @@ export enum ROUTES {
    DASHBOARD_ORGANIZATION = `/dashboard/organization`,
 
    ORDERS_CURRENT_ORDERS = `/orders/current-orders`,
-   ORDERS_HISTORY = `/orders/history`
+   ORDERS_HISTORY = `/orders/history`,
 }

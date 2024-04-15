@@ -16,6 +16,7 @@ export type InputFieldProps = {
    title?: string
    error?: string;
    classname?: string
+
 };
 
 export type TextAreaProps =  Omit<InputFieldProps, 'type'>

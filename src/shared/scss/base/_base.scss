@@ -15,6 +15,28 @@ body {
    -ms-text-size-adjust: 100%;
    -moz-text-size-adjust: 100%;
    -webkit-text-size-adjust: 100%;
+
+   * {
+      //scrollbar-width: thin;
+      //scrollbar-color: rgb(210, 209, 209) #f1f1f1;
+      &::-webkit-scrollbar {
+         width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+         background: #f1f1f1;
+         border-left: solid 4px $bg-color;
+      }
+
+      &::-webkit-scrollbar-thumb {
+         background: rgb(210, 209, 209);
+         border-left: solid 4px $bg-color;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+         background: rgb(244, 197, 5);
+      }
+   }
 }
 
 /* Grid styles */
@@ -46,19 +68,9 @@ body {
    // }
 }
 
-/* Utility */
-
-.none {
-   display: none !important;
-}
-
-.visually-hidden {
-   opacity: 0;
-   visibility: hidden;
-   width: 0px;
-   height: 0px;
-   display: block;
-   margin-left: -10000px;
-   background: transparent;
-   font-size: 0;
+.not-found {
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

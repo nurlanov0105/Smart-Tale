@@ -3,12 +3,14 @@
 import React, { forwardRef } from "react";
 import { InputFieldProps } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
+
    const {  type, classname, title, disabled, error, ...rest } = props;
 
    return (
-       <div className={classname}>
+       <div className={clsx(classname, styles.fieldWrapper)}>
            <label htmlFor={title} className={styles.field}>
                <p className={styles.field__title}>{title}</p>
                <input
@@ -24,9 +26,12 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) =>
                error && <p className={styles.field__error}>максимум 250 символов, минимум 5</p>
            }
        </div>
+
    );
 });
 
 export default InputField;
 
-InputField.displayName = "InputField";
+
+InputField.displayName = "inputField";
+

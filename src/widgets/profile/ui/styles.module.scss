@@ -1,0 +1,80 @@
+.form {
+   display: flex;
+   flex-direction: column;
+   flex-grow: 1;
+
+   &__content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+
+      border-bottom: 1px solid $dark-grey;
+      padding-bottom: 2rem;
+      margin-bottom: 2rem;
+   }
+
+   &__fieldset {
+      &:not(:last-child) {
+         margin-bottom: 3.2rem;
+      }
+   }
+
+   &__user {
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
+      margin-bottom: 3.2rem;
+   }
+
+   &__avatar {
+      width: 6.8rem;
+      height: 6.8rem;
+      border-radius: 50%;
+      background-color: $primary-color;
+      overflow: hidden;
+      position: relative;
+
+      img {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+   }
+
+   &__userBox {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+   }
+
+   &__name {
+      color: $common-black;
+      font-size: 2rem;
+   }
+
+   &__photoSpan {
+      color: $dark-grey;
+      text-decoration-line: underline;
+   }
+
+   &__title {
+      margin-bottom: 2rem;
+   }
+
+   &__wrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+   }
+
+   &__box {
+      display: flex;
+      align-items: center;
+      column-gap: 12px;
+   }
+
+   &__btn {
+      margin-left: auto;
+   }
+}
