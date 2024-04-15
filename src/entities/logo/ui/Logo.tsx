@@ -1,11 +1,12 @@
 import React from "react";
 import logo from "@@/logo.svg";
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import Link from "next/link";
 import { ROUTES } from "@/shared/lib";
+import Image from "next/image";
+import Link from "next/link";
+import styles from "./styles.module.scss";
 
 const Logo = () => {
+
    return (
       <div className={styles.logo}>
          <Link href={ROUTES.MARKETPLACE_EQUIPMENT}>

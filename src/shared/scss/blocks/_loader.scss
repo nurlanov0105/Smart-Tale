@@ -1,0 +1,17 @@
+.loader {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  color: rgb(68, 157, 167);
+
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

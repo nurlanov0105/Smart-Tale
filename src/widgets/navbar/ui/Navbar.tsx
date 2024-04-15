@@ -7,7 +7,9 @@ import { LogoutBtn } from "@/entities/logoutBtn";
 const Navbar = () => {
    return (
       <div className={styles.navbar}>
-         <Logo />
+        <div className={styles.logoLine}>
+            <Logo />
+        </div>
          <div className={styles.navbar__scrollbox}>
             <NavbarCategories />
          </div>
