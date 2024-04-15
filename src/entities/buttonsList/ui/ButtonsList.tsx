@@ -1,9 +1,8 @@
-import React from 'react';
-import {BtnBordered} from "@/shared/ui";
-import {ButtonsProps} from "@/entities/buttonsList";
+import React from "react";
+import { BtnBordered } from "@/shared/ui";
+import { ButtonsProps } from "@/entities/buttonsList";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-
 
 const ButtonsList = ({type, setType, values}: ButtonsProps) => {
 
@@ -28,6 +27,8 @@ const ButtonsList = ({type, setType, values}: ButtonsProps) => {
 
         </div>
     );
+
+
 };
 
 export default ButtonsList;

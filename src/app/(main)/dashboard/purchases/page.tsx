@@ -1,9 +1,9 @@
 import { FC } from "react";
-import {CardsSection} from "@/widgets/cardsSection";
+import { CardsSection } from "@/widgets/cardsSection";
 import styles from "./styles.module.scss";
 
 const PurchasesPage: FC = () => {
-   return <CardsSection/>
+   return <CardsSection />;
 };
 
 export default PurchasesPage;

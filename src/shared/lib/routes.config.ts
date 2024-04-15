@@ -1,7 +1,7 @@
 export enum MARKETPLACE {
    EQUIPMENT = "/marketplace/equipment",
    SERVICE = `/marketplace/service`,
-   CREATE_ORDER = `/marketplace/create-order`
+   CREATE_ORDER = `/marketplace/create-order`,
 }
 
 export enum DASHBOARD {

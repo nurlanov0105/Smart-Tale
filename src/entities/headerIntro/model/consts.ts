@@ -30,7 +30,7 @@ export const PathData: any = {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },
-   [MARKETPLACE.ORDER]: {
+   [MARKETPLACE.CREATE_ORDER]: {
       path: "Маркетплейс/Разместить заказ",
       name: "Разместить заказ",
    },

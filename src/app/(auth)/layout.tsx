@@ -1,11 +1,12 @@
 import React, { FC } from "react";
 import { ChildrenComponent } from "@/shared/lib";
+import { AuthCommon } from "@/widgets/authCommon";
 
 const AuthLayout: FC<ChildrenComponent> = ({ children }) => {
    return (
       <div>
-         <h2>AuthLayout</h2>
          {children}
+         {/* <AuthCommon /> */}
       </div>
    );
 };
