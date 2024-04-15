@@ -1,9 +1,9 @@
-'use client'
+"use client";
 
 import React, { FC } from "react";
 import { NavbarItem } from "@/entities/navbarItem";
 import { CategoryRoutes } from "../model/categoryRoutes";
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
 
 const NavbarCategories: FC = () => {
    return (
