@@ -1,3 +1,5 @@
+
+
 export type ChildrenComponent = {
    children: React.ReactNode;
 };
@@ -9,9 +11,18 @@ export enum EnumTokens {
 }
 
 export type InputFieldProps = {
-   placeholder: string;
-   disabled: boolean;
-   type: string;
-   icon: string;
-   error: string;
+   disabled?: boolean;
+   type?: string;
+   title?: string
+   error?: string;
+   classname?: string
 };
+
+export type TextAreaProps =  Omit<InputFieldProps, 'type'>
+
+export type SelectProps = {
+   title: string
+   value: string
+   classname? : string
+}
+

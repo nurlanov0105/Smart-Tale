@@ -1,3 +1,7 @@
 import Button from "./button/Button";
 import BtnBordered from "./btnBordered/BtnBordered";
-export { Button, BtnBordered };
+import InputField from "@/shared/ui/inputField/InputField";
+import TextArea from "@/shared/ui/textarea/TextArea";
+import Select from "@/shared/ui/select/Select";
+
+export { Button, BtnBordered, InputField, TextArea , Select};

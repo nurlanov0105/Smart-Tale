@@ -1,31 +1,32 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import styles from "./styles.module.scss";
-import likeImage from "@@/like.svg";
-import Image from "next/image";
 import { InputFieldProps } from "@/shared/lib";
+import styles from "./styles.module.scss";
 
-const Field = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-   const { placeholder, type, disabled, icon, error, ...rest } = props;
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
+   const {  type, classname, title, disabled, error, ...rest } = props;
 
    return (
-      <div>
-         <input
-            className={styles.input}
-            {...rest}
-            ref={ref}
-            placeholder={placeholder}
-            disabled={disabled}
-         />
-         <div>
-            <Image src={icon} alt="asd" width={40} height={40} />
-            <Image src={likeImage} alt="asd" width={40} height={40} />
-         </div>
-      </div>
+       <div className={classname}>
+           <label htmlFor={title} className={styles.field}>
+               <p className={styles.field__title}>{title}</p>
+               <input
+                   id={title}
+                   className={styles.field__input}
+                   {...rest}
+                   ref={ref}
+                   disabled={disabled}
+                   type={type ? type : "text"}
+               />
+           </label>
+           {
+               error && <p className={styles.field__error}>максимум 250 символов, минимум 5</p>
+           }
+       </div>
    );
 });
 
-export default Field;
+export default InputField;
 
-Field.displayName = "field";
+InputField.displayName = "InputField";

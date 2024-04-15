@@ -17,25 +17,25 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 1,
             subtitle: "Мои объявления",
-            link: DASHBOARD.SEARCH,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: false,
          },
          {
             parentId: 1,
             subtitle: "Мои покупки",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: true,
          },
          {
             parentId: 1,
             subtitle: "История заказов",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: true,
          },
          {
             parentId: 1,
             subtitle: "Организация",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: true,
          },
       ],
@@ -54,7 +54,7 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 2,
             subtitle: "История",
-            link: DASHBOARD.SEARCH,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: false
          }
       ],
@@ -73,13 +73,13 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Услуги",
-            link: DASHBOARD.SEARCH,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: false
          },
          {
             parentId: 3,
             subtitle: "Разместить заказ",
-            link: DASHBOARD.SEARCH,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: false
          }
       ],

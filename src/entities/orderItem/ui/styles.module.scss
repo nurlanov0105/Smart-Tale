@@ -1,0 +1,35 @@
+.item{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.6rem 3.2rem 1.6rem 1.6rem;
+
+  background-color: $common-white;
+  border-radius: 16px;
+
+  &__left{
+    display: flex;
+    column-gap: 2.1rem;
+  }
+  &__image{
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+  &__price{
+    color: $primary-color;
+    font-weight: 700;
+  }
+
+  &__title{
+    font-weight: 510;
+    color: $dark-blue;
+  }
+  &__subtitle{
+    font-size: 1.4rem;
+    line-height: 1.4;
+    color: rgb(0, 133, 255);
+  }
+  &__text{
+    color: $dark-blue
+  }
+}

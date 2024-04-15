@@ -1,0 +1,29 @@
+.field{
+  display: block;
+  width: 100%;
+  padding: 1rem 2rem;
+
+  background-color: $common-white;
+  border-radius: 10px;
+
+  &__input{
+    width: 100%;
+  }
+
+  &__title{
+    font-size: 1.4rem;
+    line-height: 1.2;
+
+    color: $dark-grey;
+    margin-bottom: 4px;
+  }
+
+  &__error{
+    font-size: 1.2rem;
+    line-height: 0.8;
+    color: $dark-grey;
+
+    margin-top: 1rem;
+    margin-left: 2rem;
+  }
+}

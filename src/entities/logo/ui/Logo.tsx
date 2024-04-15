@@ -17,7 +17,7 @@ const Logo = () => {
                 />
             </button>
             <h1 className={styles.logo__title}>SmartTale</h1>
-            <p className={styles.logo__text}>Мониторинг и управление швейным производством</p>
+            <p className={styles.logo__text}>Мониторинг и управление <br/> швейным производством</p>
         </div>
     );
 };

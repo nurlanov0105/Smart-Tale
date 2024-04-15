@@ -1,0 +1,23 @@
+.list{
+  margin: 2rem 0;
+  background-color: $common-white;
+  border-radius: 20px 20px 0 0;
+
+  &__top{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    border-bottom: 1px solid rgb(142, 142, 147);
+  }
+
+  &__item{
+    font-size: 1.4rem;
+
+    padding: 2rem;
+
+    list-style-type: none;
+
+    color: $dark-grey;
+
+  }
+}
