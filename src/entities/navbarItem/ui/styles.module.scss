@@ -67,11 +67,14 @@
 
    &__item {
       color: rgb(142, 142, 147);
+      font-weight: 400;
+
+      @include transition;
 
       &:hover,
       &_active {
          color: #000000 !important;
-         font-weight: 510;
+         font-weight: 500;
       }
    }
 }
