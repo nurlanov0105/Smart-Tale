@@ -9,9 +9,8 @@ export enum EnumTokens {
 }
 
 export type InputFieldProps = {
-   placeholder: string;
    disabled: boolean;
    type: string;
-   icon: string;
-   error: string;
+   error: string | undefined;
+   title: string;
 };
