@@ -21,7 +21,7 @@ const ButtonsList = ({type, setType, values}: ButtonsProps) => {
                     <BtnBordered
                         key={value.postValue}
                         onClick={() => handleType(value.postValue)}
-                        className={isActive("equipment")}>{value.value}
+                        className={isActive(value.postValue)}>{value.value}
                     </BtnBordered>
                 )
             }
