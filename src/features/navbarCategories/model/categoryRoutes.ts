@@ -1,6 +1,6 @@
-import {DASHBOARD, ROUTES} from "@/shared/lib";
-import {User, Clipboard, ShoppingCart} from "lucide-react";
-import {TypeCategories} from "../index";
+import { DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
+import { User, Clipboard, ShoppingCart } from "lucide-react";
+import { TypeCategories } from "../index";
 
 export const CategoryRoutes: TypeCategories[] = [
    {
@@ -11,31 +11,31 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 1,
             subtitle: "Профиль",
-            link: ROUTES.HOME,
+            link: DASHBOARD.PROFILE,
             isSubscribe: false,
          },
          {
             parentId: 1,
             subtitle: "Мои объявления",
-            link: DASHBOARD.SEARCH,
+            link: DASHBOARD.LISTINGS,
             isSubscribe: false,
          },
          {
             parentId: 1,
             subtitle: "Мои покупки",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.PURCHASES,
             isSubscribe: true,
          },
          {
             parentId: 1,
             subtitle: "История заказов",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.ORDER_HISTORY,
             isSubscribe: true,
          },
          {
             parentId: 1,
             subtitle: "Организация",
-            link: DASHBOARD.HOME,
+            link: DASHBOARD.ORGANIZATION,
             isSubscribe: true,
          },
       ],
@@ -48,15 +48,15 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 2,
             subtitle: "Текущие заказы",
-            link: DASHBOARD.PROFILE,
-            isSubscribe: false
+            link: ORDERS.CURRENT_ORDERS,
+            isSubscribe: false,
          },
          {
             parentId: 2,
             subtitle: "История",
-            link: DASHBOARD.SEARCH,
-            isSubscribe: false
-         }
+            link: ORDERS.HISTORY,
+            isSubscribe: false,
+         },
       ],
    },
    {
@@ -67,21 +67,21 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Оборудование",
-            link: DASHBOARD.PROFILE,
-            isSubscribe: false
+            link: MARKETPLACE.EQUIPMENT,
+            isSubscribe: false,
          },
          {
             parentId: 3,
             subtitle: "Услуги",
-            link: DASHBOARD.SEARCH,
-            isSubscribe: false
+            link: MARKETPLACE.SERVICE,
+            isSubscribe: false,
          },
          {
             parentId: 3,
             subtitle: "Разместить заказ",
-            link: DASHBOARD.SEARCH,
-            isSubscribe: false
-         }
+            link: MARKETPLACE.ORDER,
+            isSubscribe: false,
+         },
       ],
-   }
+   },
 ];
