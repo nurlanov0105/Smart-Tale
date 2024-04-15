@@ -1,0 +1,22 @@
+.commerce {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   padding-top: 5px;
+
+   border-radius: 10px;
+   padding-right: 2rem;
+   background: $primary-color;
+
+   &__box {
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+   }
+
+   &__text {
+      color: $common-black;
+      font-size: 1.7rem;
+      line-height: 1.5;
+   }
+}
