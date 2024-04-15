@@ -98,4 +98,39 @@
          cursor: default;
       }
    }
+
+   &_white {
+      background-color: $common-white;
+
+      span {
+         color: $common-black;
+         font-weight: 400;
+         line-height: 1.5;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: #2b3c9b;
+
+            span {
+               color: $common-white;
+            }
+         }
+      }
+
+      &:active {
+         background-color: #2b3c9b;
+         span {
+            color: $common-white;
+         }
+      }
+
+      &:disabled {
+         background-color: #5261b4;
+         span {
+            color: $common-white;
+         }
+         cursor: default;
+      }
+   }
 }

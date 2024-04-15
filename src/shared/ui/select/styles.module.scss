@@ -1,0 +1,31 @@
+.select{
+
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: $common-white;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  &__title{
+    font-size: 1.4rem;
+    line-height: 1.2;
+
+    color: $dark-grey;
+    margin-bottom: 4px;
+  }
+
+  &__block{
+    display: flex;
+    align-items: center;
+    column-gap: 4px;
+  }
+  &__value{
+    line-height: 1.5;
+
+  }
+  &__icon{
+    color: $dark-grey;
+    width: 1.7rem;
+  }
+}

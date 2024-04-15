@@ -1,0 +1,8 @@
+.profile {
+   display: flex;
+   flex-direction: column;
+   height: 100%;
+   &__commerce {
+      margin-bottom: 3.2rem;
+   }
+}

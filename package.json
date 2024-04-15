@@ -1,5 +1,5 @@
 {
-  "name": "react-nextjs-zustand-template",
+  "name": "SmartTale",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,7 +15,6 @@
     "clsx": "^2.1.0",
     "immer": "^10.0.4",
     "js-cookie": "^3.0.5",
-    "lucide": "^0.366.0",
     "lucide-react": "^0.368.0",
     "next": "14.1.4",
     "path": "^0.12.7",

@@ -3,21 +3,35 @@
 import React, { forwardRef } from "react";
 import { InputFieldProps } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
 
-const Field = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-   const { type, title, disabled, error, ...rest } = props;
+const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
+
+   const {  type, classname, title, disabled, error, ...rest } = props;
 
    return (
-      <>
-         <div className={styles.field}>
-            <p className={styles.field__title}>{title}</p>
-            <input className={styles.field__input} {...rest} ref={ref} disabled={disabled} />
-         </div>
-         <p className={styles.field__error}>максимум 250 символов, минимум 5</p>
-      </>
+       <div className={clsx(classname, styles.fieldWrapper)}>
+           <label htmlFor={title} className={styles.field}>
+               <p className={styles.field__title}>{title}</p>
+               <input
+                   id={title}
+                   className={styles.field__input}
+                   {...rest}
+                   ref={ref}
+                   disabled={disabled}
+                   type={type ? type : "text"}
+               />
+           </label>
+           {
+               error && <p className={styles.field__error}>максимум 250 символов, минимум 5</p>
+           }
+       </div>
+
    );
 });
 
-export default Field;
+export default InputField;
 
-Field.displayName = "field";
+
+InputField.displayName = "inputField";
+

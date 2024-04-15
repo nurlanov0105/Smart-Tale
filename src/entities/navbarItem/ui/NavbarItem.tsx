@@ -1,11 +1,9 @@
-import React, { FC, useState } from "react";
-
+import React, { FC } from "react";
 import { TypeCategories } from "@/features/navbarCategories";
-import { Line } from "@/shared/ui/line";
-import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon }) => {
    const pathname = usePathname();
