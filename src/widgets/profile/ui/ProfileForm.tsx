@@ -7,8 +7,8 @@ import Image from "next/image";
 
 import userIcon from "@@/imgs/form/user.svg";
 import { useForm } from "react-hook-form";
-import {useModalStore} from "@/widgets/modal/model/modalState";
-import {HideAnnouncement} from "@/features/modals";
+import { useModalStore } from "@/widgets/modal/model/modalState";
+import { HideAnnouncement } from "@/features/modals";
 
 const ProfileForm: FC = () => {
    const {
@@ -18,7 +18,7 @@ const ProfileForm: FC = () => {
       formState: { errors },
    } = useForm();
    const onSubmit = (data: any) => console.log(data);
-   const showModal = useModalStore(state => state.showModal)
+   const showModal = useModalStore((state) => state.showModal);
 
    return (
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -29,7 +29,11 @@ const ProfileForm: FC = () => {
                </div>
                <div className={styles.form__userBox}>
                   <h3 className={styles.form__name}>Кирилл Олейников</h3>
-                  <button onClick={() => showModal("HideAnnouncement")} className={styles.form__photoSpan}>Изменить фото профиля</button>
+                  <button
+                     onClick={() => showModal("HideAnnouncement")}
+                     className={styles.form__photoSpan}>
+                     Изменить фото профиля
+                  </button>
                </div>
             </fieldset>
             <fieldset className={styles.form__fieldset}>
