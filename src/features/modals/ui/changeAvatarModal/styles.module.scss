@@ -1,0 +1,43 @@
+.content{
+  position: relative;
+  &__text{
+    font-weight: 500;
+    line-height: 1.5;
+
+    color: $grey;
+
+    margin: 2rem 0 1.6rem;
+  }
+
+  &__dragAndDrop{
+    width: 100%;
+    border: 1px dashed rgb(186, 191, 195);
+
+    border-radius: 8px;
+    padding: 2.4rem 0;
+    margin: 0 auto;
+    margin-bottom: 1.6rem;
+
+    text-align: center;
+  }
+
+  &__button{
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.3;
+
+    background-color: rgb(229, 239, 253);
+    color: $dark-blue;
+
+    padding: 4px 8px;
+    margin-bottom: 8px;
+  }
+  &__format{
+    font-size: 12px;
+    font-weight: 510;
+    line-height: 1.6;
+
+    color: rgb(143, 155, 186);
+  }
+
+}

@@ -1,3 +1,25 @@
 .item{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+
+  &:not(:last-child){
+    border-bottom: 3px solid $bg-color;
+  }
+
+
+  &__text{
+    font-size: 1.4rem;
+    line-height: 1.4;
+    padding: 2rem 0 2rem 2rem
+
+  }
+  &__underline{
+    text-decoration: underline;
+  }
+  &__bold{
+
+  }
+
 
 }
