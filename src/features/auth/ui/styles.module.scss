@@ -1,0 +1,12 @@
+.register{
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+
+  &__title{
+    font-weight: 510;
+    font-size: 1.4rem;
+
+    margin-bottom: 1.3rem;
+  }
+}

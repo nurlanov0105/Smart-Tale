@@ -1,0 +1,21 @@
+.item {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   align-items: center;
+
+   padding: 2rem;
+   border-bottom: 1px solid #e9edf7;
+
+   span {
+      font-size: 14px;
+      line-height: 1.71;
+      letter-spacing: -0.28px;
+   }
+
+   a {
+      text-decoration: underline;
+      font-size: 14px;
+      line-height: 1.71;
+      letter-spacing: -0.28px;
+   }
+}
