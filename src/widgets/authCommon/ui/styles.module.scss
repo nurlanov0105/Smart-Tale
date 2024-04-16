@@ -2,21 +2,38 @@
    height: 100%;
    width: 100%;
 
-   position: relative;
+   border-radius: 0px 0px 0px 20rem;
+   overflow: hidden;
 
-   &::after {
+   position: relative;
+   &_overlay {
       position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
       z-index: 1;
       background-color: rgba(0, 0, 0, 0.5);
    }
 
    @include bgImg;
    &__box {
+      position: absolute;
+
+      @include translateCenter;
+
       z-index: 2;
       max-width: 31.2rem;
       width: 100%;
       text-align: center;
       color: $common-white;
+
+      img {
+         display: inline-block;
+         margin-bottom: 3rem;
+         width: 11.6rem;
+         height: 11.6rem;
+      }
    }
 
    &__title {

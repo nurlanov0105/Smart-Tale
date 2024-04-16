@@ -1,28 +1,52 @@
-import React from 'react';
-import cardImage from "@@/imgs/order/equipment.png"
+import React, { FC } from "react";
+import cardImage from "@@/imgs/order/equipment.png";
 import Image from "next/image";
-import styles from "./styles.module.scss"
+import styles from "./styles.module.scss";
+import clsx from "clsx";
+import { ItemProps } from "../model/types";
+import Link from "next/link";
 
-const OrderItem = ({item}: {item: number}) => {
-    return (
-        <div className={styles.item}>
-            <div className={styles.item__left}>
-                <Image
-                    className={styles.item__image}
-                    src={cardImage}
-                    alt="card"
-                    width={75}
-                    height={75}
-                />
-                <div className={styles.item__info}>
-                    <p className={styles.item__subtitle}>Заказ №234</p>
-                    <h6 className={styles.item__title}>Сшить костюм</h6>
-                    <p className={styles.item__text}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...</p>
-                </div>
+const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail }) => {
+   return (
+      <Link href="#" className={styles.item}>
+         <div className={styles.item__left}>
+            <Image
+               className={styles.item__image}
+               src={cardImage}
+               alt="card"
+               width={75}
+               height={75}
+            />
+            <div className={styles.item__info}>
+               {itemType === "order" ? (
+                  <p className={clsx(styles.item__subtitle)}>Заказ №234</p>
+               ) : itemType === "equipment" ? (
+                  <p className={clsx(styles.item__subtitle, styles.item__subtitle_green)}>
+                     Оборудование
+                  </p>
+               ) : (
+                  <p
+                     className={clsx(
+                        styles.item__subtitle,
+                        type === "order" ? styles.item__subtitle_green : ""
+                     )}>
+                     {type === "order" ? "Заказ" : "Оборудование"}
+                  </p>
+               )}
+               <h6 className={styles.item__title}>Сшить костюм</h6>
+               <p className={styles.item__text}>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                  incididunt...
+               </p>
             </div>
+         </div>
+         {itemType === "order" && !isDetail ? (
             <p className={styles.item__price}>1000 сом</p>
-        </div>
-    );
+         ) : (
+            <p className={styles.item__detail}>Посмотреть детали</p>
+         )}
+      </Link>
+   );
 };
 
 export default OrderItem;

@@ -1,11 +1,12 @@
 import React from "react";
 import { BtnBordered } from "@/shared/ui";
-import { ButtonsProps } from "@/entities/buttonsList";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { ButtonsProps } from "../model/types";
 
 const ButtonsList = ({ type, setType, values }: ButtonsProps) => {
    const handleType = (newType: string) => setType(newType);
+
    const isActive = (value: string) => {
       return clsx(styles.order__button, {
          ["active"]: value === type,

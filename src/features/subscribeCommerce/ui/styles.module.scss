@@ -20,3 +20,31 @@
       line-height: 1.5;
    }
 }
+
+.box {
+   display: inline-flex;
+   align-items: start;
+   column-gap: 16px;
+
+   padding: 1.9rem;
+   border-radius: 10px;
+   background-color: $primary-color;
+
+   color: $common-black;
+   line-height: 1.5;
+
+   img {
+      padding: 3px 0;
+   }
+
+   &__col {
+      h4 {
+         font-size: 1.7rem;
+      }
+
+      p {
+         font-size: 14px;
+         opacity: 0.6;
+      }
+   }
+}
