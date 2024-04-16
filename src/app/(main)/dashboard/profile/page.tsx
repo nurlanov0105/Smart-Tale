@@ -7,7 +7,7 @@ const ProfilePage: FC = () => {
    return (
       <div className={styles.profile}>
          <div className={styles.profile__commerce}>
-            <SubscribeCommerce />
+            <SubscribeCommerce isSubscribed={false} />
          </div>
          <ProfileForm />
       </div>

@@ -11,7 +11,7 @@
 
    position: sticky;
    top: 0;
-   z-index: 1000;
+   z-index: $z9;
 
    overflow: hidden;
 
@@ -21,7 +21,7 @@
    }
 }
 
-.logoLine{
+.logoLine {
    margin: 0 auto;
    padding-bottom: 3.2rem;
    margin-bottom: 3.2rem;

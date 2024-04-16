@@ -1,23 +1,26 @@
-import React from 'react';
-import {OrderItem} from "@/entities/orderItem";
-import styles from "./styles.module.scss"
+import React, { FC } from "react";
+import { OrderItem } from "@/entities/orderItem";
+import styles from "./styles.module.scss";
+import { Props } from "../model/types";
 
+const OrderList: FC<Props> = ({ data, itemType, isDetail, type }) => {
+   const filteredData = data.filter((item) => item.type === type);
 
-const OrderList = () => {
-    const list = [1, 2, 3, 4, 5]
-
-    return (
-        <div className={styles.list}>
-            {
-                list.map(item =>
-                    <OrderItem
-                        key={item}
-                        item={item}
-                    />
-                )
-            }
-        </div>
-    );
+   return (
+      <div className={styles.list}>
+         {type
+            ? type === "all"
+               ? data?.map((item) => (
+                    <OrderItem key={item.id} {...item} itemType={itemType} isDetail={isDetail} />
+                 ))
+               : filteredData?.map((item) => (
+                    <OrderItem key={item.id} {...item} itemType={itemType} isDetail={isDetail} />
+                 ))
+            : data?.map((item) => (
+                 <OrderItem key={item.id} {...item} itemType={itemType} isDetail={isDetail} />
+              ))}
+      </div>
+   );
 };
 
 export default OrderList;
