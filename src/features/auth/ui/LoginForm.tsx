@@ -1,14 +1,13 @@
 "use client"
-
 import React from 'react';
-import {Button, InputField} from "@/shared/ui";
 import {HeadingAuth} from "@/entities/headingAuth";
+import {Button, InputField} from "@/shared/ui";
 import {TypeAuthButton} from "@/entities/typeAuthButton";
 import {useRouter} from "next/navigation";
 import {ROUTES} from "@/shared/lib";
-import styles from "./styles.module.scss"
+import styles from "@/features/auth/ui/styles.module.scss";
 
-const RegisterForm = () => {
+const LoginForm = () => {
     const router = useRouter()
 
     return (
@@ -19,26 +18,9 @@ const RegisterForm = () => {
             />
             <div className={styles.auth__row}>
                 <div>
-                    <h5 className={styles.auth__title}>Фамилия*</h5>
-                    <InputField
-                        isBordered={true}
-                    />
-                </div>
-                <div>
-                    <h5 className={styles.auth__title}>Имя*</h5>
-                    <InputField
-                        isBordered={true}
-                    />
-                </div>
-                <div>
-                    <h5 className={styles.auth__title}>Отчество*</h5>
-                    <InputField
-                        isBordered={true}
-                    />
-                </div>
-                <div>
                     <h5 className={styles.auth__title}>Почта*</h5>
                     <InputField
+                        classname={styles.auth__field}
                         isBordered={true}
                         type="email"
                     />
@@ -58,11 +40,11 @@ const RegisterForm = () => {
                     />
                     <p className={styles.auth__text}>Запомнить меня</p>
                 </div>
-                <Button onClick={() => router.push(ROUTES.CONFIRMATION_REGISTER)}>Зарегистрироваться</Button>
-                <TypeAuthButton type="register"/>
+                <Button onClick={() => router.push(ROUTES.CONFIRMATION_LOGIN)}>Войти</Button>
+                <TypeAuthButton type="login"/>
             </div>
         </div>
     );
 };
 
-export default RegisterForm;
+export default LoginForm;

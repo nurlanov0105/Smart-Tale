@@ -24,7 +24,7 @@ const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
                   <Image src={commerceBox} alt="commercial box" />
                   <div className={styles.commerce__text}>
                      <p>Оформите подписку, чтобы получить больше возможностей</p>
-                     <p>С вами свяжется наш администратор :wink:</p>
+                     <p>С вами свяжется наш администратор 😉</p>
                   </div>
                </div>
                <Button className="btn_white" onClick={handleSubscribeClick}>

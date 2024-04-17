@@ -19,12 +19,13 @@ export enum ORDERS {
 
 export enum ROUTES {
    HOME = "/",
-   SIGN_UP = "/auth/register",
-   SIGN_IN = "/auth/login",
+   SIGN_UP = "register",
+   SIGN_IN = "login",
    DETAILS = "/detail",
    AUTHOR = "/author",
-   CONFIRMATION = "/auth/confirmation",
-   CONFIRMED = "/auth/confirmed",
+   CONFIRMATION_LOGIN = "/confirmation/login",
+   CONFIRMATION_REGISTER = "/confirmation/register",
+   CONFIRMED = "/confirmed",
 
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
    MARKETPLACE_SERVICE = `/marketplace/service`,

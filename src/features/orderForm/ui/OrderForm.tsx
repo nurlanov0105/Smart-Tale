@@ -1,8 +1,10 @@
-import React, { FC } from "react";
-import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import { AddImages } from "@/features/addImages";
+import React, {FC} from 'react';
+import {AddImages} from "@/features/addImages";
+import {SelectDate} from "@/entities/selectDate";
+import { Button, InputField, TextArea } from "@/shared/ui";
+import type {OrderProps} from "../model/types";
 import styles from "./styles.module.scss";
-import { OrderProps } from "../model/types";
+
 
 const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    return (
@@ -33,31 +35,29 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                title="Стоимость в сомах"
             />
 
-            {type === "order" && (
-               <div className={styles.order__block}>
-                  <h3 className="h3">Крайняя дата выполнения</h3>
-                  <div className={styles.order__date}>
-                     <Select classname={styles.order__margin} value="30" title="День" />
-                     <Select classname={styles.order__margin} value="Апрель" title="Месяц" />
-                     <Select classname={styles.order__margin} value="2024" title="Год" />
-                  </div>
-               </div>
-            )}
-            <div className={styles.order__block}>
-               <h3 className="h3">Галерея фотографий</h3>
-               <AddImages />
-            </div>
+                {
+                    type === "order" &&
+                    <div className={styles.order__block}>
+                        <h3 className="h3">Крайняя дата выполнения</h3>
+                        <SelectDate/>
+                    </div>
+                }
+                <div className={styles.order__block}>
+                    <h3 className="h3">Галерея фотографий</h3>
+                    <AddImages/>
+                </div>
 
-            <div className={styles.order__block}>
-               <h3 className="h3">Контактная информация</h3>
-               <InputField
-                  classname={styles.order__margin}
-                  disabled={false}
-                  type="phone"
-                  title="Номер телефона"
-               />
-            </div>
+                <div className={styles.order__block}>
+                    <h3 className="h3">Контактная информация</h3>
+                    <InputField
+                        classname={styles.order__margin}
+                        disabled={false}
+                        type="phone"
+                        title="Номер телефона"
+                    />
+                </div>
          </div>
+
          {btnType === "order" ? (
             <div className={styles.order__btns}>
                <Button>Разместить объявление</Button>

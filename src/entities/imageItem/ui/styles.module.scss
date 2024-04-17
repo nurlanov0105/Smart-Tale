@@ -1,0 +1,19 @@
+.item{
+  position: relative;
+  &__image{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  &__icon{
+    width: 1.9rem;
+    height: 1.9rem;
+
+    position: absolute;
+    top: 4px;
+    right: 4px;
+
+    color: $danger-color;
+  }
+}

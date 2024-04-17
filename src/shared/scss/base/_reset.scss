@@ -90,6 +90,18 @@ input[type='submit'] {
    background: none;
    cursor: pointer;
 }
+input[type="checkbox"] {
+   width: 18px;
+   height: 18px;
+   filter: sepia(100%) brightness(85%) hue-rotate(170deg) saturate(70%) contrast(300%);
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
 
 textarea:focus,
 textarea:active,

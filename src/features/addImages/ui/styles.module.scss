@@ -4,25 +4,6 @@
 
   margin: 2rem 0 3.2rem;
 
-  .item{
-    position: relative;
-    &__image{
-      width: 10rem;
-      height: 10rem;
-      border-radius: 8px
-    }
-    &__icon{
-      width: 1.9rem;
-      height: 1.9rem;
-
-      position: absolute;
-      top: 4px;
-      right: 4px;
-
-      color: $danger-color;
-    }
-  }
-
   .empty{
     width: 10rem;
     height: 10rem;
@@ -53,5 +34,23 @@
 
       cursor: pointer;
     }
+  }
+}
+
+.loader {
+  width: 2.4rem;
+  height: 2.4rem;
+
+  color: rgb(68, 157, 167);
+
+  animation: rotate 1.5s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
