@@ -1,18 +1,36 @@
-import React from 'react';
-import styles from "./styles.module.scss"
+import React, { FC } from "react";
+import styles from "./styles.module.scss";
 
-const Emojis = () => {
-    return (
-        <div>
-            <p className={styles.emoji}>😔</p>
-            {/*<p>😃</p>*/}
-            {/*<p>🎉</p>*/}
-            {/*<p>🙃</p>*/}
-            {/*<p>🤔</p>*/}
-            {/*<p>🙂</p>*/}
-            {/*<p>🥳</p>*/}
-        </div>
-    );
+type Props = {
+   type: keyof typeof emojies;
+};
+
+enum EmosjiesEnum {
+   sad,
+   fine,
+   holidayStuff,
+   reverse,
+   unknown,
+   okay,
+   holidaySmile,
+}
+
+const emojies = {
+   sad: "😔",
+   fine: "😃",
+   holidayStuff: "🎉",
+   reverse: "🙃",
+   unknown: "🤔",
+   okay: "🙂",
+   holidaySmile: "🥳",
+};
+
+const Emojis: FC<Props> = ({ type }) => {
+   return (
+      <div>
+         <p className={styles.emoji}>{emojies[type]}</p>
+      </div>
+   );
 };
 
 export default Emojis;

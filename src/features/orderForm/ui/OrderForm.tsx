@@ -1,44 +1,39 @@
 import React, {FC} from 'react';
-import {Button, InputField, TextArea} from "@/shared/ui";
 import {AddImages} from "@/features/addImages";
-import {OrderProps} from "../index";
 import {SelectDate} from "@/entities/selectDate";
+import { Button, InputField, TextArea } from "@/shared/ui";
+import type {OrderProps} from "../model/types";
 import styles from "./styles.module.scss";
 
-const OrderForm: FC<OrderProps> = ({type}) => {
-    return (
-        <form>
-            <div className={styles.order}>
-                <InputField
-                    classname={styles.order__margin}
-                    disabled={false}
-                    type="text"
-                    error="errror"
-                    title="Название"
-                />
-                <TextArea
-                    disabled={false}
-                    error="errror"
-                    title="Описание"
-                />
-                {
-                    type === "order" &&
-                    <InputField
-                        classname={styles.order__margin}
-                        disabled={false}
-                        type="text"
-                        error="error"
-                        title="Размеры"
-                    />
-                }
 
+const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
+   return (
+      <form className={styles.form}>
+         <div className={styles.order}>
+            <InputField
+               classname={styles.order__margin}
+               disabled={false}
+               type="text"
+               error="errror"
+               title="Название"
+            />
+            <TextArea disabled={false} error="errror" title="Описание" />
+            {type === "order" && (
+               <InputField
+                  classname={styles.order__margin}
+                  disabled={false}
+                  type="text"
+                  error="error"
+                  title="Размеры"
+               />
+            )}
 
-                <InputField
-                    classname={styles.order__margin}
-                    disabled={false}
-                    type="number"
-                    title="Стоимость в сомах"
-                />
+            <InputField
+               classname={styles.order__margin}
+               disabled={false}
+               type="number"
+               title="Стоимость в сомах"
+            />
 
                 {
                     type === "order" &&
@@ -61,10 +56,20 @@ const OrderForm: FC<OrderProps> = ({type}) => {
                         title="Номер телефона"
                     />
                 </div>
+         </div>
+
+         {btnType === "order" ? (
+            <div className={styles.order__btns}>
+               <Button>Разместить объявление</Button>
             </div>
-            <Button className={styles.order__button}>Разместить объявление</Button>
-        </form>
-    );
+         ) : (
+            <div className={styles.order__btns}>
+               <Button className="btn_danger">Удалить</Button>
+               <Button>Скрыть объявление</Button>
+            </div>
+         )}
+      </form>
+   );
 };
 
 export default OrderForm;
