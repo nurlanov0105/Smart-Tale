@@ -1,51 +1,58 @@
-import React from 'react';
-import image from "@@/imgs/order/equipment.png"
+'use client'
+import React, {useState} from 'react';
+import {LoaderCircle } from 'lucide-react';
+import {ImageItem} from "@/entities/imageItem";
 import styles from "./styles.module.scss"
-import Image from "next/image";
-import { CircleX, LoaderCircle } from 'lucide-react';
-import clsx from "clsx";
 
 const AddImages = () => {
+    const [images, setImages] = useState<File[]>([])
+    const [isLoading, setIsLoading] = useState(false)
+
+    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files && files.length > 0) {
+            setIsLoading(true)
+            const reader = new FileReader()
+            reader.onload = () => {
+                setImages([...images, files[0]])
+                setIsLoading(false)
+            }
+            reader.readAsDataURL(files[0])
+        }
+    }
+
     return (
         <div className={styles.list}>
-            <div className={styles.item}>
-                <Image
-                    className={styles.item__image}
-                    src={image}
-                    alt="equipment"
-                />
-                <button className={styles.item__icon}>
-                    <CircleX/>
-                </button>
-            </div>
-            <div className={styles.item}>
-                <Image
-                    className={styles.item__image}
-                    src={image}
-                    alt="equipment"
-                />
-                <button className={styles.item__icon}>
-                    <CircleX/>
-                </button>
-            </div>
-            <div className={styles.item}>
-                <Image
-                    className={styles.item__image}
-                    src={image}
-                    alt="equipment"
-                />
-                <button className={styles.item__icon}>
-                    <CircleX/>
-                </button>
-            </div>
 
+            {
+                images.map((image, idx) =>
+                   <ImageItem
+                       key={image.name}
+                       image={image}
+                       idx={idx}
+                       images={images}
+                       setImages={setImages}
+                   />
+                )
+            }
+            {
+                isLoading &&
+                <div className={styles.empty}>
+                    <span className={styles.loader}><LoaderCircle/></span>
+                </div>
+            }
             <div className={styles.empty}>
-                <span className="loader"><LoaderCircle/></span>
+                <label htmlFor="file" className={styles.empty__text}>+ Добавить
+                    файл
+                </label>
             </div>
-            <div className={styles.empty}>
-                <div className={styles.empty__text}>+ Добавить
-                    файл</div>
-            </div>
+            <input
+                id="file"
+                accept="image/*,.png,.jpg"
+                className="visually-hidden"
+                type="file"
+                onChange={handleFileChange}
+            />
 
 
         </div>

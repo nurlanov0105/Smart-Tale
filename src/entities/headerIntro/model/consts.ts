@@ -21,6 +21,10 @@ export const PathData: any = {
       path: "Личный кабинет/Организация",
       name: "Организация",
    },
+   [DASHBOARD.ORDER_DETAIL]: {
+      path: "Личный кабинет/Детали объявления",
+      name: "Детали объявления",
+   },
 
    [MARKETPLACE.EQUIPMENT]: {
       path: "Маркетплейс/Оборудование",
