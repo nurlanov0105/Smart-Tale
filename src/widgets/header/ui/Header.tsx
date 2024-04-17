@@ -2,11 +2,12 @@
 
 import { HeaderIntro } from "@/entities/headerIntro";
 import { NoticeBtn } from "@/entities/noticeBtn";
-import { useAuth } from "@/shared/lib";
+import { ROUTES, useAuth } from "@/shared/lib";
 
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { Search } from "@/features/search";
+import Link from "next/link";
 
 const Header = () => {
    const isAuth = useAuth();
@@ -16,6 +17,7 @@ const Header = () => {
             <HeaderIntro />
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
+            <Link href={ROUTES.SIGN_IN}>Login</Link>
             <Search />
             <NoticeBtn />
          </div>

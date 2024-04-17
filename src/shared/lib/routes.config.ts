@@ -19,8 +19,8 @@ export enum ORDERS {
 
 export enum ROUTES {
    HOME = "/",
-   SIGN_UP = "register",
-   SIGN_IN = "login",
+   SIGN_UP = "/register",
+   SIGN_IN = "/login",
    DETAILS = "/detail",
    AUTHOR = "/author",
    CONFIRMATION_LOGIN = "/confirmation/login",
