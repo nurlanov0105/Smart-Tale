@@ -1,7 +1,8 @@
 import React, {FC} from 'react';
-import {Button, InputField, Select, TextArea} from "@/shared/ui";
+import {Button, InputField, TextArea} from "@/shared/ui";
 import {AddImages} from "@/features/addImages";
 import {OrderProps} from "../index";
+import {SelectDate} from "@/entities/selectDate";
 import styles from "./styles.module.scss";
 
 const OrderForm: FC<OrderProps> = ({type}) => {
@@ -43,23 +44,7 @@ const OrderForm: FC<OrderProps> = ({type}) => {
                     type === "order" &&
                     <div className={styles.order__block}>
                         <h3 className="h3">Крайняя дата выполнения</h3>
-                        <div className={styles.order__date}>
-                            <Select
-                                classname={styles.order__margin}
-                                value="30"
-                                title="День"
-                            />
-                            <Select
-                                classname={styles.order__margin}
-                                value="Апрель"
-                                title="Месяц"
-                            />
-                            <Select
-                                classname={styles.order__margin}
-                                value="2024"
-                                title="Год"
-                            />
-                        </div>
+                        <SelectDate/>
                     </div>
                 }
                 <div className={styles.order__block}>
