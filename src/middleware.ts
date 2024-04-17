@@ -21,24 +21,24 @@ export default function middleware(req: NextRequest, response: NextResponse) {
 
 // export async function middleware(request: NextRequest, response: NextResponse) {
 //    const { url } = request;
-
+//
 //    // const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
 //    const refreshToken = true;
-
+//
 //    const isAuthPage = url.includes("/auth");
 //    const isMarketplaceEquipmentPage = url.includes(MARKETPLACE.EQUIPMENT);
-
+//
 //    if (isAuthPage && refreshToken) {
 //       return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
 //    }
-
+//
 //    if (isAuthPage || isMarketplaceEquipmentPage) {
 //       return NextResponse.next();
 //    }
-
+//
 //    return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
 // }
-
+//
 // export const config = {
 //    matcher: ["/:path*", "/auth/:path*"],
 // };

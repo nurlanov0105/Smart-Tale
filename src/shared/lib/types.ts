@@ -1,3 +1,4 @@
+import {Dispatch, SetStateAction} from "react";
 
 
 export type ChildrenComponent = {
@@ -16,6 +17,7 @@ export type InputFieldProps = {
    title?: string
    error?: string;
    classname?: string
+   isBordered? : boolean
 
 };
 
@@ -27,3 +29,11 @@ export type SelectProps = {
    classname? : string
 }
 
+
+export type TimerProps = {
+   seconds: number
+   setSeconds: Dispatch<SetStateAction<number>>
+   isDisabled: boolean
+   setIsDisabled: Dispatch<SetStateAction<boolean>>
+   isError: boolean
+}

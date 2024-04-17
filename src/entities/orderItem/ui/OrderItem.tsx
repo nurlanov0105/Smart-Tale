@@ -1,14 +1,16 @@
 import React, { FC } from "react";
-import cardImage from "@@/imgs/order/equipment.png";
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
-import { ItemProps } from "../model/types";
 import Link from "next/link";
+import Image from "next/image";
+import { ItemProps } from "../model/types";
+import { DASHBOARD } from "@/shared/lib";
+
+import cardImage from "@@/imgs/order/equipment.png";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail }) => {
    return (
-      <Link href="#" className={styles.item}>
+      <Link href={DASHBOARD.ORDER_DETAIL} className={styles.item}>
          <div className={styles.item__left}>
             <Image
                className={styles.item__image}

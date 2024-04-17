@@ -4,7 +4,12 @@ import { FC } from "react";
 import { useModalStore } from "../model/modalState";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {ChangeAvatarModal, SubscribeModal, DeleteAnnouncementModal, HideAnnouncement} from "@/features/modals";
+import {
+   ChangeAvatarModal,
+   SubscribeModal,
+   DeleteAnnouncementModal,
+   HideAnnouncement,
+} from "@/features/modals";
 
 const Modal: FC = () => {
    const { isOpen, componentName, closeModal } = useModalStore();
@@ -12,8 +17,7 @@ const Modal: FC = () => {
       SubscribeModal,
       ChangeAvatarModal,
       DeleteAnnouncementModal,
-      HideAnnouncement
-
+      HideAnnouncement,
    };
    let RenderComponent;
 
