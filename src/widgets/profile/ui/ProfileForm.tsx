@@ -9,6 +9,7 @@ import userIcon from "@@/imgs/form/user.svg";
 import { useForm } from "react-hook-form";
 import { useModalStore } from "@/widgets/modal/model/modalState";
 import { HideAnnouncement } from "@/features/modals";
+import { showModal } from "@/widgets/modal";
 
 const ProfileForm: FC = () => {
    const {
@@ -18,7 +19,10 @@ const ProfileForm: FC = () => {
       formState: { errors },
    } = useForm();
    const onSubmit = (data: any) => console.log(data);
-   const showModal = useModalStore((state) => state.showModal);
+
+   const handleAvatarClick = () => {
+      showModal("ChangeAvatarModal");
+   };
 
    return (
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -29,9 +33,7 @@ const ProfileForm: FC = () => {
                </div>
                <div className={styles.form__userBox}>
                   <h3 className={styles.form__name}>Кирилл Олейников</h3>
-                  <button
-                     onClick={() => showModal("HideAnnouncement")}
-                     className={styles.form__photoSpan}>
+                  <button onClick={handleAvatarClick} className={styles.form__photoSpan}>
                      Изменить фото профиля
                   </button>
                </div>

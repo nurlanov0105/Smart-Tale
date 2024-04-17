@@ -1,9 +1,9 @@
 import { FC } from "react";
-import {CreateOrder} from "@/widgets/createOrder";
+import { OrderDetail } from "@/widgets/orderDetail";
 import styles from "./styles.module.scss";
 
 const CreateOrderPage: FC = () => {
-   return <CreateOrder/>
+   return <OrderDetail btnType="order" />;
 };
 
 export default CreateOrderPage;
