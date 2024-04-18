@@ -1,0 +1,22 @@
+.box {
+   padding: 1.6rem;
+   border-radius: 12px;
+   background-color: #f8f9fa;
+   max-width: 18.8rem;
+   width: 100%;
+   margin-left: auto;
+   margin-top: 3.2rem;
+   overflow: hidden;
+   cursor: pointer;
+   position: relative;
+   &__inner {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+   }
+
+   &__bigImg {
+      margin-left: auto;
+      transform: translate(1.6rem, 1.6rem);
+   }
+}

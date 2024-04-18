@@ -13,8 +13,6 @@ const SubscribeModal = () => {
          </h3>
          <p className={styles.subscribe__text}>С вами свяжется наш администратор</p>
          <Button>Понятно</Button>
-
-         <CloseModalBtn />
       </div>
    );
 };

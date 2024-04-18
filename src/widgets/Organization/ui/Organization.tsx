@@ -7,9 +7,14 @@ import { EmployeesList } from "@/features/employeesList";
 import { organizationValues } from "@/widgets/organization";
 import styles from "./styles.module.scss";
 import { ButtonsList } from "@/features/buttonsList";
+import { showModal } from "@/widgets/modal";
 
 const Organization = () => {
    const [type, setType] = useState(organizationValues[0].postValue);
+
+   const handleInviteClick = () => {
+      showModal("InviteEmployeeModal", { isLightBg: true });
+   };
 
    const data = [
       { id: 1, type: "order" },
@@ -25,8 +30,11 @@ const Organization = () => {
          <Logo />
          <div className={styles.organization__block}>
             <ButtonsList type={type} setType={setType} values={organizationValues} />
-            {type === "users-list" && <Button>Пригласить сотрудника</Button>}
+            {type === "users-list" && (
+               <Button onClick={handleInviteClick}>Пригласить сотрудника</Button>
+            )}
          </div>
+
          {type === "users-list" ? (
             <EmployeesList />
          ) : (

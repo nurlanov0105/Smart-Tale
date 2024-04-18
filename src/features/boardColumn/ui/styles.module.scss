@@ -1,0 +1,29 @@
+.column {
+   padding: 2rem;
+   display: flex;
+   flex-direction: column;
+   row-gap: 2rem;
+
+   flex-grow: 1;
+
+   border-radius: 10px;
+   background-color: $common-white;
+   &__title {
+      display: flex;
+      padding: 4px 1.6rem;
+      justify-content: center;
+      align-items: center;
+
+      border-radius: 10px;
+      background-color: #c3fffb;
+
+      line-height: 2;
+      letter-spacing: -0.32px;
+   }
+
+   &__content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+   }
+}

@@ -1,0 +1,32 @@
+.position{
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 100%;
+
+  &__row{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    border-bottom: 1px solid $dark-grey;
+    padding-bottom: 1.6rem;
+    margin-bottom: 2rem;
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    margin-top: auto;
+    justify-content: flex-end;
+  }
+
+  &__list{
+    margin-top: 2rem;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+  }
+}

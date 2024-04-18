@@ -74,7 +74,10 @@
       column-gap: 12px;
    }
 
-   &__btn {
+   &__btns {
       margin-left: auto;
+      display: flex;
+      align-items: center;
+      column-gap: 16px;
    }
 }

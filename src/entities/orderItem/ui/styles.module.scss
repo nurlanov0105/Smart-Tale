@@ -6,6 +6,7 @@
 
    background-color: $common-white;
    border-radius: 16px;
+   position: relative;
 
    &__left {
       display: flex;
@@ -50,5 +51,15 @@
          color: $common-black;
          cursor: pointer;
       }
+   }
+
+   &__date {
+      position: absolute;
+      top: 1.6rem;
+      right: 3.2rem;
+
+      font-size: 14px;
+      line-height: 1.42;
+      letter-spacing: -0.28px;
    }
 }

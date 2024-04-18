@@ -1,9 +1,16 @@
+"use client";
+
 import { FC } from "react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { BtnBordered, Button } from "@/shared/ui";
+import { showModal } from "@/widgets/modal";
 
 const StandartCard: FC = () => {
+   const handleClick = () => {
+      showModal("CardModal");
+   };
+
    return (
       <div className={styles.card}>
          <div className={styles.card__img} />
@@ -23,7 +30,9 @@ const StandartCard: FC = () => {
                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusamus quis rerum
                molestias delectus est magnam, perspiciatis odit reiciendis enim pariatur.
             </div>
-            <BtnBordered className="btn-bordered__card">Подробнее</BtnBordered>
+            <BtnBordered className="btn-bordered__card" onClick={handleClick}>
+               Подробнее
+            </BtnBordered>
          </div>
       </div>
    );
