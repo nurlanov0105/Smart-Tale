@@ -1,0 +1,48 @@
+.modal {
+   display: flex;
+   column-gap: 5.6rem;
+   padding-top: 2rem;
+   padding-left: 2rem;
+
+   & > div {
+      flex-shrink: 0;
+   }
+
+   &__body {
+      width: 31rem;
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__header {
+      flex-grow: 1;
+      padding-bottom: 4rem;
+      margin-bottom: 1.6rem;
+      border-bottom: 1px solid $dark-grey;
+   }
+
+   &__info {
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      row-gap: 1.6rem;
+   }
+
+   &__category {
+      display: flex;
+      flex-direction: column;
+      row-gap: 8px;
+   }
+
+   &__descr {
+      color: $dark-grey;
+      font-size: 14px;
+      line-height: 1.57;
+      letter-spacing: -0.4px;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 5;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+   }
+}

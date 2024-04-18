@@ -5,6 +5,7 @@ import { NavbarCategories } from "@/features/navbarCategories";
 import { Logo } from "@/entities/logo/index";
 import styles from "./styles.module.scss";
 import { LogoutBtn } from "@/entities/logoutBtn";
+import { SubscribeBox } from "@/entities/subscribeBox";
 
 const Navbar = () => {
    const navbarRef = useRef<HTMLDivElement>(null);
@@ -24,7 +25,10 @@ const Navbar = () => {
             <NavbarCategories />
          </div>
 
-         <LogoutBtn />
+         <div className={styles.navbar__bottom}>
+            <SubscribeBox />
+            <LogoutBtn />
+         </div>
       </div>
    );
 };

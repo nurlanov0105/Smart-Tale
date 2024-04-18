@@ -3,7 +3,7 @@ import { OrderItem } from "@/entities/orderItem";
 import styles from "./styles.module.scss";
 import { Props } from "../model/types";
 
-const OrderList: FC<Props> = ({ data, itemType, isDetail, type }) => {
+const OrderList: FC<Props> = ({ data, itemType, isDetail, type, historyType }) => {
    const filteredData = data.filter((item) => item.type === type);
 
    return (
@@ -17,7 +17,13 @@ const OrderList: FC<Props> = ({ data, itemType, isDetail, type }) => {
                     <OrderItem key={item.id} {...item} itemType={itemType} isDetail={isDetail} />
                  ))
             : data?.map((item) => (
-                 <OrderItem key={item.id} {...item} itemType={itemType} isDetail={isDetail} />
+                 <OrderItem
+                    key={item.id}
+                    {...item}
+                    itemType={itemType}
+                    isDetail={isDetail}
+                    historyType={historyType}
+                 />
               ))}
       </div>
    );

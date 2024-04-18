@@ -3,4 +3,5 @@ export type ItemProps = {
    type?: string;
    itemType: string;
    isDetail: boolean;
+   historyType?: string;
 };

@@ -16,7 +16,6 @@ const ChangeAvatarModal = () => {
             <p className={styles.content__format}>Формат JPG, JPEG, PNG</p>
          </div>
          <Button>Сохранить</Button>
-         <CloseModalBtn />
       </div>
    );
 };

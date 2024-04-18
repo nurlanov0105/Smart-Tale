@@ -1,0 +1,31 @@
+.author {
+   display: flex;
+   align-items: center;
+   column-gap: 12px;
+
+   &__avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      @include bgImg;
+   }
+
+   &__col {
+      display: flex;
+      flex-direction: column;
+      row-gap: 4px;
+   }
+
+   &__title {
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: -0.4px;
+   }
+
+   &__subtitle {
+      color: $dark-grey;
+      font-size: 13px;
+      line-height: 1;
+      letter-spacing: -0.4px;
+   }
+}

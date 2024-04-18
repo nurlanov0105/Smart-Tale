@@ -1,0 +1,20 @@
+.section {
+   &__row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+   }
+
+   &__date {
+      display: flex;
+      align-items: center;
+      column-gap: 1.6rem;
+
+      h5 {
+         font-size: 14px;
+         line-height: 1.57;
+         letter-spacing: -0.4px;
+      }
+   }
+}

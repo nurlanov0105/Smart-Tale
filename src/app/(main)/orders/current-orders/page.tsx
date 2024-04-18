@@ -1,8 +1,9 @@
 import { FC } from "react";
 import styles from "./styles.module.scss";
+import { Board } from "@/widgets/board";
 
 const CurrentOrdersPage: FC = () => {
-   return <div>CurrentOrdersPage</div>;
+   return <Board />;
 };
 
 export default CurrentOrdersPage;
