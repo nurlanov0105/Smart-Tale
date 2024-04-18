@@ -32,7 +32,7 @@ const Navbar = () => {
          </div>
 
          <div className={styles.navbar__bottom}>
-            {!categoryType && <SubscribeBox />}
+            {/* {!categoryType && <SubscribeBox />} */}
 
             <LogoutBtn />
          </div>

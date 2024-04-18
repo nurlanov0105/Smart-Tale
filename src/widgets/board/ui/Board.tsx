@@ -4,7 +4,7 @@ import { useState } from "react";
 // import { DragDropContext } from "react-beautiful-dnd";
 import { BoardColumn } from "@/features/boardColumn";
 import { BoardData } from "../model/data";
-// import { onDragEnd } from "@/shared/lib";
+import { onDragEnd } from "@/shared/lib";
 import styles from "./styles.module.scss";
 
 const Board = () => {

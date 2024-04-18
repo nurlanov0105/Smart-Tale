@@ -5,6 +5,7 @@ export const BoardData: any = {
       items: [
          {
             id: 1,
+            columnBoard: "new",
             title: "Заказ №2456",
             description: "Сшить 10 штук футболок",
             date: "15 апреля",
