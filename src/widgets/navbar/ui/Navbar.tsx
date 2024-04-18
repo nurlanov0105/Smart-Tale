@@ -3,17 +3,23 @@
 import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/navbarCategories";
 import { Logo } from "@/entities/logo/index";
-import styles from "./styles.module.scss";
 import { LogoutBtn } from "@/entities/logoutBtn";
 
+import styles from "./styles.module.scss";
+import {usePathname} from "next/navigation";
+import {AdminCategories} from "@/features/adminNavCategories";
+
 const Navbar = () => {
-   const navbarRef = useRef<HTMLDivElement>(null);
+    const navbarRef = useRef<HTMLDivElement>(null)
+
+    const pathname = usePathname()
+    const categoryType = pathname.includes("/admin")
 
    useEffect(() => {
       if (navbarRef.current) {
-         navbarRef.current.scrollTop = navbarRef.current.scrollHeight;
+         navbarRef.current.scrollTop = navbarRef.current.scrollHeight
       }
-   }, []);
+   }, [])
 
    return (
       <div className={styles.navbar}>
@@ -21,7 +27,9 @@ const Navbar = () => {
             <Logo />
          </div>
          <div ref={navbarRef} className={styles.navbar__scrollbox}>
-            <NavbarCategories />
+             {
+                 categoryType ? <AdminCategories/> : <NavbarCategories />
+             }
          </div>
 
          <LogoutBtn />

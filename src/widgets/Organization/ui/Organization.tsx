@@ -27,6 +27,7 @@ const Organization = () => {
             <ButtonsList type={type} setType={setType} values={organizationValues} />
             {type === "users-list" && <Button>Пригласить сотрудника</Button>}
          </div>
+
          {type === "users-list" ? (
             <EmployeesList />
          ) : (

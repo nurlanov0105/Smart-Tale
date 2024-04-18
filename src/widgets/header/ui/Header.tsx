@@ -17,6 +17,7 @@ const Header = () => {
             <HeaderIntro />
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
+            <Link href={ROUTES.MODE}>Mode</Link>
             <Link href={ROUTES.SIGN_IN}>Login</Link>
             <Search />
             <NoticeBtn />
