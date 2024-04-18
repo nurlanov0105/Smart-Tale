@@ -1,11 +1,11 @@
-.button{
-  position: absolute;
-  top: 0;
-  right: 0;
-
+.button {
+   position: absolute;
+   top: 3.2rem;
+   right: 3.2rem;
+   z-index: $z2;
 }
 
-.icon{
-  width: 24rem;
-  height: 24rem;
+.icon {
+   width: 24rem;
+   height: 24rem;
 }

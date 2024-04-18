@@ -1,0 +1,47 @@
+.category {
+   display: flex;
+   align-items: center;
+   column-gap: 1.6rem;
+
+   &__item {
+      color: $dark-grey;
+      font-size: 12px;
+      line-height: 2;
+      text-transform: uppercase;
+      cursor: pointer;
+
+      @include transition;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            color: $common-black;
+            font-size: 12px;
+            line-height: 2;
+            text-decoration-line: underline;
+            text-transform: uppercase;
+         }
+      }
+
+      &:active {
+         color: $common-black;
+         font-size: 12px;
+         line-height: 2;
+         text-decoration-line: underline;
+         text-transform: uppercase;
+      }
+
+      &:disabled {
+         cursor: default;
+         color: $dark-grey;
+         text-decoration: none;
+      }
+
+      &_active {
+         color: $common-black;
+         font-size: 12px;
+         line-height: 2;
+         text-decoration-line: underline;
+         text-transform: uppercase;
+      }
+   }
+}

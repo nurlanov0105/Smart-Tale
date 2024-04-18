@@ -1,0 +1,39 @@
+.mode{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  gap: 2rem;
+
+  height: 100%;
+
+}
+
+.item {
+  width: 100%;
+  display: flex;
+
+  align-items: center;
+  column-gap: 10px;
+
+  background-color: $common-white;
+  border-radius: 16px;
+
+  cursor: pointer;
+
+  &__left {
+    display: flex;
+    column-gap: 2.1rem;
+  }
+  &__image {
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  &__title {
+    font-weight: 510;
+    color: $dark-blue;
+  }
+
+}

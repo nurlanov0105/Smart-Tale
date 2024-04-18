@@ -7,8 +7,6 @@ import Image from "next/image";
 
 import userIcon from "@@/imgs/form/user.svg";
 import { useForm } from "react-hook-form";
-import { useModalStore } from "@/widgets/modal/model/modalState";
-import { HideAnnouncement } from "@/features/modals";
 import { showModal } from "@/widgets/modal";
 
 const ProfileForm: FC = () => {
@@ -22,6 +20,10 @@ const ProfileForm: FC = () => {
 
    const handleAvatarClick = () => {
       showModal("ChangeAvatarModal");
+   };
+
+   const handleDeleteClick = () => {
+      showModal("DeleteModal");
    };
 
    return (
@@ -61,7 +63,10 @@ const ProfileForm: FC = () => {
             </fieldset>
          </div>
 
-         <div className={styles.form__btn}>
+         <div className={styles.form__btns}>
+            <Button className="btn_danger" onClick={handleDeleteClick}>
+               Удалить аккаунт
+            </Button>
             <Button>Изменить данные</Button>
          </div>
       </form>

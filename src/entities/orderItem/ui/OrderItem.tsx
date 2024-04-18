@@ -8,7 +8,7 @@ import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail }) => {
+const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail, historyType }) => {
    return (
       <Link href={DASHBOARD.ORDER_DETAIL} className={styles.item}>
          <div className={styles.item__left}>
@@ -26,6 +26,8 @@ const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail }) => {
                   <p className={clsx(styles.item__subtitle, styles.item__subtitle_green)}>
                      Оборудование
                   </p>
+               ) : itemType === "current" || "completed" ? (
+                  <p className={clsx(styles.item__subtitle)}>2000 сом</p>
                ) : (
                   <p
                      className={clsx(
@@ -46,6 +48,11 @@ const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail }) => {
             <p className={styles.item__price}>1000 сом</p>
          ) : (
             <p className={styles.item__detail}>Посмотреть детали</p>
+         )}
+         {itemType === "current" || "completed" ? (
+            <span className={styles.item__date}>2 апреля 2024</span>
+         ) : (
+            ""
          )}
       </Link>
    );

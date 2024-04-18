@@ -1,0 +1,35 @@
+.slider {
+   max-width: 31.2rem;
+   width: 100%;
+   height: auto;
+   overflow: hidden;
+
+   &__content {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+   }
+
+   &__big {
+      height: 30.2rem;
+      border-radius: 10px;
+      @include bgImg;
+      cursor: pointer;
+   }
+
+   &__row {
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+   }
+
+   &__small {
+      width: 5.6rem;
+      height: 5.6rem;
+      flex-shrink: 0;
+      border-radius: 0.9rem;
+      cursor: pointer;
+
+      @include bgImg;
+   }
+}

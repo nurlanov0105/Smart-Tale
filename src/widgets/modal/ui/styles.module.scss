@@ -27,6 +27,14 @@
       overflow-y: auto;
    }
 
+   &__inner {
+      padding-right: 2.4rem;
+
+      button {
+         width: max-content;
+      }
+   }
+
    &.active {
       opacity: 1;
       pointer-events: all;

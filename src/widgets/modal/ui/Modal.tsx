@@ -8,16 +8,34 @@ import {
    ChangeAvatarModal,
    SubscribeModal,
    DeleteAnnouncementModal,
-   HideAnnouncement,
+   HideAnnouncementModal,
+   InviteEmployeeModal,
+   BuyAnnouncementModal,
+   AcceptAnnouncementModal,
+   RejectAnnouncementModal,
+   RequireAnnouncementModal,
+   LogoutModal,
+   DeleteModal,
 } from "@/features/modals";
+import { CardModal } from "@/widgets/cardModal";
+import { CloseModalBtn } from "@/entities/closeModalBtn";
 
 const Modal: FC = () => {
-   const { isOpen, componentName, closeModal } = useModalStore();
+   const { isOpen, componentName, isLightBg, closeModal } = useModalStore();
+
    const componentsLookUp: Record<string, React.ComponentType> = {
       SubscribeModal,
       ChangeAvatarModal,
       DeleteAnnouncementModal,
-      HideAnnouncement,
+      HideAnnouncementModal,
+      InviteEmployeeModal,
+      BuyAnnouncementModal,
+      AcceptAnnouncementModal,
+      RejectAnnouncementModal,
+      RequireAnnouncementModal,
+      LogoutModal,
+      CardModal,
+      DeleteModal,
    };
    let RenderComponent;
 
@@ -33,8 +51,9 @@ const Modal: FC = () => {
 
    return (
       <div className={clsx(styles.modal, isOpen ? styles.active : "")} onClick={closeModal}>
-         <div className={styles.content} onClick={handleClick}>
-            {RenderComponent}
+         <div className={clsx(styles.content, isLightBg ? "lightBg" : "")} onClick={handleClick}>
+            <CloseModalBtn />
+            <div className={styles.modal__inner}>{RenderComponent}</div>
          </div>
       </div>
    );
