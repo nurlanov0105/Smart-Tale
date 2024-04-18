@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { DASHBOARD, EnumTokens, MARKETPLACE } from "./shared/lib";
+import { EnumTokens, MARKETPLACE } from "./shared/lib";
 
 const protectedRoutes = ["/", "/marketplace"];
 export default function middleware(req: NextRequest, response: NextResponse) {
@@ -23,6 +23,7 @@ export default function middleware(req: NextRequest, response: NextResponse) {
 //    const { url } = request;
 //
 //    // const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
+//
 //    const refreshToken = true;
 //
 //    const isAuthPage = url.includes("/auth");

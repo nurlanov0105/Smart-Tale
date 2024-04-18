@@ -34,6 +34,7 @@ const Organization = () => {
                <Button onClick={handleInviteClick}>Пригласить сотрудника</Button>
             )}
          </div>
+
          {type === "users-list" ? (
             <EmployeesList />
          ) : (
