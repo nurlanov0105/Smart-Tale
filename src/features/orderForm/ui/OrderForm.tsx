@@ -1,10 +1,11 @@
-import React, { FC } from "react";
+import React, {FC, useState} from "react";
 import { AddImages } from "@/features/addImages";
 import { SelectDate } from "@/entities/selectDate";
 import { Button, InputField, TextArea } from "@/shared/ui";
+import { showModal } from "@/widgets/modal";
+import {IDateProps} from "@/entities/selectDate/model/types";
 import type { OrderProps } from "../model/types";
 import styles from "./styles.module.scss";
-import { showModal } from "@/widgets/modal";
 
 const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleDeleteClick = () => {
@@ -12,7 +13,10 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    };
    const handleHideClick = () => {
       showModal("HideAnnouncementModal");
-   };
+   }
+   const [day, setDay] = useState<IDateProps>({value: 0, postValue: 0})
+   const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0})
+   const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0})
 
    return (
       <form className={styles.form}>
@@ -45,7 +49,17 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
             {type === "order" && (
                <div className={styles.order__block}>
                   <h3 className="h3">Крайняя дата выполнения</h3>
-                  <SelectDate />
+                  <div className={styles.order__margin}>
+                     <SelectDate
+                         day={day}
+                         setDay={setDay}
+                         month={month}
+                         setMonth={setMonth}
+                         year={year}
+                         setYear={setYear}
+                         type="user"
+                     />
+                  </div>
                </div>
             )}
             <div className={styles.order__block}>

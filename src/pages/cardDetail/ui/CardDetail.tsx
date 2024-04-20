@@ -2,13 +2,14 @@
 
 import React, { useState } from "react";
 import { CardSlider } from "@/features/cardSlider";
-import { images } from "@/shared/lib";
-import styles from "./styles.module.scss";
 import { ModalCardHeader } from "@/entities/modalCardHeader";
 import { AuthorInfo } from "@/entities/authorInfo";
 import { CardCategory } from "@/features/cardCategory";
 import { Chat } from "@/widgets/chat";
-import { BtnBordered, Button } from "@/shared/ui";
+import { BtnBordered } from "@/shared/ui";
+
+import { images } from "@/shared/lib";
+import styles from "./styles.module.scss";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");

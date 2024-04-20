@@ -33,6 +33,7 @@ const CardSlider: FC<SliderProps> = ({ images, isLarge }) => {
             setSelectedImage(images[swiperRef.current?.activeIndex]);
          });
       }
+      // eslint-disable-next-line
    }, [swiperRef.current]);
 
    return (

@@ -1,7 +1,5 @@
 export type Props = {
    data: any[];
-   itemType: string;
-   isDetail: boolean;
-   type?: string;
-   historyType?: string;
-};
+   itemType: "order" | "equipment"
+   isAdmin?: boolean
+}

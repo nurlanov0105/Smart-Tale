@@ -38,7 +38,7 @@ const Organization = () => {
          {type === "users-list" ? (
             <EmployeesList />
          ) : (
-            <OrderList data={data} itemType="order" isDetail={false} />
+            <OrderList data={data} itemType="order" />
          )}
       </div>
    );

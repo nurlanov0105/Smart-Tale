@@ -1,3 +1,3 @@
 import CardDetail from "./ui/CardDetail";
 
-export { CardDetail };
+export default CardDetail;

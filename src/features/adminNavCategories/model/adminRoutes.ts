@@ -1,5 +1,5 @@
 import { ADMIN_ROUTES, ROUTES } from "@/shared/lib";
-import { User, UsersRound, History, Building } from "lucide-react";
+import {User, UsersRound, History, Building, ListOrdered} from "lucide-react";
 import type { TypeAdminCategories } from "../model/types";
 export const AdminRoutes: TypeAdminCategories[] = [
    {
@@ -7,14 +7,14 @@ export const AdminRoutes: TypeAdminCategories[] = [
       title: "Организация",
       Icon: Building,
       link: ADMIN_ROUTES.ORGANIZATION,
-      routes: [ADMIN_ROUTES.CREATE_ORGANIZATION],
+      routes: [ADMIN_ROUTES.CREATE_ORGANIZATION, ADMIN_ROUTES.ORGANIZATION_DETAIL],
    },
    {
       id: 2,
       title: "Сотрудники",
       Icon: User,
       link: ADMIN_ROUTES.EMPLOYEES,
-      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES],
+      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAIL],
    },
    {
       id: 3,
@@ -32,6 +32,13 @@ export const AdminRoutes: TypeAdminCategories[] = [
    },
    {
       id: 5,
+      title: "Заказы",
+      Icon: ListOrdered,
+      link: ADMIN_ROUTES.EMPLOYEES_SETTINGS,
+      routes: [ADMIN_ROUTES.EMPLOYEES_SETTINGS],
+   },
+   {
+      id: 6,
       title: "Личный профиль",
       Icon: User,
       link: ROUTES.DASHBOARD_PROFILE,

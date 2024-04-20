@@ -1,12 +1,12 @@
 "use client"
 import React from 'react';
-import styles from "./styles.module.scss"
 import {Button} from "@/shared/ui";
 import {useRouter} from "next/navigation";
 import {ADMIN_ROUTES} from "@/shared/lib";
+import styles from "./styles.module.scss"
 
 
-const Position = () => {
+const Positions = () => {
     const router = useRouter()
     const handleRoute = () => {
         router.push(ADMIN_ROUTES.ADD_POSITION)
@@ -22,4 +22,4 @@ const Position = () => {
     );
 };
 
-export default Position;
+export default Positions;

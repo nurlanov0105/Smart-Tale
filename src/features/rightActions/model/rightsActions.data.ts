@@ -1,10 +1,7 @@
 import {TypeRightActions} from "@/features/rightActions/model/types";
 
 export const rightsActionsData: TypeRightActions[] = [
-    {
-        title: "Создание и выдача Роли",
-        isRight: false
-    },
+
     {
         title: "Изменение прав доступа у ролей",
         isRight: false

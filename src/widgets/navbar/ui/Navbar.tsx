@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/navbarCategories";
 import { Logo } from "@/entities/logo/index";
 import { LogoutBtn } from "@/entities/logoutBtn";
-import { SubscribeBox } from "@/entities/subscribeBox";
+// import { SubscribeBox } from "@/entities/subscribeBox";
 
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
