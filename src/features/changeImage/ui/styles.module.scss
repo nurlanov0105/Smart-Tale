@@ -1,0 +1,41 @@
+.form{
+  &__user {
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+    margin-bottom: 3.2rem;
+  }
+
+  &__avatar {
+    width: 6.8rem;
+    height: 6.8rem;
+    border-radius: 50%;
+    background-color: $primary-color;
+    overflow: hidden;
+    position: relative;
+
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__userBox {
+    display: flex;
+    flex-direction: column;
+    row-gap: 4px;
+  }
+
+  &__name {
+    color: $common-black;
+    font-size: 2rem;
+  }
+
+  &__photoSpan {
+    color: $dark-grey;
+    text-decoration-line: underline;
+    text-align: left;
+  }
+}

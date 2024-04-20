@@ -16,16 +16,36 @@
       row-gap: 4px;
    }
 
-   &__title {
+   &__name {
       font-size: 13px;
       line-height: 1;
-      letter-spacing: -0.4px;
    }
 
    &__subtitle {
       color: $dark-grey;
       font-size: 13px;
       line-height: 1;
-      letter-spacing: -0.4px;
+   }
+
+   &_large {
+      .author {
+         column-gap: 1.6rem;
+         &__avatar {
+            width: 5rem;
+            height: 5rem;
+         }
+
+         &__col {
+            row-gap: 8px;
+         }
+
+         &__name {
+            font-size: 1.8rem;
+         }
+
+         &__subtitle {
+            font-size: 1.6rem;
+         }
+      }
    }
 }

@@ -15,8 +15,6 @@
       @media (hover: hover) and (pointer: fine) {
          &:hover {
             color: $common-black;
-            font-size: 12px;
-            line-height: 2;
             text-decoration-line: underline;
             text-transform: uppercase;
          }
@@ -24,8 +22,6 @@
 
       &:active {
          color: $common-black;
-         font-size: 12px;
-         line-height: 2;
          text-decoration-line: underline;
          text-transform: uppercase;
       }
@@ -38,10 +34,17 @@
 
       &_active {
          color: $common-black;
-         font-size: 12px;
-         line-height: 2;
+
          text-decoration-line: underline;
          text-transform: uppercase;
+      }
+   }
+
+   &_large {
+      .category {
+         &__item {
+            font-size: 1.6rem;
+         }
       }
    }
 }

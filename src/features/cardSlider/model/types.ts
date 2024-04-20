@@ -1,3 +1,4 @@
-export type Props = {
+export type SliderProps = {
    images: any;
+   isLarge?: boolean;
 };

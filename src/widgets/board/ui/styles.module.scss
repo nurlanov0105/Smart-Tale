@@ -1,6 +1,12 @@
 .board {
    display: flex;
-   column-gap: 8px;
-   justify-content: space-between;
+   flex-direction: column;
    height: 100%;
+   flex-grow: 1;
+   &__inner {
+      display: flex;
+      column-gap: 8px;
+      justify-content: space-between;
+      flex-grow: 1;
+   }
 }

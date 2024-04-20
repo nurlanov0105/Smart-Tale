@@ -1,9 +1,9 @@
 import React from 'react';
-import {Position} from "@/widgets/position";
+import {Positions} from "@/widgets/positions";
 
 const PositionsPage = () => {
     return (
-       <Position/>
+       <Positions/>
     );
 };
 

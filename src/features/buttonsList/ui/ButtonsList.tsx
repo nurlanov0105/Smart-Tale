@@ -1,10 +1,10 @@
-import React from "react";
+import React, {FC} from "react";
 import { BtnBordered } from "@/shared/ui";
+import { ButtonsProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { ButtonsProps } from "../model/types";
 
-const ButtonsList = ({ type, setType, values }: ButtonsProps) => {
+const ButtonsList:FC<ButtonsProps> = ({ type, setType, values }) => {
    const handleType = (newType: string) => setType(newType);
    const isActive = (value: string) => {
       return clsx(styles.order__button, {
@@ -16,9 +16,10 @@ const ButtonsList = ({ type, setType, values }: ButtonsProps) => {
       <div className={styles.buttons}>
          {values.map((value) => (
             <BtnBordered
-               key={value.postValue}
-               onClick={() => handleType(value.postValue)}
-               className={isActive(value.postValue)}>
+                type="button"
+                key={value.postValue}
+                onClick={() => handleType(value.postValue)}
+                className={isActive(value.postValue)}>
                {value.value}
             </BtnBordered>
          ))}

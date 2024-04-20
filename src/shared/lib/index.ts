@@ -4,6 +4,7 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useAuth } from "./hooks/useAuth";
 import { useOutside } from "./hooks/useOutside";
 import { onDragEnd } from "./utils/onDragEnd";
+import { images } from "./consts";
 
 export type { ChildrenComponent, InputFieldProps };
 
@@ -18,4 +19,5 @@ export {
    ROUTES,
    onDragEnd,
    ADMIN_ROUTES,
+   images,
 };
