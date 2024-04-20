@@ -1,4 +1,4 @@
-import { CardsSection } from "@/widgets/cardsSection";
+import { CardsSection } from "@/widgets/user/cardsSection";
 import { FC } from "react";
 
 const EquipmentPage: FC = () => {

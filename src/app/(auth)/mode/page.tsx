@@ -1,10 +1,7 @@
-import React from 'react';
-import {Mode} from "@/widgets/mode";
+import { Mode } from "@/widgets/general/mode";
 
 const ModePage = () => {
-    return (
-        <Mode/>
-    );
+   return <Mode />;
 };
 
 export default ModePage;

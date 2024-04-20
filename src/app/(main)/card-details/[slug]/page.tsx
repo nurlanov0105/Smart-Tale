@@ -1,7 +1,7 @@
 import React from "react";
 
-import CardDetail from "@/pages/cardDetail";
-import styles from "./styles.module.scss";
+import CardDetail from "@/views/cardDetail";
+// import styles from "./styles.module.scss";
 
 const CardDetailsPage = () => {
    return <CardDetail />;
