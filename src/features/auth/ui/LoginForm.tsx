@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import { HeadingAuth } from "@/entities/headingAuth";
+import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { Button, InputField } from "@/shared/ui";
-import { TypeAuthButton } from "@/entities/typeAuthButton";
+import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/shared/lib";
 import styles from "@/features/auth/ui/styles.module.scss";

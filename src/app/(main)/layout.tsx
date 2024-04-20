@@ -1,7 +1,7 @@
 import React, { FC } from "react";
-import { Navbar } from "@/widgets/navbar";
+import { Navbar } from "@/widgets/general/navbar";
 import { ChildrenComponent } from "@/shared/lib";
-import { Header } from "@/widgets/header";
+import { Header } from "@/widgets/general/header";
 import styles from "./styles.module.scss";
 
 const MainLayout: FC<ChildrenComponent> = ({ children }) => {

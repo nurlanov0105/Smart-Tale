@@ -1,10 +1,7 @@
-import React from 'react';
-import {AdminOrganizationDetail} from "@/widgets/adminOrganizationDetail";
+import { AdminOrganizationDetail } from "@/widgets/admin/adminOrganizationDetail";
 
 const Page = () => {
-    return (
-        <AdminOrganizationDetail/>
-    );
+   return <AdminOrganizationDetail />;
 };
 
 export default Page;

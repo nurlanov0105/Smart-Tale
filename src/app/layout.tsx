@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Modal } from "@/widgets/modal";
+import { Modal } from "@/views/modal";
 
 import clsx from "clsx";
 import { sf_pro, dm_sans } from "@/shared/scss/base/fonts";

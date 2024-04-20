@@ -1,10 +1,8 @@
-import React from 'react';
-import {OrganizationForm} from "@/features/organizationForm";
+import { OrganizationForm } from "@/features/admin/organizationForm";
+import React from "react";
 
 const CreateOrganizationPage = () => {
-    return (
-        <OrganizationForm/>
-    );
+   return <OrganizationForm />;
 };
 
 export default CreateOrganizationPage;

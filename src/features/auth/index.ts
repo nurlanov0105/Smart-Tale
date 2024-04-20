@@ -1,5 +1,5 @@
-import RegisterForm from "@/features/auth/ui/RegisterForm";
-import Confirmation from "@/features/auth/ui/Confirmation";
-import LoginForm from "@/features/auth/ui/LoginForm";
+import RegisterForm from "./ui/RegisterForm";
+import Confirmation from "./ui/Confirmation";
+import LoginForm from "./ui/LoginForm";
 
-export {RegisterForm, Confirmation, LoginForm}
+export { RegisterForm, Confirmation, LoginForm };
