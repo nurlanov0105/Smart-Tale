@@ -1,0 +1,15 @@
+.auth__button {
+   font-size: 1.4rem;
+   font-weight: 510;
+   line-height: 1.8;
+
+   text-decoration: underline;
+   text-align: left;
+
+   cursor: pointer;
+
+   &:disabled {
+      cursor: default;
+      text-decoration: none;
+   }
+}

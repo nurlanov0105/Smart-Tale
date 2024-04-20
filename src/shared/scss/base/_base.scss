@@ -1,6 +1,11 @@
 html {
    font-size: 62.5%;
    scroll-behavior: smooth;
+
+   ::selection {
+      background: #ffcc00;
+      color: $common-black;
+   }
 }
 
 body {

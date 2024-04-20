@@ -2,15 +2,20 @@ import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import { DASHBOARD } from "@/shared/lib";
+import { DASHBOARD, ROUTES } from "@/shared/lib";
 
 import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { usePathname } from "next/navigation";
 
 const OrderItem: FC<ItemProps> = ({ id, type, itemType, isDetail, historyType }) => {
+   const pathname = usePathname();
+
+   // const href = pathname === DASHBOARD.LISTINGS ? DASHBOARD.MY_ORDER_DETAIL : ROUTES.ORDER_DETAILS;
+
    return (
-      <Link href={DASHBOARD.ORDER_DETAIL} className={styles.item}>
+      <Link href={ROUTES.ORDER_DETAILS + "/orderName"} className={styles.item}>
          <div className={styles.item__left}>
             <Image
                className={styles.item__image}

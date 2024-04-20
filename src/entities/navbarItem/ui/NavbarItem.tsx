@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { closeModal } from "@/widgets/modal";
 
 const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon }) => {
    const pathname = usePathname();

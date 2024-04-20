@@ -9,18 +9,19 @@ import { SubscribeBox } from "@/entities/subscribeBox";
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/adminNavCategories";
+import { MARKETPLACE } from "@/shared/lib";
 
 const Navbar = () => {
    const navbarRef = useRef<HTMLDivElement>(null);
 
-   const pathname = usePathname();
+   const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
 
    useEffect(() => {
-      if (navbarRef.current) {
+      if (navbarRef.current && MARKETPLACE.EQUIPMENT === pathname) {
          navbarRef.current.scrollTop = navbarRef.current.scrollHeight;
       }
-   }, []);
+   }, [pathname]);
 
    return (
       <div className={styles.navbar}>
