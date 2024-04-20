@@ -1,8 +1,8 @@
 import { FC, useState } from "react";
 import { CardCategoryData } from "../model/consts";
-import styles from "./styles.module.scss";
 import { CardCategoryProps } from "../model/types";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const CardCategory: FC<CardCategoryProps> = ({
    handleCategoryClick,
