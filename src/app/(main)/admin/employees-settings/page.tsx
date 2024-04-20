@@ -1,10 +1,8 @@
-import React from 'react';
-import {AdminOrders} from "@/widgets/adminOrders";
+import { AdminOrders } from "@/widgets/admin/adminOrders";
+import React from "react";
 
 const EmployeesSettingsPage = () => {
-    return (
-        <AdminOrders/>
-    );
+   return <AdminOrders />;
 };
 
 export default EmployeesSettingsPage;

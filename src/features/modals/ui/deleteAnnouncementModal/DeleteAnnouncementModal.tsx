@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Emojis } from "@/shared/ui";
-import { CloseModalBtn } from "@/entities/closeModalBtn";
+
 import styles from "./styles.module.scss";
 
 const DeleteAnnouncementModal = () => {

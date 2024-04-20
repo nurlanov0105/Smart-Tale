@@ -1,12 +1,8 @@
-import {RegisterForm} from "@/features/auth";
-import styles from "./styles.module.scss";
-
-
+import { RegisterForm } from "@/features/auth";
+// import styles from "./styles.module.scss";
 
 const RegisterPage = () => {
-   return (
-      <RegisterForm/>
-   );
+   return <RegisterForm />;
 };
 
 export default RegisterPage;

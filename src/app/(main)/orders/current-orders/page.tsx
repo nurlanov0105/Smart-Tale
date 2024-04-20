@@ -1,6 +1,6 @@
 import { FC } from "react";
-import styles from "./styles.module.scss";
-import { Board } from "@/widgets/board";
+import { Board } from "@/widgets/user/board";
+// import styles from "./styles.module.scss";
 
 const CurrentOrdersPage: FC = () => {
    return <Board />;

@@ -1,7 +1,6 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import { Button, Emojis } from "@/shared/ui";
-import { CloseModalBtn } from "@/entities/closeModalBtn";
+import styles from "./styles.module.scss";
 
 const ChangeAvatarModal = () => {
    return (
