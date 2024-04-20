@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import { SelectProps } from "@/shared/lib/types";
 import { ChevronDown } from "lucide-react";
 import { useOutside } from "@/shared/lib";
-import { IDateProps } from "@/entities/general/selectDate";
+import type { IDateProps } from "@/entities/general/selectDate";
+
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 

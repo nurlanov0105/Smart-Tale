@@ -1,6 +1,7 @@
-import { TypeCategories } from "@/entities/user/navbarItem";
 import { DASHBOARD, MARKETPLACE, ORDERS } from "@/shared/lib";
 import { User, Clipboard, ShoppingCart } from "lucide-react";
+import { TypeCategories } from "@/entities/user/navbarItem";
+
 export const CategoryRoutes: TypeCategories[] = [
    {
       id: 1,

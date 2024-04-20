@@ -1,4 +1,5 @@
 import React, { FC } from "react";
+
 import { TypeCategories } from "../model/types";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
