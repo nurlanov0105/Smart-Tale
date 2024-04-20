@@ -1,12 +1,16 @@
 import { FC, useState } from "react";
 import { CardCategoryData } from "../model/consts";
 import styles from "./styles.module.scss";
-import { Props } from "../model/types";
+import { CardCategoryProps } from "../model/types";
 import clsx from "clsx";
 
-const CardCategory: FC<Props> = ({ handleCategoryClick, selectedCategory }) => {
+const CardCategory: FC<CardCategoryProps> = ({
+   handleCategoryClick,
+   selectedCategory,
+   isLarge,
+}) => {
    return (
-      <ul className={styles.category}>
+      <ul className={clsx(styles.category, isLarge ? styles.category_large : "")}>
          {CardCategoryData.map((category) => (
             <li
                key={category}

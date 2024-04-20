@@ -45,4 +45,20 @@
       -webkit-box-orient: vertical;
       overflow: hidden;
    }
+
+   &__btns {
+      display: flex;
+      align-items: center;
+      column-gap: 1.6rem;
+   }
+
+   &__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 5.6rem;
+      border-radius: 10px;
+      padding: 5px 10px;
+      background-color: $primary-color;
+   }
 }

@@ -1,4 +1,4 @@
-import {ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS} from "@/shared/lib";
+import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
 
 export const PathData: any = {
    [DASHBOARD.PROFILE]: {
@@ -20,10 +20,6 @@ export const PathData: any = {
    [DASHBOARD.ORGANIZATION]: {
       path: "Личный кабинет/Организация",
       name: "Организация",
-   },
-   [DASHBOARD.ORDER_DETAIL]: {
-      path: "Личный кабинет/Детали объявления",
-      name: "Детали объявления",
    },
 
    [MARKETPLACE.EQUIPMENT]: {
@@ -47,6 +43,17 @@ export const PathData: any = {
       path: "Заказы/История",
       name: "История",
    },
+
+   [ROUTES.ORDER_DETAILS]: {
+      path: "Маркетплейс/Детали объявления",
+      name: "Детали объявления",
+   },
+
+   [ROUTES.CARD_DETAILS]: {
+      path: "Маркетплейс/Детали объявления",
+      name: "Детали объявления",
+   },
+
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",
       name: "Организация",
@@ -81,6 +88,6 @@ export const PathData: any = {
    },
    [ADMIN_ROUTES.HISTORY]: {
       path: "SmartTale",
-      name: "История",
+      name: "История"
    }
-};
+}
