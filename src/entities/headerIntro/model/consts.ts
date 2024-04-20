@@ -82,9 +82,5 @@ export const PathData: any = {
    [ADMIN_ROUTES.HISTORY]: {
       path: "SmartTale",
       name: "История",
-   },
-   [ADMIN_ROUTES.ORDERS]: {
-      path: "SmartTale",
-      name: "Заказы",
    }
 };
