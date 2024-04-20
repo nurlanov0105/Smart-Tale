@@ -1,7 +1,7 @@
 export const organizationValues = [
    {
       value: "Текущие заказы организации",
-      postValue: "current-orders",
+      postValue: "current-employees-settings",
    },
    {
       value: "Список сотрудников",

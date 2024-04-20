@@ -1,20 +1,22 @@
 import { FC } from "react";
 import Image from "next/image";
+import { useOrdersStore } from "../model/useOrdersStore";
 import { CardProps } from "../model/types";
+
 import timeIcon from "@@/imgs/board/time.svg";
 import styles from "./styles.module.scss";
 
 const BoardCard: FC<CardProps> = ({ order }) => {
    const { id, title, description, date } = order;
 
+   const dragOrder = useOrdersStore((state) => state.dragOrder);
+
    return (
-      <div
-         // ref={provided.innerRef}
-         // {...provided.draggableProps}
-         // {...provided.dragJandleProps}
-         className={styles.card}>
+      <div className={styles.card} draggable onDrag={() => dragOrder(order.id)}>
          <div className={styles.card__top}>
-            <h4 className="h4">{title}</h4>
+            <h4 className="h4">
+               {title} = {id}
+            </h4>
             <p className="commonGreyText">{description}</p>
          </div>
          <div className={styles.card__date}>

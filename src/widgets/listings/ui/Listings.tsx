@@ -23,7 +23,7 @@ const Listings: FC = () => {
          <div className={styles.listings__btns}>
             <ButtonsList type={type} setType={setType} values={listingsValues} />
          </div>
-         <OrderList data={data} itemType={type} isDetail={true} type={type} />
+         <OrderList data={data} itemType="equipment"/>
       </div>
    );
 };

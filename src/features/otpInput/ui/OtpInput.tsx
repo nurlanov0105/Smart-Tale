@@ -12,9 +12,8 @@ const OtpInputFields: FC<OtpProps> = ({ isError }) => {
       height: "8rem",
       marginRight: "2rem",
       borderRadius: "10px",
-      border: `solid ${isError ? "red 1px" : "#f8f9fa 2px"}`,
+      border: `solid ${isError ? "red 1px" : "#E0E5F2 2px"}`,
    };
-   console.log(isError);
 
    return (
       <div className={styles.input}>

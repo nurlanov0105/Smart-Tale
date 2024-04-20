@@ -16,11 +16,7 @@ export const sf_pro = localFont({
          weight: "400",
          style: "normal",
       },
-      {
-         path: "../../assets/fonts/sf-pro/regular/SFProDisplay-Regular.eot",
-         weight: "400",
-         style: "normal",
-      },
+
       {
          path: "../../assets/fonts/sf-pro/regular/SFProDisplay-Regular.woff",
          weight: "400",
@@ -37,11 +33,7 @@ export const sf_pro = localFont({
          weight: "500",
          style: "normal",
       },
-      {
-         path: "../../assets/fonts/sf-pro/medium/SFProDisplay-Medium.eot",
-         weight: "500",
-         style: "normal",
-      },
+
       {
          path: "../../assets/fonts/sf-pro/medium/SFProDisplay-Medium.woff",
          weight: "500",
@@ -58,11 +50,7 @@ export const sf_pro = localFont({
          weight: "600",
          style: "normal",
       },
-      {
-         path: "../../assets/fonts/sf-pro/semi-bold/SFProDisplay-Semibold.eot",
-         weight: "600",
-         style: "normal",
-      },
+
       {
          path: "../../assets/fonts/sf-pro/semi-bold/SFProDisplay-Semibold.woff",
          weight: "600",
@@ -79,11 +67,7 @@ export const sf_pro = localFont({
          weight: "700",
          style: "normal",
       },
-      {
-         path: "../../assets/fonts/sf-pro/bold/SFProDisplay-Bold.eot",
-         weight: "700",
-         style: "normal",
-      },
+
       {
          path: "../../assets/fonts/sf-pro/bold/SFProDisplay-Bold.woff",
          weight: "700",

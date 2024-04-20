@@ -1,23 +1,16 @@
-"use client";
-
-import { useState } from "react";
-// import { DragDropContext } from "react-beautiful-dnd";
-import { BoardColumn } from "@/features/boardColumn";
-import { BoardData } from "../model/data";
-// import { onDragEnd } from "@/shared/lib";
+import { BoardColumn, Heading } from "@/features/boardColumn";
 import styles from "./styles.module.scss";
+import { BoardHeadings } from "@/entities/boardCard";
 
 const Board = () => {
-   const [columns, setColumns] = useState<any>(BoardData);
-
    return (
-      // <DragDropContext onDragEnd={(result: any) => onDragEnd(result, columns, setColumns)}>
       <div className={styles.board}>
-         {Object.entries(columns).map(([columnId, column]: any) => (
-            <BoardColumn key={columnId} column={column} columnId={columnId} />
-         ))}
+         <div className={styles.board__inner}>
+            {BoardHeadings.map((heading: Heading) => (
+               <BoardColumn key={heading.id} heading={heading} />
+            ))}
+         </div>
       </div>
-      // </DragDropContext>
    );
 };
 

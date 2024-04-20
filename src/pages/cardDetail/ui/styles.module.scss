@@ -1,0 +1,41 @@
+.detail {
+   display: flex;
+   column-gap: 3.6rem;
+   // justify-content: center;
+   max-width: 98.2rem;
+   width: 100%;
+
+   margin-left: auto;
+   margin-right: auto;
+
+   &__left {
+   }
+
+   &__right {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+   }
+
+   &__content {
+      margin-top: 3.2rem;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+   }
+
+   &__category {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.2rem;
+   }
+
+   &__descr {
+      max-width: 45rem;
+      font-size: 1.7rem;
+   }
+
+   &__chat {
+      max-width: 45rem;
+   }
+}

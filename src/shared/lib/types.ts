@@ -23,9 +23,17 @@ export type InputFieldProps = {
 
 export type TextAreaProps =  Omit<InputFieldProps, 'type'>
 
+type dateType = {
+   value: string | number
+   postValue: number
+}
+
+
 export type SelectProps = {
    title: string
-   value: string
+   value: dateType
+   data: dateType[]
+   setDate: Dispatch<SetStateAction<dateType>>
    classname? : string
 }
 
@@ -36,4 +44,16 @@ export type TimerProps = {
    isDisabled: boolean
    setIsDisabled: Dispatch<SetStateAction<boolean>>
    isError: boolean
+}
+
+export type employee = {
+   value: string
+   email: string
+}
+
+export type SelectTypes = {
+   selected: employee
+   setSelected: Dispatch<SetStateAction<employee>>
+   title: string
+   employees: employee[]
 }

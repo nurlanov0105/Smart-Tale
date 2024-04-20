@@ -1,0 +1,14 @@
+.message {
+   display: flex;
+   justify-content: flex-end;
+
+   &__content {
+      max-width: 28rem;
+      padding: 10px;
+      margin-left: auto;
+      border-radius: 10px;
+
+      background-color: lightblue;
+      color: $common-black;
+   }
+}

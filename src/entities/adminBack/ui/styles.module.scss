@@ -1,0 +1,13 @@
+.back{
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+
+  margin-bottom: 3.2rem;
+
+  &__button{
+    color: $grey;
+    width: 18px;
+    height: 18px;
+  }
+}
