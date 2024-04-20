@@ -1,0 +1,73 @@
+.select{
+  position: relative;
+
+  &__content{
+    display: inline-block;
+    padding: 1rem 0;
+    background-color: $common-white;
+    border-radius: 10px;
+
+    cursor: pointer;
+  }
+
+  &__title{
+    font-size: 1.4rem;
+    line-height: 1.2;
+    text-align: left;
+
+    color: $dark-grey;
+    margin-bottom: 4px;
+  }
+
+  &__block{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+  }
+  &__value{
+    line-height: 1.5;
+  }
+  &__icon{
+    color: $dark-grey;
+    width: 1.7rem;
+  }
+
+  &__menu{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: $z1;
+
+    width: 100%;
+    max-height: 200px;
+    overflow-y: scroll;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    padding: 8px;
+
+    background-color: $common-white;
+    border-radius: 8px;
+
+    box-shadow: 0px 1px 1px 1px rgba(0, 0 , 0 , 0.1);
+
+  }
+  &__item{
+    width: 100%;
+    padding: 1rem 8px;
+
+    text-align: left;
+    border-radius: 8px;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: $bg-color;
+      }
+    }
+    &_active{
+      background-color: $bg-color;
+    }
+  }
+}

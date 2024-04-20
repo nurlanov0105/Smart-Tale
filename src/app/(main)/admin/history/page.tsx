@@ -1,10 +1,9 @@
 import React from 'react';
+import {AdminHistory} from "@/widgets/adminHistory";
 
 const HistoryPage = () => {
     return (
-        <div>
-            history
-        </div>
+       <AdminHistory/>
     );
 };
 

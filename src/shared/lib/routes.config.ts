@@ -46,10 +46,13 @@ export enum ROUTES {
 
 export enum ADMIN_ROUTES {
    ORGANIZATION = "/admin/organization",
-   EMPLOYEES = "/admin/employees",
-   HISTORY = "/admin/history",
-   POSITIONS = "/admin/positions",
+   ORGANIZATION_DETAIL = "/admin/organization-detail",
    CREATE_ORGANIZATION = "/admin/create-organization",
+   EMPLOYEES = "/admin/employees",
+   EMPLOYEES_DETAIL = "/admin/employees-detail",
    INVITE_EMPLOYEES = "/admin/invite-employees",
-   ADD_POSITION = "/admin/add-position"
+   POSITIONS = "/admin/positions",
+   ADD_POSITION = "/admin/add-position",
+   EMPLOYEES_SETTINGS = "/admin/employees-settings",
+   HISTORY = "/admin/history",
 }

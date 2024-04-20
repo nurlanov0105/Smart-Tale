@@ -26,10 +26,10 @@ const History: FC = () => {
             <ButtonsList type={type} setType={setType} values={historyValues} />
             <div className={styles.section__date}>
                <h5>Фильтр по дате принятия заказа</h5>
-               <SelectDate />
+               {/*<SelectDate />*/}
             </div>
          </div>
-         <OrderList data={data} itemType={type} isDetail={true} historyType="history" />
+         <OrderList data={data} itemType="order" />
       </section>
    );
 };

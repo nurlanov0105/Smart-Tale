@@ -55,7 +55,15 @@ export const PathData: any = {
       path: "SmartTale",
       name: "Организация",
    },
+   [ADMIN_ROUTES.ORGANIZATION_DETAIL]: {
+      path: "SmartTale",
+      name: "Организация",
+   },
    [ADMIN_ROUTES.EMPLOYEES]: {
+      path: "SmartTale",
+      name: "Сотрудники",
+   },
+   [ADMIN_ROUTES.EMPLOYEES_DETAIL]: {
       path: "SmartTale",
       name: "Сотрудники",
    },
@@ -74,5 +82,9 @@ export const PathData: any = {
    [ADMIN_ROUTES.HISTORY]: {
       path: "SmartTale",
       name: "История",
+   },
+   [ADMIN_ROUTES.ORDERS]: {
+      path: "SmartTale",
+      name: "Заказы",
    }
 };

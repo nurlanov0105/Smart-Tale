@@ -1,10 +1,10 @@
 "use client";
 import React, { FC, useState } from "react";
 import { OrderForm } from "@/features/orderForm";
-import styles from "./styles.module.scss";
 import { ButtonsList } from "@/features/buttonsList";
 import { orderDetailsValues } from "../model/values";
 import { Props } from "../model/types";
+import styles from "./styles.module.scss";
 
 const OrderDetail: FC<Props> = ({ btnType }) => {
    const [type, setType] = useState(orderDetailsValues[0].postValue);
