@@ -1,7 +1,7 @@
 import { FC } from "react";
+import { SubscribeCommerce } from "@/features/user/subscribeCommerce";
+import { ProfileForm } from "@/widgets/user/profile";
 import styles from "./styles.module.scss";
-import { SubscribeCommerce } from "@/features/subscribeCommerce";
-import { ProfileForm } from "@/widgets/profile";
 
 const ProfilePage: FC = () => {
    return (

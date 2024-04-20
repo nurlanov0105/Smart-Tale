@@ -1,6 +1,6 @@
 import { FC } from "react";
+import { History } from "@/widgets/user/history";
 import styles from "./styles.module.scss";
-import { History } from "@/widgets/history";
 
 const HistoryPage: FC = () => {
    return (

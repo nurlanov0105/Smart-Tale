@@ -1,6 +1,6 @@
-import { FC, useState } from "react";
+import { FC } from "react";
+import { Listings } from "@/widgets/user/listings";
 import styles from "./styles.module.scss";
-import { Listings } from "@/widgets/listings";
 
 const ListingsPage: FC = () => {
    return (

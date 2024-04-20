@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Button, InputField } from "@/shared/ui";
-import { HeadingAuth } from "@/entities/headingAuth";
-import { TypeAuthButton } from "@/entities/typeAuthButton";
+import { HeadingAuth } from "@/entities/auth/headingAuth";
+import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/shared/lib";
 import styles from "./styles.module.scss";

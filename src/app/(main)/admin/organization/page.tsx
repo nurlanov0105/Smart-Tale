@@ -1,10 +1,8 @@
-import React from 'react';
-import {AdminOrganization} from "@/widgets/adminOrganization";
+import { AdminOrganization } from "@/widgets/admin/adminOrganization";
+import React from "react";
 
 const OrganizationAdminPage = () => {
-    return (
-        <AdminOrganization/>
-    );
+   return <AdminOrganization />;
 };
 
 export default OrganizationAdminPage;
