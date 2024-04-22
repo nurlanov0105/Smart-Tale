@@ -41,7 +41,7 @@ const AdminEmployeesDetail = () => {
                      selected={selected}
                      setSelected={setSelected}
                      title="Должность"
-                     employees={organizationsData}
+                     data={organizationsData}
                   />
                </div>
             </fieldset>

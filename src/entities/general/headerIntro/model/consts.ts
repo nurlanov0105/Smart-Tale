@@ -1,6 +1,7 @@
 import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
 
 export const PathData: any = {
+
    [DASHBOARD.PROFILE]: {
       path: "Личный кабинет/Профиль",
       name: "Ваш профиль",
@@ -52,6 +53,10 @@ export const PathData: any = {
    [ROUTES.CARD_DETAILS]: {
       path: "Маркетплейс/Детали объявления",
       name: "Детали объявления",
+   },
+   [ROUTES.NOTICE]: {
+      path: "Личный кабинет/Уведомления",
+      name: "Уведомления",
    },
 
    [ADMIN_ROUTES.ORGANIZATION]: {

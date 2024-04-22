@@ -15,7 +15,7 @@ const PositionForm = () => {
                selected={selected}
                setSelected={setSelected}
                title="Организация"
-               employees={organizationsData}
+               data={organizationsData}
             />
             <h4 className="h4">Название должности</h4>
             <InputField title="Название" type="email" />

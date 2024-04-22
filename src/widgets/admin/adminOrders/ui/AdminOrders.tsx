@@ -20,7 +20,7 @@ const AdminOrders = () => {
                selected={selected}
                setSelected={setSelected}
                title="Сотрудник"
-               employees={organizationsData}
+               data={organizationsData}
             />
          </fieldset>
 

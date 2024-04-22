@@ -8,12 +8,15 @@ import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
+import {orderValues} from "@/entities/general/orderItem/model/value.data";
 
-const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
+const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
    //isAdmin для перехода на детальную страницу в админке
+   const title = orderValues[item.type]
+
    return (
       <>
-         {itemType === "equipment" && (
+         {item.type === "equipment" && (
             <Link href={ROUTES.ORDER_DETAILS + "/orderName"} className={styles.item}>
                <div className={styles.item__left}>
                   <Image
@@ -28,7 +31,7 @@ const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
                         className={clsx(styles.item__subtitle, {
                            [styles.item__subtitle_green]: item.type === "equipment",
                         })}>
-                        {item.type === "equipment" ? "Оборудование" : "Заказ"}
+                        {title}
                      </p>
 
                      <h6 className={styles.item__title}>Швейная машинка</h6>
@@ -43,7 +46,7 @@ const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
             </Link>
          )}
 
-         {itemType === "order" && (
+         {item.type === "order" && (
             <Link href={ROUTES.ORDER_DETAILS + "/orderName"} className={styles.item}>
                <div className={styles.item__left}>
                   <Image

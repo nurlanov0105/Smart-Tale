@@ -1,6 +1,7 @@
 import React from "react";
 import { EmployeesItem } from "@/entities/admin/employeesItem";
 import styles from "./styles.module.scss";
+import {employeesCategories} from "@/features/general/employeesList/model/values.data";
 
 const EmployeesList = () => {
    const list = [1, 2, 3, 4, 5];
@@ -8,11 +9,11 @@ const EmployeesList = () => {
    return (
       <div className={styles.list}>
          <ul className={styles.list__top}>
-            <li className={styles.list__item}>ФИО</li>
-            <li className={styles.list__item}>Почта</li>
-            <li className={styles.list__item}>Заказы</li>
-            <li className={styles.list__item}>Должность</li>
-            <li className={styles.list__item}>Статус</li>
+            {
+               employeesCategories.map(category =>
+                   <li key={category} className={styles.list__item}>{category}</li>
+               )
+            }
          </ul>
 
          {list.map((item) => (
