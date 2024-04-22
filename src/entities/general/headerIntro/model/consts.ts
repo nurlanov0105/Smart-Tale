@@ -53,6 +53,10 @@ export const PathData: any = {
       path: "Маркетплейс/Детали объявления",
       name: "Детали объявления",
    },
+   [ROUTES.NOTICES]: {
+      path: "Личный кабинет/Уведомления",
+      name: "Уведомления",
+   },
 
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",

@@ -17,6 +17,7 @@ const Mode = () => {
                         alt="card"
                         width={75}
                         height={75}
+                        priority
                     />
                 </div>
                 <div className={styles.item__right}>

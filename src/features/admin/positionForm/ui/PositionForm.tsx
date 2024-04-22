@@ -6,9 +6,9 @@ import { organizationsData } from "../model/organizations.data";
 import styles from "./styles.module.scss";
 
 const roles = [
-   { value: "Утюжник", email: "Утюжник" },
-   { value: "Швея", email: "Швея" },
-   { value: "Менеджер", email: "Менеджер" },
+   { value: "Утюжник", postValue: "Утюжник" },
+   { value: "Швея", postValue: "Швея" },
+   { value: "Менеджер", postValue: "Менеджер" },
 ];
 
 const PositionForm = () => {
@@ -23,13 +23,13 @@ const PositionForm = () => {
                selected={selected}
                setSelected={setSelected}
                title="Организация"
-               employees={organizationsData}
+               data={organizationsData}
             />
             <Select
                selected={selectedRole}
                setSelected={setSelectedRole}
                title="Должности"
-               employees={roles}
+               data={roles}
             />
             <h4 className="h4">Название должности</h4>
             <InputField

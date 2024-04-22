@@ -55,11 +55,11 @@ export const useDate = (
 
       return days;
       // eslint-disable-next-line
-   }, [month, year]);
+   }, [month, year])
 
    const [days, setDays] = useState(daysList);
-   const [months] = useState(monthsList);
-   const [years] = useState(yearsList);
+   const months = monthsList
+   const years = yearsList()
 
    const currentDate = new Date();
    const currentYear = currentDate.getFullYear();
@@ -68,16 +68,32 @@ export const useDate = (
 
    // Если будет type === user, Вместо стейтов days, months,years будем использовать отфильтрованные массивы
 
-   const filteredMonths = months.filter((item) => {
-      if (year.postValue > currentYear) return item;
-      return item.postValue >= currentMonth;
-   });
-   const filteredYears = years.filter((item) => item.postValue >= currentYear);
-   const filteredDays = days.filter((item) => {
-      if (month.postValue === currentMonth && year.postValue > currentYear) return item;
-      if (month.postValue === currentMonth) return item.postValue > currentDay;
-      return item;
-   });
+   const filteredMonths = useMemo(() => {
+     return months.filter((item) => {
+         if (year.postValue > currentYear) return item;
+         return item.postValue >= currentMonth;
+      });
+
+      // eslint-disable-next-line
+   }, [year, currentMonth])
+
+
+   const filteredYears = useMemo(() => {
+      return years.filter((item) => item.postValue >= currentYear)
+
+      // eslint-disable-next-line
+   }, [currentYear])
+
+
+   const filteredDays = useMemo(() => {
+      return days.filter((item) => {
+         if (month.postValue === currentMonth && year.postValue > currentYear) return item;
+         if (month.postValue === currentMonth) return item.postValue > currentDay;
+         return item;
+      })
+
+      // eslint-disable-next-line
+   }, [month, year, days, currentDay])
 
    const isUser = type === "user"; //если user === true,
    // то мне нужно чтобы показывались только предстоящие дни, месяцы и годы, для этого мы делим создали filteredArrays

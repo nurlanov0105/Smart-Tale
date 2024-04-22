@@ -9,12 +9,12 @@ import styles from "./styles.module.scss";
 
 const AdminOrganizationDetail = () => {
    const [data, setData] = useState([
-      { id: 1, type: "order" },
-      { id: 2, type: "order" },
-      { id: 3, type: "order" },
-      { id: 4, type: "order" },
-      { id: 5, type: "order" },
-      { id: 6, type: "order" },
+      { id: 1, type: "equipment" },
+      { id: 2, type: "equipment" },
+      { id: 3, type: "equipment" },
+      { id: 4, type: "equipment" },
+      { id: 5, type: "equipment" },
+      { id: 6, type: "equipment" },
    ]);
    const [type, setType] = useState(valuesData[0].postValue);
 
@@ -26,7 +26,7 @@ const AdminOrganizationDetail = () => {
          <div className={styles.organization__margin}>
             <Tabs type={type} setType={setType} values={valuesData} />
          </div>
-         <OrderList isAdmin={true} data={data} itemType="order" />
+         <OrderList isAdmin={true} data={data} />
       </div>
    );
 };

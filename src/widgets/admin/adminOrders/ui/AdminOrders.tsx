@@ -27,6 +27,17 @@ const AdminOrders = () => {
                </div>
             </fieldset>
          </div>
+         <div className={styles.form}>
+            <fieldset className={styles.form__fieldset}>
+               <legend className={styles.form__title}>Заказы сотрудника</legend>
+               <Tabs type={type} setType={setType} values={valuesData} />
+               <div className={styles.form__list}>
+                  {data.map((item) => (
+                     <AdminEmployeesItem key={item} item={item} />
+                  ))}
+               </div>
+            </fieldset>
+         </div>
       </div>
    );
 };
