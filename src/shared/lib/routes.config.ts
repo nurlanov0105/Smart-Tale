@@ -43,6 +43,7 @@ export enum ROUTES {
    ORDERS_CURRENT_ORDERS = `/orders/current-orders`,
    ORDERS_HISTORY = `/orders/history`,
    MODE = `/mode`,
+   NOTICES = `/notices`,
 }
 
 export enum ADMIN_ROUTES {
@@ -50,7 +51,7 @@ export enum ADMIN_ROUTES {
    ORGANIZATION_DETAIL = "/admin/organization-detail",
    CREATE_ORGANIZATION = "/admin/create-organization",
    EMPLOYEES = "/admin/employees",
-   EMPLOYEES_DETAIL = "/admin/employees-detail",
+   EMPLOYEES_DETAILS = "/admin/employees-details",
    INVITE_EMPLOYEES = "/admin/invite-employees",
    POSITIONS = "/admin/positions",
    ADD_POSITION = "/admin/add-position",

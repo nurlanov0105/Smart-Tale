@@ -13,7 +13,8 @@ const SelectDate: FC<DateProps> = ({
    day,
    type = "admin", //user будем только передавать, admin по дефолту
 }) => {
-   const { days, months, years } = useDate(year, month, setMonth, day, setDay, type);
+   const { days, months, years
+   } = useDate(year, month, setMonth, day, setDay, type);
 
    return (
       <div className={styles.date}>

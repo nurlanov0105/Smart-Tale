@@ -1,0 +1,46 @@
+.notice{
+
+  &__container{
+
+    border: 1px solid #D9DBE3;
+    border-radius: 8px;
+
+  }
+  &__top{
+    display: flex;
+    column-gap: 2rem;
+
+
+    border-bottom: 1px solid #D9DBE3;
+  }
+
+  &__button{
+    padding: 2rem;
+    position: relative;
+
+    @include transition;
+
+
+    &_active{
+      color: green;
+
+      &:before{
+        content: "";
+
+        position: absolute;
+        bottom: 0;
+        left: 0 ;
+
+        background: green;
+        border-radius: 10px;
+
+
+        width: 100%;
+        height: 2px;
+
+        @include transition;
+      }
+    }
+  }
+
+}

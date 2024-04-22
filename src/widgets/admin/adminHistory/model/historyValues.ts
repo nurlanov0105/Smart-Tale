@@ -17,18 +17,18 @@ export const historyValues = [
 export const employeesHistory = [
     {
         value: "Все сотрудники",
-        email: "all"
+        postValue: "all"
     },
     {
         value: "Олейников Кирилл Кириллович",
-        email: "kirill"
+        postValue: "kirill"
     },
     {
         value: "Олейников Кирилл Кириллович",
-        email: "kirill2"
+        postValue: "kirill2"
     },
     {
         value: "Олейников Кирилл Кириллович",
-        email: "kirill3"
+        postValue: "kirill3"
     }
 ]

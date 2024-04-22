@@ -18,10 +18,10 @@ const Organization = () => {
 
    const data = [
       { id: 1, type: "order" },
-      { id: 2, type: "equipment" },
+      { id: 2, type: "order" },
       { id: 3, type: "order" },
-      { id: 4, type: "equipment" },
-      { id: 5, type: "equipment" },
+      { id: 4, type: "order" },
+      { id: 5, type: "order" },
       { id: 6, type: "order" },
    ];
 
@@ -35,7 +35,7 @@ const Organization = () => {
             )}
          </div>
 
-         {type === "users-list" ? <EmployeesList /> : <OrderList data={data} itemType="order" />}
+         {type === "users-list" ? <EmployeesList /> : <OrderList data={data}/>}
       </div>
    );
 };

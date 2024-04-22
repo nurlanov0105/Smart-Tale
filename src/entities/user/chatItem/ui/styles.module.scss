@@ -1,0 +1,48 @@
+.item{
+  width: 100%;
+  padding: 1.8rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  &__left{
+    display: flex;
+    align-items: center;
+    column-gap: 1.5rem;
+  }
+
+  &__avatar{
+    border-radius: 50%;
+    width: 4.2rem;
+    height: 4.2rem;
+  }
+
+  &__text{
+    font-size: 1.4rem;
+    text-align: left;
+    color: $grey;
+
+    margin-top: 1rem;
+  }
+  &__image{
+    width: 5.5rem;
+    height: 5.5rem;
+
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  @include transition;
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: #E7F7FD;
+    }
+  }
+
+  &_active{
+    background-color: rgb(231, 248, 244);
+  }
+}

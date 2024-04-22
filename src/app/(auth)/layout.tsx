@@ -1,9 +1,8 @@
-import React, { FC } from "react";
-import { ChildrenComponent } from "@/shared/lib";
+import React, {FC, PropsWithChildren} from "react";
 import { AuthCommon } from "@/widgets/general/authCommon";
 import styles from "./styles.module.scss";
 
-const AuthLayout: FC<ChildrenComponent> = ({ children }) => {
+const AuthLayout: FC<PropsWithChildren> = ({ children }) => {
    return (
       <main className={styles.main}>
          <div className={styles.main__left}>

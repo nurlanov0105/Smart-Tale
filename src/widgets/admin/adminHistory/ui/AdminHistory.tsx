@@ -34,7 +34,7 @@ const AdminHistory = () => {
             selected={selected}
             setSelected={setSelected}
             title="Сотрудник"
-            employees={employeesHistory}
+            data={employeesHistory}
          />
          <div className={styles.section__row}>
             <Tabs type={type} setType={setType} values={historyValues} />
@@ -51,7 +51,8 @@ const AdminHistory = () => {
                />
             </div>
          </div>
-         <OrderList data={data} itemType="order" />
+
+         <OrderList data={data} isAdmin={true} />
       </section>
    );
 };

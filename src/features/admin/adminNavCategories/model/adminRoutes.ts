@@ -14,14 +14,14 @@ export const AdminRoutes: TypeAdminCategories[] = [
       title: "Сотрудники",
       Icon: User,
       link: ADMIN_ROUTES.EMPLOYEES,
-      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAIL],
+      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAILS],
    },
    {
       id: 3,
       title: "Должности",
       Icon: UsersRound,
-      link: ADMIN_ROUTES.POSITIONS,
-      routes: [ADMIN_ROUTES.POSITIONS, ADMIN_ROUTES.ADD_POSITION],
+      link: ADMIN_ROUTES.ADD_POSITION,
+      routes: [ADMIN_ROUTES.ADD_POSITION],
    },
    {
       id: 4,
@@ -30,13 +30,7 @@ export const AdminRoutes: TypeAdminCategories[] = [
       link: ADMIN_ROUTES.HISTORY,
       routes: [ADMIN_ROUTES.HISTORY],
    },
-   {
-      id: 5,
-      title: "Заказы",
-      Icon: ListOrdered,
-      link: ADMIN_ROUTES.EMPLOYEES_SETTINGS,
-      routes: [ADMIN_ROUTES.EMPLOYEES_SETTINGS],
-   },
+
    {
       id: 6,
       title: "Личный профиль",

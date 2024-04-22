@@ -4,10 +4,10 @@ import { useTimer, SendBtnProps } from "../index";
 import styles from "./styles.module.scss";
 
 const SendCodeBtn: FC<SendBtnProps> = ({ isError, setIsError }) => {
-   const [seconds, setSeconds] = useState(59);
+
    const [isDisabled, setIsDisabled] = useState(false);
 
-   useTimer({ seconds, setSeconds, isDisabled, setIsDisabled, isError });
+   const {seconds} = useTimer({isDisabled, setIsDisabled, isError })
    const handleSendAgain = () => {
       setIsError(true);
       setIsDisabled(true);
