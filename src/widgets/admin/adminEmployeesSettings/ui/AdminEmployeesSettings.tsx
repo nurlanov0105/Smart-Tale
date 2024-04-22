@@ -1,27 +1,27 @@
 "use client";
 import React, { useState } from "react";
-// import { AdminBack } from '@/entities/admin/adminBack';
 import { Button, InputField, Select } from "@/shared/ui";
 import { organizationsData } from "@/features/admin/positionForm";
 import { rightsActionsData } from "@/entities/admin/rightAction";
 import { RightAction } from "@/entities/admin/rightAction";
 import styles from "./styles.module.scss";
+import { AdminBack } from "@/entities/admin/adminBack";
 
-const AdminEmployeesDetail = () => {
+const AdminEmployeesSettings = () => {
    const [selected, setSelected] = useState(organizationsData[0]);
 
    return (
       <div>
-         {/*<AdminBack title="Детали сотрудника"/>*/}
+         <AdminBack title="Назад" />
          <form className={styles.form}>
             <fieldset className={styles.form__fieldset}>
                <legend className={styles.form__title}>Личные данные</legend>
                <div className={styles.form__wrapper}>
                   <div className={styles.form__box}>
-                     <InputField title="Имя" />
-                     <InputField title="Фамилия" />
+                     <InputField title="Имя" disabled={true} value="Игорь" />
+                     <InputField title="Фамилия" disabled={true} value="Вайтенко" />
                   </div>
-                  <InputField title="Отчество" />
+                  <InputField title="Отчество" disabled={true} value="Вайтенкович" />
                </div>
             </fieldset>
             <fieldset className={styles.form__fieldset}>
@@ -29,8 +29,8 @@ const AdminEmployeesDetail = () => {
 
                <div className={styles.form__wrapper}>
                   <div className={styles.form__box}>
-                     <InputField title="Почта" />
-                     <InputField title="Номер телефона" />
+                     <InputField title="Почта" disabled={true} value="vaitekno@gmail.com" />
+                     <InputField title="Номер телефона" disabled={true} value="123346784" />
                   </div>
                </div>
             </fieldset>
@@ -61,4 +61,4 @@ const AdminEmployeesDetail = () => {
    );
 };
 
-export default AdminEmployeesDetail;
+export default AdminEmployeesSettings;

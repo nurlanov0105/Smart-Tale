@@ -1,50 +1,52 @@
-.field{
-  display: block;
-  width: 100%;
-  padding: 1rem 2rem;
+.field {
+   display: block;
+   width: 100%;
+   padding: 1rem 2rem;
 
-  background-color: $common-white;
-  border-radius: 10px;
+   background-color: $common-white;
+   border-radius: 10px;
 
-  &__bordered{
-    background-color: $common-white;
-    border-radius: 10px;
-  }
+   &__bordered {
+      background-color: $common-white;
+      border-radius: 10px;
+   }
 
-  &__input{
-    width: 100%;
-  }
-  &__input_bordered{
-    width: 100%;
-    padding: 1.7rem 2.4rem;
+   &__input {
+      width: 100%;
 
-    border-radius: 10px;
-    border: 2px solid $bg-color;
-    color: #4F4F4F
-  }
+      &:disabled {
+         background-color: transparent;
+         cursor: default;
+      }
+   }
+   &__input_bordered {
+      width: 100%;
+      padding: 1.7rem 2.4rem;
 
-  &__title{
-    font-size: 1.4rem;
-    line-height: 1.2;
+      border-radius: 10px;
+      border: 2px solid $bg-color;
+      color: #4f4f4f;
+   }
 
-    color: $dark-grey;
-    margin-bottom: 4px;
-  }
+   &__title {
+      font-size: 1.4rem;
+      line-height: 1.2;
 
-  &__error{
-    font-size: 1.2rem;
-    line-height: 0.8;
-    color: $dark-grey;
+      color: $dark-grey;
+      margin-bottom: 4px;
+   }
 
-    margin-top: 1rem;
-    margin-left: 2rem;
-  }
+   &__error {
+      font-size: 1.2rem;
+      line-height: 0.8;
+      color: $dark-grey;
+
+      margin-top: 1rem;
+      margin-left: 2rem;
+   }
 }
 
 .fieldWrapper {
    position: relative;
    width: 100%;
 }
-
-
-

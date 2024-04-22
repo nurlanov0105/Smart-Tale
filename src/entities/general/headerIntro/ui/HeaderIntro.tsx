@@ -9,7 +9,10 @@ const HeaderIntro = () => {
 
    const pathArray = pathname.split("/");
    const slug =
-      pathname.includes("/order-details/") || pathname.includes("/card-details/")
+      pathname.includes("/order-details/") ||
+      pathname.includes("/card-details/") ||
+      pathname.includes("/employees-details/") ||
+      pathname.includes("/employees-settings/")
          ? pathArray.pop()
          : "";
 

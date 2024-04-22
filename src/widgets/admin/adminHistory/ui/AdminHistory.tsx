@@ -51,7 +51,7 @@ const AdminHistory = () => {
                />
             </div>
          </div>
-         <OrderList data={data} itemType="order" />
+         <OrderList data={data} itemType="order" isAdmin={true} />
       </section>
    );
 };

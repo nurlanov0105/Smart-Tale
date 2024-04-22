@@ -2,19 +2,32 @@ import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import { DASHBOARD, ROUTES } from "@/shared/lib";
+import { ROUTES } from "@/shared/lib";
+
+import { useRouter } from "next/navigation";
 
 import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { usePathname } from "next/navigation";
+import { showModal } from "@/views/modal";
 
 const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
-   //isAdmin для перехода на детальную страницу в админке
+   const router = useRouter();
+   const handleItemClick = () => {
+      if (isAdmin) {
+         showModal("CardModal");
+      } else if (isAdmin && itemType === "order") {
+         router.push(ROUTES.ORDER_DETAILS + "/orderName");
+      } else if (isAdmin && itemType === "equipment") {
+         router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
+      }
+   };
+
+   //isAdmin для модалки
    return (
       <>
          {itemType === "equipment" && (
-            <Link href={ROUTES.ORDER_DETAILS + "/orderName"} className={styles.item}>
+            <div onClick={handleItemClick} className={styles.item}>
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
@@ -40,11 +53,11 @@ const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
                </div>
                <p className={styles.item__detail}>Посмотреть детали</p>
                <span className={styles.item__date}>2 апреля 2024</span>
-            </Link>
+            </div>
          )}
 
          {itemType === "order" && (
-            <Link href={ROUTES.ORDER_DETAILS + "/orderName"} className={styles.item}>
+            <div onClick={handleItemClick} className={styles.item}>
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
@@ -64,7 +77,7 @@ const OrderItem: FC<ItemProps> = ({ item, itemType, isAdmin }) => {
                </div>
                <p className={styles.item__detail}>Посмотреть детали</p>
                <span className={styles.item__date}>2 апреля 2024</span>
-            </Link>
+            </div>
          )}
 
          {/*{*/}

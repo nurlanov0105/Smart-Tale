@@ -26,7 +26,7 @@ const AdminOrganizationDetail = () => {
          <div className={styles.organization__margin}>
             <Tabs type={type} setType={setType} values={valuesData} />
          </div>
-         <OrderList isAdmin={true} data={data} itemType="equipment" />
+         <OrderList isAdmin={true} data={data} itemType="order" />
       </div>
    );
 };
