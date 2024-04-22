@@ -1,18 +1,18 @@
 export const organizationsData = [
     {
         value: "SmartTale",
-        email: "SmartTale1"
+        postValue: "SmartTale1"
     },
     {
         value: "FairyTale",
-        email: "SmartTale2"
+        postValue: "SmartTale2"
     },
     {
         value: "ButterTale",
-        email: "SmartTale3"
+        postValue: "SmartTale3"
     },
     {
         value: "SlayerTale",
-        email: "SmartTale4"
+        postValue: "SmartTale4"
     }
 ]

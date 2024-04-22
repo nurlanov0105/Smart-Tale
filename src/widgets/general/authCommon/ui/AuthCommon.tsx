@@ -10,7 +10,7 @@ const AuthCommon = () => {
       <section className={styles.section} style={{ backgroundImage: `url(${authImgUrl})` }}>
          <div className={styles.section_overlay} />
          <div className={styles.section__box}>
-            <Image src={logoImg} alt="logo" width={116} height={116} />
+            <Image priority src={logoImg} alt="logo" width={116} height={116} />
             <h2 className={styles.section__title}>SmartTale</h2>
             <p className={styles.section__descr}>Мониторинг и управление швейным производством</p>
          </div>

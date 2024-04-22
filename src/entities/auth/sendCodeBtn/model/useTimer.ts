@@ -1,13 +1,14 @@
 import { TimerProps } from "@/shared/lib/types";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 
 export const useTimer = ({
-   setSeconds,
-   seconds,
    isDisabled,
    setIsDisabled,
    isError,
 }: TimerProps) => {
+
+   const [seconds, setSeconds] = useState(59);
+
    useEffect(() => {
       setSeconds(59);
       // eslint-disable-next-line
@@ -25,5 +26,5 @@ export const useTimer = ({
       // eslint-disable-next-line
    }, [seconds, isDisabled]);
 
-   return {};
+   return {seconds};
 };

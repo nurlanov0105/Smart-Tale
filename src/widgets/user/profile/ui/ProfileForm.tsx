@@ -2,11 +2,11 @@
 
 import { FC } from "react";
 import { Button, InputField } from "@/shared/ui";
-import styles from "./styles.module.scss";
 
 import { useForm } from "react-hook-form";
 import { showModal } from "@/views/modal";
-import { ChangeImage } from "@/features/user/changeImage";
+import { ChangeImage } from "@/features/general/changeImage";
+import styles from "./styles.module.scss";
 
 const ProfileForm: FC = () => {
    const {

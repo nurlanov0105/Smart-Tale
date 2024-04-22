@@ -1,9 +1,19 @@
 .select{
   width: 100%;
-  padding: 1rem 2rem;
 
-  background-color: $common-white;
   border-radius: 8px;
+
+  padding: 1rem 2rem;
+  background-color: $common-white;
+
+  &__none{
+    padding: 0;
+    background-color: transparent;
+  }
+
+  &__content{
+    width: 100%;
+  }
 
   &__text{
     font-size: 1.4rem;
@@ -15,6 +25,7 @@
   &__selected{
     display: flex;
     justify-content: space-between;
+
     width: 100%;
     padding: 1.1rem 1.2rem;
 

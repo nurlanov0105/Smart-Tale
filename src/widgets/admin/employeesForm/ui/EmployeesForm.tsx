@@ -17,7 +17,7 @@ const EmployeesForm = () => {
                selected={selected}
                setSelected={setSelected}
                title="Организация"
-               employees={organizationsData}
+               data={organizationsData}
             />
 
             <h4 className="h4">Почта сотрудника</h4>
@@ -27,7 +27,7 @@ const EmployeesForm = () => {
                selected={selected}
                setSelected={setSelected}
                title="Должность"
-               employees={organizationsData}
+               data={organizationsData}
             />
             <div>
                <h4 className="h4">Выдача прав доступа</h4>

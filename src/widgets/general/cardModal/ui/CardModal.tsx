@@ -42,26 +42,26 @@ const CardModal: FC = () => {
                      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
                   </div>
                </div>
-
                <div className={styles.modal__btns}>
-                  {pathname === DASHBOARD.PURCHASES ? (
-                     <Link
-                        onClick={closeModal}
-                        href={ROUTES.CARD_DETAILS + "/detailCardName"}
-                        className={styles.modal__btn}>
-                        Подробнее
-                     </Link>
-                  ) : (
-                     <>
-                        <Button>Принять заказ</Button>
+                  {!pathname.includes("admin") &&
+                     (pathname === DASHBOARD.PURCHASES ? (
                         <Link
                            onClick={closeModal}
                            href={ROUTES.CARD_DETAILS + "/detailCardName"}
                            className={styles.modal__btn}>
                            Подробнее
                         </Link>
-                     </>
-                  )}
+                     ) : (
+                        <>
+                           <Button>Принять заказ</Button>
+                           <Link
+                              onClick={closeModal}
+                              href={ROUTES.CARD_DETAILS + "/detailCardName"}
+                              className={styles.modal__btn}>
+                              Подробнее
+                           </Link>
+                        </>
+                     ))}
                </div>
             </div>
          </div>

@@ -4,24 +4,30 @@
 import React, { forwardRef } from "react";
 import styles from "./styles.module.scss";
 import {TextAreaProps} from "@/shared/lib/types";
+import clsx from "clsx";
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
-    const {  title, disabled, error, ...rest } = props;
+    const {  title, classname, isBordered, disabled, error, ...rest } = props;
+
+    const isBorderedClass = (lastClass: string, borderedClass: string) =>
+        isBordered ? borderedClass : lastClass
 
     return (
-        <div>
-            <label htmlFor={title} className={styles.textarea}>
+        <>
+            <label htmlFor={title} className={isBorderedClass(styles.textarea, styles.textarea__bordered)}>
                 <p className={styles.textarea__title}>{title}</p>
                 <textarea
                     id={title}
-                    className={styles.textarea__input}
+                    className={isBorderedClass(styles.textarea__input, styles.textarea__borderedArea)}
                     {...rest}
                     ref={ref}
                     disabled={disabled}
                 />
             </label>
-            <p className={styles.textarea__error}>максимум 250 символов, минимум 5</p>
-        </div>
+            {
+                error && <p className={styles.textarea__error}>максимум 250 символов, минимум 5</p>
+            }
+        </>
     );
 });
 
