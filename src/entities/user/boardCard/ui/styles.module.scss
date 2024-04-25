@@ -34,4 +34,7 @@
          letter-spacing: -0.4px;
       }
    }
+   &__drag {
+      box-shadow: 0 0 5px $dark-grey;
+   }
 }

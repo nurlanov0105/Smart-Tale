@@ -1,7 +1,7 @@
 import BoardCard from "./ui/BoardCard";
-import { useOrdersStore } from "./model/useOrdersStore";
-import { Status, Order } from "./model/types";
-import { BoardData, BoardHeadings } from "./model/consts";
 
-export type { Status, Order };
-export { BoardCard, useOrdersStore, BoardData, BoardHeadings };
+import { Status, Order, BoardType, BoardHeadingType } from "./model/types";
+import { BoardData } from "./model/consts";
+
+export type { Status, Order, BoardType, BoardHeadingType };
+export { BoardCard, BoardData };

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { organizationsData } from "../model/organizations.data";
 import styles from "./styles.module.scss";
+import { employee } from "@/shared/lib/types";
 
 const roles = [
    { value: "Утюжник", postValue: "Утюжник" },
@@ -13,7 +14,7 @@ const roles = [
 
 const PositionForm = () => {
    const [selected, setSelected] = useState(organizationsData[0]);
-   const [selectedRole, setSelectedRole] = useState(roles[0]);
+   const [selectedRole, setSelectedRole] = useState<employee>(roles[0]);
 
    return (
       <form className={styles.position}>
@@ -32,18 +33,16 @@ const PositionForm = () => {
                data={roles}
             />
             <h4 className="h4">Название должности</h4>
-            <InputField
-               title="Название"
-               type="email"
-               placeholder={selectedRole.value ? selectedRole.value : ""}
-            />
+            <InputField title="Название" />
 
             <h4 className="h4">Описание должности</h4>
             <TextArea title="Описание" />
          </div>
 
          <div className={styles.position__btn}>
-            <Button>Создать</Button>
+            <Button type="submit">
+               {selectedRole.postValue === "all" ? "Создать" : "Сохранить"}
+            </Button>
          </div>
       </form>
    );

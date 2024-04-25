@@ -29,8 +29,14 @@
     line-height: 1.5;
   }
   &__icon{
-    color: $dark-grey;
-    width: 1.7rem;
+    width: 20px;
+    color: $grey;
+
+    @include transition;
+
+    &_active{
+      transform: rotate(180deg);
+    }
   }
 
   &__menu{

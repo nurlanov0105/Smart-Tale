@@ -6,6 +6,7 @@ const nextConfig = {
       includePaths: [path.join(process.cwd(), "src/shared/scss/base")],
       additionalData: `@import "_vars.scss"; @import "_mixins.scss";`,
    },
+   reactStrictMode: false
 };
 
 export default nextConfig;

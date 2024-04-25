@@ -1,10 +1,8 @@
-import React from 'react';
-import {Notices} from "@/widgets/user/notices";
+import React from "react";
+import { Notices } from "@/views/notices";
 
 const Page = () => {
-    return (
-        <Notices/>
-    );
+   return <Notices />;
 };
 
 export default Page;

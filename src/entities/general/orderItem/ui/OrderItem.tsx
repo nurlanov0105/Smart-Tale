@@ -25,6 +25,8 @@ const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
          router.push(ROUTES.ORDER_DETAILS + "/orderName");
       } else if (isAdmin && item.type === "equipment") {
          router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
+      } else {
+         router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
       }
    };
 

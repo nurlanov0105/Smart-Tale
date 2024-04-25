@@ -1,7 +1,7 @@
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import styles from "./styles.module.scss";
 import { Button } from "@/shared/ui";
-import { ChatMessage } from "@/entities/user/chatMessage";
+import { ChatMessage } from "@/entities/general/chatMessage";
 import { useState } from "react";
 
 const Chat = () => {
