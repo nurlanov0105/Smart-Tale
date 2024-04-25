@@ -1,0 +1,21 @@
+.notice {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   row-gap: 1rem;
+
+   text-align: center;
+   height: 100%;
+
+   &__icon {
+      width: 5rem;
+      height: 5rem;
+      color: $dark-grey;
+   }
+   &__text {
+      color: $grey;
+      font-size: 1.6rem;
+      font-weight: 500;
+   }
+}

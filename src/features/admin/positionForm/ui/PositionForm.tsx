@@ -4,16 +4,17 @@ import React, { useState } from "react";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { organizationsData } from "../model/organizations.data";
 import styles from "./styles.module.scss";
+import { employee } from "@/shared/lib/types";
 
 const roles = [
-   { value: "Утюжник", postValue: "Утюжник" },
-   { value: "Швея", postValue: "Швея" },
-   { value: "Менеджер", postValue: "Менеджер" },
+   { value: "Утюжник", postValue: "Утюжник", descr: "Супер хороший Утюжник" },
+   { value: "Швея", postValue: "Швея", descr: "Супер хороший Швея" },
+   { value: "Менеджер", postValue: "Менеджер", descr: "Супер хороший Менеджер" },
 ];
 
 const PositionForm = () => {
    const [selected, setSelected] = useState(organizationsData[0]);
-   const [selectedRole, setSelectedRole] = useState(roles[0]);
+   const [selectedRole, setSelectedRole] = useState<employee>(roles[0]);
 
    return (
       <form className={styles.position}>
@@ -39,7 +40,7 @@ const PositionForm = () => {
             />
 
             <h4 className="h4">Описание должности</h4>
-            <TextArea title="Описание" />
+            <TextArea title="Описание" placeholder={selectedRole.descr ? selectedRole.descr : ""} />
          </div>
 
          <div className={styles.position__btn}>

@@ -41,6 +41,7 @@ export type TimerProps = {
 export type employee = {
    value: string;
    postValue: string;
+   descr?: string;
 };
 
 export type SelectTypes = {
