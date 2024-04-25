@@ -57,6 +57,10 @@ export const PathData: any = {
       path: "Личный кабинет/Уведомления",
       name: "Уведомления",
    },
+   [ROUTES.USER]: {
+      path: "SmartTale",
+      name: "Пользователь",
+   },
 
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",

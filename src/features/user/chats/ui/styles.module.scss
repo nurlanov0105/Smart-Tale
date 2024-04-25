@@ -14,6 +14,9 @@
     border-bottom: 1px solid #D9DBE3;
 
   }
+  &__left{
+
+  }
   &__right{
     width: 100%;
     border-left: 1px solid #D9DBE3;
@@ -21,7 +24,7 @@
 
   &__list{
     overflow-y: scroll;
-    height: 44rem;
+    height: 60vh;
   }
   &__select{
     width: 100%;
@@ -35,7 +38,6 @@
 
 
 .chat{
-  overflow: hidden;
   height: 100%;
 
   &__user, &__info{
@@ -64,6 +66,12 @@
     width: 4.2rem;
     height: 4.2rem;
   }
+  &__status{
+    font-size: 1.3rem;
+    color: $grey;
+
+    margin-top: 3px;
+  }
 
   &__info{
     padding: 0.8rem 2rem;
@@ -84,14 +92,15 @@
   }
 
   &__row{
-    height: 38rem;
+    height: 53vh;
 
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   &__chat{
-    max-height: 81%;
+    min-height: 80%; //Если список чатов пуст
 
     display: flex;
     flex-direction: column-reverse;
@@ -109,7 +118,6 @@
     column-gap: 2rem;
     flex-grow: 1;
 
-    height: auto;
     padding: 1.3rem 1.6rem;
 
     border-top: 1px solid #D9DBE3;

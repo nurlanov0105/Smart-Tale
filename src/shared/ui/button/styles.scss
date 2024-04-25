@@ -111,6 +111,7 @@
       @media (hover: hover) and (pointer: fine) {
          &:hover {
             background-color: #2b3c9b;
+            animation: none;
 
             span {
                color: $common-white;
@@ -134,3 +135,4 @@
       }
    }
 }
+

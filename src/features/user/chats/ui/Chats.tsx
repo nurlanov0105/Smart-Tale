@@ -18,7 +18,7 @@ const Chats = () => {
 
     return (
         <div className={styles.chats}>
-            <div>
+            <div className={styles.chats__left}>
                 <div className={styles.chats__tabs}>
                     <Select selected={selectedType} setSelected={setSelectedType}  data={chatsFilterType} classname={styles.chats__select}/>
                     <Select selected={selectedDate} setSelected={setSelectedDate}  data={chatsFilterDate} classname={styles.chats__select}/>

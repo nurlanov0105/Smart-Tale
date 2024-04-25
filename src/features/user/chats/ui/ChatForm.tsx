@@ -8,6 +8,8 @@ import {MessageItem} from "@/entities/user/messageItem";
 import {messagesData} from "@/features/user/chats/model/values.data";
 import {ChatFormProps} from "../model/types";
 import styles from "./styles.module.scss"
+import Link from "next/link";
+import {ROUTES} from "@/shared/lib";
 
 const ChatForm:FC<ChatFormProps> = ({selected}) => {
 
@@ -19,7 +21,10 @@ const ChatForm:FC<ChatFormProps> = ({selected}) => {
                     <div className={styles.chat__user}>
                         <div className={styles.chat__block}>
                             <Image className={styles.chat__avatar} src={avatar} alt="avatar" width={30} height={30}/>
-                            <h4 className="h4">Tarantino</h4>
+                            <div>
+                                <Link href={ROUTES.USER} className="h4">Tarantino</Link>
+                                <p className={styles.chat__status}>Был(а) в сети 1 ч. назад</p>
+                            </div>
                         </div>
                         <div className={styles.chat__block}>
                             <button><Phone className={styles.chat__iconPhone} /></button>

@@ -1,49 +1,91 @@
 "use client";
 
-import { FC, useMemo } from "react";
-import { useOrdersStore } from "@/entities/user/boardCard";
+import { FC } from "react";
 
-import { BoardCard, Order } from "@/entities/user/boardCard";
-import { HeadingProps } from "../model/types";
+import { BoardCard } from "@/entities/user/boardCard";
 
 import clsx from "clsx";
-import styles from "./styles.module.scss";
+import {Droppable} from "@hello-pangea/dnd";
+import {boardHeadings} from "@/entities/user/boardCard/model/consts";
+import {KanbanOrderProps} from "@/widgets/user/board/model/types";
+import styles from "@/features/user/boardColumn/ui/styles.module.scss";
 
-const BoardColumn: FC<HeadingProps> = ({ heading }) => {
-   const orders = useOrdersStore((state) => state.orders);
+interface IProps{
+    title: string
+    orders: KanbanOrderProps[]
+}
+const BoardColumn: FC<IProps> = ({ orders, title }) => {
+    const heading = boardHeadings[title]
 
-   const filteredOrders = useMemo(
-      () => orders.filter((order: Order) => order.status === heading.status),
-      [orders, heading.status]
-   );
-
-   const updateOrder = useOrdersStore((state) => state.updateOrder);
-   const draggedOrder = useOrdersStore((state) => state.draggedOrder);
-   const dragOrder = useOrdersStore((state) => state.dragOrder);
-
-   const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
-      if (!draggedOrder) return;
-      updateOrder(draggedOrder, heading.status);
-      dragOrder(null);
-   };
-
-   return (
-      <div className={styles.column}>
-         <h4
-            className={clsx("h4", styles.column__title)}
-            style={{ backgroundColor: heading.color }}>
-            {heading.name}
-         </h4>
-         <div
-            className={styles.column__content}
-            onDrop={handleDrop}
-            onDragOver={(e) => e.preventDefault()}>
-            {filteredOrders.map((order: Order) => (
-               <BoardCard key={order.id} order={order} />
-            ))}
-         </div>
-      </div>
-   );
+    return (
+        <div className={styles.column}>
+            <h4
+                className={clsx("h4", styles.column__title)}
+                style={{backgroundColor: heading.color}}>
+                {heading.name}
+            </h4>
+            <Droppable droppableId={title.toLowerCase()}>
+                {(provided) => (
+                    <div
+                        className={styles.column__content}
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {orders.map((order: any, index: number) => (
+                            <BoardCard key={order.id} order={order} index={index}/>
+                        ))}
+                        {provided.placeholder}
+                    </div>
+                )}
+            </Droppable>
+        </div>
+    );
 };
 
 export default BoardColumn;
+
+// "use client";
+//
+// import { FC } from "react";
+//
+// import { BoardCard, Order } from "@/entities/user/boardCard";
+// import {ColumnsProps} from "../model/types";
+//
+// import clsx from "clsx";
+// import styles from "./styles.module.scss";
+// import {Droppable} from "@hello-pangea/dnd";
+// import {boardHeadings} from "@/entities/user/boardCard/model/consts";
+//
+// const BoardColumn: FC<ColumnsProps> = ({ orders, id }) => {
+//     const heading = boardHeadings[id]
+//
+//     return (
+//       <div className={styles.column}>
+//          <h4
+//             className={clsx("h4", styles.column__title)}
+//             style={{ backgroundColor: heading.color }}>
+//             {heading.name}
+//          </h4>
+//           <Droppable droppableId={id}>
+//               {(provided, snapshot) => (
+//                   <div
+//                       className={clsx(styles.column__content, snapshot.isDraggingOver && styles.column__dragcomplete)}
+//                       ref={provided.innerRef}
+//                       {...provided.droppableProps}
+//                   >
+//                       {orders?.map((order, index) => (
+//                           <BoardCard
+//                               index={index}
+//                               order={order}
+//                               key={order.id}
+//                           />
+//                       ))}
+//                       {provided.placeholder}
+//                   </div>
+//               )}
+//           </Droppable>
+//       </div>
+//    );
+// };
+//
+// export default BoardColumn;

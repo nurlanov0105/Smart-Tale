@@ -1,7 +1,10 @@
+import {KanbanOrderProps} from "@/widgets/user/board/model/types";
+
 export type Status = "New" | "Process" | "Checking" | "Sending" | "Arrived";
 
 export type CardProps = {
-   order: Order;
+   order: KanbanOrderProps
+   index: number
 };
 
 export type Order = {
