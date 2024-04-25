@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { MessageTypes } from "@/entities/user/messageItem/model/types";
+import { MessageTypes } from "../model/types";
 import { CheckCheck } from "lucide-react";
 import { messagesData } from "../model/values.data";
 import clsx from "clsx";

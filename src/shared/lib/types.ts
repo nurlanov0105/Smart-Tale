@@ -13,7 +13,6 @@ export type InputFieldProps = {
    error?: string;
    classname?: string;
    isBordered?: boolean;
-   placeholder?: string;
    value?: string;
 };
 

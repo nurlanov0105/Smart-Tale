@@ -21,7 +21,8 @@ const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, da
             <div className={styles.select__block}>
                <p className={styles.select__value}>{value.postValue > 0 ? value.value : title}</p>
                <span className={styles.select__icon}>
-                  <ChevronDown />
+
+                  <ChevronDown className={clsx(styles.select__icon, isShown && styles.select__icon_active)}/>
                </span>
             </div>
          </button>

@@ -7,6 +7,8 @@ import { SendHorizontal, Image as ImageIcon, Ellipsis, MessagesSquare, Phone } f
 import { MessageItem, messagesData } from "@/entities/general/messageItem";
 import { ChatFormProps } from "../model/types";
 import styles from "./styles.module.scss";
+import { ROUTES } from "@/shared/lib";
+import Link from "next/link";
 
 const ChatForm: FC<ChatFormProps> = ({ selected }) => {
    return (
@@ -22,7 +24,9 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
                         width={30}
                         height={30}
                      />
-                     <h4 className="h4">Tarantino</h4>
+                     <Link href={ROUTES.USER}>
+                        <h4 className="h4">Tarantino</h4>
+                     </Link>
                   </div>
                   <div className={styles.chat__block}>
                      <button>

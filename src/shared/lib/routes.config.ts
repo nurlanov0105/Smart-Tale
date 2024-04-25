@@ -44,6 +44,7 @@ export enum ROUTES {
    ORDERS_HISTORY = `/orders/history`,
    MODE = `/mode`,
    NOTICES = `/notices`,
+   USER = `/user`
 }
 
 export enum ADMIN_ROUTES {

@@ -1,0 +1,45 @@
+.user{
+  width: 100%;
+  padding: 2rem;
+
+  &__top{
+    display: flex;
+    column-gap: 2rem;
+
+  }
+  &__bottom{
+    border: 1px solid #D9DBE3;
+    border-radius: 8px;
+
+    margin: 5rem 0 2.5rem;
+  }
+
+  &__avatar{
+    border-radius: 50%;
+    width: 9rem;
+    height: 9rem;
+
+  }
+
+  &__info{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.7rem;
+  }
+  &__name{
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: 600;
+
+  }
+  &__text{
+      color: $grey;
+    line-height: 1.5;
+  }
+  &__more{
+    display: flex;
+    column-gap: 0.5rem;
+    align-items: center;
+    color: $grey;
+  }
+}

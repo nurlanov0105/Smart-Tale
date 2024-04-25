@@ -41,6 +41,12 @@
   &__icon{
     width: 20px;
     color: $grey;
+
+    @include transition;
+
+    &_active{
+      transform: rotate(180deg);
+    }
   }
   &__block{
     width: 100%;

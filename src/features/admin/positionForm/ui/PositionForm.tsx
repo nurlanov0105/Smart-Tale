@@ -7,9 +7,9 @@ import styles from "./styles.module.scss";
 import { employee } from "@/shared/lib/types";
 
 const roles = [
-   { value: "Утюжник", postValue: "Утюжник", descr: "Супер хороший Утюжник" },
-   { value: "Швея", postValue: "Швея", descr: "Супер хороший Швея" },
-   { value: "Менеджер", postValue: "Менеджер", descr: "Супер хороший Менеджер" },
+   { value: "Утюжник", postValue: "Утюжник" },
+   { value: "Швея", postValue: "Швея" },
+   { value: "Менеджер", postValue: "Менеджер" },
 ];
 
 const PositionForm = () => {
@@ -33,18 +33,16 @@ const PositionForm = () => {
                data={roles}
             />
             <h4 className="h4">Название должности</h4>
-            <InputField
-               title="Название"
-               type="email"
-               placeholder={selectedRole.value ? selectedRole.value : ""}
-            />
+            <InputField title="Название" />
 
             <h4 className="h4">Описание должности</h4>
-            <TextArea title="Описание" placeholder={selectedRole.descr ? selectedRole.descr : ""} />
+            <TextArea title="Описание" />
          </div>
 
          <div className={styles.position__btn}>
-            <Button>Создать</Button>
+            <Button type="submit">
+               {selectedRole.postValue === "all" ? "Создать" : "Сохранить"}
+            </Button>
          </div>
       </form>
    );

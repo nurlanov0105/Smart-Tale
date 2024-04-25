@@ -4,6 +4,8 @@ import { Chats } from "@/widgets/general/chats";
 import { NoticesContent } from "@/widgets/general/noticesContent";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { Tabs } from "@/features/general/tabs";
+import { noticesTabs } from "../model/values.data";
 
 const Notices = () => {
    const [type, setType] = useState("chats");
@@ -14,16 +16,7 @@ const Notices = () => {
       <div className={styles.notice}>
          <div className={styles.notice__container}>
             <div className={styles.notice__top}>
-               <button
-                  className={clsx(styles.notice__button, isType("chats"))}
-                  onClick={() => handleType("chats")}>
-                  Чаты
-               </button>
-               <button
-                  className={clsx(styles.notice__button, isType("notices"))}
-                  onClick={() => handleType("notices")}>
-                  Уведомления
-               </button>
+               <Tabs type={type} setType={setType} values={noticesTabs} variant="secondary" />
             </div>
 
             {type === "chats" ? <Chats /> : <NoticesContent />}

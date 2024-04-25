@@ -40,7 +40,7 @@ const EmployeesForm = () => {
          </div>
 
          <div className={styles.form__btn}>
-            <Button>Пригласить</Button>
+            <Button type="button">Пригласить</Button>
          </div>
       </form>
    );

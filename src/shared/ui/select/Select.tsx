@@ -2,7 +2,7 @@
 import React, { FC } from "react";
 import { SelectTypes, employee } from "@/shared/lib/types";
 import { useOutside } from "@/shared/lib";
-import { ChevronsUpDown } from "lucide-react";
+import {ChevronDown, ChevronsUpDown, ChevronUp} from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -23,7 +23,10 @@ const Select: FC<SelectTypes> = ({ data, title, selected, setSelected, classname
                   onClick={toggleShow}
                   className={clsx(styles.select__selected, classname)}>
                   <p className={styles.select__select}>{selected.value}</p>
-                  <ChevronsUpDown className={styles.select__icon} />
+                  {/*<ChevronsUpDown className={styles.select__icon} />*/}
+
+                  <ChevronDown className={clsx(styles.select__icon, isShown && styles.select__icon_active)}/>
+
                </button>
 
                {isShown && (
