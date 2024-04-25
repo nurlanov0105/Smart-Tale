@@ -5,4 +5,5 @@ export type ButtonsProps = {
    type: string;
    setType: Dispatch<SetStateAction<string>>;
    values: OrganizationValuesProps[];
+   variant?: "primary" | "secondary"
 };

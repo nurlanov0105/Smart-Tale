@@ -1,0 +1,165 @@
+.chats {
+   width: 100%;
+
+   display: grid;
+   grid-template-columns: 1fr 1.5fr;
+
+   &__tabs {
+      width: 100%;
+      padding: 0.5rem 1.5rem 1.1rem;
+
+      display: flex;
+      column-gap: 2rem;
+
+      border-bottom: 1px solid #d9dbe3;
+   }
+   &__left {
+   }
+   &__right {
+      width: 100%;
+      border-left: 1px solid #d9dbe3;
+   }
+
+   &__list {
+      overflow-y: scroll;
+      height: 60vh;
+   }
+   &__select {
+      width: 100%;
+      padding: 0.9rem 1rem !important;
+
+      border: 1px solid $grey !important;
+      border-radius: 10px !important;
+      background-color: transparent !important;
+   }
+}
+
+.chat {
+   height: 100%;
+
+   &__user,
+   &__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #d9dbe3;
+   }
+
+   &__block {
+      display: flex;
+      align-items: center;
+      column-gap: 1.5rem;
+   }
+   &__iconPhone {
+      width: 2.5rem;
+      color: green;
+   }
+   &__menu {
+      color: $grey;
+   }
+   &__avatar {
+      border-radius: 50%;
+      width: 4.2rem;
+      height: 4.2rem;
+   }
+   &__status {
+      font-size: 1.3rem;
+      color: $grey;
+
+      margin-top: 3px;
+   }
+
+   &__info {
+      padding: 0.8rem 2rem;
+
+      &__block {
+         display: flex;
+         align-items: center;
+         column-gap: 2rem;
+      }
+   }
+   &__image {
+      border-radius: 4px;
+      width: 3.7rem;
+      height: 3.7rem;
+   }
+   &__title {
+      color: $grey;
+   }
+
+   &__row {
+      height: 53vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   &__chat {
+      min-height: 80%; //Если список чатов пуст
+
+      display: flex;
+      flex-direction: column-reverse;
+      row-gap: 0.8rem;
+      padding: 2rem 3rem;
+
+      overflow-y: scroll;
+   }
+
+   &__form {
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+      flex-grow: 1;
+
+      padding: 1.3rem 1.6rem;
+
+      border-top: 1px solid #d9dbe3;
+   }
+   &__input > label > input {
+      padding: 1rem !important;
+      border: 1px solid #d9dbe3;
+   }
+   &__icon {
+      width: 4.2rem;
+
+      padding: 1rem;
+      border-radius: 50%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: #666666;
+      background-color: #d9dbe3;
+
+      &:hover {
+         color: white;
+         background-color: $primary-color;
+      }
+   }
+   &__iconImage {
+      width: 4rem;
+      height: 4rem;
+      color: green;
+   }
+
+   &__empty {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 1rem;
+
+      text-align: center;
+
+      height: 100%;
+   }
+   &__iconEmpty {
+      width: 5rem;
+      height: 5rem;
+      color: green;
+   }
+}

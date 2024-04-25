@@ -1,0 +1,53 @@
+.item {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   column-gap: 1.6rem;
+
+   padding: 1.6rem;
+   background-color: $common-white;
+   border-radius: 12px;
+
+   &__row {
+      display: flex;
+      align-items: center;
+      column-gap: 1.6rem;
+   }
+   &__avatar {
+      width: 5.2rem;
+      height: 5.2rem;
+      border-radius: 50%;
+      background-color: $primary-color;
+      overflow: hidden;
+      position: relative;
+
+      img {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
+   }
+
+   &__author {
+   }
+
+   &__title {
+   }
+
+   @include transition;
+   cursor: pointer;
+
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         background-color: rgb(231, 248, 244);
+      }
+   }
+
+   &:active {
+      background-color: rgb(231, 248, 244);
+   }
+
+   &:disabled {
+   }
+}

@@ -3,3 +3,32 @@
   align-items: center;
   column-gap: 8px;
 }
+
+.button{
+  padding: 2rem;
+  position: relative;
+
+  @include transition;
+
+
+  &_active{
+    color: green;
+
+    &:before{
+      content: "";
+
+      position: absolute;
+      bottom: 0;
+      left: 0 ;
+
+      background: green;
+      border-radius: 10px;
+
+
+      width: 100%;
+      height: 2px;
+
+      @include transition;
+    }
+  }
+}

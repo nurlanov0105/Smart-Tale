@@ -13,7 +13,6 @@ export type InputFieldProps = {
    error?: string;
    classname?: string;
    isBordered?: boolean;
-   placeholder?: string;
    value?: string;
 };
 
@@ -41,6 +40,7 @@ export type TimerProps = {
 export type employee = {
    value: string;
    postValue: string;
+   descr?: string;
 };
 
 export type SelectTypes = {
