@@ -1,6 +1,7 @@
+
 import { StandartCard } from "@/features/user/standartCard";
 import styles from "./styles.module.scss";
-import { FC } from "react";
+import {FC} from "react";
 import { CardSceletonProps } from "../model/types";
 import { CommonSkeleton } from "@/shared/ui";
 

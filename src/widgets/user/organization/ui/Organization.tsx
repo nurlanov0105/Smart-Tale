@@ -7,6 +7,7 @@ import { EmployeesList } from "@/features/general/employeesList";
 import { organizationValues } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { showModal } from "@/views/modal";
+import {MODAL_KEYS} from "@/shared/lib";
 import styles from "./styles.module.scss";
 import { SkeletonTypes } from "@/shared/lib";
 
@@ -14,7 +15,7 @@ const Organization = () => {
    const [type, setType] = useState(organizationValues[0].postValue);
 
    const handleInviteClick = () => {
-      showModal("InviteEmployeeModal", { isLightBg: true });
+      showModal(MODAL_KEYS.inviteEmployee, { isLightBg: true });
    };
 
    const data = [

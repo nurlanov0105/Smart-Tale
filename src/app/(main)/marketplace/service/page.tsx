@@ -4,7 +4,8 @@ import { SkeletonTypes } from "@/shared/lib";
 // import styles from "./styles.module.scss";
 
 const ServiePage: FC = () => {
-   return <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />;
+
+   return <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />
 };
 
 export default ServiePage;

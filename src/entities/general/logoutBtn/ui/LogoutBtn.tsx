@@ -1,10 +1,11 @@
 import { LogOut } from "lucide-react";
 import React from "react";
-import styles from "./styles.module.scss";
 import { showModal } from "@/views/modal";
+import {MODAL_KEYS} from "@/shared/lib";
+import styles from "./styles.module.scss";
 const LogoutBtn = () => {
    const handleLogoutBtn = () => {
-      showModal("LogoutModal");
+      showModal(MODAL_KEYS.logout);
    };
 
    return (

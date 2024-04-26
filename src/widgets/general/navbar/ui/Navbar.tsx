@@ -4,17 +4,19 @@ import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
 import { Logo } from "@/entities/general/logo";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
-// import { SubscribeBox } from "@/entities/subscribeBox";
+// import { SubscribeBox} from "@/entities/user/subscribeBox"
 
-import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { MARKETPLACE, ROUTES } from "@/shared/lib";
+
 import { useOrdersStore } from "@/entities/general/navbarPanel";
-import clsx from "clsx";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import Link from "next/link";
 import { LogIn, ShieldCheck } from "lucide-react";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
+
 
 const Navbar = () => {
    const hidden = useOrdersStore((state) => state.hidden);

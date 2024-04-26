@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { NavbarLine } from "@/entities/general/navbarLine";
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+
    return (
       <main className={styles.main}>
          <NavbarLine />

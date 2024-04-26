@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import { ROUTES } from "@/shared/lib";
+import {MODAL_KEYS, ROUTES} from "@/shared/lib";
 
 import { useRouter } from "next/navigation";
 
@@ -20,7 +20,7 @@ const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
    const router = useRouter();
    const handleItemClick = () => {
       if (isAdmin) {
-         showModal("CardModal");
+         showModal(MODAL_KEYS.card);
       } else if (isAdmin && item.type === "order") {
          router.push(ROUTES.ORDER_DETAILS + "/orderName");
       } else if (isAdmin && item.type === "equipment") {

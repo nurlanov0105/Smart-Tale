@@ -16,6 +16,7 @@ const Header = () => {
    const hidden = useOrdersStore((state) => state.hidden);
 
    const isAuth = useAuth();
+
    return (
       <div className={clsx(styles.header, styles.header_mb)}>
          <div className={clsx(styles.header__block, styles.header_left)}>

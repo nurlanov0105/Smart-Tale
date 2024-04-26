@@ -6,6 +6,7 @@ import { Button, InputField } from "@/shared/ui";
 import { useForm } from "react-hook-form";
 import { showModal } from "@/views/modal";
 import { ChangeImage } from "@/features/general/changeImage";
+import {MODAL_KEYS} from "@/shared/lib";
 import styles from "./styles.module.scss";
 
 const ProfileForm: FC = () => {
@@ -18,7 +19,7 @@ const ProfileForm: FC = () => {
    const onSubmit = (data: any) => console.log(data);
 
    const handleDeleteClick = () => {
-      showModal("DeleteModal");
+      showModal(MODAL_KEYS.deleteAccount);
    };
 
    return (

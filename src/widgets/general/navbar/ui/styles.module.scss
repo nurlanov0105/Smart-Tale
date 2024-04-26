@@ -54,6 +54,8 @@
    &_hover {
       position: fixed;
       transform: translate3d(0, 0, 0);
+
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
    }
 
    &__links {

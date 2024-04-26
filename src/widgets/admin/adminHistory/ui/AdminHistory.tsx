@@ -5,17 +5,16 @@ import { OrderList } from "@/features/general/orderList";
 import { Select } from "@/shared/ui";
 import { employeesHistory, historyValues } from "../model/historyValues";
 import { SelectDate } from "@/entities/general/selectDate";
-import type { IDateProps } from "@/entities/general/selectDate";
-import styles from "./styles.module.scss";
+import {useInitialDate} from "@/shared/lib";
 import { SkeletonTypes } from "@/shared/lib";
+import styles from "./styles.module.scss";
 
 const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
    const [selected, setSelected] = useState(employeesHistory[0]);
 
-   const [day, setDay] = useState<IDateProps>({ value: 0, postValue: 0 });
-   const [month, setMonth] = useState<IDateProps>({ value: "", postValue: 0 });
-   const [year, setYear] = useState<IDateProps>({ value: 0, postValue: 0 });
+   const {day, setDay, year, setYear,
+       month, setMonth} = useInitialDate()
 
    const data = [
       { id: 1, type: "order" },
