@@ -6,6 +6,7 @@ import { CardsSection } from "@/widgets/user/cardsSection";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
+import { SkeletonTypes } from "@/shared/lib";
 
 const User = () => {
    const data = [
@@ -39,7 +40,7 @@ const User = () => {
          <div className={styles.user__bottom}>
             <Tabs type={type} setType={setType} values={data} variant="secondary" />
          </div>
-         <CardsSection isLoading={false} isError={false} />
+         <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />
       </div>
    );
 };

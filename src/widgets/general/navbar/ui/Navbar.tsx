@@ -9,9 +9,21 @@ import { LogoutBtn } from "@/entities/general/logoutBtn";
 import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
-import { MARKETPLACE } from "@/shared/lib";
+import { MARKETPLACE, ROUTES } from "@/shared/lib";
+import { useOrdersStore } from "@/entities/general/navbarPanel";
+import clsx from "clsx";
+import { NavbarPanel } from "@/entities/general/navbarPanel";
+import Link from "next/link";
+import { LogIn, ShieldCheck } from "lucide-react";
 
 const Navbar = () => {
+   const hidden = useOrdersStore((state) => state.hidden);
+   const hover = useOrdersStore((state) => state.hover);
+   const closed = useOrdersStore((state) => state.closed);
+   const addHover = useOrdersStore((state) => state.addHover);
+   const removeHover = useOrdersStore((state) => state.removeHover);
+   const toggleHidden = useOrdersStore((state) => state.toggleHidden);
+
    const navbarRef = useRef<HTMLDivElement>(null);
 
    const pathname = usePathname() as string;
@@ -23,21 +35,64 @@ const Navbar = () => {
       }
    }, [pathname]);
 
+   const handleMouseOver = () => {
+      if (hidden) {
+         addHover();
+      }
+   };
+
+   const handleMouseOut = () => {
+      if (hidden && hover) {
+         removeHover();
+      }
+   };
+
+   const handleOverlayClick = () => {
+      toggleHidden();
+   };
+
    return (
-      <div className={styles.navbar}>
-         <div className={styles.logoLine}>
-            <Logo />
-         </div>
-         <div ref={navbarRef} className={styles.navbar__scrollbox}>
-            {categoryType ? <AdminCategories /> : <NavbarCategories />}
-         </div>
+      <>
+         <div
+            className={clsx(
+               styles.navbar,
+               hidden ? styles.navbar_hidden : "",
+               hover ? styles.navbar_hover : ""
+               // closed ? styles.navbar_closed : ""
+            )}
+            onMouseOver={handleMouseOver}
+            onMouseOut={handleMouseOut}>
+            <div className={styles.logoLine}>
+               <Logo />
+               <div className={styles.navbar__links}>
+                  <Link href={ROUTES.MODE} className={styles.navbar__link}>
+                     <span>Mode</span>
+                     <ShieldCheck />
+                  </Link>
+                  <Link href={ROUTES.SIGN_IN} className={styles.navbar__link}>
+                     <span>Login</span>
+                     <LogIn />
+                  </Link>
+               </div>
+               <div className={styles.navbar__btn}>
+                  <NavbarPanel />
+               </div>
+            </div>
+            <div ref={navbarRef} className={styles.navbar__scrollbox}>
+               {categoryType ? <AdminCategories /> : <NavbarCategories />}
+            </div>
 
-         <div className={styles.navbar__bottom}>
-            {/* {!categoryType && <SubscribeBox />} */}
+            <div className={styles.navbar__bottom}>
+               {/* {!categoryType && <SubscribeBox />} */}
 
-            <LogoutBtn />
+               <LogoutBtn />
+            </div>
          </div>
-      </div>
+         <div
+            className={clsx(styles.overlay, hidden && styles.overlay_active)}
+            onClick={handleOverlayClick}
+         />
+      </>
    );
 };
 

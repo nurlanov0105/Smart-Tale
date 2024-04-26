@@ -48,3 +48,27 @@
       }
    }
 }
+
+/* Tablet*/
+@media (max-width: 1140px) {
+   .commerce {
+      display: inline-flex;
+      column-gap: 2rem;
+      &__text {
+         display: none;
+      }
+   }
+}
+
+/* Mobile XS */
+@media (max-width: 390px) {
+   .commerce {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.6rem;
+      &__box {
+         display: none;
+      }
+   }
+}

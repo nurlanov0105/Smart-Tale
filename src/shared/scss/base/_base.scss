@@ -6,6 +6,16 @@ html {
       background: #ffcc00;
       color: $common-black;
    }
+
+   /* Laptop */
+   @media (max-width: 1439px) {
+      font-size: 56.25%;
+   }
+
+   /* Tablet Small*/
+   @media (max-width: 900px) {
+      font-size: 50%;
+   }
 }
 
 body {

@@ -1,0 +1,21 @@
+.btn {
+   flex-shrink: 0;
+   svg {
+      width: 3rem;
+      height: 3rem;
+      color: $dark-grey;
+   }
+
+   // &_hover {
+   //    @media (hover: hover) and (pointer: fine) {
+   //       &:hover {
+   //       }
+   //    }
+
+   //    &:active {
+   //    }
+
+   //    &:disabled {
+   //    }
+   // }
+}

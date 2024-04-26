@@ -4,7 +4,11 @@ import { SkeletonTypes } from "@/shared/lib";
 // import styles from "./styles.module.scss";
 
 const PurchasesPage: FC = () => {
-   return <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />;
+   return (
+      <div>
+         <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />
+      </div>
+   );
 };
 
 export default PurchasesPage;

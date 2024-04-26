@@ -7,6 +7,7 @@ import { employeesHistory, historyValues } from "../model/historyValues";
 import { SelectDate } from "@/entities/general/selectDate";
 import type { IDateProps } from "@/entities/general/selectDate";
 import styles from "./styles.module.scss";
+import { SkeletonTypes } from "@/shared/lib";
 
 const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
@@ -52,7 +53,13 @@ const AdminHistory = () => {
             </div>
          </div>
 
-         <OrderList data={data} isAdmin={true} />
+         <OrderList
+            data={data}
+            isAdmin={true}
+            isError={false}
+            isLoading={false}
+            type={SkeletonTypes.listItem}
+         />
       </section>
    );
 };

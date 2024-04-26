@@ -1,45 +1,44 @@
-.item{
-  &__top {
-    width: 100%;
+.item {
+   &__top {
+      width: 100%;
 
-    display: flex;
-    align-items: center;
-    column-gap: 0.8rem;
+      display: flex;
+      align-items: center;
+      column-gap: 0.8rem;
 
-    border-radius: 4px;
-    padding: 0.8rem 1.6rem;
+      border-radius: 4px;
+      padding: 0.8rem 1.6rem;
 
-    &:hover,
-    &_active {
-      background: rgb(243, 244, 253);
-      position: relative;
+      &:hover,
+      &_active {
+         background: rgb(243, 244, 253);
+         position: relative;
 
-      &:before {
-        content: "";
+         &:before {
+            content: "";
 
-        position: absolute;
-        left: 0;
-        top: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
 
-        width: 4px;
-        height: 100%;
+            width: 4px;
+            height: 100%;
 
-        background: rgb(255, 204, 0);
-        border-radius: 4px 0 0 4px;
+            background: rgb(255, 204, 0);
+            border-radius: 4px 0 0 4px;
+         }
       }
-    }
-    @include transition;
-  }
+      @include transition;
+   }
 
+   &__title {
+      text-align: left;
+      font-size: 1.6px;
+      line-height: 1.9rem;
+   }
 
-  &__title {
-    text-align: left;
-    font-size: 1.6rem;
-    line-height: 1.9rem;
-  }
-
-  &__icon {
-    width: 2rem;
-    height: 2rem;
-  }
+   &__icon {
+      width: 2rem;
+      height: 2rem;
+   }
 }

@@ -5,6 +5,7 @@ import { listingsValues } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import styles from "./styles.module.scss";
+import { SkeletonTypes } from "@/shared/lib";
 
 const Listings: FC = () => {
    const [type, setType] = useState(listingsValues[0].postValue);
@@ -23,7 +24,7 @@ const Listings: FC = () => {
          <div className={styles.listings__btns}>
             <Tabs type={type} setType={setType} values={listingsValues} />
          </div>
-         <OrderList data={data} />
+         <OrderList data={data} isError={false} isLoading={false} type={SkeletonTypes.listItem} />
       </div>
    );
 };
