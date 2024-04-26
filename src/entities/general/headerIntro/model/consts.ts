@@ -21,6 +21,10 @@ export const PathData: any = {
       path: "Личный кабинет/Организация",
       name: "Организация",
    },
+   [DASHBOARD.FAVORITES]: {
+      path: "Личный кабинет/Избранные",
+      name: "Избранные",
+   },
 
    [MARKETPLACE.EQUIPMENT]: {
       path: "Маркетплейс/Оборудование",

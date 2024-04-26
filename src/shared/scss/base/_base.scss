@@ -6,6 +6,32 @@ html {
       background: #ffcc00;
       color: $common-black;
    }
+
+   /* Laptop */
+   @media (max-width: 1439px) {
+      font-size: 56.25%;
+   }
+
+   /* Tablet Small*/
+   @media (max-width: 900px) {
+      font-size: 50%;
+   }
+}
+[data-theme="dark"]{
+   $common-black: #fff;
+   $common-white: #000;
+
+   $dark-grey: #8e8e93;
+   $grey: rgb(142, 142, 147);
+
+   // accent colors
+   $primary-color: #fc0;
+   $dark-blue: #2b3674;
+
+   $danger-color: #ff3b30;
+
+   // bg-color
+   $bg-color: #000;
 }
 
 body {

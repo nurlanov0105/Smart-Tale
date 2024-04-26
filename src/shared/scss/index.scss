@@ -5,7 +5,29 @@
 @import "./base/base";
 @import "./base/typography";
 @import "./base/utils";
-@import "./base//slider";
+@import "./base/slider";
 
 // Blocks
 @import "./blocks/btns";
+
+//body{
+//  --bg__color: #f8f9fa;
+//}
+//[data-theme="dark"]{
+//  $common-black: pink;
+//  $common-white: red;
+//
+//  $dark-grey: #8e8e93;
+//  $grey: rgb(142, 142, 147);
+//
+//  // accent colors
+//  $primary-color: #fc0;
+//  $dark-blue: #2b3674;
+//
+//  $danger-color: #ff3b30;
+//
+//  // bg-color
+//  --bg__color: black;
+//  $bg-color: #f8f9fa;
+//}
+

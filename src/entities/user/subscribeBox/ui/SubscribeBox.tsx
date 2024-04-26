@@ -3,10 +3,11 @@ import arrowRightIcon from "@@/imgs/commerce/arrow-right.svg";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { showModal } from "@/views/modal";
+import {MODAL_KEYS} from "@/shared/lib";
 
 const SubscribeBox = () => {
    const handleSubscribeClick = () => {
-      showModal("SubscribeModal");
+      showModal(MODAL_KEYS.subscribe);
    };
 
    return (

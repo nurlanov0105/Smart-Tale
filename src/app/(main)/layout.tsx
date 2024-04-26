@@ -1,11 +1,14 @@
-import React, {FC, PropsWithChildren} from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Navbar } from "@/widgets/general/navbar";
 import { Header } from "@/widgets/general/header";
 import styles from "./styles.module.scss";
+import { NavbarLine } from "@/entities/general/navbarLine";
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+
    return (
       <main className={styles.main}>
+         <NavbarLine />
          <Navbar />
          <div className={styles.main__wrapper}>
             <Header />

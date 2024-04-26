@@ -5,6 +5,7 @@ import { Tabs } from "@/features/general/tabs";
 import { valuesData } from "../model/values.data";
 import { OrderList } from "@/features/general/orderList";
 import styles from "./styles.module.scss";
+import { SkeletonTypes } from "@/shared/lib";
 // import { AdminBack } from "@/entities/admin/adminBack";
 
 const AdminOrganizationDetail = () => {
@@ -26,7 +27,13 @@ const AdminOrganizationDetail = () => {
          <div className={styles.organization__margin}>
             <Tabs type={type} setType={setType} values={valuesData} />
          </div>
-         <OrderList isAdmin={true} data={data} />
+         <OrderList
+            isAdmin={true}
+            data={data}
+            isError={false}
+            isLoading={false}
+            type={SkeletonTypes.listItem}
+         />
       </div>
    );
 };

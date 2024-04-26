@@ -2,15 +2,12 @@
 import React, { useState } from "react";
 import { Chats } from "@/widgets/general/chats";
 import { NoticesContent } from "@/widgets/general/noticesContent";
-import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { Tabs } from "@/features/general/tabs";
 import { noticesTabs } from "../model/values.data";
+import styles from "./styles.module.scss";
 
 const Notices = () => {
    const [type, setType] = useState("chats");
-   const handleType = (newType: string) => setType(newType);
-   const isType = (t: string) => (t === type ? styles.notice__button_active : "");
 
    return (
       <div className={styles.notice}>

@@ -14,7 +14,7 @@ export const AdminRoutes: TypeAdminCategories[] = [
       title: "Сотрудники",
       Icon: User,
       link: ADMIN_ROUTES.EMPLOYEES,
-      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAILS],
+      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAILS, ADMIN_ROUTES.EMPLOYEES_SETTINGS],
    },
    {
       id: 3,
