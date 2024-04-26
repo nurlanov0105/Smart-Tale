@@ -13,7 +13,7 @@ const AdminItem: FC<TypeAdminCategories> = ({ title, link, Icon, routes }) => {
       <Link href={link} className={styles.item}>
          <button
             className={clsx(styles.item__top, {
-               [styles.item__top_active]: link === pathname || routes.some((el) => el === pathname),
+               [styles.item__top_active]: link === pathname || routes.some((el) => pathname.includes(el)),
             })}>
             <span className={styles.item__icon}>
                <Icon />

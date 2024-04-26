@@ -6,14 +6,15 @@ import Image from "next/image";
 import commerceBox from "@@/imgs/commerce/01.png";
 import { Button } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import { Props } from "../model/types";
+import {MODAL_KEYS} from "@/shared/lib";
+import type { Props } from "../model/types";
 
 import checkIcon from "@@/imgs/commerce/check.svg";
 import styles from "./styles.module.scss";
 
 const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
    const handleSubscribeClick = () => {
-      showModal("SubscribeModal");
+      showModal(MODAL_KEYS.subscribe);
    };
 
    return (

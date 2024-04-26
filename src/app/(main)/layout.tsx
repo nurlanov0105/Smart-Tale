@@ -4,6 +4,7 @@ import { Header } from "@/widgets/general/header";
 import styles from "./styles.module.scss";
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+
    return (
       <main className={styles.main}>
          <Navbar />

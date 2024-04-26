@@ -5,16 +5,15 @@ import { Tabs } from "@/features/general/tabs";
 
 import { OrderList } from "@/features/general/orderList";
 import { historyValues } from "../model/values";
-import {type IDateProps, SelectDate} from "@/entities/general/selectDate";
+import {SelectDate} from "@/entities/general/selectDate";
 import styles from "./styles.module.scss";
+import {useInitialDate} from "@/shared/lib";
 
 const History: FC = () => {
    const [type, setType] = useState(historyValues[0].postValue)
 
-   const [day, setDay] = useState<IDateProps>({ value: 0, postValue: 0 });
-   const [month, setMonth] = useState<IDateProps>({ value: "", postValue: 0 });
-   const [year, setYear] = useState<IDateProps>({ value: 0, postValue: 0 });
-
+  const {day, setDay, setYear, year,
+  month, setMonth} = useInitialDate()
 
    const data = [
       { id: 1, type: "order" },

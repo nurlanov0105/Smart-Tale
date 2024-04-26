@@ -1,14 +1,15 @@
 "use client";
 
 import { FC } from "react";
+import { BtnBordered } from "@/shared/ui";
+import { showModal } from "@/views/modal";
+import {MODAL_KEYS} from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { BtnBordered, Button } from "@/shared/ui";
-import { showModal } from "@/views/modal";
 
 const StandartCard: FC = () => {
    const handleClick = () => {
-      showModal("CardModal");
+      showModal(MODAL_KEYS.card);
    };
 
    return (

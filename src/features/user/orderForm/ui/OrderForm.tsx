@@ -1,22 +1,21 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { AddImages } from "@/features/general/addImages";
 import { SelectDate } from "@/entities/general/selectDate";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import { IDateProps } from "@/entities/general/selectDate/model/types";
 import type { OrderProps } from "../model/types";
+import {MODAL_KEYS, useInitialDate} from "@/shared/lib";
 import styles from "./styles.module.scss";
 
 const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleDeleteClick = () => {
-      showModal("DeleteAnnouncementModal");
+      showModal(MODAL_KEYS.deleteAnnouncement);
    };
    const handleHideClick = () => {
-      showModal("HideAnnouncementModal");
+      showModal(MODAL_KEYS.hideAnnouncement);
    };
-   const [day, setDay] = useState<IDateProps>({ value: 0, postValue: 0 });
-   const [month, setMonth] = useState<IDateProps>({ value: "", postValue: 0 });
-   const [year, setYear] = useState<IDateProps>({ value: 0, postValue: 0 });
+   const {day, setDay, month, setMonth,
+      year, setYear} = useInitialDate()
 
    return (
       <form className={styles.form}>

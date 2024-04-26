@@ -11,4 +11,5 @@ export type TypeCategories = {
    title: string;
    Icon: LucideIcon;
    routes: RoutesType[];
+   activeRoutes?: string[]
 };

@@ -4,12 +4,12 @@ import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
 import { Logo } from "@/entities/general/logo";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
-// import { SubscribeBox } from "@/entities/subscribeBox";
+// import { SubscribeBox} from "@/entities/user/subscribeBox"
 
-import styles from "./styles.module.scss";
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { MARKETPLACE } from "@/shared/lib";
+import styles from "./styles.module.scss";
 
 const Navbar = () => {
    const navbarRef = useRef<HTMLDivElement>(null);

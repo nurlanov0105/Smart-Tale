@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import styles from "./styles.module.scss";
 import { PathData } from "../model/consts";
+import styles from "./styles.module.scss";
 
 const HeaderIntro = () => {
    const pathname = usePathname() as string;
@@ -15,23 +15,22 @@ const HeaderIntro = () => {
       pathname.includes("/employees-settings/")
          ? pathArray.pop()
          : "";
-
    const remainingPath = pathArray.join("/");
 
    return (
-      <div className={styles.intro}>
-         {!slug ? (
-            <>
-               <span>{PathData[pathname]?.path}</span>
-               <h2 className="h2">{PathData[pathname]?.name}</h2>
-            </>
-         ) : (
-            <>
-               <span>{PathData[remainingPath]?.path}</span>
-               <h2 className="h2">{PathData[remainingPath]?.name}</h2>
-            </>
-         )}
-      </div>
+       <div className={styles.intro}>
+          {!slug ? (
+              <>
+                 <span>{PathData[pathname]?.path}</span>
+                 <h2 className="h2">{PathData[pathname]?.name}</h2>
+              </>
+          ) : (
+              <>
+                 <span>{PathData[remainingPath]?.path}</span>
+                 <h2 className="h2">{PathData[remainingPath]?.name}</h2>
+              </>
+          )}
+       </div>
    );
 };
 
