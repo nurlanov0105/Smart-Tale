@@ -30,6 +30,7 @@ export const useInfiniteScroll = () => {
                 })
                 .finally(() => setFetching(false))
         }
+        // eslint-disable-next-line
     }, [fetching]);
 
     useEffect(() => {

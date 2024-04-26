@@ -29,7 +29,7 @@ const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
                   </div>
                </div>
                <Button className="btn_white" onClick={handleSubscribeClick}>
-                  Отправить запрос на подписку
+                  Оформить подписку
                </Button>
             </div>
          ) : (

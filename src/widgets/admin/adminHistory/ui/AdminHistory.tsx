@@ -6,6 +6,7 @@ import { Select } from "@/shared/ui";
 import { employeesHistory, historyValues } from "../model/historyValues";
 import { SelectDate } from "@/entities/general/selectDate";
 import {useInitialDate} from "@/shared/lib";
+import { SkeletonTypes } from "@/shared/lib";
 import styles from "./styles.module.scss";
 
 const AdminHistory = () => {
@@ -51,7 +52,13 @@ const AdminHistory = () => {
             </div>
          </div>
 
-         <OrderList data={data} isAdmin={true} />
+         <OrderList
+            data={data}
+            isAdmin={true}
+            isError={false}
+            isLoading={false}
+            type={SkeletonTypes.listItem}
+         />
       </section>
    );
 };

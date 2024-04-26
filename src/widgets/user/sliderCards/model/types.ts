@@ -1,6 +1,5 @@
-export type Props = {
-   data: any[];
-   isAdmin?: boolean;
+export type SliderCardsProps = {
+   data: any;
    type: string;
    isLoading: boolean;
    isError: boolean;

@@ -7,11 +7,10 @@ import { AuthorInfo } from "@/entities/general/authorInfo";
 import { CardCategory } from "@/features/general/cardCategory";
 import { Chat } from "@/widgets/user/chat";
 import { BtnBordered } from "@/shared/ui";
+import { SliderCards } from "@/widgets/user/sliderCards";
 
-import { images } from "@/shared/lib";
+import { SkeletonTypes, images } from "@/shared/lib";
 import styles from "./styles.module.scss";
-import { CardsSection } from "@/widgets/user/cardsSection";
-import { OtherCards } from "@/widgets/user/otherCards";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
@@ -55,7 +54,12 @@ const CardDetail = () => {
                <BtnBordered>В избранные</BtnBordered>
             </div>
          </div>
-         <OtherCards />
+         <SliderCards
+            data={[...Array(8)]}
+            type={SkeletonTypes.standart}
+            isLoading={false}
+            isError={false}
+         />
       </div>
    );
 };

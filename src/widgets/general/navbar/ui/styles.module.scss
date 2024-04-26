@@ -1,7 +1,10 @@
 .navbar {
+   max-width: 25.2rem;
    width: 100%;
    height: 100%;
    padding: 3.2rem 1.6rem;
+   flex-shrink: 0;
+   flex-grow: 0;
 
    display: flex;
    flex-direction: column;
@@ -9,8 +12,7 @@
    background-color: $common-white;
    box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
 
-   position: sticky;
-   top: 0;
+   // position: sticky;
    z-index: $z9;
 
    overflow: hidden;
@@ -23,11 +25,131 @@
    &__bottom {
       margin-top: auto;
    }
+
+   .logoLine {
+      margin: 0 auto;
+      padding-bottom: 3.2rem;
+      margin-bottom: 3.2rem;
+      border-bottom: 1px solid $dark-grey;
+      position: relative;
+
+      &__row {
+         display: none;
+      }
+   }
+
+   &__btn {
+      position: absolute;
+      top: 2rem;
+      right: 0;
+   }
+   transform: translate3d(0, 0, 0);
+   transition: transform 0.2s;
+
+   &_hidden {
+      position: fixed;
+      transform: translate3d(-100%, 0, 0);
+   }
+
+   &_hover {
+      position: fixed;
+      transform: translate3d(0, 0, 0);
+
+      box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+   }
+
+   &__links {
+      display: none;
+      align-items: center;
+      column-gap: 2rem;
+   }
+
+   &__link {
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      font-size: 18px;
+
+      svg {
+         width: 18px;
+         height: 20px;
+      }
+   }
 }
 
-.logoLine {
-   margin: 0 auto;
-   padding-bottom: 3.2rem;
-   margin-bottom: 3.2rem;
-   border-bottom: 1px solid $dark-grey;
+.overlay {
+   display: none;
+}
+
+/* Tablet*/
+@media (max-width: 1140px) {
+   .navbar {
+      .logoLine {
+         margin: unset;
+         padding: 0 1.6rem 1.6rem;
+         margin-bottom: 1.6rem;
+      }
+      &__btn {
+         right: 1.6rem;
+      }
+   }
+}
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .navbar {
+      position: fixed;
+      transform: translate3d(-100%, 0, 0);
+      &_hidden {
+         transform: translate3d(0, 0, 0);
+      }
+      &_closed {
+         transform: translate3d(-100%, 0, 0);
+      }
+   }
+   .navbar.navbar_closed + .overlay {
+      top: -200%;
+      left: -200%;
+      z-index: -1;
+      background-color: transparent;
+      transform: scale(0);
+   }
+   .overlay {
+      display: block;
+      position: fixed;
+      top: -200%;
+      left: -200%;
+      z-index: -1;
+      background-color: transparent;
+      transform: scale(0);
+
+      @include transition;
+
+      &_active {
+         top: 0;
+         bottom: 0;
+         left: 0;
+         right: 0;
+         z-index: $z8;
+         transform: scale(1);
+
+         background-color: rgba(0, 0, 0, 0.6);
+      }
+   }
+}
+
+/* Mobile */
+@media (max-width: 725px) {
+   .navbar {
+      .logoLine {
+         padding: 0 1.6rem 3rem;
+         margin-bottom: 3rem;
+         .navbar__links {
+            display: flex;
+         }
+         .navbar__link {
+            font-size: 16px;
+         }
+      }
+   }
 }

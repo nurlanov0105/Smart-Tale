@@ -1,0 +1,17 @@
+.line {
+   position: absolute;
+   top: 13.2rem;
+   left: 0;
+   bottom: 0;
+   width: 1rem;
+   background-color: transparent;
+   border-radius: 4px;
+   @include transition;
+   z-index: $z3;
+
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         background-color: lightgray;
+      }
+   }
+}

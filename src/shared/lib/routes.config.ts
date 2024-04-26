@@ -10,6 +10,7 @@ export enum DASHBOARD {
    PURCHASES = `/dashboard/purchases`,
    ORDER_HISTORY = `/dashboard/order-history`,
    ORGANIZATION = `/dashboard/organization`,
+   FAVORITES = `/dashboard/favorites`,
    // MY_ORDER_DETAIL = "/dashboard/my-order-details",
 }
 export enum ORDERS {
@@ -44,7 +45,7 @@ export enum ROUTES {
    ORDERS_HISTORY = `/orders/history`,
    MODE = `/mode`,
    NOTICES = `/notices`,
-   USER = `/user`
+   USER = `/user`,
 }
 
 export enum ADMIN_ROUTES {

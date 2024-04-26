@@ -10,10 +10,10 @@
    &__input {
       padding-left: 5.2rem;
       padding-right: 2rem;
-      padding: 10px 2rem 10px 5.2rem;
+      padding: 1rem 2rem 1rem 5.2rem;
       width: 40.9rem;
 
-      border-radius: 10px;
+      border-radius: 1rem;
       border: 0.5px solid $dark-grey;
       background: $common-white;
 
@@ -24,6 +24,16 @@
 
       &::placeholder {
          color: #7a7e9e;
+      }
+   }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+   .search {
+      width: 100%;
+      &__input {
+         width: 100%;
       }
    }
 }

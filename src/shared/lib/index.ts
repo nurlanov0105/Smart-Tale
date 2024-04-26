@@ -1,4 +1,4 @@
-import {EnumTokens, InputFieldProps } from "./types";
+import { EnumTokens, InputFieldProps } from "./types";
 import { MARKETPLACE, DASHBOARD, ORDERS, ROUTES, ADMIN_ROUTES } from "./routes.config";
 import { useDebounce } from "./hooks/useDebounce";
 import { useAuth } from "./hooks/useAuth";
@@ -7,8 +7,9 @@ import { useInitialDate } from "./hooks/useInitialDate";
 import { onDragEnd } from "./utils/onDragEnd";
 import { images } from "./consts";
 import {MODAL_KEYS} from "./consts";
+import { SkeletonTypes } from "./consts";
 
-export type {InputFieldProps };
+export type { InputFieldProps };
 
 export {
    useDebounce,
@@ -24,4 +25,5 @@ export {
    ADMIN_ROUTES,
    MODAL_KEYS,
    images,
+   SkeletonTypes,
 };

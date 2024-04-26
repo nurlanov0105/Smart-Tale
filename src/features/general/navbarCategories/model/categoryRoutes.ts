@@ -38,6 +38,12 @@ export const CategoryRoutes: TypeCategories[] = [
             link: DASHBOARD.ORGANIZATION,
             isSubscribe: true,
          },
+         {
+            parentId: 1,
+            subtitle: "Избранные",
+            link: DASHBOARD.FAVORITES,
+            isSubscribe: true,
+         },
       ],
       activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS]
    },

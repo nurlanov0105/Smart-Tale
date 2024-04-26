@@ -5,9 +5,15 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useOrdersStore } from "@/entities/general/navbarPanel";
 
 const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
    const pathname = usePathname();
+   const addClosed = useOrdersStore((state) => state.addClosed);
+
+   const handleAddClose = () => {
+      addClosed();
+   };
 
    return (
       <li className={styles.category_item}>
@@ -30,7 +36,8 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) =
                      key={item.subtitle}
                      className={clsx(styles.category__item, {
                         [styles.category__item_active]: item.link === pathname,
-                     })}>
+                     })}
+                     onClick={handleAddClose}>
                      {item.subtitle}
                   </Link>
                ))}

@@ -9,6 +9,7 @@ import { Tabs } from "@/features/general/tabs";
 import { showModal } from "@/views/modal";
 import {MODAL_KEYS} from "@/shared/lib";
 import styles from "./styles.module.scss";
+import { SkeletonTypes } from "@/shared/lib";
 
 const Organization = () => {
    const [type, setType] = useState(organizationValues[0].postValue);
@@ -36,7 +37,16 @@ const Organization = () => {
             )}
          </div>
 
-         {type === "users-list" ? <EmployeesList /> : <OrderList data={data}/>}
+         {type === "users-list" ? (
+            <EmployeesList />
+         ) : (
+            <OrderList
+               data={data}
+               isError={false}
+               isLoading={false}
+               type={SkeletonTypes.listItem}
+            />
+         )}
       </div>
    );
 };
