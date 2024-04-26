@@ -5,21 +5,28 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useOrdersStore } from "@/entities/general/navbarPanel";
 
-const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon }) => {
+const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
    const pathname = usePathname();
+   const addClosed = useOrdersStore((state) => state.addClosed);
+
+   const handleAddClose = () => {
+      addClosed();
+   };
 
    return (
       <li className={styles.category_item}>
-         <button
+         <Link
+             href={routes[0].link}
             className={clsx(styles.category__top, {
-               [styles.category__top_active]: routes.some((el) => el.link === pathname),
+               [styles.category__top_active]: routes.some((el) => el.link === pathname) || activeRoutes?.some((el) => pathname.includes(el)),
             })}>
             <span className={styles.category__icon}>
                <Icon />
             </span>
             <h3 className={styles.category__title}>{title}</h3>
-         </button>
+         </Link>
 
          <div className={styles.category}>
             <div className={styles.category__list}>
@@ -29,7 +36,8 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon }) => {
                      key={item.subtitle}
                      className={clsx(styles.category__item, {
                         [styles.category__item_active]: item.link === pathname,
-                     })}>
+                     })}
+                     onClick={handleAddClose}>
                      {item.subtitle}
                   </Link>
                ))}

@@ -112,16 +112,16 @@ export const useDate = (
       }
       // проверяем тип, после выбран ли день, потом проверяем не пустой ли filteredDays и после сравниваем. У других проверок похожая логика
       if (
-         isUser &&
+         isUser && // проверяем user, потому что только у него нужна фильтрация
          day.postValue &&
          filteredDays.length &&
-         day.postValue < filteredDays[0].postValue
+         day.postValue < filteredDays[0].postValue //если текущий день меньше чем самый меньший из новых доступных дней
       ) {
-         setDay({ value: filteredDays[0].value, postValue: filteredDays[0].postValue });
+         setDay({ value: filteredDays[0].value, postValue: filteredDays[0].postValue }); //то устанавливаем самый первый день из нового массива
       }
 
-      if (isUser && month.value && month.postValue < filteredMonths[0].postValue) {
-         setMonth({ value: filteredMonths[0].value, postValue: filteredMonths[0].postValue });
+      if (isUser && month.value && month.postValue < filteredMonths[0].postValue) { //если текущий месяц меньше чем самый меньший из новых доступных месяцев
+         setMonth({ value: filteredMonths[0].value, postValue: filteredMonths[0].postValue }); //то устанавливаем первый месяц из нового массива
       }
       // eslint-disable-next-line
    }, [days]);

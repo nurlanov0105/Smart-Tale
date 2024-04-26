@@ -5,6 +5,15 @@ import TextArea from "./textarea/TextArea";
 import SelectDateField from "@/shared/ui/selectDate/Select";
 import Select from "@/shared/ui/select/Select";
 import Emojis from "./emojis/Emojis";
-import CardSceleton from "./skeletons/CardSceleton";
+import CommonSkeleton from "./skeletons/commonSkeleton";
 
-export { Button, BtnBordered, InputField, TextArea, SelectDateField, Emojis, Select, CardSceleton };
+export {
+   Button,
+   BtnBordered,
+   InputField,
+   TextArea,
+   SelectDateField,
+   Emojis,
+   Select,
+   CommonSkeleton,
+};

@@ -1,5 +1,7 @@
 export type Props = {
    data: any[];
-   isAdmin?: boolean
-}
-
+   isAdmin?: boolean;
+   type: string;
+   isLoading: boolean;
+   isError: boolean;
+};

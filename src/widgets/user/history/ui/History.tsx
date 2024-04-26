@@ -2,18 +2,20 @@
 
 import { FC, useState } from "react";
 import { Tabs } from "@/features/general/tabs";
-
 import { OrderList } from "@/features/general/orderList";
 import { historyValues } from "../model/values";
-import {type IDateProps, SelectDate} from "@/entities/general/selectDate";
+import {SelectDate} from "@/entities/general/selectDate";
+import {useInitialDate} from "@/shared/lib";
+import { SkeletonTypes } from "@/shared/lib";
 import styles from "./styles.module.scss";
 
-const History: FC = () => {
-   const [type, setType] = useState(historyValues[0].postValue)
 
-   const [day, setDay] = useState<IDateProps>({ value: 0, postValue: 0 });
-   const [month, setMonth] = useState<IDateProps>({ value: "", postValue: 0 });
-   const [year, setYear] = useState<IDateProps>({ value: 0, postValue: 0 });
+const History: FC = () => {
+   const [type, setType] = useState(historyValues[0].postValue);
+
+
+  const {day, setDay, setYear, year,
+  month, setMonth} = useInitialDate()
 
 
    const data = [
@@ -32,16 +34,16 @@ const History: FC = () => {
             <div className={styles.section__date}>
                <h5>Фильтр по дате принятия заказа</h5>
                <SelectDate
-                   day={day}
-                   setDay={setDay}
-                   month={month}
-                   setMonth={setMonth}
-                   year={year}
-                   setYear={setYear}
-                />
+                  day={day}
+                  setDay={setDay}
+                  month={month}
+                  setMonth={setMonth}
+                  year={year}
+                  setYear={setYear}
+               />
             </div>
          </div>
-         <OrderList data={data} />
+         <OrderList data={data} isError={false} isLoading={false} type={SkeletonTypes.listItem} />
       </section>
    );
 };
