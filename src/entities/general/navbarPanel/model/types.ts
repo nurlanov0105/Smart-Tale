@@ -4,10 +4,10 @@ export type NavbarPanelType = {
 export type NavbarType = {
    hidden: boolean;
    hover: boolean;
-   closed: boolean;
+   // closed: boolean;
 
    toggleHidden: () => void;
    addHover: () => void;
    removeHover: () => void;
-   addClosed: () => void;
+   // addClosed: () => void;
 };

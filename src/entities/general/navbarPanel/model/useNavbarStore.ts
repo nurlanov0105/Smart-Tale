@@ -4,7 +4,7 @@ import { NavbarType } from "./types";
 export const useOrdersStore = create<NavbarType>()((set) => ({
    hidden: false,
    hover: false,
-   closed: false,
+   // closed: false,
 
    toggleHidden: () =>
       set((state: NavbarType) => ({
@@ -19,8 +19,8 @@ export const useOrdersStore = create<NavbarType>()((set) => ({
       set((state: NavbarType) => ({
          hover: false,
       })),
-   addClosed: () =>
-      set((state: NavbarType) => ({
-         closed: !state.closed,
-      })),
+   // addClosed: () =>
+   //    set((state: NavbarType) => ({
+   //       closed: !state.closed,
+   //    })),
 }));
