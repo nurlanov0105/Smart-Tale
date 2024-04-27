@@ -65,3 +65,14 @@
       }
    }
 }
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .slider {
+      max-width: 100%;
+
+      &_large {
+         width: 100%;
+      }
+   }
+}

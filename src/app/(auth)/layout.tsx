@@ -1,4 +1,4 @@
-import React, {FC, PropsWithChildren} from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { AuthCommon } from "@/widgets/general/authCommon";
 import styles from "./styles.module.scss";
 

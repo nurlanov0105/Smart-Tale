@@ -1,11 +1,18 @@
-.title{
-  font-weight: 700;
-  font-size: 3.6rem;
-  line-height: 1.5;
+.title {
+   font-weight: 700;
+   font-size: 3.6rem;
+   line-height: 1.5;
 
-  margin-bottom: 0.8rem;
+   margin-bottom: 0.8rem;
 }
 
-.block{
-  padding-bottom: 5.575rem;
+.block {
+   padding-bottom: 5.575rem;
+}
+
+/* Laptop */
+@media (max-width: 1439px) {
+   .block {
+      padding-bottom: 2rem;
+   }
 }
