@@ -42,11 +42,13 @@ const CardDetail = () => {
                </div>
             </div>
             <div className={styles.detail__right}>
-               <ModalCardHeader
-                  title="Профессиональные спицы для вязания"
-                  cost="1000"
-                  isLarge={true}
-               />
+               <div className={styles.detail__header}>
+                  <ModalCardHeader
+                     title="Профессиональные спицы для вязания"
+                     cost="1000"
+                     isLarge={true}
+                  />
+               </div>
 
                <div className={styles.detail__chat}>
                   <Chat />

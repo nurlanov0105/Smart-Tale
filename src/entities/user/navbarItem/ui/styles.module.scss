@@ -77,3 +77,23 @@
       }
    }
 }
+
+/* Laptop */
+@media (max-width: 1439px) {
+   .category {
+      padding: 1.3rem 0 0;
+   }
+}
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .category {
+      &__top {
+         padding: 0.8rem 1.2rem;
+      }
+
+      &__list {
+         margin-left: 1rem;
+      }
+   }
+}

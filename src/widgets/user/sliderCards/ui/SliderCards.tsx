@@ -19,7 +19,21 @@ const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading, isError }) =
 
    return (
       <section className={styles.section}>
-         <h3 className="h3">Другие товары</h3>
+         <div className={styles.section__heading}>
+            <h3 className="h3">Другие товары</h3>
+            <div className={styles.section__btns}>
+               <button
+                  className={clsx(styles.section__btn, styles.section__btn_left)}
+                  onClick={handlePrevBtn}>
+                  <ArrowLeft className={styles.section__icon} />
+               </button>
+               <button
+                  className={clsx(styles.section__btn, styles.section__btn_right)}
+                  onClick={handleNextBtn}>
+                  <ArrowRight className={styles.section__icon} />
+               </button>
+            </div>
+         </div>
          <div className={styles.section__content}>
             <div>
                {isError ? (
@@ -40,16 +54,6 @@ const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading, isError }) =
                   </Swiper>
                )}
             </div>
-            <button
-               className={clsx(styles.section__btn, styles.section__btn_left)}
-               onClick={handlePrevBtn}>
-               <ArrowLeft className={styles.section__icon} />
-            </button>
-            <button
-               className={clsx(styles.section__btn, styles.section__btn_right)}
-               onClick={handleNextBtn}>
-               <ArrowRight className={styles.section__icon} />
-            </button>
          </div>
       </section>
    );

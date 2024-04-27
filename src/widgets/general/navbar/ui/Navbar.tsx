@@ -17,11 +17,9 @@ import { LogIn, ShieldCheck } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-
 const Navbar = () => {
    const hidden = useOrdersStore((state) => state.hidden);
    const hover = useOrdersStore((state) => state.hover);
-   const closed = useOrdersStore((state) => state.closed);
    const addHover = useOrdersStore((state) => state.addHover);
    const removeHover = useOrdersStore((state) => state.removeHover);
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);

@@ -24,7 +24,9 @@ const Header = () => {
                <NavbarPanel />
             </div>
 
-            <HeaderIntro />
+            <div className={styles.header__intro}>
+               <HeaderIntro />
+            </div>
             <div className={styles.header__links}>
                <Link href={ROUTES.MODE} className={styles.header__link}>
                   <span>Mode</span>

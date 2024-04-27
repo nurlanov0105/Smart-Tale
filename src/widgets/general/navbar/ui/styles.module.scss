@@ -98,6 +98,7 @@
 /* Tablet Small*/
 @media (max-width: 900px) {
    .navbar {
+      max-width: 50%;
       position: fixed;
       transform: translate3d(-100%, 0, 0);
       &_hidden {
@@ -151,5 +152,12 @@
             font-size: 16px;
          }
       }
+   }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+   .navbar {
+      max-width: 80%;
    }
 }

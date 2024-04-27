@@ -18,9 +18,11 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) =
    return (
       <li className={styles.category_item}>
          <Link
-             href={routes[0].link}
+            href={routes[0].link}
             className={clsx(styles.category__top, {
-               [styles.category__top_active]: routes.some((el) => el.link === pathname) || activeRoutes?.some((el) => pathname.includes(el)),
+               [styles.category__top_active]:
+                  routes.some((el) => el.link === pathname) ||
+                  activeRoutes?.some((el) => pathname.includes(el)),
             })}>
             <span className={styles.category__icon}>
                <Icon />
