@@ -20,6 +20,26 @@
   &__bold{
 
   }
-
-
 }
+
+
+//Tablet Small
+
+@media (max-width: 700px) {
+  .item{
+    text-align: center;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    :nth-child(2){
+      display: none;
+    }
+    :nth-child(5){
+      display: none;
+    }
+    &__text{
+      padding: 2rem 0;
+    }
+  }
+}
+
+

@@ -32,3 +32,36 @@
     }
   }
 }
+
+// Mobile Small
+
+@media (max-width: 600px) {
+  .buttons{
+    width: 100%;
+
+    overflow-y: hidden;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+    button{
+      flex-shrink: 0;
+      &:hover{
+        transform: unset;
+      }
+    }
+  }
+
+}
+
+// Mobile XS
+
+@media (max-width: 420px) {
+  .button{
+    padding: 2rem 0;
+  }
+}
+
+
+

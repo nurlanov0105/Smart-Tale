@@ -37,13 +37,18 @@
    }
    &__text {
       color: $dark-blue;
+
+      max-height: 50px;
+      overflow: hidden;
    }
 
    &__detail {
       color: $dark-grey;
-      font-size: 14px;
+      font-size: 1.4rem;
       line-height: 1.42;
       letter-spacing: -0.28px;
+
+      min-width: 105px;
 
       @include transition;
 
@@ -64,3 +69,47 @@
       letter-spacing: -0.28px;
    }
 }
+
+
+//Tablet Small
+
+@media (max-width: 800px) {
+   .item{
+      &__text{
+         max-width: 300px;
+      }
+   }
+}
+
+//Mobile
+
+@media (max-width: 600px) {
+   .item{
+      &__text{
+         max-width: 200px;
+      }
+   }
+}
+
+// Mobile XS
+
+@media (max-width: 450px) {
+   .item{
+      &__text{
+         max-width: none;
+      }
+      &__date{
+         display: none;
+      }
+      &__detail{
+         display: none;
+      }
+   }
+}
+
+
+
+
+
+
+
