@@ -45,4 +45,56 @@
    &__chat {
       max-width: 45rem;
    }
+
+   &__header {
+      h4 {
+         display: none;
+      }
+   }
+}
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .detail {
+      flex-direction: column;
+      row-gap: 3.2rem;
+      align-items: center;
+
+      &__left {
+         width: 80%;
+      }
+      &__descr {
+         max-width: 100%;
+      }
+
+      &__right {
+         width: 80%;
+      }
+
+      &__chat {
+         max-width: 100%;
+      }
+   }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+   .detail {
+      row-gap: 3rem;
+
+      &__left {
+         width: 100%;
+      }
+      &__descr {
+         max-width: 100%;
+      }
+
+      &__right {
+         width: 100%;
+      }
+
+      &__chat {
+         max-width: 100%;
+      }
+   }
 }

@@ -1,17 +1,20 @@
 "use client";
 
-"use client"
-import {useState} from "react";
-import {DragDropContext, DropResult} from "@hello-pangea/dnd";
-import {newOrdersList, checkOrdersList, completedOrdersList, postOrdersList, processOrdersList} from "@/features/user/boardColumn/model/consts";
+"use client";
+import { useState } from "react";
+import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+import {
+   newOrdersList,
+   checkOrdersList,
+   completedOrdersList,
+   postOrdersList,
+   processOrdersList,
+} from "@/features/user/boardColumn/model/consts";
 import { BoardColumn } from "@/features/user/boardColumn";
-import {KanbanOrderProps} from "../model/types";
+import { KanbanOrderProps } from "../model/types";
 import styles from "./styles.module.scss";
 
-
-
 const Board = () => {
-
    const [newOrders, setNewOrders] = useState<KanbanOrderProps[]>(newOrdersList);
    const [processOrders, setProcessOrders] = useState<KanbanOrderProps[]>(processOrdersList);
    const [checkOrders, setCheckOrders] = useState<KanbanOrderProps[]>(checkOrdersList);
@@ -27,43 +30,39 @@ const Board = () => {
          return;
       }
 
-      if (
-          destination.droppableId === source.droppableId &&
-          destination.index === source.index
-      ) {
+      if (destination.droppableId === source.droppableId && destination.index === source.index) {
          return;
       }
 
       let add;
-      let ordersNew = newOrders
+      let ordersNew = newOrders;
       let ordersProcess = processOrders;
       let ordersCheck = checkOrders;
       let ordersPost = postOrders;
       let ordersCompleted = completedOrders;
 
-
       // Source Logic
       switch (source.droppableId) {
          case "new":
             add = ordersNew[source.index];
-            ordersNew.splice(source.index, 1)
+            ordersNew.splice(source.index, 1);
             break;
          case "process":
             add = ordersProcess[source.index];
-            ordersProcess.splice(source.index, 1)
+            ordersProcess.splice(source.index, 1);
             break;
          case "checking":
             add = ordersCheck[source.index];
-            ordersCheck.splice(source.index, 1)
+            ordersCheck.splice(source.index, 1);
             break;
          case "sending":
             add = ordersPost[source.index];
-            ordersPost.splice(source.index, 1)
+            ordersPost.splice(source.index, 1);
             break;
 
          default: {
             add = ordersCompleted[source.index];
-            ordersCompleted.splice(source.index, 1)
+            ordersCompleted.splice(source.index, 1);
          }
       }
 
@@ -91,26 +90,24 @@ const Board = () => {
       setCheckOrders(ordersCheck);
       setPostOrders(ordersPost);
       setCompletedOrders(ordersCompleted);
-   }
-
+   };
 
    return (
-       <DragDropContext onDragEnd={onDragEnd}>
-          <div className={styles.board}>
-             <div className={styles.board__inner}>
-                <BoardColumn orders={newOrders} setOrders={setNewOrders} id="new"/>
-                <BoardColumn orders={processOrders} setOrders={setProcessOrders} id="process"/>
-                <BoardColumn orders={checkOrders} setOrders={setCheckOrders} id="checking"/>
-                <BoardColumn orders={postOrders} setOrders={setPostOrders} id="sending"/>
-                <BoardColumn orders={completedOrders} setOrders={setCompletedOrders} id="arrived"/>
-             </div>
-          </div>
-       </DragDropContext>
+      <DragDropContext onDragEnd={onDragEnd}>
+         <div className={styles.board}>
+            <div className={styles.board__inner}>
+               <BoardColumn orders={newOrders} setOrders={setNewOrders} id="new" />
+               <BoardColumn orders={processOrders} setOrders={setProcessOrders} id="process" />
+               <BoardColumn orders={checkOrders} setOrders={setCheckOrders} id="checking" />
+               <BoardColumn orders={postOrders} setOrders={setPostOrders} id="sending" />
+               <BoardColumn orders={completedOrders} setOrders={setCompletedOrders} id="arrived" />
+            </div>
+         </div>
+      </DragDropContext>
    );
 };
 
 export default Board;
-
 
 // import { useEffect, useState } from "react";
 // import { BoardData } from "@/features/user/boardColumn/model/consts";
@@ -211,5 +208,3 @@ export default Board;
 // };
 //
 // export default Board;
-
-

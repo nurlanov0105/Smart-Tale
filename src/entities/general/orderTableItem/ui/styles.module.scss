@@ -19,3 +19,11 @@
       letter-spacing: -0.28px;
    }
 }
+
+@media (max-width: 900px) {
+   .item{
+      grid-template-columns: repeat(3, 1fr);
+   }
+}
+
+

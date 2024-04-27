@@ -5,11 +5,9 @@ import { NavbarCategories } from "@/features/general/navbarCategories";
 import { Logo } from "@/entities/general/logo";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
 // import { SubscribeBox} from "@/entities/user/subscribeBox"
-
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { MARKETPLACE, ROUTES } from "@/shared/lib";
-
 import { useOrdersStore } from "@/entities/general/navbarPanel";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import Link from "next/link";
@@ -17,17 +15,13 @@ import { LogIn, ShieldCheck } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-
 const Navbar = () => {
    const hidden = useOrdersStore((state) => state.hidden);
    const hover = useOrdersStore((state) => state.hover);
-   const closed = useOrdersStore((state) => state.closed);
    const addHover = useOrdersStore((state) => state.addHover);
    const removeHover = useOrdersStore((state) => state.removeHover);
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
-
    const navbarRef = useRef<HTMLDivElement>(null);
-
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
 
@@ -36,23 +30,19 @@ const Navbar = () => {
          navbarRef.current.scrollTop = navbarRef.current.scrollHeight;
       }
    }, [pathname]);
-
    const handleMouseOver = () => {
       if (hidden) {
          addHover();
       }
    };
-
    const handleMouseOut = () => {
       if (hidden && hover) {
          removeHover();
       }
    };
-
    const handleOverlayClick = () => {
       toggleHidden();
    };
-
    return (
       <>
          <div
@@ -83,10 +73,8 @@ const Navbar = () => {
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
                {categoryType ? <AdminCategories /> : <NavbarCategories />}
             </div>
-
             <div className={styles.navbar__bottom}>
                {/* {!categoryType && <SubscribeBox />} */}
-
                <LogoutBtn />
             </div>
          </div>
@@ -97,5 +85,4 @@ const Navbar = () => {
       </>
    );
 };
-
 export default Navbar;

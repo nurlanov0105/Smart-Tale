@@ -1,6 +1,10 @@
 .section {
-   h3 {
+   &__heading {
       margin-bottom: 3.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      column-gap: 3.2rem;
    }
    &__content {
       // display: grid;
@@ -9,32 +13,44 @@
       position: relative;
    }
 
+   &__btns {
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+      padding-right: 1rem;
+   }
+
    &__btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 3.2rem;
-      height: 3.2rem;
+      width: 4rem;
+      height: 4rem;
+
+      background-color: $dark-blue;
 
       border-radius: 50%;
       overflow: hidden;
       position: relative;
       z-index: $z2;
 
-      &_left {
-         position: absolute;
-         top: 50%;
-
-         left: -3.2rem;
-         transform: translate(-100%, -50%);
+      svg {
+         color: $common-white;
       }
 
-      &_right {
-         position: absolute;
-         top: 50%;
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: #2b3c9b;
+         }
+      }
 
-         right: -3.2rem;
-         transform: translate(100%, -50%);
+      &:active {
+         background-color: #2b3c9b;
+      }
+
+      &:disabled {
+         background-color: #5261b4;
+         cursor: default;
       }
    }
 
