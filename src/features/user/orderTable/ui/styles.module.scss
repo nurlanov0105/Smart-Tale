@@ -22,3 +22,19 @@
    &__list {
    }
 }
+
+
+//Tablet Small
+
+@media (max-width: 900px) {
+   .orders{
+      &__top {
+         grid-template-columns: repeat(3, 1fr);
+      }
+   }
+}
+
+
+
+
+
