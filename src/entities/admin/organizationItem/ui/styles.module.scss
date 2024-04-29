@@ -40,10 +40,20 @@
     }
   }
   &__text {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+
+    max-width: 80%;
+
     color: $dark-blue;
   }
 
   &__detail {
+    min-width: 118px;
+
     color: $dark-blue;
     font-size: 14px;
     line-height: 1.42;
@@ -75,3 +85,32 @@
   }
 
 }
+
+
+//Mobile
+
+@media (max-width: 600px) {
+  .organization{
+    &__image{
+      width: 6.5rem;
+      height: 6.5rem;
+    }
+  }
+}
+
+// Mobile XS
+
+@media (max-width: 470px) {
+  .organization{
+    &__text{
+      max-width: none;
+    }
+    &__date{
+      top: 1rem;
+    }
+    &__detail{
+      display: none;
+    }
+  }
+}
+

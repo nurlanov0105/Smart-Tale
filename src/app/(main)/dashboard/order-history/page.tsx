@@ -1,8 +1,8 @@
-import { FC } from "react";
-import styles from "./styles.module.scss";
 import { OrderHistory } from "@/widgets/user/orderHistory";
+import {NextPage} from "next";
+import styles from "./styles.module.scss";
 
-const OrderHistoryPage: FC = () => {
+const OrderHistoryPage: NextPage = () => {
    return <OrderHistory />;
 };
 

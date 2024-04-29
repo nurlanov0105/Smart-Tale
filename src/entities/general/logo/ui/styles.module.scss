@@ -2,7 +2,14 @@
    max-width: 18.8rem;
    width: 100%;
 
-   &__image {
+   &__imageOrganization{
+      width: 7rem;
+      height: 7rem;
+
+      margin-bottom: 2rem;
+   }
+
+   &__image, &__imageOrganization {
       width: 7rem;
       height: 7rem;
 
@@ -13,7 +20,7 @@
       margin-bottom: 1.2rem;
    }
 
-   &__text {
+   &__text, &__textOrganization {
       color: rgba(0, 0, 0, 0.5);
 
       font-size: 14px;

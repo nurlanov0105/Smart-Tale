@@ -23,7 +23,7 @@ const OrganizationItem:FC<TypesItemOrganization> = ({item}) => {
                     <h6 className={styles.organization__title}>SmartTale</h6>
                     <p className={styles.organization__text}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                        incididunt...
+                        incididunt Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad cum deserunt dolorem ipsum mollitia nesciunt nulla odio pariatur temporibus! Blanditiis dolorum, ducimus et maxime minus obcaecati perspiciatis sint soluta.
                     </p>
                 </div>
             </div>

@@ -15,7 +15,7 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
             </div>
             <h4 className={clsx("h4", styles.item__author)}>{author}</h4>
          </div>
-         <h5 className={clsx("h4", styles.item__title)}>{title}</h5>
+         <h5 className={clsx("h4", styles.item__title)}>{title} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad animi commodi consequatur cumque delectus laudantium libero, minima modi molestias repudiandae saepe tenetur veniam? A aut eaque facere repellendus veniam.</h5>
          <b className={styles.item__date}>{date}</b>
       </li>
    );

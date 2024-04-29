@@ -1,8 +1,8 @@
-import { FC } from "react";
+import {NextPage} from "next";
 import { SkeletonTypes } from "@/shared/lib";
 import { CardsSection } from "@/widgets/user/cardsSection";
 
-const EquipmentPage: FC = () => {
+const EquipmentPage: NextPage = () => {
    return <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />;
 };
 
