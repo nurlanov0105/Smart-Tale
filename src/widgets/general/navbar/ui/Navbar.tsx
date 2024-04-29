@@ -2,28 +2,35 @@
 
 import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
-import { Logo } from "@/entities/general/logo";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useShallow } from "zustand/react/shallow";
+import { useOrdersStore } from "@/entities/general/navbarPanel";
+import { AdminCategories } from "@/features/admin/adminNavCategories";
+import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
 // import { SubscribeBox} from "@/entities/user/subscribeBox"
-import { usePathname } from "next/navigation";
-import { AdminCategories } from "@/features/admin/adminNavCategories";
-import { MARKETPLACE, ROUTES } from "@/shared/lib";
-import { useOrdersStore } from "@/entities/general/navbarPanel";
-import { NavbarPanel } from "@/entities/general/navbarPanel";
-import Link from "next/link";
+
 import { LogIn, ShieldCheck } from "lucide-react";
+import { Logo } from "@/entities/general/logo";
+import { MARKETPLACE, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const Navbar = () => {
-   const hidden = useOrdersStore((state) => state.hidden);
-   const hover = useOrdersStore((state) => state.hover);
-   const addHover = useOrdersStore((state) => state.addHover);
-   const removeHover = useOrdersStore((state) => state.removeHover);
-   const toggleHidden = useOrdersStore((state) => state.toggleHidden);
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
+
+   const { hidden, hover, addHover, removeHover, toggleHidden } = useOrdersStore(
+      useShallow((state) => ({
+         hidden: state.hidden,
+         hover: state.hover,
+         addHover: state.addHover,
+         removeHover: state.removeHover,
+         toggleHidden: state.toggleHidden,
+      }))
+   );
 
    useEffect(() => {
       if (navbarRef.current && MARKETPLACE.EQUIPMENT === pathname) {
