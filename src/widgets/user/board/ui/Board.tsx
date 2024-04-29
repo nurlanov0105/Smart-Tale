@@ -1,4 +1,5 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import { BoardData } from "@/features/user/boardColumn/model/consts";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
@@ -40,12 +41,14 @@ const Board = () => {
    }, []);
 
 
+
    const onDragEnd = (result: DropResult) => {
       const { destination, source } = result;
 
       if (!destination) {
          return;
       }
+
       if (destination.droppableId === source.droppableId) {
          const column = [...columns[source.droppableId as Columns]];
          const movedOrder = column.splice(source.index, 1)[0]; // Удаляем перемещаемый заказ из исходной колонки
@@ -78,6 +81,12 @@ const Board = () => {
       const updatedDestinationColumn = [...columns[destination.droppableId as Columns]];
       updatedDestinationColumn.splice(destination.index, 0, updatedMovedOrder);
 
+
+      if (destination.droppableId === source.droppableId && destination.index === source.index) {
+         return;
+      }
+
+
       // Обновляем состояние колонок
       setColumns((prevColumns) => ({
          ...prevColumns,
@@ -100,7 +109,7 @@ const Board = () => {
              </div>
           </div>
        </DragDropContext>
-   );
+   )
 };
 
 export default Board;
@@ -112,6 +121,12 @@ export default Board;
 // import {useState} from "react";
 // import {DragDropContext, DropResult} from "@hello-pangea/dnd";
 // import {newOrdersList, checkOrdersList, completedOrdersList, postOrdersList, processOrdersList} from "@/features/user/boardColumn/model/consts";
+
+// import { useEffect, useState } from "react";
+// import { BoardData } from "@/features/user/boardColumn/model/consts";
+// import { DragDropContext, DropResult } from "@hello-pangea/dnd";
+// import type { Columns, KanbanOrderProps } from "../model/types";
+
 // import { BoardColumn } from "@/features/user/boardColumn";
 // import {KanbanOrderProps} from "../model/types";
 // import styles from "./styles.module.scss";
@@ -218,8 +233,4 @@ export default Board;
 // };
 //
 // export default Board;
-
-
-
-
 

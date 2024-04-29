@@ -22,3 +22,25 @@
     margin-bottom: 2rem;
   }
 }
+
+
+/* Tablet*/
+@media (max-width: 1140px) {
+  .section {
+    &__row {
+      flex-direction: column;
+      align-items: start;
+      row-gap: 3rem;
+    }
+  }
+}
+/* Mobile */
+@media (max-width: 600px) {
+  .section {
+    &__date {
+      h5 {
+        display: none;
+      }
+    }
+  }
+}

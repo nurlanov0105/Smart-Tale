@@ -48,3 +48,10 @@
       font-weight: 400;
    }
 }
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .section {
+      display: none;
+   }
+}

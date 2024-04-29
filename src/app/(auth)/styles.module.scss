@@ -18,3 +18,15 @@
       overflow-y: auto;
    }
 }
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .main {
+      background-color: $bg-color;
+      grid-template-columns: 1fr;
+      justify-content: center;
+
+      &__inner {
+      }
+   }
+}
