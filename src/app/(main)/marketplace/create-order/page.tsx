@@ -1,7 +1,7 @@
-import { FC } from "react";
+import {NextPage} from "next";
 import { OrderDetail } from "@/widgets/user/orderDetail";
 
-const CreateOrderPage: FC = () => {
+const CreateOrderPage: NextPage = () => {
    return <OrderDetail btnType="order" />;
 };
 

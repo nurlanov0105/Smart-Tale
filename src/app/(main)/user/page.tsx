@@ -1,7 +1,8 @@
 import React from 'react';
+import {NextPage} from "next";
 import {User} from "@/widgets/user/user";
 
-const UserPage = () => {
+const UserPage: NextPage = () => {
     return (
        <User/>
     );

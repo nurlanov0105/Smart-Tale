@@ -1,9 +1,9 @@
-import { FC } from "react";
+import {NextPage} from "next";
 import { SubscribeCommerce } from "@/features/user/subscribeCommerce";
 import { ProfileForm } from "@/widgets/user/profile";
 import styles from "./styles.module.scss";
 
-const ProfilePage: FC = () => {
+const ProfilePage: NextPage = () => {
    return (
       <div className={styles.profile}>
          <div className={styles.profile__commerce}>
