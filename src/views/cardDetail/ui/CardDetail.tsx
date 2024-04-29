@@ -9,8 +9,9 @@ import { Chat } from "@/widgets/user/chat";
 import { BtnBordered } from "@/shared/ui";
 import { SliderCards } from "@/widgets/user/sliderCards";
 
-import { SkeletonTypes, images } from "@/shared/lib";
+import { ROUTES, SkeletonTypes, images } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import Link from "next/link";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
@@ -25,7 +26,9 @@ const CardDetail = () => {
             <div className={styles.detail__left}>
                <CardSlider images={images} isLarge={true} />
                <div className={styles.detail__content}>
-                  <AuthorInfo fullName="Sandy Wilder Cheng" avatarImg="" isLarge={true} />
+                  <Link href={ROUTES.CARD_DETAILS + "/authorName"}>
+                     <AuthorInfo fullName="Sandy Wilder Cheng" avatarImg="" isLarge={true} />
+                  </Link>
                   <div className={styles.detail__category}>
                      <CardCategory
                         handleCategoryClick={handleCategoryClick}

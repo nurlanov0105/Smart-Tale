@@ -1,5 +1,17 @@
-.employees{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.employees {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+}
+
+/* Mobile small*/
+@media (max-width: 390px) {
+   .employees {
+      flex-direction: column;
+      row-gap: 1.6rem;
+      align-items: start;
+      button {
+         width: 100%;
+      }
+   }
 }

@@ -4,11 +4,23 @@
 
   margin: 2rem 0 3.2rem;
 
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+
   &__list{
     display: flex;
-    //flex-direction: column;
+
     row-gap: 1rem;
     column-gap: 12px;
+  }
+  &__item{
+    position: relative;
+    flex-shrink: 0;
+
+    cursor: grab;
   }
 
   .empty{
@@ -61,3 +73,4 @@
     transform: rotate(360deg);
   }
 }
+

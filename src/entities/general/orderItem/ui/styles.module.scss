@@ -39,7 +39,15 @@
       color: $dark-blue;
 
       max-height: 50px;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+
       overflow: hidden;
+
+      max-width: 80%;
+
    }
 
    &__detail {
@@ -67,27 +75,6 @@
       font-size: 14px;
       line-height: 1.42;
       letter-spacing: -0.28px;
-   }
-}
-
-
-//Tablet Small
-
-@media (max-width: 800px) {
-   .item{
-      &__text{
-         max-width: 300px;
-      }
-   }
-}
-
-//Mobile
-
-@media (max-width: 600px) {
-   .item{
-      &__text{
-         max-width: 200px;
-      }
    }
 }
 

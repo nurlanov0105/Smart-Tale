@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { Select } from "@/shared/ui";
 import { ChatItem } from "@/entities/general/chatItem";
 import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
@@ -14,9 +14,11 @@ const Chats = () => {
 
    const [selectedChat, setSelectedChat] = useState(0);
 
+   // const isDesktop = window.innerWidth < 700
+
    return (
       <div className={styles.chats}>
-         <div className={styles.chats__container}>
+         <div className={styles.chats__left}>
             <div className={styles.chats__tabs}>
                <Select
                   selected={selectedType}

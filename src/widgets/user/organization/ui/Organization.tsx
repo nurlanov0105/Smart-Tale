@@ -29,7 +29,7 @@ const Organization = () => {
 
    return (
       <div className={styles.organization}>
-         <Logo />
+         <Logo type="organization"/>
          <div className={styles.organization__block}>
             <Tabs type={type} setType={setType} values={organizationValues} />
             {type === "users-list" && (
