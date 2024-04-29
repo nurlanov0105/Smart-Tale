@@ -6,8 +6,9 @@ import { useOutside } from "./hooks/useOutside";
 import { useInitialDate } from "./hooks/useInitialDate";
 import { onDragEnd } from "./utils/onDragEnd";
 import { images } from "./consts";
-import {MODAL_KEYS} from "./consts";
+import { MODAL_KEYS } from "./consts";
 import { SkeletonTypes } from "./consts";
+import { useWindowSize } from "./hooks/useWindowSize";
 
 export type { InputFieldProps };
 
@@ -26,4 +27,5 @@ export {
    MODAL_KEYS,
    images,
    SkeletonTypes,
+   useWindowSize,
 };

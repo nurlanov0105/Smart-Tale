@@ -1,22 +1,29 @@
+"use client";
+
 import React, { FC } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useOrdersStore } from "@/entities/general/navbarPanel";
+import { useWindowSize } from "@/shared/lib";
 
 import { TypeCategories } from "../model/types";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-// import { useOrdersStore } from "@/entities/general/navbarPanel";
 
 const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
    const pathname = usePathname();
-   // const addClosed = useOrdersStore((state) => state.addClosed);
+   const toggleHidden = useOrdersStore((state) => state.toggleHidden);
 
-   // const handleAddClose = () => {
-   //    addClosed();
-   // };
+   const windowSize = useWindowSize();
+
+   const handleClickClose = () => {
+      if (windowSize.width && windowSize.width <= 900) {
+         toggleHidden();
+      }
+   };
 
    return (
-      <li className={styles.category_item}>
+      <li className={styles.category_item} onClick={handleClickClose}>
          <Link
             href={routes[0].link}
             className={clsx(styles.category__top, {
