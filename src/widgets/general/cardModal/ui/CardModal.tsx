@@ -24,17 +24,21 @@ const CardModal: FC = () => {
 
    return (
       <div className={styles.modal}>
-         <CardSlider images={images} />
+         <div className={styles.modal__slider}>
+            <CardSlider images={images} isLoading={false} isError={false} />
+         </div>
          <div className={styles.modal__body}>
             <div className={styles.modal__header}>
                <ModalCardHeader title="Профессиональные спицы для вязания" cost="1000" />
             </div>
             <div className={styles.modal__info}>
                <AuthorInfo fullName="Sandy Wilder Cheng" avatarImg="" />
+
                <div className={styles.modal__category}>
                   <CardCategory
                      handleCategoryClick={handleCategoryClick}
                      selectedCategory={selectedCategory}
+                     isMobile={true}
                   />
                   <div className={styles.modal__descr}>
                      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor

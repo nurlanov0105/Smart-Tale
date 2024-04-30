@@ -167,3 +167,38 @@
 }
 
 
+/* Desktop media */
+@media (min-height: 900px) {
+   .chat{
+      &__row{
+         height: 60vh;
+      }
+      &__chat{
+         min-height: 85%;
+      }
+   }
+   .chats{
+      &__list{
+         height: 65.7vh;
+      }
+   }
+}
+
+/* Desktop media */
+
+@media screen and (min-height: 1200px) {
+   .chat{
+      &__row{
+         height: 70vh;
+         max-height: none;
+      }
+      &__chat{
+         min-height: 90%;
+      }
+   }
+   .chats{
+      &__list{
+         height: 70vh;
+      }
+   }
+}

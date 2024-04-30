@@ -10,11 +10,9 @@
    }
 }
 
-.card {
+.cardSkeleton {
    width: 100%;
-   background: linear-gradient(-90deg, #f0f0f0 0%, #f8f8f8 50%, #f0f0f0 100%);
-   background-size: 200% 100%;
-   animation: pulse 2.4s ease-in-out infinite;
+   @include pulseAnimation;
    border-radius: 15px;
 }
 
@@ -24,4 +22,340 @@
 
 .listItem {
    height: 10.6rem;
+}
+
+.employees {
+   height: 50rem;
+   border-radius: 35px;
+}
+
+.authorText {
+   height: 8rem;
+}
+
+// avatar skeleton
+
+.skeleton {
+   display: flex;
+   column-gap: 2rem;
+   &__avatar {
+      border-radius: 50%;
+      width: 9rem;
+      height: 9rem;
+      @include pulseAnimation;
+   }
+
+   &__info {
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+      margin-bottom: auto;
+      row-gap: 0.7rem;
+   }
+
+   &__name {
+      width: 16rem;
+      height: 3rem;
+      @include pulseAnimation;
+      border-radius: 4px;
+   }
+
+   &__text {
+      width: 18rem;
+      height: 3rem;
+      @include pulseAnimation;
+      border-radius: 4px;
+   }
+}
+.orderItem {
+   height: 8.4rem;
+}
+
+.table {
+   //margin: 2rem 0;
+   border-radius: 20px 20px;
+   height: 30rem;
+}
+
+.orderTable {
+   border-radius: 16px !important;
+   height: 45rem;
+}
+
+@keyframes chatFrames {
+   0% {
+      background-position: -100% 0%;
+      opacity: 0.2; /* Начальное значение непрозрачности */
+   }
+   10% {
+      opacity: 1;
+   }
+   50% {
+      background-position: 100% 0%;
+   }
+   90% {
+      opacity: 1;
+   }
+   100% {
+      background-position: 200% 0%;
+      opacity: 0.2;
+   }
+}
+
+.card {
+   background-color: #f0f2f7;
+   background-image: linear-gradient(90deg, #f0f2f7, #d9dde7, #f0f2f7);
+   background-size: 200px 100%;
+   background-repeat: no-repeat;
+   border-radius: 4px;
+   display: inline-block;
+   width: 100%;
+   margin: 0;
+   animation: chatFrames 2s linear infinite;
+}
+
+.chat {
+   display: flex;
+
+   align-items: stretch;
+   &__content {
+      width: 100%;
+      height: 100%;
+
+      display: flex;
+      align-items: stretch;
+   }
+   &__left {
+      width: 40%;
+      border-right: 1px solid #f0f2f7;
+
+      &__btns {
+         padding: 11px 16px;
+         border-bottom: 1px solid #f0f2f7;
+         width: 100%;
+
+         display: flex;
+         column-gap: 8px;
+      }
+      &__btn {
+         width: 100%;
+         max-width: 49%;
+         height: 3.7rem;
+         border-radius: 8px;
+      }
+      &__content {
+         width: 100%;
+         height: 60vh;
+         overflow-y: hidden;
+      }
+      &__itemWrapper {
+         width: 100%;
+         padding-left: 1.6rem;
+      }
+
+      &__item {
+         width: 100%;
+         height: 8.1rem;
+
+         display: flex;
+         align-items: center;
+
+         -webkit-box-pack: justify;
+         justify-content: space-between;
+
+         padding: 8px 16px 8px 0;
+         border-bottom: 1px solid #f0f2f7;
+
+         &__leftBar {
+            width: 100%;
+
+            display: flex;
+            -webkit-box-align: center;
+            align-items: center;
+
+            &__avatar {
+               border-radius: 50%;
+               max-width: 3.2rem;
+               height: 3.2rem;
+            }
+         }
+         &__content {
+            width: 100%;
+
+            display: flex;
+
+            flex-direction: column;
+            margin-left: 12px;
+
+            &__top {
+               width: 100%;
+               max-width: 166px;
+               height: 18px;
+               margin-bottom: 8px;
+               border-radius: 4px;
+            }
+            &__bottom {
+               width: 100%;
+               max-width: 197px;
+               height: 14px;
+               border-radius: 4px;
+            }
+            &__image {
+               width: 100%;
+               max-width: 5.5rem;
+               height: 5.5rem;
+
+               object-fit: cover;
+               border-radius: 8px;
+            }
+         }
+      }
+   }
+   &__avatar {
+      border-radius: 50%;
+      width: 4.2rem;
+      height: 4.2rem;
+   }
+   &__right {
+      width: 60%;
+      height: 100%;
+      position: relative;
+   }
+   &__header {
+      width: 100%;
+      &__top {
+         width: 100%;
+         height: 6.2rem;
+
+         justify-content: space-between;
+         padding: 0 16px;
+         border-bottom: 1px solid #f0f2f7;
+
+         display: flex;
+         align-items: center;
+         -webkit-box-pack: justify;
+
+         &__top {
+            max-width: 79px;
+            height: 16px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+         }
+         &__bottom {
+            width: 100%;
+
+            max-width: 56px;
+            height: 12px;
+            border-radius: 4px;
+         }
+         &__line {
+            max-width: 210px;
+            height: 16px;
+            border-radius: 4px;
+         }
+         &__imageCircle {
+            border-radius: 50%;
+            max-width: 24px;
+            height: 24px;
+         }
+         &__image {
+            max-width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 8px;
+         }
+      }
+
+      &__content {
+         width: 100%;
+
+         display: flex;
+         flex-direction: column;
+         margin-left: 8px;
+      }
+
+      &__leftBar {
+         width: 100%;
+         display: flex;
+         align-items: center;
+      }
+
+      &__bottom {
+         width: 100%;
+         height: 4.8rem;
+
+         display: flex;
+         align-items: center;
+         -webkit-box-align: center;
+         justify-content: space-between;
+         padding: 0 16px;
+         border-bottom: 1px solid #f0f2f7;
+      }
+   }
+
+   &__user {
+      align-self: flex-start;
+   }
+   &__me {
+      align-self: flex-end;
+   }
+   &__bottom {
+      width: 100%;
+      height: 53vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+   }
+
+   &__chatList {
+      width: 100%;
+      min-height: 80%;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 1.5rem;
+      padding: 3rem 1.6rem 1.6rem;
+
+      &__big {
+         max-width: 30%;
+         height: 58px;
+         border-radius: 16px;
+      }
+      &__normal {
+         max-width: 55%;
+         height: 3rem;
+         border-radius: 16px;
+      }
+      &__small {
+         max-width: 35%;
+         height: 4.1rem;
+         border-radius: 16px;
+      }
+   }
+
+   &__footer {
+      width: 100%;
+      height: 6rem;
+
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+      padding: 1.3rem 1.6rem;
+
+      border-top: 1px solid #f0f2f7;
+
+      &__box {
+         width: 3rem;
+         height: 3rem;
+         border-radius: 4px;
+      }
+      &__input {
+         width: 95%;
+         height: 3.6rem;
+      }
+      &__btn {
+         width: 3.3rem;
+         height: 3.3rem;
+      }
+   }
 }

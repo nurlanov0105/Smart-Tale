@@ -1,6 +1,6 @@
 "use client";
-import React, {useEffect, useState} from "react";
-import { Select } from "@/shared/ui";
+import React, {useState} from "react";
+import {ChatSkeleton, Select} from "@/shared/ui";
 import { ChatItem } from "@/entities/general/chatItem";
 import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";
@@ -14,40 +14,43 @@ const Chats = () => {
 
    const [selectedChat, setSelectedChat] = useState(0);
 
-   // const isDesktop = window.innerWidth < 700
+
 
    return (
-      <div className={styles.chats}>
-         <div className={styles.chats__left}>
-            <div className={styles.chats__tabs}>
-               <Select
-                  selected={selectedType}
-                  setSelected={setSelectedType}
-                  data={chatsFilterType}
-                  classname={styles.chats__select}
-               />
-               <Select
-                  selected={selectedDate}
-                  setSelected={setSelectedDate}
-                  data={chatsFilterDate}
-                  classname={styles.chats__select}
-               />
-            </div>
-            <div className={styles.chats__list}>
-               {data.map((item) => (
-                  <ChatItem
-                     item={item}
-                     selected={selectedChat}
-                     setSelected={setSelectedChat}
-                     key={item}
-                  />
-               ))}
-            </div>
-         </div>
-         <div className={styles.chats__right}>
-            <ChatForm selected={selectedChat} />
-         </div>
-      </div>
+      <>
+          <div className={styles.chats}>
+              <div className={styles.chats__left}>
+                  <div className={styles.chats__tabs}>
+                      <Select
+                          selected={selectedType}
+                          setSelected={setSelectedType}
+                          data={chatsFilterType}
+                          classname={styles.chats__select}
+                      />
+                      <Select
+                          selected={selectedDate}
+                          setSelected={setSelectedDate}
+                          data={chatsFilterDate}
+                          classname={styles.chats__select}
+                      />
+                  </div>
+                  <div className={styles.chats__list}>
+                      {data.map((item) => (
+                          <ChatItem
+                              item={item}
+                              selected={selectedChat}
+                              setSelected={setSelectedChat}
+                              key={item}
+                          />
+                      ))}
+                  </div>
+              </div>
+              <div className={styles.chats__right}>
+                  <ChatForm selected={selectedChat}/>
+              </div>
+          </div>
+      </>
+
    );
 };
 

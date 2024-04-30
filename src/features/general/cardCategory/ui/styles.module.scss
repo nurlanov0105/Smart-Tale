@@ -48,3 +48,12 @@
       }
    }
 }
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .category {
+      &_mobile {
+         column-gap: 1rem;
+      }
+   }
+}
