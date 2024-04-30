@@ -6,6 +6,7 @@ import SelectDateField from "@/shared/ui/selectDate/Select";
 import Select from "@/shared/ui/select/Select";
 import Emojis from "./emojis/Emojis";
 import CommonSkeleton from "./skeletons/commonSkeleton";
+import AvatarSkeleton from "./skeletons/avatarSkeleton";
 import ChatSkeleton from "./skeletons/ChatSkeleton";
 
 export {
@@ -17,5 +18,6 @@ export {
    Emojis,
    Select,
    CommonSkeleton,
-    ChatSkeleton
+   AvatarSkeleton,
+   ChatSkeleton,
 };

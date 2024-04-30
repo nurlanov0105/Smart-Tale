@@ -2,6 +2,8 @@
    padding: 12px;
    display: flex;
    flex-direction: column;
+   min-width: 155px;
+   // flex-shrink: 0;
    cursor: grab;
 
    border-radius: 10px;
