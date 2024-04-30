@@ -26,7 +26,7 @@ const LoginForm = () => {
                <InputField classname={styles.auth__checkField} isBordered={true} type="checkbox" />
                <p className={styles.auth__text}>Запомнить меня</p>
             </label>
-            <Button onClick={() => router.push(ROUTES.CONFIRMATION_LOGIN)}>Войти</Button>
+            <Button>Войти</Button>
             <TypeAuthButton type="login" />
          </div>
       </div>

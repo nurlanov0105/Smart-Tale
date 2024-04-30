@@ -16,7 +16,7 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
          {!!selected && (
             <>
                <div className={styles.chat__user}>
-                  <div className={styles.chat__block}>
+                  <Link href={ROUTES.USERS + `/user007`} className={styles.chat__block}>
                      <Image
                         className={styles.chat__avatar}
                         src={avatar}
@@ -24,14 +24,13 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
                         width={30}
                         height={30}
                      />
-                     <Link href={ROUTES.USER}>
-                        <h4 className="h4">Tarantino</h4>
-                     </Link>
-                  </div>
+
+                     <h4 className="h4">Tarantino</h4>
+                  </Link>
                   <div className={styles.chat__block}>
-                     <button>
+                     <Link href="tel:+996755260506">
                         <Phone className={styles.chat__iconPhone} />
-                     </button>
+                     </Link>
                      <button className={styles.chat__menu}>
                         <Ellipsis />
                      </button>

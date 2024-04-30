@@ -12,9 +12,7 @@
 
 .card {
    width: 100%;
-   background: linear-gradient(-90deg, #f0f0f0 0%, #f8f8f8 50%, #f0f0f0 100%);
-   background-size: 200% 100%;
-   animation: pulse 2.4s ease-in-out infinite;
+   @include pulseAnimation;
    border-radius: 15px;
 }
 
@@ -24,4 +22,48 @@
 
 .listItem {
    height: 10.6rem;
+}
+
+.employees {
+   height: 50rem;
+   border-radius: 35px;
+}
+
+.authorText {
+   height: 8rem;
+}
+
+// avatar skeleton
+
+.skeleton {
+   display: flex;
+   column-gap: 2rem;
+   &__avatar {
+      border-radius: 50%;
+      width: 9rem;
+      height: 9rem;
+      @include pulseAnimation;
+   }
+
+   &__info {
+      display: flex;
+      flex-direction: column;
+      margin-top: auto;
+      margin-bottom: auto;
+      row-gap: 0.7rem;
+   }
+
+   &__name {
+      width: 16rem;
+      height: 3rem;
+      @include pulseAnimation;
+      border-radius: 4px;
+   }
+
+   &__text {
+      width: 18rem;
+      height: 3rem;
+      @include pulseAnimation;
+      border-radius: 4px;
+   }
 }
