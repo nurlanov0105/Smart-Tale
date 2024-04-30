@@ -9,7 +9,6 @@ import clsx from "clsx";
 
 const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge }) => {
    const pathname = usePathname() as string;
-   console.log(pathname);
 
    const pathArray = pathname.split("/");
    const slug =

@@ -8,9 +8,15 @@ const CardCategory: FC<CardCategoryProps> = ({
    handleCategoryClick,
    selectedCategory,
    isLarge,
+   isMobile,
 }) => {
    return (
-      <ul className={clsx(styles.category, isLarge ? styles.category_large : "")}>
+      <ul
+         className={clsx(
+            styles.category,
+            isLarge ? styles.category_large : "",
+            isMobile ? styles.category_mobile : ""
+         )}>
          {CardCategoryData.map((category) => (
             <li
                key={category}

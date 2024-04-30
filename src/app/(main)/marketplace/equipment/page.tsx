@@ -1,4 +1,4 @@
-import {NextPage} from "next";
+import { NextPage } from "next";
 import { SkeletonTypes } from "@/shared/lib";
 import { CardsSection } from "@/widgets/user/cardsSection";
 

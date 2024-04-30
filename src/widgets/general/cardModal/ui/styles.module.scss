@@ -1,5 +1,6 @@
 .modal {
    display: flex;
+   flex-direction: row;
    column-gap: 5.6rem;
    padding-top: 2rem;
    padding-left: 2rem;
@@ -60,5 +61,14 @@
       border-radius: 10px;
       padding: 5px 10px;
       background-color: $primary-color;
+   }
+}
+
+/* Mobile */
+@media (max-width: 725px) {
+   .modal {
+      &__slider {
+         display: none;
+      }
    }
 }

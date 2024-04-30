@@ -12,21 +12,21 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) =>
       isBordered ? borderedClass : lastClass;
 
    return (
-       <div className={clsx(classname, styles.fieldWrapper)}>
-           <label htmlFor={title} className={isBorderedClass(styles.field, styles.field__bordered)}>
-               <p className={styles.field__title}>{title}</p>
-               <input
-                   id={title}
-                   className={isBorderedClass(styles.field__input, styles.field__input_bordered)}
-                   {...rest}
-                   ref={ref}
-                   disabled={disabled}
-                   type={type ? type : "text"}
-               />
-           </label>
-           {error && <p className={styles.field__error}>максимум 250 символов, минимум 5</p>}
-           {/*<p className={styles.field__length}>5/250</p>*/}
-       </div>
+      <div className={clsx(classname, styles.fieldWrapper)}>
+         <label htmlFor={title} className={isBorderedClass(styles.field, styles.field__bordered)}>
+            <p className={styles.field__title}>{title}</p>
+            <input
+               id={title}
+               className={isBorderedClass(styles.field__input, styles.field__input_bordered)}
+               {...rest}
+               ref={ref}
+               disabled={disabled}
+               type={type ? type : "text"}
+            />
+         </label>
+         {error && <p className={styles.field__error}>максимум 250 символов, минимум 5</p>}
+         {/*<p className={styles.field__length}>5/250</p>*/}
+      </div>
    );
 });
 

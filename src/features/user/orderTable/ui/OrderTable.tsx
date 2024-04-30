@@ -1,6 +1,7 @@
 import { OrderTableItem } from "@/entities/general/orderTableItem";
 import { OrderCategories } from "../model/values";
 import styles from "./styles.module.scss";
+import {CommonSkeleton} from "@/shared/ui";
 
 const OrderTable = () => {
    return (
@@ -16,6 +17,7 @@ const OrderTable = () => {
             ))}
          </ul>
       </div>
+       // <CommonSkeleton type="orderTable"/>
    );
 };
 

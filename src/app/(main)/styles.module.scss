@@ -29,6 +29,8 @@
 
       height: calc(100% - 18.3rem);
       overflow-y: auto;
+      // overflow-x: hidden;
+      scrollbar-width: thin;
    }
 
    &__intro {

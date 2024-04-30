@@ -6,7 +6,7 @@ import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { CardCategory } from "@/features/general/cardCategory";
 import { Chat } from "@/widgets/user/chat";
-import { BtnBordered } from "@/shared/ui";
+import { BtnBordered, CommonSkeleton } from "@/shared/ui";
 import { SliderCards } from "@/widgets/user/sliderCards";
 
 import { ROUTES, SkeletonTypes, images } from "@/shared/lib";
@@ -15,6 +15,7 @@ import Link from "next/link";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
+   const isLoading = false;
 
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
@@ -24,11 +25,9 @@ const CardDetail = () => {
       <div className={styles.detailWrapper}>
          <div className={styles.detail}>
             <div className={styles.detail__left}>
-               <CardSlider images={images} isLarge={true} />
+               <CardSlider images={images} isLarge={true} isLoading={false} isError={false} />
                <div className={styles.detail__content}>
-                  <Link href={ROUTES.CARD_DETAILS + "/authorName"}>
-                     <AuthorInfo fullName="Sandy Wilder Cheng" avatarImg="" isLarge={true} />
-                  </Link>
+                  <AuthorInfo fullName="Sandy Wilder Cheng" avatarImg="" isLarge={true} />
                   <div className={styles.detail__category}>
                      <CardCategory
                         handleCategoryClick={handleCategoryClick}
@@ -36,11 +35,17 @@ const CardDetail = () => {
                         isLarge={true}
                      />
 
-                     <div className={styles.detail__descr}>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis sit qui
-                        quidem repudiandae quasi, quos et accusamus voluptate at libero eos tenetur
-                        officia fuga dolorem doloremque. Eum repudiandae hic quaerat!
-                     </div>
+                     {isLoading ? (
+                        <div className={styles.detail__descr}>
+                           <CommonSkeleton type="authorText" />
+                        </div>
+                     ) : (
+                        <div className={styles.detail__descr}>
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis sit qui
+                           quidem repudiandae quasi, quos et accusamus voluptate at libero eos
+                           tenetur officia fuga dolorem doloremque. Eum repudiandae hic quaerat!
+                        </div>
+                     )}
                   </div>
                </div>
             </div>

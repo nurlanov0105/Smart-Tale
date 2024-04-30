@@ -12,7 +12,7 @@ type Props = {
 };
 
 const CommonSkeleton: FC<Props> = ({ type }) => {
-   return <div className={clsx(styles.card, styles[type])}></div>;
+   return <div className={clsx(styles.cardSkeleton, styles[type])}></div>;
 };
 
 export default CommonSkeleton;
