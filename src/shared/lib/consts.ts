@@ -25,3 +25,11 @@ export const MODAL_KEYS = {
     card: "CardModal",
     deleteAccount: "DeleteModal",
 }
+
+
+export const SKELETON_TYPES = {
+    orderItem: "orderItem",
+    table: "table",
+    standard: "standard",
+    listItem: "listItem",
+}

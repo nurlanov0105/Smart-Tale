@@ -7,6 +7,7 @@ import Select from "@/shared/ui/select/Select";
 import Emojis from "./emojis/Emojis";
 import CommonSkeleton from "./skeletons/commonSkeleton";
 import AvatarSkeleton from "./skeletons/avatarSkeleton";
+import ChatSkeleton from "./skeletons/ChatSkeleton";
 
 export {
    Button,
@@ -18,4 +19,5 @@ export {
    Select,
    CommonSkeleton,
    AvatarSkeleton,
+   ChatSkeleton,
 };

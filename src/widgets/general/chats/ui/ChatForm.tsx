@@ -28,9 +28,9 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
                      <h4 className="h4">Tarantino</h4>
                   </Link>
                   <div className={styles.chat__block}>
-                     <Link href="tel:+996755260506">
+                     <a href="tel:+996755260506">
                         <Phone className={styles.chat__iconPhone} />
-                     </Link>
+                     </a>
                      <button className={styles.chat__menu}>
                         <Ellipsis />
                      </button>
