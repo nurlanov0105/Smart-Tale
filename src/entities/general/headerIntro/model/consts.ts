@@ -65,6 +65,10 @@ export const PathData: any = {
       path: "SmartTale",
       name: "Пользователь",
    },
+   [ROUTES.SUBSCRIBE]: {
+      path: "SmartTale",
+      name: "Подписка",
+   },
 
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",

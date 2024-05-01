@@ -6,17 +6,14 @@ import Image from "next/image";
 import commerceBox from "@@/imgs/commerce/01.png";
 import { Button } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import {MODAL_KEYS} from "@/shared/lib";
+import { MODAL_KEYS, ROUTES } from "@/shared/lib";
 import type { Props } from "../model/types";
 
 import checkIcon from "@@/imgs/commerce/check.svg";
 import styles from "./styles.module.scss";
+import Link from "next/link";
 
 const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
-   const handleSubscribeClick = () => {
-      showModal(MODAL_KEYS.subscribe);
-   };
-
    return (
       <>
          {!isSubscribed ? (
@@ -28,9 +25,9 @@ const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
                      <p>С вами свяжется наш администратор 😉</p>
                   </div>
                </div>
-               <Button className="btn_white" onClick={handleSubscribeClick}>
-                  Оформить подписку
-               </Button>
+               <Link href={ROUTES.SUBSCRIBE}>
+                  <Button className="btn_white">Оформить подписку</Button>
+               </Link>
             </div>
          ) : (
             <div className={styles.box}>
