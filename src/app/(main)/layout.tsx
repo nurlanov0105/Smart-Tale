@@ -1,9 +1,9 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, {FC, PropsWithChildren} from "react";
 import { Navbar } from "@/widgets/general/navbar";
 import { Header } from "@/widgets/general/header";
-import styles from "./styles.module.scss";
 import { NavbarLine } from "@/entities/general/navbarLine";
 import { HeaderIntro } from "@/entities/general/headerIntro";
+import styles from "./styles.module.scss";
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
    return (
@@ -16,7 +16,10 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
                <div className={styles.main__intro}>
                   <HeaderIntro />
                </div>
-               {children}
+                {/*<Suspense fallback={<p>Loading...</p>}>*/}
+                {/*    {children}*/}
+                {/*</Suspense>*/}
+                {children}
             </div>
          </div>
       </main>
