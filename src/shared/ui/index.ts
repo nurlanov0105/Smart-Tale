@@ -8,6 +8,7 @@ import Emojis from "./emojis/Emojis";
 import CommonSkeleton from "./skeletons/commonSkeleton";
 import AvatarSkeleton from "./skeletons/avatarSkeleton";
 import ChatSkeleton from "./skeletons/ChatSkeleton";
+import GlobalLoading from "./loading/GlobalLoading";
 
 export {
    Button,
@@ -20,4 +21,5 @@ export {
    CommonSkeleton,
    AvatarSkeleton,
    ChatSkeleton,
+   GlobalLoading
 };
