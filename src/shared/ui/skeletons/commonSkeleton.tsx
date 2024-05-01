@@ -9,9 +9,10 @@ import clsx from "clsx";
 
 type Props = {
    type: string;
+   amount?: number
 };
 
-const CommonSkeleton: FC<Props> = ({ type }) => {
+const CommonSkeleton: FC<Props> = ({ type, amount }) => {
    return <div className={clsx(styles.cardSkeleton, styles[type])}></div>;
 };
 

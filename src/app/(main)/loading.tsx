@@ -1,13 +1,8 @@
 import React from "react";
-
-import styles from "./styles.module.scss";
+import {GlobalLoading} from "@/shared/ui";
 
 const LoadingPage = () => {
-   return (
-      <div className={styles.loader}>
-         <div className="spinner" />
-      </div>
-   );
+   return <GlobalLoading type="full"/>
 };
 
 export default LoadingPage;

@@ -1,4 +1,4 @@
-
+import React from "react";
 import { StandartCard } from "@/features/user/standartCard";
 import styles from "./styles.module.scss";
 import {FC} from "react";
@@ -14,7 +14,9 @@ const CardsSection: FC<CardSceletonProps> = ({ isLoading = true, isError = false
       [...Array(24)].map((_, i) => <StandartCard key={i} />)
    );
 
-   return <section className={styles.section}>{readyData}</section>;
+   return <section className={styles.section}>
+      {readyData}
+   </section>;
 };
 
 export default CardsSection;

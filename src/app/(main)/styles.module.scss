@@ -30,20 +30,12 @@
       height: calc(100% - 18.3rem);
       overflow-y: auto;
       // overflow-x: hidden;
-      scrollbar-width: thin;
+      //scrollbar-width: thin;
    }
 
    &__intro {
       display: none;
    }
-}
-
-.loader {
-   position: absolute;
-   top: 50%;
-   left: 50%;
-   transform: translate(-50%, -50%);
-   z-index: $z10;
 }
 
 /* Laptop */
