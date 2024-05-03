@@ -1,6 +1,6 @@
 import { NoticeItem, NoticesDataType, noticesData } from "@/entities/general/noticeItem";
 import styles from "./styles.module.scss";
-import {CommonSkeleton} from "@/shared/ui";
+import { CommonSkeleton } from "@/shared/ui";
 
 const NoticesLists = () => {
    return (
@@ -8,7 +8,6 @@ const NoticesLists = () => {
          {noticesData.map((item: NoticesDataType) => (
             <NoticeItem key={item.id} item={item} />
          ))}
-
       </ul>
    );
 };

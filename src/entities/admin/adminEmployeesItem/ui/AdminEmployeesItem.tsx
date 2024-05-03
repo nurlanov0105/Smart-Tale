@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import { ItemProps } from "../model/types";
 import { Button } from "@/shared/ui";
@@ -6,10 +8,13 @@ import Link from "next/link";
 import { ADMIN_ROUTES } from "@/shared/lib";
 import avatar from "@@/imgs/auth/auth-1.jpg";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
+import clsx from "clsx";
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
+   const theme = useThemeStore((state) => state.theme);
    return (
-      <div className={styles.item}>
+      <div className={clsx(styles.item, styles[theme])}>
          <div className={styles.item__info}>
             <div>
                <h5 className={styles.item__subtitle}>Заказ №234</h5>

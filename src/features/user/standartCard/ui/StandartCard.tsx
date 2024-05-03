@@ -7,14 +7,16 @@ import { MODAL_KEYS, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import { useThemeStore } from "@/shared/themeStore";
 
 const StandartCard: FC = () => {
+   const theme = useThemeStore((state) => state.theme);
    const handleClick = () => {
       showModal(MODAL_KEYS.card);
    };
 
    return (
-      <div className={styles.card}>
+      <div className={clsx(styles.card, styles[theme])}>
          <div className={styles.card__img} />
          <div className={styles.card__body}>
             <div className={styles.card__order}>

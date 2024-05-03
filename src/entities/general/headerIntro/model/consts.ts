@@ -78,7 +78,7 @@ export const PathData: any = {
       path: "SmartTale",
       name: "Организация",
    },
-   [ADMIN_ROUTES.ORGANIZATION_DETAIL]: {
+   [ADMIN_ROUTES.ORGANIZATION_DETAILS]: {
       path: "SmartTale",
       name: "Организация",
    },

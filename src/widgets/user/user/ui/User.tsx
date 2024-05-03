@@ -52,7 +52,7 @@ const User = () => {
          )}
 
          <div className={styles.user__bottom}>
-            <Tabs type={type} setType={setType} values={data} variant="secondary" />
+            {/* <Tabs type={type} setType={setType} values={data} variant="secondary" /> */}
          </div>
          <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />
       </div>

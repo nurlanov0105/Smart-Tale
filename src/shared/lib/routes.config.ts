@@ -51,7 +51,7 @@ export enum ROUTES {
 
 export enum ADMIN_ROUTES {
    ORGANIZATION = "/admin/organization",
-   ORGANIZATION_DETAIL = "/admin/organization-detail",
+   ORGANIZATION_DETAILS = "/admin/organization-details",
    CREATE_ORGANIZATION = "/admin/create-organization",
    EMPLOYEES = "/admin/employees",
    EMPLOYEES_DETAILS = "/admin/employees-details",

@@ -9,6 +9,7 @@ import { images } from "./consts";
 import { MODAL_KEYS } from "./consts";
 import { SkeletonTypes } from "./consts";
 import { useWindowSize } from "./hooks/useWindowSize";
+import {useNavbar} from "./hooks/useNavbar";
 
 export type { InputFieldProps };
 
@@ -28,4 +29,5 @@ export {
    images,
    SkeletonTypes,
    useWindowSize,
+    useNavbar
 };

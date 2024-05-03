@@ -49,6 +49,24 @@
    }
 }
 
+.dark {
+   .category__item {
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            color: $common-white;
+         }
+      }
+
+      &:active {
+         color: $common-white;
+      }
+
+      &_active {
+         color: $common-white;
+      }
+   }
+}
+
 /* Tablet Small*/
 @media (max-width: 900px) {
    .category {

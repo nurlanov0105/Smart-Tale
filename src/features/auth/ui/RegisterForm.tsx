@@ -1,18 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, InputField } from "@/shared/ui";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useRouter } from "next/navigation";
 import { ROUTES } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
+import clsx from "clsx";
 
 const RegisterForm = () => {
+   const theme = useThemeStore((state) => state.theme);
    const router = useRouter();
 
+   useEffect(() => {
+      document.documentElement.className = theme;
+   }, [theme]);
+
    return (
-      <div className={styles.auth}>
+      <div className={clsx(styles.auth, styles[theme])}>
          <HeadingAuth isLoading={false} isError={false} />
          <div className={styles.auth__row}>
             <div>

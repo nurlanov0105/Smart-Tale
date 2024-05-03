@@ -19,12 +19,12 @@ const AdminOrganization = () => {
          {!data.length ? (
             <EmptyContent type="organization" />
          ) : (
-             <div className={styles.list}>
-                <h4 className="h4">Список организаций</h4>
-                {data.map((item) => (
-                    <OrganizationItem key={item.id} item={item}/>
-                ))}
-             </div>
+            <div className={styles.list}>
+               <h4 className="h4">Список организаций</h4>
+               {data.map((item) => (
+                  <OrganizationItem key={item.id} item={item} />
+               ))}
+            </div>
          )}
       </>
    );
