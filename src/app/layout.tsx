@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Modal } from "@/views/modal";
 
 import clsx from "clsx";
 import { sf_pro, dm_sans } from "@/shared/scss/base/fonts";
@@ -11,7 +10,6 @@ export const metadata: Metadata = {
 };
 
 import { Provider } from "@/views/providers";
-import { ToastContainer } from "react-toastify";
 
 export default function RootLayout({
    children,
@@ -28,11 +26,7 @@ export default function RootLayout({
             <meta name="theme-color" content="#ffffff" />
          </head>
          <body className={clsx(sf_pro.variable, dm_sans.variable)}>
-            <Provider>
-               {children}
-               <Modal />
-               <ToastContainer />
-            </Provider>
+            <Provider>{children}</Provider>
          </body>
       </html>
    );

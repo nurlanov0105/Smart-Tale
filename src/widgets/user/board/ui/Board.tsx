@@ -5,6 +5,8 @@ import { BoardData } from "@/features/user/boardColumn/model/consts";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import type { Columns, KanbanOrderProps } from "../model/types";
 import { BoardColumn } from "@/features/user/boardColumn";
+import { testDestinationMap, COLUMN_VALUES } from "../model/helper";
+import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
 
 const initialColumns = () => {
@@ -54,8 +56,11 @@ const Board = () => {
          }));
          return;
       }
-      if (destination.droppableId === "arrived" && source.droppableId !== "sending") {
-         alert("Сначало нужно сделать отправку!");
+
+      const sourceId = testDestinationMap[source.droppableId];
+
+      if (!sourceId[destination.droppableId]) {
+         toast.warning(sourceId.alert);
          return;
       }
 
@@ -92,11 +97,11 @@ const Board = () => {
       <DragDropContext onDragEnd={onDragEnd}>
          <div className={styles.board}>
             <div className={styles.board__inner}>
-               <BoardColumn orders={columns.new} title="new" />
-               <BoardColumn orders={columns.process} title="process" />
-               <BoardColumn orders={columns.checking} title="checking" />
-               <BoardColumn orders={columns.sending} title="sending" />
-               <BoardColumn orders={columns.arrived} title="arrived" />
+               <BoardColumn orders={columns.new} title={COLUMN_VALUES.NEW} />
+               <BoardColumn orders={columns.process} title={COLUMN_VALUES.PROCESS} />
+               <BoardColumn orders={columns.checking} title={COLUMN_VALUES.CHECKING} />
+               <BoardColumn orders={columns.sending} title={COLUMN_VALUES.SENDING} />
+               <BoardColumn orders={columns.arrived} title={COLUMN_VALUES.ARRIVED} />
             </div>
          </div>
       </DragDropContext>
