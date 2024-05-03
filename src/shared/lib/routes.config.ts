@@ -46,6 +46,7 @@ export enum ROUTES {
    MODE = `/mode`,
    NOTICES = `/notices`,
    USERS = `/users`,
+   SUBSCRIBE = `/subscribe`,
 }
 
 export enum ADMIN_ROUTES {
