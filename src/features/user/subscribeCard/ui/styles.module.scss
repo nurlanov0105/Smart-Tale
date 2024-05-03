@@ -8,6 +8,18 @@
 
    &__heading {
       margin-bottom: 2rem;
+      padding: 2rem;
+      background: linear-gradient(to right, #ffcc00, #333);
+      background-size: 200%;
+   }
+
+   @keyframes gradient {
+      0% {
+         background-position: 0%;
+      }
+      100% {
+         background-position: 100%;
+      }
    }
 
    &__body {
@@ -72,5 +84,17 @@
       text-align: center;
       color: #000;
       background-color: #ffe883;
+   }
+}
+
+.dark {
+   background-color: $black-theme;
+
+   span {
+      color: $white-theme;
+   }
+
+   h4 {
+      color: $black-theme !important;
    }
 }

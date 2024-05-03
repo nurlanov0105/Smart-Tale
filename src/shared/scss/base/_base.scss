@@ -17,21 +17,99 @@ html {
       font-size: 50%;
    }
 }
-[data-theme="dark"] {
-   $common-black: #fff;
-   $common-white: #000;
 
-   $dark-grey: #8e8e93;
-   $grey: rgb(142, 142, 147);
+html.dark {
+   body,
+   header {
+      color: $white-theme;
+   }
+   main {
+      background-color: $dark-theme;
+   }
 
-   // accent colors
-   $primary-color: #fc0;
-   $dark-blue: #2b3674;
+   nav {
+      background-color: $black-theme;
+      color: $white-theme;
+   }
 
-   $danger-color: #ff3b30;
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   a {
+      color: $white-theme;
+   }
 
-   // bg-color
-   $bg-color: #000;
+   input {
+      background-color: $dark-theme;
+      border-color: #857c6d;
+
+      color: $white-theme;
+      ::placeholder {
+         color: $white-theme;
+      }
+   }
+   textarea {
+      background-color: transparent;
+      border-color: #857c6d;
+
+      color: $white-theme;
+      ::placeholder {
+         color: $white-theme;
+      }
+   }
+
+   label {
+      background-color: $black-theme;
+      input {
+         background-color: transparent;
+      }
+   }
+
+   .btn-bordered {
+      border-color: $white-theme;
+      span {
+         color: $white-theme;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $primary-theme;
+            transform: translateY(1px);
+         }
+      }
+
+      &:active {
+         background-color: $primary-theme;
+         transform: translateY(1.5px);
+      }
+
+      &:disabled {
+         background-color: rgb(210, 182, 70);
+         cursor: default;
+      }
+
+      &.active {
+         background-color: $primary-theme;
+
+         @media (hover: hover) and (pointer: fine) {
+            &:hover {
+               background-color: $primary-theme;
+            }
+         }
+
+         &:active {
+            background-color: $primary-theme;
+         }
+
+         &:disabled {
+            background-color: rgb(210, 182, 70);
+            cursor: default;
+         }
+      }
+   }
 }
 
 body {

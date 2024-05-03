@@ -14,15 +14,13 @@ const initialColumns = () => {
       checking: [],
       sending: [],
       arrived: [],
-   }
-   return columns
-}
+   };
+   return columns;
+};
 const Board = () => {
    const [columns, setColumns] = useState(initialColumns());
 
-
    useEffect(() => {
-
       const fetchData = async () => {
          try {
             const sortedColumns = BoardData.reduce((acc, order) => {
@@ -31,7 +29,6 @@ const Board = () => {
             }, initialColumns());
 
             setColumns(sortedColumns);
-
          } catch (error) {
             console.error("Ошибка загрузки данных:", error);
          }
@@ -39,8 +36,6 @@ const Board = () => {
 
       fetchData();
    }, []);
-
-
 
    const onDragEnd = (result: DropResult) => {
       const { destination, source } = result;
@@ -59,8 +54,8 @@ const Board = () => {
          }));
          return;
       }
-      if (destination.droppableId === "arrived" && source.droppableId !== "sending"){
-         alert("Сначало нужно сделать отправку!")
+      if (destination.droppableId === "arrived" && source.droppableId !== "sending") {
+         alert("Сначало нужно сделать отправку!");
          return;
       }
 
@@ -81,11 +76,9 @@ const Board = () => {
       const updatedDestinationColumn = [...columns[destination.droppableId as Columns]];
       updatedDestinationColumn.splice(destination.index, 0, updatedMovedOrder);
 
-
       if (destination.droppableId === source.droppableId && destination.index === source.index) {
          return;
       }
-
 
       // Обновляем состояние колонок
       setColumns((prevColumns) => ({
@@ -95,26 +88,22 @@ const Board = () => {
       }));
    };
 
-
-
    return (
-       <DragDropContext onDragEnd={onDragEnd}>
-          <div className={styles.board}>
-             <div className={styles.board__inner}>
-                <BoardColumn orders={columns.new} title="new" />
-                <BoardColumn orders={columns.process} title="process" />
-                <BoardColumn orders={columns.checking} title="checking" />
-                <BoardColumn orders={columns.sending} title="sending" />
-                <BoardColumn orders={columns.arrived} title="arrived" />
-             </div>
-          </div>
-       </DragDropContext>
-   )
+      <DragDropContext onDragEnd={onDragEnd}>
+         <div className={styles.board}>
+            <div className={styles.board__inner}>
+               <BoardColumn orders={columns.new} title="new" />
+               <BoardColumn orders={columns.process} title="process" />
+               <BoardColumn orders={columns.checking} title="checking" />
+               <BoardColumn orders={columns.sending} title="sending" />
+               <BoardColumn orders={columns.arrived} title="arrived" />
+            </div>
+         </div>
+      </DragDropContext>
+   );
 };
 
 export default Board;
-
-
 
 //
 // "use client"
@@ -233,4 +222,3 @@ export default Board;
 // };
 //
 // export default Board;
-

@@ -8,8 +8,11 @@ import { dataSubscribe } from "@/features/user/subscribeCard";
 
 import styles from "./styles.module.scss";
 import { FC } from "react";
+import { useThemeStore } from "@/shared/themeStore";
+import clsx from "clsx";
 
 const SubscribeCard: FC<{ type: string }> = ({ type }) => {
+   const theme = useThemeStore((state) => state.theme);
    const handleSubscribeClick = () => {
       showModal(MODAL_KEYS.subscribe);
    };
@@ -17,7 +20,7 @@ const SubscribeCard: FC<{ type: string }> = ({ type }) => {
    const data = dataSubscribe[type];
 
    return (
-      <div className={styles.card}>
+      <div className={clsx(styles.card, styles[theme])}>
          <div className={styles.card__heading}>
             <h3 className="h3">{data.title}</h3>
          </div>

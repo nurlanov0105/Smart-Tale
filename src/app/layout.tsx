@@ -10,6 +10,9 @@ export const metadata: Metadata = {
    description: "Мониторинг и управление швейным производством",
 };
 
+import { Provider } from "@/views/providers";
+import { ToastContainer } from "react-toastify";
+
 export default function RootLayout({
    children,
 }: Readonly<{
@@ -25,8 +28,11 @@ export default function RootLayout({
             <meta name="theme-color" content="#ffffff" />
          </head>
          <body className={clsx(sf_pro.variable, dm_sans.variable)}>
-            {children}
-            <Modal />
+            <Provider>
+               {children}
+               <Modal />
+               <ToastContainer />
+            </Provider>
          </body>
       </html>
    );

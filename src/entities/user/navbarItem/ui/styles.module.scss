@@ -78,6 +78,27 @@
    }
 }
 
+.dark {
+   .category__top {
+      &:hover,
+      &_active {
+         background: #1c1e1f;
+
+         &:before {
+            background-color: rgb(153, 122, 0);
+         }
+      }
+   }
+
+   .category__item {
+      color: $dark-grey;
+      &:hover,
+      &_active {
+         color: $white-theme !important;
+      }
+   }
+}
+
 /* Laptop */
 @media (max-width: 1439px) {
    .category {

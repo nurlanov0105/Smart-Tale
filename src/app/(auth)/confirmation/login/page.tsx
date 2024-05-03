@@ -1,11 +1,10 @@
-import React from 'react';
-import {Confirmation} from "@/features/auth";
-import {NextPage} from "next";
+import React from "react";
+
+import { NextPage } from "next";
+import { Confirmation } from "@/widgets/auth/confirmation";
 
 const LoginConfirmPage: NextPage = () => {
-    return (
-       <Confirmation/>
-    );
+   return <Confirmation />;
 };
 
 export default LoginConfirmPage;

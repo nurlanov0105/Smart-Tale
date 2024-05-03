@@ -1,62 +1,66 @@
-.auth{
+.auth {
+   &__row {
+      padding-top: 5.625rem;
+      border-top: 1px solid $grey;
 
-  &__row{
-    padding-top: 5.625rem;
-    border-top: 1px solid $grey;
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+   }
+   &__title {
+      font-weight: 510;
+      font-size: 1.4rem;
 
-    display: flex;
-    flex-direction: column;
-    row-gap: 2rem;
-  }
-  &__title{
-    font-weight: 510;
-    font-size: 1.4rem;
+      margin-bottom: 1.3rem;
+   }
+   &__checkbox {
+      display: flex;
+      align-items: center;
+      column-gap: 11px;
+   }
+   &__text {
+      font-size: 1.4rem;
+   }
 
-    margin-bottom: 1.3rem;
-  }
-  &__checkbox{
-    display: flex;
-    align-items: center;
-    column-gap: 11px;
-  }
-  &__text{
-    font-size: 1.4rem;
-  }
+   &__bar {
+      width: 100%;
+      height: 8px;
+      padding: 2px;
 
-  &__bar{
-    width: 100%;
-    height: 8px;
-    padding: 2px;
+      border-radius: 5px;
+      background: $bg-color;
+   }
+   &__progress {
+      width: 80%;
+      height: 100%;
 
-    border-radius: 5px;
-    background: $bg-color;
-  }
-  &__progress{
-    width: 80%;
-    height: 100%;
+      background: $primary-color;
+      border-radius: 5px;
+   }
 
+   &__button {
+      font-size: 1.4rem;
+      font-weight: 510;
+      line-height: 1.8;
 
-    background: $primary-color;
-    border-radius: 5px
-  }
+      text-decoration: underline;
+      text-align: left;
+   }
 
-  &__button{
-    font-size: 1.4rem;
-    font-weight: 510;
-    line-height: 1.8;
+   &__checkField {
+      width: auto !important;
 
-    text-decoration: underline;
-    text-align: left;
-  }
+      & > label > input {
+         cursor: pointer;
+      }
+   }
+   &__field > label > input {
+      border: 1px solid red;
+   }
+}
 
-  &__checkField{
-    width: auto !important;
-
-    & > label > input{
-      cursor: pointer;
-    }
-  }
-  &__field > label > input{
-    border: 1px solid red;
-  }
+.dark {
+   label {
+      background-color: transparent !important;
+   }
 }

@@ -42,3 +42,17 @@
       height: 2rem;
    }
 }
+
+.dark {
+   .item__top {
+      color: $dark-grey;
+      &:hover,
+      &_active {
+         background: #1c1e1f;
+
+         &:before {
+            background-color: rgb(153, 122, 0);
+         }
+      }
+   }
+}

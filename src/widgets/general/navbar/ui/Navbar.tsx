@@ -11,13 +11,18 @@ import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
 // import { SubscribeBox} from "@/entities/user/subscribeBox"
 
-import { LogIn, ShieldCheck } from "lucide-react";
+import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import { Logo } from "@/entities/general/logo";
 import { MARKETPLACE, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const Navbar = () => {
+   // theme
+   const theme = useThemeStore((state) => state.theme);
+   const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
@@ -52,7 +57,7 @@ const Navbar = () => {
    };
    return (
       <>
-         <div
+         <nav
             className={clsx(
                styles.navbar,
                hidden ? styles.navbar_hidden : "",
@@ -72,6 +77,9 @@ const Navbar = () => {
                      <span>Login</span>
                      <LogIn />
                   </Link>
+                  <div className={clsx(styles.navbar__theme, styles[theme])} onClick={toggleTheme}>
+                     {theme === "light" ? <Moon /> : <SunMoon />}
+                  </div>
                </div>
                <div className={styles.navbar__btn}>
                   <NavbarPanel />
@@ -84,7 +92,7 @@ const Navbar = () => {
                {/* {!categoryType && <SubscribeBox />} */}
                <LogoutBtn />
             </div>
-         </div>
+         </nav>
          <div
             className={clsx(styles.overlay, hidden && styles.overlay_active)}
             onClick={handleOverlayClick}

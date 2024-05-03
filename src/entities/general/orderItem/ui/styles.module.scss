@@ -47,7 +47,6 @@
       overflow: hidden;
 
       max-width: 80%;
-
    }
 
    &__detail {
@@ -78,25 +77,26 @@
    }
 }
 
+.dark {
+   background-color: $black-theme;
+
+   p {
+      color: $dark-grey;
+   }
+}
+
 // Mobile XS
 
 @media (max-width: 450px) {
-   .item{
-      &__text{
+   .item {
+      &__text {
          max-width: none;
       }
-      &__date{
+      &__date {
          display: none;
       }
-      &__detail{
+      &__detail {
          display: none;
       }
    }
 }
-
-
-
-
-
-
-

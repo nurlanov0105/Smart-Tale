@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 const NoticesContent = () => {
    return (
       <div className={styles.notices}>
-         {noticesData.length ? <NoticeEmpty /> : <NoticesLists />}
+         {!noticesData.length ? <NoticeEmpty /> : <NoticesLists />}
       </div>
    );
 };
