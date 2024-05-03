@@ -4,8 +4,6 @@ import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useShallow } from "zustand/react/shallow";
-import { useOrdersStore } from "@/entities/general/navbarPanel";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
@@ -13,43 +11,25 @@ import { LogoutBtn } from "@/entities/general/logoutBtn";
 
 import { LogIn, ShieldCheck } from "lucide-react";
 import { Logo } from "@/entities/general/logo";
-import { MARKETPLACE, ROUTES } from "@/shared/lib";
+import {MARKETPLACE, ROUTES, useNavbar} from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const Navbar = () => {
+
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
 
-   const { hidden, hover, addHover, removeHover, toggleHidden } = useOrdersStore(
-      useShallow((state) => ({
-         hidden: state.hidden,
-         hover: state.hover,
-         addHover: state.addHover,
-         removeHover: state.removeHover,
-         toggleHidden: state.toggleHidden,
-      }))
-   );
 
    useEffect(() => {
       if (navbarRef.current && MARKETPLACE.EQUIPMENT === pathname) {
          navbarRef.current.scrollTop = navbarRef.current.scrollHeight;
       }
    }, [pathname]);
-   const handleMouseOver = () => {
-      if (hidden) {
-         addHover();
-      }
-   };
-   const handleMouseOut = () => {
-      if (hidden && hover) {
-         removeHover();
-      }
-   };
-   const handleOverlayClick = () => {
-      toggleHidden();
-   };
+
+   const {hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick} = useNavbar()
+
    return (
       <>
          <div

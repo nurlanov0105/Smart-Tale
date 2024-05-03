@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Modal } from "@/views/modal";
 
+import {ToastContainer} from "react-toastify";
+import "react-toastify/scss/main.scss"
 import clsx from "clsx";
+import styles from "./(main)/styles.module.scss"
 import { sf_pro, dm_sans } from "@/shared/scss/base/fonts";
 import "@/shared/scss/index.scss";
 
@@ -27,6 +30,11 @@ export default function RootLayout({
          <body className={clsx(sf_pro.variable, dm_sans.variable)}>
             {children}
             <Modal />
+            <ToastContainer
+                className={styles.toast}
+                position="top-center"
+                draggable
+            />
          </body>
       </html>
    );
