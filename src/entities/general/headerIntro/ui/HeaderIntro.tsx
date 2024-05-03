@@ -3,8 +3,11 @@
 import { usePathname } from "next/navigation";
 import { PathData } from "../model/consts";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
+import clsx from "clsx";
 
 const HeaderIntro = () => {
+   const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname() as string;
 
    const pathArray = pathname.split("/");
@@ -19,7 +22,7 @@ const HeaderIntro = () => {
    const remainingPath = pathArray.join("/");
 
    return (
-      <div className={styles.intro}>
+      <div className={clsx(styles.intro, styles[theme])}>
          {!slug ? (
             <>
                <span>{PathData[pathname]?.path}</span>

@@ -23,18 +23,20 @@
    }
 }
 
+.dark {
+   background-color: $black-theme;
+
+   * {
+      color: $white-theme;
+   }
+}
 
 //Tablet Small
 
 @media (max-width: 900px) {
-   .orders{
+   .orders {
       &__top {
          grid-template-columns: repeat(3, 1fr);
       }
    }
 }
-
-
-
-
-

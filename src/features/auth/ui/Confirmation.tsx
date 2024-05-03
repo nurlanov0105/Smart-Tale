@@ -1,35 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { OtpInputField } from "@/entities/auth/otpInput";
 import { SendCodeBtn } from "@/entities/auth/sendCodeBtn";
-// import axios, { AxiosResponse } from "axios";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
-const Confirmation = () => {
+const ConfirmationForm = () => {
    const [progress, setProgress] = useState<number | null>(null);
    const [isError, setIsError] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
+   const theme = useThemeStore((state) => state.theme);
 
-   // const fetchData = async () => {
-   //    try {
-   //       const response: AxiosResponse = await axios.get("your-api-endpoint", {
-   //          onDownloadProgress: (progressEvent) => {
-   //             // Проверяем, определено ли значение progressEvent.total
-   //             if (progressEvent.total !== null && progressEvent.total !== undefined) {
-   //                // Вычисляем процент загрузки
-   //                const percentCompleted = Math.round(
-   //                   (progressEvent.loaded * 100) / progressEvent.total
-   //                );
-   //                setProgress(percentCompleted); // Обновляем состояние прогресса
-   //             }
-   //          },
-   //       });
-   //       console.log(response.data);
-   //    } catch (error) {
-   //       console.error("Error fetching data:", error);
-   //    }
-   // };
+   useEffect(() => {
+      document.documentElement.className = theme;
+   }, [theme]);
 
    return (
       <div className={styles.auth}>
@@ -50,4 +35,4 @@ const Confirmation = () => {
    );
 };
 
-export default Confirmation;
+export default ConfirmationForm;

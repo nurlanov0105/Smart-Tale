@@ -36,3 +36,11 @@
       //box-shadow: 1px 0 20px $primary-color;
    }
 }
+
+.dark {
+   background-color: $black-theme;
+
+   .column__title {
+      color: $black-theme;
+   }
+}

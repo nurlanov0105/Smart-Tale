@@ -45,3 +45,11 @@
       }
    }
 }
+.dark {
+   .content {
+      background-color: $black-theme;
+      p {
+         color: $dark-grey;
+      }
+   }
+}

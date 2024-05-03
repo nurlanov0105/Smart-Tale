@@ -4,8 +4,11 @@ import { CheckCheck } from "lucide-react";
 import { messagesData } from "../model/values.data";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const MessageItem: FC<MessageTypes> = ({ message, idx }) => {
+   const theme = useThemeStore((state) => state.theme);
+
    const myId = 1; // типо мой айди
    const isMe = myId === message.id;
    const prevMessage = () => {
@@ -17,7 +20,7 @@ const MessageItem: FC<MessageTypes> = ({ message, idx }) => {
    return (
       <>
          {isMe && (
-            <div className={clsx(styles.myMessage, prevMessage() && styles.none)}>
+            <div className={clsx(styles.myMessage, prevMessage() && styles.none, styles[theme])}>
                <div className={styles.myMessage__message}>
                   <span className={styles.myMessage__text}>{message.text}</span>
                   <div className={styles.myMessage__block}>
@@ -30,7 +33,7 @@ const MessageItem: FC<MessageTypes> = ({ message, idx }) => {
             </div>
          )}
          {!isMe && (
-            <div className={clsx(styles.message, prevMessage() && styles.none)}>
+            <div className={clsx(styles.message, prevMessage() && styles.none, styles[theme])}>
                <div className={styles.message__message}>
                   <p className={styles.myMessage__text}>{message.text}</p>
                   <p className={styles.message__time}>{message.time}</p>

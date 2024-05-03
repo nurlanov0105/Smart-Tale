@@ -2,11 +2,13 @@
 import React, { FC } from "react";
 import { SelectTypes, employee } from "@/shared/lib/types";
 import { useOutside } from "@/shared/lib";
-import {ChevronDown, ChevronsUpDown, ChevronUp} from "lucide-react";
+import { ChevronDown, ChevronsUpDown, ChevronUp } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const Select: FC<SelectTypes> = ({ data, title, selected, setSelected, classname }) => {
+   const theme = useThemeStore((state) => state.theme);
    const { toggleShow, ref, isShown } = useOutside(false);
    const handleSelect = (employee: employee) => {
       setSelected(employee);
@@ -14,7 +16,7 @@ const Select: FC<SelectTypes> = ({ data, title, selected, setSelected, classname
    };
 
    return (
-      <div className={styles.select__content} ref={ref}>
+      <div className={clsx(styles.select__content, styles[theme])} ref={ref}>
          <div className={clsx(styles.select, classname && styles.select__none)}>
             <div className={styles.select__block}>
                <p className={styles.select__text}>{title}</p>
@@ -25,8 +27,9 @@ const Select: FC<SelectTypes> = ({ data, title, selected, setSelected, classname
                   <p className={styles.select__select}>{selected.value}</p>
                   {/*<ChevronsUpDown className={styles.select__icon} />*/}
 
-                  <ChevronDown className={clsx(styles.select__icon, isShown && styles.select__icon_active)}/>
-
+                  <ChevronDown
+                     className={clsx(styles.select__icon, isShown && styles.select__icon_active)}
+                  />
                </button>
 
                {isShown && (

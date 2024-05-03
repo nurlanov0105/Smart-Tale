@@ -1,51 +1,63 @@
-.item{
-  min-width: 300px;
-  width: 100%;
-  padding: 1.8rem;
+.item {
+   min-width: 300px;
+   width: 100%;
+   padding: 1.8rem;
 
-  display: flex;
-  justify-content: space-between;
+   display: flex;
+   justify-content: space-between;
 
-  cursor: pointer;
+   cursor: pointer;
 
-  &__left{
-    display: flex;
-    align-items: center;
-    column-gap: 1.5rem;
-  }
+   &__left {
+      display: flex;
+      align-items: center;
+      column-gap: 1.5rem;
+   }
 
-  &__avatar{
-    border-radius: 50%;
-    width: 4.2rem;
-    height: 4.2rem;
-  }
+   &__avatar {
+      border-radius: 50%;
+      width: 4.2rem;
+      height: 4.2rem;
+   }
 
-  &__text{
-    font-size: 1.4rem;
-    text-align: left;
-    color: $grey;
+   &__text {
+      font-size: 1.4rem;
+      text-align: left;
+      color: $grey;
 
-    margin-top: 1rem;
-  }
-  &__image{
-    width: 5.5rem;
-    height: 5.5rem;
+      margin-top: 1rem;
+   }
+   &__image {
+      width: 5.5rem;
+      height: 5.5rem;
 
-    object-fit: cover;
-    border-radius: 8px;
-  }
+      object-fit: cover;
+      border-radius: 8px;
+   }
 
-  @include transition;
+   @include transition;
 
-  @media (hover: hover) and (pointer: fine) {
-    &:hover {
-      background-color: #E7F7FD;
-    }
-  }
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         background-color: #e7f7fd;
+      }
+   }
 
-  &_active{
-    background-color: rgb(231, 248, 244);
-  }
+   &_active {
+      background-color: rgb(231, 248, 244);
+   }
 }
 
+.dark {
+   &.item {
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: #052e3d;
+         }
+      }
 
+      &_active {
+         background-color: #052e3d;
+      }
+   }
+}
