@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import {MODAL_KEYS, ROUTES} from "@/shared/lib";
+import { MODAL_KEYS, ROUTES } from "@/shared/lib";
 
 import { useRouter } from "next/navigation";
 
@@ -13,8 +13,10 @@ import { showModal } from "@/views/modal";
 
 import { usePathname } from "next/navigation";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
+import { useThemeStore } from "@/shared/themeStore";
 
 const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
+   const theme = useThemeStore((state) => state.theme);
    const title = orderValues[item.type];
 
    const router = useRouter();
@@ -33,7 +35,7 @@ const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
    return (
       <>
          {item.type === "equipment" && (
-            <div onClick={handleItemClick} className={styles.item}>
+            <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
@@ -63,7 +65,7 @@ const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
          )}
 
          {item.type === "order" && (
-            <div onClick={handleItemClick} className={styles.item}>
+            <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}

@@ -7,14 +7,18 @@ export const AdminRoutes: TypeAdminCategories[] = [
       title: "Организация",
       Icon: Building,
       link: ADMIN_ROUTES.ORGANIZATION,
-      routes: [ADMIN_ROUTES.CREATE_ORGANIZATION, ADMIN_ROUTES.ORGANIZATION_DETAIL],
+      routes: [ADMIN_ROUTES.CREATE_ORGANIZATION, ADMIN_ROUTES.ORGANIZATION_DETAILS],
    },
    {
       id: 2,
       title: "Сотрудники",
       Icon: User,
       link: ADMIN_ROUTES.EMPLOYEES,
-      routes: [ADMIN_ROUTES.INVITE_EMPLOYEES, ADMIN_ROUTES.EMPLOYEES_DETAILS, ADMIN_ROUTES.EMPLOYEES_SETTINGS],
+      routes: [
+         ADMIN_ROUTES.INVITE_EMPLOYEES,
+         ADMIN_ROUTES.EMPLOYEES_DETAILS,
+         ADMIN_ROUTES.EMPLOYEES_SETTINGS,
+      ],
    },
    {
       id: 3,

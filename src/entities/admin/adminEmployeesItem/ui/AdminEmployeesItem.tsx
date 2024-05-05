@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import { ItemProps } from "../model/types";
 import { Button } from "@/shared/ui";
@@ -6,10 +8,13 @@ import Link from "next/link";
 import { ADMIN_ROUTES } from "@/shared/lib";
 import avatar from "@@/imgs/auth/auth-1.jpg";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
+import clsx from "clsx";
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
+   const theme = useThemeStore((state) => state.theme);
    return (
-      <div className={styles.item}>
+      <div className={clsx(styles.item, styles[theme])}>
          <div className={styles.item__info}>
             <div>
                <h5 className={styles.item__subtitle}>Заказ №234</h5>
@@ -28,6 +33,22 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
             <h4 className="h4">Сотрудники</h4>
             <div className={styles.item__employees}>
                <Link
+                   href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
+                   className={styles.item__employee}>
+                  <Image
+                      className={styles.item__image}
+                      src={avatar}
+                      alt="avatar"
+                      width={48}
+                      height={48}
+                  />
+                  <div>
+                     <h4 className="h4">Кирилл Олейников</h4>
+                     <p className={styles.item__salary}>ЗП 900 сом</p>
+                  </div>
+               </Link>
+
+               <Link
                   href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
                   className={styles.item__employee}>
                   <Image
@@ -42,15 +63,16 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
                      <p className={styles.item__salary}>ЗП 900 сом</p>
                   </div>
                </Link>
+
                <Link
-                  href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                  className={styles.item__employee}>
+                   href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
+                   className={styles.item__employee}>
                   <Image
-                     className={styles.item__image}
-                     src={avatar}
-                     alt="avatar"
-                     width={48}
-                     height={48}
+                      className={styles.item__image}
+                      src={avatar}
+                      alt="avatar"
+                      width={48}
+                      height={48}
                   />
                   <div>
                      <h4 className="h4">Кирилл Олейников</h4>

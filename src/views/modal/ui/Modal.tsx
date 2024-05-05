@@ -16,11 +16,14 @@ import {
    RequireAnnouncementModal,
    LogoutModal,
    DeleteModal,
+   DeleteEmployeeModal
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
+import { useThemeStore } from "@/shared/themeStore";
 
 const Modal: FC = () => {
+   const theme = useThemeStore((state) => state.theme);
    const { isOpen, componentName, isLightBg, closeModal } = useModalStore();
 
    const componentsLookUp: Record<string, React.ComponentType> = {
@@ -36,6 +39,7 @@ const Modal: FC = () => {
       LogoutModal,
       CardModal,
       DeleteModal,
+      DeleteEmployeeModal
    };
    let RenderComponent;
 
@@ -50,7 +54,9 @@ const Modal: FC = () => {
    const handleClick = (e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation();
 
    return (
-      <div className={clsx(styles.modal, isOpen ? styles.active : "")} onClick={closeModal}>
+      <div
+         className={clsx(styles.modal, isOpen ? styles.active : "", styles[theme])}
+         onClick={closeModal}>
          <div className={clsx(styles.content, isLightBg ? "lightBg" : "")} onClick={handleClick}>
             <CloseModalBtn />
             <div className={styles.modal__inner}>{RenderComponent}</div>

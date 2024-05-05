@@ -42,12 +42,20 @@
       display: flex;
       column-gap: 2rem;
 
+      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+
       margin-top: 8px;
+
    }
    &__employee {
       display: flex;
       column-gap: 8px;
       align-items: center;
+
+      flex-shrink: 0;
    }
    &__image {
       border-radius: 50%;
@@ -69,5 +77,21 @@
       column-gap: 8px;
       margin-top: 2rem;
       justify-content: flex-end;
+   }
+}
+
+.dark {
+   background-color: $black-theme;
+
+   p {
+      color: $dark-grey;
+   }
+
+   .item__price {
+      color: $primary-color;
+   }
+
+   .item__date {
+      color: $black-theme;
    }
 }

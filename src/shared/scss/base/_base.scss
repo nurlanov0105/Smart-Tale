@@ -18,22 +18,6 @@ html {
    }
 }
 
-[data-theme="dark"] {
-   $common-black: #fff;
-   $common-white: #000;
-
-   $dark-grey: #8e8e93;
-   $grey: rgb(142, 142, 147);
-
-   // accent colors
-   $primary-color: #fc0;
-   $dark-blue: #2b3674;
-
-   $danger-color: #ff3b30;
-
-   // bg-color
-   $bg-color: #000;
-}
 
 body {
    font-family: var(--font-sf_pro), sans-serif;

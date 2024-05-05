@@ -22,7 +22,9 @@ const AdminEmployees = () => {
             <div>
                <div className={styles.employees}>
                   <h4 className="h4">Список сотрудников</h4>
-                  <Button onClick={handleRoute}>Пригласите сотрудника</Button>
+                  <div className={styles.employees__btns}>
+                     <Button onClick={handleRoute}>Пригласите сотрудника</Button>
+                  </div>
                </div>
                <EmployeesList />
             </div>

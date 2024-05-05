@@ -9,8 +9,10 @@ import { useWindowSize } from "@/shared/lib";
 import { TypeCategories } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
+   const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
 
@@ -23,7 +25,7 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) =
    };
 
    return (
-      <li className={styles.category_item} onClick={handleClickClose}>
+      <li className={clsx(styles.category_item, styles[theme])} onClick={handleClickClose}>
          <Link
             href={routes[0].link}
             className={clsx(styles.category__top, {

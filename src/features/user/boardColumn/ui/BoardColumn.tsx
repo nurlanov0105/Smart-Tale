@@ -5,19 +5,21 @@ import { Droppable } from "@hello-pangea/dnd";
 import { BoardCard } from "@/entities/user/boardCard";
 
 import { KanbanOrderProps } from "@/widgets/user/board";
-import {boardHeadings} from "../model/consts";
-import styles from "./styles.module.scss"
+import { boardHeadings } from "../model/consts";
+import styles from "./styles.module.scss";
 import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 interface IProps {
    title: string;
    orders: KanbanOrderProps[];
 }
 const BoardColumn: FC<IProps> = ({ orders, title }) => {
+   const theme = useThemeStore((state) => state.theme);
    const heading = boardHeadings[title];
 
    return (
-      <div className={styles.column}>
+      <div className={clsx(styles.column, styles[theme])}>
          <h4
             className={clsx("h4", styles.column__title)}
             style={{ backgroundColor: heading.color }}>
@@ -41,7 +43,6 @@ const BoardColumn: FC<IProps> = ({ orders, title }) => {
 };
 
 export default BoardColumn;
-
 
 // "use client";
 //
@@ -88,8 +89,3 @@ export default BoardColumn;
 // };
 //
 // export default BoardColumn;
-
-
-
-
-

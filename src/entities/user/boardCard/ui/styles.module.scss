@@ -40,3 +40,10 @@
       box-shadow: 0 0 5px $dark-grey;
    }
 }
+.dark {
+   background-color: $dark-theme;
+
+   * {
+      color: $dark-grey;
+   }
+}

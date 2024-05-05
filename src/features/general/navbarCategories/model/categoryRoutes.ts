@@ -1,4 +1,4 @@
-import {DASHBOARD, MARKETPLACE, ORDERS, ROUTES} from "@/shared/lib";
+import { DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
 import { User, Clipboard, ShoppingCart } from "lucide-react";
 import { TypeCategories } from "@/entities/user/navbarItem";
 
@@ -45,7 +45,7 @@ export const CategoryRoutes: TypeCategories[] = [
             isSubscribe: true,
          },
       ],
-      activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS]
+      activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS, ROUTES.SUBSCRIBE],
    },
    {
       title: "Заказы",
@@ -90,6 +90,6 @@ export const CategoryRoutes: TypeCategories[] = [
             isSubscribe: false,
          },
       ],
-      activeRoutes: [ROUTES.CARD_DETAILS]
+      activeRoutes: [ROUTES.CARD_DETAILS],
    },
 ];

@@ -1,92 +1,124 @@
-.select{
-  width: 100%;
+.dark .select {
+   &__selected{
+      border: 1px solid $border-theme;
+   }
+}
 
-  border-radius: 8px;
+.select {
+   width: 100%;
 
-  padding: 1rem 2rem;
-  background-color: $common-white;
+   border-radius: 8px;
 
-  &__none{
-    padding: 0;
-    background-color: transparent;
-  }
+   padding: 1rem 2rem;
+   background-color: $common-white;
 
-  &__content{
-    width: 100%;
-  }
+   &__none {
+      padding: 0;
+      background-color: transparent;
+   }
 
-  &__text{
-    font-size: 1.4rem;
-    color: $grey;
+   &__content {
+      width: 100%;
+   }
 
-    margin-bottom: 8px;
-  }
+   &__text {
+      font-size: 1.4rem;
+      color: $grey;
 
-  &__selected{
-    display: flex;
-    justify-content: space-between;
+      margin-bottom: 8px;
+   }
 
-    width: 100%;
-    padding: 1.1rem 1.2rem;
+   &__selected {
+      display: flex;
+      justify-content: space-between;
 
-    border: 1px solid $grey;
-    border-radius: 4px;
-    background-color: $common-white;
-  }
+      width: 100%;
+      padding: 1.1rem 1.2rem;
 
-  &__select{
-    width: 100%;
-    text-align: left;
-  }
-  &__icon{
-    width: 20px;
-    color: $grey;
+      border: 1px solid $grey;
+      border-radius: 4px;
+      background-color: $common-white;
+   }
 
-    @include transition;
+   &__select {
+      width: 100%;
+      text-align: left;
+   }
+   &__icon {
+      width: 20px;
+      color: $grey;
 
-    &_active{
-      transform: rotate(180deg);
-    }
-  }
-  &__block{
-    width: 100%;
-    position: relative;
-  }
+      @include transition;
 
-  &__menu{
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: $z1;
-
-    width: 100%;
-
-    display: flex;
-    flex-direction: column;
-    row-gap: 5px;
-    padding: 8px;
-
-    background-color: $common-white;
-    border-radius: 8px;
-
-    box-shadow: 0px 1px 1px 1px rgba(0, 0 , 0 , 0.1);
-  }
-  &__item{
-    width: 100%;
-    padding: 1rem 8px;
-
-    text-align: left;
-    border-radius: 8px;
-
-
-    @media (hover: hover) and (pointer: fine) {
-      &:hover {
-        background-color: $bg-color;
+      &_active {
+         transform: rotate(180deg);
       }
-    }
-    &_active{
-      background-color: $bg-color;
-    }
-  }
+   }
+   &__block {
+      width: 100%;
+      position: relative;
+   }
 
+   &__menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      z-index: $z1;
+
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      padding: 8px;
+
+      background-color: $common-white;
+      border-radius: 8px;
+
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+   }
+   &__item {
+      width: 100%;
+      padding: 1rem 8px;
+
+      text-align: left;
+      border-radius: 8px;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $bg-color;
+         }
+      }
+      &_active {
+         background-color: $bg-color;
+      }
+   }
+}
+
+.dark {
+   .select {
+      background-color: $black-theme;
+      * {
+         color: $white-theme;
+      }
+
+      &__selected {
+         background-color: $black-theme;
+      }
+
+      &__menu {
+         background-color: $black-theme;
+      }
+
+      &__item {
+         @media (hover: hover) and (pointer: fine) {
+            &:hover {
+               background-color: #1c1e1f;
+            }
+         }
+         &_active {
+            background-color: #1c1e1f;
+         }
+      }
+   }
 }

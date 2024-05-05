@@ -7,7 +7,7 @@ import { EmployeesList } from "@/features/general/employeesList";
 import { organizationValues } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { showModal } from "@/views/modal";
-import {MODAL_KEYS} from "@/shared/lib";
+import { MODAL_KEYS } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import { SkeletonTypes } from "@/shared/lib";
 
@@ -29,7 +29,7 @@ const Organization = () => {
 
    return (
       <div className={styles.organization}>
-         <Logo type="organization"/>
+         <Logo type="organization" />
          <div className={styles.organization__block}>
             <Tabs type={type} setType={setType} values={organizationValues} />
             {type === "users-list" && (

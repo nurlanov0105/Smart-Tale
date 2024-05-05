@@ -1,3 +1,7 @@
+.dark{
+   border-bottom: 1px solid $border-theme !important;
+}
+
 .header {
    display: flex;
    align-items: center;
@@ -46,7 +50,7 @@
    }
 
    &_right {
-      column-gap: 3.2rem;
+      column-gap: 2rem;
       .header__links {
          display: flex;
       }
@@ -76,6 +80,15 @@
       &_show {
          display: inline-flex;
       }
+   }
+
+   &__theme {
+      cursor: pointer;
+      width: 24px;
+   }
+
+   .light {
+      background-color: $bg-color;
    }
 }
 
@@ -128,10 +141,14 @@
 /* Mobile big*/
 @media (max-width: 725px) {
    .header {
+      column-gap: 2rem;
       &_left {
          .header__links {
             display: none;
          }
+      }
+      &_right{
+         width: 100%;
       }
    }
 }

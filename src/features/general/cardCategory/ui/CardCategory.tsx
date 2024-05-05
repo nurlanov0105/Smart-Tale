@@ -3,6 +3,7 @@ import { CardCategoryData } from "../model/consts";
 import { CardCategoryProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const CardCategory: FC<CardCategoryProps> = ({
    handleCategoryClick,
@@ -10,12 +11,14 @@ const CardCategory: FC<CardCategoryProps> = ({
    isLarge,
    isMobile,
 }) => {
+   const theme = useThemeStore((state) => state.theme);
    return (
       <ul
          className={clsx(
             styles.category,
             isLarge ? styles.category_large : "",
-            isMobile ? styles.category_mobile : ""
+            isMobile ? styles.category_mobile : "",
+            styles[theme]
          )}>
          {CardCategoryData.map((category) => (
             <li

@@ -77,3 +77,34 @@
     }
   }
 }
+
+
+.dark{
+  .select{
+    &__content{
+      background: $black-theme;
+    }
+    &__title{
+      color: $common-white;
+    }
+    &__menu{
+      background: $black-theme;
+    }
+    &__item{
+      color: $common-white;
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: $border-theme;
+        }
+      }
+      &_active{
+        background-color: $border-theme;
+      }
+    }
+    &__block{
+      p {
+        color: $common-white
+      }
+    }
+  }
+}

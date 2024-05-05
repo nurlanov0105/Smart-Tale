@@ -9,6 +9,7 @@ import RejectAnnouncementModal from "./ui/rejectAnnouncementModal/RejectAnnounce
 import RequireAnnouncementModal from "./ui/requireAnnouncementModal/RequireAnnouncementModal";
 import LogoutModal from "./ui/logoutModal/LogoutModal";
 import DeleteModal from "./ui/deleteModal/DeleteModal";
+import DeleteEmployeeModal from "./ui/deleteEmplyeeModal/DeleteEmployeeModal";
 
 export {
    SubscribeModal,
@@ -22,4 +23,5 @@ export {
    RequireAnnouncementModal,
    LogoutModal,
    DeleteModal,
+   DeleteEmployeeModal
 };

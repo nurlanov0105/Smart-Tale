@@ -10,15 +10,26 @@ import { Search } from "@/features/general/search";
 import Link from "next/link";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { useOrdersStore } from "@/entities/general/navbarPanel";
-import { LogIn, ShieldCheck } from "lucide-react";
+import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
+import { useThemeStore } from "@/shared/themeStore";
+import { useEffect } from "react";
 
 const Header = () => {
+   // theme
+   const theme = useThemeStore((state) => state.theme);
+   const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+   useEffect(() => {
+      document.documentElement.className = theme;
+   }, [theme]);
+
+   // navbar
    const hidden = useOrdersStore((state) => state.hidden);
 
    const isAuth = useAuth();
 
    return (
-      <div className={clsx(styles.header, styles.header_mb)}>
+      <header className={clsx(styles.header, styles.header_mb, styles[theme])}>
          <div className={clsx(styles.header__block, styles.header_left)}>
             <div className={clsx(styles.header__btn, hidden ? styles.header__btn_show : "")}>
                <NavbarPanel />
@@ -36,6 +47,9 @@ const Header = () => {
                   <span>Login</span>
                   <LogIn />
                </Link>
+               <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
+                  {theme === "light" ? <Moon /> : <SunMoon />}
+               </div>
             </div>
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
@@ -48,11 +62,14 @@ const Header = () => {
                   <span>Login</span>
                   <LogIn />
                </Link>
+               <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
+                  {theme === "light" ? <Moon /> : <SunMoon />}
+               </div>
             </div>
             <Search />
             <NoticeBtn />
          </div>
-      </div>
+      </header>
    );
 };
 
