@@ -27,6 +27,10 @@
    * {
       color: $dark-grey;
    }
+
+   .list__top {
+      border-bottom: 3px solid $dark-grey;
+   }
 }
 
 @media (max-width: 700px) {

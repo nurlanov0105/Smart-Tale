@@ -1,6 +1,7 @@
 import Button from "./button/Button";
 import BtnBordered from "./btnBordered/BtnBordered";
 import InputField from "./inputField/InputField";
+import PasswordField from "./inputField/PasswordInput";
 import TextArea from "./textarea/TextArea";
 import SelectDateField from "@/shared/ui/selectDate/Select";
 import Select from "@/shared/ui/select/Select";
@@ -14,6 +15,7 @@ export {
    Button,
    BtnBordered,
    InputField,
+   PasswordField,
    TextArea,
    SelectDateField,
    Emojis,
@@ -21,5 +23,5 @@ export {
    CommonSkeleton,
    AvatarSkeleton,
    ChatSkeleton,
-   GlobalLoading
+   GlobalLoading,
 };

@@ -3,10 +3,12 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 import Link from "next/link";
 import { ADMIN_ROUTES } from "@/shared/lib";
+import { useThemeStore } from "@/shared/themeStore";
 
 const EmployeesItem = ({ item }: { item: number }) => {
+   const theme = useThemeStore((state) => state.theme);
    return (
-      <ul className={styles.item}>
+      <ul className={clsx(styles.item, styles[theme])}>
          <Link
             href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
             className={styles.item__text}>
