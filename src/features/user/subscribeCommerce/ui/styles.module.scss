@@ -49,6 +49,15 @@
    }
 }
 
+.dark {
+   button {
+      background-color: $dark-theme;
+      span {
+         color: $dark-grey;
+      }
+   }
+}
+
 /* Tablet*/
 @media (max-width: 1140px) {
    .commerce {

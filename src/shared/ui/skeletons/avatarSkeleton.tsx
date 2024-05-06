@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/themeStore";
 
 const AvatarSkeleton = () => {
+   const theme = useThemeStore((state) => state.theme);
    return (
       <div className={styles.skeleton}>
          <div className={styles.skeleton__avatar} />

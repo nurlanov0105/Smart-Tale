@@ -4,8 +4,10 @@ import { SelectDate } from "@/entities/general/selectDate";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import { showModal } from "@/views/modal";
 import type { OrderProps } from "../model/types";
-import {MODAL_KEYS, useInitialDate} from "@/shared/lib";
+import { MODAL_KEYS, useInitialDate } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleDeleteClick = () => {
@@ -14,11 +16,11 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleHideClick = () => {
       showModal(MODAL_KEYS.hideAnnouncement);
    };
-   const {day, setDay, month, setMonth,
-      year, setYear} = useInitialDate()
+   const { day, setDay, month, setMonth, year, setYear } = useInitialDate();
+   const theme = useThemeStore((state) => state.theme);
 
    return (
-      <form className={styles.form}>
+      <form className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
             <InputField
                classname={styles.order__margin}

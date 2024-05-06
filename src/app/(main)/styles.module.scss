@@ -23,14 +23,8 @@
    }
 
    &__content {
-      //max-width: 90%;
-      //margin-left: auto;
-      //margin-right: auto;
-
       height: calc(100% - 18.3rem);
       overflow-y: auto;
-      // overflow-x: hidden;
-      //scrollbar-width: thin;
    }
 
    &__intro {

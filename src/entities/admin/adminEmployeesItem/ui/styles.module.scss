@@ -40,9 +40,10 @@
 
    &__employees {
       display: flex;
-      column-gap: 2rem;
+      gap: 2rem;
 
       margin-top: 8px;
+      flex-wrap: wrap;
    }
    &__employee {
       display: flex;
