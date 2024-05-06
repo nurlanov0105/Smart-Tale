@@ -23,6 +23,7 @@ const CardsSection: FC<CardSceletonProps> = ({ isLoading = true, isError = false
    ]
    const [selected, setSelected] = useState(data[0])
 
+
    return (
        <section className={styles.section}>
            {/*<h3 className="h4">Фильтры</h3>*/}

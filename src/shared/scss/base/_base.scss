@@ -18,7 +18,6 @@ html {
    }
 }
 
-
 body {
    font-family: var(--font-sf_pro), sans-serif;
    color: $common-black;
@@ -27,6 +26,7 @@ body {
 
    text-rendering: optimizeSpeed;
    text-rendering: optimizeLegibility;
+
    -webkit-font-smoothing: antialiased;
    -ms-text-size-adjust: 100%;
    -moz-text-size-adjust: 100%;

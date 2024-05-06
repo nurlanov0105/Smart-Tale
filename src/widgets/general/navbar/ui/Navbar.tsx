@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { LogoutBtn } from "@/entities/general/logoutBtn";
-// import { SubscribeBox} from "@/entities/user/subscribeBox"
+import { SubscribeBox } from "@/entities/user/subscribeBox";
 
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import { Logo } from "@/entities/general/logo";
@@ -67,7 +67,7 @@ const Navbar = () => {
                {categoryType ? <AdminCategories /> : <NavbarCategories />}
             </div>
             <div className={styles.navbar__bottom}>
-               {/* {!categoryType && <SubscribeBox />} */}
+               {!categoryType && <SubscribeBox />}
                <LogoutBtn />
             </div>
          </nav>

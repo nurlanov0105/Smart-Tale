@@ -1,4 +1,29 @@
+
 html.dark {
+  body {
+    * {
+      // scrollbar-width: thin;
+      // scrollbar-color: rgb(210, 209, 209) #f1f1f1;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-left: solid 4px transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $dark-grey;
+        border-left: solid 4px $black-theme;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgb(244, 197, 5);
+      }
+    }
+  }
+
   body,
   header {
     color: $white-theme;
@@ -92,3 +117,4 @@ html.dark {
     }
   }
 }
+

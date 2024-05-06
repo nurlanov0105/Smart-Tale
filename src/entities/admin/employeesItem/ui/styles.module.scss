@@ -1,5 +1,5 @@
-.item{
-  td{
+.item {
+  td {
     text-align: left;
 
     font-size: 1.4rem;
@@ -7,11 +7,12 @@
     font-weight: 400;
     padding: 2rem 0 2rem 2rem;
 
-    a{
+    a {
       text-decoration: underline;
     }
   }
-  &__td{
+
+  &__td {
     display: inline-flex;
     flex-direction: column;
     flex-shrink: 0;
@@ -23,7 +24,7 @@
     overflow: hidden;
     overflow-y: auto;
 
-    p{
+    p {
       line-height: 1.5;
       flex-shrink: 0;
 
@@ -32,17 +33,15 @@
 }
 
 
-//Tablet Small
-
 @media (max-width: 700px) {
-  .item{
-    :nth-child(2){
+  .item td{
+    &:nth-child(2) {
       display: none;
     }
-    :nth-child(5){
+
+    &:nth-child(5) {
       display: none;
     }
   }
+
 }
-
-

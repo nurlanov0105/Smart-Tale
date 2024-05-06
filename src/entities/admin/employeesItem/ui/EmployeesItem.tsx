@@ -1,13 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import { ADMIN_ROUTES } from "@/shared/lib";
-
-import {useThemeStore} from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/themeStore";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const EmployeesItem = ({ item }: { item: number }) => {
+
     const theme = useThemeStore((state) => state.theme);
 
    return (
@@ -36,8 +36,6 @@ const EmployeesItem = ({ item }: { item: number }) => {
                <span>Авторизован</span>
            </td>
        </tr>
-
-   );
-};
-
+   )
+}
 export default EmployeesItem;
