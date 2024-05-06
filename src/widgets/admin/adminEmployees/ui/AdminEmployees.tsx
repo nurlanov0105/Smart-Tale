@@ -19,15 +19,18 @@ const AdminEmployees = () => {
          {!data.length ? (
             <EmptyContent type="employees" />
          ) : (
-            <div>
-               <div className={styles.employees}>
-                  <h4 className="h4">Список сотрудников</h4>
-                  <div className={styles.employees__btns}>
-                     <Button onClick={handleRoute}>Пригласите сотрудника</Button>
-                  </div>
-               </div>
-               <EmployeesList />
-            </div>
+             <div className={styles.employees__wrapper}>
+                <div>
+                   <div className={styles.employees}>
+                      <h4 className="h4">Список сотрудников</h4>
+                      <div className={styles.employees__btns}>
+                         <Button onClick={handleRoute}>Пригласите сотрудника</Button>
+                      </div>
+                   </div>
+                   <EmployeesList/>
+                </div>
+
+             </div>
          )}
       </>
    );

@@ -6,6 +6,7 @@
   margin-top: 2rem;
 
 }
+
 .form{
   border-bottom: 1px solid $dark-grey;
   padding-bottom: 3rem;
@@ -46,5 +47,11 @@
     justify-content: flex-end;
 
 
+  }
+}
+
+.dark{
+  .form{
+    border-bottom: 1px solid $border-theme;
   }
 }

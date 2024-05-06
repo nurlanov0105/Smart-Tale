@@ -16,7 +16,7 @@ const AdminOrganization = () => {
 
    return (
       <>
-         {!data.length ? (
+         {data.length ? (
             <EmptyContent type="organization" />
          ) : (
             <div className={styles.list}>

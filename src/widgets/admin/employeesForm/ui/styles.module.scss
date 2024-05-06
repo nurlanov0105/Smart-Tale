@@ -29,3 +29,12 @@
       row-gap: 2rem;
    }
 }
+
+
+.dark{
+   .form{
+      &__row{
+         border-bottom: 1px solid $border-theme;
+      }
+   }
+}

@@ -142,6 +142,7 @@ describe("useDate hook" , () => {
         const currentDate = new Date()
         const currentDay = currentDate.getDate(); //получаем текущий день
         const currentYear = currentDate.getFullYear(); //получаем текущий день
+        const currentMonth = currentDate.getMonth() + 1; //получаем текущий месяц
 
         rerender({
             year: { value: 2010, postValue: 2010}, //Ставлю 2010 год
@@ -149,8 +150,9 @@ describe("useDate hook" , () => {
             day: { value: 31, postValue: 31 } //ставим день на 31 число
         });
 
+        console.log(result.current.months)
         //Ожидаем что получим текущий месяц, текущего года, так как не можем выбирать месяц, который был до текущего месяца
-        expect(result.current.months[0].postValue).toBe(currentDay + 1)
+        expect(result.current.months[0].postValue).toBe(currentMonth)
         //Ожидаем что получим текущий год, так как не можем выбирать год, который был до текущего года
         expect(result.current.years[0].postValue).toBe(currentYear)
         //Ожидаем что получим завтрашний день текущего месяца, текущего года

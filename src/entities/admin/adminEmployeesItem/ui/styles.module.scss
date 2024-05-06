@@ -83,15 +83,27 @@
 .dark {
    background-color: $black-theme;
 
+   .item{
+      &__subtitle {
+         color: rgb(51, 165, 255);
+      }
+      &__price {
+         color: $primary-color;
+      }
+      &__date {
+         background-color: $border-theme;
+         color: $white-theme;
+      }
+      &__info {
+         border-bottom: 1px solid $border-theme;
+      }
+      &__border{
+         border-bottom: 1px solid $border-theme;
+      }
+   }
+
    p {
-      color: $dark-grey;
-   }
-
-   .item__price {
-      color: $primary-color;
-   }
-
-   .item__date {
-      color: $black-theme;
+      color: rgb(148, 176, 215);;
    }
 }
+

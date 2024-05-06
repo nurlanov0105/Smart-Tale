@@ -6,10 +6,10 @@ import { showModal } from "@/views/modal";
 import { MODAL_KEYS } from "@/shared/lib";
 import { dataSubscribe } from "@/features/user/subscribeCard";
 
-import styles from "./styles.module.scss";
 import { FC } from "react";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const SubscribeCard: FC<{ type: string }> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);

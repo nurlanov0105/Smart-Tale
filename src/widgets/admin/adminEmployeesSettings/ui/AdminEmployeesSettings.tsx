@@ -8,16 +8,17 @@ import { AdminBack } from "@/entities/admin/adminBack";
 import {showModal} from "@/views/modal";
 import {MODAL_KEYS} from "@/shared/lib";
 import styles from "./styles.module.scss";
+import {useThemeStore} from "@/shared/themeStore";
 
 const AdminEmployeesSettings = () => {
    const [selected, setSelected] = useState(organizationsData[0]);
-
+   const theme = useThemeStore((state) => state.theme);
    const handleDelete = () => {
       showModal(MODAL_KEYS.deleteEmployee)
    }
 
    return (
-      <div>
+      <div className={styles[theme]}>
          <AdminBack title="Назад" />
          <form className={styles.form}>
             <fieldset className={styles.form__fieldset}>

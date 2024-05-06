@@ -7,6 +7,7 @@ import { Draggable } from "@hello-pangea/dnd";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
+import {Clock4} from "lucide-react";
 
 const BoardCard: FC<CardProps> = ({ order, index }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -32,8 +33,8 @@ const BoardCard: FC<CardProps> = ({ order, index }) => {
                   <p className="commonGreyText">{description}</p>
                </div>
                <div className={styles.card__date}>
-                  <Image src={timeIcon} alt="time icon" width={20} height={20} />
-                  <span>{date}</span>
+                  <span><Clock4/></span>
+                  <p>{date}</p>
                </div>
             </div>
          )}
