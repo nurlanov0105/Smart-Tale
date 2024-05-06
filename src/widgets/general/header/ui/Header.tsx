@@ -29,7 +29,7 @@ const Header = () => {
    const isAuth = useAuth();
 
    return (
-      <header className={clsx(styles.header, styles.header_mb)}>
+      <header className={clsx(styles.header, styles.header_mb, styles[theme])}>
          <div className={clsx(styles.header__block, styles.header_left)}>
             <div className={clsx(styles.header__btn, hidden ? styles.header__btn_show : "")}>
                <NavbarPanel />
@@ -47,7 +47,7 @@ const Header = () => {
                   <span>Login</span>
                   <LogIn />
                </Link>
-               <div className={clsx(styles.header__theme, styles[theme])} onClick={toggleTheme}>
+               <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>
             </div>
@@ -62,7 +62,7 @@ const Header = () => {
                   <span>Login</span>
                   <LogIn />
                </Link>
-               <div className={clsx(styles.header__theme, styles[theme])} onClick={toggleTheme}>
+               <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>
             </div>

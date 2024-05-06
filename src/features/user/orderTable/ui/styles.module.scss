@@ -1,25 +1,44 @@
-.orders {
-   border-radius: 16px;
-   background-color: $common-white;
-   overflow: hidden;
+.table {
+   width: 100%;
+   border-collapse: collapse;
 
-   &__top {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      align-items: center;
+   &__thead{
+      width: 100%;
+      border-bottom: 1px solid #ddd;
+   }
+   &__item{
+      width: 25%;
 
-      padding: 2rem;
-      border-bottom: 1px solid #e9edf7;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.71;
+      letter-spacing: -0.28px;
+      color: $dark-grey;
 
-      h4 {
-         color: $dark-grey;
-         font-size: 14px;
-         line-height: 1.71;
-         letter-spacing: -0.28px;
-      }
+      text-align: left;
+
+      padding: 2rem 0 2rem 2rem;
    }
 
-   &__list {
+   &__border {
+      margin: 2rem 0;
+
+      background-color: $common-white;
+      border-radius: 20px 20px;
+   }
+
+   &__list{
+      width: 100%;
+      tr{
+         &:not(:last-child){
+            border-bottom: 1px solid #ddd;
+         }
+      }
+   }
+   &__orders{
+      border-radius: 16px;
+      background-color: $common-white;
+      overflow: hidden;
    }
 }
 
@@ -29,14 +48,31 @@
    * {
       color: $white-theme;
    }
+   .table__thead th{
+      color:  rgb(162, 154, 142);;
+   }
+
+   tr{
+      &:not(:last-child){
+         background-color: $black-theme;
+         border-bottom: 1px solid $border-theme !important;
+      }
+   }
+   .table__thead{
+      border-bottom: 1px solid $border-theme;
+   }
 }
+
 
 //Tablet Small
 
-@media (max-width: 900px) {
-   .orders {
-      &__top {
-         grid-template-columns: repeat(3, 1fr);
+@media (max-width: 700px) {
+   .table {
+      &__thead th{
+         &:last-child{
+            display: none;
+         }
       }
    }
 }
+

@@ -123,3 +123,19 @@
       }
    }
 }
+
+/* Mobile */
+@media (max-width: 430px) {
+   .card {
+      margin: 0 auto;
+      width: 82%;
+   }
+}
+
+
+/* Mobile */
+@media (max-width: 340px) {
+   .card {
+      width: 100%;
+   }
+}

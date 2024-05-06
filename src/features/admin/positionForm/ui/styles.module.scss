@@ -1,8 +1,21 @@
+.dark{
+   .position__row{
+      border-bottom: 1px solid $border-theme;
+   }
+}
+
 .position {
    display: flex;
    justify-content: space-between;
    flex-direction: column;
    height: 100%;
+
+   &__list{
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+
+   }
 
    &__row {
       display: flex;

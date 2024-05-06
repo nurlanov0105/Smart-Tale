@@ -18,4 +18,9 @@
 
 .dark {
    color: $black-theme;
+
+   .organization__date{
+      background-color: $border-theme;
+      color: $white-theme;
+   }
 }

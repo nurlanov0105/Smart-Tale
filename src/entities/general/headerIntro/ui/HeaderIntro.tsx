@@ -16,6 +16,7 @@ const HeaderIntro = () => {
       pathname.includes("/card-details/") ||
       pathname.includes("/employees-details/") ||
       pathname.includes("/employees-settings/") ||
+      pathname.includes("/organization-details/") ||
       pathname.includes("/users/")
          ? pathArray.pop()
          : "";

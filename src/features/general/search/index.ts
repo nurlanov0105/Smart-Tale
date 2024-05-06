@@ -1,2 +1,4 @@
 import Search from "./ui/Search";
-export { Search };
+import {useSearchStore} from "./model/useSearchStore";
+
+export { Search, useSearchStore };

@@ -29,11 +29,15 @@
       column-gap: 8px;
       margin-top: auto;
 
-      span {
+      p {
          font-size: 14px;
 
          line-height: 1.57;
          letter-spacing: -0.4px;
+      }
+      span{
+         width: 18px;
+         color: $common-black;
       }
    }
    &__drag {

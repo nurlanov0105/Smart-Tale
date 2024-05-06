@@ -66,23 +66,28 @@ export const BoardData: KanbanOrderProps[] = [
 export const boardHeadings: any = {
    new: {
       name: "Новые",
-      color: "#C3FFFB",
+      light: "#C3FFFB",
+      dark: "#005753"
    },
    process: {
       name: "В работе",
-      color: "#C5E6FF",
+      light: "#C5E6FF",
+      dark: "#282C2D"
    },
    checking: {
       name: "Проверка",
-      color: "#FFFBA1",
+      light: "#FFFBA1",
+      dark: "#514d00"
    },
    sending: {
       name: "Отправка",
-      color: "#FFD9A1",
+      light: "#FFD9A1",
+      dark: "#6b4000"
    },
    arrived: {
       name: "Прибыл",
-      color: "#E6FFA1",
+      light: "#E6FFA1",
+      dark: "#405100"
    },
 };
 

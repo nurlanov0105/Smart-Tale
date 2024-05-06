@@ -1,28 +1,35 @@
 import React from "react";
-import { employeesCategories } from "@/features/general/employeesList/model/values.data";
+
+import { employeesCategories } from "../model/values.data";
 import { EmployeesItem } from "@/entities/admin/employeesItem";
-import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
+
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const EmployeesList = () => {
    const theme = useThemeStore((state) => state.theme);
-   const list = [1, 2, 3, 4, 5];
+   const list = [1, 2, 3, 4, 5,6,7,8,9];
 
    return (
-      <div className={clsx(styles.list, styles[theme])}>
-         <ul className={styles.list__top}>
-            {employeesCategories.map((category) => (
-               <li key={category} className={styles.list__item}>
-                  {category}
-               </li>
-            ))}
-         </ul>
-
-         {list.map((item) => (
-            <EmployeesItem key={item} item={item} />
-         ))}
-      </div>
+       <div className={clsx(styles.table__border, styles[theme])}>
+           <table className={styles.table}>
+               <thead>
+                    <tr className={styles.table__thead}>
+                       {employeesCategories.map((category) => (
+                           <th className={styles.table__item} key={category}>
+                               {category}
+                           </th>
+                       ))}
+                    </tr>
+               </thead>
+               <tbody className={styles.table__list}>
+                    {list.map((item) => (
+                        <EmployeesItem key={item} item={item}/>
+                    ))}
+               </tbody>
+           </table>
+       </div>
    );
 };
 

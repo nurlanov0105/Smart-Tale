@@ -2,5 +2,32 @@
    display: flex;
    justify-content: center;
    column-gap: 3.2rem;
+
+   row-gap: 2rem;
    margin-top: 1rem;
+
+   min-height: 100%;
+
+   width: 100%;
+   overflow-y: hidden;
+   overflow-x: auto;
+
+   scrollbar-width: none;
+   scroll-behavior: smooth;
+
+}
+
+
+@media (max-width: 1310px) {
+   .section{
+      //flex-wrap: wrap;
+}
+}
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .section {
+      flex-direction: column;
+      align-items: center;
+   }
 }

@@ -12,12 +12,15 @@ import type { Props } from "../model/types";
 import checkIcon from "@@/imgs/commerce/check.svg";
 import styles from "./styles.module.scss";
 import Link from "next/link";
+import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
+   const theme = useThemeStore((state) => state.theme);
    return (
       <>
          {!isSubscribed ? (
-            <div className={styles.commerce}>
+            <div className={clsx(styles.commerce, styles[theme])}>
                <div className={styles.commerce__box}>
                   <Image src={commerceBox} alt="commercial box" />
                   <div className={styles.commerce__text}>
@@ -30,7 +33,7 @@ const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
                </Link>
             </div>
          ) : (
-            <div className={styles.box}>
+            <div className={clsx(styles.box, styles[theme])}>
                <Image src={checkIcon} alt="check icon" width={20} height={20} />
                <div className={styles.box__col}>
                   <h4>Подписка оформлена</h4>

@@ -47,7 +47,7 @@
 }
 .dark {
    .content {
-      background-color: $black-theme;
+      background-color: $dark-theme !important;
       p {
          color: $dark-grey;
       }

@@ -47,6 +47,7 @@ export enum ROUTES {
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
+   SEARCH = `/search`
 }
 
 export enum ADMIN_ROUTES {
