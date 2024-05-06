@@ -13,7 +13,7 @@ export const baseApiInstance = axios.create({
    headers: { "Content-Type": "application/json" },
 });
 
-authApiInstance.interceptors.response.use(
+baseApiInstance.interceptors.response.use(
    (response) => {
       return response;
    },
@@ -22,9 +22,9 @@ authApiInstance.interceptors.response.use(
       alert("Error occurred during the request");
       return Promise.reject(error);
    }
-);
+)
 
-baseApiInstance.interceptors.request.use(
+authApiInstance.interceptors.request.use(
    (config) => {
       const { accessToken } = { accessToken: "sdd" };
       if (accessToken) {

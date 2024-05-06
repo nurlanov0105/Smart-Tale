@@ -1,4 +1,5 @@
 "use client";
+import {monthsList, daysInCurrentMonth} from "./helper";
 import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
 import { IDateProps } from "./types";
 
@@ -10,23 +11,6 @@ export const useDate = (
    setDay: Dispatch<SetStateAction<IDateProps>>,
    type: "user" | "admin"
 ) => {
-   //Список месяцев
-   const monthsList = useMemo(() => {
-      return [
-         { value: "Январь", postValue: 1 },
-         { value: "Февраль", postValue: 2 },
-         { value: "Март", postValue: 3 },
-         { value: "Апрель", postValue: 4 },
-         { value: "Май", postValue: 5 },
-         { value: "Июнь", postValue: 6 },
-         { value: "Июль", postValue: 7 },
-         { value: "Август", postValue: 8 },
-         { value: "Сентябрь", postValue: 9 },
-         { value: "Октябрь", postValue: 10 },
-         { value: "Ноябрь", postValue: 11 },
-         { value: "Декабрь", postValue: 12 },
-      ];
-   }, []);
 
    // Список годов
    const yearsList = useCallback(() => {
@@ -39,17 +23,12 @@ export const useDate = (
    }, []);
 
    // Вычисялем кол-во дней в месяце
-   const daysInMonth = () => {
-      // не кеширую, потому что данные будут меняться
-      const days = new Date(+year.value, month.postValue, 0); //value может быть string,
-      // потому что только у месяца, typeof === string, а у day || year typeof === number
-      return days.getDate();
-   };
+   const daysInMonth = daysInCurrentMonth(year.postValue, month.postValue)
 
    // Список дней
    const daysList = useCallback(() => {
       const days = [];
-      for (let i = 1; i <= daysInMonth(); i++) {
+      for (let i = 1; i <= daysInMonth; i++) {
          days.push({ value: i, postValue: i });
       }
 
@@ -58,7 +37,7 @@ export const useDate = (
    }, [month, year])
 
    const [days, setDays] = useState(daysList);
-   const months = monthsList
+   const months = monthsList()
    const years = yearsList()
 
    const currentDate = new Date();

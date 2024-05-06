@@ -167,6 +167,33 @@
 }
 
 
+.dark{
+   .chats{
+      &__tabs{
+         border-bottom: 1px solid $border-theme;
+      }
+      &__right {
+         border-left: 1px solid $border-theme;
+      }
+      &__select {
+         border: 1px solid $border-theme !important;
+      }
+   }
+   .chat {
+      &__user,
+      &__info {
+         border-bottom: 1px solid $border-theme;
+      }
+      &__form {
+         border-top: 1px solid $border-theme;
+      }
+      &__input > label > input {
+         border: 1px solid $border-theme;
+      }
+   }
+}
+
+
 /* Desktop media */
 @media (min-height: 900px) {
    .chat{

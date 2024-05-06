@@ -1,0 +1,120 @@
+
+html.dark {
+  body {
+    * {
+      // scrollbar-width: thin;
+      // scrollbar-color: rgb(210, 209, 209) #f1f1f1;
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-left: solid 4px transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $dark-grey;
+        border-left: solid 4px $black-theme;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgb(244, 197, 5);
+      }
+    }
+  }
+
+  body,
+  header {
+    color: $white-theme;
+  }
+  main {
+    background-color: $dark-theme;
+  }
+
+  nav {
+    background-color: $black-theme;
+    color: $white-theme;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  a {
+    color: $white-theme;
+  }
+
+  input {
+    background-color: $dark-theme;
+    border-color: $border-theme;
+
+    color: $white-theme;
+    ::placeholder {
+      color: $white-theme;
+    }
+  }
+  textarea {
+    background-color: transparent;
+    border-color: $border-theme;
+
+    color: $white-theme;
+    ::placeholder {
+      color: $white-theme;
+    }
+  }
+
+  label {
+    background-color: $black-theme;
+    //border: 1px solid $border-theme;
+    input {
+      background-color: transparent;
+    }
+  }
+
+  .btn-bordered {
+    border-color: #a88b1a;
+    span {
+      color: $white-theme;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: $primary-theme;
+        transform: translateY(1px);
+      }
+    }
+
+    &:active {
+      background-color: $primary-theme;
+      transform: translateY(1.5px);
+    }
+
+    &:disabled {
+      background-color: rgb(210, 182, 70);
+      cursor: default;
+    }
+
+    &.active {
+      background-color: $primary-theme;
+
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: $primary-theme;
+        }
+      }
+
+      &:active {
+        background-color: $primary-theme;
+      }
+
+      &:disabled {
+        background-color: rgb(210, 182, 70);
+        cursor: default;
+      }
+    }
+  }
+}
+

@@ -10,7 +10,7 @@ export type InputFieldProps = {
    disabled?: boolean;
    type?: string;
    title?: string;
-   error?: string;
+   error?: string | any;
    classname?: string;
    isBordered?: boolean;
    value?: string;

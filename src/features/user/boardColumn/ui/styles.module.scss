@@ -20,7 +20,6 @@
       align-items: center;
 
       border-radius: 10px;
-      background-color: #c3fffb;
 
       line-height: 2;
       letter-spacing: -0.32px;
@@ -41,6 +40,6 @@
    background-color: $black-theme;
 
    .column__title {
-      color: $black-theme;
+      color: $white-theme;
    }
 }

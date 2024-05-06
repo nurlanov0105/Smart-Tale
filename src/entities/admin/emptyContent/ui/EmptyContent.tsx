@@ -7,6 +7,7 @@ import styles from "./styles.module.scss";
 
 const EmptyContent: FC<EmptyContentProps> = ({ type }) => {
    const router = useRouter();
+
    const handleRoute = () => {
       if (type === "organization") {
          router.push(ADMIN_ROUTES.CREATE_ORGANIZATION);

@@ -26,5 +26,5 @@ export const useOutside = (defaultState: boolean) => {
       };
    }, [isShown]);
 
-   return { ref, isShown, toggleShow };
+   return { ref, isShown, toggleShow, setIsShown };
 };

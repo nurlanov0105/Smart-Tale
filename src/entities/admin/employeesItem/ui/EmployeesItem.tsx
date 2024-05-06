@@ -1,29 +1,41 @@
 import React from "react";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
 import Link from "next/link";
 import { ADMIN_ROUTES } from "@/shared/lib";
+import { useThemeStore } from "@/shared/themeStore";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const EmployeesItem = ({ item }: { item: number }) => {
-   return (
-      <ul className={styles.item}>
-         <Link
-            href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-            className={styles.item__text}>
-            <button>Олейников Кирилл Кириллович</button>
-         </Link>
-         <Link
-            href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-            className={styles.item__text}>
-            <button>oleinikov@gmail.com</button>
-         </Link>
-         <li className={clsx(styles.item__text)}>
-            <button className={styles.item__underline}>Заказ №234</button>
-         </li>
-         <li className={styles.item__text}>Утюжник</li>
-         <li className={styles.item__text}>Авторизован</li>
-      </ul>
-   );
-};
 
+    const theme = useThemeStore((state) => state.theme);
+
+   return (
+       <tr className={clsx(styles.item, styles[theme])}>
+           <td >
+               <Link href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}>
+                   Олейников Кирилл Кириллович
+               </Link>
+           </td>
+           <td>
+               <Link href={ADMIN_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}>
+                   oleinikov@gmail.com
+               </Link>
+           </td>
+           <td>
+               <div className={styles.item__td} >
+                   <p>Заказ №234</p>
+                   <p>Заказ №234</p>
+                   <p>Заказ №234</p>
+               </div>
+           </td>
+           <td>
+               <span>Утюжник</span>
+           </td>
+           <td>
+               <span>Авторизован</span>
+           </td>
+       </tr>
+   )
+}
 export default EmployeesItem;

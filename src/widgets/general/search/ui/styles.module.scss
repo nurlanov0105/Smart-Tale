@@ -1,0 +1,21 @@
+.search{
+  &__title{
+    font-size: 1.8rem;
+    line-height: 1.5;
+
+  }
+  &__text{
+    font-weight: 500;
+  }
+  &__block{
+    display: inline-grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+
+    padding: 1rem 1rem;
+    margin-bottom: 2rem;
+
+    border: 1px solid #d9dbe3;
+    border-radius: 8px;
+  }
+}

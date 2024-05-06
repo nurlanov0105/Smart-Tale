@@ -37,3 +37,14 @@
       }
    }
 }
+
+.dark{
+   .notice{
+      &__container {
+         border: 1px solid $border-theme;
+      }
+      &__top {
+         border-bottom: 1px solid $border-theme;
+      }
+   }
+}

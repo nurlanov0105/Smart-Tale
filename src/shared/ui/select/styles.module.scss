@@ -1,3 +1,9 @@
+.dark .select {
+   &__selected{
+      border: 1px solid $border-theme;
+   }
+}
+
 .select {
    width: 100%;
 

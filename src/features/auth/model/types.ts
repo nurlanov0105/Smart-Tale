@@ -24,3 +24,12 @@ export type IForgotPasswordRequest = {
 export type IResetPasswordRequest = {
    password: string;
 };
+
+export type registerFormType = {
+   email: string;
+   firstName: string;
+   lastName: string;
+   middleName: string;
+   password: string;
+   rememberMe: boolean;
+};

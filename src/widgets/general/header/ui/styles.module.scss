@@ -1,3 +1,7 @@
+.dark{
+   border-bottom: 1px solid $border-theme !important;
+}
+
 .header {
    display: flex;
    align-items: center;
@@ -137,10 +141,14 @@
 /* Mobile big*/
 @media (max-width: 725px) {
    .header {
+      column-gap: 2rem;
       &_left {
          .header__links {
             display: none;
          }
+      }
+      &_right{
+         width: 100%;
       }
    }
 }

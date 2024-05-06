@@ -5,12 +5,15 @@ import { RightAction } from "@/entities/admin/rightAction";
 import { rightsActionsData } from "@/entities/admin/rightAction";
 import { organizationsData } from "@/features/admin/positionForm";
 import styles from "./styles.module.scss";
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
 
 const EmployeesForm = () => {
    const [selected, setSelected] = useState(organizationsData[0]);
+   const theme = useThemeStore((state) => state.theme);
 
    return (
-      <form className={styles.form}>
+      <form className={clsx(styles.form, styles[theme])}>
          <div className={styles.form__row}>
             <h4 className="h4">Организация сотрудника</h4>
             <Select

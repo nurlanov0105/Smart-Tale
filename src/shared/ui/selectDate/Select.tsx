@@ -2,20 +2,23 @@ import React, { FC } from "react";
 import { SelectProps } from "@/shared/lib/types";
 import { ChevronDown } from "lucide-react";
 import { useOutside } from "@/shared/lib";
+import {useThemeStore} from "@/shared/themeStore";
 import type { IDateProps } from "@/entities/general/selectDate";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, data }) => {
-   const { toggleShow, ref, isShown } = useOutside(false);
 
+   const theme = useThemeStore((state) => state.theme);
+
+   const { toggleShow, ref, isShown } = useOutside(false);
    const handleSelect = (item: IDateProps) => {
       setDate({ value: item.value, postValue: item.postValue });
       toggleShow();
    };
    return (
-      <div ref={ref} className={clsx(classname, styles.select)}>
+      <div ref={ref} className={clsx(classname, styles.select, styles[theme])}>
          <button type="button" onClick={toggleShow} className={styles.select__content}>
             {/*<p className={styles.select__title}>{title}</p>*/}
             <div className={styles.select__block}>

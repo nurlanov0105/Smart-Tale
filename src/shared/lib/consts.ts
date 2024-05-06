@@ -24,6 +24,7 @@ export const MODAL_KEYS = {
     logout: "LogoutModal",
     card: "CardModal",
     deleteAccount: "DeleteModal",
+    deleteEmployee: "DeleteEmployeeModal",
 }
 
 

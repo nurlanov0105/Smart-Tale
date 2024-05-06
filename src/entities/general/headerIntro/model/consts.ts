@@ -1,6 +1,10 @@
 import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
 
 export const PathData: any = {
+   ["/orders/search"]: {
+      path: "SmartTale",
+      name: "Поиск",
+   },
    [DASHBOARD.PROFILE]: {
       path: "Личный кабинет/Профиль",
       name: "Ваш профиль",
@@ -66,10 +70,9 @@ export const PathData: any = {
       name: "Пользователь",
    },
    [ROUTES.SUBSCRIBE]: {
-      path: "SmartTale",
+      path: "Личный кабинет/Подписка",
       name: "Подписка",
    },
-
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",
       name: "Организация",

@@ -1,6 +1,9 @@
+"use client";
+
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 // enum ClassNameEnum {
 //    standart = "standart",
@@ -9,11 +12,11 @@ import clsx from "clsx";
 
 type Props = {
    type: string;
-   amount?: number
 };
 
-const CommonSkeleton: FC<Props> = ({ type, amount }) => {
-   return <div className={clsx(styles.cardSkeleton, styles[type])}></div>;
+const CommonSkeleton: FC<Props> = ({ type }) => {
+   const theme = useThemeStore((state) => state.theme);
+   return <div className={clsx(styles.cardSkeleton, styles[type], styles[theme])}></div>;
 };
 
 export default CommonSkeleton;
