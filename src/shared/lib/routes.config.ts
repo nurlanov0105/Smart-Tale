@@ -1,8 +1,15 @@
+export enum WORK {
+   VACANCIES = "/work/vacancies",
+   CREATE_VACANCY = `/work/create-vacancy`,
+   RESUME = `/work/resume`,
+}
+
 export enum MARKETPLACE {
    EQUIPMENT = "/marketplace/equipment",
    SERVICE = `/marketplace/service`,
    CREATE_ORDER = `/marketplace/create-order`,
 }
+
 
 export enum DASHBOARD {
    PROFILE = `/dashboard/profile`,
@@ -24,8 +31,7 @@ export enum ROUTES {
    SIGN_IN = "/login",
    DETAILS = "/detail",
    AUTHOR = "/author",
-   CONFIRMATION_LOGIN = "/confirmation/login",
-   CONFIRMATION_REGISTER = "/confirmation/register",
+   CONFIRMATION_REGISTER = "/confirmation",
    CONFIRMED = "/confirmed",
 
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
@@ -47,7 +53,7 @@ export enum ROUTES {
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
-   SEARCH = `/search`
+   SEARCH = `/search`,
 }
 
 export enum ADMIN_ROUTES {

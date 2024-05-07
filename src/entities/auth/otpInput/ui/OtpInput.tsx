@@ -4,9 +4,7 @@ import OtpInput from "react-otp-input";
 import { OtpProps } from "../index";
 import styles from "./styles.module.scss";
 
-const OtpInputField: FC<OtpProps> = ({ isError }) => {
-   const [otp, setOtp] = useState("");
-
+const OtpInputField: FC<OtpProps> = ({ isError, otp, setOtp }) => {
    const inputStyles = {
       width: "5.3rem",
       height: "8rem",

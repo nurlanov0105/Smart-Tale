@@ -24,8 +24,8 @@ export const AdminRoutes: TypeAdminCategories[] = [
       id: 3,
       title: "Должности",
       Icon: UsersRound,
-      link: ADMIN_ROUTES.ADD_POSITION,
-      routes: [ADMIN_ROUTES.ADD_POSITION],
+      link: ADMIN_ROUTES.POSITIONS,
+      routes: [ADMIN_ROUTES.POSITIONS, ADMIN_ROUTES.ADD_POSITION],
    },
    {
       id: 4,

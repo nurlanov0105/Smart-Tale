@@ -3,7 +3,20 @@ import ConfirmationForm from "./ui/Confirmation";
 import LoginForm from "./ui/LoginForm";
 
 import { authApi } from "./model/services";
-import type { IRegisterRequest, ILoginRequest } from "./model/types";
-import { useRegister, useLogin } from "./model/useQueries";
+import type { IRegisterRequest, ILoginRequest, registerFormType } from "./model/types";
+import { useRegister, useLogin, useSendCode, useResendCode, useLogout } from "./model/useQueries";
 
-export { RegisterForm, ConfirmationForm, LoginForm, authApi, IRegisterRequest, ILoginRequest };
+export {
+   RegisterForm,
+   ConfirmationForm,
+   LoginForm,
+   authApi,
+   IRegisterRequest,
+   ILoginRequest,
+   registerFormType,
+   useRegister,
+   useLogin,
+   useSendCode,
+   useResendCode,
+   useLogout,
+};

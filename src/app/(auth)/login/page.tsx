@@ -1,9 +1,20 @@
+"use client";
+
 import { NextPage } from "next";
-import { Login } from "@/widgets/auth/login";
-import styles from "./styles.module.scss";
+import { ILoginRequest, LoginForm, useLogin } from "@/features/auth";
 
 const LoginPage: NextPage = () => {
-   return <Login />;
+   const { mutate: login } = useLogin();
+   const handleLogin = (data: ILoginRequest) => {
+      const params = {
+         email: data.email,
+         password: data.password,
+      };
+
+      login(params);
+      console.log(params);
+   };
+   return <LoginForm handleLogin={handleLogin} />;
 };
 
 export default LoginPage;

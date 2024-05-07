@@ -11,7 +11,7 @@ import { SubscribeBox } from "@/entities/user/subscribeBox";
 
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import { Logo } from "@/entities/general/logo";
-import { MARKETPLACE, ROUTES, useNavbar } from "@/shared/lib";
+import { MARKETPLACE, ROUTES, useAuth, useNavbar } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
@@ -33,6 +33,8 @@ const Navbar = () => {
 
    const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
 
+   const isAuth = false;
+
    return (
       <>
          <nav
@@ -51,10 +53,15 @@ const Navbar = () => {
                      <span>Mode</span>
                      <ShieldCheck />
                   </Link>
-                  <Link href={ROUTES.SIGN_IN} className={styles.navbar__link}>
-                     <span>Login</span>
-                     <LogIn />
-                  </Link>
+                  {!isAuth ? (
+                     <Link href={ROUTES.SIGN_IN} className={styles.navbar__link}>
+                        <span>Login</span>
+                        <LogIn />
+                     </Link>
+                  ) : (
+                     ""
+                  )}
+
                   <div className={clsx(styles.navbar__theme, styles[theme])} onClick={toggleTheme}>
                      {theme === "light" ? <Moon /> : <SunMoon />}
                   </div>

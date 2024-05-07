@@ -27,11 +27,11 @@ const CardsSection: FC<CardSceletonProps> = ({ isLoading = true, isError = false
    return (
        <section className={styles.section}>
            {/*<h3 className="h4">Фильтры</h3>*/}
-           <div className={styles.section__filters}>
-               <div className={styles.section__selectWrapper}>
-                   <Select classname={styles.section__select} selected={selected} setSelected={setSelected} data={data}/>
-               </div>
-           </div>
+           {/*<div className={styles.section__filters}>*/}
+           {/*    <div className={styles.section__selectWrapper}>*/}
+           {/*        <Select classname={styles.section__select} selected={selected} setSelected={setSelected} data={data}/>*/}
+           {/*    </div>*/}
+           {/*</div>*/}
            <div className={styles.section__list}>
                {readyData}
            </div>

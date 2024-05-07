@@ -1,16 +1,24 @@
 .card {
-  max-width: 40rem;
+  //max-width: 40rem;
+  width: 100%;
+
+  //min-width: 40rem;
   padding: 0 0 4rem 0;
   margin-top: 2rem;
+
   background: $common-white;
   box-shadow: 0 1rem 4rem rgba(126, 155, 189, 0.3);
   border-radius: 8px;
   text-align: center;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
   cursor: pointer;
+
   transition: transform 0.2s ease-in;
+
   @media (hover: hover) and (pointer: fine) {
     &:hover {
       transform: translateY(-10px);
