@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
@@ -9,11 +9,12 @@ import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
 import { ROUTES } from "@/shared/lib";
-import { EmailSchema, NamingSchema } from "../model/schema";
+import { EmailSchema, NamingSchema, passwordSchema } from "../model/schema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { RegisterFormProps, registerFormType } from "../model/types";
 
-const RegisterForm = () => {
+const RegisterForm: FC<RegisterFormProps> = ({ handleRegister }) => {
    const theme = useThemeStore((state) => state.theme);
    const router = useRouter();
 
@@ -26,6 +27,7 @@ const RegisterForm = () => {
       formState: { errors, isValid },
       handleSubmit,
       reset,
+      watch,
    } = useForm({
       mode: "onChange",
       criteriaMode: "all",
@@ -33,13 +35,12 @@ const RegisterForm = () => {
    });
 
    const onSubmit = (data: any) => {
-      console.log(data);
+      handleRegister(data);
       reset();
-
-      if (data) {
-         router.push(ROUTES.CONFIRMATION_REGISTER);
-      }
    };
+
+   const password = React.useRef({});
+   password.current = watch("password", "");
 
    return (
       <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.auth, styles[theme])}>
@@ -81,12 +82,19 @@ const RegisterForm = () => {
             <div>
                <h5 className={styles.auth__title}>Пароль*</h5>
                <PasswordField
-                  {...register("password", {
-                     required: "Пароль обязателен",
-                     minLength: { value: 8, message: "Пароль должен быть не менее 8 символов" },
-                  })}
+                  {...register("password", passwordSchema)}
                   type="password"
                   error={errors.password && errors.password.message}
+               />
+            </div>
+            <div>
+               <h5 className={styles.auth__title}>Подтвердите пароль*</h5>
+               <PasswordField
+                  {...register("rePassword", {
+                     validate: (value) => value === password.current || "Пароли должны совпадать",
+                  })}
+                  type="password"
+                  error={errors.rePassword && errors.rePassword.message}
                />
             </div>
             <label className={styles.auth__checkbox}>

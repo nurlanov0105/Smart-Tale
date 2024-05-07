@@ -4,12 +4,13 @@ import { useDebounce } from "./hooks/useDebounce";
 import { useAuth } from "./hooks/useAuth";
 import { useOutside } from "./hooks/useOutside";
 import { useInitialDate } from "./hooks/useInitialDate";
-import { onDragEnd } from "./utils/onDragEnd";
 import { images } from "./consts";
 import { MODAL_KEYS } from "./consts";
 import { SkeletonTypes } from "./consts";
 import { useWindowSize } from "./hooks/useWindowSize";
-import {useNavbar} from "./hooks/useNavbar";
+import { useNavbar } from "./hooks/useNavbar";
+import { clearTokens } from "./utils/clearTokens";
+import { clearCredentials } from "./utils/clearCredentials";
 
 export type { InputFieldProps };
 
@@ -23,11 +24,12 @@ export {
    DASHBOARD,
    ORDERS,
    ROUTES,
-   onDragEnd,
    ADMIN_ROUTES,
    MODAL_KEYS,
    images,
    SkeletonTypes,
    useWindowSize,
-    useNavbar
+   useNavbar,
+   clearTokens,
+   clearCredentials,
 };

@@ -1,24 +1,19 @@
 "use client";
 
 import { useMutation } from "@tanstack/react-query";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { authApi } from "./services";
-import { ROUTES } from "@/shared/lib";
-import { toast } from "react-toastify";
+import { EnumTokens, ROUTES, clearCredentials, clearTokens } from "@/shared/lib";
+import Cookies from "js-cookie";
+import { closeModal } from "@/views/modal";
 
 export const useRegister = () => {
    const router = useRouter();
 
    return useMutation({
       mutationFn: authApi.register,
-      onSuccess: (data) => {
-         if (data) {
-            router.push(ROUTES.CONFIRMATION_REGISTER);
-         }
-      },
-      onError: (error: any) => {
-         console.error("Error occurred during registration: ", error.message);
-         toast("Error occurred during registration");
+      onSuccess: () => {
+         router.push(ROUTES.CONFIRMATION_REGISTER);
       },
    });
 };
@@ -30,12 +25,48 @@ export const useLogin = () => {
       mutationFn: authApi.login,
       onSuccess: (data) => {
          if (data) {
+            console.log("useLogin tokes - ", data.data);
+            Cookies.set(EnumTokens.ACCESS_TOKEN, data.data.access, { path: "/", expires: 1 });
+            Cookies.set(EnumTokens.REFRESH_TOKEN, data.data.refresh, { path: "/", expires: 1 });
             router.push(ROUTES.MARKETPLACE_EQUIPMENT);
          }
       },
-      onError: (error: any) => {
-         console.error("Error occurred during login: ", error.message);
-         toast("Error occurred during login");
+   });
+};
+export const useSendCode = () => {
+   const router = useRouter();
+
+   return useMutation({
+      mutationFn: authApi.emailVerify,
+      onSuccess: (data) => {
+         if (data) {
+            router.push(ROUTES.SIGN_IN);
+         }
+      },
+   });
+};
+export const useResendCode = () => {
+   const router = useRouter();
+
+   return useMutation({
+      mutationFn: authApi.resendCode,
+      onSuccess: (data) => {
+         if (data) {
+            router.push(ROUTES.SIGN_IN);
+         }
+      },
+   });
+};
+export const useLogout = () => {
+   const router = useRouter();
+
+   return useMutation({
+      mutationFn: authApi.logout,
+      onSuccess: () => {
+         closeModal();
+         clearTokens();
+         clearCredentials();
+         router.push(ROUTES.SIGN_IN);
       },
    });
 };
