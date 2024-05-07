@@ -5,6 +5,8 @@ import {
    IResendCodeRequest,
    IForgotPasswordRequest,
    IResetPasswordRequest,
+   IEmailVerifyRequest,
+   LogoutType,
 } from "./types";
 import { baseApiInstance } from "@/shared/api/instance";
 
@@ -16,6 +18,11 @@ export const authApi = {
 
    login: async (params: ILoginRequest) => {
       const response = await authApiInstance.post(AuthEndpoints.LOGIN, params);
+      return response;
+   },
+
+   emailVerify: async (params: IEmailVerifyRequest) => {
+      const response = await authApiInstance.post(AuthEndpoints.EMAIL_CONFIRMATION, params);
       return response;
    },
 
@@ -41,8 +48,8 @@ export const authApi = {
       return response;
    },
 
-   logout: async (refreshToken: string) => {
-      const response = await baseApiInstance.post(AuthEndpoints.LOGOUT, refreshToken);
+   logout: async (params: LogoutType) => {
+      const response = await baseApiInstance.post(AuthEndpoints.LOGOUT, params);
       return response;
    },
 

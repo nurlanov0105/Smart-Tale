@@ -11,7 +11,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 
-const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
+const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);

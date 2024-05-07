@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { FC, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
@@ -8,12 +8,13 @@ import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
-import { EmailSchema } from "../model/schema";
+import { EmailSchema, passwordSchema } from "../model/schema";
 import { ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "@/features/auth/ui/styles.module.scss";
+import { LoginFormProps } from "../model/types";
 
-const LoginForm = () => {
+const LoginForm: FC<LoginFormProps> = ({ handleLogin }) => {
    const theme = useThemeStore((state) => state.theme);
    const router = useRouter();
 
@@ -33,12 +34,8 @@ const LoginForm = () => {
    });
 
    const onSubmit = (data: any) => {
-      console.log(data);
+      handleLogin(data);
       reset();
-
-      if (data) {
-         router.push(ROUTES.MARKETPLACE_EQUIPMENT);
-      }
    };
 
    return (
@@ -57,14 +54,12 @@ const LoginForm = () => {
             <div>
                <h5 className={styles.auth__title}>Пароль*</h5>
                <PasswordField
-                  {...register("password", {
-                     required: "Пароль обязателен",
-                     minLength: { value: 8, message: "Пароль должен быть не менее 8 символов" },
-                  })}
+                  {...register("password", passwordSchema)}
                   type="password"
                   error={errors.password && errors.password.message}
                />
             </div>
+
             <label className={styles.auth__checkbox}>
                <InputField classname={styles.auth__checkField} isBordered={true} type="checkbox" />
                <p className={styles.auth__text}>Запомнить меня</p>
