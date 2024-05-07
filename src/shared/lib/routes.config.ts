@@ -1,8 +1,15 @@
+export enum WORK {
+   VACANCIES = "/work/vacancies",
+   CREATE_VACANCY = `/work/create-vacancy`,
+   RESUME = `/work/resume`,
+}
+
 export enum MARKETPLACE {
    EQUIPMENT = "/marketplace/equipment",
    SERVICE = `/marketplace/service`,
    CREATE_ORDER = `/marketplace/create-order`,
 }
+
 
 export enum DASHBOARD {
    PROFILE = `/dashboard/profile`,

@@ -11,7 +11,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 
-const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) => {
+const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
@@ -22,10 +22,14 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes }) =
       if (windowSize.width && windowSize.width <= 900) {
          toggleHidden();
       }
-   };
+   }
+
+   const isOrganization = false
 
    return (
-      <li className={clsx(styles.category_item, styles[theme])} onClick={handleClickClose}>
+      <li className={clsx(styles.category_item, styles[theme], {
+         // [styles.category__none]: !isOrganization && id === 2
+      })} onClick={handleClickClose}>
          <Link
             href={routes[0].link}
             className={clsx(styles.category__top, {

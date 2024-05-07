@@ -1,4 +1,5 @@
 import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
+import {WORK} from "@/shared/lib/routes.config";
 
 export const PathData: any = {
    ["/orders/search"]: {
@@ -41,6 +42,14 @@ export const PathData: any = {
    [MARKETPLACE.CREATE_ORDER]: {
       path: "Маркетплейс/Разместить заказ",
       name: "Разместить заказ",
+   },
+   [WORK.VACANCIES]: {
+      path: "Работа/Вакансии",
+      name: "Вакансии",
+   },
+   [WORK.RESUME]: {
+      path: "Работа/Резюме",
+      name: "Резюме",
    },
 
    [ORDERS.CURRENT_ORDERS]: {
@@ -102,6 +111,10 @@ export const PathData: any = {
       name: "Сотрудники",
    },
 
+   [ADMIN_ROUTES.POSITIONS]: {
+      path: "SmartTale",
+      name: "Должность",
+   },
    [ADMIN_ROUTES.ADD_POSITION]: {
       path: "SmartTale",
       name: "Должность",

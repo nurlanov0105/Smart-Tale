@@ -8,6 +8,9 @@
 .category {
    padding: 1.3rem 1.6rem 0;
 
+   &__none{
+      display: none;
+   }
    &__top {
       width: 100%;
 

@@ -1,0 +1,28 @@
+.item {
+  td {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 400;
+    padding: 2rem;
+
+    a {
+      text-decoration: underline;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid #ddd;
+    }
+  }
+
+  &__icon {
+    width: 20px !important;
+    text-align: center !important;
+
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
