@@ -4,6 +4,7 @@ export enum EnumTokens {
    ACCESS_TOKEN = "accessToken",
    REFRESH_TOKEN = "refreshToken",
    USER_ID = "userId",
+   REGISTER_EMAIL = "register-email",
 }
 
 export type InputFieldProps = {

@@ -6,7 +6,6 @@ export default function middleware(req: NextRequest, response: NextResponse) {
    const { url, cookies } = req;
 
    // const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value;
-   const accessToken = true;
 
    if (protectedRoutes.includes(req.nextUrl.pathname)) {
       const absoluteURL = new URL(MARKETPLACE.EQUIPMENT, req.nextUrl.origin);
@@ -14,7 +13,7 @@ export default function middleware(req: NextRequest, response: NextResponse) {
    }
 
    // if (!accessToken && protectedRoutes.includes(req.nextUrl.pathname)) {
-   //    const absoluteURL = new URL("/signin", req.nextUrl.origin);
+   //    const absoluteURL = new URL("/login", req.nextUrl.origin);
    //    return NextResponse.redirect(absoluteURL.toString());
    // }
 }

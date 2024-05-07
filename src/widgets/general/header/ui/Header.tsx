@@ -26,7 +26,7 @@ const Header = () => {
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);
 
-   const isAuth = useAuth();
+   const isAuth = false;
 
    return (
       <header className={clsx(styles.header, styles.header_mb, styles[theme])}>
@@ -43,10 +43,15 @@ const Header = () => {
                   <span>Mode</span>
                   <ShieldCheck />
                </Link>
-               <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
-                  <span>Login</span>
-                  <LogIn />
-               </Link>
+               {!isAuth ? (
+                  <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
+                     <span>Login</span>
+                     <LogIn />
+                  </Link>
+               ) : (
+                  ""
+               )}
+
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>
@@ -58,10 +63,15 @@ const Header = () => {
                   <span>Mode</span>
                   <ShieldCheck />
                </Link>
-               <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
-                  <span>Login</span>
-                  <LogIn />
-               </Link>
+               {!isAuth ? (
+                  <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
+                     <span>Login</span>
+                     <LogIn />
+                  </Link>
+               ) : (
+                  ""
+               )}
+
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>
