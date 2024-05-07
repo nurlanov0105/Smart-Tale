@@ -8,8 +8,11 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { SkeletonTypes } from "@/shared/lib";
 import { AvatarSkeleton } from "@/shared/ui";
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
 
 const User = () => {
+   const theme = useThemeStore((state) => state.theme);
    const data = [
       { value: "Активно", postValue: "active" },
       { value: "Деактивировано", postValue: "nactive" },
@@ -23,7 +26,7 @@ const User = () => {
    }
 
    return (
-      <div className={styles.user}>
+      <div className={clsx(styles.user, styles[theme])}>
          {isLoading ? (
             <AvatarSkeleton />
          ) : (

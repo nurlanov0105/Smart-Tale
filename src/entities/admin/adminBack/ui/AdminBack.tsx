@@ -7,7 +7,7 @@ const AdminBack:FC<{title: string}> = ({title}) => {
     const router = useRouter()
     const handleRoute = () => router.back()
     return (
-        <button onClick={handleRoute} className={styles.back}>
+        <button type="button" onClick={handleRoute} className={styles.back}>
             <span className={styles.back__button}>
                 <ChevronLeft />
             </span>
