@@ -3,7 +3,7 @@ export type RoutesType = {
    parentId: number;
    subtitle: string;
    link: string;
-   isSubscribe: boolean;
+   isShow: boolean;
 };
 
 export type TypeCategories = {
@@ -12,4 +12,5 @@ export type TypeCategories = {
    Icon: LucideIcon;
    routes: RoutesType[];
    activeRoutes?: string[]
+   isShow: boolean
 };

@@ -7,6 +7,7 @@
 
   border-radius: 10px;
 
+
   //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: $common-white;
 
@@ -71,4 +72,25 @@
     }
 
   }
+}
+
+.dark{
+  .item{
+    &__block{
+      background-color: #0D311E;
+    }
+
+    &__button{
+      color: $common-white;
+      background-color: #2C9863;
+
+      @media (hover: hover) and (pointer: fine){
+        &:hover{
+          filter: brightness(110%);
+        }
+      }
+
+    }
+  }
+  background-color: $black-theme;
 }

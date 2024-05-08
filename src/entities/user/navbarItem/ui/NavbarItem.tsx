@@ -24,12 +24,8 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id 
       }
    }
 
-   const isOrganization = false
-
    return (
-      <li className={clsx(styles.category_item, styles[theme], {
-         // [styles.category__none]: !isOrganization && id === 2
-      })} onClick={handleClickClose}>
+      <li className={clsx(styles.category_item, styles[theme])} onClick={handleClickClose}>
          <Link
             href={routes[0].link}
             className={clsx(styles.category__top, {
