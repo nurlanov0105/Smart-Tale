@@ -12,18 +12,20 @@
   border-radius: 10px;
 
   &__bordered{
+    display: block;
     width: 100%;
 
     border: 1px solid $grey;
     background-color: $common-white;
     border-radius: 10px;
+
+    //min-height: 150px;
   }
 
 
   &__borderedArea{
 
     width: 100%;
-    //height: auto;
 
     height: 3rem;
     max-height: 100%;

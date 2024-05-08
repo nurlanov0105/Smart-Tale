@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-   const { type, classname, title, disabled, error, isBordered, ...rest } = props;
+   const { type, classname, title, disabled, error, isBordered, value, ...rest } = props;
 
    const isBorderedClass = (lastClass: string, borderedClass: string, dangerClass?: string) =>
       isBordered ? (error ? dangerClass : borderedClass) : lastClass;
@@ -14,9 +14,10 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) =>
    return (
       <div className={clsx(classname, styles.fieldWrapper)}>
          <label htmlFor={title} className={isBorderedClass(styles.field, styles.field__bordered)}>
-            <p className={styles.field__title}>{title}</p>
+            {!isBordered && <p className={styles.field__title}>{title}</p>}
             <input
-               id={title}
+                id={title}
+                value={value}
                className={isBorderedClass(
                   styles.field__input,
                   styles.field__input_bordered,

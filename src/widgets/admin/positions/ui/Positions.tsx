@@ -7,9 +7,13 @@ import {ADMIN_ROUTES} from "@/shared/lib";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss"
+import {useThemeStore} from "@/shared/themeStore";
 
 
 const Positions = () => {
+
+    const theme = useThemeStore((state) => state.theme);
+
     const router = useRouter()
     const handleRoute = () => {
         router.push(ADMIN_ROUTES.ADD_POSITION)
@@ -25,7 +29,7 @@ const Positions = () => {
 
 
     return (
-        <div className={styles.position}>
+        <div className={clsx(styles.position, styles[theme])}>
             <div className={styles.position__top}>
                 <h3>Список должностей</h3>
                 <Button onClick={handleRoute}>Добавить должность</Button>

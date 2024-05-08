@@ -6,9 +6,12 @@ import { CategoryRoutes } from "../model/categoryRoutes";
 import styles from "./styles.module.scss";
 
 const NavbarCategories: FC = () => {
+
    return (
       <ul className={styles.list}>
-         {CategoryRoutes.map((item) => (
+         {CategoryRoutes
+             .filter(category => category.isShow)
+             .map((item) => (
             <NavbarItem {...item} key={item.id} />
          ))}
       </ul>
