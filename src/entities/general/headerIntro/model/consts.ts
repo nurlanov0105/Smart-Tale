@@ -51,6 +51,10 @@ export const PathData: any = {
       path: "Работа/Резюме",
       name: "Резюме",
    },
+   [WORK.CREATE_VACANCY]: {
+      path: "Работа/Добавить Вакансию",
+      name: "Добавить Вакансию",
+   },
 
    [ORDERS.CURRENT_ORDERS]: {
       path: "Заказы/Текущие заказы",

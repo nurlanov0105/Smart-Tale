@@ -1,118 +1,80 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import {InputField} from "@/shared/ui";
+import {
+    cityFilter,
+    experienceFilter,
+    graphicsFilter,
+    incomeLevelFilter,
+    specializationsFilter
+} from "@/widgets/user/createVacancy";
+
 import styles from "./styles.module.scss"
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
+import {useForm} from "react-hook-form";
 
 const FiltersVacancies = () => {
+    const theme = useThemeStore((state) => state.theme);
+    const {register} = useForm()
+
     return (
-        <div className={styles.filters}>
+        <div className={clsx(styles.filters, styles[theme])}>
             <div className={styles.filter}>
                 <h4 className="h4">График работы</h4>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>24/7</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>В будние дни</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>По выходным</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Неполный день</p>
-                </label>
+                {
+                    graphicsFilter.map(graphic =>
+                        <label key={graphic.postValue} className={styles.filter__label}>
+                            <span>
+                                <InputField {...register(graphic.postValue)} isBordered={true} type="checkbox" classname={styles.filter__checkbox}/></span>
+                            <p>{graphic.value}</p>
+                        </label>
+                    )
+                }
             </div>
             <div className={styles.filter}>
                 <h4 className="h4">Уровень дохода</h4>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>Не имеет значения</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>от 1 700 сом</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>от 10 000 сом </p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>от 25 000 сом</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>от 50 000 сом</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>от 80 000 сом</p>
-                </label>
+                {
+                    incomeLevelFilter.map(item =>
+                        <label key={item.postValue} className={styles.filter__label}>
+                            <span><InputField {...register("income-level")} value={item.postValue} isBordered={true} type="radio" classname={styles.filter__radio}/></span>
+                            <p>{item.value}</p>
+                        </label>
+                    )
+                }
             </div>
             <div className={styles.filter}>
                 <h4 className="h4">Город</h4>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Бишкек</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Ош</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Джалал-Абад</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Баткен</p>
-                </label>
-
+                {
+                    cityFilter.map(city =>
+                        <label key={city.postValue} className={styles.filter__label}>
+                            <span><InputField isBordered={true} type="checkbox" classname={styles.filter__checkbox}/></span>
+                            <p>{city.value}</p>
+                        </label>
+                    )
+                }
             </div>
             <div className={styles.filter}>
                 <h4 className="h4">Специализации</h4>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Администратор</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Швея</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Утюжник</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="checkbox"/></span>
-                    <p>Менеджер</p>
-                </label>
+                {
+                    specializationsFilter.map(item =>
+                        <label key={item.postValue} className={styles.filter__label}>
+                            <span><InputField isBordered={true} type="checkbox" classname={styles.filter__checkbox}/></span>
+                            <p>{item.value}</p>
+                        </label>
+                    )
+                }
 
             </div>
             <div className={styles.filter}>
                 <h4 className="h4">Опыт работы</h4>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p> Не имеет значения</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p> От 1 года до 3 лет</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>От 3 до 6 лет</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>Более 6 лет</p>
-                </label>
-                <label className={styles.filter__label}>
-                    <span><InputField isBordered={true} type="radio" classname={styles.filter__radio}/></span>
-                    <p>Нет опыта</p>
-                </label>
+                {
+                    experienceFilter.map(item =>
+                        <label key={item.postValue} className={styles.filter__label}>
+                            <span><InputField {...register("experience")} isBordered={true} type="radio" classname={styles.filter__radio}/></span>
+                            <p>{item.value}</p>
+                        </label>
+                    )
+                }
             </div>
         </div>
     );

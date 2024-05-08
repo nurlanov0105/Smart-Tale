@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   row-gap: 2rem;
+
   &__top{
     display: flex;
     column-gap: 2rem;
@@ -18,6 +19,7 @@
     border-radius: 20px;
 
     background-color: $common-white;
+    min-width: 44rem !important;
   }
 
   &__thead{
@@ -32,11 +34,12 @@
     text-align: left;
     color: $grey;
 
+    padding: 2rem;
+
     &:not(:last-child){
       border-right: 1px solid #ddd;
     }
 
-    padding: 2rem;
     &__idx{
       width: 4%;
     }
@@ -59,3 +62,48 @@
   }
 }
 
+//Mobile
+@media (max-width: 500px) {
+  .position__top{
+    flex-direction: column;
+    row-gap: 1.5rem;
+  }
+  .table{
+    &__item{
+      &__idx{
+        width: 2%;
+      }
+      &__title{
+        width: 5%;
+      }
+    }
+  }
+}
+
+
+.dark{
+  .table{
+    &__border{
+      background-color: $black-theme;
+      border: 1px solid $border-theme;
+    }
+    &__thead{
+      border-bottom: 1px solid $border-theme;
+    }
+    &__item{
+      color: $white-theme;
+
+      &:not(:last-child){
+        border-right: 1px solid $border-theme;
+      }
+    }
+    &__list{
+
+      tr{
+        &:not(:last-child){
+          border-bottom: 1px solid $border-theme;
+        }
+      }
+    }
+  }
+}

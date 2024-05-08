@@ -6,8 +6,10 @@ import {MODAL_KEYS} from "@/shared/lib";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useThemeStore} from "@/shared/themeStore";
 
 const PositionItem:FC<PositionItemProps> = ({item, idx}) => {
+    const theme = useThemeStore((state) => state.theme);
     const handleDelete = () => {
         showModal(MODAL_KEYS.deleteAccount)
     }
@@ -19,7 +21,7 @@ const PositionItem:FC<PositionItemProps> = ({item, idx}) => {
     }
 
     return (
-        <tr key={idx} className={clsx(styles.item)}>
+        <tr key={idx} className={clsx(styles.item, styles[theme])}>
             <td>
                 <button>{idx + 1}</button>
             </td>
@@ -33,7 +35,7 @@ const PositionItem:FC<PositionItemProps> = ({item, idx}) => {
                 <button>{item.title}</button>
             </td>
             <td>
-                <button>{item.description}</button>
+                <button className={styles.item__description}>{item.description}</button>
             </td>
             <td className={styles.item__icon}>
                 <button onClick={handleDelete}><X className={styles.item__icon}/></button>

@@ -1,10 +1,13 @@
 "use client"
 import React, {useState} from 'react';
-import {VacancyItem} from "@/entities/user/vacancyItem";
-import styles from "./styles.module.scss"
-import {Select} from "@/shared/ui";
 import {Rows2, Rows3, SlidersHorizontal} from "lucide-react";
+import {VacancyItem} from "@/entities/user/vacancyItem";
+import {Select} from "@/shared/ui";
 import {FiltersVacancies} from "@/features/user/filtersVacancies";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss"
+import {useThemeStore} from "@/shared/themeStore";
 
 const Vacancies = () => {
     const vacancies = [
@@ -69,34 +72,59 @@ const Vacancies = () => {
         {value: "По возрастанию зарплаты", postValue: "asc"},
     ]
 
+    const theme = useThemeStore((state) => state.theme);
     const [selectedDate, setSelectedDate] = useState(timeList[0])
     const [selected, setSelected] = useState(typeList[0])
 
     const [withFilters, setWithFilters] = useState(false)
+    const [typeView, setTypeView] = useState(false)
 
+    const handleFilters = () => setWithFilters(!withFilters)
+    const handleTypeView = () => setTypeView(!typeView)
 
     return (
-        <div className={styles.vacancies}>
+        <div className={clsx(styles.vacancies, styles[theme])}>
             <div className={styles.vacancies__title}>
                 <h4 className="h4">Найдено 12 вакансий</h4>
             </div>
-            <div className={styles.vacancies__filters}>
 
+            <div className={styles.vacancies__filters}>
                 <div className={styles.vacancies__types}>
-                    <button><Rows2 className={styles.vacancies__type}/></button>
-                    <button><Rows3 className={styles.vacancies__type}/></button>
+                    <button onClick={handleTypeView}>
+                        <Rows2
+                            className={clsx(styles.vacancies__type, {
+                            [styles.vacancies__type_active]: !typeView})}
+                        />
+                    </button>
+                    <button onClick={handleTypeView}>
+                        <Rows3
+                            className={clsx(styles.vacancies__type, {
+                            [styles.vacancies__type_active]: typeView})}
+                        />
+                    </button>
                 </div>
                 <div className={styles.vacancies__selects}>
-                    <Select classname={styles.vacancies__select} selected={selectedDate} setSelected={setSelectedDate}
-                            data={timeList}/>
-                    <Select classname={styles.vacancies__select} selected={selected} setSelected={setSelected}
-                            data={typeList}/>
-                    <button className={styles.vacancies__filter}><SlidersHorizontal/></button>
+                    <Select
+                        selected={selectedDate}
+                        setSelected={setSelectedDate}
+                        data={timeList}
+                        classname={styles.vacancies__select}
+                    />
+                    <Select
+                        selected={selected}
+                        setSelected={setSelected}
+                        data={typeList}
+                        classname={styles.vacancies__selectType}
+                    />
+                    <button onClick={handleFilters} className={styles.vacancies__filter}><SlidersHorizontal/></button>
                 </div>
             </div>
 
 
-            <div className={styles.vacancies__row}>
+            <div className={clsx({
+                [styles.vacancies__withoutFilters]: !withFilters,
+                [styles.vacancies__row]: withFilters
+            })}>
                 <div className={styles.vacancies__list}>
 
                     {
@@ -105,7 +133,12 @@ const Vacancies = () => {
                         ))
                     }
                 </div>
-                <FiltersVacancies/>
+
+                <div className={clsx(styles.vacancies__transition, {
+                    [styles.vacancies__transition_show]: withFilters
+                })}>
+                    <FiltersVacancies/>
+                </div>
             </div>
         </div>
     );
