@@ -9,9 +9,9 @@ export function useRememberMe() {
 
    useEffect(() => {
       const isClient = typeof window === "object";
-      const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+      const rememberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
 
-      if (isClient && remeberMe === "true") {
+      if (isClient && rememberMe === "true") {
          setIsRemember(true);
       } else {
          setIsRemember(false);

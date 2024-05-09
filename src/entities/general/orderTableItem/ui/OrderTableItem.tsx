@@ -19,6 +19,7 @@ const OrderTableItem: FC = () => {
            </td>
            <td>1000 сом</td>
            <td>10 апреля 2024</td>
+           <td>В процессе</td>
        </tr>
     );
 };
