@@ -9,6 +9,7 @@ import {
    LogoutType,
 } from "./types";
 import { baseApiInstance } from "@/shared/api/instance";
+import { EnumTokens } from "@/shared/lib";
 
 export const authApi = {
    register: async (params: IRegisterRequest) => {
@@ -53,10 +54,8 @@ export const authApi = {
       return response;
    },
 
-   deleteAccount: async (password: string) => {
-      const response = await baseApiInstance.delete(AuthEndpoints.DELETE_ACCOUNT, {
-         data: password,
-      });
+   deleteAccount: async (data: { refresh: string }) => {
+      const response = await baseApiInstance.delete(AuthEndpoints.DELETE_ACCOUNT, { data });
       return response;
    },
 };

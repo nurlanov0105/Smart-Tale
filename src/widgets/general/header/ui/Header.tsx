@@ -18,6 +18,7 @@ const Header = () => {
    // theme
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
+   const isSubscribed = true;
 
    useEffect(() => {
       document.documentElement.className = theme;
@@ -25,8 +26,6 @@ const Header = () => {
 
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);
-
-   const isAuth = false;
 
    return (
       <header className={clsx(styles.header, styles.header_mb, styles[theme])}>
@@ -39,17 +38,11 @@ const Header = () => {
                <HeaderIntro />
             </div>
             <div className={styles.header__links}>
-               <Link href={ROUTES.MODE} className={styles.header__link}>
-                  <span>Mode</span>
-                  <ShieldCheck />
-               </Link>
-               {!isAuth ? (
-                  <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
-                     <span>Login</span>
-                     <LogIn />
+               {isSubscribed && (
+                  <Link href={ROUTES.MODE} className={styles.header__link}>
+                     <span>Режим</span>
+                     <ShieldCheck />
                   </Link>
-               ) : (
-                  ""
                )}
 
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
@@ -59,17 +52,11 @@ const Header = () => {
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
             <div className={styles.header__links}>
-               <Link href={ROUTES.MODE} className={styles.header__link}>
-                  <span>Mode</span>
-                  <ShieldCheck />
-               </Link>
-               {!isAuth ? (
-                  <Link href={ROUTES.SIGN_IN} className={styles.header__link}>
-                     <span>Login</span>
-                     <LogIn />
+               {isSubscribed && (
+                  <Link href={ROUTES.MODE} className={styles.header__link}>
+                     <span>Режим</span>
+                     <ShieldCheck />
                   </Link>
-               ) : (
-                  ""
                )}
 
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>

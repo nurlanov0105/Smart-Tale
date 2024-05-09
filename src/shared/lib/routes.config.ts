@@ -47,6 +47,8 @@ export enum ROUTES {
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
    SEARCH = `/search`,
+
+   STRIPE_PAYMENT = `/payment/stripe`,
 }
 
 export enum ADMIN_ROUTES {

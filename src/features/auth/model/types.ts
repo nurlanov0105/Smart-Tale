@@ -10,6 +10,7 @@ export type IRegisterRequest = {
 export type ILoginRequest = {
    email: string;
    password: string;
+   rememberMe?: boolean;
 };
 
 export type IEmailVerifyRequest = {
@@ -37,7 +38,7 @@ export type registerFormType = {
    middleName: string;
    password: string;
    rePassword: string;
-   rememberMe: boolean;
+   rememberMe?: boolean;
 };
 
 export type ConfirmationFormProps = {
@@ -50,9 +51,12 @@ export type ConfirmationFormProps = {
 
 export type RegisterFormProps = {
    handleRegister: (data: registerFormType) => void;
+   checkEmailValidity: (email: string) => void;
+   isLoading: boolean;
 };
 export type LoginFormProps = {
    handleLogin: (data: ILoginRequest) => void;
+   isLoading: boolean;
 };
 
 export type LogoutType = {

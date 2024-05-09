@@ -9,8 +9,8 @@ import { MODAL_KEYS } from "./consts";
 import { SkeletonTypes } from "./consts";
 import { useWindowSize } from "./hooks/useWindowSize";
 import { useNavbar } from "./hooks/useNavbar";
-import { clearTokens } from "./utils/clearTokens";
-import { clearCredentials } from "./utils/clearCredentials";
+import { CookiesServices } from "./services/cookies.services";
+import { useRememberMe } from "./hooks/useRememberMe";
 
 export type { InputFieldProps };
 
@@ -30,6 +30,6 @@ export {
    SkeletonTypes,
    useWindowSize,
    useNavbar,
-   clearTokens,
-   clearCredentials,
+   CookiesServices,
+   useRememberMe,
 };
