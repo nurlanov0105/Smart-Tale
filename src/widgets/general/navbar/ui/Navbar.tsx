@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
-import { LogoutBtn } from "@/entities/general/logoutBtn";
+import { AuthBtn } from "@/entities/general/authBtn";
 import { SubscribeBox } from "@/entities/user/subscribeBox";
 
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
@@ -33,8 +33,6 @@ const Navbar = () => {
 
    const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
 
-   const isAuth = false;
-
    return (
       <>
          <nav
@@ -50,17 +48,9 @@ const Navbar = () => {
                <Logo />
                <div className={styles.navbar__links}>
                   <Link href={ROUTES.MODE} className={styles.navbar__link}>
-                     <span>Mode</span>
+                     <span>Режим</span>
                      <ShieldCheck />
                   </Link>
-                  {!isAuth ? (
-                     <Link href={ROUTES.SIGN_IN} className={styles.navbar__link}>
-                        <span>Login</span>
-                        <LogIn />
-                     </Link>
-                  ) : (
-                     ""
-                  )}
 
                   <div className={clsx(styles.navbar__theme, styles[theme])} onClick={toggleTheme}>
                      {theme === "light" ? <Moon /> : <SunMoon />}
@@ -75,7 +65,7 @@ const Navbar = () => {
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && <SubscribeBox />}
-               <LogoutBtn />
+               <AuthBtn />
             </div>
          </nav>
          <div

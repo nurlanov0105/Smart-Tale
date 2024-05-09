@@ -1,8 +1,7 @@
 import axios from "axios";
 import { AuthEndpoints } from "./endpoints";
-import Cookies from "js-cookie";
 import { toast } from "react-toastify";
-import { EnumTokens } from "../lib";
+import { CookiesServices, EnumTokens } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
@@ -20,22 +19,31 @@ authApiInstance.interceptors.response.use(
       return response;
    },
    (error) => {
-      const errorKey = Object.keys(error.response.data)[0];
-      const errorMessage = error.response.data[errorKey];
+      // const errorKey = Object.keys(error.response.data)[0];
+      // const errorMessage = error.response.data[errorKey];
 
-      console.log("Error occurred during the request: ", error.response.data);
-      toast.error(errorMessage);
+      console.log("Произошла ошибка при запросе: ", error);
+      toast.error("Произошла ошибка при запросе");
       return Promise.reject(error);
    }
 );
 
 baseApiInstance.interceptors.request.use(
    (config) => {
-      const accessToken = Cookies.get(EnumTokens.ACCESS_TOKEN);
+      // isRemeberMe - true/false, get from session storage
+      const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+      let accessToken;
+
+      if (remeberMe) {
+         accessToken = sessionStorage.getItem(EnumTokens.ACCESS_TOKEN);
+      } else {
+         accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+      }
 
       if (accessToken) {
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
+
       return config;
    },
    (error) => {
@@ -53,28 +61,48 @@ baseApiInstance.interceptors.response.use(
       if (error.response.status === 401 && !originalRequest._retry) {
          originalRequest._retry = true;
 
-         const accessToken = await refreshToken();
-         Cookies.set(EnumTokens.ACCESS_TOKEN, accessToken, { path: "/", expires: 1 });
+         // refresh token
+         const { access, refresh } = await refreshToken();
 
-         axios.defaults.headers.common["Authorization"] = "Bearer " + accessToken;
-         originalRequest.headers["Authorization"] = "Bearer " + accessToken;
+         // save token to cookies/session storage
+         const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+         if (remeberMe) {
+            sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, access);
+            sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, refresh);
+         } else {
+            CookiesServices.setToken({ keyName: EnumTokens.ACCESS_TOKEN, value: access });
+            CookiesServices.setToken({ keyName: EnumTokens.REFRESH_TOKEN, value: refresh });
+         }
+
+         axios.defaults.headers.common["Authorization"] = "Bearer " + access;
+         originalRequest.headers["Authorization"] = "Bearer " + access;
 
          return baseApiInstance(originalRequest);
       }
 
-      console.error("Error occurred during the request: ", error.message);
-      alert("Error occurred during the request");
+      console.log("Произошла ошибка при запросе: ", error.message);
+      toast.error("Произошла ошибка при запросе");
       return Promise.reject(error);
    }
 );
 
 const refreshToken = async () => {
-   const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
+   // isRemeberMe - true/false, get from session storage
 
-   const { data } = await axios.post(
-      BASE_URL + AuthEndpoints.REFRESH_TOKEN,
-      `Bearer ${refreshToken}`,
-      { headers: { "Content-Type": "text/plain" } }
-   );
-   return data.accessToken;
+   const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+   let refreshToken;
+
+   if (remeberMe) {
+      refreshToken = sessionStorage.getItem(EnumTokens.REFRESH_TOKEN);
+   } else {
+      refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
+   }
+
+   const data = {
+      refresh: refreshToken,
+   };
+
+   const response = await axios.post(BASE_URL + AuthEndpoints.REFRESH_TOKEN, data);
+
+   return { access: response.data.access, refresh: response.data.refresh };
 };

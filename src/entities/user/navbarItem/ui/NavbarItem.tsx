@@ -11,7 +11,14 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 
-const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id }) => {
+const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
+   routes,
+   title,
+   Icon,
+   activeRoutes,
+   id,
+   isAuth,
+}) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
@@ -23,6 +30,21 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id 
          toggleHidden();
       }
    }
+
+   const filteredItems = routes.map((item) => {
+      if (isAuth || !item.authorized) {
+         return (
+            <Link
+               href={item.link}
+               key={item.subtitle}
+               className={clsx(styles.category__item, {
+                  [styles.category__item_active]: item.link === pathname,
+               })}>
+               {item.subtitle}
+            </Link>
+         );
+      }
+   });
 
    return (
       <li className={clsx(styles.category_item, styles[theme])} onClick={handleClickClose}>
@@ -40,18 +62,7 @@ const NavbarItem: FC<TypeCategories> = ({ routes, title, Icon, activeRoutes, id 
          </Link>
 
          <div className={styles.category}>
-            <div className={styles.category__list}>
-               {routes.map((item) => (
-                  <Link
-                     href={item.link}
-                     key={item.subtitle}
-                     className={clsx(styles.category__item, {
-                        [styles.category__item_active]: item.link === pathname,
-                     })}>
-                     {item.subtitle}
-                  </Link>
-               ))}
-            </div>
+            <div className={styles.category__list}>{filteredItems}</div>
          </div>
       </li>
    );

@@ -4,7 +4,14 @@ import LoginForm from "./ui/LoginForm";
 
 import { authApi } from "./model/services";
 import type { IRegisterRequest, ILoginRequest, registerFormType } from "./model/types";
-import { useRegister, useLogin, useSendCode, useResendCode, useLogout } from "./model/useQueries";
+import {
+   useRegister,
+   useLogin,
+   useSendCode,
+   useResendCode,
+   useLogout,
+   useDeleteAccount,
+} from "./model/useQueries";
 
 export {
    RegisterForm,
@@ -19,4 +26,5 @@ export {
    useSendCode,
    useResendCode,
    useLogout,
+   useDeleteAccount,
 };

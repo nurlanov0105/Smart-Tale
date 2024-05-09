@@ -2,7 +2,7 @@ import { Button, Emojis } from "@/shared/ui";
 import { useLogout } from "@/features/auth";
 import Cookies from "js-cookie";
 import styles from "./styles.module.scss";
-import { EnumTokens, clearTokens } from "@/shared/lib";
+import { EnumTokens } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
 
 const LogoutModal = () => {
@@ -28,7 +28,7 @@ const LogoutModal = () => {
             <div className={styles.modal__btns}>
                <Button className="btn_bordered">Нет</Button>
                <Button disabled={isPending} onClick={handleLogout}>
-                  Да
+                  {isPending ? "Загрузка..." : "Да"}
                </Button>
             </div>
          </div>

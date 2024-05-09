@@ -3,7 +3,7 @@ export type RoutesType = {
    parentId: number;
    subtitle: string;
    link: string;
-   isShow: boolean;
+   authorized?: boolean;
 };
 
 export type TypeCategories = {
@@ -11,6 +11,6 @@ export type TypeCategories = {
    title: string;
    Icon: LucideIcon;
    routes: RoutesType[];
-   activeRoutes?: string[]
-   isShow: boolean
+   activeRoutes?: string[];
+   authorized?: boolean;
 };

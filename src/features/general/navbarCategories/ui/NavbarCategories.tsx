@@ -4,18 +4,18 @@ import React, { FC } from "react";
 import { NavbarItem } from "@/entities/user/navbarItem";
 import { CategoryRoutes } from "../model/categoryRoutes";
 import styles from "./styles.module.scss";
+import { useAuth } from "@/shared/lib";
 
 const NavbarCategories: FC = () => {
+   // const isAuth = useAuth();
+   const isAuth = true;
 
-   return (
-      <ul className={styles.list}>
-         {CategoryRoutes
-             .filter(category => category.isShow)
-             .map((item) => (
-            <NavbarItem {...item} key={item.id} />
-         ))}
-      </ul>
-   );
+   const filteredNavbar = CategoryRoutes.map((item) => {
+      if (isAuth || !item.authorized) {
+         return <NavbarItem {...item} key={item.id} isAuth={isAuth} />;
+      }
+   });
+   return <ul className={styles.list}>{filteredNavbar}</ul>;
 };
 
 export default NavbarCategories;
