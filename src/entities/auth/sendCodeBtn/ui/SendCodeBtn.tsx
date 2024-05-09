@@ -10,14 +10,19 @@ const SendCodeBtn: FC<SendBtnProps> = ({
    isResendSuccess,
    btnDisabled,
 }) => {
-   // const { seconds } = useTimer({ isError });
+   const [resendDisable, setResendDisable] = useState(isError);
+   const { seconds } = useTimer({
+      isError,
+      resendDisable,
+      setResendDisable,
+   });
 
-   // const secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
+   const secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
 
    return (
       <>
          {isError ? (
-            <Button type="submit" onClick={handleSendAgain}>
+            <Button type="submit" onClick={handleSendAgain} disabled={resendDisable}>
                Отправить код еще раз
             </Button>
          ) : (
@@ -25,8 +30,8 @@ const SendCodeBtn: FC<SendBtnProps> = ({
                Войти
             </Button>
          )}
-         {isResendSuccess ? (
-            <p className={styles.auth__button}>Отправить код повторно через 00:{59}</p>
+         {resendDisable ? (
+            <p className={styles.auth__button}>Отправить код повторно через 00:{secondsFormat}</p>
          ) : (
             <p className={styles.auth__button}>Отправить код повторно</p>
          )}

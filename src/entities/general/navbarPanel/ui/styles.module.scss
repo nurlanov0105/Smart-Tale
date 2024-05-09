@@ -11,20 +11,14 @@
       color: $common-black;
 
       border-radius: 3px;
-      border: 1px solid $common-black;
-
+      border: 1px solid $dark-grey;
+      color: $dark-grey;
    }
+}
 
-   // &_hover {
-   //    @media (hover: hover) and (pointer: fine) {
-   //       &:hover {
-   //       }
-   //    }
-
-   //    &:active {
-   //    }
-
-   //    &:disabled {
-   //    }
-   // }
+.dark {
+   svg {
+      color: $white-theme;
+      border: 1px solid $white-theme;
+   }
 }

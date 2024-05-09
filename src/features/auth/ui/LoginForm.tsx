@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
@@ -9,14 +9,16 @@ import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
 import { EmailSchema, passwordSchema } from "../model/schema";
-import { ROUTES } from "@/shared/lib";
+import { ROUTES, useDebounce, useRememberMe } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "@/features/auth/ui/styles.module.scss";
 import { LoginFormProps } from "../model/types";
 
-const LoginForm: FC<LoginFormProps> = ({ handleLogin }) => {
+const LoginForm: FC<LoginFormProps> = ({ handleLogin, isLoading }) => {
    const theme = useThemeStore((state) => state.theme);
-   const router = useRouter();
+
+   const isRemember = useRememberMe();
+   const [isRememberMe, setRememberMe] = useState(useRememberMe());
 
    useEffect(() => {
       document.documentElement.className = theme;
@@ -36,6 +38,14 @@ const LoginForm: FC<LoginFormProps> = ({ handleLogin }) => {
    const onSubmit = (data: any) => {
       handleLogin(data);
       reset();
+   };
+
+   useEffect(() => {
+      setRememberMe(isRemember);
+   }, [isRemember]);
+
+   const handleRememberChange = () => {
+      setRememberMe(!isRememberMe);
    };
 
    return (
@@ -61,11 +71,18 @@ const LoginForm: FC<LoginFormProps> = ({ handleLogin }) => {
             </div>
 
             <label className={styles.auth__checkbox}>
-               <InputField classname={styles.auth__checkField} isBordered={true} type="checkbox" />
+               <InputField
+                  {...register("rememberMe")}
+                  classname={styles.auth__checkField}
+                  isBordered={true}
+                  type="checkbox"
+                  checked={isRememberMe}
+                  onChange={handleRememberChange}
+               />
                <p className={styles.auth__text}>Запомнить меня</p>
             </label>
-            <Button type="submit" disabled={!isValid}>
-               Войти
+            <Button type="submit" disabled={!isValid || isLoading}>
+               {isLoading ? "Загрузка..." : "Войти"}
             </Button>
             <TypeAuthButton type="login" />
          </div>

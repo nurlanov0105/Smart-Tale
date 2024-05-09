@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
@@ -8,15 +8,14 @@ import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
-import { ROUTES } from "@/shared/lib";
+import { ROUTES, useDebounce } from "@/shared/lib";
 import { EmailSchema, NamingSchema, passwordSchema } from "../model/schema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { RegisterFormProps, registerFormType } from "../model/types";
 
-const RegisterForm: FC<RegisterFormProps> = ({ handleRegister }) => {
+const RegisterForm: FC<RegisterFormProps> = ({ handleRegister, isLoading, checkEmailValidity }) => {
    const theme = useThemeStore((state) => state.theme);
-   const router = useRouter();
 
    useEffect(() => {
       document.documentElement.className = theme;
@@ -33,6 +32,15 @@ const RegisterForm: FC<RegisterFormProps> = ({ handleRegister }) => {
       criteriaMode: "all",
       shouldFocusError: true,
    });
+
+   const email = watch("email");
+   const debouncedEmail = useDebounce(email, 500);
+
+   useEffect(() => {
+      if (!errors.email) {
+         checkEmailValidity(debouncedEmail);
+      }
+   }, [debouncedEmail, isValid, errors.email, checkEmailValidity]);
 
    const onSubmit = (data: any) => {
       handleRegister(data);
@@ -97,7 +105,7 @@ const RegisterForm: FC<RegisterFormProps> = ({ handleRegister }) => {
                   error={errors.rePassword && errors.rePassword.message}
                />
             </div>
-            <label className={styles.auth__checkbox}>
+            {/* <label className={styles.auth__checkbox}>
                <InputField
                   {...register("rememberMe")}
                   classname={styles.auth__checkField}
@@ -105,9 +113,9 @@ const RegisterForm: FC<RegisterFormProps> = ({ handleRegister }) => {
                   type="checkbox"
                />
                <p className={styles.auth__text}>Запомнить меня</p>
-            </label>
-            <Button type="submit" disabled={!isValid}>
-               Зарегистрироваться
+            </label> */}
+            <Button type="submit" disabled={!isValid || isLoading}>
+               {isLoading ? "Загрузка..." : "Зарегистрироваться"}
             </Button>
             <TypeAuthButton type="register" />
          </div>

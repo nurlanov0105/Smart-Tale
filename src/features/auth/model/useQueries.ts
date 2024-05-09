@@ -3,9 +3,9 @@
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { authApi } from "./services";
-import { EnumTokens, ROUTES, clearCredentials, clearTokens } from "@/shared/lib";
-import Cookies from "js-cookie";
+import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
+import { toast } from "react-toastify";
 
 export const useRegister = () => {
    const router = useRouter();
@@ -24,10 +24,25 @@ export const useLogin = () => {
    return useMutation({
       mutationFn: authApi.login,
       onSuccess: (data) => {
-         if (data) {
-            console.log("useLogin tokes - ", data.data);
-            Cookies.set(EnumTokens.ACCESS_TOKEN, data.data.access, { path: "/", expires: 1 });
-            Cookies.set(EnumTokens.REFRESH_TOKEN, data.data.refresh, { path: "/", expires: 1 });
+         const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+         if (data && remeberMe) {
+            const accessData = {
+               keyName: EnumTokens.ACCESS_TOKEN,
+               value: data.data.access,
+            };
+            const refreshData = {
+               keyName: EnumTokens.REFRESH_TOKEN,
+               value: data.data.refresh,
+            };
+
+            CookiesServices.setToken(accessData);
+            CookiesServices.setToken(refreshData);
+
+            router.push(ROUTES.MARKETPLACE_EQUIPMENT);
+         } else {
+            sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
+            sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, data.data.refresh);
+
             router.push(ROUTES.MARKETPLACE_EQUIPMENT);
          }
       },
@@ -40,6 +55,7 @@ export const useSendCode = () => {
       mutationFn: authApi.emailVerify,
       onSuccess: (data) => {
          if (data) {
+            toast.success("Аккаунт создан!");
             router.push(ROUTES.SIGN_IN);
          }
       },
@@ -64,8 +80,21 @@ export const useLogout = () => {
       mutationFn: authApi.logout,
       onSuccess: () => {
          closeModal();
-         clearTokens();
-         clearCredentials();
+         CookiesServices.clearTokens();
+         CookiesServices.clearCredentials();
+         router.push(ROUTES.SIGN_IN);
+      },
+   });
+};
+export const useDeleteAccount = () => {
+   const router = useRouter();
+
+   return useMutation({
+      mutationFn: authApi.deleteAccount,
+      onSuccess: () => {
+         closeModal();
+         CookiesServices.clearTokens();
+         CookiesServices.clearCredentials();
          router.push(ROUTES.SIGN_IN);
       },
    });

@@ -11,12 +11,15 @@ import Cookies from "js-cookie";
 
 const ConfirmationForm = ({}) => {
    const theme = useThemeStore((state) => state.theme);
-
+   const [otp, setOtp] = useState("");
+   const [progress, setProgress] = useState(0);
    const { mutate: sendCode, isPending: IsSendLoading, isError } = useSendCode();
+
    const {
       mutate: reSendCode,
       isPending: isResendLoading,
       isSuccess: isResendSuccess,
+      isError: isResendError,
    } = useResendCode();
 
    const handleConfirmation = (code: string) => {
@@ -33,19 +36,9 @@ const ConfirmationForm = ({}) => {
          code,
          email: "some",
       };
-      console.log(data);
 
-      // cookies.get(EnumTokens.REGISTER_EMAIL)?.value;
-      // sendCode(data);
+      reSendCode(data);
    };
-
-   const [progress, setProgress] = useState<number | null>(null);
-
-   const [otp, setOtp] = useState("");
-
-   useEffect(() => {
-      document.documentElement.className = theme;
-   }, [theme]);
 
    const handleSendCode = (e: any) => {
       e.preventDefault();
@@ -58,9 +51,17 @@ const ConfirmationForm = ({}) => {
       setOtp("");
    };
 
+   useEffect(() => {
+      setProgress(70);
+      document.documentElement.className = theme;
+   }, [theme]);
+
    return (
       <div className={styles.auth}>
-         <HeadingAuth isLoading={false} isError={isError} />
+         <HeadingAuth
+            isLoading={IsSendLoading || isResendLoading}
+            isError={isError || isResendError}
+         />
          {(!IsSendLoading || isResendLoading) && (
             <form className={styles.auth__row}>
                <OtpInputField isError={isError} otp={otp} setOtp={setOtp} />
@@ -73,7 +74,6 @@ const ConfirmationForm = ({}) => {
                />
             </form>
          )}
-
          {(IsSendLoading || isResendLoading) && (
             <div className={styles.auth__bar}>
                <div className={styles.auth__progress} style={{ width: `${progress}%` }}></div>

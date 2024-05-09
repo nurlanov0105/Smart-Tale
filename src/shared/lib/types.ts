@@ -5,6 +5,8 @@ export enum EnumTokens {
    REFRESH_TOKEN = "refreshToken",
    USER_ID = "userId",
    REGISTER_EMAIL = "register-email",
+   REMEMBER_ME = "remember-me",
+   SUBSCRIBE_TYPE = "subscribe-type",
 }
 
 export type InputFieldProps = {
@@ -15,6 +17,14 @@ export type InputFieldProps = {
    classname?: string;
    isBordered?: boolean;
    value?: string;
+   checked?: boolean;
+   onChange?: any;
+   name?: string;
+   pattern?: string;
+   maxLength?: number;
+   required?: boolean;
+   onFocus?: any;
+   placeholder?: string;
 };
 
 export type TextAreaProps = Omit<InputFieldProps, "type">;
@@ -33,8 +43,8 @@ export type SelectProps = {
 };
 
 export type TimerProps = {
-   isDisabled: boolean;
-   setIsDisabled: Dispatch<SetStateAction<boolean>>;
+   resendDisable: boolean;
+   setResendDisable: Dispatch<SetStateAction<boolean>>;
    isError: boolean;
 };
 
@@ -51,3 +61,5 @@ export type SelectTypes = {
    title?: string;
    classname?: string;
 };
+
+export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };

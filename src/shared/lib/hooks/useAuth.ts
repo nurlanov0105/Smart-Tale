@@ -1,13 +1,22 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { EnumTokens } from "../types";
 
 export function useAuth() {
-   const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
+   const [isAuth, setIsAuth] = useState(false);
 
-   if (refreshToken) {
-      return true;
-   } else {
-      return false;
-   }
+   useEffect(() => {
+      const isClient = typeof window === "object";
+      const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
+
+      if (isClient && refreshToken) {
+         setIsAuth(true);
+      } else {
+         setIsAuth(false);
+      }
+   }, []);
+
+   return isAuth;
 }

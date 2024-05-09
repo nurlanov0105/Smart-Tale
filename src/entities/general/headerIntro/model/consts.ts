@@ -82,10 +82,7 @@ export const PathData: any = {
       path: "SmartTale",
       name: "Пользователь",
    },
-   [ROUTES.SUBSCRIBE]: {
-      path: "Личный кабинет/Подписка",
-      name: "Подписка",
-   },
+
    [ADMIN_ROUTES.ORGANIZATION]: {
       path: "SmartTale",
       name: "Организация",
@@ -126,5 +123,14 @@ export const PathData: any = {
    [ADMIN_ROUTES.HISTORY]: {
       path: "SmartTale",
       name: "История",
+   },
+
+   [ROUTES.SUBSCRIBE]: {
+      path: "Личный кабинет/Подписка",
+      name: "Подписка",
+   },
+   [ROUTES.STRIPE_PAYMENT]: {
+      path: "SmartTale/Оплата",
+      name: "Оплата",
    },
 };
