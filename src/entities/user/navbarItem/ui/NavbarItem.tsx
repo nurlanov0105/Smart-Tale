@@ -29,7 +29,7 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
       if (windowSize.width && windowSize.width <= 900) {
          toggleHidden();
       }
-   };
+   }
 
    const filteredItems = routes.map((item) => {
       if (isAuth || !item.authorized) {

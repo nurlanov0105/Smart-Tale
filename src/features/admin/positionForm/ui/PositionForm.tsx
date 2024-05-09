@@ -3,11 +3,12 @@
 import React, { useState } from "react";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { organizationsData } from "../model/organizations.data";
-import styles from "./styles.module.scss";
 import { employee } from "@/shared/lib/types";
 import { useThemeStore } from "@/shared/themeStore";
-import clsx from "clsx";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const roles = [
    { value: "Утюжник", postValue: "Утюжник" },
@@ -28,15 +29,15 @@ const PositionForm = () => {
             <Select
                selected={selected}
                setSelected={setSelected}
-               title="Подписки"
+               title="Организация"
                data={organizationsData}
             />
-            <Select
-               selected={selectedRole}
-               setSelected={setSelectedRole}
-               title="Должности"
-               data={roles}
-            />
+            {/*<Select*/}
+            {/*    selected={selectedRole}*/}
+            {/*    setSelected={setSelectedRole}*/}
+            {/*    title="Должности"*/}
+            {/*    data={roles}*/}
+            {/*/>*/}
             <h4 className="h4">Название должности</h4>
             <InputField title="Название" />
 

@@ -54,3 +54,11 @@
       width: 100%;
    }
 }
+
+.dark {
+   .form {
+      &__fieldset {
+         background-color: transparent;
+      }
+   }
+}

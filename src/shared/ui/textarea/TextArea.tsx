@@ -19,7 +19,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => 
                 <p className={styles.textarea__title}>{title}</p>
                 <textarea
                     id={title}
-                    className={isBorderedClass(styles.textarea__input, styles.textarea__borderedArea)}
+                    className={clsx(isBorderedClass(styles.textarea__input, styles.textarea__borderedArea), classname)}
                     {...rest}
                     ref={ref}
                     disabled={disabled}

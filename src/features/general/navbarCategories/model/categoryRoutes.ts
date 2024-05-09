@@ -1,6 +1,7 @@
 import { DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
-import { User, Clipboard, ShoppingCart } from "lucide-react";
+import { User, Clipboard, ShoppingCart, BriefcaseBusiness } from "lucide-react";
 import { TypeCategories } from "@/entities/user/navbarItem";
+import { WORK } from "@/shared/lib/routes.config";
 
 export const CategoryRoutes: TypeCategories[] = [
    {
@@ -8,6 +9,7 @@ export const CategoryRoutes: TypeCategories[] = [
       title: "Личный кабинет",
       Icon: User,
       authorized: true,
+
       routes: [
          {
             parentId: 1,
@@ -47,6 +49,7 @@ export const CategoryRoutes: TypeCategories[] = [
       id: 2,
       Icon: Clipboard,
       authorized: true,
+
       routes: [
          {
             parentId: 2,
@@ -82,6 +85,32 @@ export const CategoryRoutes: TypeCategories[] = [
             parentId: 3,
             subtitle: "Разместить заказ",
             link: MARKETPLACE.CREATE_ORDER,
+            authorized: true,
+         },
+      ],
+      activeRoutes: [ROUTES.CARD_DETAILS],
+   },
+   {
+      title: "Работа",
+      id: 4,
+      Icon: BriefcaseBusiness,
+      authorized: false,
+      routes: [
+         {
+            parentId: 4,
+            subtitle: "Вакансии",
+            link: WORK.VACANCIES,
+         },
+         {
+            parentId: 4,
+            subtitle: "Моё резюме",
+            link: WORK.RESUME,
+            authorized: true,
+         },
+         {
+            parentId: 4,
+            subtitle: "Добавить вакансию",
+            link: WORK.CREATE_VACANCY,
             authorized: true,
          },
       ],

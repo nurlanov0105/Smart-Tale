@@ -6,8 +6,12 @@ import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
 import { useEffect, useState } from "react";
 import { Select } from "@/shared/ui";
+import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 const StripPayment = () => {
+   const theme = useThemeStore((state) => state.theme);
+
    const isClient = typeof window === "object";
    const [type, setType] = useState("base");
    const [selected, setSelected] = useState(SubsribesData[type as keyof typeof SubsribesData]);
@@ -22,10 +26,10 @@ const StripPayment = () => {
    }, [isClient, type]);
 
    return (
-      <section className={styles.section}>
+      <section className={clsx(styles.section, styles[theme])}>
          <h3 className="h3">Оплата картой</h3>
          <div className={styles.section__content}>
-            <div>
+            <div className={styles.section__left}>
                <Select
                   selected={selected}
                   setSelected={setSelected}

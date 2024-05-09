@@ -40,3 +40,9 @@
       color: $grey;
    }
 }
+
+.dark{
+   .user__bottom{
+      border: 1px solid $border-theme;
+   }
+}

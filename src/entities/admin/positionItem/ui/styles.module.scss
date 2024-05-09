@@ -1,0 +1,56 @@
+.item {
+  td {
+    font-size: 1.4rem;
+    line-height: 1.4;
+    font-weight: 400;
+    padding: 2rem;
+
+    a {
+      text-decoration: underline;
+    }
+    button{
+      text-align: left;
+    }
+
+    &:not(:last-child) {
+      border-right: 1px solid #ddd;
+    }
+  }
+  &__description{
+    display: inline-flex;
+    flex-direction: column;
+    flex-shrink: 0;
+
+    padding-right: 1rem;
+
+    max-height: 70px;
+
+    overflow: hidden;
+    overflow-y: auto;
+  }
+
+  &__icon {
+    width: 20px !important;
+    text-align: center !important;
+
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: red;
+      }
+    }
+  }
+}
+
+
+.dark{
+  *{
+    color: $white-theme;
+  }
+
+  td{
+    &:not(:last-child){
+      border-right: 1px solid $border-theme !important;
+    }
+  }
+}

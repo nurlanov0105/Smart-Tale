@@ -14,3 +14,38 @@
       text-align: center;
    }
 }
+
+/* Tablet Small*/
+@media (max-width: 900px) {
+   .section {
+      &__left {
+         & > div {
+            max-width: 100%;
+         }
+      }
+   }
+}
+@media (max-width: 725px) {
+   .section {
+      &__content {
+         flex-direction: column-reverse;
+      }
+
+      &__left {
+         & > div {
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+         }
+      }
+   }
+}
+@media (max-width: 400px) {
+   .section {
+      &__left {
+         & > div {
+            max-width: 100%;
+         }
+      }
+   }
+}

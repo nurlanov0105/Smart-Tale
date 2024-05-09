@@ -7,6 +7,8 @@ import { formatCreditCardNumber, formatCVC, formatExpirationDate } from "../mode
 import Payment from "payment";
 import styles from "./styles.module.scss";
 import { Button, InputField } from "@/shared/ui";
+import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 interface FormState {
    number: string;
@@ -18,6 +20,7 @@ interface FormState {
 }
 
 const StripePaymentForm: React.FC = () => {
+   const theme = useThemeStore((state) => state.theme);
    const [state, setState] = useState<FormState>({
       number: "",
       name: "",
@@ -62,7 +65,7 @@ const StripePaymentForm: React.FC = () => {
    };
 
    return (
-      <div key="Payment" className={styles.formWrapper}>
+      <div key="Payment" className={clsx(styles.formWrapper, styles[theme])}>
          <div className={styles.card}>
             <Card
                number={state.number}
@@ -106,7 +109,7 @@ const StripePaymentForm: React.FC = () => {
                      type="tel"
                      name="expiry"
                      pattern="\d\d/\d\d"
-                     maxLength={5}
+                     maxLength={4}
                      required
                      onChange={handleInputChange}
                      onFocus={handleInputFocus}
