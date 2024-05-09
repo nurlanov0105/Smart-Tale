@@ -5,12 +5,17 @@ import styles from "./styles.module.scss";
 import { useDeleteAccount } from "@/features/auth";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
+import Cookies from "js-cookie";
 
 const DeleteModal = () => {
    const { mutate: deleteAcc, isPending } = useDeleteAccount();
+   const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+
    const handleDeleteClick = () => {
+      const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
+
       const data = {
-         refresh: CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN) || "",
+         refresh: refreshToken || "",
       };
       deleteAcc(data);
    };

@@ -30,15 +30,7 @@ authApiInstance.interceptors.response.use(
 
 baseApiInstance.interceptors.request.use(
    (config) => {
-      // isRemeberMe - true/false, get from session storage
-      const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
-      let accessToken;
-
-      if (remeberMe) {
-         accessToken = sessionStorage.getItem(EnumTokens.ACCESS_TOKEN);
-      } else {
-         accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
-      }
+      const accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
 
       if (accessToken) {
          config.headers["Authorization"] = `Bearer ${accessToken}`;
@@ -64,15 +56,8 @@ baseApiInstance.interceptors.response.use(
          // refresh token
          const { access, refresh } = await refreshToken();
 
-         // save token to cookies/session storage
-         const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
-         if (remeberMe) {
-            sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, access);
-            sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, refresh);
-         } else {
-            CookiesServices.setToken({ keyName: EnumTokens.ACCESS_TOKEN, value: access });
-            CookiesServices.setToken({ keyName: EnumTokens.REFRESH_TOKEN, value: refresh });
-         }
+         CookiesServices.setToken({ keyName: EnumTokens.ACCESS_TOKEN, value: access });
+         CookiesServices.setToken({ keyName: EnumTokens.REFRESH_TOKEN, value: refresh });
 
          axios.defaults.headers.common["Authorization"] = "Bearer " + access;
          originalRequest.headers["Authorization"] = "Bearer " + access;
@@ -87,16 +72,7 @@ baseApiInstance.interceptors.response.use(
 );
 
 const refreshToken = async () => {
-   // isRemeberMe - true/false, get from session storage
-
-   const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
-   let refreshToken;
-
-   if (remeberMe) {
-      refreshToken = sessionStorage.getItem(EnumTokens.REFRESH_TOKEN);
-   } else {
-      refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
-   }
+   const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
 
    const data = {
       refresh: refreshToken,
