@@ -1,3 +1,5 @@
+import InputMask from "react-input-mask";
+
 export const NamingSchema = {
    required: "Поле обязательна для заполнения",
    minLength: {
@@ -32,5 +34,13 @@ export const passwordSchema = {
       containsNumber: (value: any) => /\d/.test(value) || "Хотя бы 1 цифра",
       containsSymbol: (value: any) =>
          /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/.test(value) || "Минимум 1 специальный символ",
+   },
+};
+
+export const TelSchema = {
+   required: "Телефон обязателен",
+   pattern: {
+      value: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+      message: "Неверный формат номера",
    },
 };

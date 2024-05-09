@@ -9,11 +9,6 @@ const Login = () => {
          email: data.email,
          password: data.password,
       };
-      CookiesServices.setToken({
-         keyName: EnumTokens.REMEMBER_ME,
-         value: data.rememberMe || false,
-         time: `${2 * 30.44 * 24 * 60 * 60}`,
-      });
 
       login(params);
    };

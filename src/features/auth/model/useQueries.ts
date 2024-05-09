@@ -24,8 +24,7 @@ export const useLogin = () => {
    return useMutation({
       mutationFn: authApi.login,
       onSuccess: (data) => {
-         const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
-         if (data && remeberMe) {
+         if (data) {
             const accessData = {
                keyName: EnumTokens.ACCESS_TOKEN,
                value: data.data.access,
@@ -37,11 +36,6 @@ export const useLogin = () => {
 
             CookiesServices.setToken(accessData);
             CookiesServices.setToken(refreshData);
-
-            router.push(ROUTES.MARKETPLACE_EQUIPMENT);
-         } else {
-            sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
-            sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, data.data.refresh);
 
             router.push(ROUTES.MARKETPLACE_EQUIPMENT);
          }
