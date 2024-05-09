@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { EnumTokens, MARKETPLACE } from "./shared/lib";
+import Cookies from "js-cookie";
 
 const protectedRoutes = ["/", "/marketplace"];
 export default function middleware(req: NextRequest, response: NextResponse) {
    const { url, cookies } = req;
 
    // const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value;
-
    if (protectedRoutes.includes(req.nextUrl.pathname)) {
       const absoluteURL = new URL(MARKETPLACE.EQUIPMENT, req.nextUrl.origin);
       return NextResponse.redirect(absoluteURL.toString());
