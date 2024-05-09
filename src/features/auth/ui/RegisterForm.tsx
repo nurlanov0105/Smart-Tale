@@ -88,6 +88,15 @@ const RegisterForm: FC<RegisterFormProps> = ({ handleRegister, isLoading, checkE
                />
             </div>
             <div>
+               <h5 className={styles.auth__title}>Телефон*</h5>
+               <InputField
+                  {...register("tel")}
+                  isBordered={true}
+                  type="tel"
+                  error={errors.tel && errors.tel.message}
+               />
+            </div>
+            <div>
                <h5 className={styles.auth__title}>Пароль*</h5>
                <PasswordField
                   {...register("password", passwordSchema)}
