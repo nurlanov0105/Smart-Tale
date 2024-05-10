@@ -20,6 +20,45 @@
       margin-top: 3.2rem;
    }
 
+   &__select {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 2rem;
+   }
+
+   &__sizes {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      li {
+         display: flex;
+         align-items: center;
+         gap: 4px;
+         padding: 4px;
+         background-color: $common-white;
+         border-radius: 4px;
+
+         svg {
+            width: 16px;
+            height: 16px;
+
+            cursor: pointer;
+
+            path {
+               fill: #5c5f62;
+            }
+         }
+      }
+   }
+
+   &__block_gap {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+   }
+
    &__date {
       display: flex;
       column-gap: 12px;
@@ -37,6 +76,22 @@
 .dark {
    .order {
       border-bottom: 1px solid $border-theme;
+
+      &__sizes {
+         li {
+            background-color: $black-theme;
+
+            span {
+               color: $white-theme;
+            }
+
+            svg {
+               path {
+                  fill: $white-theme;
+               }
+            }
+         }
+      }
    }
 }
 

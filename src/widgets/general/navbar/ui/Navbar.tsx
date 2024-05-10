@@ -31,7 +31,8 @@ const Navbar = () => {
       }
    }, [pathname]);
 
-   const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
+   const { hidden, hover, handlePanelClick, handleMouseOut, handleMouseOver, handleOverlayClick } =
+      useNavbar();
 
    return (
       <>
@@ -47,7 +48,10 @@ const Navbar = () => {
             <div className={styles.logoLine}>
                <Logo />
                <div className={styles.navbar__links}>
-                  <Link href={ROUTES.MODE} className={styles.navbar__link}>
+                  <Link
+                     href={ROUTES.MODE}
+                     className={styles.navbar__link}
+                     onClick={handlePanelClick}>
                      <span>Режим</span>
                      <ShieldCheck />
                   </Link>

@@ -1,4 +1,4 @@
-.dark{
+.dark {
    border-bottom: 1px solid $border-theme !important;
 }
 
@@ -77,6 +77,7 @@
       display: none;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
       &_show {
          display: inline-flex;
       }
@@ -147,7 +148,7 @@
             display: none;
          }
       }
-      &_right{
+      &_right {
          width: 100%;
       }
    }

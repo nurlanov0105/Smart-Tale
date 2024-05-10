@@ -7,11 +7,19 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 
-const Select: FC<SelectTypes> = ({ data, title, selected, setSelected, classname }) => {
+const Select: FC<SelectTypes> = ({
+   data,
+   title,
+   selected,
+   setSelected,
+   classname,
+   handleSelectElem,
+}) => {
    const theme = useThemeStore((state) => state.theme);
    const { toggleShow, ref, isShown } = useOutside(false);
    const handleSelect = (employee: employee) => {
       setSelected(employee);
+      handleSelectElem && handleSelectElem(employee.value);
       toggleShow();
    };
 

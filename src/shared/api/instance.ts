@@ -1,8 +1,6 @@
 import axios from "axios";
-import { AuthEndpoints } from "./endpoints";
 import { toast } from "react-toastify";
-import { CookiesServices, EnumTokens } from "../lib";
-import {errorCatch} from "@/shared/api/error";
+import { CookiesServices, EnumTokens, ROUTES, refreshToken } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 const options = {
@@ -32,8 +30,14 @@ authApiInstance.interceptors.response.use(
 baseApiInstance.interceptors.request.use(
    (config) => {
       const accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+      const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
 
       if (accessToken) {
+         if (!refreshToken) {
+            CookiesServices.clearTokens();
+            CookiesServices.clearCredentials();
+            //window.location.href = ROUTES.SIGN_IN;
+         }
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
@@ -71,15 +75,3 @@ baseApiInstance.interceptors.response.use(
       return Promise.reject(error);
    }
 );
-
-const refreshToken = async () => {
-   const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
-
-   const data = {
-      refresh: refreshToken,
-   };
-
-   const response = await axios.post(BASE_URL + AuthEndpoints.REFRESH_TOKEN, data);
-
-   return { access: response.data.access, refresh: response.data.refresh };
-};

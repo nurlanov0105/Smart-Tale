@@ -11,6 +11,7 @@ import { useWindowSize } from "./hooks/useWindowSize";
 import { useNavbar } from "./hooks/useNavbar";
 import { CookiesServices } from "./services/cookies.services";
 import { useRememberMe } from "./hooks/useRememberMe";
+import { refreshToken } from "./utils/refreshToken";
 
 export type { InputFieldProps };
 
@@ -32,4 +33,5 @@ export {
    useNavbar,
    CookiesServices,
    useRememberMe,
+   refreshToken,
 };
