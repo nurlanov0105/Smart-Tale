@@ -109,7 +109,7 @@ const StripePaymentForm: React.FC = () => {
                      type="tel"
                      name="expiry"
                      pattern="\d\d/\d\d"
-                     maxLength={4}
+                     maxLength={5}
                      required
                      onChange={handleInputChange}
                      onFocus={handleInputFocus}

@@ -60,6 +60,7 @@ export type SelectTypes = {
    data: employee[];
    title?: string;
    classname?: string;
+   handleSelectElem?: (value: string) => void;
 };
 
 export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };
