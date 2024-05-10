@@ -1,5 +1,5 @@
 import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
-import {WORK} from "@/shared/lib/routes.config";
+import { WORK } from "@/shared/lib/routes.config";
 
 export const PathData: any = {
    ["/orders/search"]: {
@@ -40,8 +40,8 @@ export const PathData: any = {
       name: "Услуги",
    },
    [MARKETPLACE.CREATE_ORDER]: {
-      path: "Маркетплейс/Разместить заказ",
-      name: "Разместить заказ",
+      path: "Маркетплейс/Разместить объявление",
+      name: "Разместить объявление",
    },
    [WORK.VACANCIES]: {
       path: "Работа/Вакансии",

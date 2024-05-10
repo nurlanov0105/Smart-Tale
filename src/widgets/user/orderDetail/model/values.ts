@@ -4,6 +4,10 @@ export const orderDetailsValues = [
       postValue: "equipment",
    },
    {
+      value: "Услуга",
+      postValue: "service",
+   },
+   {
       value: "Заказ",
       postValue: "order",
    },
