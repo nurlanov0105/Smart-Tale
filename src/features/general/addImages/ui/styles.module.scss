@@ -56,6 +56,18 @@
   }
 }
 
+.dark{
+  .empty{
+    background-color: $black-theme;
+    border-color: $border-theme;
+    &__text{
+      color: $white-theme;
+      border: 1px solid $border-theme;
+      background-color: $black-theme;
+    }
+  }
+}
+
 .loader {
   width: 2.4rem;
   height: 2.4rem;

@@ -42,7 +42,7 @@ const Positions = () => {
                         <th className={clsx(styles.table__item, styles.table__item__idx)}>№</th>
                         <th className={clsx(styles.table__item, styles.table__item__title)}>Название</th>
                         <th className={clsx(styles.table__item, styles.table__item__descr)}>Описание</th>
-                        <th className={clsx(styles.table__item, styles.table__item__idx)}>Удалить</th>
+                        {/*<th className={clsx(styles.table__item, styles.table__item__idx)}>Удалить</th>*/}
                     </tr>
                     </thead>
                     <tbody className={styles.table__list}>

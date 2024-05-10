@@ -4,10 +4,14 @@ import { LoaderCircle } from "lucide-react";
 import { ImageItem } from "@/entities/user/imageItem";
 import {DragDropContext, Draggable, Droppable, DropResult} from "@hello-pangea/dnd";
 import styles from "./styles.module.scss";
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
 
 const AddImages = () => {
-   const [images, setImages] = useState<File[]>([]);
-   const [isLoading, setIsLoading] = useState(false);
+    const theme = useThemeStore((state) => state.theme);
+
+    const [images, setImages] = useState<File[]>([]);
+    const [isLoading, setIsLoading] = useState(false);
 
    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
        if (images.length === 5) return
@@ -38,7 +42,7 @@ const AddImages = () => {
    }
 
    return (
-      <div className={styles.list}>
+      <div className={clsx(styles.list, styles[theme])}>
           <DragDropContext onDragEnd={onDragEnd}>
               <Droppable direction="horizontal" droppableId="img">
                   {(provided) => (

@@ -1,39 +1,43 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { Button } from "@/shared/ui";
 import { useTimer, SendBtnProps } from "../index";
 import styles from "./styles.module.scss";
+import {useResendCode} from "@/features/auth";
+import Cookies from "js-cookie";
+import {EnumTokens} from "@/shared/lib";
 
-const SendCodeBtn: FC<SendBtnProps> = ({
-   isError,
-   handleSendAgain,
-   handleSendCode,
-   isResendSuccess,
-   btnDisabled,
-}) => {
-   const [resendDisable, setResendDisable] = useState(isError);
-   const { seconds } = useTimer({
-      isError,
-      resendDisable,
-      setResendDisable,
-   });
+const SendCodeBtn: FC<SendBtnProps> = ({ type, isDisabled}) => {
+
+   const {
+       seconds,
+       isResendDisabled,
+       setIsResendDisabled
+   } = useTimer();
+
+   const {resend} = useResendCode()
 
    const secondsFormat = seconds < 10 ? `0${seconds}` : seconds;
+    const handleResend = () => {
+       const email = Cookies.get(EnumTokens.REGISTER_EMAIL) || ""
+       resend(email)
+        setIsResendDisabled(true)
+    }
 
    return (
       <>
-         {isError ? (
-            <Button type="submit" onClick={handleSendAgain} disabled={resendDisable}>
-               Отправить код еще раз
-            </Button>
-         ) : (
-            <Button type="submit" disabled={!btnDisabled} onClick={handleSendCode}>
+         {type === "send" ? (
+            <Button type="submit" disabled={isDisabled}>
                Войти
             </Button>
+         ) : (
+            <Button type="submit" disabled={isDisabled}>
+               Отправить код еще раз
+            </Button>
          )}
-         {resendDisable ? (
+         {isResendDisabled ? (
             <p className={styles.auth__button}>Отправить код повторно через 00:{secondsFormat}</p>
          ) : (
-            <p className={styles.auth__button}>Отправить код повторно</p>
+            <p onClick={handleResend} className={styles.auth__button}>Отправить код повторно</p>
          )}
       </>
    );

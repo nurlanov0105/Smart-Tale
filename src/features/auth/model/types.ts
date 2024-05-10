@@ -18,18 +18,12 @@ export type IEmailVerifyRequest = {
    code: string;
 };
 
-export type IResendCodeRequest = {
-   code: string;
-};
+export type IResendCodeRequest = Pick<IEmailVerifyRequest, "email">
 
-export type IForgotPasswordRequest = {
-   email: string;
-   password: string;
-};
+export type IForgotPasswordRequest = Pick<ILoginRequest, "email" | "password">
 
-export type IResetPasswordRequest = {
-   password: string;
-};
+export type IResetPasswordRequest = Pick<ILoginRequest, "password">
+
 
 export type registerFormType = {
    email: string;

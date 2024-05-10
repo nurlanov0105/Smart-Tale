@@ -9,7 +9,12 @@ const Login = () => {
          email: data.email,
          password: data.password,
       };
-
+      console.log(data.rememberMe);
+      CookiesServices.setToken({
+         keyName: EnumTokens.REMEMBER_ME,
+         value: `${data.rememberMe}` === "false" ? Boolean(data.rememberMe) : true,
+         time: `${60 * 86400}`,
+      });
       login(params);
    };
 

@@ -14,7 +14,7 @@ const OrderHistory = () => {
          <div className={styles.section__btns}>
             <Tabs type={type} setType={setType} values={historyValues} />
          </div>
-         <OrderTable />
+         <OrderTable/>
       </section>
    );
 };

@@ -1,19 +1,16 @@
 import axios from "axios";
-import { AuthEndpoints } from "./endpoints";
 import { toast } from "react-toastify";
-import { CookiesServices, EnumTokens } from "../lib";
+import { CookiesServices, EnumTokens, ROUTES, refreshToken } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
-
-export const authApiInstance = axios.create({
+const options = {
    baseURL: BASE_URL,
    headers: { "Content-Type": "application/json" },
-});
+}
 
-export const baseApiInstance = axios.create({
-   baseURL: BASE_URL,
-   headers: { "Content-Type": "application/json" },
-});
+export const authApiInstance = axios.create(options);
+export const baseApiInstance = axios.create(options);
+
 authApiInstance.interceptors.response.use(
    (response) => {
       return response;
@@ -22,8 +19,10 @@ authApiInstance.interceptors.response.use(
       // const errorKey = Object.keys(error.response.data)[0];
       // const errorMessage = error.response.data[errorKey];
 
+      //const alertError = errorCatch(error)
+
       console.log("Произошла ошибка при запросе: ", error);
-      toast.error("Произошла ошибка при запросе");
+      toast.error("Произошла ошибка при запросе: ");
       return Promise.reject(error);
    }
 );
@@ -31,8 +30,14 @@ authApiInstance.interceptors.response.use(
 baseApiInstance.interceptors.request.use(
    (config) => {
       const accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+      const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
 
       if (accessToken) {
+         if (!refreshToken) {
+            CookiesServices.clearTokens();
+            CookiesServices.clearCredentials();
+            //window.location.href = ROUTES.SIGN_IN;
+         }
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
@@ -70,15 +75,3 @@ baseApiInstance.interceptors.response.use(
       return Promise.reject(error);
    }
 );
-
-const refreshToken = async () => {
-   const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
-
-   const data = {
-      refresh: refreshToken,
-   };
-
-   const response = await axios.post(BASE_URL + AuthEndpoints.REFRESH_TOKEN, data);
-
-   return { access: response.data.access, refresh: response.data.refresh };
-};

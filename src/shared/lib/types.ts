@@ -43,8 +43,8 @@ export type SelectProps = {
 };
 
 export type TimerProps = {
-   resendDisable: boolean;
-   setResendDisable: Dispatch<SetStateAction<boolean>>;
+   //resendDisable: boolean;
+   //setResendDisable: Dispatch<SetStateAction<boolean>>;
    isError: boolean;
 };
 
@@ -60,6 +60,7 @@ export type SelectTypes = {
    data: employee[];
    title?: string;
    classname?: string;
+   handleSelectElem?: (value: string) => void;
 };
 
 export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };

@@ -28,6 +28,9 @@
    &__image {
       width: 7.5rem;
       height: 7.5rem;
+      border-radius: 16px;
+
+      object-fit: cover;
    }
 
    &__title {

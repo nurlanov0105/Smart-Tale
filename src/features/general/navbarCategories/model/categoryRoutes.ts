@@ -83,7 +83,7 @@ export const CategoryRoutes: TypeCategories[] = [
          },
          {
             parentId: 3,
-            subtitle: "Разместить заказ",
+            subtitle: "Разместить объявление",
             link: MARKETPLACE.CREATE_ORDER,
             authorized: true,
          },
