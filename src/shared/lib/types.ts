@@ -43,8 +43,8 @@ export type SelectProps = {
 };
 
 export type TimerProps = {
-   resendDisable: boolean;
-   setResendDisable: Dispatch<SetStateAction<boolean>>;
+   //resendDisable: boolean;
+   //setResendDisable: Dispatch<SetStateAction<boolean>>;
    isError: boolean;
 };
 

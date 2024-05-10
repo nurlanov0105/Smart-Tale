@@ -2,18 +2,17 @@ import axios from "axios";
 import { AuthEndpoints } from "./endpoints";
 import { toast } from "react-toastify";
 import { CookiesServices, EnumTokens } from "../lib";
+import {errorCatch} from "@/shared/api/error";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
-
-export const authApiInstance = axios.create({
+const options = {
    baseURL: BASE_URL,
    headers: { "Content-Type": "application/json" },
-});
+}
 
-export const baseApiInstance = axios.create({
-   baseURL: BASE_URL,
-   headers: { "Content-Type": "application/json" },
-});
+export const authApiInstance = axios.create(options);
+export const baseApiInstance = axios.create(options);
+
 authApiInstance.interceptors.response.use(
    (response) => {
       return response;
@@ -22,8 +21,10 @@ authApiInstance.interceptors.response.use(
       // const errorKey = Object.keys(error.response.data)[0];
       // const errorMessage = error.response.data[errorKey];
 
+      //const alertError = errorCatch(error)
+
       console.log("Произошла ошибка при запросе: ", error);
-      toast.error("Произошла ошибка при запросе");
+      toast.error("Произошла ошибка при запросе: ");
       return Promise.reject(error);
    }
 );

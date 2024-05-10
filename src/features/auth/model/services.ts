@@ -34,8 +34,8 @@ export const authApi = {
       return response;
    },
 
-   resendCode: async (params: IResendCodeRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.RESEND_CODE, params);
+   resendCode: async (email: IResendCodeRequest) => {
+      const response = await authApiInstance.post(AuthEndpoints.RESEND_CODE, email);
       return response;
    },
 
