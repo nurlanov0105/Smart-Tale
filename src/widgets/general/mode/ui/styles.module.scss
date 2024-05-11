@@ -24,6 +24,12 @@
    &__left {
       display: flex;
       column-gap: 2.1rem;
+      overflow: hidden;
+      border-radius: 16px;
+   }
+
+   &__left_admin {
+      border: 1px solid $dark-blue;
    }
    &__image {
       width: 7.5rem;
@@ -44,6 +50,10 @@
       background-color: $black-theme;
       &__title {
          color: $dark-grey;
+      }
+
+      &__left_admin {
+         border: transparent;
       }
    }
 }

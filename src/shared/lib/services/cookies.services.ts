@@ -1,7 +1,7 @@
 "use client";
 
 import Cookies from "js-cookie";
-import { CookiesServicesType, EnumTokens } from "../types";
+import {CookiesServicesType, EnumTokens, RefreshTokenTypes} from "../types";
 
 export const CookiesServices = {
    getTokens: () => {
