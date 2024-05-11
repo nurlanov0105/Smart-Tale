@@ -22,6 +22,16 @@
     row-gap: 1.5rem;
   }
 
+  &__responses{
+    position: absolute;
+    top: 1.3rem;
+    right: 1.3rem;
+
+    color: #0D311E;
+
+    text-decoration: underline;
+  }
+
 
   &__info{
 
@@ -55,6 +65,13 @@
 
   }
 
+  &__description{
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    overflow: hidden;
+  }
   &__button{
     color: $common-white;
     background-color: #5BCF83;
@@ -78,6 +95,9 @@
   .item{
     &__block{
       background-color: #0D311E;
+    }
+    &__responses{
+      color: $white-theme;
     }
 
     &__button{

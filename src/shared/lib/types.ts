@@ -9,6 +9,11 @@ export enum EnumTokens {
    SUBSCRIBE_TYPE = "subscribe-type",
 }
 
+export type RefreshTokenTypes = {
+   access: string
+   refresh: string
+}
+
 export type InputFieldProps = {
    disabled?: boolean;
    type?: string;

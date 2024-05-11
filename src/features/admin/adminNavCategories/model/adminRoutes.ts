@@ -1,5 +1,5 @@
 import { ADMIN_ROUTES, ROUTES } from "@/shared/lib";
-import { User, UsersRound, History, Building, ListOrdered } from "lucide-react";
+import {User, UsersRound, History, Building, ListOrdered, BookText} from "lucide-react";
 import type { TypeAdminCategories } from "@/entities/admin/adminNavItem";
 export const AdminRoutes: TypeAdminCategories[] = [
    {
@@ -29,6 +29,13 @@ export const AdminRoutes: TypeAdminCategories[] = [
    },
    {
       id: 4,
+      title: "Вакансии",
+      Icon: BookText,
+      link: ADMIN_ROUTES.VACANCIES,
+      routes: [ADMIN_ROUTES.VACANCY_DETAIL],
+   },
+   {
+      id: 5,
       title: "История",
       Icon: History,
       link: ADMIN_ROUTES.HISTORY,

@@ -10,6 +10,7 @@ import RequireAnnouncementModal from "./ui/requireAnnouncementModal/RequireAnnou
 import LogoutModal from "./ui/logoutModal/LogoutModal";
 import DeleteModal from "./ui/deleteModal/DeleteModal";
 import DeleteEmployeeModal from "./ui/deleteEmplyeeModal/DeleteEmployeeModal";
+import ResponsesModal from "./ui/responsesModal/ResponsesModal";
 
 export {
    SubscribeModal,
@@ -23,5 +24,6 @@ export {
    RequireAnnouncementModal,
    LogoutModal,
    DeleteModal,
-   DeleteEmployeeModal
+   DeleteEmployeeModal,
+    ResponsesModal
 };

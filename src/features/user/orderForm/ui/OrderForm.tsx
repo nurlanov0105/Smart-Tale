@@ -19,8 +19,10 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleHideClick = () => {
       showModal(MODAL_KEYS.hideAnnouncement);
    };
-   const { day, setDay, month, setMonth, year, setYear } = useInitialDate();
+
    const theme = useThemeStore((state) => state.theme);
+
+   const { day, setDay, month, setMonth, year, setYear } = useInitialDate();
 
    const [selectedSize, setSelectedSize] = useState(sizesData[0]);
    const [selectedContact, setSelectedContact] = useState(contactsData[0]);
@@ -35,6 +37,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleDeleteSize = (elem: string) => {
       setSizesArr((prev) => prev.filter((item) => item !== elem));
    };
+
    return (
       <form className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
@@ -46,6 +49,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                title="Название"
             />
             <TextArea disabled={false} error="errror" title="Описание" />
+
             {type === "order" && (
                <div className={clsx(styles.order__select)}>
                   <Select

@@ -16,7 +16,8 @@ import {
    RequireAnnouncementModal,
    LogoutModal,
    DeleteModal,
-   DeleteEmployeeModal
+   DeleteEmployeeModal,
+   ResponsesModal
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
@@ -39,7 +40,8 @@ const Modal: FC = () => {
       LogoutModal,
       CardModal,
       DeleteModal,
-      DeleteEmployeeModal
+      DeleteEmployeeModal,
+      ResponsesModal
    };
    let RenderComponent;
 

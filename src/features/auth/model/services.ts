@@ -1,4 +1,4 @@
-import { AuthEndpoints, authApiInstance } from "@/shared/api";
+import {AuthEndpoints, authApiInstance, BASE_URL} from "@/shared/api";
 import {
    ILoginRequest,
    IRegisterRequest,
@@ -9,7 +9,8 @@ import {
    LogoutType,
 } from "./types";
 import { baseApiInstance } from "@/shared/api/instance";
-import { EnumTokens } from "@/shared/lib";
+import {CookiesServices, EnumTokens} from "@/shared/lib";
+import axios from "axios";
 
 export const authApi = {
    register: async (params: IRegisterRequest) => {
@@ -58,4 +59,14 @@ export const authApi = {
       const response = await baseApiInstance.delete(AuthEndpoints.DELETE_ACCOUNT, { data });
       return response;
    },
+   refreshToken: async (refresh: {refresh: string}) => {
+      const data = {refresh: `Bearer ${refresh}`};
+      const response = await axios.post(BASE_URL + AuthEndpoints.REFRESH_TOKEN, data)
+
+      if (response.data.accessToken) {
+         CookiesServices.setToken({ keyName: EnumTokens.ACCESS_TOKEN, value: response.data.access });
+         CookiesServices.setToken({ keyName: EnumTokens.REFRESH_TOKEN, value: response.data.refresh });
+      }
+      return response.data
+   }
 };
