@@ -27,6 +27,12 @@
       margin-top: 2rem;
    }
 
+   &__selectInput {
+      border-color: $white-theme !important;
+      border-radius: 10px !important;
+      padding: 1.7rem !important;
+   }
+
    &__sizes {
       display: flex;
       align-items: center;

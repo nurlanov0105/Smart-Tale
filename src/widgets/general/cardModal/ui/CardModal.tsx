@@ -12,9 +12,12 @@ import Link from "next/link";
 import { closeModal } from "@/views/modal";
 import { images } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
 
 const CardModal: FC = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
+   const theme = useThemeStore((state) => state.theme);
 
    const pathname = usePathname();
 
@@ -23,7 +26,7 @@ const CardModal: FC = () => {
    };
 
    return (
-      <div className={styles.modal}>
+      <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
             <CardSlider images={images} isLoading={false} isError={false} />
          </div>

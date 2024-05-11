@@ -4,12 +4,14 @@ import userIcon from "@@/imgs/form/user.svg";
 import Image from "next/image";
 import { ChangeImageProps } from "../model/types";
 import Link from "next/link";
-import {ADMIN_ROUTES, MODAL_KEYS} from "@/shared/lib";
+import { ADMIN_ROUTES, MODAL_KEYS } from "@/shared/lib";
 import styles from "./styles.module.scss";
 
-const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin }) => {
+const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) => {
    const handleAvatarClick = () => {
-      showModal(MODAL_KEYS.changeAvatar);
+      if (!disabled) {
+         showModal(MODAL_KEYS.changeAvatar);
+      }
    };
 
    return (
