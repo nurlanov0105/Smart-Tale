@@ -114,6 +114,6 @@ export const CategoryRoutes: TypeCategories[] = [
             authorized: true,
          },
       ],
-      activeRoutes: [ROUTES.CARD_DETAILS],
+      activeRoutes: [WORK.VACANCY_DETAIL],
    },
 ];

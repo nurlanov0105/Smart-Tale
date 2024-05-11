@@ -42,7 +42,8 @@
     border-color: $white-theme !important;
     border-radius: 10px !important;
     padding: 2rem !important;
-    width: 10rem !important;
+
+   width: 10rem !important;
 
     margin: 2rem 0;
   }
@@ -92,6 +93,20 @@
       }
     }
   }
+
+  &__btnsWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  &__btns {
+    display: flex;
+    align-items: center;
+    column-gap: 1.1rem;
+    margin-top: auto;
+    justify-content: flex-end;
+  }
 }
 
 
@@ -115,6 +130,9 @@
         background-color: $black-theme;
         border: 1px solid $border-theme;
       }
+    }
+    &__label{
+      background-color: transparent ;
     }
 
   }

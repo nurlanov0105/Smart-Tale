@@ -39,6 +39,16 @@ export const experienceFilter = [
     {value: "Нет опыта", postValue: "not"},
 ]
 
+export const currencies = [
+    {value: "сом", postValue: "som"},
+    {value: "€", postValue: "euro"},
+    {value: "$", postValue: "dollar"}
+]
+
+export const typeSalary = [
+    {value: "До вычета налогов", postValue: "som"},
+    {value: "На руки", postValue: "eur"},
+]
 
 
 

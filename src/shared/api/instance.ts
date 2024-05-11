@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { CookiesServices, EnumTokens, ROUTES, refreshToken } from "../lib";
+import { CookiesServices, EnumTokens, ROUTES, refreshToken, errorCatch } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 const options = {
@@ -49,23 +49,21 @@ baseApiInstance.interceptors.request.use(
 );
 
 baseApiInstance.interceptors.response.use(
-   (response) => {
-      return response;
-   },
+    response => response,
    async (error) => {
       const originalRequest = error.config;
 
       if (error.response.status === 401 && !originalRequest._retry) {
          originalRequest._retry = true;
 
-         // refresh token
-         const { access, refresh } = await refreshToken();
+         try {
+            await refreshToken()
 
-         CookiesServices.setToken({ keyName: EnumTokens.ACCESS_TOKEN, value: access });
-         CookiesServices.setToken({ keyName: EnumTokens.REFRESH_TOKEN, value: refresh });
-
-         axios.defaults.headers.common["Authorization"] = "Bearer " + access;
-         originalRequest.headers["Authorization"] = "Bearer " + access;
+            return baseApiInstance.request(originalRequest)
+         }catch (err){
+            //if (errorCatch(error) === 'jwt expired') CookiesServices.clearTokens()
+             console.log(err)
+         }
 
          return baseApiInstance(originalRequest);
       }

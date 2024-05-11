@@ -1,20 +1,30 @@
 "use client"
 import React, {useState} from 'react';
-import clsx from "clsx";
+import {showModal} from "@/views/modal";
+import {cityFilter, experienceFilter, graphicsFilter} from "@/widgets/user/createVacancy";
 import {Button, InputField, Select, TextArea} from "@/shared/ui";
 import {useThemeStore} from "@/shared/themeStore";
-import {cityFilter, currencies, experienceFilter, graphicsFilter, typeSalary} from "../model/values.data";
-import styles from "./styles.module.scss";
+import {MODAL_KEYS} from "@/shared/lib";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss"
+import {currencies} from "@/widgets/user/createVacancy/model/values.data";
 import {useForm} from "react-hook-form";
 
-const CreateVacancy = () => {
+const AdminVacancyDetail = () => {
     const theme = useThemeStore((state) => state.theme);
 
     const [graphicSelected, setGraphicSelected] = useState(graphicsFilter[0])
     const [citySelect, setCitySelect] = useState(cityFilter[0])
+    const [selectCurrency, setSelectCurrency] = useState(currencies[0])
 
     const {register} = useForm()
-    const [selectCurrency, setSelectCurrency] = useState(currencies[0])
+    const handleOpenResponses = () => {
+        showModal(MODAL_KEYS.responsesUsers)
+    }
+    const handleDelete = () => {
+        showModal(MODAL_KEYS.deleteAnnouncement)
+    }
     return (
         <form className={clsx(styles.form, styles[theme])}>
             <h4 className="h4">Название должности</h4>
@@ -64,8 +74,7 @@ const CreateVacancy = () => {
                             type="number"
                         />
                         <div>
-                            <Select selected={selectCurrency} setSelected={setSelectCurrency} data={currencies}
-                                    classname={styles.form__currency}/>
+                            <Select classname={styles.form__currency} selected={selectCurrency} setSelected={setSelectCurrency} data={currencies}/>
                         </div>
                     </div>
                 </div>
@@ -104,11 +113,15 @@ const CreateVacancy = () => {
 
             </div>
 
-            <div className={styles.form__btns}>
-                <Button>Добавить</Button>
+            <div className={styles.form__btnsWrapper}>
+                <Button onClick={handleOpenResponses} type="button">Посмотреть на отклики</Button>
+                <div className={styles.form__btns}>
+                    <Button onClick={handleDelete} type="button" className="btn_danger">Удалить вакансию</Button>
+                    <Button>Изменить</Button>
+                </div>
             </div>
         </form>
     );
 };
 
-export default CreateVacancy;
+export default AdminVacancyDetail;
