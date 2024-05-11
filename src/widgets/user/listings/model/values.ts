@@ -5,13 +5,18 @@ export const listingsValues = [
       isSubscribed: true,
    },
    {
-      value: "Заказ",
+      value: "Заказы",
       postValue: "order",
       isSubscribed: false,
    },
    {
-      value: "Оборудование",
+      value: "Услуги",
+      postValue: "services",
+      isSubscribed: false,
+   },
+   {
       postValue: "equipment",
+      value: "Оборудования",
       isSubscribed: false,
    },
 ];

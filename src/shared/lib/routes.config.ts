@@ -2,6 +2,7 @@ export enum WORK {
    VACANCIES = "/work/vacancies",
    CREATE_VACANCY = `/work/create-vacancy`,
    RESUME = `/work/resume`,
+   VACANCY_DETAIL = `/work/vacancy-detail`
 }
 
 export enum MARKETPLACE {
@@ -68,5 +69,7 @@ export enum ADMIN_ROUTES {
    POSITIONS = "/admin/positions",
    ADD_POSITION = "/admin/add-position",
    EMPLOYEES_SETTINGS = "/admin/employees-settings",
+   VACANCIES = "/admin/vacancies",
+   VACANCY_DETAIL = "/admin/vacancy-detail",
    HISTORY = "/admin/history",
 }

@@ -9,6 +9,11 @@ export enum EnumTokens {
    SUBSCRIBE_TYPE = "subscribe-type",
 }
 
+export type RefreshTokenTypes = {
+   access: string
+   refresh: string
+}
+
 export type InputFieldProps = {
    disabled?: boolean;
    type?: string;
@@ -43,8 +48,8 @@ export type SelectProps = {
 };
 
 export type TimerProps = {
-   resendDisable: boolean;
-   setResendDisable: Dispatch<SetStateAction<boolean>>;
+   //resendDisable: boolean;
+   //setResendDisable: Dispatch<SetStateAction<boolean>>;
    isError: boolean;
 };
 

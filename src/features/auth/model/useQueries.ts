@@ -1,11 +1,12 @@
 "use client";
 
-import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { authApi } from "./services";
-import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
-import { closeModal } from "@/views/modal";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { closeModal } from "@/views/modal";
+import {IEmailVerifyRequest} from "@/features/auth/model/types";
+import {CookiesServices, EnumTokens, ROUTES} from "@/shared/lib";
+import { authApi } from "./services";
 
 export const useRegister = () => {
    const router = useRouter();
@@ -42,30 +43,43 @@ export const useLogin = () => {
       },
    });
 };
-export const useSendCode = () => {
+
+export const useSendCode = (setType: (v: string) => void) => {
    const router = useRouter();
 
-   return useMutation({
-      mutationFn: authApi.emailVerify,
+   const sendCode = useMutation({
+      mutationFn: (values: IEmailVerifyRequest) => authApi.emailVerify(values),
       onSuccess: (data) => {
-         if (data) {
+         if (data){
             toast.success("Аккаунт создан!");
-            router.push(ROUTES.SIGN_IN);
+            router.push(ROUTES.SIGN_IN)
          }
       },
-   });
-};
-export const useResendCode = () => {
-   const router = useRouter();
+      onError: () => {
+         setType("resend")
+      }
+   })
 
-   return useMutation({
-      mutationFn: authApi.resendCode,
+   return {
+      sendCode: sendCode.mutate,
+      isError: sendCode.isError,
+      isLoading: sendCode.isPending
+   }
+
+}
+export const useResendCode = () => {
+
+   const resendMutation = useMutation({
+      mutationFn: (email: string) => authApi.resendCode({email}),
       onSuccess: (data) => {
          if (data) {
-            router.push(ROUTES.SIGN_IN);
+            toast.success("Письмо было отправлено к вам на почту!");
          }
-      },
+      }
    });
+   return {
+      resend: resendMutation.mutate
+   }
 };
 export const useLogout = () => {
    const router = useRouter();
@@ -76,7 +90,6 @@ export const useLogout = () => {
          closeModal();
          CookiesServices.clearTokens();
          CookiesServices.clearCredentials();
-         router.push(ROUTES.SIGN_IN);
       },
    });
 };

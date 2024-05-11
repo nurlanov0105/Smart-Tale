@@ -3,74 +3,14 @@ import React, {useState} from 'react';
 import {Rows2, Rows3, SlidersHorizontal} from "lucide-react";
 import {VacancyItem} from "@/entities/user/vacancyItem";
 import {Select} from "@/shared/ui";
+import {useThemeStore} from "@/shared/themeStore";
+import {timeList, typeList, vacancies} from "../model/values.data";
 import {FiltersVacancies} from "@/features/user/filtersVacancies";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss"
-import {useThemeStore} from "@/shared/themeStore";
 
 const Vacancies = () => {
-    const vacancies = [
-        {
-            title: "Утюжник",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "20000 - 30000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Опыт от 1 года до 3 лет",
-        },
-        {
-            title: "Швея",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "10000 - 40000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Без опыта",
-        },
-        {
-            title: "Администратор",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "40000 - 60000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Опыт от 3 лет",
-        },
-        {
-            title: "Директор",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "50000 - 100000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Опыт от 6",
-        },
-        {
-            title: "Менеджер",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "20000 - 30000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Опыт от 1 года до 3 лет",
-        },{
-            title: "Старший утюжник",
-            description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate distinctio fuga iusto modi, quia quo? At consectetur dolorum facere illum iste laudantium magnam maxime necessitatibus, nostrum nulla pariatur, quo quos rem repellat suscipit. Aliquid autem commodi earum, itaque praesentium sunt.",
-            salary: "30000 - 40000 сом",
-            organization: "ОсОО Грин Экспресс",
-            city: "Бишкек",
-            experience: "Опыт от 1 года до 3 лет",
-        }
-    ]
-    const timeList = [
-        {value: "За всё время", postValue: "all"},
-        {value: "За месяц", postValue: "month"},
-        {value: "За неделю", postValue: "week"},
-        {value: "За сутки", postValue: "day"},
-    ]
-    const typeList = [
-        {value: "По соответствию", postValue: "all"},
-        {value: "По дате", postValue: "date"},
-        {value: "По убыванию зарплаты", postValue: "desc"},
-        {value: "По возрастанию зарплаты", postValue: "asc"},
-    ]
 
     const theme = useThemeStore((state) => state.theme);
     const [selectedDate, setSelectedDate] = useState(timeList[0])
@@ -129,7 +69,7 @@ const Vacancies = () => {
 
                     {
                         vacancies.map((item, idx) => (
-                            <VacancyItem item={item} key={idx}/>
+                            <VacancyItem item={item} key={idx} typeView={typeView}/>
                         ))
                     }
                 </div>

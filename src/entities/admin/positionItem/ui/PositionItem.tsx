@@ -37,9 +37,9 @@ const PositionItem:FC<PositionItemProps> = ({item, idx}) => {
             <td>
                 <button className={styles.item__description}>{item.description}</button>
             </td>
-            <td className={styles.item__icon}>
-                <button onClick={handleDelete}><X className={styles.item__icon}/></button>
-            </td>
+            {/*<td className={styles.item__icon}>*/}
+            {/*    <button onClick={handleDelete}><X className={styles.item__icon}/></button>*/}
+            {/*</td>*/}
         </tr>
     );
 };

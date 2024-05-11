@@ -13,6 +13,7 @@ import { CookiesServices } from "./services/cookies.services";
 import { useRememberMe } from "./hooks/useRememberMe";
 import { refreshToken } from "./utils/refreshToken";
 import usePhoneNumber from "./hooks/usePhoneNumber ";
+import { errorCatch } from "../api/error";
 
 export type { InputFieldProps };
 
@@ -36,4 +37,5 @@ export {
    useRememberMe,
    refreshToken,
    usePhoneNumber,
+   errorCatch,
 };

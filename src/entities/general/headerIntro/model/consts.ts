@@ -55,6 +55,10 @@ export const PathData: any = {
       path: "Работа/Добавить Вакансию",
       name: "Добавить Вакансию",
    },
+   [WORK.VACANCY_DETAIL]: {
+      path: "Работа/Детали вакансии",
+      name: "Детали вакансии",
+   },
 
    [ORDERS.CURRENT_ORDERS]: {
       path: "Заказы/Текущие заказы",
@@ -123,6 +127,14 @@ export const PathData: any = {
    [ADMIN_ROUTES.HISTORY]: {
       path: "SmartTale",
       name: "История",
+   },
+   [ADMIN_ROUTES.VACANCIES]: {
+      path: "SmartTale",
+      name: "Вакансии",
+   },
+   [ADMIN_ROUTES.VACANCY_DETAIL]: {
+      path: "SmartTale",
+      name: "Детали Вакансии",
    },
 
    [ROUTES.SUBSCRIBE]: {

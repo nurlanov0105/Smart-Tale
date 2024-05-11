@@ -1,9 +1,3 @@
-.dark .select {
-   &__selected{
-      border: 1px solid $border-theme;
-   }
-}
-
 .select {
    width: 100%;
 
@@ -95,6 +89,9 @@
    }
 }
 
+
+
+
 .dark {
    .select {
       background-color: $black-theme;
@@ -105,6 +102,8 @@
       &__selected {
          border-color: $border-theme !important;
          background-color: $black-theme;
+
+         border: 1px solid $border-theme;
       }
 
       &__menu {

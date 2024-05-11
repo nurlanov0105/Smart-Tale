@@ -4,11 +4,12 @@ import React, { useState, useRef } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import { formatCreditCardNumber, formatCVC, formatExpirationDate } from "../model/formating";
-import Payment from "payment";
-import styles from "./styles.module.scss";
 import { Button, InputField } from "@/shared/ui";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
+import styles from "./styles.module.scss";
+import {showModal} from "@/views/modal";
+import {MODAL_KEYS} from "@/shared/lib";
 
 interface FormState {
    number: string;
@@ -58,7 +59,7 @@ const StripePaymentForm: React.FC = () => {
 
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      alert("You have finished payment!");
+      showModal(MODAL_KEYS.subscribe)
       if (formRef.current) {
          formRef.current.reset();
       }

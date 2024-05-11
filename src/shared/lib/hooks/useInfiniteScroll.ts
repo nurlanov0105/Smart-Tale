@@ -39,14 +39,21 @@ export const useInfiniteScroll = () => {
                 .get(API)
                 .then(res => {
                     setPage(prevPage => prevPage + 1);
-                    setData(prevData => [...prevData, ...res.data]);
+                    setData(prevData => {
+                        if (data.length >= 44){
+
+
+                        }
+                        return [...prevData, ...res.data]
+                    });
                     setTotalPages(Math.ceil(res.headers["x-total-count"] / 24))
                 })
                 .catch(error => console.error("Error fetching data:", error))
         }
 
         const observer = new IntersectionObserver(
-            entries => {
+            entries =>
+            {
                 if (entries[0].isIntersecting) {
                     fetchData();
                 }
@@ -63,6 +70,7 @@ export const useInfiniteScroll = () => {
         return () => {
             observer.disconnect()
         };
+        // eslint-disable-next-line
     }, [observerTarget, totalPages, page]);
 
     return {observerTarget, data}
