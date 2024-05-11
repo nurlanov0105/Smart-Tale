@@ -64,6 +64,12 @@
    }
 }
 
+.dark {
+   .modal__btn {
+      color: $black-theme;
+   }
+}
+
 /* Mobile */
 @media (max-width: 725px) {
    .modal {

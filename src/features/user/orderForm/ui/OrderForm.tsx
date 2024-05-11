@@ -54,6 +54,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                      data={sizesData}
                      title="Размеры"
                      handleSelectElem={handleChangeSize}
+                     classname={styles.order__selectInput}
                   />
                   {sizesArr.length >= 1 && (
                      <ul className={styles.order__sizes}>
@@ -104,6 +105,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                   selected={selectedContact}
                   setSelected={setSelectedContact}
                   data={contactsData}
+                  classname={styles.order__selectInput}
                />
                <InputField
                   disabled={false}

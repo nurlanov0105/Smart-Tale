@@ -1,13 +1,15 @@
 "use client";
 
 import React, { useEffect } from "react";
-import avatar from "@@/imgs/auth/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { ADMIN_ROUTES, MARKETPLACE } from "@/shared/lib";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss";
+import avatar from "@@/imgs/auth/logo.png";
+import adminImg from "@@/imgs/auth/admin.jpg";
 
 const Mode = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -34,10 +36,10 @@ const Mode = () => {
             </div>
          </Link>
          <Link href={ADMIN_ROUTES.ORGANIZATION} className={styles.item}>
-            <div className={styles.item__left}>
+            <div className={clsx(styles.item__left, styles.item__left_admin)}>
                <Image
                   className={styles.item__image}
-                  src={avatar}
+                  src={adminImg}
                   alt="card"
                   width={75}
                   height={75}

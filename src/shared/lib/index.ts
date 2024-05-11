@@ -12,6 +12,7 @@ import { useNavbar } from "./hooks/useNavbar";
 import { CookiesServices } from "./services/cookies.services";
 import { useRememberMe } from "./hooks/useRememberMe";
 import { refreshToken } from "./utils/refreshToken";
+import usePhoneNumber from "./hooks/usePhoneNumber ";
 
 export type { InputFieldProps };
 
@@ -34,4 +35,5 @@ export {
    CookiesServices,
    useRememberMe,
    refreshToken,
+   usePhoneNumber,
 };
