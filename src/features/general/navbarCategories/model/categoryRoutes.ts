@@ -45,7 +45,7 @@ export const CategoryRoutes: TypeCategories[] = [
       activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS, ROUTES.SUBSCRIBE],
    },
    {
-      title: "Заказы",
+      title: "Организация",
       id: 2,
       Icon: Clipboard,
       authorized: true,
@@ -71,13 +71,13 @@ export const CategoryRoutes: TypeCategories[] = [
       routes: [
          {
             parentId: 3,
-            subtitle: "Оборудование",
+            subtitle: "Оборудования",
             link: MARKETPLACE.EQUIPMENT,
             authorized: false,
          },
          {
             parentId: 3,
-            subtitle: "Услуги",
+            subtitle: "Заказы",
             link: MARKETPLACE.SERVICE,
             authorized: false,
          },

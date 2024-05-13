@@ -6,7 +6,7 @@ import { OtpInputField } from "@/entities/auth/otpInput";
 import { SendCodeBtn } from "@/entities/auth/sendCodeBtn";
 import { useThemeStore } from "@/shared/themeStore";
 import {useSendCode} from "../model/useQueries";
-import {useProgress} from "../model/useProgress";
+import {useProgress} from "../model/hooks";
 import { EnumTokens } from "@/shared/lib";
 import Cookies from "js-cookie";
 import styles from "./styles.module.scss";
