@@ -39,8 +39,18 @@
       margin: 2rem 0;
    }
 
+   &__currency {
+      border-color: $white-theme !important;
+      border-radius: 10px !important;
+      padding: 2rem !important;
+      width: 10rem !important;
+
+      margin: 2rem 0;
+   }
+
    &__salary {
       display: inline-flex;
+      align-items: center;
       column-gap: 2rem;
    }
    &__margin {

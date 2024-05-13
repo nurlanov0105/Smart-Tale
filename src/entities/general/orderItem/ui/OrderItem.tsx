@@ -15,7 +15,7 @@ import { usePathname } from "next/navigation";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
 import { useThemeStore } from "@/shared/themeStore";
 
-const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
+const OrderItem: FC<ItemProps> = ({ item, isAdmin, isCurrent }) => {
    const theme = useThemeStore((state) => state.theme);
    const title = orderValues[item.type];
 
@@ -83,8 +83,11 @@ const OrderItem: FC<ItemProps> = ({ item, isAdmin }) => {
                      </p>
                   </div>
                </div>
-               <p className={styles.item__detail}>Посмотреть детали</p>
                <span className={styles.item__date}>2 апреля 2024</span>
+               <div className={styles.item__box}>
+                  <p className={styles.item__status}>{isCurrent && item.status}</p>
+                  {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
+               </div>
             </div>
          )}
       </>
