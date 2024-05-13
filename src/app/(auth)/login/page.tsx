@@ -1,8 +1,8 @@
-import { Login } from "@/widgets/auth/login";
+import { LoginForm } from "@/features/auth";
 import { NextPage } from "next";
 
 const LoginPage: NextPage = () => {
-   return <Login />;
+   return <LoginForm />;
 };
 
 export default LoginPage;

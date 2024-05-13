@@ -9,7 +9,20 @@
    path {
       stroke: $common-black;
    }
+
+   @media (hover: hover) and (pointer: fine){
+      &:hover{
+         animation: shake 500ms ease;
+      }
+   }
 }
+
+@keyframes shake {
+   10% {rotate: 12deg}
+   30%, 70% {rotate: -15deg}
+   50%, 85% {rotate: 35deg}
+}
+
 
 .dark {
    .bell {

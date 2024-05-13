@@ -84,7 +84,7 @@
     margin: 4rem 0 3rem 0;
     padding: 2.5rem;
 
-    background: #F4F6FB;
+    background-color: #F4F6FB;
     box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
   }
@@ -123,6 +123,24 @@
       &:hover{
         filter: brightness(110%);
       }
+    }
+  }
+}
+
+.dark{
+  .detail{
+    &__vacancy{
+      background-color: $black-theme;
+    }
+    &__phoneWrapper{
+      background-color: $black-theme;
+    }
+    &__button{
+      background-color: #2C9863;
+    }
+
+    &__btn{
+      background-color: $dark-blue;
     }
   }
 }
