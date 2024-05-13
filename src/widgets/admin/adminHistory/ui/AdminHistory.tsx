@@ -16,12 +16,12 @@ const AdminHistory = () => {
    const { day, setDay, year, setYear, month, setMonth } = useInitialDate();
 
    const data = [
-      { id: 1, type: "order" },
-      { id: 2, type: "order" },
-      { id: 3, type: "order" },
-      { id: 4, type: "order" },
-      { id: 5, type: "order" },
-      { id: 6, type: "order" },
+      { id: 1, type: "order", status: "В процессе" },
+      { id: 2, type: "order", status: "В процессе" },
+      { id: 3, type: "order", status: "В процессе" },
+      { id: 4, type: "order", status: "В процессе" },
+      { id: 5, type: "order", status: "В процессе" },
+      { id: 6, type: "order", status: "В процессе" },
    ];
 
    return (
@@ -56,6 +56,7 @@ const AdminHistory = () => {
             isAdmin={true}
             isError={false}
             isLoading={false}
+            isCurrent={type === "current" ? true : false}
             type={SkeletonTypes.listItem}
          />
       </section>
