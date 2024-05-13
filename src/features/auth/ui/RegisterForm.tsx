@@ -1,39 +1,26 @@
 "use client";
 
-import React, {FC} from "react";
+import React, { FC } from "react";
 import { InputMask } from "@react-input/mask";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { Button, InputField, PasswordField } from "@/shared/ui";
-import {usePhoneNumber} from "@/shared/lib";
+import { usePhoneNumber } from "@/shared/lib";
 
-import {useEmailChecker, useRegisterForm, useThemeAndPasswordEffects} from "../model/hooks";
-import {EmailSchema, NamingSchema, passwordSchema, TelSchema} from "../model/schema";
+import { useEmailChecker, useRegisterForm, useThemeAndPasswordEffects } from "../model/hooks";
+import { EmailSchema, NamingSchema, passwordSchema, TelSchema } from "../model/schema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const RegisterForm: FC = () => {
+   const { handleSubmit, errors, getValues, isValid, register, isLoading, watch, trigger } =
+      useRegisterForm();
 
-   const {
-      handleSubmit,
-      errors,
-      getValues,
-      isValid,
-      register,
-      isLoading,
-      watch,
-      trigger} = useRegisterForm()
+   const { theme } = useThemeAndPasswordEffects({ watch, trigger });
 
-   const {theme} = useThemeAndPasswordEffects({watch, trigger})
+   // const {checkEmailValidity} = useEmailChecker({watch, errors, isValid})
 
-   const {checkEmailValidity} = useEmailChecker({watch, errors, isValid})
-
-   const {
-      CountryCodes,
-      country,
-      masks
-   } = usePhoneNumber(watch)
-
+   const { CountryCodes, country, masks } = usePhoneNumber(watch);
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>
@@ -83,11 +70,11 @@ const RegisterForm: FC = () => {
                {/*/>*/}
 
                <InputMask
-                   {...register("tel", TelSchema)}
-                   placeholder={CountryCodes[country as keyof typeof CountryCodes]}
-                   mask={masks[country as keyof typeof masks]}
-                   replacement={{ _: /\d/ }}
-                   className={styles.auth__inputMask}
+                  {...register("tel", TelSchema)}
+                  placeholder={CountryCodes[country as keyof typeof CountryCodes]}
+                  mask={masks[country as keyof typeof masks]}
+                  replacement={{ _: /\d/ }}
+                  className={styles.auth__inputMask}
                />
 
                {errors.tel && typeof errors.tel.message === "string" && (
