@@ -8,7 +8,7 @@ export const useEmailChecker = ({watch, errors, isValid}: EmailCheckerProps) => 
 
     const checkEmailValidity = (value: string) => {
 
-        console.log(email);
+        //console.log(email);
     }
 
     useEffect(() => {
