@@ -5,7 +5,8 @@ import styles from "./styles.module.scss";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
-import { cityFilter, currencies, graphicsFilter } from "../../createVacancy";
+import { cityFilter, currencies, experienceFilter, graphicsFilter } from "../../createVacancy";
+import { useForm } from "react-hook-form";
 
 const Resume = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -13,6 +14,8 @@ const Resume = () => {
    const [graphicSelected, setGraphicSelected] = useState(graphicsFilter[0]);
    const [citySelect, setCitySelect] = useState(cityFilter[0]);
    const [selectCurrency, setSelectCurrency] = useState(currencies[0]);
+
+   const { register } = useForm();
 
    return (
       <form className={clsx(styles.form, styles[theme])}>
@@ -28,15 +31,7 @@ const Resume = () => {
             <div className={styles.form__block}>
                <TextArea classname={styles.form__area} />
             </div>
-            <div className={styles.form__block}>
-               <h4 className="h4">Опыт работы</h4>
-               <InputField
-                  classname={styles.form__input}
-                  disabled={false}
-                  isBordered={true}
-                  type="text"
-               />
-            </div>
+
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
                <Select
@@ -71,6 +66,25 @@ const Resume = () => {
                         />
                      </div>
                   </div>
+               </div>
+            </div>
+            <div className={styles.form__block}>
+               <h4 className="h4">Опыт работы</h4>
+
+               <div className={styles.form__radios}>
+                  {experienceFilter.map((item) => (
+                     <label key={item.postValue} className={styles.form__label}>
+                        <span>
+                           <InputField
+                              {...register("experience")}
+                              isBordered={true}
+                              type="radio"
+                              classname={styles.form__radio}
+                           />
+                        </span>
+                        <p>{item.value}</p>
+                     </label>
+                  ))}
                </div>
             </div>
          </div>

@@ -20,6 +20,15 @@
       margin-top: 3.2rem;
    }
 
+   &__currency{
+      border: none !important;
+      border-radius: 10px !important;
+      padding: 2rem !important;
+      width: 10rem !important;
+
+      margin: 2rem 0;
+   }
+
    &__select {
       display: flex;
       flex-direction: column;
@@ -68,6 +77,13 @@
    &__date {
       display: flex;
       column-gap: 12px;
+   }
+
+   &__block_flex{
+      display: flex;
+      column-gap: 12px;
+
+      margin-top: 1.5rem;
    }
 
    &__btns {

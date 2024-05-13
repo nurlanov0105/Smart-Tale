@@ -7,19 +7,21 @@ import { closeModal } from "@/views/modal";
 import { IEmailVerifyRequest } from "@/features/auth/model/types";
 import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
+import {UseFormReset} from "react-hook-form";
 
-export const useRegister = () => {
+export const useRegister = (reset: UseFormReset<any>) => {
    const router = useRouter();
 
    return useMutation({
       mutationFn: authApi.register,
       onSuccess: () => {
+         reset()
          router.push(ROUTES.CONFIRMATION_REGISTER);
       },
    });
 };
 
-export const useLogin = () => {
+export const useLogin = (reset: UseFormReset<any>) => {
    const router = useRouter();
 
    return useMutation({
@@ -38,6 +40,7 @@ export const useLogin = () => {
             CookiesServices.setToken(accessData);
             CookiesServices.setToken(refreshData);
 
+            reset()
             router.push(ROUTES.MARKETPLACE_EQUIPMENT);
          }
       },

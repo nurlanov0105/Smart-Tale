@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import { Register } from "@/widgets/auth/register";
+import { RegisterForm } from "@/features/auth";
 
 const RegisterPage: NextPage = () => {
-   return <Register />;
+   return <RegisterForm />;
 };
 
 export default RegisterPage;

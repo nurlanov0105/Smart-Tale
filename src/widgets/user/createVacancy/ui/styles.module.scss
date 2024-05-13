@@ -116,6 +116,9 @@
         border: 1px solid $border-theme;
       }
     }
+    &__label{
+      background-color: transparent ;
+    }
 
   }
 }

@@ -1,55 +1,45 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
+import React, { FC, useEffect } from "react";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
 import { EmailSchema, passwordSchema } from "../model/schema";
-import { ROUTES, useDebounce, useRememberMe } from "@/shared/lib";
+import {useLoginForm} from "../model/hooks";
 import clsx from "clsx";
-import styles from "@/features/auth/ui/styles.module.scss";
-import { LoginFormProps } from "../model/types";
+import styles from "./styles.module.scss";
 
-const LoginForm: FC<LoginFormProps> = ({ handleLogin, isLoading }) => {
+const LoginForm: FC = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const isRemember = useRememberMe();
-   const [isRememberMe, setRememberMe] = useState(useRememberMe());
+   const {
+      handleSubmit,
+      register,
+      errors,
+      isValid,
+       isLoading
+   } = useLoginForm()
+
+   // const isRemember = useRememberMe();
+   // const [isRememberMe, setRememberMe] = useState(useRememberMe());
+
+   // useEffect(() => {
+   //       setRememberMe(isRemember);
+   //    }, [isRemember]);
+   //
+   //    const handleRememberChange = () => {
+   //       setRememberMe(!isRememberMe);
+   //    };
 
    useEffect(() => {
       document.documentElement.className = theme;
    }, [theme]);
 
-   const {
-      register,
-      formState: { errors, isValid },
-      handleSubmit,
-      reset,
-   } = useForm({
-      mode: "onChange",
-      criteriaMode: "all",
-      shouldFocusError: true,
-   });
-
-   const onSubmit = (data: any) => {
-      handleLogin(data);
-      reset();
-   };
-
-   useEffect(() => {
-      setRememberMe(isRemember);
-   }, [isRemember]);
-
-   const handleRememberChange = () => {
-      setRememberMe(!isRememberMe);
-   };
 
    return (
-      <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.auth, styles[theme])}>
+      <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>
          <HeadingAuth isLoading={false} isError={false} />
          <div className={styles.auth__row}>
             <div>
@@ -76,8 +66,8 @@ const LoginForm: FC<LoginFormProps> = ({ handleLogin, isLoading }) => {
                   classname={styles.auth__checkField}
                   isBordered={true}
                   type="checkbox"
-                  checked={isRememberMe}
-                  onChange={handleRememberChange}
+                  // checked={isRememberMe}
+                  // onChange={handleRememberChange}
                />
                <p className={styles.auth__text}>Запомнить меня</p>
             </label>

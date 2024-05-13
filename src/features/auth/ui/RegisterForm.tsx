@@ -1,68 +1,29 @@
 "use client";
 
-import React, { FC, useEffect, useRef, useState } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
-import { HeadingAuth } from "@/entities/auth/headingAuth";
+import React, { FC } from "react";
+import { InputMask } from "@react-input/mask";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
-import { useThemeStore } from "@/shared/themeStore";
+import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { Button, InputField, PasswordField } from "@/shared/ui";
-// import InputMask from "react-input-mask";
-import { InputMask, MaskEventDetail } from "@react-input/mask";
+import { usePhoneNumber } from "@/shared/lib";
 
-import { ROUTES, useDebounce, usePhoneNumber } from "@/shared/lib";
-import { EmailSchema, NamingSchema, passwordSchema } from "../model/schema";
+import { useEmailChecker, useRegisterForm, useThemeAndPasswordEffects } from "../model/hooks";
+import { EmailSchema, NamingSchema, passwordSchema, TelSchema } from "../model/schema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { RegisterFormProps } from "../model/types";
 
-const RegisterForm: FC<RegisterFormProps> = ({ handleRegister, isLoading, checkEmailValidity }) => {
-   const theme = useThemeStore((state) => state.theme);
-   const { tel, country, inputRef, setTel, CountryCodes } = usePhoneNumber();
+const RegisterForm: FC = () => {
+   const { handleSubmit, errors, getValues, isValid, register, isLoading, watch, trigger } =
+      useRegisterForm();
 
-   useEffect(() => {
-      document.documentElement.className = theme;
-   }, [theme]);
+   const { theme } = useThemeAndPasswordEffects({ watch, trigger });
 
-   const {
-      getValues,
-      register,
-      formState: { errors, isValid },
-      handleSubmit,
-      reset,
-      watch,
-      trigger,
-   } = useForm({
-      mode: "onChange",
-      criteriaMode: "all",
-      shouldFocusError: true,
-   });
+   // const {checkEmailValidity} = useEmailChecker({watch, errors, isValid})
 
-   useEffect(() => {
-      trigger("rePassword");
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [watch("password")]);
-
-   const password = React.useRef({});
-   password.current = watch("password", "");
-
-   const email = watch("email");
-   const debouncedEmail = useDebounce(email, 500);
-
-   useEffect(() => {
-      if (!errors.email) {
-         checkEmailValidity(debouncedEmail);
-      }
-   }, [debouncedEmail, isValid, errors.email, checkEmailValidity]);
-
-   const onSubmit = (data: any) => {
-      handleRegister(data);
-      reset();
-   };
-   const [detail, setDetail] = useState<MaskEventDetail | null>(null);
+   const { CountryCodes, country, masks } = usePhoneNumber(watch);
 
    return (
-      <form onSubmit={handleSubmit(onSubmit)} className={clsx(styles.auth, styles[theme])}>
+      <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>
          <HeadingAuth isLoading={false} isError={false} />
          <div className={styles.auth__row}>
             <div>
@@ -100,30 +61,22 @@ const RegisterForm: FC<RegisterFormProps> = ({ handleRegister, isLoading, checkE
             </div>
             <div>
                <h5 className={styles.auth__title}>Телефон*</h5>
-               <InputField
-                  {...register("tel")}
-                  isBordered={true}
-                  type="tel"
-                  error={errors.tel && errors.tel.message}
-               />
-               {/* <InputMask
-                  mask={CountryCodes[country as keyof typeof CountryCodes]}
-                  className={styles.auth__inputMask}
-                  placeholder={CountryCodes[country as keyof typeof CountryCodes]}
-                  value={tel}
-                  onChange={onChangeTel}
-                  ref={inputRef}>
-                
-                  {(inputProps) => <input {...inputProps} type="tel" />}
-               </InputMask> */}
+               {/*<InputField*/}
+               {/*   {...register("tel", TelSchema)}*/}
 
-               {/* <InputMask
-                  mask="1yyy"
+               {/*   isBordered={true}*/}
+               {/*   type="number"*/}
+               {/*   error={errors.tel && errors.tel.message}*/}
+               {/*/>*/}
+
+               <InputMask
+                  {...register("tel", TelSchema)}
+                  placeholder={CountryCodes[country as keyof typeof CountryCodes]}
+                  mask={masks[country as keyof typeof masks]}
                   replacement={{ _: /\d/ }}
-                  value={tel?.value ?? ""}
-                  onMask={(event) => setTel(event.detail)}
-                  // onChange={onChangeTel}
-               /> */}
+                  className={styles.auth__inputMask}
+               />
+
                {errors.tel && typeof errors.tel.message === "string" && (
                   <p className={styles.auth__error}>{errors.tel.message}</p>
                )}

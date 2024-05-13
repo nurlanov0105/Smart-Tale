@@ -11,6 +11,7 @@ import { useThemeStore } from "@/shared/themeStore";
 import { contactsData, sizesData } from "../model/consts.data";
 import crossIcon from "@@/imgs/form/cross.svg";
 import Image from "next/image";
+import {currencies} from "@/widgets/user/createVacancy/model/values.data";
 
 const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const handleDeleteClick = () => {
@@ -28,6 +29,8 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
    const [selectedContact, setSelectedContact] = useState(contactsData[0]);
    const [sizesArr, setSizesArr] = useState<string[]>([]);
 
+   const [selectCurrency, setSelectCurrency] = useState(currencies[0])
+
    const handleChangeSize = (elem: string) => {
       if (!sizesArr.includes(elem) && elem !== "") {
          setSizesArr((prev) => [...prev, elem]);
@@ -42,89 +45,96 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
       <form className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
             <InputField
-               classname={styles.order__margin}
-               disabled={false}
-               type="text"
-               error="errror"
-               title="Название"
+                classname={styles.order__margin}
+                disabled={false}
+                type="text"
+                error=""
+                title="Название"
             />
-            <TextArea disabled={false} error="errror" title="Описание" />
+            <TextArea disabled={false} error="errror" title="Описание"/>
 
             {type === "order" && (
-               <div className={clsx(styles.order__select)}>
-                  <Select
-                     selected={selectedSize}
-                     setSelected={setSelectedSize}
-                     data={sizesData}
-                     title="Размеры"
-                     handleSelectElem={handleChangeSize}
-                     classname={styles.order__selectInput}
-                  />
-                  {sizesArr.length >= 1 && (
-                     <ul className={styles.order__sizes}>
-                        {sizesArr.map((size) => (
-                           <li key={size}>
-                              <span>{size}</span>
-                              <svg viewBox="0 0 16 16" onClick={() => handleDeleteSize(size)}>
-                                 <path d="M5.36569 4.23431C5.05327 3.9219 4.54673 3.9219 4.23431 4.23431C3.9219 4.54673 3.9219 5.05327 4.23431 5.36569L6.86863 8L4.23431 10.6343C3.9219 10.9467 3.9219 11.4533 4.23431 11.7657C4.54673 12.0781 5.05327 12.0781 5.36569 11.7657L8 9.13137L10.6343 11.7657C10.9467 12.0781 11.4533 12.0781 11.7657 11.7657C12.0781 11.4533 12.0781 10.9467 11.7657 10.6343L9.13137 8L11.7657 5.36569C12.0781 5.05327 12.0781 4.54673 11.7657 4.23431C11.4533 3.9219 10.9467 3.9219 10.6343 4.23431L8 6.86863L5.36569 4.23431Z" />
-                              </svg>
-                           </li>
-                        ))}
-                     </ul>
-                  )}
-               </div>
+                <div className={clsx(styles.order__select)}>
+                   <Select
+                       selected={selectedSize}
+                       setSelected={setSelectedSize}
+                       data={sizesData}
+                       title="Размеры"
+                       handleSelectElem={handleChangeSize}
+                       classname={styles.order__selectInput}
+                   />
+                   {sizesArr.length >= 1 && (
+                       <ul className={styles.order__sizes}>
+                          {sizesArr.map((size) => (
+                              <li key={size}>
+                                 <span>{size}</span>
+                                 <svg viewBox="0 0 16 16" onClick={() => handleDeleteSize(size)}>
+                                    <path
+                                        d="M5.36569 4.23431C5.05327 3.9219 4.54673 3.9219 4.23431 4.23431C3.9219 4.54673 3.9219 5.05327 4.23431 5.36569L6.86863 8L4.23431 10.6343C3.9219 10.9467 3.9219 11.4533 4.23431 11.7657C4.54673 12.0781 5.05327 12.0781 5.36569 11.7657L8 9.13137L10.6343 11.7657C10.9467 12.0781 11.4533 12.0781 11.7657 11.7657C12.0781 11.4533 12.0781 10.9467 11.7657 10.6343L9.13137 8L11.7657 5.36569C12.0781 5.05327 12.0781 4.54673 11.7657 4.23431C11.4533 3.9219 10.9467 3.9219 10.6343 4.23431L8 6.86863L5.36569 4.23431Z"/>
+                                 </svg>
+                              </li>
+                          ))}
+                       </ul>
+                   )}
+                </div>
             )}
 
-            <InputField
-               classname={styles.order__margin}
-               disabled={false}
-               type="number"
-               title="Стоимость в сомах"
-            />
+            <div className={styles.order__block_flex}>
+               <InputField
+                   classname={styles.order__margin}
+                   disabled={false}
+                   type="number"
+                   title="Стоимость"
+               />
+               <div>
+                  <Select selected={selectCurrency} setSelected={setSelectCurrency} data={currencies}
+                          classname={styles.order__currency}/>
+               </div>
+            </div>
 
             {type === "order" && (
-               <div className={styles.order__block}>
-                  <h3 className="h3">Крайняя дата выполнения</h3>
-                  <div className={styles.order__margin}>
-                     <SelectDate
-                        day={day}
-                        setDay={setDay}
-                        month={month}
-                        setMonth={setMonth}
-                        year={year}
-                        setYear={setYear}
-                        type="user"
-                     />
-                  </div>
-               </div>
+                <div className={styles.order__block}>
+                   <h3 className="h3">Крайняя дата выполнения</h3>
+                   <div className={styles.order__margin}>
+                      <SelectDate
+                          day={day}
+                          setDay={setDay}
+                          month={month}
+                          setMonth={setMonth}
+                          year={year}
+                          setYear={setYear}
+                          type="user"
+                      />
+                   </div>
+                </div>
             )}
             <div className={styles.order__block}>
                <h3 className="h3">Галерея фотографий</h3>
-               <AddImages />
+               <AddImages/>
             </div>
 
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
                <h3 className="h3">Контактная информация</h3>
                <Select
-                  selected={selectedContact}
-                  setSelected={setSelectedContact}
-                  data={contactsData}
-                  classname={styles.order__selectInput}
+                   selected={selectedContact}
+                   setSelected={setSelectedContact}
+                   data={contactsData}
+                   classname={styles.order__selectInput}
                />
                <InputField
-                  disabled={false}
-                  type={selectedContact.postValue}
-                  title={selectedContact.value}
+                   disabled={false}
+                   type={selectedContact.postValue}
+                   title={selectedContact.value}
                />
             </div>
          </div>
 
          {btnType === "order" ? (
-            <div className={styles.order__btns}>
-               <Button>Разместить объявление</Button>
-            </div>
+             <div className={styles.order__btns}>
+                <Button>Разместить объявление</Button>
+             </div>
          ) : (
-            <div className={styles.order__btns}>
+             <div className={styles.order__btns}>
                <Button type="button" className="btn_danger" onClick={handleDeleteClick}>
                   Удалить
                </Button>

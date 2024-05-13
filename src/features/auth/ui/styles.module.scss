@@ -78,6 +78,12 @@
       border: 2px solid #e0e5f2;
       color: #4f4f4f;
    }
+   &__error{
+      font-size: 12px;
+      color: $grey;
+
+      margin: 4px 0 0 2rem;
+   }
 }
 
 .dark {

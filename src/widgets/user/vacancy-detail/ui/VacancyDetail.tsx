@@ -4,10 +4,13 @@ import styles from "./styles.module.scss"
 import {VacancyItem} from "@/entities/user/vacancyItem";
 import {vacancies} from "@/widgets/user/vacancies/model/values.data";
 import {InputField} from "@/shared/ui";
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
 
 const VacancyDetail = () => {
+    const theme = useThemeStore(state => state.theme)
     return (
-        <div className={styles.detail}>
+        <div className={clsx(styles.detail, styles[theme])}>
             <div className={styles.detail__left}>
                 <h3 className={styles.detail__title}>Описание вакансии</h3>
                 <div className={styles.detail__vacancy}>

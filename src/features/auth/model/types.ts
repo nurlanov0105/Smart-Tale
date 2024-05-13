@@ -1,3 +1,5 @@
+import {FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch} from "react-hook-form";
+
 export type IRegisterRequest = {
    first_name: string;
    last_name: string;
@@ -30,6 +32,7 @@ export type registerFormType = {
    firstName: string;
    lastName: string;
    middleName: string;
+   tel: string
    password: string;
    rePassword: string;
    rememberMe?: boolean;
@@ -56,3 +59,15 @@ export type LoginFormProps = {
 export type LogoutType = {
    refresh: string;
 };
+
+
+export type EmailCheckerProps = {
+   watch: UseFormWatch<any>
+   errors: FieldErrors
+   isValid: boolean
+}
+
+export type EffectsProps = {
+   watch: UseFormWatch<any>
+   trigger: UseFormTrigger<any>
+}
