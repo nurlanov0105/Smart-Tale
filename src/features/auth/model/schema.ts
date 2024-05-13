@@ -40,7 +40,9 @@ export const passwordSchema = {
 export const TelSchema = {
    required: "Телефон обязателен",
    pattern: {
-      value: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+      //value: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+      value: /^\+\d{3} \(\d{3}\) \d{2}-\d{2}-\d{2}$/,
+      //value: /^\s+?\+?\d{13,}\s+?$/,
       message: "Неверный формат номера",
    },
 };
