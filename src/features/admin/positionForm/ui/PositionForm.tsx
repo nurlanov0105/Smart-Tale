@@ -31,13 +31,9 @@ const PositionForm = () => {
                setSelected={setSelected}
                title="Организация"
                data={organizationsData}
+               type="default"
             />
-            {/*<Select*/}
-            {/*    selected={selectedRole}*/}
-            {/*    setSelected={setSelectedRole}*/}
-            {/*    title="Должности"*/}
-            {/*    data={roles}*/}
-            {/*/>*/}
+
             <h4 className="h4">Название должности</h4>
             <InputField title="Название" />
 

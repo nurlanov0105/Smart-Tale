@@ -30,6 +30,7 @@ export type InputFieldProps = {
    required?: boolean;
    onFocus?: any;
    placeholder?: string;
+   autoComplete?: string
 };
 
 export type TextAreaProps = Omit<InputFieldProps, "type">;

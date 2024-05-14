@@ -35,10 +35,15 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
-   [MARKETPLACE.SERVICE]: {
+   [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },
+   [MARKETPLACE.ORDERS]: {
+      path: "Маркетплейс/Заказы",
+      name: "Заказы",
+   },
+
    [MARKETPLACE.CREATE_ORDER]: {
       path: "Маркетплейс/Разместить объявление",
       name: "Разместить объявление",

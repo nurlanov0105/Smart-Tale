@@ -1,82 +1,19 @@
-.form {
+.resume {
    display: flex;
    flex-direction: column;
+
    height: 100%;
 
-   &__row {
-      display: flex;
-      flex-direction: column;
-      flex-grow: 1;
-
-      border-bottom: 1px solid $dark-grey;
-      padding-bottom: 1.6rem;
-      margin-bottom: 2rem;
-   }
-   &__area {
-      min-height: 150px;
-   }
-
-   &__input {
-      margin: 2rem 0;
-
-      label input {
-         border: transparent;
-      }
-   }
-
-   &__inputBorder {
-      margin: 2rem 0;
-
-      border: 1px solid $white-theme;
-      border-radius: 8px;
-   }
-
-   &__select {
-      border-color: $white-theme !important;
-      border-radius: 10px !important;
-      padding: 1.7rem !important;
-
-      margin: 2rem 0;
-   }
-
-   &__salary {
-      display: inline-flex;
-      column-gap: 2rem;
-   }
    &__margin {
-      margin: 2rem 0;
+      margin: 2rem 0 3.2rem;
    }
+   &__button {
+      font-weight: 510;
+      font-size: 1.4rem;
+      line-height: 1.5;
+   }
+
    &__block {
-      margin-top: 2.5rem;
-   }
-
-   &__btns {
-      display: flex;
-      align-items: center;
-      column-gap: 8px;
-      margin-top: auto;
-      justify-content: flex-end;
-   }
-}
-
-.dark {
-   .form {
-      &__row {
-         border-bottom: 1px solid $border-theme;
-      }
-
-      &__inputBorder {
-         border: 1px solid $border-theme;
-      }
-
-      &__input {
-         margin: 2rem 0;
-         border-color: $border-theme;
-
-         label input {
-            background-color: $black-theme;
-            border: 1px solid $border-theme;
-         }
-      }
+      margin: 1.3rem 0 1.3rem;
    }
 }

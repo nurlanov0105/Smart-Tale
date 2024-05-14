@@ -26,7 +26,7 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
-   [MARKETPLACE.SERVICE]: {
+   [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },

@@ -57,6 +57,7 @@ const LoginForm: FC = () => {
                   {...register("password", passwordSchema)}
                   type="password"
                   error={errors.password && errors.password.message}
+                  autoComplete="current-password"
                />
             </div>
 

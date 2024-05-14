@@ -4,8 +4,9 @@ import { CookiesServices, EnumTokens, ROUTES, refreshToken, errorCatch } from ".
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 const options = {
-   baseURL: BASE_URL,
-   headers: { "Content-Type": "application/json" },
+    baseURL: BASE_URL,
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true
 }
 
 export const authApiInstance = axios.create(options);
@@ -19,10 +20,10 @@ authApiInstance.interceptors.response.use(
       // const errorKey = Object.keys(error.response.data)[0];
       // const errorMessage = error.response.data[errorKey];
 
-      //const alertError = errorCatch(error)
+      const alertError = errorCatch(error)
+       console.log(error)
 
-      console.log("Произошла ошибка при запросе: ", error);
-      toast.error("Произошла ошибка при запросе: ");
+      toast.error(alertError);
       return Promise.reject(error);
    }
 );

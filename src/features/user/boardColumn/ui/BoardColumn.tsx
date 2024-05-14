@@ -18,12 +18,12 @@ const BoardColumn: FC<IProps> = ({ orders, title }) => {
    const theme = useThemeStore((state) => state.theme);
    const heading = boardHeadings[title];
 
-
    return (
       <div className={clsx(styles.column, styles[theme])}>
          <h4
             className={clsx("h4", styles.column__title)}
-            style={{ backgroundColor: heading[theme]}}>
+             style={{ backgroundColor: heading[theme]}}
+             >
             {heading.name}
          </h4>
          <Droppable droppableId={title.toLowerCase()}>

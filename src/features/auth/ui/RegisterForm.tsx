@@ -1,19 +1,18 @@
 "use client";
 
-import React, {FC} from "react";
+import React, { FC } from "react";
 import { InputMask } from "@react-input/mask";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
-import { Button, InputField, PasswordField } from "@/shared/ui";
-import {usePhoneNumber} from "@/shared/lib";
+import {Button, InputField, PasswordField, Select} from "@/shared/ui";
+import { usePhoneNumber } from "@/shared/lib";
 
-import {useEmailChecker, useRegisterForm, useThemeAndPasswordEffects} from "../model/hooks";
-import {EmailSchema, NamingSchema, passwordSchema, TelSchema} from "../model/schema";
+import { useRegisterForm, useThemeAndPasswordEffects } from "../model/hooks";
+import { EmailSchema, NamingSchema, passwordSchema, TelSchema } from "../model/schema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const RegisterForm: FC = () => {
-
    const {
       handleSubmit,
       errors,
@@ -22,17 +21,16 @@ const RegisterForm: FC = () => {
       register,
       isLoading,
       watch,
-      trigger} = useRegisterForm()
+      trigger
+   } = useRegisterForm();
 
-   const {theme} = useThemeAndPasswordEffects({watch, trigger})
+   const { theme } = useThemeAndPasswordEffects({ watch, trigger });
 
-   const {checkEmailValidity} = useEmailChecker({watch, errors, isValid})
+   // const {checkEmailValidity} = useEmailChecker({watch, errors, isValid})
 
-   const {
-      CountryCodes,
-      country,
-      masks
-   } = usePhoneNumber(watch)
+   const { CountryCodes, country, countries, setCountry, masks
+   } = usePhoneNumber(watch);
+
 
 
    return (
@@ -82,13 +80,15 @@ const RegisterForm: FC = () => {
                {/*   error={errors.tel && errors.tel.message}*/}
                {/*/>*/}
 
-               <InputMask
-                   {...register("tel", TelSchema)}
-                   placeholder={CountryCodes[country as keyof typeof CountryCodes]}
-                   mask={masks[country as keyof typeof masks]}
-                   replacement={{ _: /\d/ }}
-                   className={styles.auth__inputMask}
-               />
+               <div className={styles.auth__phoneWrapper}>
+                  <InputMask
+                      {...register("tel", TelSchema)}
+                      placeholder={CountryCodes[country.value as keyof typeof CountryCodes]}
+                      mask={masks[country.value as keyof typeof masks]}
+                      replacement={{ _: /\d/ }}
+                      className={styles.auth__inputMask}
+                  />
+               </div>
 
                {errors.tel && typeof errors.tel.message === "string" && (
                   <p className={styles.auth__error}>{errors.tel.message}</p>
@@ -98,6 +98,7 @@ const RegisterForm: FC = () => {
                <h5 className={styles.auth__title}>Пароль*</h5>
                <PasswordField
                   {...register("password", passwordSchema)}
+                   autoComplete="new-password"
                   error={errors.password && errors.password.message}
                />
             </div>
@@ -108,6 +109,7 @@ const RegisterForm: FC = () => {
                      validate: (value) =>
                         value === getValues("password") || "Пароли должны совпадать",
                   })}
+                   autoComplete="new-password"
                   error={errors && errors.rePassword && errors.rePassword.message}
                />
             </div>

@@ -24,7 +24,7 @@ export const CookiesServices = {
          value &&
          typeof value !== "boolean"
       ) {
-         Cookies.set(keyName, value, { path: "/", expires: 1 });
+         Cookies.set(keyName, value, { path: "/", expires: 1, sameSite: "strict", secure: true });
       } else {
          document.cookie = `${keyName}=${value};path=/;max-age=${time}`;
       }

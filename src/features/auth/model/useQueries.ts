@@ -4,8 +4,8 @@ import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { closeModal } from "@/views/modal";
-import {IEmailVerifyRequest} from "@/features/auth/model/types";
-import {CookiesServices, EnumTokens, ROUTES} from "@/shared/lib";
+import { IEmailVerifyRequest } from "@/features/auth/model/types";
+import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
 import {UseFormReset} from "react-hook-form";
 
@@ -53,36 +53,34 @@ export const useSendCode = (setType: (v: string) => void) => {
    const sendCode = useMutation({
       mutationFn: (values: IEmailVerifyRequest) => authApi.emailVerify(values),
       onSuccess: (data) => {
-         if (data){
+         if (data) {
             toast.success("Аккаунт создан!");
-            router.push(ROUTES.SIGN_IN)
+            router.push(ROUTES.SIGN_IN);
          }
       },
       onError: () => {
-         setType("resend")
-      }
-   })
+         setType("resend");
+      },
+   });
 
    return {
       sendCode: sendCode.mutate,
       isError: sendCode.isError,
-      isLoading: sendCode.isPending
-   }
-
-}
+      isLoading: sendCode.isPending,
+   };
+};
 export const useResendCode = () => {
-
    const resendMutation = useMutation({
-      mutationFn: (email: string) => authApi.resendCode({email}),
+      mutationFn: (email: string) => authApi.resendCode({ email }),
       onSuccess: (data) => {
          if (data) {
             toast.success("Письмо было отправлено к вам на почту!");
          }
-      }
+      },
    });
    return {
-      resend: resendMutation.mutate
-   }
+      resend: resendMutation.mutate,
+   };
 };
 export const useLogout = () => {
    const router = useRouter();
@@ -93,6 +91,7 @@ export const useLogout = () => {
          closeModal();
          CookiesServices.clearTokens();
          CookiesServices.clearCredentials();
+         window.location.href = "/";
       },
    });
 };
@@ -105,7 +104,7 @@ export const useDeleteAccount = () => {
          closeModal();
          CookiesServices.clearTokens();
          CookiesServices.clearCredentials();
-         router.push(ROUTES.SIGN_IN);
+         window.location.href = "/";
       },
    });
 };

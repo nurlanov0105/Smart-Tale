@@ -33,6 +33,7 @@ export const useRegisterForm = () => {
             middle_name: data.middleName,
             password: data.password,
             password_confirm: data.rePassword,
+            phone_number: data.tel,
         };
 
         CookiesServices.setToken({
@@ -43,7 +44,6 @@ export const useRegisterForm = () => {
 
         registration(params);
 
-        reset();
     };
 
     return {

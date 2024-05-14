@@ -78,7 +78,13 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Заказы",
-            link: MARKETPLACE.SERVICE,
+            link: MARKETPLACE.ORDERS,
+            authorized: false,
+         },
+         {
+            parentId: 3,
+            subtitle: "Услуги",
+            link: MARKETPLACE.SERVICES,
             authorized: false,
          },
          {
