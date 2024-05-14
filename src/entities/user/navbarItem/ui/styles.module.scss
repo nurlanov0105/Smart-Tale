@@ -6,9 +6,17 @@
    }
 }
 .category {
-   padding: 1.3rem 1.6rem 0;
+   padding-right: 1.6rem;
+   padding-left: 1.6rem;
 
-   &__none{
+   transition: height 0.2s ease-in-out;
+   overflow: hidden;
+
+   &_hidden {
+      height: 0;
+   }
+
+   &__none {
       display: none;
    }
    &__top {
@@ -17,9 +25,11 @@
       display: flex;
       align-items: center;
       column-gap: 0.8rem;
+      justify-content: space-between;
 
       border-radius: 4px;
       padding: 0.8rem 1.6rem;
+      cursor: pointer;
 
       &:hover,
       &_active {
@@ -43,11 +53,26 @@
       @include transition;
    }
 
+   &__inner {
+      display: flex;
+      align-items: center;
+      column-gap: 0.8rem;
+   }
+
+   &__arrow {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+
+      &_active {
+         transform: rotate(180deg);
+      }
+   }
+
    &__title,
    &__item {
       text-align: left;
       font-size: 16px;
-      //white-space: nowrap;
    }
 
    &__icon {
@@ -60,6 +85,8 @@
       flex-direction: column;
 
       row-gap: 0.8rem;
+      margin-top: 1.3rem;
+      margin-bottom: 1.3rem;
 
       padding-left: 2rem;
       margin-left: 2rem;
@@ -106,7 +133,7 @@
 /* Laptop */
 @media (max-width: 1439px) {
    .category {
-      padding: 1.3rem 0 0;
+      padding: 0;
    }
 }
 

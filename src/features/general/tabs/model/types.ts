@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { OrganizationValuesProps } from "@/widgets/user/organization";
+import {OrganizationValuesProps} from "@/shared/lib/types";
+
+
 
 export type ButtonsProps = {
    type: string;

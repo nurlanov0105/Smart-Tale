@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { SkeletonTypes } from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import {EmployeesList} from "@/features/general/employeesList";
 // import { AdminBack } from "@/entities/admin/adminBack";
 
 const AdminOrganizationDetail = () => {
@@ -30,13 +31,17 @@ const AdminOrganizationDetail = () => {
          <div className={styles.organization__margin}>
             <Tabs type={type} setType={setType} values={valuesData} />
          </div>
-         <OrderList
-            isAdmin={true}
-            data={data}
-            isError={false}
-            isLoading={false}
-            type={SkeletonTypes.listItem}
-         />
+
+          {type === "users-list" ? (
+              <EmployeesList />
+          ) : (
+              <OrderList
+                  data={data}
+                  isError={false}
+                  isLoading={false}
+                  type={SkeletonTypes.listItem}
+              />
+          )}
       </div>
    );
 };

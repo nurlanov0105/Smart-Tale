@@ -54,7 +54,6 @@ const AdminHistory = () => {
 
          <OrderList
             data={data}
-            isAdmin={true}
             isError={false}
             isLoading={false}
             isCurrent={type === "current" ? true : false}

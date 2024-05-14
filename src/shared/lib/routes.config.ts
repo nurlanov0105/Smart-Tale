@@ -2,7 +2,7 @@ export enum WORK {
    VACANCIES = "/work/vacancies",
    CREATE_VACANCY = `/work/create-vacancy`,
    RESUME = `/work/resume`,
-   VACANCY_DETAIL = `/work/vacancy-detail`
+   VACANCY_DETAIL = `/work/vacancy-detail`,
 }
 
 export enum MARKETPLACE {
@@ -12,7 +12,6 @@ export enum MARKETPLACE {
    CREATE_ORDER = `/marketplace/create-order`,
 }
 
-
 export enum DASHBOARD {
    PROFILE = `/dashboard/profile`,
    LISTINGS = `/dashboard/listings`,
@@ -21,10 +20,6 @@ export enum DASHBOARD {
    ORGANIZATION = `/dashboard/organization`,
    FAVORITES = `/dashboard/favorites`,
    // MY_ORDER_DETAIL = "/dashboard/my-order-details",
-}
-export enum ORDERS {
-   CURRENT_ORDERS = `/orders/current-orders`,
-   HISTORY = `/orders/history`,
 }
 
 export enum ROUTES {
@@ -49,8 +44,8 @@ export enum ROUTES {
    ORDER_DETAILS = "/order-details",
    CARD_DETAILS = "/card-details",
 
-   ORDERS_CURRENT_ORDERS = `/orders/current-orders`,
-   ORDERS_HISTORY = `/orders/history`,
+   ORGANIZATION_CURRENT_ORDERS = `/organization/current-orders`,
+   ORGANIZATION_HISTORY = `/organization/history-user`,
    MODE = `/mode`,
    NOTICES = `/notices`,
    USERS = `/users`,
@@ -60,17 +55,20 @@ export enum ROUTES {
    STRIPE_PAYMENT = `/payment/stripe`,
 }
 
-export enum ADMIN_ROUTES {
-   ORGANIZATION = "/admin/organization",
-   ORGANIZATION_DETAILS = "/admin/organization-details",
-   CREATE_ORGANIZATION = "/admin/create-organization",
-   EMPLOYEES = "/admin/employees",
-   EMPLOYEES_DETAILS = "/admin/employees-details",
-   INVITE_EMPLOYEES = "/admin/invite-employees",
-   POSITIONS = "/admin/positions",
-   ADD_POSITION = "/admin/add-position",
-   EMPLOYEES_SETTINGS = "/admin/employees-settings",
-   VACANCIES = "/admin/vacancies",
-   VACANCY_DETAIL = "/admin/vacancy-detail",
-   HISTORY = "/admin/history",
+export enum ORGANIZATION_ROUTES {
+   ORGANIZATION_LIST = "/organization/organization-list",
+   ORGANIZATION_DETAILS = "/organization/organization-details",
+   CREATE_ORGANIZATION = "/organization/create-organization",
+   EMPLOYEES = "/organization/employees",
+   EMPLOYEES_DETAILS = "/organization/employees-details",
+   INVITE_EMPLOYEES = "/organization/invite-employees",
+   POSITIONS = "/organization/positions",
+   ADD_POSITION = "/organization/add-position",
+   EMPLOYEES_SETTINGS = "/organization/employees-settings",
+   VACANCIES = "/organization/vacancies",
+   VACANCY_DETAIL = "/organization/vacancy-detail",
+   HISTORY = "/organization/history",
+
+   CURRENT_ORDERS = `/organization/current-orders`,
+   HISTORY_USER = `/organization/history-user`,
 }

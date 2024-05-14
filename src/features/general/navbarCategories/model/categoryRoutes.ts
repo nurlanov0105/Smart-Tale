@@ -1,7 +1,7 @@
-import { DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
+import { DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/lib";
 import { User, Clipboard, ShoppingCart, BriefcaseBusiness } from "lucide-react";
 import { TypeCategories } from "@/entities/user/navbarItem";
-import { WORK } from "@/shared/lib/routes.config";
+import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
 
 export const CategoryRoutes: TypeCategories[] = [
    {
@@ -31,11 +31,7 @@ export const CategoryRoutes: TypeCategories[] = [
             subtitle: "История заказов",
             link: DASHBOARD.ORDER_HISTORY,
          },
-         {
-            parentId: 1,
-            subtitle: "Организация",
-            link: DASHBOARD.ORGANIZATION,
-         },
+
          {
             parentId: 1,
             subtitle: "Избранные",
@@ -53,14 +49,47 @@ export const CategoryRoutes: TypeCategories[] = [
       routes: [
          {
             parentId: 2,
-            subtitle: "Текущие заказы",
-            link: ORDERS.CURRENT_ORDERS,
+            subtitle: "Моя организация",
+            link: ORGANIZATION_ROUTES.ORGANIZATION_LIST,
+            detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS
          },
          {
             parentId: 2,
-            subtitle: "История",
-            link: ORDERS.HISTORY,
+            subtitle: "Сотрудники",
+            link: ORGANIZATION_ROUTES.EMPLOYEES,
          },
+         {
+            parentId: 2,
+            subtitle: "Должности",
+            link: ORGANIZATION_ROUTES.POSITIONS,
+         },
+         {
+            parentId: 2,
+            subtitle: "Текущие заказы",
+            link: ORGANIZATION_ROUTES.CURRENT_ORDERS,
+         },
+         {
+            parentId: 2,
+            subtitle: "История вакансий",
+            link: ORGANIZATION_ROUTES.VACANCIES,
+         },
+
+         {
+            parentId: 2,
+            subtitle: "История заказов",
+            link: ORGANIZATION_ROUTES.HISTORY,
+         },
+      ],
+      activeRoutes: [
+         ORGANIZATION_ROUTES.CREATE_ORGANIZATION,
+         ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,
+         ORGANIZATION_ROUTES.INVITE_EMPLOYEES,
+         ORGANIZATION_ROUTES.EMPLOYEES_DETAILS,
+         ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS,
+         ORGANIZATION_ROUTES.POSITIONS,
+         ORGANIZATION_ROUTES.ADD_POSITION,
+         ORGANIZATION_ROUTES.VACANCY_DETAIL,
+         ORGANIZATION_ROUTES.HISTORY,
       ],
    },
    {

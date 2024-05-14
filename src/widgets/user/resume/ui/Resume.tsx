@@ -5,7 +5,6 @@ import {Tabs} from "@/features/general/tabs";
 import {ResumeForm} from "@/entities/user/resumeForm";
 import {resumeType} from "../model/values.data";
 import styles from "./styles.module.scss";
-import {Select} from "@/shared/ui";
 
 const Resume = () => {
    

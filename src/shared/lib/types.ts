@@ -9,6 +9,11 @@ export enum EnumTokens {
    SUBSCRIBE_TYPE = "subscribe-type",
 }
 
+export type OrganizationValuesProps = {
+   value: string
+   postValue: string
+}
+
 export type RefreshTokenTypes = {
    access: string
    refresh: string
