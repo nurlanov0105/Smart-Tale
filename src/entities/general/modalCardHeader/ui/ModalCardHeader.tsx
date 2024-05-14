@@ -4,8 +4,8 @@ import { FC } from "react";
 import { usePathname } from "next/navigation";
 import { PathData } from "../model/consts";
 import { ModalheaderProps } from "../model/types";
-import styles from "./styles.module.scss";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge }) => {
    const pathname = usePathname() as string;

@@ -1,4 +1,4 @@
-import { OrganizationValuesProps } from "@/widgets/user/organization";
+import {OrganizationValuesProps} from "@/shared/lib/types";
 
 export const valuesData: OrganizationValuesProps[] = [
    {

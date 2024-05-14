@@ -70,6 +70,10 @@
    //    border: 1px solid red;
    // }
 
+   &__phoneWrapper{
+      position: relative;
+   }
+
    &__inputMask {
       width: 100%;
       padding: 1.7rem 2.4rem;

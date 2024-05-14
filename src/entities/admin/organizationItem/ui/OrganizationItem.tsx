@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
-import { ADMIN_ROUTES } from "@/shared/lib";
+import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import logo from "@@/logo.svg";
 import { TypesItemOrganization } from "../model/types";
 import Image from "next/image";
@@ -12,7 +12,7 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    return (
       <Link
-         href={ADMIN_ROUTES.ORGANIZATION_DETAILS + "/item name"}
+         href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + "/item name"}
          className={clsx(styles.organization, styles[theme])}>
          <div className={styles.organization__left}>
             <Image

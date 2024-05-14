@@ -1,4 +1,4 @@
-import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
+import { ORGANIZATION_ROUTES, DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/lib";
 
 export const PathData: any = {
    [DASHBOARD.PROFILE]: {
@@ -26,22 +26,13 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
-   [MARKETPLACE.SERVICE]: {
+   [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },
    [MARKETPLACE.CREATE_ORDER]: {
       path: "Маркетплейс/Разместить заказ",
       name: "Разместить заказ",
-   },
-
-   [ORDERS.CURRENT_ORDERS]: {
-      path: "Заказы/Текущие заказы",
-      name: "Текущие заказы",
-   },
-   [ORDERS.HISTORY]: {
-      path: "Заказы/История",
-      name: "История",
    },
 
    [ROUTES.ORDER_DETAILS]: {
@@ -54,31 +45,40 @@ export const PathData: any = {
       name: "Детали объявления",
    },
 
-   [ADMIN_ROUTES.ORGANIZATION]: {
-      path: "SmartTale",
+   [ORGANIZATION_ROUTES.CURRENT_ORDERS]: {
+      path: "Организация/Текущие заказы",
+      name: "Текущие заказы",
+   },
+   [ORGANIZATION_ROUTES.HISTORY_USER]: {
+      path: "Организация/История",
+      name: "История",
+   },
+
+   [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {
+      path: "Организация/Список организаций",
+      name: "Список организаций",
+   },
+   [ORGANIZATION_ROUTES.CREATE_ORGANIZATION]: {
+      path: "Организация/Создание организации",
       name: "Организация",
    },
-   [ADMIN_ROUTES.CREATE_ORGANIZATION]: {
-      path: "SmartTale",
-      name: "Организация",
-   },
-   [ADMIN_ROUTES.EMPLOYEES]: {
+   [ORGANIZATION_ROUTES.EMPLOYEES]: {
       path: "SmartTale",
       name: "Сотрудники",
    },
-   [ADMIN_ROUTES.INVITE_EMPLOYEES]: {
+   [ORGANIZATION_ROUTES.INVITE_EMPLOYEES]: {
       path: "SmartTale",
       name: "Сотрудники",
    },
-   [ADMIN_ROUTES.POSITIONS]: {
+   [ORGANIZATION_ROUTES.POSITIONS]: {
       path: "SmartTale",
       name: "Должности",
    },
-   [ADMIN_ROUTES.ADD_POSITION]: {
+   [ORGANIZATION_ROUTES.ADD_POSITION]: {
       path: "SmartTale",
       name: "Должности",
    },
-   [ADMIN_ROUTES.HISTORY]: {
+   [ORGANIZATION_ROUTES.HISTORY]: {
       path: "SmartTale",
       name: "История",
    },

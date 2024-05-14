@@ -4,7 +4,6 @@ import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { AdminCategories } from "@/features/admin/adminNavCategories";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { AuthBtn } from "@/entities/general/authBtn";
 import { SubscribeBox } from "@/entities/user/subscribeBox";
@@ -31,8 +30,7 @@ const Navbar = () => {
       }
    }, [pathname]);
 
-   const { hidden, hover, handlePanelClick, handleMouseOut, handleMouseOver, handleOverlayClick } =
-      useNavbar();
+   const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
 
    return (
       <>
@@ -41,21 +39,12 @@ const Navbar = () => {
                styles.navbar,
                hidden ? styles.navbar_hidden : "",
                hover ? styles.navbar_hover : ""
-               // closed ? styles.navbar_closed : ""
             )}
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}>
             <div className={styles.logoLine}>
                <Logo />
                <div className={styles.navbar__links}>
-                  <Link
-                     href={ROUTES.MODE}
-                     className={styles.navbar__link}
-                     onClick={handlePanelClick}>
-                     <span>Режим</span>
-                     <ShieldCheck />
-                  </Link>
-
                   <div className={clsx(styles.navbar__theme, styles[theme])} onClick={toggleTheme}>
                      {theme === "light" ? <Moon /> : <SunMoon />}
                   </div>
@@ -65,7 +54,7 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               {categoryType ? <AdminCategories /> : <NavbarCategories />}
+               <NavbarCategories />
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && <SubscribeBox />}

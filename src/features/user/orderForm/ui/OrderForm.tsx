@@ -61,7 +61,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                        data={sizesData}
                        title="Размеры"
                        handleSelectElem={handleChangeSize}
-                       classname={styles.order__selectInput}
+                       type="default"
                    />
                    {sizesArr.length >= 1 && (
                        <ul className={styles.order__sizes}>
@@ -86,10 +86,15 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                    type="number"
                    title="Стоимость"
                />
-               <div>
-                  <Select selected={selectCurrency} setSelected={setSelectCurrency} data={currencies}
-                          classname={styles.order__currency}/>
-               </div>
+              <div>
+                 <Select
+                     selected={selectCurrency}
+                     setSelected={setSelectCurrency}
+                     data={currencies}
+                     type="vacancy"
+                     classname={styles.order__currency}
+                 />
+              </div>
             </div>
 
             {type === "order" && (
@@ -119,7 +124,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
                    selected={selectedContact}
                    setSelected={setSelectedContact}
                    data={contactsData}
-                   classname={styles.order__selectInput}
+                   type="vacancy"
                />
                <InputField
                    disabled={false}

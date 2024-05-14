@@ -35,7 +35,7 @@ const StripPayment = () => {
                   setSelected={setSelected}
                   title="Подписки"
                   data={Object.values(SubsribesData)}
-                  classname={styles.section__select}
+                  type="transparent"
                />
                <SubscribeCard type={selected.postValue} isPayment={true} />
             </div>
