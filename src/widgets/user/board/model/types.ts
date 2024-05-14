@@ -6,4 +6,4 @@ export type KanbanOrderProps = {
     date: string
 }
 
-export type Columns = 'new' | 'process' | 'checking' | 'sending' | 'arrived';
+export type Columns = 'pending' | 'process' | 'checking' | 'sending' | 'arrived';

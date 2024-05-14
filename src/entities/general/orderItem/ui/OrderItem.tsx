@@ -15,22 +15,20 @@ import { usePathname } from "next/navigation";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
 import { useThemeStore } from "@/shared/themeStore";
 
-const OrderItem: FC<ItemProps> = ({ item, isAdmin, isCurrent }) => {
+const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
    const theme = useThemeStore((state) => state.theme);
    const title = orderValues[item.type];
 
    const router = useRouter();
    const handleItemClick = () => {
-      if (isAdmin) {
-         showModal(MODAL_KEYS.card);
-      } else if (isAdmin && item.type === "order") {
+
+    if (item.type === "order") {
          router.push(ROUTES.ORDER_DETAILS + "/orderName");
-      } else if (isAdmin && item.type === "equipment") {
+    } else {
          router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
-      } else {
-         router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
-      }
+    }
    };
+
 
    return (
       <>

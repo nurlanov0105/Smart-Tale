@@ -48,12 +48,14 @@ const Vacancies = () => {
                         selected={selectedDate}
                         setSelected={setSelectedDate}
                         data={timeList}
+                        type="bordered"
                         classname={styles.vacancies__select}
                     />
                     <Select
                         selected={selected}
                         setSelected={setSelected}
                         data={typeList}
+                        type="bordered"
                         classname={styles.vacancies__selectType}
                     />
                     <button onClick={handleFilters} className={styles.vacancies__filter}><SlidersHorizontal/></button>

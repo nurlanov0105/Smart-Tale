@@ -38,13 +38,6 @@ const Header = () => {
                <HeaderIntro />
             </div>
             <div className={styles.header__links}>
-               {isSubscribed && (
-                  <Link href={ROUTES.MODE} className={styles.header__link}>
-                     <span>Режим</span>
-                     <ShieldCheck />
-                  </Link>
-               )}
-
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>
@@ -52,13 +45,6 @@ const Header = () => {
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
             <div className={styles.header__links}>
-               {isSubscribed && (
-                  <Link href={ROUTES.MODE} className={styles.header__link}>
-                     <span>Режим</span>
-                     <ShieldCheck />
-                  </Link>
-               )}
-
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
                   {theme === "light" ? <Moon /> : <SunMoon />}
                </div>

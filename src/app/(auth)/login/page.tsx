@@ -1,5 +1,5 @@
-import { LoginForm } from "@/features/auth";
 import { NextPage } from "next";
+import {LoginForm} from "@/features/auth";
 
 const LoginPage: NextPage = () => {
    return <LoginForm />;

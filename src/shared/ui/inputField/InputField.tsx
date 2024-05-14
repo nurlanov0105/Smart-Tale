@@ -16,6 +16,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) =>
          <label htmlFor={title} className={isBorderedClass(styles.field, styles.field__bordered)}>
             {!isBordered && <p className={styles.field__title}>{title}</p>}
             <input
+
                 id={title}
                 value={value}
                className={isBorderedClass(

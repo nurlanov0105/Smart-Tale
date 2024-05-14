@@ -5,7 +5,7 @@ export const orderDetailsValues = [
    },
    // {
    //    value: "Услуга",
-   //    postValue: "service",
+   //    postValue: "orders",
    // },
    {
       value: "Заказ",

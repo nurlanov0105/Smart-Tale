@@ -1,5 +1,5 @@
 export const errorCatch = (error: any): string => {
-    const message = error?.response?.data['non_field_errors']
+    const message = error?.response?.data.Error
 
     return message
         ? typeof message === "object"
