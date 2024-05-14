@@ -90,7 +90,7 @@ const Resume = () => {
          </div>
 
          <div className={styles.form__btns}>
-            <Button>Добавит резюме</Button>
+            <Button>Разместить резюме</Button>
          </div>
       </form>
    );

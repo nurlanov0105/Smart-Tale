@@ -1,42 +1,36 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
 import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, PasswordField } from "@/shared/ui";
 
 import { EmailSchema, passwordSchema } from "../model/schema";
-import {useLoginForm} from "../model/hooks";
+import { useLoginForm } from "../model/hooks";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useRememberMe } from "@/shared/lib";
 
 const LoginForm: FC = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {
-      handleSubmit,
-      register,
-      errors,
-      isValid,
-       isLoading
-   } = useLoginForm()
+   const { handleSubmit, register, errors, isValid, isLoading } = useLoginForm();
 
-   // const isRemember = useRememberMe();
-   // const [isRememberMe, setRememberMe] = useState(useRememberMe());
+   const isRemember = useRememberMe();
+   const [isRememberMe, setRememberMe] = useState(useRememberMe());
 
-   // useEffect(() => {
-   //       setRememberMe(isRemember);
-   //    }, [isRemember]);
-   //
-   //    const handleRememberChange = () => {
-   //       setRememberMe(!isRememberMe);
-   //    };
+   useEffect(() => {
+      setRememberMe(isRememberMe);
+   }, [isRemember, isRememberMe]);
+
+   const handleRememberChange = () => {
+      setRememberMe(!isRememberMe);
+   };
 
    useEffect(() => {
       document.documentElement.className = theme;
    }, [theme]);
-
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>
@@ -66,8 +60,8 @@ const LoginForm: FC = () => {
                   classname={styles.auth__checkField}
                   isBordered={true}
                   type="checkbox"
-                  // checked={isRememberMe}
-                  // onChange={handleRememberChange}
+                  checked={isRememberMe}
+                  onChange={handleRememberChange}
                />
                <p className={styles.auth__text}>Запомнить меня</p>
             </label>

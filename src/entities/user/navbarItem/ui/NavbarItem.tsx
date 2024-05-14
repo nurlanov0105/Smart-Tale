@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useOrdersStore } from "@/entities/general/navbarPanel";
@@ -10,6 +10,7 @@ import { TypeCategories } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
+import { ChevronDown } from "lucide-react";
 
 const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    routes,
@@ -22,19 +23,32 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
-
+   const [isShow, setIsShow] = useState(true);
    const windowSize = useWindowSize();
+   const [height, setheight] = useState<number | undefined>(undefined);
+   const contentRef = useRef<HTMLDivElement>(null);
+
+   useEffect(() => {
+      if (contentRef.current) {
+         setheight(isShow ? contentRef.current.scrollHeight : 0);
+      }
+   }, [isShow, routes]);
 
    const handleClickClose = () => {
       if (windowSize.width && windowSize.width <= 900) {
          toggleHidden();
       }
-   }
+   };
+
+   const handleToggleClick = () => {
+      setIsShow((prev) => !prev);
+   };
 
    const filteredItems = routes.map((item) => {
       if (isAuth || !item.authorized) {
          return (
             <Link
+               onClick={handleClickClose}
                href={item.link}
                key={item.subtitle}
                className={clsx(styles.category__item, {
@@ -47,21 +61,31 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    });
 
    return (
-      <li className={clsx(styles.category_item, styles[theme])} onClick={handleClickClose}>
-         <Link
-            href={routes[0].link}
+      <li className={clsx(styles.category_item, styles[theme])}>
+         <div
+            onClick={handleToggleClick}
             className={clsx(styles.category__top, {
                [styles.category__top_active]:
                   routes.some((el) => el.link === pathname) ||
                   activeRoutes?.some((el) => pathname.includes(el)),
             })}>
-            <span className={styles.category__icon}>
-               <Icon />
-            </span>
-            <h3 className={styles.category__title}>{title}</h3>
-         </Link>
+            <div className={styles.category__inner}>
+               <span className={styles.category__icon}>
+                  <Icon />
+               </span>
+               <h3 className={styles.category__title}>{title}</h3>
+            </div>
+            <ChevronDown
+               className={clsx(styles.category__arrow, isShow && styles.category__arrow_active)}
+            />
+         </div>
 
-         <div className={styles.category}>
+         <div
+            className={clsx(styles.category, !isShow ? styles.category_hidden : "")}
+            style={{
+               height: height !== undefined ? `${height}px` : "none",
+            }}
+            ref={contentRef}>
             <div className={styles.category__list}>{filteredItems}</div>
          </div>
       </li>

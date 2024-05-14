@@ -3,7 +3,7 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ADMIN_ROUTES, MARKETPLACE } from "@/shared/lib";
+import { ORGANIZATION_ROUTES, MARKETPLACE } from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
 
 import clsx from "clsx";
@@ -35,7 +35,7 @@ const Mode = () => {
                <p className={styles.item__title}>Пользователь</p>
             </div>
          </Link>
-         <Link href={ADMIN_ROUTES.ORGANIZATION} className={styles.item}>
+         <Link href={ORGANIZATION_ROUTES.ORGANIZATION} className={styles.item}>
             <div className={clsx(styles.item__left, styles.item__left_admin)}>
                <Image
                   className={styles.item__image}
