@@ -9,6 +9,11 @@ export enum EnumTokens {
    SUBSCRIBE_TYPE = "subscribe-type",
 }
 
+export type OrganizationValuesProps = {
+   value: string
+   postValue: string
+}
+
 export type RefreshTokenTypes = {
    access: string
    refresh: string
@@ -30,6 +35,7 @@ export type InputFieldProps = {
    required?: boolean;
    onFocus?: any;
    placeholder?: string;
+   autoComplete?: string
 };
 
 export type TextAreaProps = Omit<InputFieldProps, "type">;

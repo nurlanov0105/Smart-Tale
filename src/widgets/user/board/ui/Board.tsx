@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 
 const initialColumns = () => {
    const columns: Record<Columns, KanbanOrderProps[]> = {
-      new: [],
+      pending: [],
       process: [],
       checking: [],
       sending: [],
@@ -97,7 +97,7 @@ const Board = () => {
       <DragDropContext onDragEnd={onDragEnd}>
          <div className={styles.board}>
             <div className={styles.board__inner}>
-               <BoardColumn orders={columns.new} title={COLUMN_VALUES.NEW} />
+               <BoardColumn orders={columns.pending} title={COLUMN_VALUES.PENDING} />
                <BoardColumn orders={columns.process} title={COLUMN_VALUES.PROCESS} />
                <BoardColumn orders={columns.checking} title={COLUMN_VALUES.CHECKING} />
                <BoardColumn orders={columns.sending} title={COLUMN_VALUES.SENDING} />

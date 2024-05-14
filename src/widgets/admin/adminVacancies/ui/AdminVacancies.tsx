@@ -1,11 +1,13 @@
-"use client";
+"use client"
+
 import React from "react";
-import styles from "./styles.module.scss";
+import { useRouter } from "next/navigation";
 import { vacancies } from "@/widgets/user/vacancies/model/values.data";
 import { VacancyItem } from "@/entities/user/vacancyItem";
 import { Button } from "@/shared/ui";
-import { useRouter } from "next/navigation";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
+import styles from "./styles.module.scss";
+
 
 const AdminVacancies = () => {
    const { push } = useRouter();

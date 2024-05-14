@@ -6,14 +6,14 @@ export const BoardData: KanbanOrderProps[] = [
       title: "Заказ №2456",
       description: "Сшить 10 штук sdsdsd",
       date: "15 апреля",
-      status: "new",
+      status: "pending",
    },
    {
       id: 2,
       title: "Заказ №2456",
       description: "Сшить 10 штук футболок",
       date: "15 апреля",
-      status: "new",
+      status: "pending",
    },
 
    {
@@ -64,8 +64,8 @@ export const BoardData: KanbanOrderProps[] = [
 ];
 
 export const boardHeadings: any = {
-   new: {
-      name: "Новые",
+   pending: {
+      name: "В ожидании",
       light: "#C3FFFB",
       dark: "#005753"
    },

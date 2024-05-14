@@ -10,7 +10,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const PasswordField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-   const { classname, title, disabled, error, ...rest } = props;
+   const { classname, title, disabled, autoComplete, error, ...rest } = props;
    const [showPassword, setShowPassword] = useState(false);
 
    const togglePasswordVisibility = () => {
@@ -33,6 +33,7 @@ const PasswordField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref)
                   {...rest}
                   ref={ref}
                   disabled={disabled}
+                  autoComplete={autoComplete}
                   type={showPassword ? "text" : "password"}
                />
                <Image

@@ -49,6 +49,7 @@ const AdminEmployeesSettings = () => {
                      setSelected={setSelected}
                      title="Должность"
                      data={organizationsData}
+                     type="default"
                   />
                </div>
             </fieldset>

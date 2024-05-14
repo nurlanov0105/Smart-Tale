@@ -49,13 +49,9 @@ export const CategoryRoutes: TypeCategories[] = [
       routes: [
          {
             parentId: 2,
-            subtitle: "Организация",
-            link: ORGANIZATION_ROUTES.ORGANIZATION,
-         },
-         {
-            parentId: 2,
-            subtitle: "Список организаций",
+            subtitle: "Моя организация",
             link: ORGANIZATION_ROUTES.ORGANIZATION_LIST,
+            detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS
          },
          {
             parentId: 2,
@@ -74,18 +70,13 @@ export const CategoryRoutes: TypeCategories[] = [
          },
          {
             parentId: 2,
-            subtitle: "История User",
-            link: ORGANIZATION_ROUTES.HISTORY_USER,
-         },
-         {
-            parentId: 2,
-            subtitle: "Вакансии",
+            subtitle: "История вакансий",
             link: ORGANIZATION_ROUTES.VACANCIES,
          },
 
          {
             parentId: 2,
-            subtitle: "История Admin",
+            subtitle: "История заказов",
             link: ORGANIZATION_ROUTES.HISTORY,
          },
       ],
@@ -116,7 +107,13 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Заказы",
-            link: MARKETPLACE.SERVICE,
+            link: MARKETPLACE.ORDERS,
+            authorized: false,
+         },
+         {
+            parentId: 3,
+            subtitle: "Услуги",
+            link: MARKETPLACE.SERVICES,
             authorized: false,
          },
          {

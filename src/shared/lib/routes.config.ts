@@ -7,7 +7,8 @@ export enum WORK {
 
 export enum MARKETPLACE {
    EQUIPMENT = "/marketplace/equipment",
-   SERVICE = `/marketplace/service`,
+   SERVICES = `/marketplace/services`,
+   ORDERS = `/marketplace/orders`,
    CREATE_ORDER = `/marketplace/create-order`,
 }
 
@@ -55,7 +56,6 @@ export enum ROUTES {
 }
 
 export enum ORGANIZATION_ROUTES {
-   ORGANIZATION = "/organization/organization-info",
    ORGANIZATION_LIST = "/organization/organization-list",
    ORGANIZATION_DETAILS = "/organization/organization-details",
    CREATE_ORGANIZATION = "/organization/create-organization",

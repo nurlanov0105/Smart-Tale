@@ -24,7 +24,12 @@ type CountryCode = keyof typeof CountryCodes;
 type FlagsType = keyof typeof Flags;
 
 export const usePhoneNumber = (watch: any) => {
-   const [country, setCountry] = useState<string>("KG");
+   const countries = [
+      {value: "KG", postValue: "KG"},
+      {value: "RU", postValue: "RU"},
+      {value: "KZ", postValue: "KZ"},
+   ]
+   const [country, setCountry] = useState(countries[0]);
 
    const telValue = watch("tel")
    const debouncedValue = useDebounce(telValue)
@@ -32,7 +37,7 @@ export const usePhoneNumber = (watch: any) => {
    //const firstThreeChars = telValue.substring(0, 3);
 
 
-   return {CountryCodes, Flags, country, masks}
+   return {CountryCodes, Flags, country, masks, setCountry, countries}
 }
 
 // export const usePhoneNumber = () => {

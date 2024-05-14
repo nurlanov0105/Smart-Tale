@@ -4,6 +4,7 @@ export type RoutesType = {
    subtitle: string;
    link: string;
    authorized?: boolean;
+   detailLink?: string
 };
 
 export type TypeCategories = {

@@ -26,7 +26,7 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
-   [MARKETPLACE.SERVICE]: {
+   [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },
@@ -54,12 +54,12 @@ export const PathData: any = {
       name: "История",
    },
 
-   [ORGANIZATION_ROUTES.ORGANIZATION]: {
-      path: "SmartTale",
-      name: "Организация",
+   [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {
+      path: "Организация/Список организаций",
+      name: "Список организаций",
    },
    [ORGANIZATION_ROUTES.CREATE_ORGANIZATION]: {
-      path: "SmartTale",
+      path: "Организация/Создание организации",
       name: "Организация",
    },
    [ORGANIZATION_ROUTES.EMPLOYEES]: {

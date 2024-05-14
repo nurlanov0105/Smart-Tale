@@ -21,16 +21,16 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    isAuth,
 }) => {
    const theme = useThemeStore((state) => state.theme);
-   const pathname = usePathname();
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
+   const pathname = usePathname();
    const [isShow, setIsShow] = useState(true);
    const windowSize = useWindowSize();
-   const [height, setheight] = useState<number | undefined>(undefined);
+   const [height, setHeight] = useState<number | undefined>(undefined);
    const contentRef = useRef<HTMLDivElement>(null);
 
    useEffect(() => {
       if (contentRef.current) {
-         setheight(isShow ? contentRef.current.scrollHeight : 0);
+         setHeight(isShow ? contentRef.current.scrollHeight : 0);
       }
    }, [isShow, routes]);
 
