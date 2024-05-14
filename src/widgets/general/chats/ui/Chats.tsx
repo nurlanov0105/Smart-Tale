@@ -26,13 +26,13 @@ const Chats = () => {
                      selected={selectedType}
                      setSelected={setSelectedType}
                      data={chatsFilterType}
-                     classname={styles.chats__select}
+                     type="chat"
                   />
                   <Select
                      selected={selectedDate}
                      setSelected={setSelectedDate}
                      data={chatsFilterDate}
-                     classname={styles.chats__select}
+                     type="chat"
                   />
                </div>
                <div className={styles.chats__list}>

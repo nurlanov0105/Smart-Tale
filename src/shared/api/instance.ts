@@ -1,12 +1,21 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { CookiesServices, EnumTokens, ROUTES, refreshToken, errorCatch } from "../lib";
+import {
+   CookiesServices,
+   EnumTokens,
+   ROUTES,
+   refreshToken,
+   errorCatch,
+   useRememberMe,
+} from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 const options = {
-   baseURL: BASE_URL,
-   headers: { "Content-Type": "application/json" },
+    baseURL: BASE_URL,
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true
 }
+
 
 export const authApiInstance = axios.create(options);
 export const baseApiInstance = axios.create(options);
@@ -19,18 +28,28 @@ authApiInstance.interceptors.response.use(
       // const errorKey = Object.keys(error.response.data)[0];
       // const errorMessage = error.response.data[errorKey];
 
-      //const alertError = errorCatch(error)
+      const alertError = errorCatch(error)
+       console.log(error)
 
-      console.log("Произошла ошибка при запросе: ", error);
-      toast.error("Произошла ошибка при запросе: ");
+      toast.error(alertError);
       return Promise.reject(error);
    }
 );
 
 baseApiInstance.interceptors.request.use(
    (config) => {
-      const accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
-      const refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
+      const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+      const isRemember = res === "true";
+
+      let accessToken, refreshToken;
+
+      if (isRemember) {
+         accessToken = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+         refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN);
+      } else {
+         accessToken = sessionStorage.getItem(EnumTokens.ACCESS_TOKEN);
+         refreshToken = sessionStorage.getItem(EnumTokens.REFRESH_TOKEN);
+      }
 
       if (accessToken) {
          if (!refreshToken) {
@@ -49,7 +68,8 @@ baseApiInstance.interceptors.request.use(
 );
 
 baseApiInstance.interceptors.response.use(
-    response => response,
+   (response) => response,
+
    async (error) => {
       const originalRequest = error.config;
 
@@ -57,12 +77,12 @@ baseApiInstance.interceptors.response.use(
          originalRequest._retry = true;
 
          try {
-            await refreshToken()
+            await refreshToken();
 
-            return baseApiInstance.request(originalRequest)
-         }catch (err){
+            return baseApiInstance.request(originalRequest);
+         } catch (err) {
             //if (errorCatch(error) === 'jwt expired') CookiesServices.clearTokens()
-             console.log(err)
+            console.log(err);
          }
 
          return baseApiInstance(originalRequest);

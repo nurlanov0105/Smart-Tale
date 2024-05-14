@@ -7,7 +7,7 @@ import { closeModal } from "@/views/modal";
 import { IEmailVerifyRequest } from "@/features/auth/model/types";
 import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
-import {UseFormReset} from "react-hook-form";
+import { UseFormReset } from "react-hook-form";
 
 export const useRegister = (reset: UseFormReset<any>) => {
    const router = useRouter();
@@ -15,7 +15,7 @@ export const useRegister = (reset: UseFormReset<any>) => {
    return useMutation({
       mutationFn: authApi.register,
       onSuccess: () => {
-         reset()
+         reset();
          router.push(ROUTES.CONFIRMATION_REGISTER);
       },
    });
@@ -23,6 +23,8 @@ export const useRegister = (reset: UseFormReset<any>) => {
 
 export const useLogin = (reset: UseFormReset<any>) => {
    const router = useRouter();
+   const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+   const isRemember = res === "true";
 
    return useMutation({
       mutationFn: authApi.login,
@@ -37,10 +39,15 @@ export const useLogin = (reset: UseFormReset<any>) => {
                value: data.data.refresh,
             };
 
-            CookiesServices.setToken(accessData);
-            CookiesServices.setToken(refreshData);
+            if (isRemember) {
+               CookiesServices.setToken(accessData);
+               CookiesServices.setToken(refreshData);
+            } else {
+               sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
+               sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, data.data.refresh);
+            }
 
-            reset()
+            reset();
             router.push(ROUTES.MARKETPLACE_EQUIPMENT);
          }
       },
@@ -83,14 +90,13 @@ export const useResendCode = () => {
    };
 };
 export const useLogout = () => {
-   const router = useRouter();
-
    return useMutation({
       mutationFn: authApi.logout,
       onSuccess: () => {
          closeModal();
          CookiesServices.clearTokens();
          CookiesServices.clearCredentials();
+         sessionStorage.clear();
          window.location.href = "/";
       },
    });
@@ -104,6 +110,7 @@ export const useDeleteAccount = () => {
          closeModal();
          CookiesServices.clearTokens();
          CookiesServices.clearCredentials();
+         sessionStorage.clear();
          window.location.href = "/";
       },
    });

@@ -1,50 +1,46 @@
-import {useForm} from "react-hook-form";
-import {registerFormType, useRegister} from "@/features/auth";
-import {CookiesServices, EnumTokens} from "@/shared/lib";
+import { useForm } from "react-hook-form";
+import { registerFormType, useRegister } from "@/features/auth";
+import { CookiesServices, EnumTokens } from "@/shared/lib";
 
 export const useRegisterForm = () => {
+   const {
+      getValues,
+      register,
+      formState: { errors, isValid },
+      handleSubmit,
+      reset,
+      watch,
+      trigger,
+   } = useForm<registerFormType>({
+      mode: "onChange",
+      criteriaMode: "all",
+      shouldFocusError: true,
+   });
 
-    const {
-        getValues,
-        register,
-        formState: { errors, isValid },
-        handleSubmit,
-        reset,
-        watch,
-        trigger,
+   const { mutate: registration,
+       isPending, isError, isSuccess } = useRegister(reset);
 
-    } = useForm<registerFormType>({
-        mode: "onChange",
-        criteriaMode: "all",
-        shouldFocusError: true,
-    });
+   const onSubmit = (data: registerFormType) => {
+       const params = {
+           email: data.email,
+           first_name: data.firstName,
+           last_name: data.lastName,
+           middle_name: data.middleName,
+           phone_number: data.tel,
+           password: data.password,
+           password_confirm: data.rePassword,
+       };
 
-    const {
-        mutate: registration,
-        isPending,
-        isError,
-        isSuccess } = useRegister(reset);
+       CookiesServices.setToken({
+           keyName: EnumTokens.REGISTER_EMAIL,
+           value: data.email,
+           time: "3600",
+       });
 
-    const onSubmit = (data: registerFormType) => {
-        const params = {
-            email: data.email,
-            first_name: data.firstName,
-            last_name: data.lastName,
-            middle_name: data.middleName,
-            password: data.password,
-            password_confirm: data.rePassword,
-        };
+       registration(params);
+   }
 
-        CookiesServices.setToken({
-            keyName: EnumTokens.REGISTER_EMAIL,
-            value: data.email,
-            time: "3600",
-        });
 
-        registration(params);
-
-        reset();
-    };
 
     return {
         handleSubmit: handleSubmit(onSubmit),
@@ -59,3 +55,5 @@ export const useRegisterForm = () => {
         isValid
     }
 }
+
+

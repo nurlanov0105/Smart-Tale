@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { Button } from "@/shared/ui";
-import { ADMIN_ROUTES } from "@/shared/lib";
+import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import { useRouter } from "next/navigation";
 import type { EmptyContentProps } from "../model/types";
 import styles from "./styles.module.scss";
@@ -10,9 +10,9 @@ const EmptyContent: FC<EmptyContentProps> = ({ type }) => {
 
    const handleRoute = () => {
       if (type === "organization") {
-         router.push(ADMIN_ROUTES.CREATE_ORGANIZATION);
+         router.push(ORGANIZATION_ROUTES.CREATE_ORGANIZATION);
       } else {
-         router.push(ADMIN_ROUTES.INVITE_EMPLOYEES);
+         router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
       }
    };
 

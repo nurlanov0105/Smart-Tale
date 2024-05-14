@@ -52,10 +52,10 @@ const CreateVacancy = () => {
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
                <Select
-                  classname={styles.form__select}
                   selected={graphicSelected}
                   setSelected={setGraphicSelected}
                   data={graphicsFilter}
+                  type="vacancy"
                />
             </div>
 
@@ -69,7 +69,7 @@ const CreateVacancy = () => {
                         selected={selectCurrency}
                         setSelected={setSelectCurrency}
                         data={currencies}
-                        classname={styles.form__currency}
+                        type="vacancy"
                      />
                   </div>
                </div>
@@ -78,10 +78,10 @@ const CreateVacancy = () => {
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
                <Select
-                  classname={styles.form__select}
                   selected={citySelect}
                   setSelected={setCitySelect}
                   data={cityFilter}
+                  type="vacancy"
                />
             </div>
             <div className={styles.form__filter}>

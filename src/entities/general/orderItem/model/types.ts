@@ -1,6 +1,5 @@
 export type ItemProps = {
    item: item;
-   isAdmin?: boolean;
    isCurrent?: boolean;
 };
 

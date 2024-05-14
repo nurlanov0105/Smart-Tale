@@ -1,5 +1,5 @@
 import { EnumTokens, InputFieldProps } from "./types";
-import { MARKETPLACE, DASHBOARD, ORDERS, ROUTES, ADMIN_ROUTES } from "./routes.config";
+import { MARKETPLACE, DASHBOARD, ROUTES, ORGANIZATION_ROUTES } from "./routes.config";
 import { useDebounce } from "./hooks/useDebounce";
 import { useAuth } from "./hooks/useAuth";
 import { useOutside } from "./hooks/useOutside";
@@ -12,7 +12,7 @@ import { useNavbar } from "./hooks/useNavbar";
 import { CookiesServices } from "./services/cookies.services";
 import { useRememberMe } from "./hooks/useRememberMe";
 import { refreshToken } from "./utils/refreshToken";
-import {usePhoneNumber} from "./hooks/usePhoneNumber ";
+import { usePhoneNumber } from "./hooks/usePhoneNumber ";
 import { errorCatch } from "../api/error";
 
 export type { InputFieldProps };
@@ -25,9 +25,8 @@ export {
    useInitialDate,
    MARKETPLACE,
    DASHBOARD,
-   ORDERS,
    ROUTES,
-   ADMIN_ROUTES,
+   ORGANIZATION_ROUTES,
    MODAL_KEYS,
    images,
    SkeletonTypes,

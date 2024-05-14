@@ -55,8 +55,12 @@ const AdminVacancyDetail = () => {
                 {/*/>*/}
                 <div className={styles.form__block}>
                     <h4 className="h4">График работы</h4>
-                    <Select classname={styles.form__select} selected={graphicSelected} setSelected={setGraphicSelected}
-                            data={graphicsFilter}/>
+                    <Select
+                        selected={graphicSelected}
+                        setSelected={setGraphicSelected}
+                        data={graphicsFilter}
+                        type="vacancy"
+                    />
                 </div>
 
                 <div className={styles.form__block}>
@@ -74,15 +78,25 @@ const AdminVacancyDetail = () => {
                             type="number"
                         />
                         <div>
-                            <Select classname={styles.form__currency} selected={selectCurrency} setSelected={setSelectCurrency} data={currencies}/>
+                            <Select
+                                selected={selectCurrency}
+                                setSelected={setSelectCurrency}
+                                data={currencies}
+                                type="vacancy"
+                            />
                         </div>
                     </div>
                 </div>
 
                 <div className={styles.form__block}>
                     <h4 className="h4">Город</h4>
-                    <Select classname={styles.form__select} selected={citySelect} setSelected={setCitySelect}
-                            data={cityFilter}/>
+                    <Select
+                        // classname={styles.form__select}
+                        selected={citySelect}
+                        setSelected={setCitySelect}
+                        data={cityFilter}
+                        type="vacancy"
+                    />
                 </div>
                 <div className={styles.form__filter}>
 

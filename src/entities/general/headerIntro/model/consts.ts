@@ -1,4 +1,4 @@
-import { ADMIN_ROUTES, DASHBOARD, MARKETPLACE, ORDERS, ROUTES } from "@/shared/lib";
+import { ORGANIZATION_ROUTES, DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/lib";
 import { WORK } from "@/shared/lib/routes.config";
 
 export const PathData: any = {
@@ -35,10 +35,15 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
-   [MARKETPLACE.SERVICE]: {
+   [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
    },
+   [MARKETPLACE.ORDERS]: {
+      path: "Маркетплейс/Заказы",
+      name: "Заказы",
+   },
+
    [MARKETPLACE.CREATE_ORDER]: {
       path: "Маркетплейс/Разместить объявление",
       name: "Разместить объявление",
@@ -60,15 +65,6 @@ export const PathData: any = {
       name: "Детали вакансии",
    },
 
-   [ORDERS.CURRENT_ORDERS]: {
-      path: "Заказы/Текущие заказы",
-      name: "Текущие заказы",
-   },
-   [ORDERS.HISTORY]: {
-      path: "Заказы/История",
-      name: "История",
-   },
-
    [ROUTES.ORDER_DETAILS]: {
       path: "Маркетплейс/Детали объявления",
       name: "Детали объявления",
@@ -87,53 +83,62 @@ export const PathData: any = {
       name: "Пользователь",
    },
 
-   [ADMIN_ROUTES.ORGANIZATION]: {
-      path: "SmartTale",
-      name: "Организация",
+   [ORGANIZATION_ROUTES.CURRENT_ORDERS]: {
+      path: "Организация/Текущие заказы",
+      name: "Текущие заказы",
    },
-   [ADMIN_ROUTES.CREATE_ORGANIZATION]: {
-      path: "SmartTale",
-      name: "Организация",
-   },
-   [ADMIN_ROUTES.ORGANIZATION_DETAILS]: {
-      path: "SmartTale",
-      name: "Организация",
-   },
-   [ADMIN_ROUTES.EMPLOYEES]: {
-      path: "SmartTale",
-      name: "Сотрудники",
-   },
-   [ADMIN_ROUTES.EMPLOYEES_DETAILS]: {
-      path: "SmartTale",
-      name: "Детали сотрудника",
-   },
-   [ADMIN_ROUTES.EMPLOYEES_SETTINGS]: {
-      path: "SmartTale",
-      name: "Личные данные",
-   },
-   [ADMIN_ROUTES.INVITE_EMPLOYEES]: {
-      path: "SmartTale",
-      name: "Сотрудники",
-   },
-
-   [ADMIN_ROUTES.POSITIONS]: {
-      path: "SmartTale",
-      name: "Должность",
-   },
-   [ADMIN_ROUTES.ADD_POSITION]: {
-      path: "SmartTale",
-      name: "Должность",
-   },
-   [ADMIN_ROUTES.HISTORY]: {
-      path: "SmartTale",
+   [ORGANIZATION_ROUTES.HISTORY_USER]: {
+      path: "Организация/История",
       name: "История",
    },
-   [ADMIN_ROUTES.VACANCIES]: {
-      path: "SmartTale",
+
+   [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {
+      path: "Организация/Список организаций",
+      name: "Список организаций",
+   },
+   [ORGANIZATION_ROUTES.CREATE_ORGANIZATION]: {
+      path: "Организация/Создание организации",
+      name: "Создание организации",
+   },
+   [ORGANIZATION_ROUTES.ORGANIZATION_DETAILS]: {
+      path: "Организация/Детали организации",
+      name: "Детали организации",
+   },
+   [ORGANIZATION_ROUTES.EMPLOYEES]: {
+      path: "Организация/Сотрудники",
+      name: "Сотрудники",
+   },
+   [ORGANIZATION_ROUTES.EMPLOYEES_DETAILS]: {
+      path: "Организация/Детали сотрудника",
+      name: "Детали сотрудника",
+   },
+   [ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS]: {
+      path: "Организация/Личная информация сотрудника",
+      name: "Личная информация сотрудника",
+   },
+   [ORGANIZATION_ROUTES.INVITE_EMPLOYEES]: {
+      path: "Организация/Сотрудник",
+      name: "Сотрудник",
+   },
+
+   [ORGANIZATION_ROUTES.POSITIONS]: {
+      path: "Организация/Должности",
+      name: "Должности",
+   },
+   [ORGANIZATION_ROUTES.ADD_POSITION]: {
+      path: "Организация/Должность",
+      name: "Должность",
+   },
+   [ORGANIZATION_ROUTES.HISTORY]: {
+      path: "Организация/История",
+      name: "История",
+   },
+   [ORGANIZATION_ROUTES.VACANCIES]: {
+      path: "Организация/Вакансии",
       name: "Вакансии",
    },
-   [ADMIN_ROUTES.VACANCY_DETAIL]: {
-      path: "SmartTale",
+   [ORGANIZATION_ROUTES.VACANCY_DETAIL]: {
+      path: "Организация/Детали Вакансии",
       name: "Детали Вакансии",
    },
 

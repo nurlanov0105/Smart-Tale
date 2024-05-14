@@ -5,3 +5,4 @@ import { useProgress } from "./useProgress";
 import { useThemeAndPasswordEffects } from "./useRegisterEffects";
 
 export { useRegisterForm, useLoginForm, useProgress, useEmailChecker, useThemeAndPasswordEffects };
+

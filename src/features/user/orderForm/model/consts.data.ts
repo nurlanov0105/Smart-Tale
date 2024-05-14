@@ -14,6 +14,22 @@ export const sizesData = [
       postValue: "",
    },
    {
+      value: "40",
+      postValue: "40",
+   },
+   {
+      value: "42",
+      postValue: "42",
+   },
+   {
+      value: "46",
+      postValue: "46",
+   },
+   {
+      value: "48",
+      postValue: "48",
+   },
+   {
       value: "S",
       postValue: "s",
    },
@@ -28,5 +44,5 @@ export const sizesData = [
    {
       value: "XL",
       postValue: "xl",
-   },
+   }
 ];
