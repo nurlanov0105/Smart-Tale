@@ -22,8 +22,10 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
    return (
       <section className={styles.section}>
          <div className={styles.section__list}>{readyData}</div>
-         {!isInitialLoading && isLoading && <GlobalLoading />}
-         <div className={styles.section__observer} ref={observerTarget}></div>
+
+         <div className={styles.section__observer} ref={observerTarget}>
+            {!isInitialLoading && isLoading && <GlobalLoading />}
+         </div>
       </section>
    );
 };
