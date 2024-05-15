@@ -10,3 +10,13 @@ export const AuthEndpoints = {
    RESET_PASSWORD: "/authorization/reset-password",
    DELETE_ACCOUNT: "/authorization/delete-user",
 };
+
+export const OrdersEndpoints = {
+   CREATE_ORDER: "/add-order/",
+   GET_MY_ORDER: "/order-detail/"
+}
+
+export const EquipmentsEndpoints = {
+   CREATE_EQUIPMENT: "/equipment/create/",
+   GET_MY_EQUIPMENT: "/equipment/"
+}

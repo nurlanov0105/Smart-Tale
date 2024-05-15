@@ -6,11 +6,11 @@ import { OtpInputField } from "@/entities/auth/otpInput";
 import { SendCodeBtn } from "@/entities/auth/sendCodeBtn";
 import { useThemeStore } from "@/shared/themeStore";
 import { useSendCode } from "../model/useQueries";
-import { useProgress } from "../model/hooks";
+import {ProgressBar} from "@/entities/auth/progressBar";
 import { EnumTokens } from "@/shared/lib";
 import Cookies from "js-cookie";
-import styles from "./styles.module.scss";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const ConfirmationForm = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -19,8 +19,6 @@ const ConfirmationForm = () => {
    const [otp, setOtp] = useState("");
 
    const { sendCode, isLoading, isError } = useSendCode(setType);
-
-   const { progress } = useProgress(isLoading);
 
    const onSubmit = (e: any) => {
       e.preventDefault();
@@ -41,18 +39,14 @@ const ConfirmationForm = () => {
          <form
             onSubmit={onSubmit}
             className={clsx({
-               [styles.auth__row]: !isLoading,
                [styles.auth__none]: isLoading,
+               [styles.auth__row]: !isLoading,
             })}>
             <OtpInputField isError={isError} otp={otp} setOtp={setOtp} />
             <SendCodeBtn type={type} isDisabled={otp.length !== 4} />
          </form>
 
-         {isLoading && (
-            <div className={styles.auth__bar}>
-               <div className={styles.auth__progress} style={{ width: `${progress}%` }}></div>
-            </div>
-         )}
+         {isLoading && <ProgressBar isLoading={isLoading}/>}
       </div>
    );
 };

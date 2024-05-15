@@ -40,10 +40,7 @@ export const useInfiniteScroll = () => {
                 .then(res => {
                     setPage(prevPage => prevPage + 1);
                     setData(prevData => {
-                        if (data.length >= 44){
 
-
-                        }
                         return [...prevData, ...res.data]
                     });
                     setTotalPages(Math.ceil(res.headers["x-total-count"] / 24))

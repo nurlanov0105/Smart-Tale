@@ -1,13 +1,26 @@
-export const contactsData = [
+import {OrderFormNamesType} from "./types";
+import {employee} from "@/shared/lib/types";
+
+export const ORDER_FORM_NAMES: OrderFormNamesType = {
+   title: "title",
+   description: "description",
+   price: "price",
+   email: "email",
+   tel: "tel",
+}
+
+export const contactsData: employee[] = [
    {
       value: "Электронная почта",
-      postValue: "email",
+      postValue: ORDER_FORM_NAMES.email,
    },
    {
       value: "Номер телефона",
-      postValue: "tel",
+      postValue: ORDER_FORM_NAMES.tel,
    },
 ];
+
+
 export const sizesData = [
    {
       value: "",
