@@ -11,12 +11,15 @@ export const AuthEndpoints = {
    DELETE_ACCOUNT: "/authorization/delete-user",
 };
 
+
 export const OrdersEndpoints = {
    CREATE_ORDER: "/add-order/",
    GET_MY_ORDER: "/order-detail/"
 }
 
 export const EquipmentsEndpoints = {
+   EQUIPMENTS: "/equipments",
+   EQUIPMENT_SLUG: "/equipment",
    CREATE_EQUIPMENT: "/equipment/create/",
    GET_MY_EQUIPMENT: "/equipment/"
 }

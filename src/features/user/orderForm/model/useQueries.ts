@@ -1,11 +1,11 @@
 import {useMutation} from "@tanstack/react-query";
-import {UserQueryKeys} from "@/shared/api";
-import {EquipmentFormService, OrderFormService} from "../model/services";
+import {EquipmentService, UserQueryKeys} from "@/shared/api";
+import {OrdersService} from "@/shared/lib";
 
 export const useCreateOrder = () => {
     return useMutation({
         mutationKey: [UserQueryKeys.CREATE_ORDER],
-        mutationFn: OrderFormService.createOrder,
+        mutationFn: OrdersService.createOrder,
         onSuccess: () => {
             console.log("success")
         },
@@ -18,7 +18,7 @@ export const useCreateOrder = () => {
 export const useCreateEquipment = () => {
     return useMutation({
         mutationKey: [UserQueryKeys.CREATE_EQUIPMENT],
-        mutationFn: EquipmentFormService.createEquipment,
+        mutationFn: EquipmentService.createEquipment,
         onSuccess: () => {
             console.log("success")
         },

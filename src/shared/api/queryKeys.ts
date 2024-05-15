@@ -12,7 +12,7 @@ export const UserQueryKeys = {
    CREATE_EQUIPMENT: "create-equipment",
 };
 
-export const AdminQueryKeys = {
+export const OrganizationQueryKeys = {
    ORGANIZATION: "organization",
    ORGANIZATION_DETAILS: "organization-details",
    EMPLOYESS: "employees",
@@ -20,4 +20,9 @@ export const AdminQueryKeys = {
    EMPLOYESS_SETTINGS: "employees-settings",
    ADD_POSITION: "add-position",
    HISTORY: "history",
+};
+
+export const EquipmentQueryKeys = {
+   EQUIPMENTS: "equipments",
+   EQUIPMENT_SLUG: "equipment",
 };

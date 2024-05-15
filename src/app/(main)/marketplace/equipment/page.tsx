@@ -1,9 +1,18 @@
+"use client";
+
 import { NextPage } from "next";
-import { SkeletonTypes } from "@/shared/lib";
+
 import { CardsSection } from "@/widgets/user/cardsSection";
+import { SkeletonTypes } from "@/shared/lib";
+import { EquipmentService } from "@/shared/api";
 
 const EquipmentPage: NextPage = () => {
-   return <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />;
+   return (
+      <CardsSection
+         fetchFunction={EquipmentService.fetchEquipments}
+         type={SkeletonTypes.standart}
+      />
+   );
 };
 
 export default EquipmentPage;

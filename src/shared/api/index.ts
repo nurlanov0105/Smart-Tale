@@ -1,6 +1,9 @@
 import { BASE_URL, authApiInstance } from "./instance";
+
 import { AuthEndpoints, EquipmentsEndpoints, OrdersEndpoints } from "./endpoints";
-import { UserQueryKeys, AdminQueryKeys } from "./queryKeys";
+import { UserQueryKeys, OrganizationQueryKeys } from "./queryKeys";
+import { EquipmentQueryKeys } from "./queryKeys";
+import { EquipmentService } from "../lib/services/equipmentsService";
 
 
 export {
@@ -8,7 +11,11 @@ export {
     authApiInstance,
     AuthEndpoints,
     UserQueryKeys,
-    AdminQueryKeys,
+    OrganizationQueryKeys,
     EquipmentsEndpoints,
-    OrdersEndpoints
-};
+    OrdersEndpoints,
+    EquipmentQueryKeys,
+    EquipmentService,
+
+
+}

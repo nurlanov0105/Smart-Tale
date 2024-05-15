@@ -14,6 +14,8 @@ import { useRememberMe } from "./hooks/useRememberMe";
 import { refreshToken } from "./utils/refreshToken";
 import { usePhoneNumber } from "./hooks/usePhoneNumber ";
 import { errorCatch } from "../api/error";
+import {EquipmentService} from "./services/equipmentsService"
+import {OrdersService} from "./services/ordersService"
 
 export type { InputFieldProps };
 
@@ -37,4 +39,6 @@ export {
    refreshToken,
    usePhoneNumber,
    errorCatch,
+   EquipmentService,
+   OrdersService
 };
