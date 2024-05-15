@@ -8,8 +8,9 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { SkeletonTypes } from "@/shared/lib";
 import { AvatarSkeleton } from "@/shared/ui";
-import {useThemeStore} from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import { EquipmentService } from "@/shared/api";
 
 const User = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -57,7 +58,10 @@ const User = () => {
          <div className={styles.user__bottom}>
             {/* <Tabs type={type} setType={setType} values={data} variant="secondary" /> */}
          </div>
-         <CardsSection isLoading={false} isError={false} type={SkeletonTypes.standart} />
+         <CardsSection
+            fetchFunction={EquipmentService.fetchEquipments}
+            type={SkeletonTypes.standart}
+         />
       </div>
    );
 };

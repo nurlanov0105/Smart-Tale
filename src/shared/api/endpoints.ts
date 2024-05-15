@@ -10,3 +10,8 @@ export const AuthEndpoints = {
    RESET_PASSWORD: "/authorization/reset-password",
    DELETE_ACCOUNT: "/authorization/delete-user",
 };
+
+export const EquipemntEndpoints = {
+   EQUIPMENTS: "/equipments",
+   EQUIPMENT_SLUG: "/equipment",
+};

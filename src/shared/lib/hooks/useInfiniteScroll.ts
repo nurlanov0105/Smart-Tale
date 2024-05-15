@@ -1,77 +1,90 @@
-"use client"
+"use strict";
 
 import { useEffect, useRef, useState } from "react";
-import axios from "axios";
 
-interface IData{
-    body: string
-    id: number
-    userId: number
-    title: string
-}
-// const list = [
-//     {body: "", title: "", userId: 1, id: 1},
-//     {body: "", title: "", userId: 1, id: 2},
-//     {body: "", title: "", userId: 1, id: 3},
-//     {body: "", title: "", userId: 1, id: 4},
-//     {body: "", title: "", userId: 1, id: 5},
-//     {body: "", title: "", userId: 1, id: 6},
-// ]
 const options = {
-    rootMargin: '5px',
-    threshold: 0.5
+   rootMargin: "5px",
+   threshold: 0.5,
+};
+
+interface IData {
+   body: string;
+   id: number;
+   userId: number;
+   title: string;
+}
+function useDetectFirstRender() {
+   const [firstRender, setFirstRender] = useState(true);
+
+   useEffect(() => {
+      setFirstRender(false);
+   }, []);
+
+   return firstRender;
 }
 
-export const useInfiniteScroll = () => {
+export const useInfiniteScroll = (fetchFunction: any) => {
+   const observerTarget = useRef(null);
+   const firstRender = useDetectFirstRender();
 
-    const observerTarget = useRef<HTMLDivElement>(null);
+   const [data, setData] = useState<IData[]>([]);
+   const [page, setPage] = useState(1);
+   const [totalPages, setTotalPages] = useState(Infinity);
+   const [isLoading, setIsLoading] = useState(false);
+   const [isError, setIsError] = useState(false);
+   const [isInitialLoading, setIsInitialLoading] = useState(false);
 
-    const [data, setData] = useState<IData[]>([]);
-    const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(Infinity)
+   useEffect(() => {
+      const fetchData = async () => {
+         if (firstRender) {
+            setIsInitialLoading(true);
+         } else {
+            setIsLoading(true);
+         }
 
-    useEffect(() => {
-        const fetchData = () => {
-            if (page >= totalPages) return;
+         try {
+            const response = await fetchFunction(page);
 
-            const API = `https://jsonplaceholder.typicode.com/posts?_limit=24&_page=${page}`
-            axios
-                .get(API)
-                .then(res => {
-                    setPage(prevPage => prevPage + 1);
-                    setData(prevData => {
-                        if (data.length >= 44){
+            if (!response.data) {
+               throw new Error("Ошибка при получении данных");
+            }
+            console.log("succes after if");
 
+            setPage((prevPage) => prevPage + 1);
+            setData((prevData) => [...prevData, ...response.data]);
+            setTotalPages(Math.ceil(response.headers["x-total-count"] / 12));
+            setIsError(false);
+         } catch (error) {
+            console.error("Ошибка при получении данных:", error);
+            setIsError(true);
+         } finally {
+            if (firstRender) {
+               setIsInitialLoading(false);
+            } else {
+               setIsLoading(false);
+            }
+         }
+      };
 
-                        }
-                        return [...prevData, ...res.data]
-                    });
-                    setTotalPages(Math.ceil(res.headers["x-total-count"] / 24))
-                })
-                .catch(error => console.error("Error fetching data:", error))
-        }
+      const observer = new IntersectionObserver((entries) => {
+         if (entries[0].isIntersecting && page < totalPages && !isLoading && !isError) {
+            fetchData();
+         }
+      }, options);
 
-        const observer = new IntersectionObserver(
-            entries =>
-            {
-                if (entries[0].isIntersecting) {
-                    fetchData();
-                }
-            },
-            options
-        );
+      const observeTarget = observerTarget.current;
 
-        const observeTarget = observerTarget.current
+      if (observeTarget) {
+         observer.observe(observeTarget);
+      }
 
-        if (!observeTarget) return
+      return () => {
+         if (observeTarget) {
+            observer.unobserve(observeTarget);
+         }
+      };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [fetchFunction, isError, isLoading, page, totalPages]);
 
-        observer.observe(observeTarget);
-
-        return () => {
-            observer.disconnect()
-        };
-        // eslint-disable-next-line
-    }, [observerTarget, totalPages, page]);
-
-    return {observerTarget, data}
-}
+   return { observerTarget, data, isLoading, isError, isInitialLoading };
+};

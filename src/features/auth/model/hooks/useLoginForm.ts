@@ -30,8 +30,6 @@ export const useLoginForm = () => {
       });
 
       login(params);
-
-      reset();
    };
 
    return {
