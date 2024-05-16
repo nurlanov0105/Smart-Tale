@@ -15,5 +15,5 @@ export function useRememberMe() {
       setIsRemember(rememberMe);
    }, []);
 
-   return isRemember;
+   return { isRemember, setIsRemember };
 }

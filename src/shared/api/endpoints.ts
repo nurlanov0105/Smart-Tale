@@ -11,7 +11,26 @@ export const AuthEndpoints = {
    DELETE_ACCOUNT: "/authorization/delete-user",
 };
 
-export const EquipemntEndpoints = {
+export const OrdersEndpoints = {
+   CREATE_ORDER: "/add-order/",
+   GET_MY_ORDER: "/order-detail/",
+};
+
+export const EquipmentsEndpoints = {
    EQUIPMENTS: "/equipments",
-   EQUIPMENT_SLUG: "/equipment",
+   EQUIPMENT_SLUG: "/equipment/",
+   CREATE_EQUIPMENT: "/equipment/creates",
+   LIKED_EQUIPMENTS: "/liked-equipments",
+   SEARCH_EQUIPMENTS: "/equipment/search",
+};
+export const ServicesEndpoints = {
+   SERVICES: "/services",
+   SERVICE_SLUG: "/service/",
+   CREATE_SERVICE: "/service-create",
+   DELETE_SERVICE: "/service-delete/",
+   HIDE_SERVICE: "/service-hide/",
+   LIKE_SERVICE: "/service-like/",
+   UPDATE_SERVICE: "/service-update/",
+   LIKED_SERVICES: "/liked-services",
+   MY_SERVICES: "/my-services",
 };

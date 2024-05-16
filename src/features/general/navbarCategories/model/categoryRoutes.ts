@@ -51,7 +51,7 @@ export const CategoryRoutes: TypeCategories[] = [
             parentId: 2,
             subtitle: "Моя организация",
             link: ORGANIZATION_ROUTES.ORGANIZATION_LIST,
-            detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS
+            detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,
          },
          {
             parentId: 2,
@@ -115,6 +115,12 @@ export const CategoryRoutes: TypeCategories[] = [
             subtitle: "Услуги",
             link: MARKETPLACE.SERVICES,
             authorized: false,
+         },
+         {
+            parentId: 3,
+            subtitle: "Разместить услугу",
+            link: MARKETPLACE.CREATE_SERVICE,
+            authorized: true,
          },
          {
             parentId: 3,

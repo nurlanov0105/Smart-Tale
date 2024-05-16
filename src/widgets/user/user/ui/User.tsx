@@ -59,7 +59,7 @@ const User = () => {
             {/* <Tabs type={type} setType={setType} values={data} variant="secondary" /> */}
          </div>
          <CardsSection
-            fetchFunction={EquipmentService.fetchEquipments}
+            fetchFunction={EquipmentService.getEquipments}
             type={SkeletonTypes.standart}
          />
       </div>

@@ -10,7 +10,7 @@ const PurchasesPage: NextPage = () => {
    return (
       <div>
          <CardsSection
-            fetchFunction={EquipmentService.fetchEquipments}
+            fetchFunction={EquipmentService.getEquipments}
             type={SkeletonTypes.standart}
          />
       </div>

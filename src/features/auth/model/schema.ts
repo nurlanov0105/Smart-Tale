@@ -7,7 +7,7 @@ export const NamingSchema = {
       message: "Поле должно содержать не менее 2 символов",
    },
    maxLength: {
-      value: 35,
+      value: 25,
       message: "Поле не должно содержать более 25 символов",
    },
 };

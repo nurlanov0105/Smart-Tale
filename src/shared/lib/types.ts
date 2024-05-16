@@ -10,14 +10,14 @@ export enum EnumTokens {
 }
 
 export type OrganizationValuesProps = {
-   value: string
-   postValue: string
-}
+   value: string;
+   postValue: string;
+};
 
 export type RefreshTokenTypes = {
-   access: string
-   refresh: string
-}
+   access: string;
+   refresh: string;
+};
 
 export type InputFieldProps = {
    disabled?: boolean;
@@ -35,7 +35,7 @@ export type InputFieldProps = {
    required?: boolean;
    onFocus?: any;
    placeholder?: string;
-   autoComplete?: string
+   autoComplete?: string;
 };
 
 export type TextAreaProps = Omit<InputFieldProps, "type">;
@@ -75,3 +75,20 @@ export type SelectTypes = {
 };
 
 export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };
+
+// card
+
+export type AuthorType = {
+   first_name: string;
+   last_name: string;
+   profile_image: string;
+};
+
+export type CardType = {
+   item: string;
+   slug: string;
+   price: string;
+   description: string;
+   author: AuthorType;
+   liked: string;
+};

@@ -3,10 +3,10 @@
 import React from "react";
 import { NextPage } from "next";
 import { CardsSection } from "@/widgets/user/cardsSection";
-import { EquipmentService } from "@/shared/api";
+import { ServicesService } from "@/shared/lib";
 
 const ServicesPage: NextPage = () => {
-   return <CardsSection fetchFunction={EquipmentService.fetchEquipments} type="standart" />;
+   return <CardsSection fetchFunction={ServicesService.getServices} type="standart" />;
 };
 
 export default ServicesPage;

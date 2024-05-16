@@ -10,6 +10,7 @@ export enum MARKETPLACE {
    SERVICES = `/marketplace/services`,
    ORDERS = `/marketplace/orders`,
    CREATE_ORDER = `/marketplace/create-order`,
+   CREATE_SERVICE = `/marketplace/create-service`,
 }
 
 export enum DASHBOARD {
@@ -34,6 +35,7 @@ export enum ROUTES {
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
    MARKETPLACE_SERVICE = `/marketplace/service`,
    MARKETPLACE_ORDER = `/marketplace/order`,
+   MARKETPLACE_CREATE_SERVICE = `/marketplace/create-service`,
 
    DASHBOARD_PROFILE = `/dashboard/profile`,
    DASHBOARD_LISTINGS = `/dashboard/listings`,

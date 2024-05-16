@@ -2,7 +2,7 @@
 
 import { HeaderIntro } from "@/entities/general/headerIntro";
 import { NoticeBtn } from "@/entities/general/noticeBtn";
-import { ROUTES, useAuth } from "@/shared/lib";
+import { ROUTES, useAuth, useThemeEffect } from "@/shared/lib";
 
 import styles from "./styles.module.scss";
 import clsx from "clsx";
@@ -20,9 +20,7 @@ const Header = () => {
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
    const isSubscribed = true;
 
-   useEffect(() => {
-      document.documentElement.className = theme;
-   }, [theme]);
+   useThemeEffect();
 
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);

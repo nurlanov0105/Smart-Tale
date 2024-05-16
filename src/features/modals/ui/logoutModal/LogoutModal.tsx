@@ -7,7 +7,7 @@ import { closeModal } from "@/views/modal";
 
 const LogoutModal = () => {
    const { mutate: logout, isPending } = useLogout();
-   const isRemember = useRememberMe();
+   const { isRemember } = useRememberMe();
 
    const handleLogout = () => {
       let refreshToken;

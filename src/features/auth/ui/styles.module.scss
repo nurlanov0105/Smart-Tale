@@ -10,7 +10,7 @@
       opacity: 1;
       position: relative;
    }
-   &__none{
+   &__none {
       opacity: 0;
       position: absolute;
       left: -100%;
@@ -28,26 +28,6 @@
    }
    &__text {
       font-size: 1.4rem;
-   }
-
-   &__bar {
-      overflow: hidden;
-      scrollbar-width: none;
-
-      width: 100%;
-      height: 8px;
-      padding: 2px;
-
-      border-radius: 5px;
-      background: $bg-color;
-   }
-   &__progress {
-      height: 100%;
-
-      background: $primary-color;
-      border-radius: 5px;
-
-      transition: width 1.2s ease;
    }
 
    &__button {
@@ -70,7 +50,7 @@
    //    border: 1px solid red;
    // }
 
-   &__phoneWrapper{
+   &__phoneWrapper {
       position: relative;
    }
 
@@ -82,11 +62,15 @@
       border: 2px solid #e0e5f2;
       color: #4f4f4f;
    }
-   &__error{
+   &__error {
       font-size: 12px;
       color: $grey;
 
       margin: 4px 0 0 2rem;
+   }
+
+   &__homeLink {
+      text-decoration: underline;
    }
 }
 

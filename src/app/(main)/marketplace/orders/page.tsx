@@ -8,10 +8,7 @@ import { EquipmentService } from "@/shared/api";
 
 const OrderPage: NextPage = () => {
    return (
-      <CardsSection
-         fetchFunction={EquipmentService.fetchEquipments}
-         type={SkeletonTypes.standart}
-      />
+      <CardsSection fetchFunction={EquipmentService.getEquipments} type={SkeletonTypes.standart} />
    );
 };
 

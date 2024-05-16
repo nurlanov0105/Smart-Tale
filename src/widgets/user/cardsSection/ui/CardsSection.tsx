@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { StandartCard } from "@/features/user/standartCard";
 import { CardSceletonProps } from "../model/types";
 import { CommonSkeleton, GlobalLoading } from "@/shared/ui";
@@ -15,8 +15,10 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
+   ) : data.length === 0 ? (
+      <h3 className="h3">Упс, пусто 😅</h3>
    ) : (
-      data?.map((_: any, i: number) => <StandartCard key={i} />)
+      data?.map((item: any, i: number) => <StandartCard key={i} item={item} />)
    );
 
    return (

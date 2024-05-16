@@ -14,8 +14,14 @@ import { useRememberMe } from "./hooks/useRememberMe";
 import { refreshToken } from "./utils/refreshToken";
 import { usePhoneNumber } from "./hooks/usePhoneNumber ";
 import { errorCatch } from "../api/error";
+import { EquipmentService } from "./services/equipmentsService";
+import { ServicesService } from "./services/servicesService";
+import { OrdersService } from "./services/ordersService";
+import useThemeEffect from "./hooks/useThemeEffect";
 
-export type { InputFieldProps };
+import type { CardType, AuthorType } from "./types";
+
+export type { InputFieldProps, CardType, AuthorType };
 
 export {
    useDebounce,
@@ -37,4 +43,8 @@ export {
    refreshToken,
    usePhoneNumber,
    errorCatch,
+   EquipmentService,
+   OrdersService,
+   useThemeEffect,
+   ServicesService,
 };
