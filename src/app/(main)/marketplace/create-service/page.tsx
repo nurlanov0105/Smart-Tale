@@ -1,8 +1,8 @@
 import { NextPage } from "next";
-import { OrderDetail } from "@/widgets/user/orderDetail";
+import { AnnouncementDetail } from "@/widgets/user/announcementDetail";
 
 const CreateServicePage: NextPage = () => {
-   return <OrderDetail btnType="order" isService={true} />;
+   return <AnnouncementDetail />;
 };
 
 export default CreateServicePage;

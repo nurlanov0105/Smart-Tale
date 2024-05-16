@@ -7,7 +7,7 @@ export const UserQueryKeys = {
    CURRENT_ORDERS: "current-orders",
    HISTORY: "history",
    SERVICES: "services",
-   CREATE_ORDER: "create-order",
+   CREATE_ORDER: "create-announcement",
    CREATE_EQUIPMENT: "create-equipment",
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { EnumTokens } from "../types";
+import { EnumTokens } from "../types/types";
 import { CookiesServices } from "../services/cookies.services";
 
 export function useRememberMe() {

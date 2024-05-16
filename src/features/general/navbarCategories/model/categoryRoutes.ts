@@ -1,7 +1,7 @@
-import { DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/lib";
-import { User, Clipboard, ShoppingCart, BriefcaseBusiness } from "lucide-react";
-import { TypeCategories } from "@/entities/user/navbarItem";
-import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
+import {DASHBOARD, MARKETPLACE, ROUTES} from "@/shared/lib";
+import {BriefcaseBusiness, Clipboard, ShoppingCart, User} from "lucide-react";
+import {TypeCategories} from "@/entities/user/navbarItem";
+import {ORGANIZATION_ROUTES, WORK} from "@/shared/lib/routes.config";
 
 export const CategoryRoutes: TypeCategories[] = [
    {
@@ -38,7 +38,7 @@ export const CategoryRoutes: TypeCategories[] = [
             link: DASHBOARD.FAVORITES,
          },
       ],
-      activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS, ROUTES.SUBSCRIBE],
+      activeRoutes: [ROUTES.NOTICES, ROUTES.ORDER_DETAILS, ROUTES.SUBSCRIBE, ROUTES.ANNOUNCEMENT_DETAILS_ORDER, ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT],
    },
    {
       title: "Организация",
@@ -125,7 +125,7 @@ export const CategoryRoutes: TypeCategories[] = [
          {
             parentId: 3,
             subtitle: "Разместить объявление",
-            link: MARKETPLACE.CREATE_ORDER,
+            link: MARKETPLACE.CREATE_ANNOUNCEMENT,
             authorized: true,
          },
       ],

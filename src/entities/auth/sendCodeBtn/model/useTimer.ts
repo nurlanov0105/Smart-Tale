@@ -1,4 +1,4 @@
-import { TimerProps } from "@/shared/lib/types";
+import { TimerProps } from "@/shared/lib/types/types";
 import { useEffect, useState } from "react";
 
 export const useTimer = () => {

@@ -1,4 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
+import { Control, FieldErrors } from "react-hook-form";
+import { registerFormType } from "@/features/auth";
 
 export enum EnumTokens {
    ACCESS_TOKEN = "accessToken",
@@ -76,7 +78,10 @@ export type SelectTypes = {
 
 export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };
 
-// card
+export type InputPhoneProps = {
+   control: Control<registerFormType>;
+   errors?: FieldErrors;
+};
 
 export type AuthorType = {
    first_name: string;

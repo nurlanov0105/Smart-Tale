@@ -14,6 +14,7 @@ export const AuthEndpoints = {
 export const OrdersEndpoints = {
    CREATE_ORDER: "/add-order/",
    GET_MY_ORDER: "/order-detail/",
+   GET_MY_ORDERS: "/my-orders/",
 };
 
 export const EquipmentsEndpoints = {
@@ -22,7 +23,10 @@ export const EquipmentsEndpoints = {
    CREATE_EQUIPMENT: "/equipment/creates",
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
+   GET_MY_EQUIPMENTS: "/my-equipments/",
+   GET_MY_EQUIPMENT: "/equipment/",
 };
+
 export const ServicesEndpoints = {
    SERVICES: "/services",
    SERVICE_SLUG: "/service/",

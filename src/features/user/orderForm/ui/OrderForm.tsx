@@ -3,12 +3,11 @@ import { AddImages } from "@/features/general/addImages";
 import { SelectDate } from "@/entities/general/selectDate";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import type {OrderCreateFormType, OrderProps} from "../model/types";
-import { useInitialDate } from "@/shared/lib";
+import {dateFormat, useInitialDate} from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
 import {contactsData, ORDER_FORM_NAMES, sizesData} from "../model/consts.data";
 import {currencies} from "@/widgets/user/createVacancy/model/values.data";
 import {SizeItem} from "@/entities/user/sizeItem";
-import {OrderDetailBtns} from "@/entities/user/orderDetailBtns";
 
 import {useSelectsOrder} from "../model/hooks/useSelectsOrder";
 import {useSizesAndImages} from "../model/hooks/useSizesAndImages";
@@ -22,7 +21,7 @@ import {
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
+const OrderForm: FC<OrderProps> = ({ type }) => {
 
    const theme = useThemeStore((state) => state.theme);
 
@@ -52,6 +51,8 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
       setImages
    } = useSizesAndImages() //массив с изображениями и массив с размерами заказа
 
+   const deadline = dateFormat({year, month, day})
+
    const {
       handleSubmit,
       isError,
@@ -59,7 +60,7 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
       register,
       errors,
        isValid
-   } = useOrderForm({type, images, year, month, day}) //Тип создания(заказа или оборудования)
+   } = useOrderForm({type, images, deadline}) //Тип создания(заказа или оборудования)
 
    const isDisabled = () => {
       if (type === "order"){
@@ -68,7 +69,6 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
          return !images.length
       }
    }
-
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -167,13 +167,9 @@ const OrderForm: FC<OrderProps> = ({ type, btnType }) => {
             </div>
          </div>
 
-         {btnType === "order" ? (
-             <div className={styles.order__btns}>
-                <Button disabled={isDisabled() || !isValid} type="submit">Разместить объявление</Button>
-             </div>
-         ) : (
-             <OrderDetailBtns/>
-         )}
+         <div className={styles.order__btns}>
+            <Button disabled={isDisabled() || !isValid} type="submit">Разместить объявление</Button>
+         </div>
       </form>
    );
 };

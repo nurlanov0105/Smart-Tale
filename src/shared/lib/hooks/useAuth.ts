@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
-import { EnumTokens } from "../types";
+import { EnumTokens } from "../types/types";
 import { useRememberMe } from "./useRememberMe";
 
 export function useAuth() {

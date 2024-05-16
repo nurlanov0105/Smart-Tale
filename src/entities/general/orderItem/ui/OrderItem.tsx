@@ -23,9 +23,9 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
    const handleItemClick = () => {
 
     if (item.type === "order") {
-         router.push(ROUTES.ORDER_DETAILS + "/orderName");
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + "/orderName");
     } else {
-         router.push(ROUTES.ORDER_DETAILS + "/equipmentName");
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + "/equipmentName");
     }
    };
 

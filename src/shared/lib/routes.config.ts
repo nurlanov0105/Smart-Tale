@@ -1,3 +1,5 @@
+import { TYPE_ANNOUNCEMENT_DETAIL } from "@/shared/lib/consts";
+
 export enum WORK {
    VACANCIES = "/work/vacancies",
    CREATE_VACANCY = `/work/create-vacancy`,
@@ -11,6 +13,7 @@ export enum MARKETPLACE {
    ORDERS = `/marketplace/orders`,
    CREATE_ORDER = `/marketplace/create-order`,
    CREATE_SERVICE = `/marketplace/create-service`,
+   CREATE_ANNOUNCEMENT = "/marketplace/create-announcement",
 }
 
 export enum DASHBOARD {
@@ -45,6 +48,8 @@ export enum ROUTES {
 
    ORDER_DETAILS = "/order-details",
    CARD_DETAILS = "/card-details",
+   ANNOUNCEMENT_DETAILS_ORDER = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
+   ANNOUNCEMENT_DETAILS_EQUIPMENT = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
 
    ORGANIZATION_CURRENT_ORDERS = `/organization/current-orders`,
    ORGANIZATION_HISTORY = `/organization/history-user`,

@@ -1,5 +1,5 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
-
+import { CreateEquipmentTypes } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
 
 export const EquipmentService = {
@@ -25,8 +25,18 @@ export const EquipmentService = {
 
       return response;
    },
-   createEquipment: async () => {
-      const response = await baseApiInstance.post(EquipmentsEndpoints.CREATE_EQUIPMENT);
+   createEquipment: async (params: CreateEquipmentTypes) => {
+      const response = await baseApiInstance.post(EquipmentsEndpoints.CREATE_EQUIPMENT, params, {
+         headers: { "Content-Type": "multipart/form-data" },
+      });
+      return response.data;
+   },
+   getMyEquipments: async (id: number) => {
+      const response = await baseApiInstance.post(EquipmentsEndpoints.GET_MY_EQUIPMENT + id);
+      return response.data;
+   },
+   getMyEquipment: async (id: number) => {
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + id);
       return response.data;
    },
    searchEquipment: async (search: string) => {

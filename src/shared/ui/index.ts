@@ -10,6 +10,7 @@ import CommonSkeleton from "./skeletons/commonSkeleton";
 import AvatarSkeleton from "./skeletons/avatarSkeleton";
 import ChatSkeleton from "./skeletons/ChatSkeleton";
 import GlobalLoading from "./loading/GlobalLoading";
+import PhoneInput from "./inputField/PhoneInput";
 
 export {
    Button,
@@ -24,4 +25,5 @@ export {
    AvatarSkeleton,
    ChatSkeleton,
    GlobalLoading,
+   PhoneInput
 };

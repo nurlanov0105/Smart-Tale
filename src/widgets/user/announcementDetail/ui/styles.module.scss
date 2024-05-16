@@ -1,0 +1,19 @@
+.order {
+  display: flex;
+  flex-direction: column;
+
+  height: 100%;
+
+  &__margin {
+    margin: 2rem 0 3.2rem;
+  }
+  &__button {
+    font-weight: 510;
+    font-size: 1.4rem;
+    line-height: 1.5;
+  }
+
+  &__block {
+    margin: 2rem 0;
+  }
+}

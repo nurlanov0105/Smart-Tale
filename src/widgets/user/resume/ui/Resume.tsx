@@ -11,6 +11,13 @@ const Resume = () => {
 
    return (
       <div className={styles.resume}>
+         {/*<div className={styles.resume__block}>*/}
+         {/*   <h4 className="h4">Тип резюме</h4>*/}
+         {/*   <div className={styles.resume__margin}>*/}
+         {/*      <Tabs type={type} setType={setType} values={resumeType} />*/}
+         {/*   </div>*/}
+         {/*</div>*/}
+
          <ResumeForm type={type} />
       </div>
    );
