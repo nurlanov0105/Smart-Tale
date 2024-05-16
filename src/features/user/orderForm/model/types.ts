@@ -1,10 +1,10 @@
 import {Dispatch, SetStateAction} from "react";
-import {employee} from "@/shared/lib/types";
+import {employee} from "@/shared/lib/types/types";
 import {IDateProps} from "@/entities/general/selectDate";
 
 export type OrderProps = {
    type: string;
-   btnType: string;
+   btnType?: string;
 };
 
 
@@ -24,7 +24,7 @@ export type OrderCreateFormType = {
    title: string
    description: string,
    price: number,
-   phone_number: string,
+   tel: string,
    email: string
 }
 
@@ -39,7 +39,8 @@ export type OrderFormNamesType = {
 export type UseOrderFormProps = {
    type: string
    images: File[]
-   year: IDateProps
-   month: IDateProps
-   day: IDateProps
+   // year: IDateProps
+   // month: IDateProps
+   // day: IDateProps
+   deadline: string
 }

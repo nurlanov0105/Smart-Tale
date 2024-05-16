@@ -10,6 +10,8 @@ import styles from "./styles.module.scss";
 const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
    const { observerTarget, data, isInitialLoading, isError, isLoading } =
       useInfiniteScroll(fetchFunction);
+   //  const { observerTarget, data, isLoading, isError, isFirstLoading } =
+   //      useInfiniteScroll2(fetchFunction);
 
    const readyData = isInitialLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
@@ -23,7 +25,7 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
       <section className={styles.section}>
          <div className={styles.section__list}>{readyData}</div>
          <div className={styles.section__observer} ref={observerTarget}>
-             {!isInitialLoading && isLoading && <GlobalLoading />}
+             {isLoading && !isInitialLoading && <GlobalLoading />}
          </div>
       </section>
    );

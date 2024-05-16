@@ -1,5 +1,5 @@
 import {OrderFormNamesType} from "./types";
-import {employee} from "@/shared/lib/types";
+import {employee} from "@/shared/lib/types/types";
 
 export const ORDER_FORM_NAMES: OrderFormNamesType = {
    title: "title",

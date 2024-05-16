@@ -3,7 +3,7 @@
 
 import React, { forwardRef } from "react";
 import styles from "./styles.module.scss";
-import {TextAreaProps} from "@/shared/lib/types";
+import {TextAreaProps} from "@/shared/lib/types/types";
 import clsx from "clsx";
 import {useThemeStore} from "@/shared/themeStore";
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { CookiesServices } from "../services/cookies.services";
-import { EnumTokens } from "../types";
+import { EnumTokens } from "../types/types";
 import { AuthEndpoints, BASE_URL } from "@/shared/api";
 
 export const refreshToken = async () => {

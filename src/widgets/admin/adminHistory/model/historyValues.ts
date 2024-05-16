@@ -1,4 +1,4 @@
-import {SelectTypes} from "@/shared/lib/types";
+import {SelectTypes} from "@/shared/lib/types/types";
 
 export const historyValues = [
     {
