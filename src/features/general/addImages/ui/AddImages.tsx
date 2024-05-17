@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, {Dispatch, FC, SetStateAction, useState} from "react";
 import { LoaderCircle } from "lucide-react";
 import { ImageItem } from "@/entities/user/imageItem";
 import {DragDropContext, Draggable, Droppable, DropResult} from "@hello-pangea/dnd";
@@ -7,10 +7,13 @@ import styles from "./styles.module.scss";
 import {useThemeStore} from "@/shared/themeStore";
 import clsx from "clsx";
 
-const AddImages = () => {
+interface IImages{
+    images: File[]
+    setImages: Dispatch<SetStateAction<File[]>>
+}
+const AddImages:FC<IImages> = ({setImages, images}) => {
     const theme = useThemeStore((state) => state.theme);
 
-    const [images, setImages] = useState<File[]>([]);
     const [isLoading, setIsLoading] = useState(false);
 
    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {

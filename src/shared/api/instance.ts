@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosHeaders} from "axios";
 import { toast } from "react-toastify";
 import {
    CookiesServices,
@@ -10,15 +10,41 @@ import {
 } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
-const options = {
+const authOptions = {
     baseURL: BASE_URL,
     headers: { "Content-Type": "application/json" },
     withCredentials: true
 }
 
+const baseOptions = {
+    baseURL: BASE_URL,
+    headers: { "Content-Type": "application/json" },
+    withCredentials: true,
+    // transformRequest: [function (data: any, headers: AxiosHeaders) {
+    //     if (headers['Content-Type'] && headers['Content-Type'].startsWith('multipart/form-data')) {
+    //         const form = new FormData();
+    //         for (const key in data) {
+    //             const value = data[key];
+    //             if (Array.isArray(value)) {
+    //                 const arrayKey = `${key}[]`;
+    //                 value.forEach(v => {
+    //                     form.append(arrayKey, v);
+    //                 });
+    //             } else{
+    //                 form.append(key, value);
+    //             }
+    //         }
+    //         return form;
+    //     }
+    //
+    //     return data;
+    // }],
+}
 
-export const authApiInstance = axios.create(options);
-export const baseApiInstance = axios.create(options);
+
+export const authApiInstance = axios.create(authOptions);
+export const baseApiInstance = axios.create(baseOptions);
+
 
 authApiInstance.interceptors.response.use(
    (response) => {

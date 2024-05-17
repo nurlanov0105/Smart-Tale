@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import {ChevronDown} from "lucide-react";
 import {useOutside} from "@/shared/lib";
 import {useThemeStore} from "@/shared/themeStore";
-import {employee} from "../../lib/types"
+import {employee} from "../../lib/types/types"
 
 interface ISelect{
     data: employee[],

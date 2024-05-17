@@ -1,12 +1,12 @@
 "use client";
-import React, { FC, useState } from "react";
+import React, { useState } from "react";
 import { OrderForm } from "@/features/user/orderForm";
 import { Tabs } from "@/features/general/tabs";
+
 import { orderDetailsValues } from "../model/values";
-import { Props } from "../model/types";
 import styles from "./styles.module.scss";
 
-const OrderDetail: FC<Props> = ({ btnType }) => {
+const CreateAnnouncement = () => {
    const [type, setType] = useState(orderDetailsValues[0].postValue);
 
    return (
@@ -19,9 +19,9 @@ const OrderDetail: FC<Props> = ({ btnType }) => {
          </div>
 
          <h3 className="h3">Информация об оборудовании</h3>
-         <OrderForm type={type} btnType={btnType} />
+         <OrderForm type={type} />
       </div>
    );
 };
 
-export default OrderDetail;
+export default CreateAnnouncement;

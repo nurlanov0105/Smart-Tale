@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { organizationsData } from "../model/organizations.data";
-import { employee } from "@/shared/lib/types";
+import { employee } from "@/shared/lib/types/types";
 import { useThemeStore } from "@/shared/themeStore";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
 
