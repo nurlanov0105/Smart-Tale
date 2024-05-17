@@ -4,13 +4,14 @@ import { CookiesServices, EnumTokens } from "@/shared/lib";
 
 export const useRegisterForm = () => {
    const {
-      getValues,
-      register,
-      formState: { errors, isValid },
-      handleSubmit,
-      reset,
-      watch,
-      trigger,
+       formState: { errors, isValid },
+       register,
+       getValues,
+       handleSubmit,
+       reset,
+       watch,
+       trigger,
+       control
    } = useForm<registerFormType>({
       mode: "onChange",
       criteriaMode: "all",
@@ -21,6 +22,7 @@ export const useRegisterForm = () => {
        isPending, isError, isSuccess } = useRegister(reset);
 
    const onSubmit = (data: registerFormType) => {
+
        const params = {
            email: data.email,
            first_name: data.firstName,
@@ -52,7 +54,8 @@ export const useRegisterForm = () => {
         register,
         reset,
         getValues,
-        isValid
+        isValid,
+        control
     }
 }
 

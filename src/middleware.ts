@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { EnumTokens, MARKETPLACE } from "./shared/lib";
 import Cookies from "js-cookie";
-
+//
 const protectedRoutes = ["/", "/marketplace"];
 export default function middleware(req: NextRequest, response: NextResponse) {
    const { url, cookies } = req;
@@ -19,24 +19,27 @@ export default function middleware(req: NextRequest, response: NextResponse) {
 }
 
 // export async function middleware(request: NextRequest, response: NextResponse) {
-//    const { url } = request;
+//    const { url, } = request;
 //
 //    // const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
 //
 //    const refreshToken = true;
 //
-//    const isAuthPage = url.includes("/auth");
-//    const isMarketplaceEquipmentPage = url.includes(MARKETPLACE.EQUIPMENT);
+//    const protectedRoutes = ["/confirmation" , "/login", "/register"];
 //
-//    if (isAuthPage && refreshToken) {
-//       return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
-//    }
+//    const isAuthPage = protectedRoutes.includes(request.nextUrl.pathname);
 //
-//    if (isAuthPage || isMarketplaceEquipmentPage) {
-//       return NextResponse.next();
-//    }
+//    // const isMarketplaceEquipmentPage = url.includes(MARKETPLACE.EQUIPMENT);
+//    //
+//    // if (isAuthPage && refreshToken) {
+//    //    return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
+//    // }
+//    //
+//    // if (isAuthPage || isMarketplaceEquipmentPage) {
+//    //    return NextResponse.next();
+//    // }
 //
-//    return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
+//    // return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
 // }
 //
 // export const config = {

@@ -1,5 +1,5 @@
 .section {
-   &__filters{
+   &__filters {
       display: flex;
       column-gap: 2rem;
       justify-content: flex-end;
@@ -8,26 +8,25 @@
       margin-bottom: 2rem;
    }
 
-   &__button{
+   &__button {
       display: flex;
       align-items: center;
       column-gap: 1rem;
       color: $grey;
       margin-bottom: 2rem;
 
-      p{
+      p {
          color: $grey;
          min-width: 14rem;
       }
-      span{
+      span {
          width: 30px;
       }
    }
 
-   &__selectWrapper{
+   &__selectWrapper {
       display: inline-flex;
       width: 25rem;
-
    }
    &__select {
       padding: 0.9rem 1rem !important;
@@ -37,27 +36,23 @@
       background-color: transparent !important;
    }
 
-   &__list{
+   &__list {
       display: grid;
       justify-content: center;
       grid-template-columns: repeat(auto-fill, minmax(27rem, 1fr));
       gap: 16px;
-
    }
-   &__observer{
+   &__observer {
       height: 10px;
    }
-
 }
 
 /* Mobile */
 @media (max-width: 430px) {
    .section {
-      &__list{
+      &__list {
          grid-template-columns: 1fr;
          gap: 3.2rem;
       }
    }
 }
-
-

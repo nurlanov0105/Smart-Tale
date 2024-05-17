@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { SelectProps } from "@/shared/lib/types";
+import { SelectProps } from "@/shared/lib/types/types";
 import { ChevronDown } from "lucide-react";
 import { useOutside } from "@/shared/lib";
 import {useThemeStore} from "@/shared/themeStore";
