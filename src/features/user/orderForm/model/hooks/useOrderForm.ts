@@ -16,18 +16,19 @@ export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
 
 
     const onSubmit = (data: OrderCreateFormType) => {
-        const formData = new FormData()
-
+        // const formData = new FormData()
+        //
+        // // if (images) {
+        // //     formData.append('image', images)
+        // // }
+        //
         // if (images) {
-        //     formData.append('image', images)
-        // }
-
-        // if (images) {
-        //     images.forEach((image, index) => {
-        //         formData.append(`image${index + 1}`, image);
+        //     images.forEach((file, index) => {
+        //         formData.append(`images[]`, file);
         //     });
         // }
 
+        const sizes = ["xl", "li"]
 
         if (typeCreation){
             const adapter = {
@@ -39,7 +40,7 @@ export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
                 category_slug: "t-shorts",
                 phone_number: data.tel,
                 email: data.email,
-                size: "xl"
+                size: "sizes"
             }
             console.log("order", adapter)
 
