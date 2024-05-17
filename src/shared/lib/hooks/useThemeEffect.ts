@@ -9,6 +9,8 @@ const useThemeEffect = () => {
    useEffect(() => {
       document.documentElement.className = theme;
    }, [theme]);
+
+   return theme
 };
 
 export default useThemeEffect;

@@ -49,11 +49,13 @@ export const useInfiniteScroll = (fetchFunction: any) => {
                throw new Error("Ошибка при получении данных");
             }
 
-            console.log(response);
+            //console.log(response);
 
             setPage((prevPage) => prevPage + 1);
-            setData((prevData) => [...prevData, ...response.data.data]);
-            setTotalPages(Math.ceil(response.data.totalPages / 12));
+            // setData((prevData) => [...prevData, ...response.data.data]);
+            // setTotalPages(Math.ceil(response.data.totalPages / 12));
+            setData((prevData) => [...prevData, ...response.data]);
+            setTotalPages(Math.ceil(response.headers["x-total-count"] / 12));
             setIsError(false);
          } catch (error) {
             console.error("Ошибка при получении данных:", error);

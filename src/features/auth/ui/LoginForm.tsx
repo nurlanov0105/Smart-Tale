@@ -1,20 +1,19 @@
 "use client";
 
-import React, { FC, useEffect, useState } from "react";
+import React, { FC } from "react";
+import Link from "next/link";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { TypeAuthButton } from "@/entities/auth/typeAuthButton";
-import { useThemeStore } from "@/shared/themeStore";
-import { Button, InputField, PasswordField } from "@/shared/ui";
 
+import { Button, InputField, PasswordField } from "@/shared/ui";
+import { useRememberMe, useThemeEffect } from "@/shared/lib";
 import { EmailSchema, passwordSchema } from "../model/schema";
 import { useLoginForm } from "../model/hooks";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useRememberMe, useThemeEffect } from "@/shared/lib";
-import Link from "next/link";
 
 const LoginForm: FC = () => {
-   const theme = useThemeStore((state) => state.theme);
+   const theme = useThemeEffect();
 
    const { handleSubmit, register, errors, isValid, isLoading } = useLoginForm();
 
@@ -24,7 +23,7 @@ const LoginForm: FC = () => {
       setIsRemember(!isRemember);
    };
 
-   useThemeEffect();
+
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>

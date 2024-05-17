@@ -6,12 +6,20 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Modal } from "@/views/modal";
 import { ToastContainer } from "react-toastify";
 
-import styles from "./styles.module.scss";
-import "react-toastify/scss/main.scss";
 import {useThemeStore} from "@/shared/themeStore";
+import "react-toastify/scss/main.scss";
+import styles from "./styles.module.scss";
 
 export default function Provider({ children }: PropsWithChildren) {
-    const [queryClient] = useState(() => new QueryClient());
+    const [queryClient] = useState(
+        () => new QueryClient({
+            defaultOptions: {
+                queries: {
+                    refetchOnWindowFocus: false
+                }
+            }
+        })
+    );
 
     const theme = useThemeStore(state => state.theme);
     const toastTheme = theme ? theme : "light";

@@ -1,5 +1,5 @@
-import {OrderFormNamesType} from "./types";
-import {employee} from "@/shared/lib/types/types";
+import { OrderFormNamesType } from "./types";
+import { employee } from "@/shared/lib/types/types";
 
 export const ORDER_FORM_NAMES: OrderFormNamesType = {
    title: "title",
@@ -7,7 +7,7 @@ export const ORDER_FORM_NAMES: OrderFormNamesType = {
    price: "price",
    email: "email",
    tel: "tel",
-}
+};
 
 export const contactsData: employee[] = [
    {
@@ -19,7 +19,6 @@ export const contactsData: employee[] = [
       postValue: ORDER_FORM_NAMES.tel,
    },
 ];
-
 
 export const sizesData = [
    {
@@ -57,5 +56,5 @@ export const sizesData = [
    {
       value: "XL",
       postValue: "xl",
-   }
+   },
 ];

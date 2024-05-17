@@ -116,12 +116,12 @@ export const CategoryRoutes: TypeCategories[] = [
             link: MARKETPLACE.SERVICES,
             authorized: false,
          },
-         {
-            parentId: 3,
-            subtitle: "Разместить услугу",
-            link: MARKETPLACE.CREATE_SERVICE,
-            authorized: true,
-         },
+         // {
+         //    parentId: 3,
+         //    subtitle: "Разместить услугу",
+         //    link: MARKETPLACE.CREATE_SERVICE,
+         //    authorized: true,
+         // },
          {
             parentId: 3,
             subtitle: "Разместить объявление",

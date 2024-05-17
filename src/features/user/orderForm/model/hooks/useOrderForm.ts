@@ -1,19 +1,18 @@
-import {useForm} from "react-hook-form";
-import {useCreateEquipment, useCreateOrder} from "../useQueries";
-import type {OrderCreateFormType, UseOrderFormProps} from "../types";
+import { useForm } from "react-hook-form";
+import { useCreateEquipment, useCreateOrder } from "../useQueries";
+import type { OrderCreateFormType, UseOrderFormProps } from "../types";
 
-export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
-    const typeCreation = type === "order"
-    const { reset,
+export const useOrderForm = ({ type, images, deadline }: UseOrderFormProps) => {
+    const typeCreation = type === "order";
+    const {
+        reset,
         register,
         handleSubmit,
-        formState: {errors, isValid}
-    } = useForm<OrderCreateFormType>()
+        formState: {errors, isValid},
+    } = useForm<OrderCreateFormType>();
 
-    const createOrder = useCreateOrder()
-    const createEquipment = useCreateEquipment()
-
-
+    const createOrder = useCreateOrder();
+    const createEquipment = useCreateEquipment();
 
     const onSubmit = (data: OrderCreateFormType) => {
         // const formData = new FormData()
@@ -30,7 +29,7 @@ export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
 
         const sizes = ["xl", "li"]
 
-        if (typeCreation){
+        if (typeCreation) {
             const adapter = {
                 title: data.title,
                 description: data.description,
@@ -45,7 +44,7 @@ export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
             console.log("order", adapter)
 
             createOrder.mutate(adapter)
-        }else {
+        } else {
             const adapter = {
                 title: data.title,
                 description: data.description,
@@ -59,6 +58,8 @@ export const useOrderForm = ({type, images, deadline}: UseOrderFormProps) => {
             createEquipment.mutate(adapter)
         }
     }
+
+
 
     return {
         handleSubmit: handleSubmit(onSubmit),

@@ -10,15 +10,11 @@ import styles from "./styles.module.scss";
 const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
    const { observerTarget, data, isInitialLoading, isError, isLoading } =
       useInfiniteScroll(fetchFunction);
-   //  const { observerTarget, data, isLoading, isError, isFirstLoading } =
-   //      useInfiniteScroll2(fetchFunction);
 
-   const readyData = isInitialLoading ? (
-      [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
-   ) : isError ? (
+   const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
-   ) : data.length === 0 ? (
-      <h3 className="h3">Упс, пусто 😅</h3>
+   ) : isInitialLoading ? (
+      [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
       data?.map((item: any, i: number) => <StandartCard key={i} item={item} />)
    );
