@@ -44,9 +44,13 @@ export const PathData: any = {
       name: "Заказы",
    },
 
-   [MARKETPLACE.CREATE_ORDER]: {
+   [MARKETPLACE.CREATE_ANNOUNCEMENT]: {
       path: "Маркетплейс/Разместить объявление",
       name: "Разместить объявление",
+   },
+   [MARKETPLACE.CREATE_SERVICE]: {
+      path: "Маркетплейс/Разместить услугу",
+      name: "Разместить услугу",
    },
    [WORK.VACANCIES]: {
       path: "Работа/Вакансии",
@@ -67,6 +71,14 @@ export const PathData: any = {
 
    [ROUTES.ORDER_DETAILS]: {
       path: "Маркетплейс/Детали объявления",
+      name: "Детали объявления",
+   },
+   [ROUTES.ANNOUNCEMENT_DETAILS_ORDER]: {
+      path: "Мои объявления/Детали объявления",
+      name: "Детали объявления",
+   },
+   [ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT]: {
+      path: "Мои объявления/Детали объявления",
       name: "Детали объявления",
    },
 

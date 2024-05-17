@@ -1,38 +1,35 @@
+"use client"
+
 import React from 'react';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import  PhoneInputWithCountry from "react-phone-number-input/react-hook-form"
+import {COUNTRIES} from "@/shared/lib";
+import type {InputPhoneProps} from "@/shared/lib/types/types";
+
 import 'react-phone-number-input/style.css';
-import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
-// import {useForm} from "react-hook-form";
+import styles from "./styles.module.scss"
 
-const InputPhone = ({tel, setTel, error, setError}: any) => {
-
-    const handleInputChange = (newValue: string | undefined) => {
-        setTel(newValue ?? '');
+const InputPhone = ({control}: InputPhoneProps) => {
+    const validate = (value: string) => {
+        return isValidPhoneNumber(`${value}`) || "Неверный формат номера"
     }
-    const handleBlur = () => {
-        if (tel && !isValidPhoneNumber(tel)){
-            setError('Invalid phone number format');
-        }else {
-            setError("")
-        }
-    }
-    // const {register, watch} = useForm()
 
     return (
         <div>
-            <PhoneInput
-
-                autoComplete="tel-national"
+            <PhoneInputWithCountry
                 international
-                className="popup__input"
-                placeholder="Enter phone number"
-                value={tel}
-                onChange={handleInputChange}
-                defaultCountry="KG"
-                onBlur={handleBlur}
                 limitMaxLength={true}
-                countries={['KG', 'KZ', "RU", "UZ"]}
+                countries={COUNTRIES}
+                defaultCountry="KG"
+
+                name="tel"
+                control={control}
+                rules={{
+                    required: "Это поле обязательно для заполнения",
+                    validate: (value: string) => validate(value)
+                }}
+                className={styles.field__input_bordered}
             />
-            {error && <p className="popup__error">{error}</p>}
         </div>
     );
 };

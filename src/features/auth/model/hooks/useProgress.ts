@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {MAX_PROGRESS, PROGRESS_STEP} from "../consts"
 
 export const useProgress = (isLoading: boolean) => {
     const [progress, setProgress] = useState(0)
@@ -8,8 +9,8 @@ export const useProgress = (isLoading: boolean) => {
 
         if (isLoading) {
             timerId = setInterval(() => {
-                setProgress(150);
-            }, 16);
+                setProgress(MAX_PROGRESS);
+            }, PROGRESS_STEP);
 
             return () => {
                 if (timerId) {

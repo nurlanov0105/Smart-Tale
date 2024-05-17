@@ -1,3 +1,4 @@
+import {CountryCode} from "libphonenumber-js";
 
 const slide01 = "/imgs/slider/01.jpg";
 const slide02 = "/imgs/slider/02.jpg";
@@ -34,4 +35,10 @@ export const SKELETON_TYPES = {
     table: "table",
     standard: "standard",
     listItem: "listItem",
+}
+
+export const COUNTRIES: CountryCode[] = ['KG', 'KZ', "RU", "UZ"]
+export enum TYPE_ANNOUNCEMENT_DETAIL {
+    order = 1,
+    equipment = 2
 }
