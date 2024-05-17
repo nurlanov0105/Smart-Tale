@@ -159,11 +159,8 @@ const AnnouncementDetailForm: FC<{ type: string }> = ({ type }) => {
             </div>
          </div>
 
-         {/* <OrderDetailBtns /> */}
+          <OrderDetailBtns />
 
-         <div className={styles.order__btns}>
-            <Button>Разместить услугу</Button>
-         </div>
       </form>
    );
 };
