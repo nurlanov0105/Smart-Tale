@@ -11,6 +11,7 @@ import { EmailSchema, passwordSchema } from "../model/schema";
 import { useLoginForm } from "../model/hooks";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { Home } from "lucide-react";
 
 const LoginForm: FC = () => {
    const theme = useThemeEffect();
@@ -63,9 +64,14 @@ const LoginForm: FC = () => {
                {isLoading ? "Загрузка..." : "Войти"}
             </Button>
             <TypeAuthButton type="login" />
-            <Link href="/" className={styles.auth__homeLink}>
-               Главная страница
-            </Link>
+            <div className={styles.auth__linkBlock}>
+               {/*<Home />*/}
+               <Link href="/" className={styles.auth__homeLink}>
+                  Главная страница
+               </Link>
+
+            </div>
+
          </div>
       </form>
    );
