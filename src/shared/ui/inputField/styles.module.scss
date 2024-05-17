@@ -86,3 +86,8 @@
    position: relative;
    width: 100%;
 }
+
+.dark{
+   border: 2px solid $border-theme;
+   color: $white-theme;
+}
