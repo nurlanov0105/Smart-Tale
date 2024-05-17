@@ -52,8 +52,10 @@ export const useInfiniteScroll = (fetchFunction: any) => {
             console.log(response);
 
             setPage((prevPage) => prevPage + 1);
-            setData((prevData) => [...prevData, ...response.data.data]);
-            setTotalPages(Math.ceil(response.data.totalPages / 12));
+            // setData((prevData) => [...prevData, ...response.data.data]);
+            // setTotalPages(Math.ceil(response.data.totalPages / 12));
+            setData((prevData) => [...prevData, ...response.data]);
+            setTotalPages(Math.ceil(response.headers["x-total-count"] / 12));
             setIsError(false);
          } catch (error) {
             console.error("Ошибка при получении данных:", error);

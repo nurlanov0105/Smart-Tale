@@ -16,32 +16,37 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
       showModal(MODAL_KEYS.card);
    };
 
-   if (!item) {
-      return <h3 className="h3">Нету данных</h3>;
-   }
    return (
       <div className={clsx(styles.card, styles[theme])}>
          <div className={styles.card__img} />
          <div className={styles.card__body}>
             <div className={styles.card__order}>
-               <h4 className={clsx(styles.card__title, styles.card__title_order)}>{item.slug}</h4>
+               {/* {item.slug} */}
+               <h4 className={clsx(styles.card__title, styles.card__title_order)}>Заказ №122</h4>
                <h4 className={clsx(styles.card__title, styles.card__title_cost)}>
-                  {item.price} сом
+                  {/* {item.price} */}
+                  1000 сом
                </h4>
             </div>
-            <Link href={ROUTES.USERS + `/${item.slug}`} className={styles.card__author}>
+            {/* `/${item.slug}` */}
+            <Link href={ROUTES.USERS + `/name`} className={styles.card__author}>
                <div
                   className={styles.card__avatar}
-                  style={{ backgroundImage: `url(${item.author.profile_image})` }}
+                  // style={{ backgroundImage: `url(${item.author.profile_image})` }}
                />
                <div className={styles.card__col}>
                   <h5 className={styles.card__name}>
-                     {item.author.first_name + " " + item.author.last_name}
+                     {/* {item.author.first_name + " " + item.author.last_name} */}
+                     Artur Belevich
                   </h5>
                   <div className={styles.card__notice}>Автор объявления</div>
                </div>
             </Link>
-            <div className={styles.card__descr}>{item.description}</div>
+            <div className={styles.card__descr}>
+               {/* {item.description} */}
+               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti error eveniet
+               minima quod laborum et, sed quasi sunt temporibus aliquid.
+            </div>
             {/* <div className={styles.card__btnDesc}> */}
             <BtnBordered className="btn-bordered__card" onClick={handleClick}>
                Подробнее

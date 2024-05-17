@@ -1,13 +1,14 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
 import { CreateEquipmentTypes } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
+import axios from "axios";
 
 export const EquipmentService = {
    getEquipments: async (page: number) => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS);
-      // const response = await axios.get(
-      //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
-      // );
+      // const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS);
+      const response = await axios.get(
+         `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
+      );
       return response;
    },
    getEquipmentSlug: async (slug: string) => {

@@ -1,17 +1,18 @@
 import { ServicesEndpoints, OrdersEndpoints } from "@/shared/api";
 
 import { baseApiInstance } from "@/shared/api/instance";
+import axios from "axios";
 
 export const ServicesService = {
    getServices: async ({ page, title }: { page: number; title?: string }) => {
-      const response = await baseApiInstance.get(ServicesEndpoints.SERVICES, {
-         params: {
-            title: "",
-         },
-      });
-      // const response = await axios.get(
-      //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
-      // );
+      // const response = await baseApiInstance.get(ServicesEndpoints.SERVICES, {
+      //    params: {
+      //       title: "",
+      //    },
+      // });
+      const response = await axios.get(
+         `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
+      );
       return response;
    },
    getServiceSlug: async (slug: string) => {
