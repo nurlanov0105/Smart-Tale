@@ -36,7 +36,7 @@ export enum ROUTES {
    CONFIRMED = "/confirmed",
 
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
-   MARKETPLACE_SERVICE = `/marketplace/service`,
+   MARKETPLACE_SERVICES = `/marketplace/services`,
    MARKETPLACE_ORDER = `/marketplace/order`,
    MARKETPLACE_CREATE_SERVICE = `/marketplace/create-service`,
 

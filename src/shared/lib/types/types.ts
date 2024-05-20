@@ -104,4 +104,5 @@ export type CardType = {
    description: string;
    author: AuthorType;
    liked: string;
+   image: string;
 };

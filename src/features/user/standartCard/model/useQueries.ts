@@ -7,6 +7,11 @@ export const useEquipmentsQuery = (page: number) => {
    return useQuery({
       queryFn: () => EquipmentService.getEquipments(page),
       queryKey: [EquipmentQueryKeys.EQUIPMENTS, page],
-      staleTime: 1000 * 5,
+   });
+};
+export const useEquipmentSlug = (slug: string) => {
+   return useQuery({
+      queryFn: () => EquipmentService.getEquipmentSlug,
+      queryKey: [EquipmentQueryKeys.EQUIPMENT_SLUG, slug],
    });
 };

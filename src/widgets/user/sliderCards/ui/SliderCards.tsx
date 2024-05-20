@@ -48,7 +48,7 @@ const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading, isError }) =
                           ))
                         : data.map((item: any, i: number) => (
                              <SwiperSlide key={i} className={styles.section__card}>
-                                <StandartCard />
+                                <StandartCard item={item} />
                              </SwiperSlide>
                           ))}
                   </Swiper>
