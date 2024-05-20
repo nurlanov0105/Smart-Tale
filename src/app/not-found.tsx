@@ -1,11 +1,17 @@
+"use client"
+
 import React from "react";
+import {useThemeStore} from "@/shared/themeStore";
+import clsx from "clsx";
 
 const NotFound = () => {
-   return (
-      <div className="not-found">
+    const theme = useThemeStore(state => state.theme)
+
+    return (
+      <div className={clsx(`${theme}`, "not-found")}>
          <h2 className="h2">Page not found. Error 404 😕</h2>
       </div>
-   );
+    );
 };
 
 export default NotFound;

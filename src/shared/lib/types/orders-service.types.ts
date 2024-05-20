@@ -10,6 +10,21 @@ export type CreateOrderTypes = {
     size: string
 }
 
+export type UpdateStatusProps = {
+    status: string
+    orderSlug: string
+}
+export type UpdateOrderProps = {
+    params: CreateOrderTypes
+    orderSlug: string
+}
+
+export type BookingOrderProps = {
+    organizationSlug: string
+    orderSlug: string
+}
+
+
 export type CreateEquipmentTypes = {
     title: string,
     description: string,
@@ -19,3 +34,4 @@ export type CreateEquipmentTypes = {
     phone_number: string,
     email: string,
 }
+

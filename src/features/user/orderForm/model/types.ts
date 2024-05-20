@@ -43,4 +43,5 @@ export type UseOrderFormProps = {
    // month: IDateProps
    // day: IDateProps
    deadline: string
+   sizesData: employee[]
 }

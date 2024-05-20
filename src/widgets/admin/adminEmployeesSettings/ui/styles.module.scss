@@ -55,3 +55,14 @@
     border-bottom: 1px solid $border-theme;
   }
 }
+
+
+//Mobile
+@media (max-width: 550px) {
+  .form{
+    &__box{
+      flex-direction: column;
+      row-gap: 1rem;
+    }
+  }
+}

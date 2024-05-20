@@ -2,29 +2,38 @@
 "use client";
 
 import React, { forwardRef } from "react";
-import styles from "./styles.module.scss";
 import {TextAreaProps} from "@/shared/lib/types/types";
 import clsx from "clsx";
 import {useThemeStore} from "@/shared/themeStore";
+import styles from "./styles.module.scss";
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {
+
     const theme = useThemeStore((state) => state.theme);
-    const {  title, classname, isBordered, disabled, error, ...rest } = props;
-    const isBorderedClass = (lastClass: string, borderedClass: string) =>
-        isBordered ? borderedClass : lastClass
+
+    const {
+        title,
+        classname,
+        isDisabled,
+        error,
+        type,
+        ...rest
+    } = props;
+
 
     return (
         <>
-            <label htmlFor={title} className={clsx(isBorderedClass(styles.textarea, styles.textarea__bordered), styles[theme])}>
+            <label htmlFor={title} className={clsx(styles[theme], styles.textarea__label, styles[type])}>
                 <p className={styles.textarea__title}>{title}</p>
                 <textarea
+                    className={clsx(styles.textarea, styles[`${type}__textArea`])}
                     id={title}
-                    className={clsx(isBorderedClass(styles.textarea__input, styles.textarea__borderedArea), classname)}
                     {...rest}
                     ref={ref}
-                    disabled={disabled}
+                    disabled={isDisabled}
                 />
             </label>
+
             {
                 error && <p className={styles.textarea__error}>максимум 250 символов, минимум 5</p>
             }

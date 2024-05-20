@@ -91,6 +91,18 @@
    .light {
       background-color: $bg-color;
    }
+
+   &__sun{
+      &:hover{
+         color: yellow;
+      }
+   }
+   &__moon{
+      &:hover{
+         color: $dark-blue;
+         fill: $dark-blue;
+      }
+   }
 }
 
 /* Laptop */

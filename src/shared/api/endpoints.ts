@@ -14,16 +14,27 @@ export const AuthEndpoints = {
 export const OrdersEndpoints = {
    CREATE_ORDER: "/add-order/",
    GET_MY_ORDER: "/order-detail/",
-   GET_MY_ORDERS: "/my-orders/",
+   GET_MY_ORDERS: "/my-order-ads/",
+   GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
+   APPLY_ORDER: "/order-apply",
+   LIKE_ORDER: "/like-order/",
+   BOOKING_ORDER: "/order-book/",
+   DELETE_ORDER: "/order-delete/",
+   HIDE_ORDER: "/order-hide/",
+   UPDATE_ORDER: "/update-order/",
+   UPDATE_ORDER_STATUS: "/update-status/"
+
+
 };
 
 export const EquipmentsEndpoints = {
    EQUIPMENTS: "/equipments",
    EQUIPMENT_SLUG: "/equipment/",
-   CREATE_EQUIPMENT: "/equipment/creates",
+   CREATE_EQUIPMENT: "/equipment/create",
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
-   GET_MY_EQUIPMENTS: "/my-equipments/",
+   // GET_MY_EQUIPMENTS: "/my-equipments/",
+   GET_MY_EQUIPMENTS: "/my-ads/",
    GET_MY_EQUIPMENT: "/equipment/",
 };
 

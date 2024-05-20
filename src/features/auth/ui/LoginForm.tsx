@@ -16,7 +16,8 @@ import { Home } from "lucide-react";
 const LoginForm: FC = () => {
    const theme = useThemeEffect();
 
-   const { handleSubmit, register, errors, isValid, isLoading } = useLoginForm();
+   const { handleSubmit, register, errors, isValid, isLoading
+   } = useLoginForm();
 
    const { isRemember, setIsRemember } = useRememberMe();
 

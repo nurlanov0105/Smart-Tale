@@ -28,3 +28,6 @@ export const dateFormat = ({year, month, day}: {year: IDateProps, month: IDatePr
 
     return `${year.postValue}-0${month.postValue}-${day.postValue}`
 }
+
+
+

@@ -8,7 +8,7 @@ import type { IDateProps } from "@/entities/general/selectDate";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, data }) => {
+const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, data, type }) => {
 
    const theme = useThemeStore((state) => state.theme);
 
@@ -20,7 +20,9 @@ const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, da
    return (
       <div ref={ref} className={clsx(classname, styles.select, styles[theme])}>
          <button type="button" onClick={toggleShow} className={styles.select__content}>
-            {/*<p className={styles.select__title}>{title}</p>*/}
+            {
+                type === "user" && <p className={styles.select__title}>{title}</p>
+            }
             <div className={styles.select__block}>
                <p className={styles.select__value}>{value.postValue > 0 ? value.value : title}</p>
                <span className={styles.select__icon}>
