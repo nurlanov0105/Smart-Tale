@@ -96,4 +96,12 @@ body {
    display: flex;
    align-items: center;
    justify-content: center;
+
+}
+.dark{
+   background-color: $dark-theme ;
+
+   h2 {
+      color: $white-theme;
+   }
 }

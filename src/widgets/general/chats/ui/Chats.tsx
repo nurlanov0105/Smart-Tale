@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { ChatSkeleton, Select } from "@/shared/ui";
+import { Select } from "@/shared/ui";
 import { ChatItem } from "@/entities/general/chatItem";
 import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";

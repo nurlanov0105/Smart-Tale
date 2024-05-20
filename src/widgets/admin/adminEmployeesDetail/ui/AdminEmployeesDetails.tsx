@@ -9,7 +9,7 @@ import { ChangeImage } from "@/features/general/changeImage";
 import styles from "./styles.module.scss";
 import { AvatarSkeleton, CommonSkeleton } from "@/shared/ui";
 
-const AdminOrders = () => {
+const AdminEmployeesDetails = () => {
    const [type, setType] = useState(valuesData[0].postValue);
    const [selected, setSelected] = useState(organizationsData[0]);
    const data = [1, 2, 3, 4, 5];
@@ -42,4 +42,4 @@ const AdminOrders = () => {
    );
 };
 
-export default AdminOrders;
+export default AdminEmployeesDetails;

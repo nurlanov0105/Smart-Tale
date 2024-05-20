@@ -44,21 +44,21 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
       setIsShow((prev) => !prev);
    };
 
-   const filteredItems = routes.map((item) => {
-      if (isAuth || !item.authorized) {
-         return (
-            <Link
-               onClick={handleClickClose}
-               href={item.link}
-               key={item.subtitle}
-               className={clsx(styles.category__item, {
-                  [styles.category__item_active]: item.link === pathname,
-               })}>
-               {item.subtitle}
-            </Link>
-         );
-      }
-   });
+   // const filteredItems = routes.map((item) => {
+   //    if (isAuth || !item.authorized) {
+   //       return (
+   //          <Link
+   //             onClick={handleClickClose}
+   //             href={item.link}
+   //             key={item.subtitle}
+   //             className={clsx(styles.category__item, {
+   //                [styles.category__item_active]: item.link === pathname,
+   //             })}>
+   //             {item.subtitle}
+   //          </Link>
+   //       );
+   //    }
+   // });
 
    return (
       <li className={clsx(styles.category_item, styles[theme])}>
@@ -86,7 +86,22 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
                height: height !== undefined ? `${height}px` : "none",
             }}
             ref={contentRef}>
-            <div className={styles.category__list}>{filteredItems}</div>
+            <div className={styles.category__list}>
+               {
+                  routes.map(item =>
+                      <Link
+                          onClick={handleClickClose}
+                          href={item.link}
+                          key={item.subtitle}
+                          className={clsx(styles.category__item, {
+                             [styles.category__item_active]: item.link === pathname,
+                          })}
+                      >
+                         {item.subtitle}
+                      </Link>
+                  )
+               }
+            </div>
          </div>
       </li>
    );

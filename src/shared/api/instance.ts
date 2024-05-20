@@ -86,6 +86,10 @@ baseApiInstance.interceptors.request.use(
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
+       if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
+           config.url += '/';
+       }
+
       return config;
    },
    (error) => {
@@ -114,7 +118,7 @@ baseApiInstance.interceptors.response.use(
          return baseApiInstance(originalRequest);
       }
 
-      console.log("Произошла ошибка при запросе: ", error.message);
+      console.log("Произошла ошибка при запросе: ", error);
       toast.error("Произошла ошибка при запросе");
       return Promise.reject(error);
    }

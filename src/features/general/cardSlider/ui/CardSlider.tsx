@@ -18,9 +18,12 @@ const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true, isErro
               <div className={styles.slider__big} />
            </SwiperSlide>
         ))
-      : images.map((image: string) => (
-           <SwiperSlide key={image}>
-              <div className={styles.slider__big} style={{ backgroundImage: `url(${image})` }} />
+      : images.map((item: { images: string }) => (
+           <SwiperSlide key={item.images}>
+              <div
+                 className={styles.slider__big}
+                 style={{ backgroundImage: `url(${item.images})` }}
+              />
            </SwiperSlide>
         ));
 

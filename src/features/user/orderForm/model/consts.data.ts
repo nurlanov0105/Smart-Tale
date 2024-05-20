@@ -43,7 +43,7 @@ export const sizesData = [
    },
    {
       value: "S",
-      postValue: "s",
+      postValue: "Ы",
    },
    {
       value: "M",
@@ -55,6 +55,6 @@ export const sizesData = [
    },
    {
       value: "XL",
-      postValue: "xl",
+      postValue: "XL",
    },
 ];

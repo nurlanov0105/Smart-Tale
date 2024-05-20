@@ -38,7 +38,7 @@ const PositionForm = () => {
             <InputField title="Название" />
 
             <h4 className="h4">Описание должности</h4>
-            <TextArea title="Описание" />
+            <TextArea title="Описание" type="default"/>
             <div className={styles.position__fieldset}>
                <h4 className="h4">Выдача прав доступа</h4>
                <ul className={styles.position__list}>

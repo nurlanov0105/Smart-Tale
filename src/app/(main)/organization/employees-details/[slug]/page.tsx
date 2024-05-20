@@ -1,7 +1,7 @@
-import { AdminOrders } from "@/widgets/admin/adminOrders";
+import { AdminEmployeesDetails } from "@/widgets/admin/adminEmployeesDetail";
 
 const EmployeesDetailPage = () => {
-   return <AdminOrders />;
+   return <AdminEmployeesDetails />;
 };
 
 export default EmployeesDetailPage;

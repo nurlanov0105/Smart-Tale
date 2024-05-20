@@ -2,6 +2,7 @@ export const UserQueryKeys = {
    PROFILE: "profile",
    PURCHASES: "purchases",
    ORDER_HISTORY: "order-history",
+   ANNOUNCEMENTS_LISTINGS: "announcement-listings",
    ORGANIZATION: "organization",
    FAVORITES: "favorites",
    CURRENT_ORDERS: "current-orders",

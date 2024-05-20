@@ -37,14 +37,14 @@ const Header = () => {
             </div>
             <div className={styles.header__links}>
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
-                  {theme === "light" ? <Moon /> : <SunMoon />}
+                  {theme === "light" ? <Moon className={styles.header__moon}/> : <SunMoon className={styles.header__sun}/>}
                </div>
             </div>
          </div>
          <div className={clsx(styles.header__block, styles.header_right)}>
             <div className={styles.header__links}>
                <div className={clsx(styles.header__theme)} onClick={toggleTheme}>
-                  {theme === "light" ? <Moon /> : <SunMoon />}
+                  {theme === "light" ? <Moon className={styles.header__moon}/> : <SunMoon className={styles.header__sun}/>}
                </div>
             </div>
             <Search />

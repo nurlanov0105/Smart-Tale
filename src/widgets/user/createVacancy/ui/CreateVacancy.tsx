@@ -33,7 +33,7 @@ const CreateVacancy = () => {
             />
             <h4 className="h4">Расскажите про вакансию</h4>
             <div className={styles.form__margin}>
-               <TextArea classname={styles.form__area} />
+               <TextArea classname={styles.form__area} type="default"/>
             </div>
             {/*<h4 className="h4">Требования</h4>*/}
             {/*<InputField*/}

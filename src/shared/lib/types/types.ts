@@ -40,7 +40,13 @@ export type InputFieldProps = {
    autoComplete?: string;
 };
 
-export type TextAreaProps = Omit<InputFieldProps, "type">;
+export type TextAreaProps = {
+   type: "bordered_grey" | "bordered_white" | "default" | "chat",
+   classname?: string,
+   title?: string,
+   isDisabled?: boolean,
+   error?: string,
+}
 
 type dateType = {
    value: string | number;
@@ -53,6 +59,7 @@ export type SelectProps = {
    data: dateType[];
    setDate: Dispatch<SetStateAction<dateType>>;
    classname?: string;
+   type?: "admin" | "user"
 };
 
 export type TimerProps = {
@@ -79,8 +86,9 @@ export type SelectTypes = {
 export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens; time?: string };
 
 export type InputPhoneProps = {
-   control: Control<registerFormType>;
+   control: Control<any>;
    errors?: FieldErrors;
+   classname?: string
 };
 
 export type AuthorType = {
@@ -96,4 +104,5 @@ export type CardType = {
    description: string;
    author: AuthorType;
    liked: string;
+   image: string;
 };
