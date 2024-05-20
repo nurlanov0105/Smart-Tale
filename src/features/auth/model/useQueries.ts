@@ -8,6 +8,7 @@ import { IEmailVerifyRequest } from "@/features/auth/model/types";
 import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
+import {cookies} from "next/headers";
 
 export const useRegister = (reset: UseFormReset<any>) => {
    const router = useRouter();
@@ -45,6 +46,7 @@ export const useLogin = (reset: UseFormReset<any>) => {
             } else {
                sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
                sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, data.data.refresh);
+
             }
 
             reset();

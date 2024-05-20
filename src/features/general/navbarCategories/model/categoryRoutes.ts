@@ -3,13 +3,13 @@ import {BriefcaseBusiness, Clipboard, ShoppingCart, User} from "lucide-react";
 import {TypeCategories} from "@/entities/user/navbarItem";
 import {ORGANIZATION_ROUTES, WORK} from "@/shared/lib/routes.config";
 
+
 export const CategoryRoutes: TypeCategories[] = [
    {
       id: 1,
       title: "Личный кабинет",
       Icon: User,
-      authorized: true,
-
+      role: "authorized",
       routes: [
          {
             parentId: 1,
@@ -44,8 +44,7 @@ export const CategoryRoutes: TypeCategories[] = [
       title: "Организация",
       id: 2,
       Icon: Clipboard,
-      authorized: true,
-
+      role: "subscribed",
       routes: [
          {
             parentId: 2,
@@ -96,7 +95,7 @@ export const CategoryRoutes: TypeCategories[] = [
       title: "Маркетплейс",
       id: 3,
       Icon: ShoppingCart,
-      authorized: false,
+      role: "unAuthorized",
       routes: [
          {
             parentId: 3,
@@ -135,7 +134,7 @@ export const CategoryRoutes: TypeCategories[] = [
       title: "Работа",
       id: 4,
       Icon: BriefcaseBusiness,
-      authorized: false,
+      role: "unAuthorized",
       routes: [
          {
             parentId: 4,

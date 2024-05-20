@@ -5,7 +5,9 @@ import { NavbarLine } from "@/entities/general/navbarLine";
 import { HeaderIntro } from "@/entities/general/headerIntro";
 import styles from "./styles.module.scss";
 
+
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+
    return (
       <main className={styles.main}>
          <NavbarLine />

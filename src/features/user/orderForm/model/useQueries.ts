@@ -1,30 +1,35 @@
 import {useMutation} from "@tanstack/react-query";
-import {EquipmentService, UserQueryKeys} from "@/shared/api";
+import {UseFormReset} from "react-hook-form";
 import {OrdersService} from "@/shared/lib";
-import {CreateEquipmentTypes, CreateOrderTypes} from "@/shared/lib/types/orders-service.types";
+import {EquipmentService, UserQueryKeys} from "@/shared/api";
+import type {OrderCreateFormType} from "../model/types";
+import {toast} from "react-toastify";
 
-export const useCreateOrder = () => {
-    return useMutation<any, Error, CreateOrderTypes, unknown>({
+export const useCreateOrder = (reset: UseFormReset<OrderCreateFormType>) => {
+    return useMutation<any, Error, FormData, unknown>({
         mutationKey: [UserQueryKeys.CREATE_ORDER],
         mutationFn: (data) => OrdersService.createOrder(data),
         onSuccess: () => {
-            console.log("success")
+            reset()
+            toast.success("Вы успешно разместили заказ!")
         },
-        onError: () => {
-            console.log("error")
+        onError: (error) => {
+            console.log(`Error: ${error}`)
         }
     })
 }
 
-export const useCreateEquipment = () => {
-    return useMutation<any, Error, CreateEquipmentTypes, unknown>({
+export const useCreateEquipment = (reset: UseFormReset<OrderCreateFormType>) => {
+    return useMutation<any, Error, FormData, unknown>({
         mutationKey: [UserQueryKeys.CREATE_EQUIPMENT],
         mutationFn: (data) => EquipmentService.createEquipment(data),
         onSuccess: () => {
-            console.log("success")
+            reset()
+            toast.success("Вы успешно разместили оборудование!")
         },
-        onError: () => {
-            console.log("error")
+        onError: (error) => {
+            console.log(`Error: ${error}`)
         }
     })
 }
+

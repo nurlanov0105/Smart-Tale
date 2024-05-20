@@ -15,7 +15,8 @@ export default function Provider({ children }: PropsWithChildren) {
         () => new QueryClient({
             defaultOptions: {
                 queries: {
-                    refetchOnWindowFocus: false
+                    refetchOnWindowFocus: false,
+                    retry: 1
                 }
             }
         })

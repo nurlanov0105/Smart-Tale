@@ -5,6 +5,7 @@ export type RoutesType = {
    link: string;
    authorized?: boolean;
    detailLink?: string
+   isSubscribed?: boolean
 };
 
 export type TypeCategories = {
@@ -14,4 +15,6 @@ export type TypeCategories = {
    routes: RoutesType[];
    activeRoutes?: string[];
    authorized?: boolean;
+   isSubscribed?: boolean
+   role? : "authorized" | "subscribed" | "unAuthorized"
 };

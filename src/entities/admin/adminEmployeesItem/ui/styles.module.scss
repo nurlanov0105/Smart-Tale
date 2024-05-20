@@ -100,3 +100,12 @@
    }
 }
 
+//Mobile
+@media (max-width: 500px) {
+   .item{
+      &__info{
+         flex-direction: column;
+         row-gap: 1rem;
+      }
+   }
+}

@@ -24,6 +24,7 @@ const SelectDate: FC<DateProps> = ({
             setDate={setDay} //Фукнция для изменения значения
             title="День"
             classname={styles.date__day}
+            type={type}
          />
          <SelectDateField
             data={months}
@@ -31,6 +32,7 @@ const SelectDate: FC<DateProps> = ({
             setDate={setMonth}
             title="Месяц"
             classname={styles.date__month}
+            type={type}
          />
          <SelectDateField
             data={years}
@@ -38,6 +40,7 @@ const SelectDate: FC<DateProps> = ({
             value={year}
             title="Год"
             classname={styles.date__year}
+            type={type}
          />
       </div>
    );
