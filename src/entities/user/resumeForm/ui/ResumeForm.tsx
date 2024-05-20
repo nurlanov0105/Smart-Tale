@@ -31,7 +31,7 @@ const ResumeForm:FC<ResumeFormProps> = ({type}) => {
             />
             <h4 className="h4">Напишите о себе</h4>
             <div className={styles.form__block}>
-               <TextArea classname={styles.form__area}/>
+               <TextArea classname={styles.form__area} type="default"/>
             </div>
 
             <div className={styles.form__block}>

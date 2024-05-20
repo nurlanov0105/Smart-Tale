@@ -65,7 +65,7 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
                            <ImageIcon className={styles.chat__iconImage} />
                         </label>
                      </button>
-                     <TextArea isBordered={true} />
+                     <TextArea type="chat" />
                      <button className={styles.chat__icon}>
                         <SendHorizontal />
                      </button>

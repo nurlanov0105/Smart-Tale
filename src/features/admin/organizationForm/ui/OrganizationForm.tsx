@@ -56,7 +56,12 @@ const OrganizationForm = () => {
                     error="errror"
                     title="Название организации"
                 />
-                <TextArea disabled={false} error="errror" title="Описание организации"/>
+                <TextArea
+                    isDisabled={false}
+                    error="errror"
+                    title="Описание организации"
+                    type="default"
+                />
             </div>
             <div className={styles.form__button}>
                 <Button>Создать организацию</Button>

@@ -14,13 +14,20 @@ const OrderDetailBtns = () => {
     };
 
     return (
-        <div className={styles.buttons}>
-            <Button type="button" className="btn_danger" onClick={handleDeleteClick}>
-                Удалить
-            </Button>
-            <Button type="button" onClick={handleHideClick}>
-                Скрыть объявление
-            </Button>
+        <div className={styles.buttons__wrapper}>
+           <div className={styles.buttons}>
+               <Button type="button" className="btn_danger" onClick={handleDeleteClick}>
+                   Удалить
+               </Button>
+               <Button type="button" onClick={handleHideClick}>
+                   Скрыть объявление
+               </Button>
+           </div>
+
+           <div className={styles.buttons}>
+               <Button type="button" className="btn_bordered">Отменить изменения</Button>
+               <Button type="button">Сохранить изменения</Button>
+           </div>
         </div>
     );
 };

@@ -26,18 +26,18 @@ export const EquipmentService = {
 
       return response;
    },
-   createEquipment: async (params: CreateEquipmentTypes) => {
+   createEquipment: async (params: FormData) => {
       const response = await baseApiInstance.post(EquipmentsEndpoints.CREATE_EQUIPMENT, params, {
          headers: { "Content-Type": "multipart/form-data" },
       });
       return response.data;
    },
-   getMyEquipments: async (id: number) => {
-      const response = await baseApiInstance.post(EquipmentsEndpoints.GET_MY_EQUIPMENT + id);
+   getMyEquipments: async () => {
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENTS);
       return response.data;
    },
-   getMyEquipment: async (id: number) => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + id);
+   getMyEquipment: async (slug: string) => {
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + slug);
       return response.data;
    },
    searchEquipment: async (search: string) => {
