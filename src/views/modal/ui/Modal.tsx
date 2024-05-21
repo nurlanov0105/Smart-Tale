@@ -17,7 +17,7 @@ import {
    LogoutModal,
    DeleteModal,
    DeleteEmployeeModal,
-   ResponsesModal
+   ResponsesModal,
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
@@ -25,9 +25,9 @@ import { useThemeStore } from "@/shared/themeStore";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);
-   const { isOpen, componentName, isLightBg, closeModal } = useModalStore();
+   const { isOpen, componentName, isLightBg, slug, closeModal } = useModalStore();
 
-   const componentsLookUp: Record<string, React.ComponentType> = {
+   const componentsLookUp: Record<string, React.ComponentType<any>> = {
       SubscribeModal,
       ChangeAvatarModal,
       DeleteAnnouncementModal,
@@ -41,7 +41,7 @@ const Modal: FC = () => {
       CardModal,
       DeleteModal,
       DeleteEmployeeModal,
-      ResponsesModal
+      ResponsesModal,
    };
    let RenderComponent;
 
@@ -49,7 +49,7 @@ const Modal: FC = () => {
       const SelectedComponent = componentsLookUp[componentName] as React.ElementType;
 
       if (SelectedComponent) {
-         RenderComponent = <SelectedComponent />;
+         RenderComponent = <SelectedComponent slug={slug} />;
       }
    }
 

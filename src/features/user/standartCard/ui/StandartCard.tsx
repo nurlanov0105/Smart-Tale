@@ -9,18 +9,12 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useThemeStore } from "@/shared/themeStore";
 import { StandartCardType } from "../model/types";
-import { usePathname, useRouter } from "next/navigation";
-import { usePathStore } from "../model/usePathStore";
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
-   const pathname = usePathname();
-   const setUrl = usePathStore((state) => state.setUrl);
 
    const handleClick = () => {
-      showModal(MODAL_KEYS.card);
-
-      setUrl({ pathname, slug: item.slug });
+      showModal(MODAL_KEYS.card, undefined, item.slug);
    };
 
    if (!item) {
@@ -40,7 +34,11 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
             <Link href={ROUTES.USERS + `/${item.slug}`} className={styles.card__author}>
                <div
                   className={styles.card__avatar}
-                  style={{ backgroundImage: `url(${item.author?.profile_image})` }}
+                  style={{
+                     backgroundImage: `url(${
+                        item?.author?.profile_image ? item?.author?.profile_image : ""
+                     })`,
+                  }}
                />
                <div className={styles.card__col}>
                   <h5 className={styles.card__name}>

@@ -19,14 +19,7 @@ import styles from "./styles.module.scss";
 const OrderForm: FC<OrderProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {
-      day,
-      setDay,
-      month,
-      setMonth,
-      year,
-      setYear
-   } = useInitialDate({}); //Даты
+   const { day, setDay, month, setMonth, year, setYear } = useInitialDate({}); //Даты
 
    const {
       selectCurrency,
@@ -37,29 +30,16 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       setSelectedSize,
    } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
 
-   const {
-      sizesDate,
-      handleChangeSize,
-      setSizesDate,
-      images,
-      setImages
-   } = useSizesAndImages(); //массив с изображениями и массив с размерами заказа
+   const { sizesDate, handleChangeSize, setSizesDate, images, setImages } = useSizesAndImages(); //массив с изображениями и массив с размерами заказа
 
    const deadline = dateFormat({ year, month, day });
 
-   const {
-      handleSubmit,
-      isError,
-      isLoading,
-      register,
-      errors,
-      isValid
-   } = useOrderForm({
+   const { handleSubmit, isError, isLoading, register, errors, isValid } = useOrderForm({
       type,
       images,
       deadline,
-      sizesData
-
+      sizesData,
+      currency: selectCurrency.postValue,
    }); //Тип создания(заказа или оборудования)
 
    const isDisabled = () => {

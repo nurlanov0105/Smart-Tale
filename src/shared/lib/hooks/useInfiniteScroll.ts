@@ -49,7 +49,7 @@ export const useInfiniteScroll = (fetchFunction: any) => {
                throw new Error("Ошибка при получении данных");
             }
 
-            //console.log(response);
+            console.log(response);
 
             setPage((prevPage) => prevPage + 1);
             setData((prevData) => [...prevData, ...response.data.data]);
