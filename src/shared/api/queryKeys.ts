@@ -10,6 +10,7 @@ export const UserQueryKeys = {
    SERVICES: "services",
    CREATE_ORDER: "create-announcement",
    CREATE_EQUIPMENT: "create-equipment",
+   CREATE_SERVICE: "create-service",
 };
 
 export const OrganizationQueryKeys = {

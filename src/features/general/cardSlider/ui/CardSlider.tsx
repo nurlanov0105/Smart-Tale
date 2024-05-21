@@ -8,9 +8,12 @@ import styles from "./styles.module.scss";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
-const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true, isError = false }) => {
+const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true }) => {
    const [selectedImage, setSelectedImage] = useState(images[0]);
    const swiperRef = useRef<any>(null);
+   useEffect(() => {
+      setSelectedImage(images[0]);
+   }, [images, isLoading]);
 
    const readySlides = isLoading
       ? [...Array(5)].map((_, i: number) => (
@@ -18,8 +21,8 @@ const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true, isErro
               <div className={styles.slider__big} />
            </SwiperSlide>
         ))
-      : images.map((item: { images: string }) => (
-           <SwiperSlide key={item.images}>
+      : images.map((item: { images: string }, i: number) => (
+           <SwiperSlide key={i}>
               <div
                  className={styles.slider__big}
                  style={{ backgroundImage: `url(${item.images})` }}
@@ -29,15 +32,15 @@ const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true, isErro
 
    const readySubSlides = isLoading
       ? [...Array(5)].map((_, i: number) => <div key={i} className={styles.slider__small} />)
-      : images.map((image: any, i: number) => (
+      : images.map((item: { images: string }, i: number) => (
            <div
-              onClick={() => handlePreviewClick(image, i)}
+              onClick={() => handlePreviewClick(item, i)}
               key={i}
               className={clsx(
                  styles.slider__small,
-                 selectedImage === image ? styles.slider__small_active : ""
+                 selectedImage === item ? styles.slider__small_active : ""
               )}
-              style={{ backgroundImage: `url(${image})` }}
+              style={{ backgroundImage: `url(${item.images})` }}
            />
         ));
 
@@ -45,7 +48,7 @@ const CardSlider: FC<SliderProps> = ({ images, isLarge, isLoading = true, isErro
       swiperRef.current = swiper;
    };
 
-   const handlePreviewClick = (image: string, index: number) => {
+   const handlePreviewClick = (image: any, index: number) => {
       setSelectedImage(image);
       swiperRef.current?.slideTo(index);
    };

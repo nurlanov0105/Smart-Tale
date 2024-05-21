@@ -2,6 +2,7 @@ import {useMutation} from "@tanstack/react-query";
 import {EquipmentQueryKeys, EquipmentService} from "@/shared/api";
 import {OrdersService} from "@/shared/lib";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
+import {toast} from "react-toastify";
 
 
 export const useHideEquipment = () => {
@@ -9,7 +10,7 @@ export const useHideEquipment = () => {
         mutationKey: [OrdersQueryKeys.ORDER_HIDE],
         mutationFn: (slug) => EquipmentService.hideEquipment(slug),
         onSuccess: () => {
-            console.log("success")
+            toast.success("Вы успешно скрыли оборудование")
         },
         onError: () => {
             console.log("error")
@@ -22,7 +23,7 @@ export const useHideOrder = () => {
         mutationKey: [EquipmentQueryKeys.EQUIPMENT_HIDE],
         mutationFn: (slug) => OrdersService.hideOrder(slug),
         onSuccess: () => {
-            console.log("success")
+            toast.success("Вы успешно скрыли заказ")
         },
         onError: () => {
             console.log("error")
@@ -36,7 +37,7 @@ export const useDeleteEquipment = () => {
         mutationKey: [OrdersQueryKeys.ORDER_DELETE],
         mutationFn: (slug) => EquipmentService.deleteEquipment(slug),
         onSuccess: () => {
-            console.log("success")
+            toast.success("Вы успешно удалили оборудование")
         },
         onError: () => {
             console.log("error")
@@ -49,7 +50,7 @@ export const useDeleteOrder = () => {
         mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
         mutationFn: (slug) => OrdersService.deleteOrder(slug),
         onSuccess: () => {
-            console.log("success")
+            toast.success("Вы успешно удалили заказ")
         },
         onError: () => {
             console.log("error")

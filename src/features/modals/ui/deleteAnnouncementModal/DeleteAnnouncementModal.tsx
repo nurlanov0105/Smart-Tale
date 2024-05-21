@@ -3,17 +3,19 @@ import React from "react";
 import { Button, Emojis } from "@/shared/ui";
 import {useDeleteAnnouncement} from "../../model/hooks/useMyAnnouncementDetails";
 import styles from "./styles.module.scss";
+import {closeModal, ModalProps} from "@/views/modal";
 
-const DeleteAnnouncementModal = () => {
+const DeleteAnnouncementModal = (props: ModalProps) => {
 
     const {
         deleteAnnouncement,
         isError,
         isLoading
-    } = useDeleteAnnouncement("type") //order | equipment
+    } = useDeleteAnnouncement(props?.type ?? "") //order | equipment
 
     const handleDelete = () => {
-        deleteAnnouncement("slug") //slug order | equipment
+        deleteAnnouncement(props.slug ?? "") //slug order | equipment
+        closeModal()
     }
 
    return (
@@ -22,7 +24,7 @@ const DeleteAnnouncementModal = () => {
          <h3 className="h3">Удалить объявление?</h3>
          <p className={styles.content__text}>Объявление удалится навсегда!</p>
          <div className={styles.content__buttons}>
-            <Button className="btn_bordered">Отменить</Button>
+            <Button onClick={closeModal} className="btn_bordered">Отменить</Button>
             <Button onClick={handleDelete} className="btn_danger">Удалить</Button>
          </div>
       </div>

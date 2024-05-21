@@ -7,10 +7,10 @@ import styles from "./styles.module.scss";
 const OrderDetailBtns = () => {
 
     const handleDeleteClick = () => {
-        showModal(MODAL_KEYS.deleteAnnouncement);
+        showModal(MODAL_KEYS.deleteAnnouncement, {slug: "nitki-s-igolkami-2", type: "order"});
     };
     const handleHideClick = () => {
-        showModal(MODAL_KEYS.hideAnnouncement);
+        showModal(MODAL_KEYS.hideAnnouncement, {slug: "nitki-s-igolkami-2", type: "order"});
     };
 
     return (

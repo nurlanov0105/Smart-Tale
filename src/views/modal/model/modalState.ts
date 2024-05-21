@@ -4,9 +4,8 @@ import { ModalState } from "./types";
 export const useModalStore = create<ModalState>((set) => ({
    isOpen: false,
    componentName: null,
-   isLightBg: false,
-   showModal: (componentName, lightBg) =>
-      set({ isOpen: true, componentName, isLightBg: lightBg?.isLightBg }),
-   closeModal: () => set({ isOpen: false, componentName: null, isLightBg: false }),
-
+   props: null,
+   showModal: (componentName, props) =>
+      set({ isOpen: true, componentName, props: props }),
+   closeModal: () => set({ isOpen: false, componentName: null, props: null}),
 }));

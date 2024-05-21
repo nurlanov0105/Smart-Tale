@@ -46,22 +46,16 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       setImages
    } = useSizesAndImages({}); //массив с изображениями и массив с размерами заказа
 
+
    const newDate = new Date(year.postValue, month.postValue - 1, day.postValue)
    const deadline = format(newDate, 'yyyy-MM-dd')
 
-   const {
-      handleSubmit,
-      isError,
-      isLoading,
-      register,
-      errors,
-      isValid
-   } = useOrderForm({
+   const { handleSubmit, isError, isLoading, register, errors, isValid } = useOrderForm({
       type,
       images,
       deadline,
-      sizesData
-
+      sizesData,
+      currency: selectCurrency.postValue,
    }); //Тип создания(заказа или оборудования)
 
    const isDisabled = () => {

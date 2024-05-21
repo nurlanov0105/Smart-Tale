@@ -4,8 +4,13 @@ import { baseApiInstance } from "@/shared/api/instance";
 import axios from "axios";
 
 export const ServicesService = {
-   getServices: async ({ page, title }: { page: number; title?: string }) => {
-      const response = await baseApiInstance.get(ServicesEndpoints.SERVICES);
+   getServices: async (page: number, title?: string) => {
+      console.log(page);
+      const response = await baseApiInstance.get(ServicesEndpoints.SERVICES, {
+         params: {
+            page: page,
+         },
+      });
       // const response = await axios.get(
       //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
       // );
@@ -34,8 +39,10 @@ export const ServicesService = {
 
       return response;
    },
-   createService: async () => {
-      const response = await baseApiInstance.post(ServicesEndpoints.CREATE_SERVICE);
+   createService: async (params: FormData) => {
+      const response = await baseApiInstance.post(ServicesEndpoints.CREATE_SERVICE, params, {
+         headers: { "Content-Type": "multipart/form-data" },
+      });
       return response.data;
    },
    deleteService: async () => {
