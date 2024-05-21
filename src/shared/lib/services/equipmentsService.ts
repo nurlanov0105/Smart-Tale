@@ -1,11 +1,19 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
-import { CreateEquipmentTypes } from "@/shared/lib/types/orders-service.types";
+import {
+   CreateEquipmentTypes,
+   UpdateEquipmentProps,
+   type UpdateOrderProps
+} from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
 import axios from "axios";
 
 export const EquipmentService = {
    getEquipments: async (page: number) => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS);
+      const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS, {
+         params: {
+            page: page,
+         },
+      });
       // const response = await axios.get(
       //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
       // );
@@ -51,5 +59,18 @@ export const EquipmentService = {
    getMyOrders: async (id: number) => {
       const response = await baseApiInstance.post(OrdersEndpoints.GET_MY_ORDER + id);
       return response.data;
+   },
+   hideEquipment: async (slug: string) => {
+      const response = await baseApiInstance.put(EquipmentsEndpoints.HIDE_EQUIPMENT + slug);
+      return response.data;
+   },
+   deleteEquipment: async (slug: string) => {
+      const response = await baseApiInstance.put(EquipmentsEndpoints.DELETE_EQUIPMENT + slug);
+      return response.data;
+   },
+   updateEquipment: async ({equipmentSlug, params}: UpdateEquipmentProps) => {
+      const headers = { 'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2) };
+      const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + equipmentSlug, params, {headers: headers})
+      return response.data
    },
 };

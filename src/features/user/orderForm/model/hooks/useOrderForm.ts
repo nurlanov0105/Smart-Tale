@@ -1,53 +1,68 @@
 import { useForm } from "react-hook-form";
-import { useCreateEquipment, useCreateOrder } from "../useQueries";
+import { useCreateEquipment, useCreateOrder, useCreateService } from "../useQueries";
 import type { OrderCreateFormType, UseOrderFormProps } from "../types";
+import { AnnouncmentValues } from "../consts.data";
 
-export const useOrderForm = ({ type, images, deadline, sizesData }: UseOrderFormProps) => {
+export const useOrderForm = ({
+   type,
+   images,
+   deadline,
+   sizesData,
+   currency,
+}: UseOrderFormProps) => {
 
-    const isOrderType = type === "order";
+   const {
+      reset,
+      register,
+      handleSubmit,
+      formState: { errors, isValid },
+   } = useForm<OrderCreateFormType>();
 
-    const {
-        reset,
-        register,
-        handleSubmit,
-        formState: {errors, isValid},
-    } = useForm<OrderCreateFormType>();
+   const createOrder = useCreateOrder(reset);
+   const createEquipment = useCreateEquipment(reset);
+   const createService = useCreateService(reset);
 
-    const createOrder = useCreateOrder(reset);
-    const createEquipment = useCreateEquipment(reset);
+   const onSubmit = (data: OrderCreateFormType) => {
+      const formData = new FormData();
 
-    const onSubmit = (data: OrderCreateFormType) => {
+      if (images) images.forEach((file) => formData.append(`uploaded_images`, file));
 
-        const formData = new FormData()
+      formData.append("title", data.title);
+      formData.append("description", data.description);
+      formData.append("price", data.price.toString());
+      formData.append("phone_number", data.tel);
+      formData.append(`currency`, currency);
 
-        if (images) images.forEach(file => formData.append(`uploaded_images`, file));
+      if (type === AnnouncmentValues.ORDER) {
 
-        formData.append('title', data.title);
-        formData.append('description', data.description);
-        formData.append('price', data.price.toString());
-        formData.append('phone_number', data.tel);
+         sizesData.forEach((size) => formData.append(`size`, size.postValue));
 
+         formData.append('title', data.title);
+         formData.append('description', data.description);
+         formData.append('price', data.price.toString());
+         formData.append('phone_number', data.tel);
+         formData.append("deadline", deadline);
 
-        if (isOrderType) {
+         createOrder.mutate(formData);
 
-            if (sizesData) sizesData.forEach(size => formData.append(`size`, size.postValue));
+      } else if (type === AnnouncmentValues.SERVICE) {
 
-            formData.append('category_slug', "t-shirts");
-            formData.append('deadline', deadline);
+        sizesData.forEach((size) => formData.append(`size`, size.postValue));
 
-            createOrder.mutate(formData)
-        } else {
-            createEquipment.mutate(formData)
-        }
-    }
+        createService.mutate(formData);
+      } else {
+         createEquipment.mutate(formData);
+      }
+   };
 
+   const isOrderType = type === "order";
 
-    return {
-        handleSubmit: handleSubmit(onSubmit),
-        isLoading: isOrderType ? createOrder.isPending : createEquipment.isPending,
-        isError: isOrderType ? createOrder.isError : createEquipment.isError,
-        register,
-        errors,
-        isValid
-    }
-}
+   return {
+      handleSubmit: handleSubmit(onSubmit),
+      isLoading: isOrderType ? createOrder.isPending : createEquipment.isPending,
+      isError: isOrderType ? createOrder.isError : createEquipment.isError,
+      register,
+      errors,
+      isValid,
+   };
+};

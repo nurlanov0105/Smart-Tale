@@ -13,6 +13,7 @@ export const AuthEndpoints = {
 
 export const OrdersEndpoints = {
    CREATE_ORDER: "/add-order/",
+   GET_ORDERS: "/marketplace-orders",
    GET_MY_ORDER: "/order-detail/",
    GET_MY_ORDERS: "/my-order-ads/",
    GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
@@ -22,9 +23,7 @@ export const OrdersEndpoints = {
    DELETE_ORDER: "/order-delete/",
    HIDE_ORDER: "/order-hide/",
    UPDATE_ORDER: "/update-order/",
-   UPDATE_ORDER_STATUS: "/update-status/"
-
-
+   UPDATE_ORDER_STATUS: "/update-status/",
 };
 
 export const EquipmentsEndpoints = {
@@ -36,6 +35,8 @@ export const EquipmentsEndpoints = {
    // GET_MY_EQUIPMENTS: "/my-equipments/",
    GET_MY_EQUIPMENTS: "/my-ads/",
    GET_MY_EQUIPMENT: "/equipment/",
+   HIDE_EQUIPMENT: "/hide-equipment/",
+   DELETE_EQUIPMENT: "/equipment/delete/"
 };
 
 export const ServicesEndpoints = {

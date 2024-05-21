@@ -15,8 +15,12 @@ export type UpdateStatusProps = {
     orderSlug: string
 }
 export type UpdateOrderProps = {
-    params: CreateOrderTypes
+    params: any //CreateOrderTypes
     orderSlug: string
+}
+export type UpdateEquipmentProps = {
+    params: CreateOrderTypes
+    equipmentSlug: string
 }
 
 export type BookingOrderProps = {

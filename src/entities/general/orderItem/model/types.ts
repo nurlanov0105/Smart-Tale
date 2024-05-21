@@ -7,4 +7,8 @@ type item = {
    id: number;
    type: string;
    status?: string;
+   slug: string
+   title: string
+   description: string
+   created_at: string
 };

@@ -10,6 +10,7 @@ export const UserQueryKeys = {
    SERVICES: "services",
    CREATE_ORDER: "create-announcement",
    CREATE_EQUIPMENT: "create-equipment",
+   CREATE_SERVICE: "create-service",
 };
 
 export const OrganizationQueryKeys = {
@@ -28,6 +29,15 @@ export const EquipmentQueryKeys = {
    CREATE_EQUIPMENT: "equipment-create",
    LIKED_EQUIPMENTS: "liked-equipments",
    SEARCH_EQUIPMENTS: "equipment-search",
+   EQUIPMENT_HIDE: "equipment-hide",
+   EQUIPMENT_DELETE: "equipment-delete",
+};
+
+export const OrdersQueryKeys = {
+   ORDERS: "orders",
+   MY_ORDER_DETAIL: "my-order-detail",
+   ORDER_HIDE: "order-hide",
+   ORDER_DELETE: "order-delete",
 };
 
 export const ServiceQueryKeys = {

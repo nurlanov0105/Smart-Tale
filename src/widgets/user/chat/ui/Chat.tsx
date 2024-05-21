@@ -1,12 +1,13 @@
+import { FC, useState } from "react";
 import { AuthorInfo } from "@/entities/general/authorInfo";
-import styles from "./styles.module.scss";
 import { Button } from "@/shared/ui";
 import { ChatMessage } from "@/entities/general/chatMessage";
-import { useState } from "react";
 import { useThemeStore } from "@/shared/themeStore";
+import { ChatType } from "../model/types";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
-const Chat = () => {
+const Chat: FC<ChatType> = ({ author }) => {
    const theme = useThemeStore((state) => state.theme);
    const [message, setMessage] = useState("");
 
@@ -25,7 +26,11 @@ const Chat = () => {
    return (
       <div className={clsx(styles.chat, styles[theme])}>
          <div className={styles.chat__top}>
-            <AuthorInfo avatarImg="" fullName="Sandy Wilder Cheng" isChat={true} />
+            <AuthorInfo
+               fullName={author?.first_name + " " + author?.last_name}
+               avatarImg={author?.profile_image}
+               isChat={true}
+            />
          </div>
          <div className={styles.chat__body}>
             <div className={styles.chat__content}>

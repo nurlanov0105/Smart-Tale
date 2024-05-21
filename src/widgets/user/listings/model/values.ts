@@ -9,11 +9,11 @@ export const listingsValues = [
       postValue: "order",
       isSubscribed: false,
    },
-   // {
-   //    value: "Услуги",
-   //    postValue: "services",
-   //    isSubscribed: false,
-   // },
+   {
+      value: "Услуги",
+      postValue: "services",
+      isSubscribed: false,
+   },
    {
       postValue: "equipment",
       value: "Оборудования",

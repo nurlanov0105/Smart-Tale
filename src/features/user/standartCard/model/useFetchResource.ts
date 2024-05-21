@@ -4,10 +4,7 @@ import { EquipmentsEndpoints, ServicesEndpoints } from "@/shared/api";
 import { baseApiInstance } from "@/shared/api/instance";
 import { useQuery } from "@tanstack/react-query";
 
-const useFetchResource = () => {
-   const pathname = usePathStore((state) => state.pathname);
-   const slug = usePathStore((state) => state.slug);
-
+const useFetchResource = (pathname: string, slug: string) => {
    const queryFn = async () => {
       let url = "";
       if (pathname === ROUTES.MARKETPLACE_EQUIPMENT) {
