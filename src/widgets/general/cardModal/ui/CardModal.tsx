@@ -5,7 +5,7 @@ import { CardSlider } from "@/features/general/cardSlider";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { CardCategory } from "@/features/general/cardCategory";
-import { Button } from "@/shared/ui";
+import {Button, GlobalLoading} from "@/shared/ui";
 import { DASHBOARD, ROUTES } from "@/shared/lib";
 import Link from "next/link";
 import { closeModal } from "@/views/modal";
@@ -44,7 +44,7 @@ const CardModal: FC = () => {
             {isError ? (
                <h3 className="h3">Упс, произошла ошибка</h3>
             ) : isPending ? (
-               <div className="spinner" />
+               <GlobalLoading type="default"/>
             ) : (
                <>
                   <div className={styles.modal__header}>

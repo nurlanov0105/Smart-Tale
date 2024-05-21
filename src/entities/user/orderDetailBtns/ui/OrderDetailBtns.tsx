@@ -26,7 +26,7 @@ const OrderDetailBtns = () => {
 
            <div className={styles.buttons}>
                <Button type="button" className="btn_bordered">Отменить изменения</Button>
-               <Button type="button">Сохранить изменения</Button>
+               <Button type="submit">Сохранить изменения</Button>
            </div>
         </div>
     );

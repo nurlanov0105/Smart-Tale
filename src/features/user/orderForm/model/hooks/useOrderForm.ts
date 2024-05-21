@@ -26,6 +26,7 @@ export const useOrderForm = ({ type, images, deadline, sizesData }: UseOrderForm
         formData.append('description', data.description);
         formData.append('price', data.price.toString());
         formData.append('phone_number', data.tel);
+        formData.append('currency', "Som");
 
 
         if (isOrderType) {
