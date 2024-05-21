@@ -18,7 +18,7 @@ const ImageItem:FC<ImageProps> = ({image, idx, images, setImages}) => {
                 width={100}
                 height={100}
                 className={styles.item__image}
-                src={URL.createObjectURL(image)}
+                src={URL.createObjectURL(image)} //image.images
                 alt="equipment"
             />
 

@@ -2,11 +2,24 @@ type LightBgType = {
    isLightBg: boolean;
 };
 
+type showModal = {
+   componentName: string
+   lightBg: LightBgType
+   slug?: string
+   props: any
+}
+
+export type ModalProps = {
+   slug?: string
+   type?: "order" | "equipment" | "service"
+   isLightBg?: boolean | null
+}
+
+
 export type ModalState = {
    isOpen: boolean;
    componentName: string | null;
-   isLightBg: boolean | null;
-   slug: string | null;
-   showModal: (componentName: string, lightBg?: LightBgType, slug?: string) => void;
+   props: any
+   showModal: (componentName: string, props?: ModalProps) => void;
    closeModal: () => void;
 };

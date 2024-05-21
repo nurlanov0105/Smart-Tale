@@ -1,4 +1,4 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {QueryClient, useMutation, useQuery} from "@tanstack/react-query";
 import {CreateEquipmentTypes, CreateOrderTypes} from "@/shared/lib/types/orders-service.types";
 import {EquipmentService, UserQueryKeys} from "@/shared/api";
 import {OrdersService, TYPE_ANNOUNCEMENT_DETAIL} from "@/shared/lib";
@@ -40,28 +40,46 @@ export const useGetAnnouncement = (slug: string, type: string) => {
 
 //
 //
-// export const useUpdateOrder = () => {
-//     return useMutation<any, Error, CreateOrderTypes, unknown>({
-//         mutationKey: [UserQueryKeys.CREATE_ORDER],
-//         mutationFn: (data) => OrdersService.createOrder(data),
-//         onSuccess: () => {
-//             console.log("success")
-//         },
-//         onError: () => {
-//             console.log("error")
-//         }
-//     })
-// }
-//
-// export const useUpdateEquipment = () => {
-//     return useMutation<any, Error, CreateEquipmentTypes, unknown>({
-//         mutationKey: [UserQueryKeys.CREATE_EQUIPMENT],
-//         mutationFn: (data) => EquipmentService.createEquipment(data),
-//         onSuccess: () => {
-//             console.log("success")
-//         },
-//         onError: () => {
-//             console.log("error")
-//         }
-//     })
-// }
+export const useUpdateOrder = () => {
+    // const queryClient = QueryClient
+    return useMutation<any, Error, {data: FormData, slug: string}>({
+        mutationKey: [UserQueryKeys.CREATE_ORDER],
+        mutationFn: ({data, slug}) =>
+            OrdersService.updateOrder({params: data, orderSlug: slug}),
+        onSuccess: () => {
+            console.log("success")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+
+export const useUpdateEquipment = () => {
+    // const queryClient = QueryClient
+    return useMutation<any, Error, FormData, unknown>({
+        mutationKey: [UserQueryKeys.CREATE_EQUIPMENT],
+        mutationFn: (data) => EquipmentService.createEquipment(data),
+        onSuccess: () => {
+            console.log("success")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+
+export const useUpdateAnnouncement = (type: string) => {
+    const isOrder = type === "order"
+
+    const updateOrder = useUpdateOrder()
+    const updateEquipment = useUpdateEquipment()
+
+   return {
+        updateAnnouncement: isOrder ? updateOrder.mutate : updateEquipment.mutate,
+        isLoading: isOrder ? updateOrder.isPending : updateEquipment.isPending,
+        isError: isOrder ? updateOrder.isError : updateEquipment.isError,
+        isSuccess: isOrder ? updateOrder.isSuccess : updateEquipment.isSuccess,
+   }
+}
+

@@ -12,7 +12,14 @@ import styles from "./styles.module.scss";
 const History: FC = () => {
    const [type, setType] = useState(historyValues[0].postValue);
 
-   const { day, setDay, setYear, year, month, setMonth } = useInitialDate({});
+   const {
+      day,
+      setDay,
+      setYear,
+      year,
+      month,
+      setMonth
+   } = useInitialDate();
 
    const data = [
       { id: 1, type: "order" },

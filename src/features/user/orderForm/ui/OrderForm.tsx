@@ -15,11 +15,19 @@ import { useOrderForm } from "../model/hooks/useOrderForm";
 import { descriptionSchema, priceSchema, titleSchema, typeSchema } from "../model/validationSchema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {format} from "date-fns";
 
 const OrderForm: FC<OrderProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const { day, setDay, month, setMonth, year, setYear } = useInitialDate({}); //Даты
+   const {
+      day,
+      setDay,
+      month,
+      setMonth,
+      year,
+      setYear
+   } = useInitialDate(); //Даты
 
    const {
       selectCurrency,
@@ -30,9 +38,17 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       setSelectedSize,
    } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
 
-   const { sizesDate, handleChangeSize, setSizesDate, images, setImages } = useSizesAndImages(); //массив с изображениями и массив с размерами заказа
+   const {
+      sizesDate,
+      handleChangeSize,
+      setSizesDate,
+      images,
+      setImages
+   } = useSizesAndImages({}); //массив с изображениями и массив с размерами заказа
 
-   const deadline = dateFormat({ year, month, day });
+
+   const newDate = new Date(year.postValue, month.postValue - 1, day.postValue)
+   const deadline = format(newDate, 'yyyy-MM-dd')
 
    const { handleSubmit, isError, isLoading, register, errors, isValid } = useOrderForm({
       type,

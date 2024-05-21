@@ -5,18 +5,14 @@ import { CardSlider } from "@/features/general/cardSlider";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { CardCategory } from "@/features/general/cardCategory";
-import { Button, GlobalLoading } from "@/shared/ui";
+import {Button, GlobalLoading} from "@/shared/ui";
 import { DASHBOARD, ROUTES } from "@/shared/lib";
-import Link from "next/link";
 import { closeModal } from "@/views/modal";
 import { images } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
 import { useFetchResource, usePathStore } from "@/features/user/standartCard";
-import { useQuery } from "@tanstack/react-query";
-import { baseApiInstance } from "@/shared/api/instance";
-import { EquipmentsEndpoints } from "@/shared/api";
 import { usePathname, useRouter } from "next/navigation";
 
 type Props = {
@@ -56,7 +52,7 @@ const CardModal: FC<Props> = ({ slug }) => {
             {isError ? (
                <h3 className="h3">Упс, произошла ошибка</h3>
             ) : isPending ? (
-               <GlobalLoading type="full" />
+               <GlobalLoading type="default"/>
             ) : (
                <>
                   <div className={styles.modal__header}>
