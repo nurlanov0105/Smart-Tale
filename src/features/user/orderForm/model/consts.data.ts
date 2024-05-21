@@ -43,7 +43,7 @@ export const sizesData = [
    },
    {
       value: "S",
-      postValue: "Ы",
+      postValue: "s",
    },
    {
       value: "M",
@@ -58,3 +58,9 @@ export const sizesData = [
       postValue: "XL",
    },
 ];
+
+export const AnnouncmentValues = {
+   SERVICE: "service",
+   ORDER: "order",
+   EQUIPMENT: "equipment",
+};

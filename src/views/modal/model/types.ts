@@ -6,6 +6,7 @@ export type ModalState = {
    isOpen: boolean;
    componentName: string | null;
    isLightBg: boolean | null;
-   showModal: (componentName: string, lightBg?: LightBgType) => void;
+   slug: string | null;
+   showModal: (componentName: string, lightBg?: LightBgType, slug?: string) => void;
    closeModal: () => void;
 };

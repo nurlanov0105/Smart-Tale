@@ -13,10 +13,10 @@
       width: 31rem;
       display: flex;
       flex-direction: column;
+      position: relative;
    }
 
    &__header {
-      flex-grow: 1;
       padding-bottom: 4rem;
       margin-bottom: 1.6rem;
       border-bottom: 1px solid $dark-grey;

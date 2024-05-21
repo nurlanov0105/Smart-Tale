@@ -8,7 +8,7 @@ import "swiper/css";
 import { SliderCardsProps } from "../model/types";
 import { CommonSkeleton } from "@/shared/ui";
 
-const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading, isError }) => {
+const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading }) => {
    const swiperRef = useRef<any>(null);
    const onSwiper = (swiper: SwiperClass) => {
       swiperRef.current = swiper;
@@ -36,23 +36,19 @@ const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading, isError }) =
          </div>
          <div className={styles.section__content}>
             <div>
-               {isError ? (
-                  <h3 className="h3">Упс, произошла ошибка 😅</h3>
-               ) : (
-                  <Swiper spaceBetween={16} slidesPerView="auto" onSwiper={onSwiper}>
-                     {isLoading
-                        ? [...Array(8)].map((item: any, i: number) => (
-                             <SwiperSlide key={i} className={styles.section__card}>
-                                <CommonSkeleton key={i} type={type} />
-                             </SwiperSlide>
-                          ))
-                        : data.map((item: any, i: number) => (
-                             <SwiperSlide key={i} className={styles.section__card}>
-                                <StandartCard item={item} />
-                             </SwiperSlide>
-                          ))}
-                  </Swiper>
-               )}
+               <Swiper spaceBetween={16} slidesPerView="auto" onSwiper={onSwiper}>
+                  {isLoading
+                     ? [...Array(8)].map((item: any, i: number) => (
+                          <SwiperSlide key={i} className={styles.section__card}>
+                             <CommonSkeleton key={i} type={type} />
+                          </SwiperSlide>
+                       ))
+                     : data.map((item: any, i: number) => (
+                          <SwiperSlide key={i} className={styles.section__card}>
+                             <StandartCard item={item} />
+                          </SwiperSlide>
+                       ))}
+               </Swiper>
             </div>
          </div>
       </section>

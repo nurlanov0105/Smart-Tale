@@ -5,8 +5,8 @@ export const useModalStore = create<ModalState>((set) => ({
    isOpen: false,
    componentName: null,
    isLightBg: false,
-   showModal: (componentName, lightBg) =>
-      set({ isOpen: true, componentName, isLightBg: lightBg?.isLightBg }),
+   slug: "",
+   showModal: (componentName, lightBg, slug) =>
+      set({ isOpen: true, componentName, isLightBg: lightBg?.isLightBg, slug }),
    closeModal: () => set({ isOpen: false, componentName: null, isLightBg: false }),
-
 }));

@@ -5,7 +5,11 @@ import axios from "axios";
 
 export const EquipmentService = {
    getEquipments: async (page: number) => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS);
+      const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS, {
+         params: {
+            page: page,
+         },
+      });
       // const response = await axios.get(
       //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
       // );
