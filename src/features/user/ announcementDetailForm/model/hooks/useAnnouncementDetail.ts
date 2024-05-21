@@ -1,27 +1,52 @@
 import {useForm} from "react-hook-form";
 import type {OrderCreateFormType} from "@/features/user/orderForm/model/types";
-import {useCreateEquipment, useCreateOrder} from "@/features/user/orderForm/model/useQueries";
 import {
     useGetAnnouncement,
     useGetEquipment,
-    useGetOrder
+    useGetOrder,
+    useUpdateAnnouncement,
+    useUpdateOrder
 } from "@/features/user/ announcementDetailForm/model/useQueries";
 
-export const useAnnouncementDetail = ({type, slug}: {type: string, slug: string}) => {
+
+interface IProps{
+    type: string
+    slug: string
+}
+export const useAnnouncementDetail = ({type, slug}: IProps) => {
 
     const typeCreation = type === "order"
     const { reset,
         register,
         handleSubmit,
         control,
+        watch,
         formState: {errors, isValid}
     } = useForm<OrderCreateFormType>()
 
     const {isLoading, data, isError, isSuccess} = useGetAnnouncement(slug, type)
 
-    console.log(data)
+
+    const updateAnnouncement = useUpdateAnnouncement(type)
+
+    const onSubmit = (data: OrderCreateFormType) => {
+        console.log(data)
+        const formData = new FormData()
+        formData.append("title", "title")
+        formData.append("size", "S")
+        formData.append("size", "XL")
+        const newData = {
+            title: "title",
+            description: "descr"
+
+        }
+        // updateAnnouncement.updateAnnouncement({data: formData, slug: slug})
+    }
+
+
     return {
         data: data && data["Order Info"],
+        handleSubmit: handleSubmit(onSubmit),
         isSuccess,
         isLoading,
         isError,
@@ -29,6 +54,7 @@ export const useAnnouncementDetail = ({type, slug}: {type: string, slug: string}
         errors,
         isValid,
         control,
-        reset
+        reset,
+        watch
     }
 }

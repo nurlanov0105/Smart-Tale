@@ -1,8 +1,8 @@
 "use client";
 
-import React, { FC } from "react";
+import React, {FC, useEffect} from "react";
 import { useThemeStore } from "@/shared/themeStore";
-import { dateFormat, useInitialDate } from "@/shared/lib";
+import {useInitialDate } from "@/shared/lib";
 import { useSelectsOrder } from "@/features/user/orderForm/model/hooks/useSelectsOrder";
 import { useSizesAndImages } from "@/features/user/orderForm/model/hooks/useSizesAndImages";
 import clsx from "clsx";
@@ -34,13 +34,30 @@ const AnnouncementDetailForm = () => {
 
    const {type, slug} = useAnnouncementType()
 
+   const {
+      data,
+      isError,
+      isLoading,
+      register,
+      errors,
+      isValid,
+      isSuccess,
+      handleSubmit,
+      reset,
+      watch,
+      control
+   } = useAnnouncementDetail({
+      type,
+      slug,
+   }); //Тип создания(заказа или оборудования)
+
    const { day,
       setDay,
       month,
       setMonth,
       year,
       setYear
-   } = useInitialDate({}); //Даты
+   } = useInitialDate(data?.deadline, isSuccess); //Даты
 
    const {
       selectCurrency,
@@ -51,51 +68,45 @@ const AnnouncementDetailForm = () => {
       setSelectedSize,
    } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
 
+
    const {
       sizesDate,
       handleChangeSize,
       setSizesDate,
       images,
       setImages
-   } = useSizesAndImages(); //массив с изображениями и массив с размерами заказа
+   } = useSizesAndImages({
+      userImages: undefined,
+      userSizes: data?.size,
+      isSuccess
+   }); //массив с изображениями и массив с размерами заказа
 
-   const deadline = dateFormat({ year, month, day });
-
-   const {
-      data,
-      isError,
-      isLoading,
-      register,
-      errors,
-      isValid,
-       isSuccess,
-       reset,
-       control
-   } = useAnnouncementDetail({
-      type,
-      slug,
-      // images,
-      // deadline,
-   }); //Тип создания(заказа или оборудования)
 
    useInitialData({reset, type, slug, data, isSuccess})
 
-   const isDisabled = () => {
-      if (type === "order") {
-         return (
-            !images.length ||
-            !sizesDate.length ||
-            day.postValue === 0 ||
-            month.postValue === 0 ||
-            year.postValue === 0
-         );
-      } else {
-         return !images.length;
-      }
-   };
+
+   // const watchAllFields = watch();
+   // useEffect(() => {
+   //    console.log("изменение", watchAllFields);
+   // }, [watchAllFields]);
+
+   // const isDisabled = () => {
+   //    if (type === "order") {
+   //       return (
+   //          !images.length ||
+   //          !sizesDate.length ||
+   //          day.postValue === 0 ||
+   //          month.postValue === 0 ||
+   //          year.postValue === 0
+   //       );
+   //    } else {
+   //       return !images.length;
+   //    }
+   // };
+
 
    return (
-      <form className={clsx(styles.form, styles[theme])}>
+      <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
             <div className={styles.order__block_row}>
                <h4 className="h4">Название</h4>

@@ -14,7 +14,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleClick = () => {
-      showModal(MODAL_KEYS.card, undefined, item.slug);
+      showModal(MODAL_KEYS.card, {slug: item.slug});
    };
 
    if (!item) {

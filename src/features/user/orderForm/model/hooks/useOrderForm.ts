@@ -10,7 +10,6 @@ export const useOrderForm = ({
    sizesData,
    currency,
 }: UseOrderFormProps) => {
-   const isOrderType = type === "order";
 
    const {
       reset,
@@ -34,21 +33,29 @@ export const useOrderForm = ({
       formData.append("phone_number", data.tel);
       formData.append(`currency`, currency);
 
-      if (isOrderType) {
-         if (sizesData) sizesData.forEach((size) => formData.append(`size`, size.postValue));
+      if (type === AnnouncmentValues.ORDER) {
 
-         formData.append("category_slug", "t-shirts");
+         sizesData.forEach((size) => formData.append(`size`, size.postValue));
+
+         formData.append('title', data.title);
+         formData.append('description', data.description);
+         formData.append('price', data.price.toString());
+         formData.append('phone_number', data.tel);
          formData.append("deadline", deadline);
 
          createOrder.mutate(formData);
-      } else if (!isOrderType && type === AnnouncmentValues.SERVICE) {
-         if (sizesData) sizesData.forEach((size) => formData.append(`size`, size.postValue));
 
-         createService.mutate(formData);
+      } else if (type === AnnouncmentValues.SERVICE) {
+
+        sizesData.forEach((size) => formData.append(`size`, size.postValue));
+
+        createService.mutate(formData);
       } else {
          createEquipment.mutate(formData);
       }
    };
+
+   const isOrderType = type === "order";
 
    return {
       handleSubmit: handleSubmit(onSubmit),

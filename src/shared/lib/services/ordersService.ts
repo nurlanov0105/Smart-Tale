@@ -66,21 +66,19 @@ export const OrdersService = {
       return response.data;
    },
 
-   updateOrder: async ({ orderSlug, params }: UpdateOrderProps) => {
-      const headers = {
-         "Content-Type":
-            "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2),
-      };
-      const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + orderSlug, params, {
-         headers: headers,
-      });
-      return response.data;
-   },
+    updateOrder: async ({orderSlug, params}: UpdateOrderProps) => {
+        // console.log(params, orderSlug)
+        const headers = { 'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2) };
+        const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + orderSlug, params, {headers: headers})
+        return response.data
+    },
 
-   updateOrderStatus: async ({ orderSlug, status }: UpdateStatusProps) => {
-      const response = await baseApiInstance.post(
-         `${OrdersEndpoints.UPDATE_ORDER_STATUS + orderSlug}?status=${status}`
-      );
-      return response.data;
-   },
-};
+    updateOrderStatus: async ({orderSlug, status}: UpdateStatusProps) => {
+        const response = await baseApiInstance.post(`${OrdersEndpoints.UPDATE_ORDER_STATUS + orderSlug}?status=${status}`)
+        return response.data
+    },
+
+}
+
+
+

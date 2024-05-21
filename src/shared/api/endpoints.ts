@@ -35,6 +35,8 @@ export const EquipmentsEndpoints = {
    // GET_MY_EQUIPMENTS: "/my-equipments/",
    GET_MY_EQUIPMENTS: "/my-ads/",
    GET_MY_EQUIPMENT: "/equipment/",
+   HIDE_EQUIPMENT: "/hide-equipment/",
+   DELETE_EQUIPMENT: "/equipment/delete/"
 };
 
 export const ServicesEndpoints = {
