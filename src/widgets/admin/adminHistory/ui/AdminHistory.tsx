@@ -13,14 +13,7 @@ const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
    const [selected, setSelected] = useState(employeesHistory[0]);
 
-   const {
-       day,
-       setDay,
-       year,
-       setYear,
-       month,
-       setMonth
-   } = useInitialDate();
+   const { day, setDay, year, setYear, month, setMonth } = useInitialDate();
 
    const data = [
       { id: 1, type: "order", status: "В процессе" },
@@ -59,13 +52,11 @@ const AdminHistory = () => {
             </div>
          </div>
 
-         <OrderList
-            data={data}
-            isError={false}
-            isLoading={false}
+         {/* <OrderList
+          
             isCurrent={type === "current" ? true : false}
             type={SkeletonTypes.listItem}
-         />
+         /> */}
       </section>
    );
 };

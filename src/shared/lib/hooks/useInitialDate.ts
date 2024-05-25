@@ -1,39 +1,37 @@
 "use client";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import type { IDateProps } from "@/entities/general/selectDate";
-import {format, getDate, getMonth, getYear, parseISO} from "date-fns";
-import {monthsList} from "@/entities/general/selectDate/model/helper";
+import { format, getDate, getMonth, getYear, parseISO } from "date-fns";
+import { monthsList } from "@/entities/general/selectDate/model/helper";
 
-interface InitialDateProps{
-   userDay?: IDateProps,
-   userMonth?: IDateProps,
-   userYear?: IDateProps,
+interface InitialDateProps {
+   userDay?: IDateProps;
+   userMonth?: IDateProps;
+   userYear?: IDateProps;
 }
 export const useInitialDate = (date?: string | undefined, isSuccess?: boolean) => {
-
-   const [day, setDay] = useState<IDateProps>({value: 0, postValue: 0});
-   const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0});
-   const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0});
+   const [day, setDay] = useState<IDateProps>({ value: 0, postValue: 0 });
+   const [month, setMonth] = useState<IDateProps>({ value: "", postValue: 0 });
+   const [year, setYear] = useState<IDateProps>({ value: 0, postValue: 0 });
 
    useEffect(() => {
-      if (date){
+      if (date) {
          const parsedDateSimple = parseISO(date);
 
          const yearSimple = getYear(parsedDateSimple);
          const monthSimple = getMonth(parsedDateSimple) + 1;
          const daySimple = getDate(parsedDateSimple);
 
-         setYear({value: yearSimple, postValue: yearSimple})
+         setYear({ value: yearSimple, postValue: yearSimple });
          setMonth(() => {
-            const month = monthsList()
-                .find(month => month.postValue === monthSimple)
+            const month = monthsList().find((month) => month.postValue === monthSimple);
 
-            return {value: month!.value, postValue: monthSimple}
-         })
-         setDay({value: daySimple, postValue: daySimple})
+            return { value: month!.value, postValue: monthSimple };
+         });
+         setDay({ value: daySimple, postValue: daySimple });
       }
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isSuccess]);
-
 
    // const userDay = {value: 0, postValue: 0}
    // const userMonth = {value: 0, postValue: 0}
@@ -46,7 +44,6 @@ export const useInitialDate = (date?: string | undefined, isSuccess?: boolean) =
    //
    //    return {value: 0, postValue: 0}
    // }
-
 
    return { day, setDay, year, setYear, month, setMonth };
 };
