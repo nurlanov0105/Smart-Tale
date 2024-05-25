@@ -11,7 +11,7 @@ export const listingsValues = [
    },
    {
       value: "Услуги",
-      postValue: "services",
+      postValue: "service",
       isSubscribed: false,
    },
    {

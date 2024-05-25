@@ -5,10 +5,12 @@ import { OrganizationItem } from "@/entities/admin/organizationItem";
 import styles from "./styles.module.scss";
 import {useRouter} from "next/navigation";
 import {ORGANIZATION_ROUTES} from "@/shared/lib";
+import {useOrganization} from "../model/useOrganization";
+import {GlobalLoading} from "@/shared/ui";
 
 const AdminOrganization = () => {
 
-   const [data, setData] = useState([
+   const [dataList, setData] = useState([
       { id: 1, type: "order", isActive: true },
       { id: 2, type: "order", isActive: false },
       { id: 3, type: "order", isActive: false },
@@ -16,22 +18,28 @@ const AdminOrganization = () => {
       { id: 5, type: "order", isActive: false },
       { id: 6, type: "order", isActive: false },
    ]);
-   // const {replace} = useRouter()
 
-   // useEffect(() => {
-   //    if (data.length === 1){
-   //       replace(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + "/name")
-   //    }
-   // }, [])
+   const {data, isLoading, isError, isSuccess} = useOrganization()
+   console.log(data)
+
+   const {replace} = useRouter()
+   useEffect(() => {
+      if (isSuccess && data){
+         console.log(data)
+         // replace(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + "/name")
+      }
+   }, [isSuccess]);
+
+   if (isLoading) return <GlobalLoading/>
 
    return (
       <>
-         {!data.length ? (
+         {!dataList.length ? (
             <EmptyContent type="organization" />
          ) : (
             <div className={styles.list}>
                <h4 className="h4">Список организаций</h4>
-               {data.map((item) => (
+               {dataList.map((item) => (
                   <OrganizationItem key={item.id} item={item} />
                ))}
             </div>

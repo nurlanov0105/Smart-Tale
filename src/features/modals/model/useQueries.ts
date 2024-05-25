@@ -1,11 +1,12 @@
-import {useMutation} from "@tanstack/react-query";
-import {EquipmentQueryKeys, EquipmentService} from "@/shared/api";
-import {OrdersService} from "@/shared/lib";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {EquipmentQueryKeys, EquipmentService, OrganizationQueryKeys, ServiceQueryKeys} from "@/shared/api";
+import {OrdersService, OrganizationService, ServicesService} from "@/shared/lib";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
 import {toast} from "react-toastify";
 
 
 export const useHideEquipment = () => {
+    const queryClient = useQueryClient()
     return useMutation<any, Error, string>({
         mutationKey: [OrdersQueryKeys.ORDER_HIDE],
         mutationFn: (slug) => EquipmentService.hideEquipment(slug),
@@ -19,6 +20,7 @@ export const useHideEquipment = () => {
 }
 
 export const useHideOrder = () => {
+    const queryClient = useQueryClient()
     return useMutation<any, Error, string>({
         mutationKey: [EquipmentQueryKeys.EQUIPMENT_HIDE],
         mutationFn: (slug) => OrdersService.hideOrder(slug),
@@ -31,8 +33,22 @@ export const useHideOrder = () => {
     })
 }
 
+export const useHideService = () => {
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, string>({
+        mutationKey: [ServiceQueryKeys.HIDE_SERVICE],
+        mutationFn: (slug) => ServicesService.hideService(slug),
+        onSuccess: () => {
+            toast.success("Вы успешно скрыли услугу")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
 
 export const useDeleteEquipment = () => {
+    const queryClient = useQueryClient()
     return useMutation<any, Error, string>({
         mutationKey: [OrdersQueryKeys.ORDER_DELETE],
         mutationFn: (slug) => EquipmentService.deleteEquipment(slug),
@@ -46,6 +62,7 @@ export const useDeleteEquipment = () => {
 }
 
 export const useDeleteOrder = () => {
+    const queryClient = useQueryClient()
     return useMutation<any, Error, string>({
         mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
         mutationFn: (slug) => OrdersService.deleteOrder(slug),
@@ -58,4 +75,31 @@ export const useDeleteOrder = () => {
     })
 }
 
+export const useDeleteEmployee = () => {
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, string>({
+        mutationKey: [OrganizationQueryKeys.DELETE_EMPLOYEE],
+        mutationFn: (slug) => OrganizationService.deleteEmployee(slug),
+        onSuccess: () => {
+            toast.success("Сотрудник был удалён!")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
 
+
+export const useDeleteService = () => {
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, string>({
+        mutationKey: [ServiceQueryKeys.DELETE_SERVICE],
+        mutationFn: (slug) => ServicesService.deleteService(slug),
+        onSuccess: () => {
+            toast.success("Услуга была удалена")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}

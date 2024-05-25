@@ -18,12 +18,45 @@ export type OrderCreateFormRequest = {
    size: string;
 };
 
+type images = {
+   id: string | number
+   images: string
+}
+
+// export type AnnouncementDataForm = {
+//    value: string
+//    postValue: string
+//    key: string
+// }
+
 export type OrderCreateFormType = {
    title: string;
    description: string;
    price: number;
    tel: string;
    email: string;
+   currency: employee
+   sizeType: employee
+   sizes: employee[]
+   images: File[]
+   day: IDateProps
+   month: IDateProps
+   year: IDateProps
+};
+
+export type GetMyAnnouncementTypes = {
+   title: string;
+   description: string;
+   price: number;
+   tel: string;
+   email: string;
+   currency: employee
+   sizeType: employee
+   sizes: employee[]
+   images: employee[]
+   day: IDateProps
+   month: IDateProps
+   year: IDateProps
 };
 
 export type OrderFormNamesType = {
@@ -36,11 +69,4 @@ export type OrderFormNamesType = {
 
 export type UseOrderFormProps = {
    type: string;
-   images: File[];
-   // year: IDateProps
-   // month: IDateProps
-   // day: IDateProps
-   deadline: string;
-   sizesData: employee[];
-   currency: string;
 };

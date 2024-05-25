@@ -1,13 +1,13 @@
-import {QueryClient, useMutation, useQuery} from "@tanstack/react-query";
-import {CreateEquipmentTypes, CreateOrderTypes} from "@/shared/lib/types/orders-service.types";
-import {EquipmentService, UserQueryKeys} from "@/shared/api";
-import {OrdersService, TYPE_ANNOUNCEMENT_DETAIL} from "@/shared/lib";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {EquipmentQueryKeys, EquipmentService, ServiceQueryKeys} from "@/shared/api";
+import {OrdersService, ServicesService} from "@/shared/lib";
+import {OrdersQueryKeys} from "@/shared/api/queryKeys";
+
 
 
 export const useGetOrder = (slug: string, type: string) => {
-
     return useQuery({
-        queryKey: [UserQueryKeys.CREATE_ORDER, slug],
+        queryKey: [OrdersQueryKeys.GET_MY_ORDERS, slug],
         queryFn: () => OrdersService.getMyOrder(slug),
         enabled: type === "order",
         retry: 2
@@ -16,34 +16,26 @@ export const useGetOrder = (slug: string, type: string) => {
 
 export const useGetEquipment = (slug: string, type: string) => {
     return useQuery({
-        queryKey: [UserQueryKeys.CREATE_ORDER, slug],
+        queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENTS, slug],
         queryFn: () => EquipmentService.getMyEquipment(slug),
         enabled: type === "equipment",
         retry: 2
     })
 }
 
-export const useGetAnnouncement = (slug: string, type: string) => {
-    const equipment = useGetEquipment(slug, type)
-    const order = useGetOrder(slug, type)
-
-    const isOrder = type === "order"
-
-    return {
-        data: isOrder ? order.data : equipment.data,
-        isLoading: isOrder ? order.isPending : equipment.isPending,
-        isError: isOrder ? order.isError : equipment.isError,
-        isSuccess: isOrder ? order.isSuccess : equipment.isSuccess
-    }
+export const useGetService = (slug: string, type: string) => {
+    return useQuery({
+        queryKey: [ServiceQueryKeys.MY_SERVICE, slug],
+        queryFn: () => ServicesService.getServiceSlug(slug),
+        enabled: type === "service",
+        retry: 2
+    })
 }
 
-
-//
-//
 export const useUpdateOrder = () => {
-    // const queryClient = QueryClient
+    const queryClient = useQueryClient()
     return useMutation<any, Error, {data: FormData, slug: string}>({
-        mutationKey: [UserQueryKeys.CREATE_ORDER],
+        mutationKey: [OrdersQueryKeys.ORDER_UPDATE],
         mutationFn: ({data, slug}) =>
             OrdersService.updateOrder({params: data, orderSlug: slug}),
         onSuccess: () => {
@@ -56,10 +48,10 @@ export const useUpdateOrder = () => {
 }
 
 export const useUpdateEquipment = () => {
-    // const queryClient = QueryClient
-    return useMutation<any, Error, FormData, unknown>({
-        mutationKey: [UserQueryKeys.CREATE_EQUIPMENT],
-        mutationFn: (data) => EquipmentService.createEquipment(data),
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, {data: FormData, slug: string}>({
+        mutationKey: [EquipmentQueryKeys.EQUIPMENT_UPDATE],
+        mutationFn: ({data, slug}) => EquipmentService.updateEquipment({params: data, equipmentSlug: slug}),
         onSuccess: () => {
             console.log("success")
         },
@@ -69,17 +61,19 @@ export const useUpdateEquipment = () => {
     })
 }
 
-export const useUpdateAnnouncement = (type: string) => {
-    const isOrder = type === "order"
+export const useUpdateService = () => {
+    const queryClient = useQueryClient()
 
-    const updateOrder = useUpdateOrder()
-    const updateEquipment = useUpdateEquipment()
-
-   return {
-        updateAnnouncement: isOrder ? updateOrder.mutate : updateEquipment.mutate,
-        isLoading: isOrder ? updateOrder.isPending : updateEquipment.isPending,
-        isError: isOrder ? updateOrder.isError : updateEquipment.isError,
-        isSuccess: isOrder ? updateOrder.isSuccess : updateEquipment.isSuccess,
-   }
+    return useMutation<any, Error, {data: FormData, slug: string}>({
+        mutationKey: [ServiceQueryKeys.UPDATE_SERVICE],
+        mutationFn: ({data, slug}) => ServicesService.updateService({params: data, serviceSlug: slug}),
+        onSuccess: () => {
+            console.log("success")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
 }
+
 

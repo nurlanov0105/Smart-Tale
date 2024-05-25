@@ -6,7 +6,7 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 
 const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) => {
-   const { type, classname, title, disabled, error, isBordered, value, ...rest } = props;
+   const { type, classname, title, defaultChecked, disabled, error, isBordered, value, ...rest } = props;
 
    const isBorderedClass = (lastClass: string, borderedClass: string, dangerClass?: string) =>
       isBordered ? (error ? dangerClass : borderedClass) : lastClass;
@@ -28,6 +28,7 @@ const InputField = forwardRef<HTMLInputElement, InputFieldProps>((props, ref) =>
                ref={ref}
                disabled={disabled}
                type={type ? type : "text"}
+                defaultChecked={defaultChecked}
             />
          </label>
          {error && <p className={styles.field__error}>{error}</p>}

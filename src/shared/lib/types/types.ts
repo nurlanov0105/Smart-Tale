@@ -38,6 +38,7 @@ export type InputFieldProps = {
    onFocus?: any;
    placeholder?: string;
    autoComplete?: string;
+   defaultChecked?: boolean
 };
 
 export type TextAreaProps = {
@@ -55,7 +56,8 @@ type dateType = {
 
 export type SelectProps = {
    title: string;
-   value: dateType;
+   value?: dateType;
+   onChange?: (value: dateType) => void
    data: dateType[];
    setDate: Dispatch<SetStateAction<dateType>>;
    classname?: string;
@@ -87,7 +89,7 @@ export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens
 
 export type InputPhoneProps = {
    control: Control<any>;
-   errors?: FieldErrors;
+   error?: string | boolean | undefined
    classname?: string
 };
 

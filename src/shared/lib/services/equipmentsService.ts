@@ -24,6 +24,12 @@ export const EquipmentService = {
 
       return response;
    },
+
+   getMyAnnouncements: async (type: string) => {
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_ANNOUNCEMENTS + type);
+      return response.data;
+   },
+
    getLikedEquipments: async ({ type, page }: { type: string; page: number }) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.LIKED_EQUIPMENTS, {
          params: {
@@ -37,13 +43,14 @@ export const EquipmentService = {
    createEquipment: async (params: FormData) => {
       const response = await baseApiInstance.post(EquipmentsEndpoints.CREATE_EQUIPMENT, params, {
          headers: { "Content-Type": "multipart/form-data" },
+         method: "POST"
       });
       return response.data;
    },
-   getMyEquipments: async () => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENTS);
-      return response.data;
-   },
+   // getMyEquipments: async () => {
+   //    const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENTS);
+   //    return response.data;
+   // },
    getMyEquipment: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + slug);
       return response.data;
@@ -69,8 +76,8 @@ export const EquipmentService = {
       return response.data;
    },
    updateEquipment: async ({equipmentSlug, params}: UpdateEquipmentProps) => {
-      const headers = { 'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2) };
-      const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + equipmentSlug, params, {headers: headers})
+      const headers = { 'Content-Type': "multipart/form-data"}
+      const response = await baseApiInstance.put(EquipmentsEndpoints.UPDATE_EQUIPMENT + equipmentSlug, params, {headers: headers})
       return response.data
    },
 };

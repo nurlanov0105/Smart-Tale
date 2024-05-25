@@ -1,181 +1,222 @@
-import React, { FC } from "react";
+import React, {FC} from "react";
 import { AddImages } from "@/features/general/addImages";
 import { SelectDate } from "@/entities/general/selectDate";
-import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import type { OrderCreateFormType, OrderProps } from "../model/types";
-import { dateFormat, useInitialDate } from "@/shared/lib";
+import {Button, InputField, PhoneInput, TextArea} from "@/shared/ui";
+import type {  OrderProps } from "../model/types";
 import { useThemeStore } from "@/shared/themeStore";
-import { contactsData, ORDER_FORM_NAMES, sizesData } from "../model/consts.data";
+import { ORDER_FORM_NAMES, sizesDataLetters, sizesDataNumbers, sizesTypes} from "../model/consts.data";
 import { currencies } from "@/widgets/user/createVacancy/model/values.data";
 import { SizeItem } from "@/entities/user/sizeItem";
 
-import { useSelectsOrder } from "../model/hooks/useSelectsOrder";
-import { useSizesAndImages } from "../model/hooks/useSizesAndImages";
 import { useOrderForm } from "../model/hooks/useOrderForm";
-import { descriptionSchema, priceSchema, titleSchema, typeSchema } from "../model/validationSchema";
+import {descriptionSchema, emailSchema, priceSchema, titleSchema} from "../model/validationSchema";
+import {Controller} from "react-hook-form";
+import Select2 from "@/shared/ui/select/Select2";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {format} from "date-fns";
 
 const OrderForm: FC<OrderProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const {
-      day,
-      setDay,
-      month,
-      setMonth,
-      year,
-      setYear
-   } = useInitialDate(); //Даты
+      handleSubmit,
+      isError,
+      isLoading,
+      register,
+      errors,
+      isValid ,
+      control,
+       setValue,
+       watch
+   } = useOrderForm(type) //Тип создания(заказа или оборудования)
 
-   const {
-      selectCurrency,
-      setSelectCurrency,
-      selectedContact,
-      setSelectedContact,
-      selectedSize,
-      setSelectedSize,
-   } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
+   const sizes = watch('sizes')
+   const sizeType = watch('sizeType', { value: sizesTypes[0].value, postValue: sizesTypes[0].postValue })
 
-   const {
-      sizesDate,
-      handleChangeSize,
-      setSizesDate,
-      images,
-      setImages
-   } = useSizesAndImages({}); //массив с изображениями и массив с размерами заказа
+   const month = watch("month") || {value: "", postValue: 0}
+   const year = watch("year") || {value: 0, postValue: 0}
+   const day = watch("day") || {value: 0, postValue: 0}
 
-
-   const newDate = new Date(year.postValue, month.postValue - 1, day.postValue)
-   const deadline = format(newDate, 'yyyy-MM-dd')
-
-   const { handleSubmit, isError, isLoading, register, errors, isValid } = useOrderForm({
-      type,
-      images,
-      deadline,
-      sizesData,
-      currency: selectCurrency.postValue,
-   }); //Тип создания(заказа или оборудования)
-
-   const isDisabled = () => {
-      if (type === "order") {
-         return (
-            !images.length ||
-            !sizesDate.length ||
-            day.postValue === 0 ||
-            month.postValue === 0 ||
-            year.postValue === 0
-         );
-      } else {
-         return !images.length;
-      }
-   };
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
             <InputField
-               {...register(ORDER_FORM_NAMES.title, titleSchema)}
-               classname={styles.order__margin}
-               disabled={false}
-               type="text"
-               error={errors.title?.message}
-               title="Название"
+                {...register(ORDER_FORM_NAMES.title, titleSchema)}
+                classname={styles.order__margin}
+                disabled={false}
+                type="text"
+                error={errors.title?.message}
+                title="Название"
             />
-            <TextArea
-               {...register(ORDER_FORM_NAMES.description, descriptionSchema)}
-               isDisabled={false}
-               error={errors.description?.message}
-               title="Описание"
-               type="default"
-            />
-
-            {type === "order" && (
-               <div className={clsx(styles.order__select)}>
-                  <Select
-                     selected={selectedSize}
-                     setSelected={setSelectedSize}
-                     data={sizesData}
-                     title="Размеры"
-                     handleSelectElem={handleChangeSize}
-                     type="default"
-                  />
-                  {sizesDate.length >= 1 && (
-                     <ul className={styles.order__sizes}>
-                        {sizesDate.map((size) => (
-                           <SizeItem key={size} size={size} setSizesData={setSizesDate} />
-                        ))}
-                     </ul>
-                  )}
-               </div>
-            )}
-
-            <div className={styles.order__block_flex}>
-               <InputField
-                  {...register(ORDER_FORM_NAMES.price, priceSchema)}
-                  error={errors.price?.message}
-                  classname={styles.order__margin}
-                  disabled={false}
-                  type="number"
-                  title="Стоимость"
+            <div className={styles.order__areaWrapper}>
+               <TextArea
+                   {...register(ORDER_FORM_NAMES.description, descriptionSchema)}
+                   isDisabled={false}
+                   error={errors.description?.message}
+                   title="Описание"
+                   type="default"
                />
-               <div>
-                  <Select
-                     selected={selectCurrency}
-                     setSelected={setSelectCurrency}
-                     data={currencies}
-                     type="vacancy"
-                     classname={styles.order__currency}
-                  />
-               </div>
             </div>
 
-            {type === "order" && (
-               <div className={styles.order__block}>
-                  <h3 className="h3">Крайняя дата выполнения</h3>
-                  <div className={styles.order__margin}>
-                     <SelectDate
-                        day={day}
-                        setDay={setDay}
-                        month={month}
-                        setMonth={setMonth}
-                        year={year}
-                        setYear={setYear}
-                        type="user"
-                     />
-                  </div>
+            <div className={styles.order__block_flex}>
+               <div style={{width: "100%"}}>
+                  <InputField
+                      {...register(ORDER_FORM_NAMES.price, priceSchema)}
+                      error={errors.price?.message}
+                      classname={styles.order__margin}
+                      disabled={false}
+                      type="number"
+                      title="Стоимость"
+                  />
                </div>
-            )}
+
+               <div>
+                  <Controller
+                      name="currency"
+                      control={control}
+                      defaultValue={currencies[0]}
+                      rules={{required: 'Выберите валюту'}}
+                      render={({field}) => (
+                          <Select2
+                              value={field.value}
+                              onChange={field.onChange}
+                              data={currencies}
+                              type="vacancy"
+                              classname={styles.order__currency}
+                          />
+                      )}
+                  />
+               </div>
+
+            </div>
+
+            {
+                type === "order" &&
+                <div className={clsx(styles.order__select)}>
+                   <h4 className="h4">Тип размера</h4>
+                   <Controller
+                       name="sizeType"
+                       control={control}
+                       defaultValue={sizesTypes[0]}
+                       rules={{required: 'Выберите размер'}}
+                       render={({field}) => (
+                           <Select2
+                               value={field.value}
+                               onChange={field.onChange}
+                               data={sizesTypes}
+                               type="vacancy"
+                               error={errors?.sizes?.message}
+                           />
+
+                       )}
+                   />
+                </div>
+            }
+
+            {
+                type === "order" &&
+                <div className={clsx(styles.order__select)}>
+                   <h4 className="h4">Размеры</h4>
+                   <Controller
+                       name="sizes"
+                       control={control}
+                       defaultValue={[]}
+                       rules={{required: 'Выберите размер'}}
+                       render={({field}) => (
+                           <Select2
+                               value={field.value}
+                               onChange={field.onChange}
+                               data={sizeType.postValue === "letter" ? sizesDataLetters : sizesDataNumbers}
+                               type="vacancy"
+                               error={errors?.sizes?.message}
+                               typeData="sizes"
+                               sizeType={sizeType?.postValue}
+                           />
+
+                       )}
+                   />
+                   {errors && <p className={styles.order__error}>{errors.sizes?.message}</p>}
+
+                   {!!sizes?.length && (
+                       <ul className={styles.order__sizes}>
+                          {sizes?.map((size, idx) => (
+                              <SizeItem
+                                  sizes={sizes}
+                                  key={idx}
+                                  size={size}
+                                  setValue={setValue}
+                                  idx={idx}
+                              />
+                          ))}
+                       </ul>
+                   )}
+                </div>
+            }
+
+            {
+                type === "order" &&
+                <div className={styles.order__block_row}>
+                   <h4 className="h4">Крайняя дата выполнения</h4>
+                   <div className={styles.order__margin}>
+                      <SelectDate
+                          setValue={setValue}
+                          control={control}
+
+                          day={day}
+                          month={month}
+                          year={year}
+
+                          type="user"
+                      />
+                   </div>
+                   {errors.day?.message || errors.month?.message || errors.year?.message
+                       && <p className={clsx(styles.order__error)}>Выберите дату</p>}
+                </div>
+            }
             <div className={styles.order__block}>
-               <h3 className="h3">Галерея фотографий</h3>
-               <AddImages images={images} setImages={setImages} />
+               <h4 className="h4">Галерея фотографий</h4>
+
+               <Controller
+                   name="images"
+                   control={control}
+                   rules={{required: 'This field is required'}}
+                   render={({field}) => (
+                       <AddImages
+                           images={field.value}
+                           setImages={field.onChange}
+                           setValue={setValue}
+                       />
+                   )}
+               />
             </div>
 
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
-               <h3 className="h3">Контактная информация</h3>
-               <Select
-                  selected={selectedContact}
-                  setSelected={setSelectedContact}
-                  data={contactsData}
-                  type="vacancy"
+               <h4 className="h4">Контактная информация</h4>
+
+               <PhoneInput
+                   error={errors.tel?.message}
+                   control={control}
+                   classname={styles.order__phoneInput}
                />
-               <InputField
-                  {...register(
-                     selectedContact.postValue as keyof OrderCreateFormType,
-                     typeSchema(selectedContact.postValue)
-                  )}
-                  error={errors[selectedContact.postValue as keyof OrderCreateFormType]?.message}
-                  disabled={false}
-                  type={selectedContact.postValue}
-                  title={selectedContact.value}
-               />
+               {/*<div>*/}
+               {/*   <InputField*/}
+               {/*       {...register(ORDER_FORM_NAMES.email, emailSchema)}*/}
+               {/*       error={errors.email?.message}*/}
+               {/*       classname={styles.order__margin}*/}
+               {/*       disabled={false}*/}
+               {/*       type="email"*/}
+               {/*       title="Почта"*/}
+               {/*   />*/}
+               {/*</div>*/}
             </div>
          </div>
 
          <div className={styles.order__btns}>
-            <Button disabled={isDisabled() || !isValid} type="submit">
-               Разместить объявление
+            <Button disabled={!isValid || isLoading} type="submit">
+               {
+                  isLoading ? "Загрузка..." : "Разместить объявление"
+               }
             </Button>
          </div>
       </form>

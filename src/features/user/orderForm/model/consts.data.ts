@@ -20,11 +20,13 @@ export const contactsData: employee[] = [
    },
 ];
 
-export const sizesData = [
-   {
-      value: "",
-      postValue: "",
-   },
+export const sizesTypes = [
+   {value: "Буквы", postValue: "letter"},
+   {value: "Цифры", postValue: "numbers"}
+]
+
+
+export const sizesDataNumbers = [
    {
       value: "40",
       postValue: "40",
@@ -40,23 +42,25 @@ export const sizesData = [
    {
       value: "48",
       postValue: "48",
+   }
+];
+export const sizesDataLetters = [
+   {
+      value: "XS",
+      postValue: "XS"
    },
    {
       value: "S",
-      postValue: "s",
-   },
-   {
-      value: "M",
-      postValue: "m",
+      postValue: "S",
    },
    {
       value: "L",
-      postValue: "l",
+      postValue: "L",
    },
    {
       value: "XL",
-      postValue: "XL",
-   },
+      postValue: "XL"
+   }
 ];
 
 export const AnnouncmentValues = {

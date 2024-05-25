@@ -9,8 +9,14 @@ export const useAnnouncementType = () => {
 
     const isEquipment = +type === TYPE_ANNOUNCEMENT_DETAIL.equipment
 
+
     return {
-        type: isEquipment ? "equipment": "order",
-        slug: "nitki-s-igolkami"
+        type: +type === TYPE_ANNOUNCEMENT_DETAIL.equipment
+            ? "equipment" : +type === TYPE_ANNOUNCEMENT_DETAIL.order
+                ? "order" : "service",
+
+        slug: +type === TYPE_ANNOUNCEMENT_DETAIL.equipment
+            ? "eqweqwewq" : +type === TYPE_ANNOUNCEMENT_DETAIL.order
+                ? "cshit-futbolki" : "hozhu-v-magazin"
     }
 }

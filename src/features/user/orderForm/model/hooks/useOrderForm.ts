@@ -1,22 +1,25 @@
 import { useForm } from "react-hook-form";
 import { useCreateEquipment, useCreateOrder, useCreateService } from "../useQueries";
 import type { OrderCreateFormType, UseOrderFormProps } from "../types";
-import { AnnouncmentValues } from "../consts.data";
+import {format} from "date-fns";
 
-export const useOrderForm = ({
-   type,
-   images,
-   deadline,
-   sizesData,
-   currency,
-}: UseOrderFormProps) => {
+export const useOrderForm = (type: string) => {
 
    const {
       reset,
       register,
       handleSubmit,
+       watch,
+       control,
+      setValue,
       formState: { errors, isValid },
-   } = useForm<OrderCreateFormType>();
+   } = useForm<OrderCreateFormType>(
+       {
+          mode: "onBlur",
+          criteriaMode: "all",
+          shouldFocusError: true,
+       }
+   );
 
    const createOrder = useCreateOrder(reset);
    const createEquipment = useCreateEquipment(reset);
@@ -25,44 +28,50 @@ export const useOrderForm = ({
    const onSubmit = (data: OrderCreateFormType) => {
       const formData = new FormData();
 
-      if (images) images.forEach((file) => formData.append(`uploaded_images`, file));
+      formData.append("title", data.title)
+      formData.append("description", data.description)
+      formData.append("price", data.price.toString())
+      formData.append("currency", data.currency.postValue)
+      formData.append("phone_number", data.tel)
 
-      formData.append("title", data.title);
-      formData.append("description", data.description);
-      formData.append("price", data.price.toString());
-      formData.append("phone_number", data.tel);
-      formData.append(`currency`, currency);
 
-      if (type === AnnouncmentValues.ORDER) {
+      if (data.email) formData.append("email", data.email)
+      data?.images.forEach(image => formData.append("uploaded_images", image))
 
-         sizesData.forEach((size) => formData.append(`size`, size.postValue));
+      if (type === "order"){
+         // formData.append("sizes", data.sizes)
+         const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
+         const deadline = format(newDate, 'yyyy-MM-dd')
 
-         formData.append('title', data.title);
-         formData.append('description', data.description);
-         formData.append('price', data.price.toString());
-         formData.append('phone_number', data.tel);
-         formData.append("deadline", deadline);
+         formData.append("deadline", deadline)
+         data?.sizes.forEach(size => formData.append("size", size.postValue))
 
-         createOrder.mutate(formData);
-
-      } else if (type === AnnouncmentValues.SERVICE) {
-
-        sizesData.forEach((size) => formData.append(`size`, size.postValue));
-
-        createService.mutate(formData);
-      } else {
-         createEquipment.mutate(formData);
+         createOrder.mutate(formData)
       }
+
+      if (type === "equipment") {
+         console.log(data)
+         createEquipment.mutate(formData)
+      }
+      if (type === "service") {
+         console.log(data)
+         createService.mutate(formData)
+      }
+
    };
 
-   const isOrderType = type === "order";
+   const loading = type === "order" ? createOrder.isPending : type === "equipment" ? createEquipment.isPending : createService.isPending
+   const error = type === "order" ? createOrder.isError : type === "equipment" ? createEquipment.isError : createService.isError
 
    return {
       handleSubmit: handleSubmit(onSubmit),
-      isLoading: isOrderType ? createOrder.isPending : createEquipment.isPending,
-      isError: isOrderType ? createOrder.isError : createEquipment.isError,
+      isLoading: loading,
+      isError: error,
       register,
       errors,
       isValid,
+      watch,
+      control,
+      setValue
    };
 };

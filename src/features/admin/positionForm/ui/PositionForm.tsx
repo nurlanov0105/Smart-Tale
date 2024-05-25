@@ -9,6 +9,8 @@ import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useAddPosition} from "@/features/admin/positionForm/model/useAddPosition";
+import {descriptionSchema, titleSchema} from "@/features/user/orderForm/model/validationSchema";
 
 const roles = [
    { value: "Утюжник", postValue: "Утюжник" },
@@ -22,8 +24,13 @@ const PositionForm = () => {
 
    const theme = useThemeStore((state) => state.theme);
 
+   const {
+      register,
+      handleSubmit
+   } = useAddPosition()
+
    return (
-      <form className={clsx(styles.position, styles[theme])}>
+      <form onSubmit={handleSubmit} className={clsx(styles.position, styles[theme])}>
          <div className={styles.position__row}>
             <h4 className="h4">Организация должности</h4>
             <Select
@@ -35,15 +42,19 @@ const PositionForm = () => {
             />
 
             <h4 className="h4">Название должности</h4>
-            <InputField title="Название" />
+            <InputField {...register("title", titleSchema)} title="Название" />
 
             <h4 className="h4">Описание должности</h4>
-            <TextArea title="Описание" type="default"/>
+            <TextArea
+                {...register("description", descriptionSchema)}
+                title="Описание"
+                type="default"
+            />
             <div className={styles.position__fieldset}>
                <h4 className="h4">Выдача прав доступа</h4>
                <ul className={styles.position__list}>
                   {rightsActionsData.map((action) => (
-                     <RightAction {...action} key={action.title} />
+                     <RightAction register={register} action={action} key={action.title} />
                   ))}
                </ul>
             </div>
@@ -51,7 +62,7 @@ const PositionForm = () => {
 
          <div className={styles.position__btn}>
             <Button type="submit">
-               {selectedRole.postValue === "all" ? "Создать" : "Сохранить"}
+               Добавить должность
             </Button>
          </div>
       </form>
