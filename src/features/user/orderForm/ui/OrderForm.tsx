@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { AddImages } from "@/features/general/addImages";
 import { SelectDate } from "@/entities/general/selectDate";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
@@ -12,22 +12,28 @@ import { SizeItem } from "@/entities/user/sizeItem";
 import { useSelectsOrder } from "../model/hooks/useSelectsOrder";
 import { useSizesAndImages } from "../model/hooks/useSizesAndImages";
 import { useOrderForm } from "../model/hooks/useOrderForm";
-import { descriptionSchema, priceSchema, titleSchema, typeSchema } from "../model/validationSchema";
+import {
+   descriptionSchema,
+   emailSchema,
+   notRequiredEmailSchema,
+   priceSchema,
+   telSchema,
+   titleSchema,
+   typeSchema,
+} from "../model/validationSchema";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {format} from "date-fns";
+import { format } from "date-fns";
 
 const OrderForm: FC<OrderProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {
-      day,
-      setDay,
-      month,
-      setMonth,
-      year,
-      setYear
-   } = useInitialDate(); //Даты
+   const { day, setDay, month, setMonth, year, setYear } = useInitialDate(); //Даты
+   const [showEmail, setShowEmail] = useState(false);
+
+   const handleEmailToggle = () => {
+      setShowEmail((prev) => !prev);
+   };
 
    const {
       selectCurrency,
@@ -38,17 +44,10 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       setSelectedSize,
    } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
 
-   const {
-      sizesDate,
-      handleChangeSize,
-      setSizesDate,
-      images,
-      setImages
-   } = useSizesAndImages({}); //массив с изображениями и массив с размерами заказа
+   const { sizesDate, handleChangeSize, setSizesDate, images, setImages } = useSizesAndImages({}); //массив с изображениями и массив с размерами заказа
 
-
-   const newDate = new Date(year.postValue, month.postValue - 1, day.postValue)
-   const deadline = format(newDate, 'yyyy-MM-dd')
+   const newDate = new Date(year.postValue, month.postValue - 1, day.postValue);
+   const deadline = format(newDate, "yyyy-MM-dd");
 
    const { handleSubmit, isError, isLoading, register, errors, isValid } = useOrderForm({
       type,
@@ -154,28 +153,32 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
 
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
                <h3 className="h3">Контактная информация</h3>
-               <Select
-                  selected={selectedContact}
-                  setSelected={setSelectedContact}
-                  data={contactsData}
-                  type="vacancy"
-               />
+
                <InputField
-                  {...register(
-                     selectedContact.postValue as keyof OrderCreateFormType,
-                     typeSchema(selectedContact.postValue)
-                  )}
-                  error={errors[selectedContact.postValue as keyof OrderCreateFormType]?.message}
+                  {...register(ORDER_FORM_NAMES.tel, telSchema)}
+                  error={errors.tel?.message}
                   disabled={false}
-                  type={selectedContact.postValue}
-                  title={selectedContact.value}
+                  type="tel"
+                  title="Номер телефона"
                />
+
+               {showEmail && (
+                  <InputField
+                     {...register(ORDER_FORM_NAMES.email, notRequiredEmailSchema)}
+                     error={errors.email?.message}
+                     disabled={false}
+                     title="Почта"
+                  />
+               )}
+               <button type="button" className="dark-blue" onClick={handleEmailToggle}>
+                  {showEmail ? "Убрать почту" : "Добавить почту"}
+               </button>
             </div>
          </div>
 
          <div className={styles.order__btns}>
             <Button disabled={isDisabled() || !isValid} type="submit">
-               Разместить объявление
+               {isLoading ? "Загрузка..." : "Разместить объявление"}
             </Button>
          </div>
       </form>

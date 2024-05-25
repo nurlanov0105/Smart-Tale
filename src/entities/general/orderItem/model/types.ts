@@ -1,5 +1,7 @@
+import { IData } from "@/shared/lib/hooks/useInfiniteScroll";
+
 export type ItemProps = {
-   item: item;
+   item: IData;
    isCurrent?: boolean;
 };
 
@@ -7,8 +9,9 @@ type item = {
    id: number;
    type: string;
    status?: string;
-   slug: string
-   title: string
-   description: string
-   created_at: string
+   slug: string;
+   title: string;
+   description: string;
+   created_at: string;
+   image: string;
 };

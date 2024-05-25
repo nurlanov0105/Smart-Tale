@@ -1,35 +1,36 @@
 "use client";
 
 import { FC, useState } from "react";
-import { listingsValues } from "../model/values";
+// import { ListingsDefineService } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import styles from "./styles.module.scss";
-import { SkeletonTypes } from "@/shared/lib";
-import {useListings} from "@/widgets/user/listings/model/useListings";
+import { SkeletonTypes, announcementTabs } from "@/shared/lib";
+import { EquipmentService, UserQueryKeys } from "@/shared/api";
 
 const Listings: FC = () => {
-   const [type, setType] = useState(listingsValues[0].postValue);
+   const [type, setType] = useState(announcementTabs[0].postValue);
 
-   const dataList = [
-      { id: 1, type: "order" },
-      { id: 2, type: "equipment" },
-      { id: 3, type: "order" },
-      { id: 4, type: "equipment" },
-      { id: 5, type: "equipment" },
-      { id: 6, type: "order" },
-   ];
-
-   const {data, isLoading, isError} = useListings(type)
-
-   console.log(data)
+   // const dataList = [
+   //    { id: 1, type: "order" },
+   //    { id: 2, type: "equipment" },
+   //    { id: 3, type: "order" },
+   //    { id: 4, type: "equipment" },
+   //    { id: 5, type: "equipment" },
+   //    { id: 6, type: "order" },
+   // ];
 
    return (
       <div className={styles.listings}>
          <div className={styles.listings__btns}>
-            <Tabs type={type} setType={setType} values={listingsValues} />
+            <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
-         <OrderList data={dataList} isError={false} isLoading={false} type={SkeletonTypes.listItem} />
+         <OrderList
+            fetchFunction={EquipmentService.getMyAds}
+            queryKey={UserQueryKeys.ANNOUNCEMENTS_LISTINGS}
+            tab={type}
+            type={SkeletonTypes.listItem}
+         />
       </div>
    );
 };

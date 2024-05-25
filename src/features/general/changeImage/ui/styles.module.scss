@@ -9,10 +9,13 @@
    &__avatar {
       width: 6.8rem;
       height: 6.8rem;
+
+      @include bgImg;
       border-radius: 50%;
       background-color: $primary-color;
       overflow: hidden;
       position: relative;
+      cursor: pointer;
 
       img {
          position: absolute;

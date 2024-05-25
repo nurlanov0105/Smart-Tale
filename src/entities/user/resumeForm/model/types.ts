@@ -1,3 +1,5 @@
 export type ResumeFormProps = {
-    type: string
-}
+   type: string;
+   addResume: (data: any) => void;
+   isLoading: boolean;
+};

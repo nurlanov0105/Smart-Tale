@@ -9,6 +9,7 @@ export enum EnumTokens {
    REGISTER_EMAIL = "register-email",
    REMEMBER_ME = "remember-me",
    SUBSCRIBE_TYPE = "subscribe-type",
+   SUBSCRIBED_DATA = "subscribed-data",
 }
 
 export type OrganizationValuesProps = {
@@ -41,12 +42,12 @@ export type InputFieldProps = {
 };
 
 export type TextAreaProps = {
-   type: "bordered_grey" | "bordered_white" | "default" | "chat",
-   classname?: string,
-   title?: string,
-   isDisabled?: boolean,
-   error?: string,
-}
+   type: "bordered_grey" | "bordered_white" | "default" | "chat";
+   classname?: string;
+   title?: string;
+   isDisabled?: boolean;
+   error?: string;
+};
 
 type dateType = {
    value: string | number;
@@ -59,7 +60,7 @@ export type SelectProps = {
    data: dateType[];
    setDate: Dispatch<SetStateAction<dateType>>;
    classname?: string;
-   type?: "admin" | "user"
+   type?: "admin" | "user";
 };
 
 export type TimerProps = {
@@ -88,13 +89,14 @@ export type CookiesServicesType = { value: string | boolean; keyName: EnumTokens
 export type InputPhoneProps = {
    control: Control<any>;
    errors?: FieldErrors;
-   classname?: string
+   classname?: string;
 };
 
 export type AuthorType = {
    first_name: string;
    last_name: string;
    profile_image: string;
+   slug: string;
 };
 
 export type CardType = {
@@ -105,4 +107,5 @@ export type CardType = {
    author: AuthorType;
    liked: string;
    image: string;
+   type: "Заказ" | "Оборудование" | "Услуги";
 };

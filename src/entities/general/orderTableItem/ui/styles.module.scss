@@ -1,39 +1,13 @@
-.item{
-   td{
-      width: 20%;
-      text-align: left;
-
-      font-size: 14px;
-      line-height: 1.71;
-      letter-spacing: -0.28px;
-      font-weight: 400;
-
-      padding: 2rem 0 2rem 2rem;
-   }
-
-   span {
-      font-size: 14px;
-      line-height: 1.71;
-      letter-spacing: -0.28px;
-   }
+.item {
+   display: grid;
+   grid-template-columns: repeat(4, 1fr);
+   padding: 2rem;
 
    a {
-      text-decoration: underline;
-      font-size: 14px;
-      line-height: 1.71;
-      letter-spacing: -0.28px;
+      text-decoration-line: underline;
+   }
+
+   &:not(:last-child) {
+      border-bottom: 1px solid #e9edf7;
    }
 }
-
-
-//@media (max-width: 700px) {
-//   .item td{
-//
-//      &:last-child{
-//         display: none;
-//      }
-//   }
-//}
-
-
-

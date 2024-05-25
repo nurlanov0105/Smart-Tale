@@ -1,3 +1,5 @@
+import { OrdersService, ServicesService } from "@/shared/lib";
+
 export const historyValues = [
    {
       value: "Активные",

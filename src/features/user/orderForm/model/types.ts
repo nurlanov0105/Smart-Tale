@@ -23,7 +23,7 @@ export type OrderCreateFormType = {
    description: string;
    price: number;
    tel: string;
-   email: string;
+   email?: string;
 };
 
 export type OrderFormNamesType = {

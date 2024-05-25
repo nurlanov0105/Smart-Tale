@@ -24,8 +24,29 @@ export const OrdersService = {
       });
       return response.data;
    },
-   getMyOrders: async () => {
-      const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS);
+   getMyOrders: async (page: number) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS, {
+         params: {
+            page: page,
+         },
+      });
+      return response.data;
+   },
+   getLikedOrders: async (page: number) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_LIKED_ORDERS, {
+         params: {
+            page: page,
+         },
+      });
+      return response.data;
+   },
+   getOrdersHistory: async (page: number, stage: string) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS_HISTORY, {
+         params: {
+            page: page,
+            stage: stage,
+         },
+      });
       return response.data;
    },
 
@@ -66,19 +87,22 @@ export const OrdersService = {
       return response.data;
    },
 
-    updateOrder: async ({orderSlug, params}: UpdateOrderProps) => {
-        // console.log(params, orderSlug)
-        const headers = { 'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2) };
-        const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + orderSlug, params, {headers: headers})
-        return response.data
-    },
+   updateOrder: async ({ orderSlug, params }: UpdateOrderProps) => {
+      // console.log(params, orderSlug)
+      const headers = {
+         "Content-Type":
+            "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2),
+      };
+      const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + orderSlug, params, {
+         headers: headers,
+      });
+      return response.data;
+   },
 
-    updateOrderStatus: async ({orderSlug, status}: UpdateStatusProps) => {
-        const response = await baseApiInstance.post(`${OrdersEndpoints.UPDATE_ORDER_STATUS + orderSlug}?status=${status}`)
-        return response.data
-    },
-
-}
-
-
-
+   updateOrderStatus: async ({ orderSlug, status }: UpdateStatusProps) => {
+      const response = await baseApiInstance.post(
+         `${OrdersEndpoints.UPDATE_ORDER_STATUS + orderSlug}?status=${status}`
+      );
+      return response.data;
+   },
+};

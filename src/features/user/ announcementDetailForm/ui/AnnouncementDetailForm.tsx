@@ -1,13 +1,13 @@
 "use client";
 
-import React, {FC, useEffect} from "react";
+import React, { FC, useEffect } from "react";
 import { useThemeStore } from "@/shared/themeStore";
-import {useInitialDate } from "@/shared/lib";
+import { useInitialDate } from "@/shared/lib";
 import { useSelectsOrder } from "@/features/user/orderForm/model/hooks/useSelectsOrder";
 import { useSizesAndImages } from "@/features/user/orderForm/model/hooks/useSizesAndImages";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {InputField, PhoneInput, Select, TextArea} from "@/shared/ui";
+import { InputField, PhoneInput, Select, TextArea } from "@/shared/ui";
 import {
    contactsData,
    ORDER_FORM_NAMES,
@@ -26,13 +26,13 @@ import { SelectDate } from "@/entities/general/selectDate";
 import { AddImages } from "@/features/general/addImages";
 import { OrderDetailBtns } from "@/entities/user/orderDetailBtns";
 import { useAnnouncementDetail } from "../model/hooks/useAnnouncementDetail";
-import {useAnnouncementType} from "../model/hooks/useAnnouncementType";
-import {useInitialData} from "../model/hooks/useInitialData";
+import { useAnnouncementType } from "@/shared/lib";
+import { useInitialData } from "../model/hooks/useInitialData";
 
 const AnnouncementDetailForm = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {type, slug} = useAnnouncementType()
+   const { type, slug } = useAnnouncementType();
 
    const {
       data,
@@ -45,19 +45,16 @@ const AnnouncementDetailForm = () => {
       handleSubmit,
       reset,
       watch,
-      control
+      control,
    } = useAnnouncementDetail({
       type,
       slug,
    }); //Тип создания(заказа или оборудования)
 
-   const { day,
-      setDay,
-      month,
-      setMonth,
-      year,
-      setYear
-   } = useInitialDate(data?.deadline, isSuccess); //Даты
+   const { day, setDay, month, setMonth, year, setYear } = useInitialDate(
+      data?.deadline,
+      isSuccess
+   ); //Даты
 
    const {
       selectCurrency,
@@ -68,22 +65,13 @@ const AnnouncementDetailForm = () => {
       setSelectedSize,
    } = useSelectsOrder(); //Селекты с валютами, типами контакта и списком размеров
 
-
-   const {
-      sizesDate,
-      handleChangeSize,
-      setSizesDate,
-      images,
-      setImages
-   } = useSizesAndImages({
+   const { sizesDate, handleChangeSize, setSizesDate, images, setImages } = useSizesAndImages({
       userImages: undefined,
       userSizes: data?.size,
-      isSuccess
+      isSuccess,
    }); //массив с изображениями и массив с размерами заказа
 
-
-   useInitialData({reset, type, slug, data, isSuccess})
-
+   useInitialData({ reset, type, slug, data, isSuccess });
 
    // const watchAllFields = watch();
    // useEffect(() => {
@@ -104,101 +92,96 @@ const AnnouncementDetailForm = () => {
    //    }
    // };
 
-
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
          <div className={styles.order}>
             <div className={styles.order__block_row}>
                <h4 className="h4">Название</h4>
                <InputField
-                   {...register(ORDER_FORM_NAMES.title, titleSchema)}
-                   error={errors.title?.message}
-                   disabled={false}
-                   isBordered={true}
-                   classname={styles.order__input}
+                  {...register(ORDER_FORM_NAMES.title, titleSchema)}
+                  error={errors.title?.message}
+                  disabled={false}
+                  isBordered={true}
+                  classname={styles.order__input}
                />
             </div>
             <div className={styles.order__block_row}>
                <h4 className="h4">Описание</h4>
                <TextArea
-                   {...register(ORDER_FORM_NAMES.description, descriptionSchema)}
-                   isDisabled={false}
-                   error={errors.description?.message}
-                   type="default"
+                  {...register(ORDER_FORM_NAMES.description, descriptionSchema)}
+                  isDisabled={false}
+                  error={errors.description?.message}
+                  type="default"
                />
             </div>
-
 
             <div className={clsx(styles.order__select)}>
                <h4 className="h4">Размеры</h4>
                <Select
-                   selected={selectedSize}
-                   setSelected={setSelectedSize}
-                   data={sizesData}
-                   handleSelectElem={handleChangeSize}
-                   type="vacancy"
+                  selected={selectedSize}
+                  setSelected={setSelectedSize}
+                  data={sizesData}
+                  handleSelectElem={handleChangeSize}
+                  type="vacancy"
                />
                {sizesDate.length >= 1 && (
-                   <ul className={styles.order__sizes}>
-                      {sizesDate.map((size) => (
-                          <SizeItem key={size} size={size} setSizesData={setSizesDate}/>
-                      ))}
-                   </ul>
+                  <ul className={styles.order__sizes}>
+                     {sizesDate.map((size) => (
+                        <SizeItem key={size} size={size} setSizesData={setSizesDate} />
+                     ))}
+                  </ul>
                )}
             </div>
             <div>
                <h4 className={clsx(styles.order__margin, "h4")}>Стоимость</h4>
                <div className={styles.order__block_flex}>
                   <InputField
-                      type="number"
-                      {...register(ORDER_FORM_NAMES.price, priceSchema)}
-                      error={errors.price?.message}
-                      disabled={false}
-                      isBordered={true}
-                      classname={styles.order__input}
+                     type="number"
+                     {...register(ORDER_FORM_NAMES.price, priceSchema)}
+                     error={errors.price?.message}
+                     disabled={false}
+                     isBordered={true}
+                     classname={styles.order__input}
                   />
                   <div>
                      <Select
-                         selected={selectCurrency}
-                         setSelected={setSelectCurrency}
-                         data={currencies}
-                         type="auth"
-                         classname={styles.order__currency}
+                        selected={selectCurrency}
+                        setSelected={setSelectCurrency}
+                        data={currencies}
+                        type="auth"
+                        classname={styles.order__currency}
                      />
                   </div>
                </div>
             </div>
 
-
             <div className={styles.order__block_row}>
                <h4 className="h4">Крайняя дата выполнения</h4>
                <div>
                   <SelectDate
-                      day={day}
-                      setDay={setDay}
-                      month={month}
-                      setMonth={setMonth}
-                      year={year}
-                      setYear={setYear}
-                      type="user"
+                     day={day}
+                     setDay={setDay}
+                     month={month}
+                     setMonth={setMonth}
+                     year={year}
+                     setYear={setYear}
+                     type="user"
                   />
                </div>
             </div>
             <div className={styles.order__block}>
                <h4 className="h4">Галерея фотографий</h4>
-               <AddImages images={images} setImages={setImages}/>
+               <AddImages images={images} setImages={setImages} />
             </div>
 
             <div className={styles.order__block_gap}>
                <h4 className="h4">Контактная информация</h4>
 
-               <PhoneInput classname={styles.order__phoneInput} control={control}/>
-
+               <PhoneInput classname={styles.order__phoneInput} control={control} />
             </div>
          </div>
 
-         <OrderDetailBtns/>
-
+         <OrderDetailBtns />
       </form>
    );
 };

@@ -5,12 +5,16 @@ import {
    EquipmentsEndpoints,
    OrdersEndpoints,
    ServicesEndpoints,
+   UserEndpoints,
+   VacancyEndpoints,
+   ResumeEndpoints,
 } from "./endpoints";
 import {
    UserQueryKeys,
    OrganizationQueryKeys,
    EquipmentQueryKeys,
    ServiceQueryKeys,
+   ResumeQueryKeys,
 } from "./queryKeys";
 import { EquipmentService } from "../lib/services/equipmentsService";
 
@@ -26,4 +30,8 @@ export {
    EquipmentService,
    ServicesEndpoints,
    ServiceQueryKeys,
+   UserEndpoints,
+   VacancyEndpoints,
+   ResumeEndpoints,
+   ResumeQueryKeys,
 };

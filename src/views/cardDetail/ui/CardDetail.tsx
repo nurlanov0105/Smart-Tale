@@ -9,18 +9,18 @@ import { Chat } from "@/widgets/user/chat";
 import { BtnBordered, CommonSkeleton, GlobalLoading } from "@/shared/ui";
 import { SliderCards } from "@/widgets/user/sliderCards";
 
-import { ROUTES, SkeletonTypes, images } from "@/shared/lib";
-import styles from "./styles.module.scss";
+import { ROUTES, SkeletonTypes, images, useAnnouncementType } from "@/shared/lib";
 import Link from "next/link";
 import { useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { Loader } from "lucide-react";
+import styles from "./styles.module.scss";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
-   const pathname = usePathStore((state) => state.pathname);
-   const slug = usePathStore((state) => state.slug);
 
-   const { isError, isPending: isLoading, data } = useFetchResource(pathname, slug);
+   const { type, slug } = useAnnouncementType();
+
+   const { isError, isPending: isLoading, data } = useFetchResource(type, slug);
 
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);

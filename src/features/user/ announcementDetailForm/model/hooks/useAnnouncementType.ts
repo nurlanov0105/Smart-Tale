@@ -1,16 +1,14 @@
-import {usePathname} from "next/navigation";
-import {TYPE_ANNOUNCEMENT_DETAIL} from "@/shared/lib";
+import { usePathname } from "next/navigation";
+import { DefineAnnouncementType } from "@/shared/lib";
 
 export const useAnnouncementType = () => {
-    const pathname= usePathname()
+   const pathname = usePathname();
 
-    const type = pathname.split("/")[2]
-    const slug = pathname.split("/")[3]
+   const type = pathname.split("/")[2] as keyof typeof DefineAnnouncementType;
+   const slug = pathname.split("/")[3];
 
-    const isEquipment = +type === TYPE_ANNOUNCEMENT_DETAIL.equipment
-
-    return {
-        type: isEquipment ? "equipment": "order",
-        slug: "nitki-s-igolkami"
-    }
-}
+   return {
+      type: DefineAnnouncementType[type],
+      slug: slug,
+   };
+};

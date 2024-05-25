@@ -20,7 +20,7 @@
       margin-top: 3.2rem;
    }
 
-   &__currency{
+   &__currency {
       width: 9rem !important;
    }
 
@@ -67,6 +67,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      align-items: flex-start;
    }
 
    &__date {
@@ -74,7 +75,7 @@
       column-gap: 12px;
    }
 
-   &__block_flex{
+   &__block_flex {
       display: flex;
       column-gap: 12px;
 
@@ -87,6 +88,14 @@
       column-gap: 8px;
       margin-top: auto;
       justify-content: flex-end;
+   }
+
+   &__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      column-gap: 2rem;
+      width: 100%;
    }
 }
 
