@@ -49,6 +49,15 @@ export const OrdersService = {
       });
       return response.data;
    },
+   getMyOrdersHistory: async (page: number, stage: string) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS_HISTORY, {
+         params: {
+            page: page,
+            status: stage,
+         },
+      });
+      return response.data;
+   },
 
    getMyOrder: async (orderSlug: string) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDER + orderSlug);
@@ -89,10 +98,7 @@ export const OrdersService = {
 
    updateOrder: async ({ orderSlug, params }: UpdateOrderProps) => {
       // console.log(params, orderSlug)
-      const headers = {
-         "Content-Type":
-            "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2),
-      };
+      const headers = { "Content-Type": "multipart/form-data" };
       const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + orderSlug, params, {
          headers: headers,
       });

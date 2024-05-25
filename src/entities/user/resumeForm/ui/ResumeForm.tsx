@@ -14,8 +14,9 @@ import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { ResumeFormProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useAddResume } from "../../vacancyItem";
 
-const ResumeForm: FC<ResumeFormProps> = ({ type, addResume, isLoading }) => {
+const ResumeForm: FC<ResumeFormProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const [graphicSelected, setGraphicSelected] = useState(graphicsFilter[0]);
@@ -26,7 +27,10 @@ const ResumeForm: FC<ResumeFormProps> = ({ type, addResume, isLoading }) => {
       register,
       formState: { errors, isValid },
       handleSubmit,
+      reset,
    } = useForm();
+
+   const { mutate: addResume, isPending: isLoading, isError } = useAddResume(reset);
 
    const handleCreateSubmit = (data: any) => {
       const readyData = { ...data };

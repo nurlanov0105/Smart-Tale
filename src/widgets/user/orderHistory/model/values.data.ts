@@ -7,6 +7,6 @@ export const historyValues = [
    },
    {
       value: "Завершенные",
-      postValue: "completed",
+      postValue: "finished",
    },
 ];

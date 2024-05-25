@@ -5,7 +5,7 @@ import { orderDetailsValues } from "@/widgets/user/createAnnouncement/model/valu
 import { AnnouncementDetailForm } from "@/features/user/ announcementDetailForm";
 import styles from "./styles.module.scss";
 
-const AnnouncementDetail: FC<{ isService?: boolean }> = ({ isService = false }) => {
+const AnnouncementDetail: FC = () => {
    const [type, setType] = useState(orderDetailsValues[0].postValue);
 
    return (

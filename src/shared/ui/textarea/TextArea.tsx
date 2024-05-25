@@ -23,7 +23,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => 
 
     return (
         <>
-            <label htmlFor={title} className={clsx(styles[theme], styles.textarea__label, styles[type])}>
+            <label htmlFor={title} className={clsx(styles[theme], styles.textarea__label, styles[type], error && styles.textarea__errorField)}>
                 <p className={styles.textarea__title}>{title}</p>
                 <textarea
                     className={clsx(styles.textarea, styles[`${type}__textArea`])}
@@ -35,7 +35,7 @@ const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => 
             </label>
 
             {
-                error && <p className={styles.textarea__error}>максимум 250 символов, минимум 5</p>
+                error && <p className={styles.textarea__error}>{error}</p>
             }
         </>
     );

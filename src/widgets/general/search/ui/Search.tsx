@@ -25,7 +25,7 @@ const Search = () => {
             </span>
             <span className={styles.search__title}>результаты: 10</span>
          </div>
-         {/* <OrderList data={data} type="order" isLoading={false} isError={false}/> */}
+         <OrderList data={data} type="order" isLoading={false} isError={false} />
       </div>
    );
 };

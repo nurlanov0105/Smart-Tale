@@ -3,7 +3,7 @@ import { MARKETPLACE, DASHBOARD, ROUTES, ORGANIZATION_ROUTES } from "./routes.co
 import { useDebounce } from "./hooks/useDebounce";
 import { useAuth } from "./hooks/useAuth";
 import { useOutside } from "./hooks/useOutside";
-import { useInitialDate } from "./hooks/useInitialDate";
+
 import { useWindowSize } from "./hooks/useWindowSize";
 import { useNavbar } from "./hooks/useNavbar";
 import { CookiesServices } from "./services/cookies.services";
@@ -19,12 +19,12 @@ import { UserService } from "./services/userService";
 import { VacancyService } from "./services/vacancyService";
 import { useSubscribed } from "./hooks/useSubscribed";
 import { ResumeService } from "./services/resumeService";
+import { OrganizationService } from "./services/organizationService";
 
 import type { CardType, AuthorType } from "./types/types";
 
 export type { InputFieldProps, CardType, AuthorType };
 
-import { dateFormat } from "./utils/dateFormat";
 import {
    TYPE_ANNOUNCEMENT_DETAIL,
    AnnouncementTypes,
@@ -42,7 +42,6 @@ export {
    useAuth,
    EnumTokens,
    useOutside,
-   useInitialDate,
    MARKETPLACE,
    DASHBOARD,
    ROUTES,
@@ -60,8 +59,8 @@ export {
    OrdersService,
    useThemeEffect,
    ServicesService,
+   OrganizationService,
    COUNTRIES,
-   dateFormat,
    TYPE_ANNOUNCEMENT_DETAIL,
    AnnouncementTypes,
    DefineAnnouncementType,

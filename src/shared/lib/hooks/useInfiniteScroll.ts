@@ -21,7 +21,7 @@ export interface IData {
    description: string;
    created_at: string;
    image?: string;
-   service?: string;
+   service: string;
 }
 
 const options = {
@@ -71,7 +71,7 @@ export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab }: P
       }
       console.log(res);
       return {
-         data: param_tab || tab || queryKey === OrdersQueryKeys.ORDERS ? res.data : res.data.data,
+         data: param_tab || tab ? res.data : res.data.data,
          nextPage: pageParam + 1,
          hasNextPage: tab ? res.has_next_page : res.data.has_next_page,
       };

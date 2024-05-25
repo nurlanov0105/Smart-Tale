@@ -19,16 +19,12 @@ export const CookiesServices = {
       return res;
    },
    setToken: ({ value, keyName, time }: CookiesServicesType) => {
-      if (
-         keyName === EnumTokens.ACCESS_TOKEN ||
-         (keyName === EnumTokens.REFRESH_TOKEN && value && typeof value !== "boolean")
+
+      if ( keyName === EnumTokens.ACCESS_TOKEN || keyName === EnumTokens.REFRESH_TOKEN &&
+         value &&
+         typeof value !== "boolean"
       ) {
-         Cookies.set(keyName, value.toString(), {
-            path: "/",
-            expires: 1,
-            sameSite: "strict",
-            secure: true,
-         });
+         Cookies.set(keyName, value.toString(), { path: "/", expires: 1, sameSite: "strict", secure: true });
       } else {
          document.cookie = `${keyName}=${value};path=/;max-age=${time}`;
       }

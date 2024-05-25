@@ -12,13 +12,13 @@ const CreateAnnouncement = () => {
    return (
       <div className={styles.order}>
          <div className={styles.order__block}>
-            <h3 className="h3">Тип объявления</h3>
+            <h4 className="h4">Тип объявления</h4>
             <div className={styles.order__margin}>
                <Tabs type={type} setType={setType} values={orderDetailsValues} />
             </div>
          </div>
 
-         <h3 className="h3">Информация об оборудовании</h3>
+         <h4 className="h4">Информация об оборудовании</h4>
          <OrderForm type={type} />
       </div>
    );

@@ -44,7 +44,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
          <div className={styles.modal__slider}>
             {!isError && (
                <CardSlider
-                  images={(!isError && !isPending && data.images) || images}
+                  images={(!isError && !isPending && data.data.images) || images}
                   isLoading={isPending}
                />
             )}
@@ -58,14 +58,14 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                <>
                   <div className={styles.modal__header}>
                      <ModalCardHeader
-                        title={data.title}
-                        cost={`${Math.round(Number(data.price))}`}
+                        title={data.data.title}
+                        cost={`${Math.round(Number(data.data.price))}`}
                      />
                   </div>
                   <div className={styles.modal__info}>
                      <AuthorInfo
-                        fullName={data.author?.first_name + " " + data.author?.last_name}
-                        avatarImg={data.author?.profile_image}
+                        fullName={data.data.author?.first_name + " " + data.data.author?.last_name}
+                        avatarImg={data.data.author?.profile_image}
                      />
 
                      <div className={styles.modal__category}>
@@ -74,7 +74,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                            selectedCategory={selectedCategory}
                            isMobile={true}
                         />
-                        <div className={styles.modal__descr}>{data.description}</div>
+                        <div className={styles.modal__descr}>{data.data.description}</div>
                      </div>
                      <div className={styles.modal__btns}>
                         {!pathname.includes("admin") &&

@@ -23,6 +23,7 @@ export const useDate = (
    }, []);
 
    // Вычисялем кол-во дней в месяце
+   const getValue = () => {}
    const daysInMonth = daysInCurrentMonth(year.postValue, month.postValue)
 
    // Список дней
@@ -47,9 +48,10 @@ export const useDate = (
 
    // Если будет type === user, Вместо стейтов days, months,years будем использовать отфильтрованные массивы
 
+
    const filteredMonths = useMemo(() => {
      return months.filter((item) => {
-         if (year.postValue > currentYear) return item;
+         if (!year.postValue || year.postValue > currentYear) return item;
          return item.postValue >= currentMonth;
       });
 
@@ -66,6 +68,7 @@ export const useDate = (
 
    const filteredDays = useMemo(() => {
       return days.filter((item) => {
+         if (!year.postValue) return item
          if (month.postValue === currentMonth && year.postValue > currentYear) return item;
          if (month.postValue === currentMonth) return item.postValue > currentDay;
          return item;

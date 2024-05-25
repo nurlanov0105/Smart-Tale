@@ -8,6 +8,7 @@ import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
+import {usePositions} from "@/widgets/admin/positions/model/usePositions";
 
 const Positions = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -24,6 +25,9 @@ const Positions = () => {
       { title: "Утюжник", description: "Гладить" },
       { title: "Швея", description: "Шить" },
    ];
+
+   // const {data} = usePositions()
+
 
    return (
       <div className={clsx(styles.position, styles[theme])}>

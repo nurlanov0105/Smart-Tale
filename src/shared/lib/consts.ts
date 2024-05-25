@@ -52,9 +52,9 @@ export const AnnouncementTypes = {
    service: "service",
 };
 export const EnglishType = {
-   Заказ: "order",
-   Оборудование: "equipment",
-   Услуги: "service",
+   Order: "order",
+   Equipment: "equipment",
+   Service: "service",
 };
 
 export const DefineAnnouncementType = {

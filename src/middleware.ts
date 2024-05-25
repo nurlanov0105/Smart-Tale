@@ -44,7 +44,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    //    }
    // }
 
-
    const isAuthPage = authRoutes.includes(request.nextUrl.pathname as ROUTES)
 
     if (!refreshToken && request.nextUrl.pathname.includes(MARKETPLACE.CREATE_ANNOUNCEMENT)){

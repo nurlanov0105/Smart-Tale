@@ -35,6 +35,9 @@
       &_green {
          color: #34c759;
       }
+      &_primary{
+         color: $primary-color;
+      }
    }
    &__text {
       color: $dark-blue;
@@ -47,7 +50,7 @@
 
       overflow: hidden;
 
-      max-width: 80%;
+      max-width: 80em;
    }
 
    &__detail {

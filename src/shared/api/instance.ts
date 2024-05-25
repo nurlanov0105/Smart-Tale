@@ -109,7 +109,7 @@ baseApiInstance.interceptors.response.use(
 
             return baseApiInstance.request(originalRequest);
          } catch (err) {
-            //if (errorCatch(error) === 'jwt expired') CookiesServices.clearTokens()
+            //if (errorCatch(error) === "Токен недействителен или просрочен") CookiesServices.clearTokens()
             console.log(err);
          }
 

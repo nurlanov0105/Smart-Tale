@@ -10,11 +10,9 @@ import { useAddResume } from "@/entities/user/vacancyItem";
 const Resume = () => {
    const [type, setType] = useState(resumeType[0].postValue);
 
-   const { mutate: addResume, isPending: isLoading, isError } = useAddResume();
-
    return (
       <div className={styles.resume}>
-         <ResumeForm type={type} addResume={addResume} isLoading={isLoading} />
+         <ResumeForm type={type}  />
       </div>
    );
 };

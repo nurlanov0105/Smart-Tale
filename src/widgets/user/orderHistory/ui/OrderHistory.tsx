@@ -17,9 +17,9 @@ const OrderHistory = () => {
             <Tabs type={type} setType={setType} values={historyValues} />
          </div>
          <OrderTable
-            fetchFunction={OrdersService.getOrdersHistory}
+            fetchFunction={OrdersService.getMyOrdersHistory}
             queryKey={UserQueryKeys.ORDER_HISTORY}
-            param_tab={type == "active" ? "current" : type}
+            param_tab={type}
          />
       </section>
    );

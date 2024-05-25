@@ -1,7 +1,7 @@
 export type Props = {
+   data: any[];
    isCurrent?: boolean;
    type: string;
-   fetchFunction: any;
-   tab?: string;
-   queryKey: string;
+   isLoading: boolean;
+   isError: boolean;
 };

@@ -1,6 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { ResumeQueryKeys, ServiceQueryKeys } from "@/shared/api";
 import { ResumeService, VacancyService } from "@/shared/lib";
+import { toast } from "react-toastify";
 
 export const useGetVacancies = (page: number) => {
    return useQuery({
@@ -14,9 +15,13 @@ export const useAddVacancy = () => {
       mutationKey: [ServiceQueryKeys.SERVICES],
    });
 };
-export const useAddResume = () => {
+export const useAddResume = (reset: any) => {
    return useMutation({
       mutationFn: (data: any) => ResumeService.addResume(data),
       mutationKey: [ResumeQueryKeys.RESUME],
+      onSuccess: () => {
+         reset();
+         toast.success("Успешно разместили резюме!");
+      },
    });
 };
