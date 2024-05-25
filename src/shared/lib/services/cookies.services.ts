@@ -1,7 +1,7 @@
 "use client";
 
 import Cookies from "js-cookie";
-import {CookiesServicesType, EnumTokens, RefreshTokenTypes} from "../types/types";
+import { CookiesServicesType, EnumTokens, RefreshTokenTypes } from "../types/types";
 
 export const CookiesServices = {
    getTokens: () => {
@@ -19,6 +19,7 @@ export const CookiesServices = {
       return res;
    },
    setToken: ({ value, keyName, time }: CookiesServicesType) => {
+
       if ( keyName === EnumTokens.ACCESS_TOKEN || keyName === EnumTokens.REFRESH_TOKEN &&
          value &&
          typeof value !== "boolean"
@@ -31,6 +32,7 @@ export const CookiesServices = {
    clearCredentials: () => {
       Cookies.remove(EnumTokens.REGISTER_EMAIL);
       Cookies.remove(EnumTokens.SUBSCRIBE_TYPE);
+      Cookies.remove(EnumTokens.SUBSCRIBED_DATA);
    },
    clearTokens: () => {
       Cookies.remove(EnumTokens.ACCESS_TOKEN);

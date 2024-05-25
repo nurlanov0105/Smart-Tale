@@ -42,6 +42,12 @@ export const emailSchema = {
       message: "Неверный формат email",
    },
 };
+export const notRequiredEmailSchema = {
+   pattern: {
+      value: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+      message: "Неверный формат email",
+   },
+};
 
 export const telSchema = {
    required: "Поле обязательно для заполнения",

@@ -19,9 +19,9 @@ export type OrderCreateFormRequest = {
 };
 
 type images = {
-   id: string | number
-   images: string
-}
+   id: string | number;
+   images: string;
+};
 
 // export type AnnouncementDataForm = {
 //    value: string
@@ -34,14 +34,14 @@ export type OrderCreateFormType = {
    description: string;
    price: number;
    tel: string;
-   email: string;
-   currency: employee
-   sizeType: employee
-   sizes: employee[]
-   images: File[]
-   day: IDateProps
-   month: IDateProps
-   year: IDateProps
+   email?: string;
+   currency: employee;
+   sizeType: employee;
+   sizes: employee[];
+   images: File[];
+   day: IDateProps;
+   month: IDateProps;
+   year: IDateProps;
 };
 
 export type GetMyAnnouncementTypes = {
@@ -50,13 +50,13 @@ export type GetMyAnnouncementTypes = {
    price: number;
    tel: string;
    email: string;
-   currency: employee
-   sizeType: employee
-   sizes: employee[]
-   images: employee[]
-   day: IDateProps
-   month: IDateProps
-   year: IDateProps
+   currency: employee;
+   sizeType: employee;
+   sizes: employee[];
+   images: employee[];
+   day: IDateProps;
+   month: IDateProps;
+   year: IDateProps;
 };
 
 export type OrderFormNamesType = {

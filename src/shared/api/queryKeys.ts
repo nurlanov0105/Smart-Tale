@@ -11,6 +11,7 @@ export const UserQueryKeys = {
    CREATE_ORDER: "create-announcement",
    CREATE_EQUIPMENT: "create-equipment",
    CREATE_SERVICE: "create-service",
+   COMMON_USER: "common-user",
 };
 
 export const OrganizationQueryKeys = {
@@ -60,4 +61,7 @@ export const ServiceQueryKeys = {
    LIKED_SERVICES: "liked-services",
    MY_SERVICES: "my-services",
    MY_SERVICE: "my-service"
+};
+export const ResumeQueryKeys = {
+   RESUME: "resume",
 };

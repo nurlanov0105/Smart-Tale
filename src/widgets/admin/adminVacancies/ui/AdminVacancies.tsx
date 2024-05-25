@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import { useRouter } from "next/navigation";
@@ -7,7 +7,6 @@ import { VacancyItem } from "@/entities/user/vacancyItem";
 import { Button } from "@/shared/ui";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import styles from "./styles.module.scss";
-
 
 const AdminVacancies = () => {
    const { push } = useRouter();
@@ -21,6 +20,7 @@ const AdminVacancies = () => {
          </div>
          <div className={styles.vacancies__list}>
             {vacancies.map((item) => (
+               // @ts-ignore
                <VacancyItem item={item} key={item.title} isAdmin={true} />
             ))}
          </div>

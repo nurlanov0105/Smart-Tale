@@ -5,8 +5,8 @@ import { CardSlider } from "@/features/general/cardSlider";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { CardCategory } from "@/features/general/cardCategory";
-import {Button, GlobalLoading} from "@/shared/ui";
-import { DASHBOARD, ROUTES } from "@/shared/lib";
+import { Button, GlobalLoading } from "@/shared/ui";
+import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
 import { images } from "@/shared/lib";
 import styles from "./styles.module.scss";
@@ -14,16 +14,19 @@ import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
 import { useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { usePathname, useRouter } from "next/navigation";
+import { AnnouncementRoutes } from "../model/consts";
 
 type Props = {
    slug: string;
+   type: string;
 };
 
-const CardModal: FC<Props> = ({ slug }) => {
+const CardModal: FC<Props> = ({ slug, type }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const router = useRouter();
-   const setUrl = usePathStore((state) => state.setUrl);
+
+   const { isPending, isError, data } = useFetchResource(type, slug);
 
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
    const handleCategoryClick = (category: string) => {
@@ -31,19 +34,17 @@ const CardModal: FC<Props> = ({ slug }) => {
    };
 
    const handleBtnClick = () => {
-      setUrl({ pathname, slug });
-      router.push(ROUTES.CARD_DETAILS + `/${slug}`);
+      router.push(AnnouncementRoutes[type] + `/${slug}`);
+
       closeModal();
    };
-
-   const { isPending, isError, data } = useFetchResource(pathname, slug);
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
             {!isError && (
                <CardSlider
-                  images={(!isError && !isPending && data.images) || images}
+                  images={(!isError && !isPending && data.data.images) || images}
                   isLoading={isPending}
                />
             )}
@@ -52,19 +53,19 @@ const CardModal: FC<Props> = ({ slug }) => {
             {isError ? (
                <h3 className="h3">Упс, произошла ошибка</h3>
             ) : isPending ? (
-               <GlobalLoading type="default"/>
+               <GlobalLoading type="default" />
             ) : (
                <>
                   <div className={styles.modal__header}>
                      <ModalCardHeader
-                        title={data.title}
-                        cost={`${Math.round(Number(data.price))}`}
+                        title={data.data.title}
+                        cost={`${Math.round(Number(data.data.price))}`}
                      />
                   </div>
                   <div className={styles.modal__info}>
                      <AuthorInfo
-                        fullName={data.author?.first_name + " " + data.author?.last_name}
-                        avatarImg={data.author?.profile_image}
+                        fullName={data.data.author?.first_name + " " + data.data.author?.last_name}
+                        avatarImg={data.data.author?.profile_image}
                      />
 
                      <div className={styles.modal__category}>
@@ -73,7 +74,7 @@ const CardModal: FC<Props> = ({ slug }) => {
                            selectedCategory={selectedCategory}
                            isMobile={true}
                         />
-                        <div className={styles.modal__descr}>{data.description}</div>
+                        <div className={styles.modal__descr}>{data.data.description}</div>
                      </div>
                      <div className={styles.modal__btns}>
                         {!pathname.includes("admin") &&

@@ -1,8 +1,9 @@
 export const graphicsFilter = [
-   { value: "24/7", postValue: "all" },
-   { value: "В будние дни", postValue: "weekdays" },
-   { value: "По выходным", postValue: "weekend" },
-   { value: "Неполный день", postValue: "part-time" },
+   { value: "Полный день", postValue: "Полный день" },
+   { value: "Неполный день", postValue: "Неполный день" },
+   { value: "Частичная занятость", postValue: "Частичная занятость" },
+   { value: "Гибкий график", postValue: "Гибкий график" },
+   { value: "Удаленно", postValue: "Удаленно" },
 ];
 export const incomeLevelFilter = [
    { value: "Не имеет значения", postValue: "all" },
@@ -14,13 +15,13 @@ export const incomeLevelFilter = [
 ];
 
 export const cityFilter = [
-   { value: "Бишкек", postValue: "bishkek" },
-   { value: "Ош", postValue: "osh" },
-   { value: "Джалал-Абад", postValue: "jalal-abad" },
-   { value: "Баткен", postValue: "batken" },
-   { value: "Иссык-Куль", postValue: "issyk-kul" },
+   { value: "Бишкек", postValue: "Бишкек" },
+   { value: "Ош", postValue: "Ош" },
+   { value: "Джалал-Абад", postValue: "Джалал-Абад" },
+   { value: "Баткен", postValue: "Баткен" },
+   // { value: "Иссык-Куль", postValue: "issyk-kul" },
    { value: "Нарын", postValue: "naryn" },
-   { value: "Каракол", postValue: "karakol" },
+   { value: "Каракол", postValue: "Каракол" },
 ];
 
 export const specializationsFilter = [
@@ -31,11 +32,11 @@ export const specializationsFilter = [
 ];
 
 export const experienceFilter = [
-   { value: "Не имеет значения", postValue: "all" },
-   { value: "От 1 года до 3 лет", postValue: "1" },
-   { value: "От 3 до 6 лет", postValue: "3" },
-   { value: "Более 6 лет", postValue: "6" },
-   { value: "Нет опыта", postValue: "not" },
+   { value: "Без опыта", postValue: "Без опыта" },
+   { value: "Не имеет значения", postValue: "Не имеет значения" },
+   { value: "От 1 года до 3 лет", postValue: "От 1 года до 3 лет" },
+   { value: "От 3 лет до 6 лет", postValue: "От 3 лет до 6 лет" },
+   { value: "Более 6 лет", postValue: "Более 6 лет" },
 ];
 
 export const currencies = [
@@ -50,9 +51,7 @@ export const currenciesMap = {
    Ruble: { value: "₽", postValue: "Ruble" },
    USD: { value: "$", postValue: "USD" },
    Euro: { value: "€", postValue: "Euro " },
-}
-
-
+};
 
 export const typeSalary = [
    { value: "До вычета налогов", postValue: "som" },

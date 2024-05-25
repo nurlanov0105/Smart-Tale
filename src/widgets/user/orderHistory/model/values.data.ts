@@ -1,3 +1,5 @@
+import { OrdersService, ServicesService } from "@/shared/lib";
+
 export const historyValues = [
    {
       value: "Активные",
@@ -5,6 +7,6 @@ export const historyValues = [
    },
    {
       value: "Завершенные",
-      postValue: "completed",
+      postValue: "finished",
    },
 ];

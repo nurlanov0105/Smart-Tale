@@ -48,6 +48,11 @@ export enum ROUTES {
 
    ORDER_DETAILS = "/order-details",
    CARD_DETAILS = "/card-details",
+
+   CARD_DETAILS_ORDER = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
+   CARD_DETAILS_EQUIPMENT = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
+   CARD_DETAILS_SERVICE = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
+
    ANNOUNCEMENT_DETAILS_ORDER = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
    ANNOUNCEMENT_DETAILS_EQUIPMENT = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
 

@@ -14,8 +14,11 @@ export const AuthEndpoints = {
 export const OrdersEndpoints = {
    CREATE_ORDER: "/add-order/",
    GET_ORDERS: "/marketplace-orders",
-   GET_MY_ORDER: "/order-detail/",
    GET_MY_ORDERS: "/my-order-ads/",
+   GET_LIKED_ORDERS: "/liked-orders/",
+   GET_ORDERS_HISTORY: "/orders-history/",
+   GET_MY_ORDERS_HISTORY: "/my-history-orders/",
+   GET_MY_ORDER: "/order-detail/",
    GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
    APPLY_ORDER: "/order-apply",
    LIKE_ORDER: "/like-order/",
@@ -34,11 +37,12 @@ export const EquipmentsEndpoints = {
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
    // GET_MY_EQUIPMENTS: "/my-equipments/",
+   GET_MY_ADS: "/my-ads/",
    GET_MY_EQUIPMENT: "/equipment/",
+
    HIDE_EQUIPMENT: "/hide-equipment/",
    DELETE_EQUIPMENT: "/equipment/delete/",
-   GET_MY_EQUIPMENTS: "/my-ads/",
-   GET_MY_ANNOUNCEMENTS: "/my-ads/"
+   GET_MY_ANNOUNCEMENTS: "/my-ads/",
 };
 
 export const ServicesEndpoints = {
@@ -53,6 +57,24 @@ export const ServicesEndpoints = {
    MY_SERVICES: "/my-services",
 };
 
+export const UserEndpoints = {
+   MY_PROFILE: "/myprofile",
+   SUBSCRIBE: "/subscribe",
+   COMMON_USER: "/u/",
+};
+
+export const VacancyEndpoints = {
+   VACANCY: "/vacancy",
+   VACANCY_FILTER: "/vacancy/filter",
+   VACANCY_SEARCH: "/vacancy/search",
+   VACANCY_SLUG: "/vacancy",
+   ADD_VACANCY: "/add-vacancy/",
+   CHANGE_VACANCY: "/change-vacancy",
+   DELETE_VACANCY: "/delete-vacancy",
+};
+export const ResumeEndpoints = {
+   ADD_RESUME: "/add-resume/",
+};
 
 export const OrganizationEndpoints = {
    ORGANIZATION_DETAILS: "/organization/",

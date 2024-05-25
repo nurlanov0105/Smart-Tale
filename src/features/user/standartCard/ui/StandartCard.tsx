@@ -3,7 +3,7 @@
 import { FC } from "react";
 import { BtnBordered } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import { MODAL_KEYS, ROUTES } from "@/shared/lib";
+import { EnglishType, MODAL_KEYS, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -14,7 +14,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleClick = () => {
-      showModal(MODAL_KEYS.card, {slug: item.slug});
+      showModal(MODAL_KEYS.card, { slug: item.slug, type: EnglishType[item.type] });
    };
 
    if (!item) {
@@ -31,7 +31,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
                   {Math.round(Number(item.price))} сом
                </h4>
             </div>
-            <Link href={ROUTES.USERS + `/${item.slug}`} className={styles.card__author}>
+            <Link href={ROUTES.USERS + `/${item?.author?.slug}`} className={styles.card__author}>
                <div
                   className={styles.card__avatar}
                   style={{

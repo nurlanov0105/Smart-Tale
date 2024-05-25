@@ -1,19 +1,23 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import { StandartCard } from "@/features/user/standartCard";
 import { CardSceletonProps } from "../model/types";
 import { CommonSkeleton, GlobalLoading } from "@/shared/ui";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
 import styles from "./styles.module.scss";
+import { ObserverSection } from "@/entities/general/observerSection";
 
-const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
-   const { observerTarget, data, isInitialLoading, isError, isLoading } =
-      useInfiniteScroll(fetchFunction);
+const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, queryKey, tab, type }) => {
+   const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
+      fetchFunction,
+      queryKey,
+      tab,
+   });
 
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
-   ) : isInitialLoading ? (
+   ) : isLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
       data?.map((item: any, i: number) => <StandartCard key={i} item={item} />)
@@ -23,9 +27,11 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, type }) => {
       <section className={styles.section}>
          <div className={styles.section__list}>{readyData}</div>
 
-         <div className={styles.section__observer} ref={observerTarget}>
-            {!isInitialLoading && isLoading && <GlobalLoading/>}
-         </div>
+         <ObserverSection
+            isInitialLoading={isLoading}
+            isLoading={isFetchingNextPage}
+            observerTarget={observerTarget}
+         />
       </section>
    );
 };

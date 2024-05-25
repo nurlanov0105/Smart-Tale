@@ -39,7 +39,49 @@ export const SKELETON_TYPES = {
 };
 
 export const COUNTRIES: CountryCode[] = ["KG", "KZ", "RU", "UZ"];
+
 export enum TYPE_ANNOUNCEMENT_DETAIL {
-   order = 1,
-   equipment = 2,
+   order = "1",
+   equipment = "2",
+   service = "3",
 }
+
+export const AnnouncementTypes = {
+   order: "order",
+   equipment: "equipment",
+   service: "service",
+};
+export const EnglishType = {
+   Order: "order",
+   Equipment: "equipment",
+   Service: "service",
+};
+
+export const DefineAnnouncementType = {
+   "1": AnnouncementTypes.order,
+   "2": AnnouncementTypes.equipment,
+   "3": AnnouncementTypes.service,
+};
+
+export const announcementTabs = [
+   {
+      value: "Все объявления",
+      postValue: "all",
+      isSubscribed: true,
+   },
+   {
+      value: "Заказы",
+      postValue: AnnouncementTypes.order,
+      isSubscribed: false,
+   },
+   {
+      value: "Услуги",
+      postValue: AnnouncementTypes.service,
+      isSubscribed: false,
+   },
+   {
+      postValue: AnnouncementTypes.equipment,
+      value: "Оборудования",
+      isSubscribed: false,
+   },
+];
