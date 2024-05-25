@@ -60,7 +60,7 @@ export const ServicesService = {
    },
    updateService: async ({serviceSlug, params}: UpdateServiceProps) => {
       const headers = { "Content-Type": "multipart/form-data" }
-      const response = await baseApiInstance.post(ServicesEndpoints.UPDATE_SERVICE + serviceSlug, params, {headers: headers});
+      const response = await baseApiInstance.put(ServicesEndpoints.UPDATE_SERVICE + serviceSlug + "/", params, {headers: headers});
       return response.data;
    },
    // searchService: async (search: string) => {

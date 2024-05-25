@@ -26,8 +26,8 @@ const Positions = () => {
       { title: "Швея", description: "Шить" },
    ];
 
-   // const {data} = usePositions()
-
+   const {data} = usePositions()
+   console.log(data)
 
    return (
       <div className={clsx(styles.position, styles[theme])}>

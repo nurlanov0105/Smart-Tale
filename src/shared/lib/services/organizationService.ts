@@ -24,14 +24,14 @@ export const OrganizationService = {
         return response.data;
     },
     getEmployeeDetails: async (employeeSlug: string) => {
-        const response = await baseApiInstance.post(OrganizationEndpoints.EMPLOYEE_DETAILS + employeeSlug);
+        const response = await baseApiInstance.get(OrganizationEndpoints.EMPLOYEE_DETAILS + employeeSlug);
         return response.data;
     },
     deleteEmployee: async (employeeSlug: string) => {
         const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_EMPLOYEE, {data: employeeSlug});
         return response.data;
     },
-    addEmployee: async (data: any) => {
+    addEmployee: async (data: IAdd) => {
         const response = await baseApiInstance.post(OrganizationEndpoints.ADD_EMPLOYEE, data);
         return response.data;
     },
@@ -44,4 +44,17 @@ export const OrganizationService = {
         return response.data;
     },
 
+}
+
+export interface IAdd {
+    email:	string
+    org_title:	string
+    job_title: string
+
+    "change-roles": string,
+    "add-employee": string,
+    "change-status": string,
+    "cancel-order": string,
+    "give-role": string,
+    "delete-role": string,
 }

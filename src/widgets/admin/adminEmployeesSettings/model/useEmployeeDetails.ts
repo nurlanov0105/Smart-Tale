@@ -23,6 +23,7 @@ export const useEmployeeDetails = (slug: string) => {
     const onSubmit = () => {
 
     }
+    console.log(data)
 
 
     return {

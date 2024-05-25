@@ -98,6 +98,7 @@ export const useAnnouncementDetail = ({type, slug}: IProps) => {
             updateOrder.mutate({data: formData, slug: slug})
         }
     };
+    console.log(responseData && responseData.data?.data)
 
     return {
         data: responseData && responseData.data?.data,

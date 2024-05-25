@@ -17,12 +17,12 @@ import { useThemeStore } from "@/shared/themeStore";
 
 const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
    const theme = useThemeStore((state) => state.theme);
-   const title = orderValues[item.service];
+   const title = orderValues[item.type];
 
    const router = useRouter();
    const handleItemClick = () => {
 
-    if (item.service === "Заказ") {
+    if (item.type === "Order") {
          router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + "/orderName");
     } else {
          router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + "/equipmentName");
@@ -32,7 +32,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
 
    return (
       <>
-         {item.service === "Оборудование" && (
+         {item.type === "Equipment" && (
             <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__left}>
                   <Image
@@ -59,7 +59,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
             </div>
          )}
 
-         {item.service === "Заказ" && (
+         {item.type === "Order" && (
             <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__left}>
                   <Image
@@ -82,7 +82,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
                </div>
             </div>
          )}
-          {item.service === "Услуги" && (
+          {item.type === "Service" && (
               <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                   <div className={styles.item__left}>
                       <Image

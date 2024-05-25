@@ -12,7 +12,7 @@ const EmployeesList = () => {
    const theme = useThemeStore((state) => state.theme);
    const list = [1, 2, 3, 4, 5,6,7,8,9];
 
-   // const {data, isLoading, isError} = useEmployees()
+   const {data, isLoading, isError} = useEmployees()
 
    return (
        <div className={clsx(styles.table__border, styles[theme])}>

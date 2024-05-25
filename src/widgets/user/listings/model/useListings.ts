@@ -15,6 +15,7 @@ export const useListings = (type: string) => {
         queryFn: () => EquipmentService.getMyAnnouncements(typeAnnouncements()),
         retry: 2
     })
+    console.log(announcements.data)
 
     // const equipments = useQuery({
     //     queryKey: [UserQueryKeys.ANNOUNCEMENTS_LISTINGS],

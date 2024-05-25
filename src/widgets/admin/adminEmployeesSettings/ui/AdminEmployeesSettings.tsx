@@ -20,6 +20,8 @@ const AdminEmployeesSettings = () => {
       showModal(MODAL_KEYS.deleteEmployee, {slug: "qwe"})
    }
 
+
+
    const {
       data,
       isError,
@@ -27,7 +29,7 @@ const AdminEmployeesSettings = () => {
       register,
       handleSubmit,
       isSuccess
-   } = useEmployeeDetails("dasads")
+   } = useEmployeeDetails("adilet-adilet")
 
    return (
       <div className={styles[theme]}>

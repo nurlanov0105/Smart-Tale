@@ -33,7 +33,7 @@ export const useAddPosition = () => {
         mutate({
             title: data.title,
             description: data.description,
-            organization: data.organization.postValue, //"smarttale"
+            organization: "Neobis_Team", //"smarttale"
             roles: {
                 "change-roles": data["change-roles"],
                 "add-employee": data["add-employee"],
