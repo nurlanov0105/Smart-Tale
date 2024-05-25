@@ -22,14 +22,12 @@ const Listings: FC = () => {
 
    const {data, isLoading, isError} = useListings(type)
 
-   console.log(data)
-
    return (
       <div className={styles.listings}>
          <div className={styles.listings__btns}>
             <Tabs type={type} setType={setType} values={listingsValues} />
          </div>
-         <OrderList data={dataList} isError={false} isLoading={false} type={SkeletonTypes.listItem} />
+         <OrderList data={data} isError={isError} isLoading={isLoading} type={SkeletonTypes.listItem} />
       </div>
    );
 };

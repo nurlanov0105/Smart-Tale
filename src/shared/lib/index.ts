@@ -22,9 +22,8 @@ import type { CardType, AuthorType } from "./types/types";
 
 export type { InputFieldProps, CardType, AuthorType };
 import { COUNTRIES } from "./consts";
-
-import { dateFormat } from "./utils/dateFormat";
 import { TYPE_ANNOUNCEMENT_DETAIL } from "./consts";
+import {OrganizationService} from "./services/organizationService";
 
 export {
    useDebounce,
@@ -49,7 +48,7 @@ export {
    OrdersService,
    useThemeEffect,
    ServicesService,
+   OrganizationService,
    COUNTRIES,
-   dateFormat,
    TYPE_ANNOUNCEMENT_DETAIL,
 };

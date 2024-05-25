@@ -1,8 +1,9 @@
 .card {
-  //max-width: 40rem;
-  width: 100%;
 
-  //min-width: 40rem;
+  width: 100%;
+  margin-left: auto;
+
+  min-width: 45rem;
   padding: 0 0 4rem 0;
   margin-top: 2rem;
 
@@ -187,15 +188,5 @@
     }
   }
 }
-/* Tablet Small*/
-@media (max-width: 900px) {
-  .card {
-    max-width: 80%;
-  }
-}
-/* Mobile */
-@media (max-width: 600px) {
-  .card {
-    max-width: 100%;
-  }
-}
+
+

@@ -45,6 +45,15 @@ export const currencies = [
    { value: "€", postValue: "Euro " },
 ];
 
+export const currenciesMap = {
+   Som: { value: "сом", postValue: "Som" },
+   Ruble: { value: "₽", postValue: "Ruble" },
+   USD: { value: "$", postValue: "USD" },
+   Euro: { value: "€", postValue: "Euro " },
+}
+
+
+
 export const typeSalary = [
    { value: "До вычета налогов", postValue: "som" },
    { value: "На руки", postValue: "eur" },

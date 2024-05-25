@@ -36,14 +36,14 @@ const History: FC = () => {
             <Tabs type={type} setType={setType} values={historyValues} />
             <div className={styles.section__date}>
                <h5>Фильтр по дате принятия заказа</h5>
-               <SelectDate
-                  day={day}
-                  setDay={setDay}
-                  month={month}
-                  setMonth={setMonth}
-                  year={year}
-                  setYear={setYear}
-               />
+               {/*<SelectDate*/}
+               {/*   day={day}*/}
+               {/*   setDay={setDay}*/}
+               {/*   month={month}*/}
+               {/*   setMonth={setMonth}*/}
+               {/*   year={year}*/}
+               {/*   setYear={setYear}*/}
+               {/*/>*/}
             </div>
          </div>
          <OrderList data={data} isError={false} isLoading={false} type={SkeletonTypes.listItem} />

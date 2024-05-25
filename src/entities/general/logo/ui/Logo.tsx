@@ -8,7 +8,7 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
 
-const Logo: FC<LogoProps> = ({ type = "navbar" }) => {
+const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    const theme = useThemeStore((state) => state.theme);
 
    return (
@@ -25,8 +25,8 @@ const Logo: FC<LogoProps> = ({ type = "navbar" }) => {
                      priority
                   />
                </Link>
-               <h1 className="h1">SmartTale</h1>
-               <p className={styles.logo__text}>Мониторинг и управление швейным производством</p>
+               <h1 className="h1">{data?.title}</h1>
+               <p className={styles.logo__text}>{data?.description}</p>
             </div>
          ) : (
             <div className={clsx(styles.logo, styles[theme])}>

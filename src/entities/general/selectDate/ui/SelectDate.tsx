@@ -1,47 +1,104 @@
-import React, { FC } from "react";
+import React, {FC, useMemo} from "react";
 import { SelectDateField } from "@/shared/ui";
 import { DateProps } from "../model/types";
-import { useDate } from "../model/useDate";
+import {Controller} from "react-hook-form";
+import {useDate2} from "@/entities/general/selectDate/model/useDate2";
 import styles from "./styles.module.scss";
 
 const SelectDate: FC<DateProps> = ({
-   month,
-   setMonth,
-   setYear,
-   year,
-   setDay,
-   day,
-   type = "admin", //user будем только передавать, admin по дефолту
-}) => {
+        month,
+        control,
+        year,
+        day,
+        setValue,
+        type = "admin", //user будем только передавать, admin по дефолту
+
+    }) => {
+
+
    const { days, months, years
-   } = useDate(year, month, setMonth, day, setDay, type);
+   } = useDate2(year, month, day, type, setValue);
+
+
+
+    // const currentMonth = useMemo(() => {
+    //     return months.find((m) => m.postValue === month.postValue);
+    // }, [months, month.postValue]);
+    //
+    // const currentDay = useMemo(() => {
+    //     return days.find((d) => d.postValue === day.postValue);
+    // }, [days, day.postValue]);
+    //
+    // const currentYear = useMemo(() => {
+    //     return years.find((y) => y.postValue === year.postValue);
+    // }, [years, year.postValue]);
+
+
+    // useEffect(() => {
+    //     if (currentDay) setValue("day", currentDay);
+    //     if (currentMonth) setValue("month", currentMonth);
+    //     if (currentYear) setValue("year", currentYear)
+    //
+    //     // eslint-disable-next-line
+    // }, [year.value, month.value, day.value]);
 
    return (
       <div className={styles.date}>
-         <SelectDateField
-            data={days} // массив
-            value={day} //Значение
-            setDate={setDay} //Фукнция для изменения значения
-            title="День"
-            classname={styles.date__day}
-            type={type}
-         />
-         <SelectDateField
-            data={months}
-            value={month}
-            setDate={setMonth}
-            title="Месяц"
-            classname={styles.date__month}
-            type={type}
-         />
-         <SelectDateField
-            data={years}
-            setDate={setYear}
-            value={year}
-            title="Год"
-            classname={styles.date__year}
-            type={type}
-         />
+          <Controller
+              name="day"
+              control={control}
+              defaultValue={day}
+              rules={{ required: 'Выберите день' }}
+              render={({ field }) => (
+                  <SelectDateField
+                      data={days}
+                      value={field.value}
+                      setDate={(value) => {
+                          field.onChange(value);
+                      }}
+                      title="День"
+                      classname={styles.date__day}
+                      type={type}
+                  />
+              )}
+          />
+
+          <Controller
+              name="month"
+              control={control}
+              defaultValue={month}
+              rules={{ required: 'Выберите месяц' }}
+              render={({ field }) => (
+                  <SelectDateField
+                      data={months}
+                      value={field.value}
+                      setDate={(value) => {
+                          field.onChange(value);
+                      }}
+                      title="Месяц"
+                      classname={styles.date__month}
+                      type={type}
+                  />
+              )}
+          />
+          <Controller
+              name="year"
+              control={control}
+              defaultValue={year}
+              rules={{ required: 'Выберите год' }}
+              render={({ field }) => (
+                  <SelectDateField
+                      data={years}
+                      setDate={(value) => {
+                          field.onChange(value);
+                      }}
+                      value={field.value}
+                      title="Год"
+                      classname={styles.date__year}
+                      type={type}
+                  />
+              )}
+          />
       </div>
    );
 };

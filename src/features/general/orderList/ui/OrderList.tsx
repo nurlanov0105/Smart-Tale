@@ -5,13 +5,14 @@ import styles from "./styles.module.scss";
 import { CommonSkeleton } from "@/shared/ui";
 
 const OrderList: FC<Props> = ({ data, isLoading, isError, type, isCurrent }) => {
+
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
-      data?.map((item) => (
-         <OrderItem key={item.id} item={item} isCurrent={isCurrent} />
+      data?.map((item, idx) => (
+         <OrderItem key={idx} item={item} isCurrent={isCurrent} />
       ))
    );
 
