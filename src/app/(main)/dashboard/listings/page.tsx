@@ -1,6 +1,6 @@
 import { Listings } from "@/widgets/user/listings";
 import styles from "./styles.module.scss";
-import {NextPage} from "next";
+import { NextPage } from "next";
 
 const ListingsPage: NextPage = () => {
    return (

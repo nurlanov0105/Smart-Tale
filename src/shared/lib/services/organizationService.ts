@@ -1,7 +1,11 @@
 import {baseApiInstance} from "@/shared/api/instance";
 import {OrdersEndpoints} from "@/shared/api";
 import {OrganizationEndpoints} from "@/shared/api/endpoints";
-import {AddPositionRequestTypes, AddPositionTypes} from "@/shared/lib/types/organizations-service.types";
+import {
+    AddEmployeeRequestTypes,
+    AddPositionRequestTypes,
+    AddPositionTypes, ChangePositionQueryTypes
+} from "@/shared/lib/types/organizations-service.types";
 
 export const OrganizationService = {
     createOrganization: async (params: FormData) => {
@@ -12,7 +16,7 @@ export const OrganizationService = {
         return response.data;
     },
     getOrganizationsList: async () => {
-        const response = await baseApiInstance.get(OrganizationEndpoints.GET_USER_ORGANIZATIONS, {});
+        const response = await baseApiInstance.get(OrganizationEndpoints.GET_MY_ORGANIZATIONS, {});
         return response.data;
     },
     getEmployees: async () => {
@@ -20,10 +24,14 @@ export const OrganizationService = {
         return response.data;
     },
     getOrganizationDetails: async (slug: string) => {
-        const response = await baseApiInstance.get(OrganizationEndpoints.ORGANIZATION_DETAILS + slug, {});
+        const response = await baseApiInstance.get(OrganizationEndpoints.ORGANIZATION_DETAILS + slug);
         return response.data;
     },
-    getEmployeeDetails: async (employeeSlug: string) => {
+    getEmployeeDetails: async (slug: string) => {
+        const response = await baseApiInstance.get(OrganizationEndpoints.EMPLOYEE_DETAILS + slug);
+        return response.data;
+    },
+    getVacancyDetails: async (employeeSlug: string) => {
         const response = await baseApiInstance.get(OrganizationEndpoints.EMPLOYEE_DETAILS + employeeSlug);
         return response.data;
     },
@@ -31,7 +39,7 @@ export const OrganizationService = {
         const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_EMPLOYEE, {data: employeeSlug});
         return response.data;
     },
-    addEmployee: async (data: IAdd) => {
+    addEmployee: async (data: AddEmployeeRequestTypes) => {
         const response = await baseApiInstance.post(OrganizationEndpoints.ADD_EMPLOYEE, data);
         return response.data;
     },
@@ -43,18 +51,17 @@ export const OrganizationService = {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_POSITIONS, {});
         return response.data;
     },
+    getPositionDetails: async (slug: string) => {
+        const response = await baseApiInstance.get(OrganizationEndpoints.DETAILS_POSITION + slug, {});
+        return response.data;
+    },
+    changePosition: async ({slug, params}: ChangePositionQueryTypes) => {
+        const response = await baseApiInstance.put(OrganizationEndpoints.CHANGE_POSITION + slug, {data: params});
+        return response.data;
+    },
+    deletePosition: async (slug: string) => {
+        const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_POSITION + slug);
+        return response.data;
+    },
 
-}
-
-export interface IAdd {
-    email:	string
-    org_title:	string
-    job_title: string
-
-    "change-roles": string,
-    "add-employee": string,
-    "change-status": string,
-    "cancel-order": string,
-    "give-role": string,
-    "delete-role": string,
 }

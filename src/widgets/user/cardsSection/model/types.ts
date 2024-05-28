@@ -3,5 +3,7 @@ export type CardSceletonProps = {
    isError?: boolean;
    type: string;
    data?: any;
-   fetchFunction?: any;
+   fetchFunction: any;
+   queryKey: string;
+   tab?: string;
 };

@@ -1,38 +1,48 @@
-import React from "react";
+import React, {FC} from "react";
 
 import { employeesCategories } from "../model/values.data";
 import { EmployeesItem } from "@/entities/admin/employeesItem";
 import { useThemeStore } from "@/shared/themeStore";
-
+import {CommonSkeleton, GlobalLoading} from "@/shared/ui";
+import {useEmployees} from "../model/useEmployees";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {useEmployees} from "@/features/general/employeesList/model/useEmployees";
+import {EmployeesListProps} from "@/features/general/employeesList/model/types";
 
-const EmployeesList = () => {
+const EmployeesList:FC<EmployeesListProps> = ({isLoading, data}) => {
    const theme = useThemeStore((state) => state.theme);
-   const list = [1, 2, 3, 4, 5,6,7,8,9];
 
-   const {data, isLoading, isError} = useEmployees()
+
+   if (!data?.length) return <h4 className="h4">У вас еще нет сотрудников</h4>
 
    return (
-       <div className={clsx(styles.table__border, styles[theme])}>
-           <table className={styles.table}>
-               <thead>
-                    <tr className={styles.table__thead}>
-                       {employeesCategories.map((category) => (
-                           <th className={styles.table__item} key={category}>
-                               {category}
-                           </th>
+       <>
+           {
+               isLoading && <div className={styles.table__loading}><GlobalLoading type="default"/></div>
+           }
+
+           <div className={clsx(styles.table__border, styles[theme])}>
+               {
+                   !isLoading &&
+                   <table className={styles.table}>
+                       <thead>
+                       <tr className={styles.table__thead}>
+                           {employeesCategories.map((category) => (
+                               <th className={styles.table__item} key={category}>
+                                   {category}
+                               </th>
+                           ))}
+                       </tr>
+                       </thead>
+                       <tbody className={styles.table__list}>
+                       {data?.map((item, idx) => (
+                           <EmployeesItem key={idx} {...item}/>
                        ))}
-                    </tr>
-               </thead>
-               <tbody className={styles.table__list}>
-                    {list.map((item) => (
-                        <EmployeesItem key={item} item={item}/>
-                    ))}
-               </tbody>
-           </table>
-       </div>
+                       </tbody>
+                   </table>
+               }
+           </div>
+       </>
    );
 };
 

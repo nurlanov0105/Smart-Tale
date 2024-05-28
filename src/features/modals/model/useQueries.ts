@@ -1,8 +1,9 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {EquipmentQueryKeys, EquipmentService, OrganizationQueryKeys, ServiceQueryKeys} from "@/shared/api";
-import {OrdersService, OrganizationService, ServicesService} from "@/shared/lib";
+import {OrdersService, ORGANIZATION_ROUTES, OrganizationService, ServicesService} from "@/shared/lib";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
 import {toast} from "react-toastify";
+import {useRouter} from "next/navigation";
 
 
 export const useHideEquipment = () => {
@@ -97,6 +98,21 @@ export const useDeleteService = () => {
         mutationFn: (slug) => ServicesService.deleteService(slug),
         onSuccess: () => {
             toast.success("Услуга была удалена")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+
+export const useDeletePosition = () => {
+    const {replace} = useRouter()
+    return useMutation<any, Error, string>({
+        mutationKey: [OrganizationQueryKeys.DETAILS_POSITION],
+        mutationFn: (slug) => OrganizationService.deletePosition(slug),
+        onSuccess: () => {
+            toast.success("Долнжость была удалена")
+            replace(ORGANIZATION_ROUTES.POSITIONS)
         },
         onError: () => {
             console.log("error")

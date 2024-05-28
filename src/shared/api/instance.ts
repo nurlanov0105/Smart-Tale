@@ -1,4 +1,4 @@
-import axios, {AxiosHeaders} from "axios";
+import axios, { AxiosHeaders } from "axios";
 import { toast } from "react-toastify";
 import {
    CookiesServices,
@@ -11,40 +11,38 @@ import {
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 const authOptions = {
-    baseURL: BASE_URL,
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true
-}
+   baseURL: BASE_URL,
+   headers: { "Content-Type": "application/json" },
+   withCredentials: true,
+};
 
 const baseOptions = {
-    baseURL: BASE_URL,
-    headers: { "Content-Type": "application/json" },
-    withCredentials: true,
-    // transformRequest: [function (data: any, headers: AxiosHeaders) {
-    //     if (headers['Content-Type'] && headers['Content-Type'].startsWith('multipart/form-data')) {
-    //         const form = new FormData();
-    //         for (const key in data) {
-    //             const value = data[key];
-    //             if (Array.isArray(value)) {
-    //                 const arrayKey = `${key}[]`;
-    //                 value.forEach(v => {
-    //                     form.append(arrayKey, v);
-    //                 });
-    //             } else{
-    //                 form.append(key, value);
-    //             }
-    //         }
-    //         return form;
-    //     }
-    //
-    //     return data;
-    // }],
-}
-
+   baseURL: BASE_URL,
+   headers: { "Content-Type": "application/json" },
+   withCredentials: true,
+   // transformRequest: [function (data: any, headers: AxiosHeaders) {
+   //     if (headers['Content-Type'] && headers['Content-Type'].startsWith('multipart/form-data')) {
+   //         const form = new FormData();
+   //         for (const key in data) {
+   //             const value = data[key];
+   //             if (Array.isArray(value)) {
+   //                 const arrayKey = `${key}[]`;
+   //                 value.forEach(v => {
+   //                     form.append(arrayKey, v);
+   //                 });
+   //             } else{
+   //                 form.append(key, value);
+   //             }
+   //         }
+   //         return form;
+   //     }
+   //
+   //     return data;
+   // }],
+};
 
 export const authApiInstance = axios.create(authOptions);
 export const baseApiInstance = axios.create(baseOptions);
-
 
 authApiInstance.interceptors.response.use(
    (response) => {
@@ -54,8 +52,8 @@ authApiInstance.interceptors.response.use(
       // const errorKey = Object.keys(error.response.data)[0];
       // const errorMessage = error.response.data[errorKey];
 
-      const alertError = errorCatch(error)
-       console.log(error)
+      const alertError = errorCatch(error);
+      console.log(error);
 
       toast.error(alertError);
       return Promise.reject(error);
@@ -86,9 +84,9 @@ baseApiInstance.interceptors.request.use(
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
-       // if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
-       //     config.url += '/';
-       // }
+       if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
+           config.url += '/';
+       }
 
       return config;
    },

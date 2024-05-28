@@ -1,8 +1,11 @@
 .item {
-   &__input {
-      cursor: pointer;
-   }
+
    &__title {
+   }
+   &__disabled{
+      label{
+         cursor: auto !important;
+      }
    }
 
    label {

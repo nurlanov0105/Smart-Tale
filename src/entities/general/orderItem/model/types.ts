@@ -7,9 +7,9 @@ type item = {
    id: number;
    type: string;
    status?: string;
-   service: string
-   slug: string
-   title: string
-   description: string
-   created_at: string
+   service: string;
+   slug: string;
+   title: string;
+   description: string;
+   created_at: string;
 };

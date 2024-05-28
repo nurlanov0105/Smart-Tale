@@ -1,5 +1,5 @@
 .form {
-   border-bottom: 1px solid $dark-grey;
+   //border-bottom: 1px solid $dark-grey;
    padding-bottom: 3rem;
    margin-bottom: 2rem;
 
@@ -25,6 +25,13 @@
       column-gap: 12px;
    }
 
+   &__tabs{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      margin-right: 1rem;
+   }
    &__list {
       display: flex;
       flex-direction: column;

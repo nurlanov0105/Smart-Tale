@@ -114,10 +114,10 @@ export default Board;
 // "use client"
 // import {useState} from "react";
 // import {DragDropContext, DropResult} from "@hello-pangea/dnd";
-// import {newOrdersList, checkOrdersList, completedOrdersList, postOrdersList, processOrdersList} from "@/features/user/boardColumn/model/consts";
+// import {newOrdersList, checkOrdersList, completedOrdersList, postOrdersList, processOrdersList} from "@/features/user/boardColumn/model/consts.ts";
 
 // import { useEffect, useState } from "react";
-// import { BoardData } from "@/features/user/boardColumn/model/consts";
+// import { BoardData } from "@/features/user/boardColumn/model/consts.ts";
 // import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 // import type { Columns, KanbanOrderProps } from "../model/types";
 

@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Emojis } from "@/shared/ui";
 
 import styles from "./styles.module.scss";
+import {closeModal} from "@/views/modal";
 
 const SubscribeModal = () => {
    return (
@@ -12,7 +13,7 @@ const SubscribeModal = () => {
             Подписка уже в пути!
          </h3>
          <p className={styles.subscribe__text}>С вами свяжется наш администратор</p>
-         <Button>Понятно</Button>
+         <Button onClick={closeModal}>Понятно</Button>
       </div>
    );
 };

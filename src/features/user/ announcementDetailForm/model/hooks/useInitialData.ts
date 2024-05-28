@@ -1,24 +1,11 @@
-import {UseFormReset} from "react-hook-form";
-import {OrderCreateFormType} from "@/features/user/orderForm/model/types";
 import {useEffect} from "react";
-import {currenciesMap} from "@/widgets/user/createVacancy/model/values.data";
 import {getDate, getMonth, getYear, parseISO} from "date-fns";
+import {currenciesMap} from "@/widgets/user/createVacancy/model/values.data";
 import {monthsList} from "@/entities/general/selectDate/model/helper";
-import {cloudImageToFile, processImage} from "@/shared/lib/utils/imageToFile";
+import { processImage} from "@/shared/lib/utils/imageToFile";
+import type {InitialDataProps, ImageTypes} from "../types";
 
-interface InitialDataProps{
-    reset: UseFormReset<OrderCreateFormType>
-    slug: string
-    type: string
-    data: any
-    isSuccess: boolean
-}
-interface IImage{
-    images: string
-    id: number
-}
-
-export const useInitialData = ({type, slug, reset, data, isSuccess}: InitialDataProps) => {
+export const useInitialData = ({reset, data, isSuccess}: InitialDataProps) => {
 
     useEffect(() => {
         const initializeData = async () => {
@@ -37,7 +24,7 @@ export const useInitialData = ({type, slug, reset, data, isSuccess}: InitialData
                 //     return file;
                 // }));
 
-                const images = await Promise.all(data?.images.map(async (item: IImage) => {
+                const images = await Promise.all(data?.images.map(async (item: ImageTypes) => {
                     const file = await processImage(item.images, Date.now().toString());
                     return file;
                 }));

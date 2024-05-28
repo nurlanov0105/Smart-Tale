@@ -1,14 +1,16 @@
 "use client";
 import React from "react";
-import { Button } from "@/shared/ui";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 import { PositionItem } from "@/entities/admin/positionItem";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
-
-import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
-import {usePositions} from "@/widgets/admin/positions/model/usePositions";
+import {Button, GlobalLoading} from "@/shared/ui";
+
+import {usePositions} from "../model/usePositions";
+import styles from "./styles.module.scss";
+import {EmptyContent} from "@/entities/admin/emptyContent";
+import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
 
 const Positions = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -18,46 +20,48 @@ const Positions = () => {
       router.push(ORGANIZATION_ROUTES.ADD_POSITION);
    };
 
-   const list = [
-      { title: "Зам. Директор", description: "Делать отчёты каждый месяц" },
-      { title: "Менеджер", description: "Управлять работниками и следить за заказами" },
-      { title: "Администратор", description: "Управлять организацией" },
-      { title: "Утюжник", description: "Гладить" },
-      { title: "Швея", description: "Шить" },
-   ];
 
-   const {data} = usePositions()
-   console.log(data)
+   const {data, isLoading, isError} = usePositions()
+   if (isLoading) return <GlobalLoading type="full"/>
+   if (isError) return <h3 className="h3">Упс, произошла ошибка</h3>
 
    return (
-      <div className={clsx(styles.position, styles[theme])}>
-         <div className={styles.position__top}>
-            <h3>Список должностей</h3>
-            <Button onClick={handleRoute}>Добавить должность</Button>
-         </div>
+       <>
+          {
+             !data?.length && <EmptyContent type={EMPTY_CONTENT_TYPES.positions}/>
+          }
+          {
+              !!data?.length &&
+              <div className={clsx(styles.position, styles[theme])}>
 
-         <div className={styles.table__border}>
-            <table className={styles.table}>
-               <thead>
-                  <tr className={styles.table__thead}>
-                     <th className={clsx(styles.table__item, styles.table__item__idx)}>№</th>
-                     <th className={clsx(styles.table__item, styles.table__item__title)}>
-                        Название
-                     </th>
-                     <th className={clsx(styles.table__item, styles.table__item__descr)}>
-                        Описание
-                     </th>
-                     {/*<th className={clsx(styles.table__item, styles.table__item__idx)}>Удалить</th>*/}
-                  </tr>
-               </thead>
-               <tbody className={styles.table__list}>
-                  {list.map((item, idx) => (
-                     <PositionItem key={item.title} item={item} idx={idx} />
-                  ))}
-               </tbody>
-            </table>
-         </div>
-      </div>
+                 <div className={styles.position__top}>
+                    <h3>Список должностей</h3>
+                    <Button onClick={handleRoute}>Добавить должность</Button>
+                 </div>
+
+                 <div className={styles.table__border}>
+                    <table className={styles.table}>
+                       <thead>
+                       <tr className={styles.table__thead}>
+                          <th className={clsx(styles.table__item, styles.table__item__idx)}>№</th>
+                          <th className={clsx(styles.table__item, styles.table__item__title)}>
+                             Название
+                          </th>
+                          <th className={clsx(styles.table__item, styles.table__item__descr)}>
+                             Описание
+                          </th>
+                       </tr>
+                       </thead>
+                       <tbody className={styles.table__list}>
+                       {data?.map((item, idx) => (
+                           <PositionItem key={item.title} item={item} idx={idx}/>
+                       ))}
+                       </tbody>
+                    </table>
+                 </div>
+              </div>
+          }
+       </>
    );
 };
 

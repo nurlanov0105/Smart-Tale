@@ -11,10 +11,10 @@ const HideAnnouncementModal = (props: ModalProps) => {
         hideAnnouncement,
         isError,
         isLoading
-    } = useHideAnnouncement(props?.type ?? "") //order | equipment
+    } = useHideAnnouncement(props?.type ?? "") //order | equipment | service
 
     const handleHide = () => {
-        hideAnnouncement(props.slug ?? "") //slug order | equipment
+        hideAnnouncement(props.slug ?? "") //slug order | equipment | service
         closeModal()
     }
 

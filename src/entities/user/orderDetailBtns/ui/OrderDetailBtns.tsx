@@ -1,15 +1,15 @@
 import React, {FC} from 'react';
-import {Button} from "@/shared/ui";
+import {UseFormReset} from "react-hook-form";
 import {showModal} from "@/views/modal";
+import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
+import {Button} from "@/shared/ui";
 import {MODAL_KEYS} from "@/shared/lib";
 import styles from "./styles.module.scss";
-import {UseFormReset} from "react-hook-form";
-import {OrderCreateFormType} from "@/features/user/orderForm/model/types";
 
 interface IProps{
     isDirty: boolean
     isDisabled: boolean
-    reset: UseFormReset<OrderCreateFormType>
+    reset: UseFormReset<any>
 }
 const OrderDetailBtns:FC<IProps> = ({isDirty, reset, isDisabled}) => {
 

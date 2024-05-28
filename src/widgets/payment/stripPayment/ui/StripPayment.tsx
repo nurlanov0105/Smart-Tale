@@ -31,6 +31,7 @@ const StripPayment = () => {
          <div className={styles.section__content}>
             <div className={styles.section__left}>
                <Select
+                   //@ts-ignore
                   selected={selected}
                   setSelected={setSelected}
                   title="Подписки"

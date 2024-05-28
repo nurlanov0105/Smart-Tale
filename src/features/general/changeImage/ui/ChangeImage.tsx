@@ -1,11 +1,11 @@
 import React, { FC } from "react";
 import { showModal } from "@/views/modal";
-import userIcon from "@@/imgs/form/user.svg";
 import Image from "next/image";
 import { ChangeImageProps } from "../model/types";
 import Link from "next/link";
 import { ORGANIZATION_ROUTES, MODAL_KEYS } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import userIcon from "@@/imgs/form/user.svg";
 
 const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) => {
    const handleAvatarClick = () => {
@@ -16,11 +16,14 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) =
 
    return (
       <fieldset className={styles.form__user}>
-         <div className={styles.form__avatar}>
-            <Image src={userIcon} alt="user icon" />
+         <div
+            className={styles.form__avatar}
+            style={{ backgroundImage: image ? `url(${image})` : "" }}
+            onClick={handleAvatarClick}>
+            {!image ? <Image src={userIcon} alt="user icon" /> : ""}
          </div>
          <div className={styles.form__userBox}>
-            <h3 className={styles.form__name}>Кирилл Олейников</h3>
+            <h3 className={styles.form__name}>{name}</h3>
             {isAdmin ? (
                <Link
                   href={ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS + "/emplyessDetailsName"}

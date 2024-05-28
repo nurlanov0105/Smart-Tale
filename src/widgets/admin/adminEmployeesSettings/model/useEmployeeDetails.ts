@@ -1,8 +1,8 @@
-import {useQuery} from "@tanstack/react-query";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService} from "@/shared/lib";
 import {useForm} from "react-hook-form";
 import type {EmployeeDetailsTypes} from "@/shared/lib/types/organizations-service.types";
+import {usePositions} from "@/widgets/admin/positions/model/usePositions";
+import {defaultValuesEmployeeDetails} from "../model/helper";
+import {useEmployeeQuery} from "./useEmployeeQuery";
 
 export const useEmployeeDetails = (slug: string) => {
 
@@ -11,20 +11,25 @@ export const useEmployeeDetails = (slug: string) => {
         register,
         handleSubmit,
         control,
-        formState: {errors, isValid}
+        watch,
+        formState: {errors, isValid},
+        setValue
     } = useForm<EmployeeDetailsTypes>({
-        mode: "onBlur"
+        mode: "onBlur",
+        defaultValues: defaultValuesEmployeeDetails
     })
 
-    const {data, isError, isLoading, isSuccess} = useQuery({
-        queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS, slug],
-        queryFn: () => OrganizationService.getEmployeeDetails(slug),
-    })
-    const onSubmit = () => {
+    const {data, isError, isLoading, isSuccess} = useEmployeeQuery(slug)
 
+    const {
+        data: positions,
+        isLoading: isLoadingPosition,
+        isSuccess: isSuccessPosition
+    } = usePositions()
+
+    const onSubmit = (data: EmployeeDetailsTypes) => {
+        console.log(data)
     }
-    console.log(data)
-
 
     return {
         data: data && data,
@@ -32,7 +37,13 @@ export const useEmployeeDetails = (slug: string) => {
         isSuccess: isSuccess,
         isLoading: isLoading,
         isError: isError,
+        isSuccessPosition,
+        isLoadingPosition,
+        positions,
         register,
-        control
+        control,
+        watch,
+        reset,
+        setValue
     }
 }

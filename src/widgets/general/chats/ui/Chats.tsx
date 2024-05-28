@@ -23,12 +23,14 @@ const Chats = () => {
             <div className={styles.chats__left}>
                <div className={styles.chats__tabs}>
                   <Select
+                      //@ts-ignore
                      selected={selectedType}
                      setSelected={setSelectedType}
                      data={chatsFilterType}
                      type="chat"
                   />
                   <Select
+                      //@ts-ignore
                      selected={selectedDate}
                      setSelected={setSelectedDate}
                      data={chatsFilterDate}

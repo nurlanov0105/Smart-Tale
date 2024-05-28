@@ -22,6 +22,7 @@ import {
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
 import { useThemeStore } from "@/shared/themeStore";
+import DeletePositionModal from "@/features/modals/ui/deletePositionModal/DeletePositionModal";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -47,6 +48,7 @@ const Modal: FC = () => {
       DeleteModal,
       DeleteEmployeeModal,
       ResponsesModal,
+      DeletePositionModal
    };
    let RenderComponent;
 

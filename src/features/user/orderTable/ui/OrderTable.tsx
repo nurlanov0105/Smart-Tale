@@ -1,36 +1,51 @@
 "use client";
 
-import React from "react";
-import clsx from "clsx";
-
+import React, { FC, useEffect } from "react";
 import { OrderTableItem } from "@/entities/general/orderTableItem";
 import { OrderCategories } from "../model/values";
 import { useThemeStore } from "@/shared/themeStore";
-
+import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { OrderTableProps } from "../model/types";
+import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
+import { CommonSkeleton } from "@/shared/ui";
+import { ObserverSection } from "@/entities/general/observerSection";
 
-const OrderTable = () => {
+const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab }) => {
    const theme = useThemeStore((state) => state.theme);
+   const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
+      fetchFunction,
+      param_tab,
+      queryKey,
+   });
+
+   const readyData = isError ? (
+      <h3 className="h3">Упс, произошла ошибка 😅</h3>
+   ) : isLoading ? (
+      [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type="listItem" />)
+   ) : (
+      data?.map((item: any, i: number) => <OrderTableItem key={i} />)
+   );
+
    return (
-       <div className={styles.table__orders}>
-           <table className={clsx(styles.table, styles[theme])}>
-               <thead>
-               <tr className={styles.table__thead}>
-                   {OrderCategories.map((category) => (
-                       <th className={styles.table__item} key={category}>
-                           {category}
-                       </th>
-                   ))}
-               </tr>
-               </thead>
-               <tbody className={styles.table__list}>
-               {[...Array(11)].map((_, i) => (
-                   <OrderTableItem key={i}/>
+      <section className={styles.section}>
+         <div className={styles.table}>
+            <div className={styles.table__heading}>
+               {OrderCategories.map((category) => (
+                  <h4 key={category} className={styles.table__title}>
+                     {category}
+                  </h4>
                ))}
-               </tbody>
-           </table>
-       </div>
-       // <CommonSkeleton type="orderTable"/>
+            </div>
+            <ul className={styles.table__list}>{readyData}</ul>
+         </div>
+         <ObserverSection
+            isInitialLoading={isLoading}
+            isLoading={isFetchingNextPage}
+            observerTarget={observerTarget}
+         />
+      </section>
+      // <CommonSkeleton type="orderTable"/>
    );
 };
 

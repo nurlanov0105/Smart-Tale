@@ -1,15 +1,16 @@
 "use client";
 
 import { FC, useState } from "react";
-import { listingsValues } from "../model/values";
+// import { ListingsDefineService } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import styles from "./styles.module.scss";
-import { SkeletonTypes } from "@/shared/lib";
-import {useListings} from "@/widgets/user/listings/model/useListings";
+import { SkeletonTypes, announcementTabs } from "@/shared/lib";
+import { EquipmentService, UserQueryKeys } from "@/shared/api";
+import { useListings } from "../model/useListings";
 
 const Listings: FC = () => {
-   const [type, setType] = useState(listingsValues[0].postValue);
+   const [type, setType] = useState(announcementTabs[0].postValue);
 
    const dataList = [
       { id: 1, type: "order" },
@@ -20,14 +21,20 @@ const Listings: FC = () => {
       { id: 6, type: "order" },
    ];
 
-   const {data, isLoading, isError} = useListings(type)
+   const { data, isLoading, isError } = useListings(type);
 
    return (
       <div className={styles.listings}>
          <div className={styles.listings__btns}>
-            <Tabs type={type} setType={setType} values={listingsValues} />
+            <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
-         <OrderList data={data} isError={isError} isLoading={isLoading} type={SkeletonTypes.listItem} />
+
+         <OrderList
+            data={data}
+            isError={isError}
+            isLoading={isLoading}
+            type={SkeletonTypes.listItem}
+         />
       </div>
    );
 };

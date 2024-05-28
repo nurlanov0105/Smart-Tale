@@ -8,7 +8,7 @@ import { IEmailVerifyRequest } from "@/features/auth/model/types";
 import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
-import {cookies} from "next/headers";
+import { cookies } from "next/headers";
 
 export const useRegister = (reset: UseFormReset<any>) => {
    const router = useRouter();
@@ -43,10 +43,15 @@ export const useLogin = (reset: UseFormReset<any>) => {
             if (isRemember) {
                CookiesServices.setToken(accessData);
                CookiesServices.setToken(refreshData);
+               CookiesServices.setToken({
+                  keyName: EnumTokens.SUBSCRIBED_DATA,
+                  value: `${JSON.stringify(data.data.data)}`,
+                  time: `${60 * 86400}`,
+               });
             } else {
                sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
                sessionStorage.setItem(EnumTokens.REFRESH_TOKEN, data.data.refresh);
-
+               sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(data.data.data));
             }
 
             reset();
