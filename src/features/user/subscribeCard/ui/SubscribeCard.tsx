@@ -1,18 +1,16 @@
 "use client";
 
+import { FC } from "react";
+import { useRouter } from "next/navigation";
+import { useThemeStore } from "@/shared/themeStore";
 import { Check } from "lucide-react";
 import { Button } from "@/shared/ui";
-import { showModal } from "@/views/modal";
-import { CookiesServices, EnumTokens, MODAL_KEYS, ROUTES } from "@/shared/lib";
+import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { dataSubscribe } from "@/features/user/subscribeCard";
+import { SubscribeCardProps } from "../model/types";
 
-import { FC, useState } from "react";
-import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import Link from "next/link";
-import { SubscribeCardProps } from "../model/types";
-import { useRouter } from "next/navigation";
 
 const SubscribeCard: FC<SubscribeCardProps> = ({ type, isPayment = false }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -59,7 +57,7 @@ const SubscribeCard: FC<SubscribeCardProps> = ({ type, isPayment = false }) => {
 
                <div className={styles.card__descr}>{data.description}</div>
                <ul className={styles.card__list}>
-                  {data.data.map((item: any) => (
+                  {data.data.map((item: string) => (
                      <li className={styles.card__item} key={item}>
                         <Check />
                         <span>{item}</span>

@@ -1,14 +1,15 @@
 "use client";
 
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import { StandartCard } from "@/features/user/standartCard";
-import { CardSceletonProps } from "../model/types";
-import { CommonSkeleton, GlobalLoading } from "@/shared/ui";
-import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
-import styles from "./styles.module.scss";
 import { ObserverSection } from "@/entities/general/observerSection";
+import { CommonSkeleton } from "@/shared/ui";
+import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
+import { CardSectionProps } from "../model/types";
+import styles from "./styles.module.scss";
+import { CardType } from "@/shared/lib";
 
-const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, queryKey, tab, type }) => {
+const CardsSection: FC<CardSectionProps> = ({ fetchFunction, queryKey, tab, type }) => {
    const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
       fetchFunction,
       queryKey,
@@ -20,7 +21,7 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, queryKey, tab, typ
    ) : isLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
-      data?.map((item: any, i: number) => <StandartCard key={i} item={item} />)
+      data?.map((item: CardType, i: number) => <StandartCard key={i} item={item} />)
    );
 
    return (
@@ -32,6 +33,11 @@ const CardsSection: FC<CardSceletonProps> = ({ fetchFunction, queryKey, tab, typ
             isLoading={isFetchingNextPage}
             observerTarget={observerTarget}
          />
+         {/* {showBtn && (
+            <Button className="btn_fixed" onClick={goTop}>
+               <ArrowUpIcon />
+            </Button>
+         )} */}
       </section>
    );
 };

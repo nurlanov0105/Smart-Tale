@@ -3,14 +3,17 @@
 import { StripePaymentForm, SubsribesData } from "@/features/payment";
 import styles from "./styles.module.scss";
 import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
-import { CookiesServices, EnumTokens } from "@/shared/lib";
+import { CookiesServices, EnumTokens, MODAL_KEYS, UserService, useRememberMe } from "@/shared/lib";
 import { useEffect, useState } from "react";
 import { Select } from "@/shared/ui";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
+import { useMutation } from "@tanstack/react-query";
+import { showModal } from "@/views/modal";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
+   const isRemember = useRememberMe();
 
    const isClient = typeof window === "object";
    const [type, setType] = useState("base");
@@ -24,6 +27,35 @@ const StripPayment = () => {
          setType("");
       }
    }, [isClient, type]);
+
+   const {
+      mutate: subscribe,
+      isError,
+      isPending,
+   } = useMutation({
+      mutationFn: UserService.subscribe,
+      onSuccess: (data: any) => {
+         console.log(data);
+
+         const subData = { subscription: data.new_sub_dt, ["is subscribed"]: true };
+         if (isRemember) {
+            console.log(subData);
+            CookiesServices.setToken({
+               keyName: EnumTokens.SUBSCRIBED_DATA,
+               value: `${JSON.stringify(subData)}`,
+               time: `${60 * 86400}`,
+            });
+         } else {
+            console.log(subData);
+            sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
+         }
+         showModal(MODAL_KEYS.subscribe);
+      },
+   });
+
+   const handleSubscribe = () => {
+      subscribe(type);
+   };
 
    return (
       <section className={clsx(styles.section, styles[theme])}>
@@ -39,7 +71,7 @@ const StripPayment = () => {
                />
                <SubscribeCard type={selected.postValue} isPayment={true} />
             </div>
-            <StripePaymentForm />
+            <StripePaymentForm handleSubscribe={handleSubscribe} isPending={isPending} />
          </div>
       </section>
    );

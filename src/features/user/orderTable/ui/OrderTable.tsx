@@ -22,14 +22,18 @@ const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab })
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (
-      [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type="listItem" />)
+      <div className={styles.skeletons}>
+         {[...Array(8)].map((_, i: number) => (
+            <CommonSkeleton key={i} type="listItem" />
+         ))}
+      </div>
    ) : (
       data?.map((item: any, i: number) => <OrderTableItem key={i} />)
    );
 
    return (
       <section className={styles.section}>
-         <div className={styles.table}>
+         <div className={clsx(styles.table, styles[theme])}>
             <div className={styles.table__heading}>
                {OrderCategories.map((category) => (
                   <h4 key={category} className={styles.table__title}>

@@ -5,13 +5,10 @@ export type ItemProps = {
    isCurrent?: boolean;
 };
 
-type item = {
-   id: number;
+export type ItemType = {
    type: string;
-   status?: string;
-   service: string;
    slug: string;
    title: string;
    description: string;
-   created_at: string;
+   image: string;
 };

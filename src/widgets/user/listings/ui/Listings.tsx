@@ -1,25 +1,14 @@
 "use client";
 
 import { FC, useState } from "react";
-// import { ListingsDefineService } from "../model/values";
 import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
-import styles from "./styles.module.scss";
 import { SkeletonTypes, announcementTabs } from "@/shared/lib";
-import { EquipmentService, UserQueryKeys } from "@/shared/api";
 import { useListings } from "../model/useListings";
+import styles from "./styles.module.scss";
 
 const Listings: FC = () => {
    const [type, setType] = useState(announcementTabs[0].postValue);
-
-   const dataList = [
-      { id: 1, type: "order" },
-      { id: 2, type: "equipment" },
-      { id: 3, type: "order" },
-      { id: 4, type: "equipment" },
-      { id: 5, type: "equipment" },
-      { id: 6, type: "order" },
-   ];
 
    const { data, isLoading, isError } = useListings(type);
 
@@ -35,6 +24,13 @@ const Listings: FC = () => {
             isLoading={isLoading}
             type={SkeletonTypes.listItem}
          />
+
+         {/* <OrderList
+            fetchFunction={EquipmentService.getMyAds}
+            queryKey={"EquipmentQueryKeys.GET_MY_ADS"}
+            param_tab={type}
+            type={SkeletonTypes.listItem}
+         /> */}
       </div>
    );
 };

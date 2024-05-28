@@ -1,0 +1,20 @@
+.btn {
+   position: fixed;
+   bottom: 6rem;
+   right: 10rem;
+   z-index: $z7;
+
+   width: 4rem;
+   height: 4rem;
+   background-color: $dark-blue;
+   border-radius: 10px;
+   overflow: hidden;
+
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   svg {
+      color: $common-white;
+   }
+}
