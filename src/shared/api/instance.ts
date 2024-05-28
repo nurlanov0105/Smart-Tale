@@ -1,47 +1,16 @@
-import axios, { AxiosHeaders } from "axios";
+import axios from "axios";
 import { toast } from "react-toastify";
-import {
-   CookiesServices,
-   EnumTokens,
-   ROUTES,
-   refreshToken,
-   errorCatch,
-   useRememberMe,
-} from "../lib";
+import { CookiesServices, EnumTokens, refreshToken, errorCatch } from "../lib";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
-const authOptions = {
-   baseURL: BASE_URL,
-   headers: { "Content-Type": "application/json" },
-   withCredentials: true,
-};
 
 const baseOptions = {
    baseURL: BASE_URL,
    headers: { "Content-Type": "application/json" },
    withCredentials: true,
-   // transformRequest: [function (data: any, headers: AxiosHeaders) {
-   //     if (headers['Content-Type'] && headers['Content-Type'].startsWith('multipart/form-data')) {
-   //         const form = new FormData();
-   //         for (const key in data) {
-   //             const value = data[key];
-   //             if (Array.isArray(value)) {
-   //                 const arrayKey = `${key}[]`;
-   //                 value.forEach(v => {
-   //                     form.append(arrayKey, v);
-   //                 });
-   //             } else{
-   //                 form.append(key, value);
-   //             }
-   //         }
-   //         return form;
-   //     }
-   //
-   //     return data;
-   // }],
 };
 
-export const authApiInstance = axios.create(authOptions);
+export const authApiInstance = axios.create(baseOptions);
 export const baseApiInstance = axios.create(baseOptions);
 
 authApiInstance.interceptors.response.use(
@@ -49,9 +18,6 @@ authApiInstance.interceptors.response.use(
       return response;
    },
    (error) => {
-      // const errorKey = Object.keys(error.response.data)[0];
-      // const errorMessage = error.response.data[errorKey];
-
       const alertError = errorCatch(error);
       console.log(error);
 
@@ -79,14 +45,9 @@ baseApiInstance.interceptors.request.use(
          if (!refreshToken) {
             CookiesServices.clearTokens();
             CookiesServices.clearCredentials();
-            //window.location.href = ROUTES.SIGN_IN;
          }
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
-
-      //  if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
-      //      config.url += '/';
-      //  }
 
       return config;
    },
@@ -109,7 +70,6 @@ baseApiInstance.interceptors.response.use(
 
             return baseApiInstance.request(originalRequest);
          } catch (err) {
-            //if (errorCatch(error) === "Токен недействителен или просрочен") CookiesServices.clearTokens()
             console.log(err);
          }
 

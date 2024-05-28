@@ -1,8 +1,8 @@
 "use client";
+
 import React, { useState } from "react";
 import { OrderForm } from "@/features/user/orderForm";
 import { Tabs } from "@/features/general/tabs";
-
 import { orderDetailsValues } from "../model/values";
 import styles from "./styles.module.scss";
 

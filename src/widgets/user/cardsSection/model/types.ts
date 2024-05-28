@@ -1,8 +1,5 @@
-export type CardSceletonProps = {
-   isLoading?: boolean;
-   isError?: boolean;
+export type CardSectionProps = {
    type: string;
-   data?: any;
    fetchFunction: any;
    queryKey: string;
    tab?: string;

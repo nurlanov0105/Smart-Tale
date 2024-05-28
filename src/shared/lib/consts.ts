@@ -1,6 +1,4 @@
 import { CountryCode } from "libphonenumber-js";
-import { ROUTES } from "./routes.config";
-import { EquipmentService } from "../api";
 
 const slide01 = "/imgs/slider/01.jpg";
 const slide02 = "/imgs/slider/02.jpg";

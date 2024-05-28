@@ -10,6 +10,7 @@ const CardCategory: FC<CardCategoryProps> = ({
    selectedCategory,
    isLarge,
    isMobile,
+   type,
 }) => {
    const theme = useThemeStore((state) => state.theme);
    return (
@@ -20,19 +21,24 @@ const CardCategory: FC<CardCategoryProps> = ({
             isMobile ? styles.category_mobile : "",
             styles[theme]
          )}>
-         {CardCategoryData.map((category) => (
-            <li
-               key={category}
-               className={clsx(
-                  styles.category__item,
-                  selectedCategory.toLowerCase() === category.toLowerCase()
-                     ? styles.category__item_active
-                     : ""
-               )}
-               onClick={() => handleCategoryClick(category)}>
-               {category}
-            </li>
-         ))}
+         {CardCategoryData.map((category) => {
+            if (type !== "order" && category === "Размеры") {
+               return null;
+            }
+            return (
+               <li
+                  key={category}
+                  className={clsx(
+                     styles.category__item,
+                     selectedCategory.toLowerCase() === category.toLowerCase()
+                        ? styles.category__item_active
+                        : ""
+                  )}
+                  onClick={() => handleCategoryClick(category)}>
+                  {category}
+               </li>
+            );
+         })}
       </ul>
    );
 };

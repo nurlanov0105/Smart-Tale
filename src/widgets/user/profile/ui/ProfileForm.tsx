@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { ChangeEvent, FC, useEffect, useState } from "react";
 import { Button, GlobalLoading, InputField } from "@/shared/ui";
 
 import { useForm } from "react-hook-form";
@@ -8,7 +8,7 @@ import { showModal } from "@/views/modal";
 import { ChangeImage } from "@/features/general/changeImage";
 import { MODAL_KEYS, useAuth } from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
-import { useGetProfile } from "../model/useQueries";
+import { useChangeProfile, useGetProfile } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useUserStore } from "@/entities/general/userInfo";
@@ -34,6 +34,7 @@ const ProfileForm: FC = () => {
    const [phoneNumber, setPhoneNumber] = useState("");
 
    const { isError, isPending: isLoading, data } = useGetProfile();
+   const { mutate: changeProfile, isPending } = useChangeProfile();
 
    useEffect(() => {
       if (data) {
@@ -62,6 +63,13 @@ const ProfileForm: FC = () => {
          email,
          phoneNumber,
       });
+      const data = {
+         first_name: firstName,
+         last_name: lastName,
+         middle_name: middleName,
+         phone_number: phoneNumber,
+      };
+      changeProfile(data);
       setinputDisabled(true);
    };
 
@@ -84,6 +92,22 @@ const ProfileForm: FC = () => {
    //    console.log(data);
    // }
 
+   const handleChangeFirstName = (e: ChangeEvent<HTMLInputElement>) => {
+      setFirstName(e.target.value);
+   };
+   const handleChangeLastName = (e: ChangeEvent<HTMLInputElement>) => {
+      setLastName(e.target.value);
+   };
+   const handleChangeMiddleName = (e: ChangeEvent<HTMLInputElement>) => {
+      setMiddleName(e.target.value);
+   };
+   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
+      setEmail(e.target.value);
+   };
+   const handleChangePnoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
+      setPhoneNumber(e.target.value);
+   };
+
    return (
       <form className={clsx(styles.form, styles[theme])} onSubmit={handleSubmit(onSubmit)}>
          <div className={styles.form__content}>
@@ -100,20 +124,20 @@ const ProfileForm: FC = () => {
                         title="Имя"
                         disabled={inputDisabled}
                         value={firstName}
-                        onChange={(e: any) => setFirstName(e.target.value)}
+                        onChange={handleChangeFirstName}
                      />
                      <InputField
                         title="Фамилия"
                         disabled={inputDisabled}
                         value={lastName}
-                        onChange={(e: any) => setLastName(e.target.value)}
+                        onChange={handleChangeLastName}
                      />
                   </div>
                   <InputField
                      title="Отчество"
                      disabled={inputDisabled}
                      value={middleName}
-                     onChange={(e: any) => setMiddleName(e.target.value)}
+                     onChange={handleChangeMiddleName}
                   />
                </div>
             </fieldset>
@@ -126,13 +150,13 @@ const ProfileForm: FC = () => {
                         title="Почта"
                         disabled={inputDisabled}
                         value={email}
-                        onChange={(e: any) => setEmail(e.target.value)}
+                        onChange={handleChangeEmail}
                      />
                      <InputField
                         title="Номер телефона"
                         disabled={inputDisabled}
                         value={phoneNumber}
-                        onChange={(e: any) => setPhoneNumber(e.target.value)}
+                        onChange={handleChangePnoneNumber}
                      />
                   </div>
                </div>
@@ -154,7 +178,7 @@ const ProfileForm: FC = () => {
                      Отменить изменения
                   </Button>
                   <Button className="active" onClick={handleSaveClick}>
-                     Сохранить изменения
+                     {isPending ? "Загрузка..." : "Сохранить изменения"}
                   </Button>
                </div>
             )}

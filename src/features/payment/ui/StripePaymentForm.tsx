@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, FC } from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import { formatCreditCardNumber, formatCVC, formatExpirationDate } from "../model/formating";
@@ -8,8 +8,8 @@ import { Button, InputField } from "@/shared/ui";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
 import styles from "./styles.module.scss";
-import {showModal} from "@/views/modal";
-import {MODAL_KEYS} from "@/shared/lib";
+import { showModal } from "@/views/modal";
+import { MODAL_KEYS } from "@/shared/lib";
 
 interface FormState {
    number: string;
@@ -20,7 +20,12 @@ interface FormState {
    focused: string;
 }
 
-const StripePaymentForm: React.FC = () => {
+type Props = {
+   handleSubscribe: () => void;
+   isPending: boolean;
+};
+
+const StripePaymentForm: FC<Props> = ({ handleSubscribe, isPending }) => {
    const theme = useThemeStore((state) => state.theme);
    const [state, setState] = useState<FormState>({
       number: "",
@@ -59,7 +64,8 @@ const StripePaymentForm: React.FC = () => {
 
    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      showModal(MODAL_KEYS.subscribe)
+      handleSubscribe();
+
       if (formRef.current) {
          formRef.current.reset();
       }
@@ -135,7 +141,7 @@ const StripePaymentForm: React.FC = () => {
             </fieldset>
 
             {/* <input type="hidden" name="issuer" value={state.issuer} /> */}
-            <Button className={styles.form__btn}>Оплатить</Button>
+            <Button className={styles.form__btn}>{isPending ? "Загрузка..." : "Оплатить"}</Button>
          </form>
       </div>
    );

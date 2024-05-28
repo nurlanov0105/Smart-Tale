@@ -6,11 +6,11 @@ import { CommonSkeleton } from "@/shared/ui";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
 import { ObserverSection } from "@/entities/general/observerSection";
 
-// const OrderList: FC<Props> = ({ fetchFunction, queryKey, tab, type, isCurrent }) => {
+// const OrderList: FC<Props> = ({ fetchFunction, queryKey, param_tab, type, isCurrent }) => {
 //    const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
 //       fetchFunction,
-//       param_tab: tab,
 //       queryKey,
+//       param_tab,
 //    });
 
 const OrderList: FC<Props> = ({ data, isLoading, isError, type, isCurrent }) => {

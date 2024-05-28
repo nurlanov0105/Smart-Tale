@@ -1,26 +1,52 @@
 "use client";
 import React from "react";
 import styles from "./styles.module.scss";
-import { VacancyItem } from "@/entities/user/vacancyItem";
+import { VacancyItem, useGetVacancySlug } from "@/entities/user/vacancyItem";
 import { vacancies } from "@/widgets/user/vacancies/model/values.data";
-import { InputField } from "@/shared/ui";
+import { GlobalLoading, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import { usePathname } from "next/navigation";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
+   const pathname = usePathname();
+   console.log(pathname.split("/")[3]);
+   const { isError, isFetching, data } = useGetVacancySlug(pathname.split("/")[3]);
+
+   if (isFetching) {
+      return <GlobalLoading />;
+   }
+
+   if (isError) {
+      return <ErrorMessage />;
+   }
+
+   if (!data?.data) {
+      return <ErrorMessage isEmpty={true} />;
+   }
+
+   console.log(data);
+
    return (
       <div className={clsx(styles.detail, styles[theme])}>
          <div className={styles.detail__left}>
             <h3 className={styles.detail__title}>Описание вакансии</h3>
             <div className={styles.detail__vacancy}>
-               <h3 className="h3">Senior Frontend ментор</h3>
-               <p className={styles.detail__salary}>от 15 до 20 $ на руки</p>
-               <p className={styles.detail__text}>Требуемый опыт работы: 3–6 лет</p>
-               <p className={styles.detail__text}>Полная занятость, полный день</p>
+               <h3 className="h3">{data?.data.job_title}</h3>
+
+               <p className={styles.detail__salary}>
+                  от {`${Math.round(+data?.data?.min_salary)}`} до{" "}
+                  {`${Math.round(+data?.data?.max_salary)}`} {data?.data?.currency} на руки
+               </p>
+               <p className={styles.detail__text}>Организация: {data?.data?.organization.title}</p>
+               <p className={styles.detail__text}>
+                  Требуемый опыт работы: {data?.data?.experience}
+               </p>
+               <p className={styles.detail__text}>{data?.data?.schedule}</p>
                <div>
                   <button className={styles.detail__button}>Откликнуться</button>
-                  <button></button>
                </div>
             </div>
             <div className={styles.detail__phoneWrapper}>
@@ -45,12 +71,8 @@ const VacancyDetail = () => {
                </p>
             </div>
             <div className={styles.detail__info}>
-               <p className={styles.detail__description}>
-                  Мы лицензированная IT академия Motion web LLC. Занимаемся обучением IT направлений
-                  как оффлайн так и на онлайн формате. Мы в поиске senior Javascript-разработчика
-                  способного научить студентов Front-endу и сделать хорошими интернами/джунами
-               </p>
-               <h4 className="h4">Обязанности:</h4>
+               <p className={styles.detail__description}>{data?.data?.description}</p>
+               {/* <h4 className="h4">Обязанности:</h4>
                <ul className={styles.detail__list}>
                   <li className={styles.detail__item}>
                      • Преподавать Front-end на Javascripte взрослым по программе обучения
@@ -77,7 +99,7 @@ const VacancyDetail = () => {
                   </li>
                   <li className={styles.detail__item}>• Дружная и прогрессивная команда</li>
                   <li className={styles.detail__item}>• Официальное оформление по ТК КР</li>
-               </ul>
+               </ul> */}
             </div>
          </div>
          <div className={styles.detail__right}>

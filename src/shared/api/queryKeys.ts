@@ -38,6 +38,7 @@ export const EquipmentQueryKeys = {
    EQUIPMENT_DELETE: "equipment-delete",
    EQUIPMENT_UPDATE: "equipment-updating",
    GET_MY_EQUIPMENTS: "equipment-updating",
+   GET_MY_ADS: "my-ads",
 };
 
 export const OrdersQueryKeys = {
@@ -60,7 +61,7 @@ export const ServiceQueryKeys = {
    UPDATE_SERVICE: "service-update",
    LIKED_SERVICES: "liked-services",
    MY_SERVICES: "my-services",
-   MY_SERVICE: "my-service"
+   MY_SERVICE: "my-service",
 };
 export const ResumeQueryKeys = {
    RESUME: "resume",
