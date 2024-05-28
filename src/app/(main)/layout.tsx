@@ -1,13 +1,11 @@
-import React, { FC, PropsWithChildren } from "react";
+import React, { FC, PropsWithChildren, useRef } from "react";
 import { Navbar } from "@/widgets/general/navbar";
 import { Header } from "@/widgets/general/header";
 import { NavbarLine } from "@/entities/general/navbarLine";
 import { HeaderIntro } from "@/entities/general/headerIntro";
 import styles from "./styles.module.scss";
 
-
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
-
    return (
       <main className={styles.main}>
          <NavbarLine />

@@ -15,6 +15,8 @@ export type VacancyCardType = {
    organization: OrganizationType;
    location: string;
    experience: string;
+   schedule?: string;
+   description?: string;
 };
 
 export type VacancyItemProps = {

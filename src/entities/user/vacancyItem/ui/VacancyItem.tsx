@@ -20,7 +20,8 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
                   <div>
                      <h4 className={styles.item__title}>{item.job_title}</h4>
                      <h3 className={styles.item__salary}>
-                        {item.min_salary} - {item.max_salary}
+                        {`${Math.round(+item.min_salary)}`} - {`${Math.round(+item.max_salary)}`}{" "}
+                        {item.currency}
                      </h3>
                   </div>
                   <div>

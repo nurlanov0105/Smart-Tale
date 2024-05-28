@@ -15,3 +15,8 @@ export type PathType = {
 
    setUrl: ({ pathname, slug }: urlState) => void;
 };
+
+export interface ISize {
+   id: number;
+   size: string;
+}

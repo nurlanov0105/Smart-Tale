@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, {FC} from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import clsx from "clsx";
@@ -9,7 +9,10 @@ import { useThemeStore } from "@/shared/themeStore";
 import {usePayment} from "../model/usePayment";
 import styles from "./styles.module.scss";
 
-const StripePaymentForm: React.FC = () => {
+
+
+
+const StripePaymentForm: FC = () => {
    const theme = useThemeStore((state) => state.theme);
 
    const {
@@ -94,6 +97,7 @@ const StripePaymentForm: React.FC = () => {
 
             {/* <input type="hidden" name="issuer" value={state.issuer} /> */}
             <Button type="submit" className={styles.form__btn}>Оплатить</Button>
+            <Button className={styles.form__btn}>{isLoading ? "Загрузка..." : "Оплатить"}</Button>
          </form>
       </div>
    );

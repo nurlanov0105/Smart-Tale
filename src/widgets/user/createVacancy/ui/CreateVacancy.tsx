@@ -1,20 +1,13 @@
 "use client";
+
 import React, { FC, useState } from "react";
+import { useForm } from "react-hook-form";
+import {useAddVacancy} from "@/entities/user/vacancyItem";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
-import {
-   cityFilter,
-   currencies,
-   experienceFilter,
-   graphicsFilter,
-   typeSalary,
-} from "../model/values.data";
-import { useForm } from "react-hook-form";
-import { useAddVacancy } from "@/entities/user/vacancyItem";
-import { useSubscribed } from "@/shared/lib";
+import { cityFilter, currencies, experienceFilter, graphicsFilter } from "../model/values.data";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { CreateVacancyProps } from "../model/types";
 
 const CreateVacancy: FC = () => {
    const theme = useThemeStore((state) => state.theme);

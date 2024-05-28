@@ -11,3 +11,19 @@
       border-bottom: 1px solid #e9edf7;
    }
 }
+
+.dark {
+   &:not(:last-child) {
+      border-bottom: 1px solid $border-theme;
+   }
+
+   color: $dark-grey;
+
+   a {
+      color: $dark-grey !important;
+      @include transition;
+      &:hover {
+         color: $common-white !important;
+      }
+   }
+}

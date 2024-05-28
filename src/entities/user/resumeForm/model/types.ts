@@ -2,8 +2,6 @@ import {SelectPostTypes} from "@/shared/lib/types/types";
 
 export type ResumeFormProps = {
    type: string;
-   addResume?: (data: any) => void;
-   isLoading?: boolean;
 };
 
 export type ResumeFormTypes = {

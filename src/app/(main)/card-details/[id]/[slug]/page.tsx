@@ -1,8 +1,6 @@
 import React from "react";
-
+import { NextPage } from "next";
 import CardDetail from "@/views/cardDetail";
-import {NextPage} from "next";
-// import styles from "./styles.module.scss";
 
 const CardDetailsPage: NextPage = () => {
    return <CardDetail />;

@@ -36,7 +36,6 @@ export const EquipmentsEndpoints = {
    UPDATE_EQUIPMENT: "/equipment/change/",
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
-   // GET_MY_EQUIPMENTS: "/my-equipments/",
    GET_MY_ADS: "/my-ads/",
    GET_MY_EQUIPMENT: "/equipment/",
 
@@ -58,7 +57,8 @@ export const ServicesEndpoints = {
 };
 
 export const UserEndpoints = {
-   MY_PROFILE: "/myprofile",
+   MY_PROFILE: "/my-profile",
+   MY_PROFILE_CHANGE: "/my-profile",
    SUBSCRIBE: "/subscribe",
    COMMON_USER: "/u/",
 };
@@ -81,7 +81,6 @@ export const ResumeEndpoints = {
 export const OrganizationEndpoints = {
    ORGANIZATION_DETAILS: "/organization/detail/",
    ORGANIZATION_CREATE: "/organization/create",
-   // ORGANIZATION_UPDATE: "/organization/list",
    GET_USER_ORGANIZATIONS: "/organization/list",
    GET_MY_ORGANIZATIONS: "/my-orgs/",
    ADD_EMPLOYEE: "/employee/add",

@@ -14,9 +14,21 @@
    }
 
    &__avatar {
+      width: 6.8rem;
+      height: 6.8rem;
+
+      @include bgImg;
       border-radius: 50%;
-      width: 9rem;
-      height: 9rem;
+      background-color: $primary-color;
+      overflow: hidden;
+      position: relative;
+
+      img {
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+      }
    }
 
    &__info {
@@ -41,8 +53,8 @@
    }
 }
 
-.dark{
-   .user__bottom{
+.dark {
+   .user__bottom {
       border: 1px solid $border-theme;
    }
 }

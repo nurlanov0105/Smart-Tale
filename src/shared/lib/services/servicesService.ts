@@ -1,8 +1,6 @@
 import { ServicesEndpoints, OrdersEndpoints } from "@/shared/api";
-
 import { baseApiInstance } from "@/shared/api/instance";
-import axios from "axios";
-import {UpdateServiceProps} from "@/shared/lib/types/orders-service.types";
+import { UpdateServiceProps } from "@/shared/lib/types/orders-service.types";
 
 export const ServicesService = {
    getServices: async (page: number, title?: string) => {
@@ -42,7 +40,7 @@ export const ServicesService = {
    createService: async (params: FormData) => {
       const response = await baseApiInstance.post(ServicesEndpoints.CREATE_SERVICE, params, {
          headers: { "Content-Type": "multipart/form-data" },
-         method: "POST"
+         method: "POST",
       });
       return response.data;
    },
@@ -59,16 +57,7 @@ export const ServicesService = {
       return response.data;
    },
    updateService: async ({serviceSlug, params}: UpdateServiceProps) => {
-      const headers = { "Content-Type": "multipart/form-data" }
-      const response = await baseApiInstance.put(ServicesEndpoints.UPDATE_SERVICE + serviceSlug + "/", params, {headers: headers});
-      return response.data;
-   },
-   // searchService: async (search: string) => {
-   //    const response = await baseApiInstance.post(ServicesEndpoints.,{
-   //       params: {
-   //          search: search,
-   //       },
-   //    });
-   //    return response.data;
-   // },
+      const headers = {"Content-Type": "multipart/form-data"}
+      const response = await baseApiInstance.put(ServicesEndpoints.UPDATE_SERVICE + serviceSlug, params, {headers: headers});
+   }
 };

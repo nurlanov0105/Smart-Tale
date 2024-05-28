@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import {useAddResume} from "@/entities/user/vacancyItem";
+import {CurrencyType, useAddResume} from "@/entities/user/vacancyItem";
 import {ResumeFormTypes} from "./types";
 
 export const useResume = () => {
@@ -18,7 +18,7 @@ export const useResume = () => {
     const onSubmit = (data: ResumeFormTypes) => {
         const adapter = {
             ...data,
-            currency: "Сом",
+            currency: data.graphic.postValue as CurrencyType ,
             graphic: data.graphic.postValue,
             city: data.city.postValue
         }

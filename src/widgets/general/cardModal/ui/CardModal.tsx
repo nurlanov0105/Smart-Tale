@@ -12,7 +12,7 @@ import { images } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
-import { useFetchResource, usePathStore } from "@/features/user/standartCard";
+import { ISize, useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { usePathname, useRouter } from "next/navigation";
 import { AnnouncementRoutes } from "../model/consts";
 
@@ -26,9 +26,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    const pathname = usePathname();
    const router = useRouter();
 
-   const { isPending, isError, data } = useFetchResource(type, slug);
+   const { isPending, isError, data } = useFetchResource({ type, slug });
 
-   const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
+   const [selectedCategory, setSelectedCategory] = useState("Описание");
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
    };
@@ -39,6 +39,29 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       closeModal();
    };
 
+   const categoryData = (selectedCategory: string) => {
+      if (selectedCategory === "Описание") {
+         return <p>{data.data.description}</p>;
+      } else if (selectedCategory === "Контакты автора") {
+         return (
+            <ul>
+               <li>
+                  Номер телефона: {data.data.phone_number ? data.data.phone_number : "Отсутствует"}
+               </li>
+               <li>Почта: {data.data.email ? data.data.email : "Отсутствует"}</li>
+            </ul>
+         );
+      } else {
+         return (
+            <ul className={styles.modal__list}>
+               {data.data.size.map((item: ISize, i: number) => (
+                  <li key={i}>{item.size}</li>
+               ))}
+            </ul>
+         );
+      }
+   };
+   // description phone_number email size [{id,size}]
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
@@ -66,6 +89,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                      <AuthorInfo
                         fullName={data.data.author?.first_name + " " + data.data.author?.last_name}
                         avatarImg={data.data.author?.profile_image}
+                        slug={data.data.author?.slug}
                      />
 
                      <div className={styles.modal__category}>
@@ -73,8 +97,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                            handleCategoryClick={handleCategoryClick}
                            selectedCategory={selectedCategory}
                            isMobile={true}
+                           type={type}
                         />
-                        <div className={styles.modal__descr}>{data.data.description}</div>
+                        <div className={styles.modal__descr}>{categoryData(selectedCategory)}</div>
                      </div>
                      <div className={styles.modal__btns}>
                         {!pathname.includes("admin") &&

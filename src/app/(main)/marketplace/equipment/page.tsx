@@ -1,10 +1,9 @@
 "use client";
 
 import { NextPage } from "next";
-
 import { CardsSection } from "@/widgets/user/cardsSection";
-import { SkeletonTypes } from "@/shared/lib";
-import { EquipmentQueryKeys, EquipmentService, EquipmentsEndpoints } from "@/shared/api";
+import { EquipmentService, SkeletonTypes } from "@/shared/lib";
+import { EquipmentQueryKeys } from "@/shared/api";
 
 const EquipmentPage: NextPage = () => {
    return (

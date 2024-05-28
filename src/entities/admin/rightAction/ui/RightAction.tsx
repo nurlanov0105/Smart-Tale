@@ -31,4 +31,4 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
    );
 };
 
-export default memo(RightAction);
+export default RightAction;

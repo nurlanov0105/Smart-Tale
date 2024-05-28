@@ -2,8 +2,8 @@ import { useMutation } from "@tanstack/react-query";
 import { UseFormReset } from "react-hook-form";
 import { toast } from "react-toastify";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
-import { OrdersService, ServicesService } from "@/shared/lib";
-import {EquipmentQueryKeys, EquipmentService, ServiceQueryKeys} from "@/shared/api";
+import {EquipmentQueryKeys, ServiceQueryKeys} from "@/shared/api";
+import { EquipmentService, OrdersService, ServicesService } from "@/shared/lib";
 import type { AnnouncementCreateFormType } from "../types";
 
 export const useCreateOrder = (reset: UseFormReset<AnnouncementCreateFormType>) => {
@@ -33,8 +33,10 @@ export const useCreateEquipment = (reset: UseFormReset<AnnouncementCreateFormTyp
       },
    });
 };
-export const useCreateService = (reset: UseFormReset<AnnouncementCreateFormType>) => {
 
+
+
+export const useCreateService = (reset: UseFormReset<AnnouncementCreateFormType>) => {
    return useMutation<any, Error, FormData, unknown>({
       mutationKey: [ServiceQueryKeys.UPDATE_SERVICE],
       mutationFn: (data) => ServicesService.createService(data),

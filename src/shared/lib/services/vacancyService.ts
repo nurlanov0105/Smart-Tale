@@ -1,19 +1,7 @@
+import { VacancyCardType } from "@/entities/user/vacancyItem";
 import { VacancyEndpoints } from "@/shared/api";
 import { baseApiInstance } from "@/shared/api/instance";
-
-type FilterVacancyType = {
-   job_title: string;
-   organization__title: string;
-   experience: string;
-   location: string;
-   schedule: string;
-   currency: string;
-   min_salary: string;
-   max_salary: string;
-   days: string;
-   week: string;
-   month: string;
-};
+import { FilterVacancyType, VacancyDeletetype } from "../types/vacancy-service.types";
 
 export const VacancyService = {
    getVacancies: async (page: number) => {
@@ -55,18 +43,20 @@ export const VacancyService = {
       return response;
    },
    vacancySlug: async (slug: string) => {
-      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_SLUG);
+      const response = await baseApiInstance.get<VacancyCardType>(
+         VacancyEndpoints.VACANCY_SLUG + "/" + slug
+      );
       return response;
    },
-   addVacancy: async (data: any) => {
+   addVacancy: async (data: VacancyCardType) => {
       const response = await baseApiInstance.post(VacancyEndpoints.ADD_VACANCY, data);
       return response;
    },
-   changeVacancy: async (data: any) => {
+   changeVacancy: async (data: VacancyCardType) => {
       const response = await baseApiInstance.put(VacancyEndpoints.CHANGE_VACANCY, data);
       return response;
    },
-   deleteVacancy: async (data: any) => {
+   deleteVacancy: async ({ slug, data }: any) => {
       const response = await baseApiInstance.delete(VacancyEndpoints.DELETE_VACANCY, data);
       return response;
    },

@@ -3,4 +3,5 @@ export type CardCategoryProps = {
    selectedCategory: string;
    isLarge?: boolean;
    isMobile?: boolean;
+   type?: string;
 };

@@ -16,7 +16,6 @@ const AdminEmployeesDetails = () => {
    const [typeView, setTypeView] = useState(false);
 
    const {data, isLoading} = useEmployeeQuery("adilet-adilet")
-    console.log(data)
 
    const dataList = [
        {
@@ -51,8 +50,6 @@ const AdminEmployeesDetails = () => {
        }
 
    ];
-
-
    // skeleton
 
    const readyData = isLoading

@@ -20,26 +20,25 @@
       width: 100%;
    }
 }
-
+//       border-bottom: 1px solid $border-theme; color: rgb(162, 154, 142);
 .dark {
    background-color: $black-theme;
+   .table {
+      &__heading {
+         border-bottom: 1px solid $border-theme;
+      }
 
-   * {
-      color: $white-theme;
-   }
-   .table__thead th {
-      color: rgb(162, 154, 142);
-   }
-
-   tr {
-      &:not(:last-child) {
-         background-color: $black-theme;
-         border-bottom: 1px solid $border-theme !important;
+      &__title {
+         color: $dark-grey;
       }
    }
-   .table__thead {
-      border-bottom: 1px solid $border-theme;
-   }
+}
+
+.skeletons {
+   display: flex;
+   flex-direction: column;
+   gap: 1.6rem;
+   margin-top: 1.6rem;
 }
 
 //Tablet Small

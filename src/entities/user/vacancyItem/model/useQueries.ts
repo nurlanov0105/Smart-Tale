@@ -1,8 +1,10 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 import { ResumeQueryKeys, ServiceQueryKeys } from "@/shared/api";
 import { ResumeService, VacancyService } from "@/shared/lib";
-import { toast } from "react-toastify";
-import {ResumeRequestTypes} from "@/entities/user/vacancyItem/model/types";
+
+import type { ResumeType } from "@/shared/lib/types/resume-service.types";
+import type { VacancyCardType, ResumeRequestTypes } from "./types";
 
 export const useGetVacancies = (page: number) => {
    return useQuery({
@@ -12,13 +14,13 @@ export const useGetVacancies = (page: number) => {
 };
 export const useAddVacancy = () => {
    return useMutation({
-      mutationFn: (data: any) => VacancyService.addVacancy(data),
+      mutationFn: (data: VacancyCardType) => VacancyService.addVacancy(data),
       mutationKey: [ServiceQueryKeys.SERVICES],
    });
 };
 export const useAddResume = ({reset}: ResumeRequestTypes) => {
    return useMutation({
-      mutationFn: (data: any) => ResumeService.addResume(data),
+      mutationFn: (data: ResumeType) => ResumeService.addResume(data),
       mutationKey: [ResumeQueryKeys.RESUME],
       onSuccess: () => {
          reset();
@@ -33,3 +35,10 @@ export const useGetMyResumes = () => {
       queryFn: () => ResumeService.getMyResumes()
    })
 }
+export const useGetVacancySlug = (slug: string) => {
+   return useQuery({
+      queryFn: () => VacancyService.vacancySlug(slug),
+      queryKey: [ServiceQueryKeys.SERVICES, slug],
+   });
+};
+

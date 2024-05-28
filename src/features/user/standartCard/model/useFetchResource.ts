@@ -1,18 +1,23 @@
-import { AnnouncementTypes, ROUTES } from "@/shared/lib";
-import { EquipmentsEndpoints, OrdersEndpoints, ServicesEndpoints } from "@/shared/api";
-import { baseApiInstance } from "@/shared/api/instance";
 import { useQuery } from "@tanstack/react-query";
+import { UserEndpoints } from "@/shared/api";
+import { baseApiInstance } from "@/shared/api/instance";
+import { ModalSlugEndpoints } from "./consts";
 
-const useFetchResource = (type: string, slug: string) => {
+const useFetchResource = ({
+   type,
+   slug,
+   isDetail,
+}: {
+   type: string;
+   slug: string;
+   isDetail?: boolean;
+}) => {
    const queryFn = async () => {
       let url = "";
-      console.log(type);
-      if (type === AnnouncementTypes.equipment) {
-         url = EquipmentsEndpoints.EQUIPMENT_SLUG + slug;
-      } else if (type === AnnouncementTypes.service) {
-         url = ServicesEndpoints.SERVICE_SLUG + slug;
-      } else if (type === AnnouncementTypes.order) {
-         url = OrdersEndpoints.GET_MY_ORDER + slug;
+      if (isDetail) {
+         url = ModalSlugEndpoints[type] + slug;
+      } else {
+         url = ModalSlugEndpoints[type] + slug;
       }
 
       if (!url) {
