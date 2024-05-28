@@ -1,9 +1,12 @@
-import { TYPE_ANNOUNCEMENT_DETAIL } from "@/shared/lib/consts";
+import { TYPE_ANNOUNCEMENT_DETAIL } from "@/shared/lib/constants/consts";
 
 export enum WORK {
    VACANCIES = "/work/vacancies",
    CREATE_VACANCY = `/work/create-vacancy`,
    RESUME = `/work/resume`,
+   RESUMES = `/work/resumes`,
+   MY_RESUMES = `/work/resume-list`,
+   RESUME_DETAILS = `/work/resume-details`,
    VACANCY_DETAIL = `/work/vacancy-detail`,
 }
 
@@ -55,6 +58,7 @@ export enum ROUTES {
 
    ANNOUNCEMENT_DETAILS_ORDER = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
    ANNOUNCEMENT_DETAILS_EQUIPMENT = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
+   ANNOUNCEMENT_DETAILS_SERVICE = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
 
    ORGANIZATION_CURRENT_ORDERS = `/organization/current-orders`,
    ORGANIZATION_HISTORY = `/organization/history-user`,
@@ -76,6 +80,7 @@ export enum ORGANIZATION_ROUTES {
    INVITE_EMPLOYEES = "/organization/invite-employees",
    POSITIONS = "/organization/positions",
    ADD_POSITION = "/organization/add-position",
+   POSITION_DETAILS = "/organization/position-details",
    EMPLOYEES_SETTINGS = "/organization/employees-settings",
    VACANCIES = "/organization/vacancies",
    VACANCY_DETAIL = "/organization/vacancy-detail",

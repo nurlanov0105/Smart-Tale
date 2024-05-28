@@ -49,6 +49,12 @@ baseApiInstance.interceptors.request.use(
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
 
+
+       if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
+           config.url += '/';
+       }
+
+
       return config;
    },
    (error) => {

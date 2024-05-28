@@ -8,11 +8,20 @@ export const useListings = (type: string) => {
       return "";
    };
 
-   const announcements = useQuery({
-      queryKey: [UserQueryKeys.ANNOUNCEMENTS_LISTINGS, type],
-      queryFn: () => EquipmentService.getMyAnnouncements(typeAnnouncements()),
-      retry: 2,
-   });
+
+    const announcements = useQuery({
+        queryKey: [UserQueryKeys.ANNOUNCEMENTS_LISTINGS, type],
+        queryFn: () => EquipmentService.getMyAnnouncements(typeAnnouncements()),
+        retry: 2
+    })
+
+    return {
+        data: announcements.data && announcements.data?.data,
+        isLoading: announcements.isPending,
+        isError: announcements.isError,
+    }
+}
+
 
    // const equipments = useQuery({
    //     queryKey: [UserQueryKeys.ANNOUNCEMENTS_LISTINGS],
@@ -29,9 +38,3 @@ export const useListings = (type: string) => {
    //     retry: 1
    // })
 
-   return {
-      data: announcements.data && announcements.data?.data,
-      isLoading: announcements.isPending,
-      isError: announcements.isError,
-   };
-};

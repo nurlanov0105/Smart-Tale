@@ -2,18 +2,20 @@
 
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
+import {useAddVacancy} from "@/entities/user/vacancyItem";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
 import { cityFilter, currencies, experienceFilter, graphicsFilter } from "../model/values.data";
-import { CreateVacancyProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const CreateVacancy: FC<CreateVacancyProps> = ({ addVacancy, isLoading, isError }) => {
+const CreateVacancy: FC = () => {
    const theme = useThemeStore((state) => state.theme);
 
    const [graphicSelected, setGraphicSelected] = useState(graphicsFilter[0]);
    const [citySelect, setCitySelect] = useState(cityFilter[0]);
+
+   const {mutate: addVacancy, isPending: isLoading} = useAddVacancy()
 
    const {
       register,
@@ -60,6 +62,7 @@ const CreateVacancy: FC<CreateVacancyProps> = ({ addVacancy, isLoading, isError 
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
                <Select
+                   //@ts-ignore
                   selected={graphicSelected}
                   setSelected={setGraphicSelected}
                   data={graphicsFilter}
@@ -84,6 +87,7 @@ const CreateVacancy: FC<CreateVacancyProps> = ({ addVacancy, isLoading, isError 
                   />
                   <div>
                      <Select
+                         //@ts-ignore
                         selected={selectCurrency}
                         setSelected={setSelectCurrency}
                         data={currencies}
@@ -96,6 +100,7 @@ const CreateVacancy: FC<CreateVacancyProps> = ({ addVacancy, isLoading, isError 
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
                <Select
+                   //@ts-ignore
                   selected={citySelect}
                   setSelected={setCitySelect}
                   data={cityFilter}

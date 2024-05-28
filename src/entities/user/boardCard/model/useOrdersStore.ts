@@ -1,4 +1,4 @@
-// import { BoardData } from "./consts";
+// import { BoardData } from "./consts.ts";
 // import { create } from "zustand";
 // import { Order, OrdersActions, OrdersState } from "./types";
 //

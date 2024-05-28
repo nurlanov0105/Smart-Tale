@@ -9,7 +9,6 @@ import styles from "./styles.module.scss";
 const NavbarCategories: FC = () => {
    const isAuth = useAuth();
    const { isSubscribed, subscribed } = useSubscribed();
-   console.log(subscribed);
 
    const categories = getCategoryRoutes({ authorized: isAuth, subscribed: true });
 

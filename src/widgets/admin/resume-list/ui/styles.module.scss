@@ -1,0 +1,15 @@
+.resume{
+  &__list{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.6rem;
+
+    padding: 2rem 0;
+  }
+  &__title{
+    font-size: 1.8rem;
+    font-weight: 600;
+
+    color: $dark-theme;
+  }
+}

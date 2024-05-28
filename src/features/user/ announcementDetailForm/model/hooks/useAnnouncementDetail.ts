@@ -1,5 +1,6 @@
 import {useForm} from "react-hook-form";
-import type {OrderCreateFormType} from "@/features/user/orderForm/model/types";
+import {format} from "date-fns";
+
 import {
     useGetEquipment,
     useGetOrder,
@@ -8,14 +9,11 @@ import {
     useUpdateOrder,
     useUpdateService
 } from "../useQueries";
-import {format} from "date-fns";
+import type {AnnouncementDetailFormType, AnnouncementDetailProps} from "../types";
+import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "../consts";
+import {AnnouncementValues} from "@/shared/lib";
 
-
-interface IProps{
-    type: string
-    slug: string
-}
-export const useAnnouncementDetail = ({type, slug}: IProps) => {
+export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => {
 
     const { reset,
         register,
@@ -24,7 +22,7 @@ export const useAnnouncementDetail = ({type, slug}: IProps) => {
         watch,
         setValue,
         formState: {errors, isValid, isDirty}
-    } = useForm<OrderCreateFormType>(
+    } = useForm<AnnouncementDetailFormType>(
         {
             mode: "onChange",
             criteriaMode: "all",
@@ -47,16 +45,16 @@ export const useAnnouncementDetail = ({type, slug}: IProps) => {
     const updateEquipment = useUpdateEquipment()
     const updateService = useUpdateService()
 
-    const onSubmit = (data: OrderCreateFormType) => {
+    const onSubmit = (data: AnnouncementDetailFormType) => {
         const formData = new FormData();
 
-        formData.append("title", data.title)
-        formData.append("description", data.description)
-        formData.append("price", data.price.toString())
-        formData.append("currency", data.currency.postValue)
-        formData.append("phone_number", data.tel)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.title, data.title)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.description, data.description)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.price, data.price.toString())
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.currency, data.currency.postValue)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.tel, data.tel)
 
-        if (data.email) formData.append("email", data.email)
+        if (data.email) formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.email, data.email)
 
         data?.images.forEach(image => {
 
@@ -76,28 +74,29 @@ export const useAnnouncementDetail = ({type, slug}: IProps) => {
             // };
             //
             console.log(image)
-            formData.append("uploaded_images", image)
+            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image)
         })
 
-        if (type === "equipment") {
+        if (type === AnnouncementValues.EQUIPMENT) {
             console.log("equipment", data)
             updateEquipment.mutate({data: formData, slug: slug})
         }
-        if (type === "service") {
+        if (type === AnnouncementValues.SERVICE) {
             console.log("service", data)
             updateService.mutate({data: formData, slug: slug})
         }
-        if (type === "order"){
+        if (type === AnnouncementValues.ORDER){
             const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
             const deadline = format(newDate, 'yyyy-MM-dd')
 
-            formData.append("deadline", deadline)
-            data?.sizes.forEach(size => formData.append("size", size.postValue))
+            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deadline, deadline)
+            data?.sizes.forEach(size => formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.size, size.postValue))
 
             console.log("order", data)
             updateOrder.mutate({data: formData, slug: slug})
         }
     };
+    console.log(responseData && responseData.data)
 
     return {
         data: responseData && responseData.data?.data,

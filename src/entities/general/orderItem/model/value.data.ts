@@ -1,4 +1,4 @@
 export const orderValues: { [key: string]: string } = {
-   "Заказ": "Заказ",
-   "Оборудование": "Оборудование",
+   "Order": "Заказ",
+   "Equipment": "Оборудование",
 };

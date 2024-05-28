@@ -40,6 +40,7 @@ export type InputFieldProps = {
    placeholder?: string;
    autoComplete?: string;
    defaultChecked?: boolean;
+   isLoading?: boolean
 };
 
 export type TextAreaProps = {
@@ -77,6 +78,11 @@ export type employee = {
    descr?: string;
 };
 
+export type SelectPostTypes = {
+   value: string
+   postValue: string
+}
+
 export type SelectTypes = {
    selected: employee;
    setSelected: Dispatch<SetStateAction<employee>>;
@@ -93,6 +99,8 @@ export type InputPhoneProps = {
 
    error?: string | boolean | undefined;
    classname?: string;
+   isDisabled?: boolean
+   isLoading?: boolean
 };
 
 export type AuthorType = {

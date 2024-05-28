@@ -64,6 +64,12 @@
       margin-top: 1rem;
       margin-left: 2rem;
    }
+   &__loading{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   }
 
    &__phoneError{
       font-size: 1.2rem;

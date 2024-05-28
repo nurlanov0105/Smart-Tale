@@ -1,39 +1,73 @@
-import {employee} from "@/shared/lib/types/types";
+import {SelectPostTypes} from "@/shared/lib/types/types";
+import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
+
 
 
 export interface RightsTypes{
-    "change-roles": string
-    "add-employee": string
-    "change-status": string
-    "cancel-order": string
-    "give-role": string
-    "delete-role": string
+    [RIGHT_ACTIONS.CREATE_POSITION]: string,
+    [RIGHT_ACTIONS.ADD_EMPLOYEE]: string,
+    [RIGHT_ACTIONS.DELETE_ORDER]: string,
+    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: string,
+    [RIGHT_ACTIONS.UPDATE_ACCESS]: string,
+    [RIGHT_ACTIONS.REMOVE_POSITION]: string,
+    [RIGHT_ACTIONS.UPDATE_ORDER]: string,
 }
 
-export interface AddPositionTypes{
+export interface GetPositionTypes extends RightsTypes{
     title: string
     description: string
-    organization: employee
-    "change-roles": string
-    "add-employee": string
-    "change-status": string
-    "cancel-order": string
-    "give-role": string
-    "delete-role": string
 }
 
-export interface AddPositionRequestTypes {
-    roles: RightsTypes
+export interface AddPositionTypes extends RightsTypes{
+    title: string
+    description: string
+    organization: SelectPostTypes
+}
+
+export interface AddPositionRequestTypes extends RightsTypes{
     title: string
     description: string
     organization: string
 }
 
-export interface EmployeeDetailsTypes {
+export interface AddEmployeeTypes extends RightsTypes{
+    email: string
+    position: SelectPostTypes
+    organization: SelectPostTypes
+    positions: SelectPostTypes[]
+}
+export interface AddEmployeeRequestTypes{
+    email: string
+    jt_slug: string
+    org_slug: string
+}
+
+interface IPosition extends RightsTypes{
+    value: string
+    postValue: string
+}
+
+export interface EmployeeDetailsTypes extends RightsTypes{
     name: string
     lastName: string
     patronymic: string
     email: string
+    tel: string
+    position: IPosition
+    positions: SelectPostTypes[]
+}
+
+export interface EmployeeDetailsResponseTypes extends RightsTypes{
+    first_name: string
+    last_name: string
+    middle_name: string
+    email: string
     phone_number: string
-    position: string
+    job_title: string
+}
+
+
+export interface ChangePositionQueryTypes{
+    slug: string
+    params: AddPositionTypes
 }
