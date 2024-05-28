@@ -7,4 +7,12 @@ export const ResumeService = {
       const response = await baseApiInstance.post(ResumeEndpoints.ADD_RESUME, data);
       return response;
    },
+   getResumes: async () => {
+      const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES);
+      return response;
+   },
+   getMyResumes: async () => {
+      const response = await baseApiInstance.get(ResumeEndpoints.GET_MY_RESUMES);
+      return response;
+   }
 };

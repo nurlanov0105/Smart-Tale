@@ -1,12 +1,12 @@
-import React, { FC} from 'react';
+import React, {FC, memo} from 'react';
 import {UseFormSetValue} from "react-hook-form";
-import {OrderCreateFormType} from "@/features/user/orderForm/model/types";
+import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 import {employee} from "@/shared/lib/types/types";
 
 interface ISize{
     sizes: employee[]
     size: employee
-    setValue:  UseFormSetValue<OrderCreateFormType>
+    setValue:  UseFormSetValue<any>
     idx: number
 }
 const SizeItem:FC<ISize> = ({
@@ -33,4 +33,4 @@ const SizeItem:FC<ISize> = ({
     );
 };
 
-export default SizeItem;
+export default memo(SizeItem);

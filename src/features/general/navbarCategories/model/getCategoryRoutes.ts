@@ -1,7 +1,7 @@
-import { DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/lib";
-import { BriefcaseBusiness, Clipboard, ShoppingCart, User } from "lucide-react";
-import { TypeCategories } from "@/entities/user/navbarItem";
-import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
+import {DASHBOARD, MARKETPLACE, ROUTES} from "@/shared/lib";
+import {BriefcaseBusiness, Clipboard, ShoppingCart, User} from "lucide-react";
+import {TypeCategories} from "@/entities/user/navbarItem";
+import {ORGANIZATION_ROUTES, WORK} from "@/shared/lib/routes.config";
 
 interface CategoryArgs {
    authorized: boolean;
@@ -58,6 +58,7 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
             ORGANIZATION_ROUTES.ADD_POSITION,
             ORGANIZATION_ROUTES.VACANCY_DETAIL,
             ORGANIZATION_ROUTES.HISTORY,
+            ORGANIZATION_ROUTES.POSITION_DETAILS
          ],
       },
       {
@@ -90,14 +91,10 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
          isShow: true,
          routes: [
             { parentId: 4, subtitle: "Вакансии", link: WORK.VACANCIES },
-            { parentId: 4, subtitle: "Моё резюме", link: WORK.RESUME, authorized: true },
-            {
-               parentId: 4,
-               subtitle: "Добавить вакансию",
-               link: WORK.CREATE_VACANCY,
-               authorized: true,
-            },
+            { parentId: 4, subtitle: "Резюме", link: WORK.RESUMES },
+            { parentId: 4, subtitle: "Моё резюме", link: WORK.MY_RESUMES, authorized: true },
+            {parentId: 4, subtitle: "Добавить вакансию", link: WORK.CREATE_VACANCY, authorized: true},
          ],
-         activeRoutes: [WORK.VACANCY_DETAIL],
+         activeRoutes: [WORK.VACANCY_DETAIL, WORK.RESUME],
       },
    ].filter((category) => category.isShow);

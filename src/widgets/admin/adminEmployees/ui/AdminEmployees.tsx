@@ -1,23 +1,28 @@
 "use client";
-import React, { useState } from "react";
-import { EmptyContent } from "@/entities/admin/emptyContent";
+import React from "react";
+import { useRouter } from "next/navigation";
 import { EmployeesList } from "@/features/general/employeesList";
+import { EmptyContent } from "@/entities/admin/emptyContent";
 import { Button } from "@/shared/ui";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
-import { useRouter } from "next/navigation";
+import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+
+import {useEmployees} from "../model/useEmployees";
 import styles from "./styles.module.scss";
 
 const AdminEmployees = () => {
-   const [data, setData] = useState<number[]>([2]);
    const router = useRouter();
    const handleRoute = () => {
       router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
    };
 
+   const {data, isLoading, isError} = useEmployees()
+
+
    return (
       <>
-         {!data.length ? (
-            <EmptyContent type="employees" />
+         {!data?.length ? (
+            <EmptyContent type={EMPTY_CONTENT_TYPES.employees} />
          ) : (
             <div className={styles.employees__wrapper}>
                <div>
@@ -27,7 +32,7 @@ const AdminEmployees = () => {
                         <Button onClick={handleRoute}>Пригласите сотрудника</Button>
                      </div>
                   </div>
-                  <EmployeesList />
+                  <EmployeesList data={data} isLoading={isLoading}/>
                </div>
             </div>
          )}

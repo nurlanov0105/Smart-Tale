@@ -5,35 +5,58 @@ import {ChevronDown} from "lucide-react";
 import {useOutside} from "@/shared/lib";
 import {useThemeStore} from "@/shared/themeStore";
 import {employee} from "../../lib/types/types"
+import {GlobalLoading} from "@/shared/ui";
 
 interface ISelect{
     data: employee[],
-    selected: employee,
-    setSelected: Dispatch<SetStateAction<employee>>
+    value?: any
+    onChange?: (value: any) => void;
     title?: string
     classname?: string
     type: "transparent" | "default" | "chat" | "vacancy" | "bordered" | "auth"
-    handleSelectElem? : (value: string) => void
+    typeData?: "sizes"
+    sizeType?: string
+    error?: string
+    isLoading?: boolean
 }
+
 const Select: FC<ISelect> = (
     {
         data,
         title,
-        selected,
-        setSelected,
         type,
         classname,
-        handleSelectElem
+        value,
+        onChange,
+        typeData,
+        error,
+        isLoading
     }
 ) => {
     const { toggleShow, ref, isShown, setIsShown } = useOutside(false);
 
     const theme = useThemeStore((state) => state.theme);
-    const handleSelect = (employee: employee) => {
-        setSelected(employee);
-        handleSelectElem && handleSelectElem(employee.value)
+    const handleSelect = (selected: employee) => {
+
+        if (typeData === "sizes"){
+            if (!value.find((el: employee) => el.postValue === selected.postValue)){
+                const newValue = [...value, selected];
+                onChange && onChange(newValue)
+            }
+        } else {
+            onChange && onChange(selected)
+        }
+
         setIsShown(false)
     };
+
+    const viewValue = () => {
+        if(!!value?.length){
+            return value[value?.length - 1].value
+        }
+
+        return value?.value
+    }
 
     return (
         <div className={clsx(styles.select__wrapper, styles[theme])} ref={ref}>
@@ -43,8 +66,10 @@ const Select: FC<ISelect> = (
                     <button
                         type="button"
                         onClick={toggleShow}
-                        className={clsx(styles.select__selected, styles[`${type}__selected`])}>
-                        <p className={styles.select__select}>{selected.value}</p>
+                        className={clsx(styles.select__selected, styles[`${type}__selected`], error && styles.select__error)}>
+                        <p className={styles.select__select}>{
+                            isLoading ? "Загрузка..." : viewValue()
+                        }</p>
 
                         <ChevronDown
                             className={clsx(styles.select__icon, {
@@ -54,13 +79,16 @@ const Select: FC<ISelect> = (
 
                     {isShown && (
                         <div className={styles.select__menu}>
-                            {data.map((employee) => (
+                            {
+                                isLoading && <GlobalLoading type="default"/>
+                            }
+                            {!isLoading && data?.map((employee) => (
                                 <button
                                     onClick={() => handleSelect(employee)}
                                     type="button"
                                     className={clsx(styles.select__item, {
                                         [styles.select__item_active]:
-                                        employee.postValue === selected.postValue,
+                                        employee.postValue === value?.postValue,
                                     })}
                                     key={employee.postValue}>
                                     {employee.value}

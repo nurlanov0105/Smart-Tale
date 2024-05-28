@@ -1,13 +1,16 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { EquipmentQueryKeys, OrganizationQueryKeys, ServiceQueryKeys } from "@/shared/api";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {useRouter} from "next/navigation";
+import {toast} from "react-toastify";
+import {EquipmentQueryKeys, OrganizationQueryKeys, ServiceQueryKeys} from "@/shared/api";
+import {OrdersQueryKeys} from "@/shared/api/queryKeys";
 import {
    EquipmentService,
    OrdersService,
    OrganizationService,
    ServicesService,
+    ORGANIZATION_ROUTES
 } from "@/shared/lib";
-import { OrdersQueryKeys } from "@/shared/api/queryKeys";
-import { toast } from "react-toastify";
+
 
 export const useHideEquipment = () => {
    const queryClient = useQueryClient();
@@ -94,15 +97,31 @@ export const useDeleteEmployee = () => {
 };
 
 export const useDeleteService = () => {
-   const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
-      mutationKey: [ServiceQueryKeys.DELETE_SERVICE],
-      mutationFn: (slug) => ServicesService.deleteService(slug),
-      onSuccess: () => {
-         toast.success("Услуга была удалена");
-      },
-      onError: () => {
-         console.log("error");
-      },
-   });
-};
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, string>({
+        mutationKey: [ServiceQueryKeys.DELETE_SERVICE],
+        mutationFn: (slug) => ServicesService.deleteService(slug),
+        onSuccess: () => {
+            toast.success("Услуга была удалена")
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+
+export const useDeletePosition = () => {
+    const {replace} = useRouter()
+    return useMutation<any, Error, string>({
+        mutationKey: [OrganizationQueryKeys.DETAILS_POSITION],
+        mutationFn: (slug) => OrganizationService.deletePosition(slug),
+        onSuccess: () => {
+            toast.success("Долнжость была удалена")
+            replace(ORGANIZATION_ROUTES.POSITIONS)
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+

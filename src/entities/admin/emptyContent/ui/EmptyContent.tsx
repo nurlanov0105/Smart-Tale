@@ -1,49 +1,30 @@
 import React, { FC } from "react";
-import { Button } from "@/shared/ui";
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import { useRouter } from "next/navigation";
+import { Button } from "@/shared/ui";
+
+import {dataMap} from "../model/dataMap";
 import type { EmptyContentProps } from "../model/types";
 import styles from "./styles.module.scss";
 
 const EmptyContent: FC<EmptyContentProps> = ({ type }) => {
    const router = useRouter();
 
-   const handleRoute = () => {
-      if (type === "organization") {
-         router.push(ORGANIZATION_ROUTES.CREATE_ORGANIZATION);
-      } else {
-         router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
-      }
-   };
+   const {title, description, button, route} = dataMap[type]
+
+   const handleRoute = () => router.push(route)
 
    return (
-      <>
-         {type === "organization" ? (
-            <div className={styles.organization}>
-               <div className={styles.organization__row}>
-                  <div>
-                     <h3 className="h3">Тут еще нет организаций</h3>
-                     <p className={styles.organization__text}>
-                        Создайте свою организацию <br />и добавьте своих сотрудников
-                     </p>
-                     <Button onClick={handleRoute}>Создать</Button>
-                  </div>
-               </div>
-            </div>
-         ) : (
-            <div className={styles.organization}>
-               <div className={styles.organization__row}>
-                  <div>
-                     <h3 className="h3">Тут еще нет сотрудников</h3>
-                     <p className={styles.organization__text}>
-                        Пригласите своих сотрудников <br />и следите за выполненными задачами
-                     </p>
-                     <Button onClick={handleRoute}>Пригласить</Button>
-                  </div>
-               </div>
-            </div>
-         )}
-      </>
+       <>
+          <div className={styles.organization}>
+             <div className={styles.organization__row}>
+                <div>
+                   <h3 className="h3">{title}</h3>
+                   <p className={styles.organization__text}>{description}</p>
+                   <Button onClick={handleRoute}>{button}</Button>
+                </div>
+             </div>
+          </div>
+       </>
    );
 };
 

@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
-import { useCreateEquipment, useCreateOrder, useCreateService } from "../useQueries";
-import type { OrderCreateFormType, UseOrderFormProps } from "../types";
 import {format} from "date-fns";
+import {AnnouncementValues} from "@/shared/lib";
+import { useCreateEquipment, useCreateOrder, useCreateService } from "./useQueries";
+import type {AnnouncementCreateFormType} from "../types";
+import {CREATE_ANNOUNCEMENT_POST_NAMES} from "../consts";
 
 export const useOrderForm = (type: string) => {
 
@@ -9,13 +11,13 @@ export const useOrderForm = (type: string) => {
       reset,
       register,
       handleSubmit,
-       watch,
-       control,
+      watch,
+      control,
       setValue,
       formState: { errors, isValid },
-   } = useForm<OrderCreateFormType>(
+   } = useForm<AnnouncementCreateFormType>(
        {
-          mode: "onBlur",
+          mode: "onChange",
           criteriaMode: "all",
           shouldFocusError: true,
        }
@@ -25,48 +27,39 @@ export const useOrderForm = (type: string) => {
    const createEquipment = useCreateEquipment(reset);
    const createService = useCreateService(reset);
 
-   const onSubmit = (data: OrderCreateFormType) => {
+   const createAnnouncementByType = {order: createOrder, equipment: createEquipment, service: createService};
+   const createAnnouncement = createAnnouncementByType[type as keyof typeof createAnnouncementByType]
+
+   const onSubmit = (data: AnnouncementCreateFormType) => {
       const formData = new FormData();
 
-      formData.append("title", data.title)
-      formData.append("description", data.description)
-      formData.append("price", data.price.toString())
-      formData.append("currency", data.currency.postValue)
-      formData.append("phone_number", data.tel)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.title, data.title)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.description, data.description)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.price, data.price.toString())
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.currency, data.currency.postValue)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.tel, data.tel)
+      // formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.amount, data.amount.toString())
+      if (data.email) formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.email, data.email)
 
+      data?.images.forEach(image => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.images, image))
 
-      if (data.email) formData.append("email", data.email)
-      data?.images.forEach(image => formData.append("uploaded_images", image))
-
-      if (type === "order"){
-         // formData.append("sizes", data.sizes)
+      if (type === AnnouncementValues.EQUIPMENT) createEquipment.mutate(formData)
+      if (type === AnnouncementValues.SERVICE) createService.mutate(formData)
+      if (type === AnnouncementValues.ORDER){
          const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
          const deadline = format(newDate, 'yyyy-MM-dd')
 
-         formData.append("deadline", deadline)
-         data?.sizes.forEach(size => formData.append("size", size.postValue))
+         formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.deadline, deadline)
+         data?.sizes.forEach(size => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.size, size.postValue))
 
          createOrder.mutate(formData)
       }
-
-      if (type === "equipment") {
-         console.log(data)
-         createEquipment.mutate(formData)
-      }
-      if (type === "service") {
-         console.log(data)
-         createService.mutate(formData)
-      }
-
    };
-
-   const loading = type === "order" ? createOrder.isPending : type === "equipment" ? createEquipment.isPending : createService.isPending
-   const error = type === "order" ? createOrder.isError : type === "equipment" ? createEquipment.isError : createService.isError
 
    return {
       handleSubmit: handleSubmit(onSubmit),
-      isLoading: loading,
-      isError: error,
+      isLoading: createAnnouncement?.isPending,
+      isError: createAnnouncement?.isError,
       register,
       errors,
       isValid,

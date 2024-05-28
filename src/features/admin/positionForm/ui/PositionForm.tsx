@@ -1,52 +1,40 @@
 "use client";
 
-import React, { useState } from "react";
-import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import { organizationsData } from "../model/organizations.data";
-import { employee } from "@/shared/lib/types/types";
-import { useThemeStore } from "@/shared/themeStore";
-import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
-
+import React from "react";
 import clsx from "clsx";
-import styles from "./styles.module.scss";
-import {useAddPosition} from "@/features/admin/positionForm/model/useAddPosition";
-import {descriptionSchema, titleSchema} from "@/features/user/orderForm/model/validationSchema";
+import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
+import { useThemeStore } from "@/shared/themeStore";
+import { Button, InputField, TextArea } from "@/shared/ui";
+import {ValidationsSchemasService} from "@/shared/lib";
 
-const roles = [
-   { value: "Утюжник", postValue: "Утюжник" },
-   { value: "Швея", postValue: "Швея" },
-   { value: "Менеджер", postValue: "Менеджер" },
-];
+import {useAddPosition} from "../model/hooks/useAddPosition";
+import {ADD_POSITIONS_NAMES} from "../model/consts";
+import styles from "./styles.module.scss";
 
 const PositionForm = () => {
-   const [selected, setSelected] = useState(organizationsData[0]);
-   const [selectedRole, setSelectedRole] = useState<employee>(roles[0]);
 
    const theme = useThemeStore((state) => state.theme);
 
    const {
       register,
-      handleSubmit
+      handleSubmit,
+      isLoading,
+      isValid,
+      isLoadingSubmitting
    } = useAddPosition()
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.position, styles[theme])}>
          <div className={styles.position__row}>
-            <h4 className="h4">Организация должности</h4>
-            <Select
-               selected={selected}
-               setSelected={setSelected}
-               title="Организация"
-               data={organizationsData}
-               type="default"
-            />
-
             <h4 className="h4">Название должности</h4>
-            <InputField {...register("title", titleSchema)} title="Название" />
+            <InputField
+                {...register(ADD_POSITIONS_NAMES.title, ValidationsSchemasService.titleSchema)}
+                title="Название"
+            />
 
             <h4 className="h4">Описание должности</h4>
             <TextArea
-                {...register("description", descriptionSchema)}
+                {...register(ADD_POSITIONS_NAMES.description, ValidationsSchemasService.descriptionSchema)}
                 title="Описание"
                 type="default"
             />
@@ -61,8 +49,8 @@ const PositionForm = () => {
          </div>
 
          <div className={styles.position__btn}>
-            <Button type="submit">
-               Добавить должность
+            <Button disabled={!isValid || isLoading} type="submit">
+               {isLoadingSubmitting ? "Загрузка..." : "Добавить должность"}
             </Button>
          </div>
       </form>

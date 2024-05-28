@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { DefineAnnouncementType } from "../consts";
+import { DefineAnnouncementType } from "../constants/consts";
 
 export const useAnnouncementType = () => {
    const pathname = usePathname();
