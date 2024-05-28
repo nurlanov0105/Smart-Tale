@@ -1,8 +1,21 @@
-import {Dispatch, SetStateAction} from "react";
+import {UseFormSetValue} from "react-hook-form";
+import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 
+type image = {
+    id: number
+    images: string
+    postValue?: string
+}
+
+// export type ImageProps = {
+//     images: employee[]
+//     image: employee
+//     idx: number
+//     setValue: UseFormSetValue<AnnouncementCreateFormType>
+// }
 export type ImageProps = {
-    image: File
     images: File[]
-    setImages: Dispatch<SetStateAction<File[]>>
+    image: File
     idx: number
+    setValue: UseFormSetValue<AnnouncementCreateFormType>
 }

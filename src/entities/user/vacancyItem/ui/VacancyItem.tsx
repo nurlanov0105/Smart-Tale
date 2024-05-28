@@ -14,16 +14,19 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
       <>
          {!isAdmin && (
             <Link
-               href={`${WORK.VACANCY_DETAIL}/${item.id}`}
+               href={`${WORK.VACANCY_DETAIL}/${item.slug}`}
                className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__row}>
                   <div>
-                     <h4 className={styles.item__title}>{item.title}</h4>
-                     <h3 className={styles.item__salary}>{item.salary}</h3>
+                     <h4 className={styles.item__title}>{item.job_title}</h4>
+                     <h3 className={styles.item__salary}>
+                        {`${Math.round(+item.min_salary)}`} - {`${Math.round(+item.max_salary)}`}{" "}
+                        {item.currency}
+                     </h3>
                   </div>
                   <div>
-                     <h4>{item.organization}</h4>
-                     <h3>{item.city}</h3>
+                     <h4>{item.organization.title}</h4>
+                     <h3>{item.location}</h3>
                   </div>
                   <div className={styles.item__experiance}>
                      <BriefcaseBusiness className={styles.item__icon} />
@@ -31,7 +34,7 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
                   </div>
                   {typeView && (
                      <div>
-                        <p className={styles.item__description}>{item.description}</p>
+                        <p className={styles.item__description}>{item.experience}</p>
                      </div>
                   )}
 
@@ -47,23 +50,27 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
 
          {isAdmin && (
             <Link
-               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/${item.id}`}
+               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/${item.slug}`}
                className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__row}>
                   <div>
-                     <h4 className={styles.item__title}>{item.title}</h4>
-                     <h3 className={styles.item__salary}>{item.salary}</h3>
+                     <h4 className={styles.item__title}>{item.job_title}</h4>
+                     <h3 className={styles.item__salary}>
+                        {item.min_salary}
+                        {item.currency} - {item.max_salary}
+                        {item.currency}
+                     </h3>
                   </div>
                   <div>
-                     <h4>{item.organization}</h4>
-                     <h3>{item.city}</h3>
+                     <h4>{item.organization.title}</h4>
+                     <h3>{item.location}</h3>
                   </div>
                   <div className={styles.item__experiance}>
                      <BriefcaseBusiness className={styles.item__icon} />
                      {item.experience}
                   </div>
                   <div>
-                     <p className={styles.item__description}>{item.description}</p>
+                     <p className={styles.item__description}>{item.experience}</p>
                   </div>
 
                   <div>
@@ -73,7 +80,7 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
                <div>
                   <button className={styles.item__button}>Подробнее</button>
                </div>
-               <div className={styles.item__responses}>+{item.responses.length} отклика</div>
+               <div className={styles.item__responses}>+2 отклика</div>
             </Link>
          )}
       </>

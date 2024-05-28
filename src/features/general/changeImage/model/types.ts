@@ -3,4 +3,5 @@ export type ChangeImageProps = {
    name: string;
    isAdmin?: boolean;
    disabled?: boolean;
+   isLoading?: boolean
 };

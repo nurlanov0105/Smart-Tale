@@ -56,6 +56,7 @@ const AdminVacancyDetail = () => {
                 <div className={styles.form__block}>
                     <h4 className="h4">График работы</h4>
                     <Select
+                        //@ts-ignore
                         selected={graphicSelected}
                         setSelected={setGraphicSelected}
                         data={graphicsFilter}
@@ -79,6 +80,7 @@ const AdminVacancyDetail = () => {
                         />
                         <div>
                             <Select
+                                //@ts-ignore
                                 selected={selectCurrency}
                                 setSelected={setSelectCurrency}
                                 data={currencies}
@@ -92,6 +94,7 @@ const AdminVacancyDetail = () => {
                     <h4 className="h4">Город</h4>
                     <Select
                         // classname={styles.form__select}
+                        //@ts-ignore
                         selected={citySelect}
                         setSelected={setCitySelect}
                         data={cityFilter}

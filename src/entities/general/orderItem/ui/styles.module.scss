@@ -16,6 +16,7 @@
    &__image {
       width: 7.5rem;
       height: 7.5rem;
+      object-fit: cover;
    }
    &__price {
       color: $primary-color;
@@ -34,6 +35,9 @@
       &_green {
          color: #34c759;
       }
+      &_primary{
+         color: $primary-color;
+      }
    }
    &__text {
       color: $dark-blue;
@@ -46,7 +50,7 @@
 
       overflow: hidden;
 
-      max-width: 80%;
+      max-width: 80em;
    }
 
    &__detail {

@@ -5,12 +5,14 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 
 
-const ImageItem:FC<ImageProps> = ({image, idx, images, setImages}) => {
-    const handleRemove = () => {
-        setImages(() => {
-            return images.filter(img => image.name + idx !== img.name + idx)
-        })
-    }
+const ImageItem:FC<ImageProps> = ({image, idx, images, setValue}) => {
+
+    const handleDelete = () => {
+        const updatedItems = [...images];
+        updatedItems.splice(idx, 1);
+        setValue('images', updatedItems, { shouldValidate: true, shouldDirty: true });
+    };
+
 
     return (
         <>
@@ -18,13 +20,13 @@ const ImageItem:FC<ImageProps> = ({image, idx, images, setImages}) => {
                 width={100}
                 height={100}
                 className={styles.item__image}
-                src={URL.createObjectURL(image)} //image.images
+                src={URL.createObjectURL(image)} //получаем с бека такой ключ)
                 alt="equipment"
             />
 
             {
                 idx !== 0 &&
-                <button type="button" onClick={handleRemove} className={styles.item__icon}>
+                <button type="button" onClick={handleDelete} className={styles.item__icon}>
                     <CircleX/>
                 </button>
             }

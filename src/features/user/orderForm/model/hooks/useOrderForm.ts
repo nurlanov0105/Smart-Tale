@@ -1,68 +1,70 @@
 import { useForm } from "react-hook-form";
-import { useCreateEquipment, useCreateOrder, useCreateService } from "../useQueries";
-import type { OrderCreateFormType, UseOrderFormProps } from "../types";
-import { AnnouncmentValues } from "../consts.data";
+import {format} from "date-fns";
+import {AnnouncementValues} from "@/shared/lib";
+import { useCreateEquipment, useCreateOrder, useCreateService } from "./useQueries";
+import type {AnnouncementCreateFormType} from "../types";
+import {CREATE_ANNOUNCEMENT_POST_NAMES} from "../consts";
 
-export const useOrderForm = ({
-   type,
-   images,
-   deadline,
-   sizesData,
-   currency,
-}: UseOrderFormProps) => {
+export const useOrderForm = (type: string) => {
 
    const {
       reset,
       register,
       handleSubmit,
+      watch,
+      control,
+      setValue,
       formState: { errors, isValid },
-   } = useForm<OrderCreateFormType>();
+   } = useForm<AnnouncementCreateFormType>(
+       {
+          mode: "onChange",
+          criteriaMode: "all",
+          shouldFocusError: true,
+       }
+   );
 
    const createOrder = useCreateOrder(reset);
    const createEquipment = useCreateEquipment(reset);
    const createService = useCreateService(reset);
 
-   const onSubmit = (data: OrderCreateFormType) => {
+   const createAnnouncementByType = {order: createOrder, equipment: createEquipment, service: createService};
+   const createAnnouncement = createAnnouncementByType[type as keyof typeof createAnnouncementByType]
+
+   const onSubmit = (data: AnnouncementCreateFormType) => {
       const formData = new FormData();
 
-      if (images) images.forEach((file) => formData.append(`uploaded_images`, file));
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.title, data.title)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.description, data.description)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.price, data.price.toString())
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.currency, data.currency.postValue)
+      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.tel, data.tel)
+      // formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.amount, data.amount.toString())
+      if (data.email) formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.email, data.email)
 
-      formData.append("title", data.title);
-      formData.append("description", data.description);
-      formData.append("price", data.price.toString());
-      formData.append("phone_number", data.tel);
-      formData.append(`currency`, currency);
+      data?.images.forEach(image => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.images, image))
 
-      if (type === AnnouncmentValues.ORDER) {
+      if (type === AnnouncementValues.EQUIPMENT) createEquipment.mutate(formData)
+      if (type === AnnouncementValues.SERVICE) createService.mutate(formData)
+      if (type === AnnouncementValues.ORDER){
+         const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
+         const deadline = format(newDate, 'yyyy-MM-dd')
 
-         sizesData.forEach((size) => formData.append(`size`, size.postValue));
+         formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.deadline, deadline)
+         data?.sizes.forEach(size => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.size, size.postValue))
 
-         formData.append('title', data.title);
-         formData.append('description', data.description);
-         formData.append('price', data.price.toString());
-         formData.append('phone_number', data.tel);
-         formData.append("deadline", deadline);
-
-         createOrder.mutate(formData);
-
-      } else if (type === AnnouncmentValues.SERVICE) {
-
-        sizesData.forEach((size) => formData.append(`size`, size.postValue));
-
-        createService.mutate(formData);
-      } else {
-         createEquipment.mutate(formData);
+         createOrder.mutate(formData)
       }
    };
 
-   const isOrderType = type === "order";
-
    return {
       handleSubmit: handleSubmit(onSubmit),
-      isLoading: isOrderType ? createOrder.isPending : createEquipment.isPending,
-      isError: isOrderType ? createOrder.isError : createEquipment.isError,
+      isLoading: createAnnouncement?.isPending,
+      isError: createAnnouncement?.isError,
       register,
       errors,
       isValid,
+      watch,
+      control,
+      setValue
    };
 };

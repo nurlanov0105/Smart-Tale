@@ -21,3 +21,4 @@ export const monthsList = () => {
         { value: "Декабрь", postValue: 12 },
     ];
 }
+

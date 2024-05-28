@@ -1,5 +1,7 @@
+import { CardType } from "@/shared/lib";
+
 export type SliderCardsProps = {
-   data: any;
+   data: CardType[];
    type: string;
    isLoading: boolean;
 };

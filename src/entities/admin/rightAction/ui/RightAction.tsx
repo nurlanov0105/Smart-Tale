@@ -1,16 +1,31 @@
-import React, { FC } from "react";
-import styles from "./styles.module.scss";
-import { TypeRightActions } from "../model/types";
-import { useThemeStore } from "@/shared/themeStore";
+import React, {FC, memo, useEffect} from "react";
 import clsx from "clsx";
+import { useThemeStore } from "@/shared/themeStore";
+import {InputField} from "@/shared/ui";
+import type {RightActionProps} from "../model/types";
+import styles from "./styles.module.scss";
 
-const RightAction: FC<TypeRightActions> = ({ isRight, title }) => {
+
+const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
    const theme = useThemeStore((state) => state.theme);
+    const handleChildClick = (event: React.MouseEvent<HTMLLIElement>) => {
+        if (!isDisabled) return
+        event.preventDefault();
+        event.stopPropagation();
+    };
+
+
    return (
-      <li className={clsx(styles.item, styles[theme])}>
+      <li onClick={handleChildClick} className={clsx(styles.item, styles[theme], isDisabled && styles.item__disabled)}>
          <label>
-            <input className={styles.item__input} defaultChecked={isRight} type="checkbox" />
-            <p className={styles.item__title}>{title}</p>
+            <span>
+                <InputField
+                    {...register(action.name)}
+                    type="checkbox"
+                    isBordered={true}
+                />
+            </span>
+            <p className={styles.item__title}>{action.title}</p>
          </label>
       </li>
    );

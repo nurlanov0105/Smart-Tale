@@ -6,25 +6,45 @@ import { CardsSection } from "@/widgets/user/cardsSection";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { SkeletonTypes } from "@/shared/lib";
-import { AvatarSkeleton } from "@/shared/ui";
+import { EquipmentService, SkeletonTypes } from "@/shared/lib";
+import { AvatarSkeleton, GlobalLoading } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
-import { EquipmentService } from "@/shared/api";
+import { UserQueryKeys } from "@/shared/api";
+import { usePathname } from "next/navigation";
+import { useGetCommonUser } from "../model/useQueries";
+import { ErrorMessage } from "@/entities/general/errorMessage";
+
+import userIcon from "@@/imgs/form/user.svg";
 
 const User = () => {
    const theme = useThemeStore((state) => state.theme);
-   const data = [
-      { value: "Активно", postValue: "active" },
-      { value: "Деактивировано", postValue: "nactive" },
-   ];
-   const [type, setType] = useState(data[0].postValue);
-   const isLoading = false;
-   const error = false;
+   const pathname = usePathname();
 
-   if (error) {
-      return <h3 className="h3">Произошла ошибка при получении данных</h3>;
+   const slug = pathname.split("/")[2];
+
+   const { isError, isPending: isLoading, data } = useGetCommonUser(slug);
+
+   // if (!isLoading) {
+   //    console.log(data);
+   // }
+
+   // const isLoading = false,
+   //    isError = false;
+
+   if (isError) {
+      return <ErrorMessage />;
    }
+
+   if (!isLoading) {
+      console.log(data);
+   }
+
+   // const data = [
+   //    { value: "Активно", postValue: "active" },
+   //    { value: "Деактивировано", postValue: "nactive" },
+   // ];
+   // const [type, setType] = useState(data[0].postValue);
 
    return (
       <div className={clsx(styles.user, styles[theme])}>
@@ -32,15 +52,20 @@ const User = () => {
             <AvatarSkeleton />
          ) : (
             <div className={styles.user__top}>
-               <Image
-                  src={avatar}
-                  alt="avatar"
-                  width={60}
-                  height={60}
+               <div
                   className={styles.user__avatar}
-               />
+                  style={{
+                     backgroundImage: data.data.profile_image
+                        ? `url(${data.data.profile_image})`
+                        : "",
+                  }}>
+                  {!data.data.profile_image ? <Image src={userIcon} alt="user icon" /> : ""}
+               </div>
+
                <div className={styles.user__info}>
-                  <h4 className={styles.user__name}>Михаил Андреев</h4>
+                  <h4 className={styles.user__name}>
+                     {data.data.first_name + " " + data.data.last_name}
+                  </h4>
                   <div>
                      <p className={styles.user__text}>Был(а) в сети 3 мин. назад</p>
                   </div>
@@ -60,6 +85,7 @@ const User = () => {
          </div>
          <CardsSection
             fetchFunction={EquipmentService.getEquipments}
+            queryKey={UserQueryKeys.COMMON_USER}
             type={SkeletonTypes.standart}
          />
       </div>

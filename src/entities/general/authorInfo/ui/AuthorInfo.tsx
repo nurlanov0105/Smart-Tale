@@ -6,10 +6,10 @@ import Link from "next/link";
 import { ROUTES } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
 
-const AuthorInfo: FC<AuthorInfoProps> = ({ avatarImg, fullName, isLarge, isChat }) => {
+const AuthorInfo: FC<AuthorInfoProps> = ({ avatarImg, fullName, isLarge, isChat, slug }) => {
    return (
       <Link
-         href={ROUTES.USERS + `/${fullName}`}
+         href={ROUTES.USERS + `/${slug}`}
          className={clsx(styles.author, isLarge ? styles.author_large : "")}
          onClick={closeModal}>
          <div

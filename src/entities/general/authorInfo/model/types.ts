@@ -3,4 +3,5 @@ export type AuthorInfoProps = {
    fullName: string;
    isLarge?: boolean;
    isChat?: boolean;
+   slug?: string;
 };

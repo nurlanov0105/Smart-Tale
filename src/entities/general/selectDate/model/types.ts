@@ -1,4 +1,5 @@
-import {Dispatch, SetStateAction} from "react";
+import {Control,UseFormSetValue} from "react-hook-form";
+import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 
 export type IDateProps = {
     value: number | string
@@ -6,11 +7,11 @@ export type IDateProps = {
 }
 
 export type DateProps = {
+    control: Control<any, any>
+    setValue: UseFormSetValue<any>
+
     day: IDateProps
     month: IDateProps
     year: IDateProps
-    setDay: Dispatch<SetStateAction<IDateProps>>
-    setMonth: Dispatch<SetStateAction<IDateProps>>
-    setYear: Dispatch<SetStateAction<IDateProps>>
     type?: "user" | "admin"
 }

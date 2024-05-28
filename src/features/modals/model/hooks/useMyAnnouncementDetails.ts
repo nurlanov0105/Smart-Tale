@@ -1,4 +1,4 @@
-import {useDeleteEquipment, useDeleteOrder, useHideEquipment, useHideOrder} from "../useQueries";
+import {useDeleteEquipment, useDeleteOrder, useHideEquipment, useHideOrder, useHideService} from "../useQueries";
 
 export const useHideAnnouncement = (type: string) => {
 
@@ -6,6 +6,9 @@ export const useHideAnnouncement = (type: string) => {
 
     const hideOrder = useHideOrder()
     const hideEquipment = useHideEquipment()
+    const hideService = useHideService()
+
+
 
     return {
         hideAnnouncement: isOrder ? hideOrder.mutate : hideEquipment.mutate,

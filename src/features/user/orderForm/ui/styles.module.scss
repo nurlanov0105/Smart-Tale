@@ -16,19 +16,25 @@
    &__margin {
       margin: 2rem 0;
    }
+
    &__block {
-      margin-top: 3.2rem;
+      margin-top: 1.5rem;
+   }
+   &__phoneInput {
+      background-color: white !important;
+      border-color: transparent !important;
    }
 
-   &__currency{
+   &__currency {
       width: 9rem !important;
+      margin-top: 2.2rem;
    }
 
    &__select {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 2rem;
+      margin-top: 1.5rem;
    }
 
    &__selectInput {
@@ -67,6 +73,12 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      align-items: flex-start;
+
+      margin-bottom: 2rem;
+   }
+   &__block_row {
+      margin-top: 2.3rem;
    }
 
    &__date {
@@ -74,11 +86,9 @@
       column-gap: 12px;
    }
 
-   &__block_flex{
+   &__block_flex {
       display: flex;
       column-gap: 12px;
-
-      margin-top: 1.5rem;
    }
 
    &__btns {
@@ -87,6 +97,19 @@
       column-gap: 8px;
       margin-top: auto;
       justify-content: flex-end;
+   }
+
+   &__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+
+      column-gap: 2rem;
+      width: 100%;
+   }
+   &__areaWrapper {
+      display: flex;
+      flex-direction: column;
+      row-gap: 1rem;
    }
 }
 
@@ -107,6 +130,13 @@
                   fill: $white-theme;
                }
             }
+         }
+      }
+      &__phoneInput {
+         background-color: $black-theme !important;
+
+         input {
+            background-color: $black-theme !important;
          }
       }
    }

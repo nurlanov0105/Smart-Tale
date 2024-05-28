@@ -8,13 +8,24 @@ import type { IDateProps } from "@/entities/general/selectDate";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, data, type }) => {
+const SelectDateField: FC<SelectProps> = (
+    {
+       title,
+       classname,
+       value,
+       setDate,
+       data,
+       type,
+       onChange
+    }
+) => {
 
    const theme = useThemeStore((state) => state.theme);
 
    const { toggleShow, ref, isShown } = useOutside(false);
    const handleSelect = (item: IDateProps) => {
       setDate({ value: item.value, postValue: item.postValue });
+      onChange && onChange({ value: item.value, postValue: item.postValue })
       toggleShow();
    };
    return (
@@ -24,7 +35,7 @@ const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, da
                 type === "user" && <p className={styles.select__title}>{title}</p>
             }
             <div className={styles.select__block}>
-               <p className={styles.select__value}>{value.postValue > 0 ? value.value : title}</p>
+               <p className={styles.select__value}>{value && value.postValue > 0 ? value.value : title}</p>
                <span className={styles.select__icon}>
 
                   <ChevronDown className={clsx(styles.select__icon, isShown && styles.select__icon_active)}/>
@@ -36,7 +47,7 @@ const SelectDateField: FC<SelectProps> = ({ title, classname, value, setDate, da
                {data.map((item) => (
                   <button
                      className={clsx(styles.select__item, {
-                        [styles.select__item_active]: item.value === value.value,
+                        [styles.select__item_active]: value && item.value === value.value,
                      })}
                      type="button"
                      onClick={() => handleSelect(item)}

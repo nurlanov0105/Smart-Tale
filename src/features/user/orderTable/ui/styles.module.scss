@@ -1,86 +1,62 @@
 .table {
-   width: 100%;
-   border-collapse: collapse;
+   border-radius: 1.6rem;
+   background-color: $common-white;
 
-   &__thead{
-      width: 100%;
-      border-bottom: 1px solid #ddd;
+   &__heading {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 2rem;
+      border-bottom: 1px solid #e9edf7;
    }
-   &__item{
-      width: 25%;
 
+   &__title {
+      color: $dark-grey;
       font-size: 14px;
       font-weight: 400;
       line-height: 1.71;
-      letter-spacing: -0.28px;
-      color: $dark-grey;
-
-      text-align: left;
-
-      padding: 2rem 0 2rem 2rem;
    }
 
-   &__border {
-      margin: 2rem 0;
-
-      background-color: $common-white;
-      border-radius: 20px 20px;
-   }
-
-   &__list{
+   &__list {
       width: 100%;
-      tr{
-         &:not(:last-child){
-            border-bottom: 1px solid #ddd;
-         }
-      }
-   }
-   &__orders{
-      border-radius: 16px;
-      background-color: $common-white;
-      overflow: hidden;
    }
 }
-
+//       border-bottom: 1px solid $border-theme; color: rgb(162, 154, 142);
 .dark {
    background-color: $black-theme;
-
-   * {
-      color: $white-theme;
-   }
-   .table__thead th{
-      color:  rgb(162, 154, 142);;
-   }
-
-   tr{
-      &:not(:last-child){
-         background-color: $black-theme;
-         border-bottom: 1px solid $border-theme !important;
+   .table {
+      &__heading {
+         border-bottom: 1px solid $border-theme;
       }
-   }
-   .table__thead{
-      border-bottom: 1px solid $border-theme;
+
+      &__title {
+         color: $dark-grey;
+      }
    }
 }
 
+.skeletons {
+   display: flex;
+   flex-direction: column;
+   gap: 1.6rem;
+   margin-top: 1.6rem;
+}
 
 //Tablet Small
 
 @media (max-width: 600px) {
    .table {
-      &__thead th{
-         &:last-child{
+      &__thead th {
+         &:last-child {
             display: none;
          }
       }
-      &__list{
+      &__list {
          width: 100%;
-         tr td{
-            &:last-child{
+         tr td {
+            &:last-child {
                display: none;
             }
          }
       }
    }
 }
-

@@ -1,17 +1,25 @@
-import { ROUTES } from "@/shared/lib";
-import { usePathStore } from "./usePathStore";
-import { EquipmentsEndpoints, ServicesEndpoints } from "@/shared/api";
-import { baseApiInstance } from "@/shared/api/instance";
 import { useQuery } from "@tanstack/react-query";
+import { UserEndpoints } from "@/shared/api";
+import { baseApiInstance } from "@/shared/api/instance";
+import { ModalSlugEndpoints } from "./consts";
 
-const useFetchResource = (pathname: string, slug: string) => {
+const useFetchResource = ({
+   type,
+   slug,
+   isDetail,
+}: {
+   type: string;
+   slug: string;
+   isDetail?: boolean;
+}) => {
    const queryFn = async () => {
       let url = "";
-      if (pathname === ROUTES.MARKETPLACE_EQUIPMENT) {
-         url = EquipmentsEndpoints.EQUIPMENT_SLUG + slug;
-      } else if (pathname === ROUTES.MARKETPLACE_SERVICES) {
-         url = ServicesEndpoints.SERVICE_SLUG + slug;
+      if (isDetail) {
+         url = ModalSlugEndpoints[type] + slug;
+      } else {
+         url = ModalSlugEndpoints[type] + slug;
       }
+
       if (!url) {
          throw new Error("No valid URL generated for the query.");
       }
@@ -19,7 +27,7 @@ const useFetchResource = (pathname: string, slug: string) => {
       return response.data;
    };
 
-   const { isPending, isError, data } = useQuery({ queryKey: [pathname, slug], queryFn });
+   const { isPending, isError, data } = useQuery({ queryKey: [type, slug], queryFn });
 
    return { isPending, isError, data };
 };

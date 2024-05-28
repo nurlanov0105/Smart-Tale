@@ -1,11 +1,6 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
-import {
-   CreateEquipmentTypes,
-   UpdateEquipmentProps,
-   type UpdateOrderProps
-} from "@/shared/lib/types/orders-service.types";
+import { UpdateEquipmentProps } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
-import axios from "axios";
 
 export const EquipmentService = {
    getEquipments: async (page: number) => {
@@ -14,9 +9,7 @@ export const EquipmentService = {
             page: page,
          },
       });
-      // const response = await axios.get(
-      //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
-      // );
+
       return response;
    },
    getEquipmentSlug: async (slug: string) => {
@@ -24,11 +17,16 @@ export const EquipmentService = {
 
       return response;
    },
-   getLikedEquipments: async ({ type, page }: { type: string; page: number }) => {
+
+   getMyAnnouncements: async (type: string) => {
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_ANNOUNCEMENTS + type);
+      return response.data;
+   },
+
+   getLikedEquipments: async (page: number) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.LIKED_EQUIPMENTS, {
          params: {
             page: page,
-            type: type,
          },
       });
 
@@ -37,13 +35,24 @@ export const EquipmentService = {
    createEquipment: async (params: FormData) => {
       const response = await baseApiInstance.post(EquipmentsEndpoints.CREATE_EQUIPMENT, params, {
          headers: { "Content-Type": "multipart/form-data" },
+         method: "POST",
       });
       return response.data;
    },
-   getMyEquipments: async () => {
-      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENTS);
+   getMyAds: async (page: number, param_tab: string) => {
+      const params =
+         param_tab !== "all"
+            ? {
+                 page: page,
+                 ads: param_tab,
+              }
+            : { page: page };
+      const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_ADS, {
+         params,
+      });
       return response.data;
    },
+
    getMyEquipment: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + slug);
       return response.data;
@@ -68,9 +77,14 @@ export const EquipmentService = {
       const response = await baseApiInstance.put(EquipmentsEndpoints.DELETE_EQUIPMENT + slug);
       return response.data;
    },
-   updateEquipment: async ({equipmentSlug, params}: UpdateEquipmentProps) => {
-      const headers = { 'Content-Type': "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2) };
-      const response = await baseApiInstance.put(OrdersEndpoints.UPDATE_ORDER + equipmentSlug, params, {headers: headers})
-      return response.data
+
+   updateEquipment: async ({ equipmentSlug, params }: UpdateEquipmentProps) => {
+      const headers = { "Content-Type": "multipart/form-data" };
+      const response = await baseApiInstance.put(
+         EquipmentsEndpoints.UPDATE_EQUIPMENT + equipmentSlug,
+         params,
+         { headers: headers }
+      );
+      return response.data;
    },
 };

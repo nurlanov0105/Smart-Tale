@@ -134,13 +134,22 @@
          cursor: default;
       }
    }
-}
 
-//Laptop
-@media (max-width: 1739px){
-   .btn{
-      padding: 1.6rem 2.5rem;
+   &_fixed {
+      position: fixed;
+      bottom: 6rem;
+      right: 10rem;
+      z-index: $z7;
+
+      padding: 0 !important;
+      width: 4rem;
+      height: 4rem;
    }
 }
 
-
+//Laptop
+@media (max-width: 1739px) {
+   .btn {
+      padding: 1.6rem 2.5rem;
+   }
+}

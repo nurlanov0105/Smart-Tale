@@ -1,7 +1,7 @@
 .field {
    display: block;
    width: 100%;
-   padding: 1rem 2rem;
+   padding: 1.1rem 2rem;
 
    background-color: $common-white;
    border-radius: 10px;
@@ -23,24 +23,26 @@
          background-color: transparent;
          cursor: default;
       }
-   }
-   &__input_bordered {
-      width: 100%;
-      padding: 1.7rem 2.4rem;
 
-      border-radius: 10px;
-      border: 2px solid #e0e5f2;
-      color: #4f4f4f;
+      &_bordered {
+         width: 100%;
+         padding: 1.7rem 2.4rem;
 
-   }
-   &__input_danger {
-      width: 100%;
-      padding: 1.7rem 2.4rem;
+         border-radius: 10px;
+         border: 2px solid #e0e5f2;
+         color: #4f4f4f;
 
-      border-radius: 10px;
-      border: 1px solid $danger-color !important;
-      color: #4f4f4f;
+      }
+      &_danger {
+         width: 100%;
+         padding: 1.7rem 2.4rem;
+
+         border-radius: 10px;
+         border: 1px solid $danger-color !important;
+         color: #4f4f4f;
+      }
    }
+
 
    &__input_psw {
       padding: 1.7rem 6.6rem 1.7rem 2.4rem;
@@ -57,10 +59,26 @@
    &__error {
       font-size: 1.2rem;
       line-height: 0.8;
-      color: $dark-grey;
+      color: red;
 
       margin-top: 1rem;
       margin-left: 2rem;
+   }
+   &__loading{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   }
+
+   &__phoneError{
+      font-size: 1.2rem;
+      line-height: 0.8;
+      color: red;
+
+      position: absolute;
+      bottom: -20px;
+      left: 20px;
    }
 
    &__toggleIcon {

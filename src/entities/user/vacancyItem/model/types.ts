@@ -1,14 +1,31 @@
+import {UseFormReset} from "react-hook-form";
+import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
+
+export type CurrencyType = "Сом" | "USD" | "Рубль";
+export type OrganizationType = {
+   title: string;
+};
+
+export type VacancyCardType = {
+   job_title: string;
+   slug: string;
+   min_salary: string;
+   max_salary: string;
+   currency: CurrencyType;
+   organization: OrganizationType;
+   location: string;
+   experience: string;
+   schedule?: string;
+   description?: string;
+};
+
 export type VacancyItemProps = {
-    item: {
-        id: number
-        title: string,
-        description: string,
-        salary: string,
-        organization: string,
-        city: string,
-        experience: string,
-        responses: number[]
-    }
-    typeView?: boolean
-    isAdmin?: boolean
+   item: VacancyCardType;
+   typeView?: boolean;
+   isAdmin?: boolean;
+};
+
+
+export type ResumeRequestTypes ={
+   reset: UseFormReset<ResumeFormTypes>
 }

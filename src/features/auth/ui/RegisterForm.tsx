@@ -70,7 +70,10 @@ const RegisterForm: FC = () => {
                <h5 className={styles.auth__title}>Телефон*</h5>
 
                <div className={styles.auth__phoneWrapper}>
-                  <PhoneInput control={control}/>
+                  <PhoneInput
+                      control={control}
+                      error={!!errors?.tel?.message}
+                  />
                </div>
 
                {errors.tel && (

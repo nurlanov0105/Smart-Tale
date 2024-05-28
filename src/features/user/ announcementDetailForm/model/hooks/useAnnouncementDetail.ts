@@ -1,60 +1,116 @@
 import {useForm} from "react-hook-form";
-import type {OrderCreateFormType} from "@/features/user/orderForm/model/types";
+import {format} from "date-fns";
+
 import {
-    useGetAnnouncement,
     useGetEquipment,
     useGetOrder,
-    useUpdateAnnouncement,
-    useUpdateOrder
-} from "@/features/user/ announcementDetailForm/model/useQueries";
+    useGetService,
+    useUpdateEquipment,
+    useUpdateOrder,
+    useUpdateService
+} from "../useQueries";
+import type {AnnouncementDetailFormType, AnnouncementDetailProps} from "../types";
+import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "../consts";
+import {AnnouncementValues} from "@/shared/lib";
 
+export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => {
 
-interface IProps{
-    type: string
-    slug: string
-}
-export const useAnnouncementDetail = ({type, slug}: IProps) => {
-
-    const typeCreation = type === "order"
     const { reset,
         register,
         handleSubmit,
         control,
         watch,
-        formState: {errors, isValid}
-    } = useForm<OrderCreateFormType>()
-
-    const {isLoading, data, isError, isSuccess} = useGetAnnouncement(slug, type)
-
-
-    const updateAnnouncement = useUpdateAnnouncement(type)
-
-    const onSubmit = (data: OrderCreateFormType) => {
-        console.log(data)
-        const formData = new FormData()
-        formData.append("title", "title")
-        formData.append("size", "S")
-        formData.append("size", "XL")
-        const newData = {
-            title: "title",
-            description: "descr"
-
+        setValue,
+        formState: {errors, isValid, isDirty}
+    } = useForm<AnnouncementDetailFormType>(
+        {
+            mode: "onChange",
+            criteriaMode: "all",
+            shouldFocusError: true,
         }
-        // updateAnnouncement.updateAnnouncement({data: formData, slug: slug})
-    }
+    )
 
+    const getOrder = useGetOrder(slug, type)
+    const getEquipment = useGetEquipment(slug, type)
+    const getService = useGetService(slug, type)
+
+    const dataByType = {
+        order: getOrder,
+        equipment: getEquipment,
+        service: getService
+    };
+    const responseData = dataByType[type as keyof typeof dataByType]
+
+    const updateOrder = useUpdateOrder()
+    const updateEquipment = useUpdateEquipment()
+    const updateService = useUpdateService()
+
+    const onSubmit = (data: AnnouncementDetailFormType) => {
+        const formData = new FormData();
+
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.title, data.title)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.description, data.description)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.price, data.price.toString())
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.currency, data.currency.postValue)
+        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.tel, data.tel)
+
+        if (data.email) formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.email, data.email)
+
+        data?.images.forEach(image => {
+
+            // const reader = new FileReader();
+            // reader.onload = (e) => {
+            //     const result = e.target?.result;
+            //     const newValue = images ? [...images, files[0]] : [files[0]];
+            //     setImages(newValue)
+            //     setIsLoading(false);
+            //     // if (result) {
+            //     //     const newImage = { value: result as string, postValue: result as string };
+            //     //     const newValue = images ? [...images, newImage] : [newImage];
+            //     //
+            //     //     setImages([files[0]]);
+            //     //     setIsLoading(false);
+            //     // }
+            // };
+            //
+            console.log(image)
+            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image)
+        })
+
+        if (type === AnnouncementValues.EQUIPMENT) {
+            console.log("equipment", data)
+            updateEquipment.mutate({data: formData, slug: slug})
+        }
+        if (type === AnnouncementValues.SERVICE) {
+            console.log("service", data)
+            updateService.mutate({data: formData, slug: slug})
+        }
+        if (type === AnnouncementValues.ORDER){
+            const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
+            const deadline = format(newDate, 'yyyy-MM-dd')
+
+            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deadline, deadline)
+            data?.sizes.forEach(size => formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.size, size.postValue))
+
+            console.log("order", data)
+            updateOrder.mutate({data: formData, slug: slug})
+        }
+    };
+    console.log(responseData && responseData.data)
 
     return {
-        data: data && data["Order Info"],
+        data: responseData && responseData.data?.data,
         handleSubmit: handleSubmit(onSubmit),
-        isSuccess,
-        isLoading,
-        isError,
+        isSuccess: responseData.isSuccess,
+        isLoading: responseData.isPending,
+        isError: responseData.isError,
         register,
         errors,
         isValid,
         control,
         reset,
-        watch
+        watch,
+        setValue,
+        isDirty
     }
 }

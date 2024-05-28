@@ -3,13 +3,15 @@
 import { NextPage } from "next";
 import { CardsSection } from "@/widgets/user/cardsSection";
 import { OrdersService, SkeletonTypes } from "@/shared/lib";
-import { EquipmentService } from "@/shared/api";
-// import styles from "./styles.module.scss";
+import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 
 const OrderPage: NextPage = () => {
    return (
-      // OrdersService.getOrders
-      <CardsSection fetchFunction={EquipmentService.getEquipments} type={SkeletonTypes.standart} />
+      <CardsSection
+         fetchFunction={OrdersService.getOrders}
+         queryKey={OrdersQueryKeys.ORDERS}
+         type={SkeletonTypes.standart}
+      />
    );
 };
 
