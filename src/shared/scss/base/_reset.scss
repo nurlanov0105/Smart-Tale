@@ -83,7 +83,7 @@ input::-ms-clear {
 }
 
 button,
-input[type='submit'] {
+input[type="submit"] {
    display: inline-block;
    box-shadow: none;
    background-color: transparent;
@@ -102,6 +102,9 @@ input[type="number"]::-webkit-outer-spin-button {
    margin: 0;
 }
 
+input[type="number"] {
+   -moz-appearance: textfield;
+}
 
 textarea:focus,
 textarea:active,
