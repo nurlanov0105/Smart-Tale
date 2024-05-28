@@ -1,75 +1,30 @@
 "use client";
 
-import React, { useState, useRef, FC } from "react";
+import React, {FC} from "react";
 import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
-import { formatCreditCardNumber, formatCVC, formatExpirationDate } from "../model/formating";
-import { Button, InputField } from "@/shared/ui";
 import clsx from "clsx";
+import { Button, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
+import {usePayment} from "../model/usePayment";
 import styles from "./styles.module.scss";
-import { showModal } from "@/views/modal";
-import { MODAL_KEYS } from "@/shared/lib";
 
-interface FormState {
-   number: string;
-   name: string;
-   expiry: string;
-   cvc: string;
-   issuer: string;
-   focused: string;
-}
 
-type Props = {
-   handleSubscribe: () => void;
-   isPending: boolean;
-};
 
-const StripePaymentForm: FC<Props> = ({ handleSubscribe, isPending }) => {
+
+const StripePaymentForm: FC = () => {
    const theme = useThemeStore((state) => state.theme);
-   const [state, setState] = useState<FormState>({
-      number: "",
-      name: "",
-      expiry: "",
-      cvc: "",
-      issuer: "",
-      focused: "",
-   });
 
-   const formRef = useRef<HTMLFormElement>(null);
-
-   const handleCallback = ({ issuer }: { issuer: string }, isValid: boolean) => {
-      if (isValid) {
-         setState((prevState) => ({ ...prevState, issuer }));
-      }
-   };
-
-   const handleInputFocus = ({ target }: React.FocusEvent<HTMLInputElement>) => {
-      setState((prevState) => ({ ...prevState, focused: target.name }));
-   };
-
-   const handleInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-      let { name, value } = target;
-
-      if (name === "number") {
-         value = formatCreditCardNumber(value);
-      } else if (name === "expiry") {
-         value = formatExpirationDate(value);
-      } else if (name === "cvc") {
-         value = formatCVC(value);
-      }
-
-      setState((prevState) => ({ ...prevState, [name]: value }));
-   };
-
-   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      handleSubscribe();
-
-      if (formRef.current) {
-         formRef.current.reset();
-      }
-   };
+   const {
+      handleSubmit,
+      handleInputChange,
+      handleCallback,
+      handleInputFocus,
+      formRef,
+      state,
+      isLoading,
+      isError
+   } = usePayment()
 
    return (
       <div key="Payment" className={clsx(styles.formWrapper, styles[theme])}>
@@ -141,7 +96,8 @@ const StripePaymentForm: FC<Props> = ({ handleSubscribe, isPending }) => {
             </fieldset>
 
             {/* <input type="hidden" name="issuer" value={state.issuer} /> */}
-            <Button className={styles.form__btn}>{isPending ? "Загрузка..." : "Оплатить"}</Button>
+            <Button type="submit" className={styles.form__btn}>Оплатить</Button>
+            <Button className={styles.form__btn}>{isLoading ? "Загрузка..." : "Оплатить"}</Button>
          </form>
       </div>
    );

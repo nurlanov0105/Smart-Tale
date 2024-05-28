@@ -60,6 +60,14 @@ export const PathData: any = {
       path: "Работа/Резюме",
       name: "Резюме",
    },
+   [WORK.RESUMES]: {
+      path: "Работа/Список Резюме",
+      name: "Список Резюме",
+   },
+   [WORK.MY_RESUMES]: {
+      path: "Работа/Мои Резюме",
+      name: "Мои Резюме",
+   },
    [WORK.CREATE_VACANCY]: {
       path: "Работа/Добавить Вакансию",
       name: "Добавить Вакансию",
@@ -69,17 +77,17 @@ export const PathData: any = {
       name: "Детали вакансии",
    },
 
-   [ROUTES.ORDER_DETAILS]: {
-      path: "Маркетплейс/Детали объявления",
-      name: "Детали объявления",
-   },
    [ROUTES.ANNOUNCEMENT_DETAILS_ORDER]: {
-      path: "Мои объявления/Детали объявления",
-      name: "Детали объявления",
+      path: "Мои объявления/Детали заказа",
+      name: "Детали заказа",
    },
    [ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT]: {
-      path: "Мои объявления/Детали объявления",
-      name: "Детали объявления",
+      path: "Мои объявления/Детали оборудования",
+      name: "Детали оборудования",
+   },
+   [ROUTES.ANNOUNCEMENT_DETAILS_SERVICE]: {
+      path: "Мои объявления/Детали услуги",
+      name: "Детали услуги",
    },
 
    [ROUTES.CARD_DETAILS]: {
@@ -138,6 +146,10 @@ export const PathData: any = {
       name: "Должности",
    },
    [ORGANIZATION_ROUTES.ADD_POSITION]: {
+      path: "Организация/Должность",
+      name: "Должность",
+   },
+   [ORGANIZATION_ROUTES.POSITION_DETAILS]: {
       path: "Организация/Должность",
       name: "Должность",
    },

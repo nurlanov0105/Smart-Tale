@@ -7,13 +7,13 @@ import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
 import {UseFormSetValue} from "react-hook-form";
-import {OrderCreateFormType} from "@/features/user/orderForm/model/types";
+import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 import {employee} from "@/shared/lib/types/types";
 
 interface IImages {
     setImages: (value: File[]) => void;
     images: File[]
-    setValue: UseFormSetValue<OrderCreateFormType>
+    setValue: UseFormSetValue<any>
 }
 
 const AddImages: FC<IImages> = ({  images, setImages, setValue }) => {

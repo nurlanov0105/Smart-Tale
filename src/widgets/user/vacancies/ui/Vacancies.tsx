@@ -10,6 +10,7 @@ import { FiltersVacancies } from "@/features/user/filtersVacancies";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { ErrorMessage } from "@/entities/general/errorMessage";
+import {TypeViewButtons} from "@/entities/user/typeViewButtons";
 
 const Vacancies = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -21,7 +22,6 @@ const Vacancies = () => {
    const [typeView, setTypeView] = useState(false);
 
    const handleFilters = () => setWithFilters(!withFilters);
-   const handleTypeView = () => setTypeView(!typeView);
 
    const { isError, isPending: isLoading, data } = useGetVacancies(page);
 
@@ -36,24 +36,10 @@ const Vacancies = () => {
          </div>
 
          <div className={styles.vacancies__filters}>
-            <div className={styles.vacancies__types}>
-               <button onClick={handleTypeView}>
-                  <Rows2
-                     className={clsx(styles.vacancies__type, {
-                        [styles.vacancies__type_active]: !typeView,
-                     })}
-                  />
-               </button>
-               <button onClick={handleTypeView}>
-                  <Rows3
-                     className={clsx(styles.vacancies__type, {
-                        [styles.vacancies__type_active]: typeView,
-                     })}
-                  />
-               </button>
-            </div>
+            <TypeViewButtons typeView={typeView} setTypeView={setTypeView}/>
             <div className={styles.vacancies__selects}>
                <Select
+                   //@ts-ignore
                   selected={selectedDate}
                   setSelected={setSelectedDate}
                   data={timeList}
@@ -61,6 +47,7 @@ const Vacancies = () => {
                   classname={styles.vacancies__select}
                />
                <Select
+                   //@ts-ignore
                   selected={selected}
                   setSelected={setSelected}
                   data={typeList}

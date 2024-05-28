@@ -52,7 +52,7 @@ export default BoardColumn;
 // import { BoardCard, Order } from "@/entities/user/boardCard";
 // import {ColumnsProps} from "../model/types";
 //
-// import {boardHeadings} from "@/features/user/boardColumn/model/consts";
+// import {boardHeadings} from "@/features/user/boardColumn/model/consts.ts";
 // import {Droppable} from "@hello-pangea/dnd";
 // import clsx from "clsx";
 // import styles from "./styles.module.scss";

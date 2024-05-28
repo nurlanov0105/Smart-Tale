@@ -74,17 +74,22 @@ export const VacancyEndpoints = {
 };
 export const ResumeEndpoints = {
    ADD_RESUME: "/add-resume/",
+   GET_RESUMES: "/resume/",
+   GET_MY_RESUMES: "/my-resumes/",
 };
 
 export const OrganizationEndpoints = {
-   ORGANIZATION_DETAILS: "/organization/",
+   ORGANIZATION_DETAILS: "/organization/detail/",
    ORGANIZATION_CREATE: "/organization/create",
    GET_USER_ORGANIZATIONS: "/organization/list",
+   GET_MY_ORGANIZATIONS: "/my-orgs/",
    ADD_EMPLOYEE: "/employee/add",
-   GET_EMPLOYEES: "/employees/list",
-   EMPLOYEE_DETAILS: "/employees/",
+   GET_EMPLOYEES: "/employee/list",
+   EMPLOYEE_DETAILS: "/employee/detail/",
    DELETE_EMPLOYEE: "/employee/delete",
    GET_POSITIONS: "/org-jobs/list",
+   DETAILS_POSITION: "/org-jobs/detail/",
    ADD_POSITION: "/org-jobs/add",
-   DELETE_POSITION: "/org-jobs/delete",
+   CHANGE_POSITION: "/org-jobs/detail/",
+   DELETE_POSITION: "/org-jobs/detail/",
 };

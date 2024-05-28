@@ -11,6 +11,10 @@ export const UserService = {
       const response = await baseApiInstance.get(UserEndpoints.MY_PROFILE);
       return response;
    },
+   getSubscription: async (subscription: string) => {
+      const response = await baseApiInstance.put(UserEndpoints.SUBSCRIBE, {subscription: subscription});
+      return response;
+   },
    changeProfile: async (data: ProfileRequestType) => {
       const response = await baseApiInstance.put(UserEndpoints.MY_PROFILE_CHANGE, data);
       return response;

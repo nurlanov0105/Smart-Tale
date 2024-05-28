@@ -27,6 +27,7 @@ const AdminHistory = () => {
             <h4 className="h4">Пользователь</h4>
          </div>
          <Select
+             //@ts-ignore
             selected={selected}
             setSelected={setSelected}
             title="Сотрудник"
@@ -53,7 +54,7 @@ const AdminHistory = () => {
             data={data}
             isLoading={false}
             isError={false}
-            isCurrent={type === "current" ? true : false}
+            isCurrent={type === "current"}
             type={SkeletonTypes.listItem}
          />
       </section>

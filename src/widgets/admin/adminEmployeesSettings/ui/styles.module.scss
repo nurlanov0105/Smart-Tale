@@ -26,6 +26,13 @@
     flex-direction: column;
     row-gap: 8px;
   }
+  &__phoneNumber{
+    background-color: $common-white;
+    border: none !important;
+    input {
+      background-color: $common-white;
+    }
+  }
 
   &__box {
     display: flex;

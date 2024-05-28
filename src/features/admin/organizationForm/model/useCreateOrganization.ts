@@ -3,13 +3,7 @@ import {useMutation} from "@tanstack/react-query";
 import {OrganizationQueryKeys} from "@/shared/api";
 import {OrganizationService} from "@/shared/lib";
 import {toast} from "react-toastify";
-
-
-interface IForm{
-    title: string
-    description: string
-    logo: File
-}
+import {CreateOrganizationTypes} from "./types";
 
 export const useCreateOrganization = () => {
     const {
@@ -19,7 +13,7 @@ export const useCreateOrganization = () => {
         control,
         setValue,
         formState: {errors, isValid}
-    } = useForm<IForm>({
+    } = useForm<CreateOrganizationTypes>({
         mode: "onBlur"
     })
 
@@ -44,7 +38,6 @@ export const useCreateOrganization = () => {
         mutate(formData)
 
     }
-    console.log(errors)
 
     return {
         handleSubmit: handleSubmit(onsSubmit),

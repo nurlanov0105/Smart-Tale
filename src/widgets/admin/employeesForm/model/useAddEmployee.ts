@@ -1,14 +1,11 @@
 import {useMutation} from "@tanstack/react-query";
+import {useForm} from "react-hook-form";
+import {toast} from "react-toastify";
 import {OrganizationQueryKeys} from "@/shared/api";
 import {OrganizationService} from "@/shared/lib";
-import {useForm} from "react-hook-form";
-import {employee} from "@/shared/lib/types/types";
+import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
+import type {AddEmployeeRequestTypes, AddEmployeeTypes} from "@/shared/lib/types/organizations-service.types";
 
-interface IForm{
-    email: string
-    position: employee
-    organization: employee
-}
 
 export const useAddEmployee = () => {
     const {
@@ -16,23 +13,41 @@ export const useAddEmployee = () => {
         register,
         handleSubmit,
         control,
+        watch,
         formState: {errors, isValid}
-    } = useForm<IForm>({
-        mode: "onBlur"
+    } = useForm<AddEmployeeTypes>({
+        mode: "onChange"
     })
 
     const {
-        mutate ,
+        mutate: inviteEmployee ,
         isPending,
         isError
-    } = useMutation({
+    } = useMutation<any, Error, AddEmployeeRequestTypes>({
         mutationKey: [OrganizationQueryKeys.ADD_EMPLOYEE],
-        mutationFn: (data) => OrganizationService.addEmployee(data)
+        mutationFn: (data) => OrganizationService.addEmployee(data),
+        onSuccess: () => {
+            reset()
+            toast.success("Поздравляем! Вы успешно добавили сотрудника!")
+        }
     })
 
-    const onsSubmit = (data: any) => {
-        console.log(data)
+    const onsSubmit = (data: AddEmployeeTypes) => {
+        const {
+            positions,
+            position,
+            organization,
+            ...rest
+        } = data;
 
+        const adapter = {
+            // ...rest,
+            email: data.email,
+            org_slug: "neobisteam",
+            jt_slug: data.position.postValue
+        }
+
+        inviteEmployee(adapter)
     }
 
     return {
@@ -42,7 +57,9 @@ export const useAddEmployee = () => {
         register,
         errors,
         isValid,
-        control
+        control,
+        reset,
+        watch
 
     }
 }

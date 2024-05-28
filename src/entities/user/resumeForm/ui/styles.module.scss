@@ -31,21 +31,8 @@
       border-radius: 8px;
    }
 
-   &__select {
-      border-color: $white-theme !important;
-      border-radius: 10px !important;
-      padding: 1.7rem !important;
-
-      margin: 2rem 0;
-   }
-
    &__currency {
-      border-color: $white-theme !important;
-      border-radius: 10px !important;
-      padding: 2rem !important;
-      width: 10rem !important;
-
-      margin: 2rem 0;
+      margin-bottom: 1rem;
    }
 
    &__salary {
