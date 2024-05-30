@@ -6,7 +6,7 @@ import { EquipmentService } from "@/shared/lib";
 
 export const useEquipmentsQuery = (page: number) => {
    return useQuery({
-      queryFn: () => EquipmentService.getEquipments(page),
+      queryFn: () => EquipmentService.getEquipments({ page }),
       queryKey: [EquipmentQueryKeys.EQUIPMENTS, page],
    });
 };

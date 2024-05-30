@@ -44,6 +44,7 @@ const SearchField = () => {
 
    useEffect(() => {
       setSearch(debouncedValue);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [debouncedValue]);
 
    return (
