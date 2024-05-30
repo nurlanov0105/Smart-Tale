@@ -50,9 +50,9 @@ baseApiInstance.interceptors.request.use(
       }
 
 
-       if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
-           config.url += '/';
-       }
+           // if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
+           //     config.url += '/';
+           // }
 
 
       return config;

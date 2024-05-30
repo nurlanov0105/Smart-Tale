@@ -16,12 +16,13 @@ const AdminEmployees = () => {
       router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
    };
 
-   const {data, isLoading, isError} = useEmployees()
+   const {data, isLoading, isError, isSuccess} = useEmployees()
+
 
 
    return (
       <>
-         {!data?.length ? (
+         {isSuccess && !data?.length ? (
             <EmptyContent type={EMPTY_CONTENT_TYPES.employees} />
          ) : (
             <div className={styles.employees__wrapper}>

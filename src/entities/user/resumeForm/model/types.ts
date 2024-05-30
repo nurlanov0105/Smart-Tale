@@ -5,13 +5,14 @@ export type ResumeFormProps = {
 };
 
 export type ResumeFormTypes = {
-   description: string
    job_title: string
    about_me: string
    min_salary: string
    max_salary: string
    experience: string
    currency: SelectPostTypes
-   graphic: SelectPostTypes
-   city: SelectPostTypes
+
+   location: SelectPostTypes
+   schedule: SelectPostTypes
+
 }

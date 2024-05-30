@@ -6,8 +6,11 @@ import styles from "./styles.module.scss";
 
 const DeleteEmployeeModal = ({slug}: {slug: string}) => {
 
-    const {mutate} = useDeleteEmployee()
-    const handleDelete = () => mutate(slug)
+    const {mutate, isPending} = useDeleteEmployee()
+    const handleDelete = () => {
+        mutate(slug)
+        closeModal()
+    }
 
     return (
         <div className={styles.modal}>
@@ -21,7 +24,9 @@ const DeleteEmployeeModal = ({slug}: {slug: string}) => {
                 <p className="greyText">Сотрудник будет удалён!</p>
                 <div className={styles.modal__btns}>
                     <Button onClick={closeModal} className="btn_bordered">Нет</Button>
-                    <Button onClick={handleDelete}>Да</Button>
+                    <Button onClick={handleDelete}>
+                        {isPending ? "Загрузка..." : "Да"}
+                    </Button>
                 </div>
             </div>
         </div>

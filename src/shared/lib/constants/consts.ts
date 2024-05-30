@@ -1,4 +1,5 @@
 import { CountryCode } from "libphonenumber-js";
+import {RightsTypes} from "@/shared/lib";
 
 
 const slide01 = "/imgs/slider/01.jpg";
@@ -28,7 +29,9 @@ export const MODAL_KEYS = {
    deleteAccount: "DeleteModal",
    deletePosition: "DeletePositionModal",
    deleteEmployee: "DeleteEmployeeModal",
+   deleteResume: "DeleteResumeModal",
    responsesUsers: "ResponsesModal",
+   activateOrganization: "ActivateOrganizationModal",
 };
 
 export const SKELETON_TYPES = {
@@ -102,4 +105,14 @@ export const EMPTY_CONTENT_TYPES = {
    employees: "employees",
    positions: "positions"
 } as const
+
+export const rightsActionsMap: RightsTypes = {
+   [RIGHT_ACTIONS.UPDATE_ACCESS]: "Изменение прав доступа у ролей",
+   [RIGHT_ACTIONS.ADD_EMPLOYEE]: "Добавление работника",
+   [RIGHT_ACTIONS.UPDATE_ORDER]: "Изменение статуса заказа",
+   [RIGHT_ACTIONS.CREATE_POSITION]: "Создание и выдача Роли",
+   [RIGHT_ACTIONS.DELETE_ORDER]: "Отмена заказа",
+   [RIGHT_ACTIONS.REMOVE_POSITION]: "Удаление роли",
+   [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "Удаление сотрудника",
+};
 

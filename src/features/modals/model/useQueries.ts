@@ -1,15 +1,17 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
-import {EquipmentQueryKeys, OrganizationQueryKeys, ServiceQueryKeys} from "@/shared/api";
+import {EquipmentQueryKeys, OrganizationQueryKeys, ResumeQueryKeys, ServiceQueryKeys} from "@/shared/api";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
 import {
-   EquipmentService,
-   OrdersService,
-   OrganizationService,
-   ServicesService,
-    ORGANIZATION_ROUTES
+    EquipmentService,
+    OrdersService,
+    OrganizationService,
+    ServicesService,
+    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService
 } from "@/shared/lib";
+import {closeModal} from "@/views/modal";
+import {WORK} from "@/shared/lib/routes.config";
 
 
 export const useHideEquipment = () => {
@@ -83,12 +85,13 @@ export const useDeleteOrder = () => {
 };
 
 export const useDeleteEmployee = () => {
-   const queryClient = useQueryClient();
+    const {push} = useRouter()
    return useMutation<any, Error, string>({
       mutationKey: [OrganizationQueryKeys.DELETE_EMPLOYEE],
       mutationFn: (slug) => OrganizationService.deleteEmployee(slug),
       onSuccess: () => {
          toast.success("Сотрудник был удалён!");
+          push(ORGANIZATION_ROUTES.EMPLOYEES)
       },
       onError: () => {
          console.log("error");
@@ -125,3 +128,32 @@ export const useDeletePosition = () => {
     })
 }
 
+export const useDeleteResume = () => {
+    const {replace} = useRouter()
+    return useMutation<any, Error, string>({
+        mutationKey: [ResumeQueryKeys.RESUME_DELETE],
+        mutationFn: (slug) => ResumeService.deleteResume(slug),
+        onSuccess: () => {
+            toast.success("Резюме было удалено")
+            replace(WORK.MY_RESUMES)
+        },
+        onError: () => {
+            console.log("error")
+        }
+    })
+}
+
+
+export const useActiveOrganization = () => {
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, string>({
+        mutationKey: [OrganizationQueryKeys.ORGANIZATION_ACTIVATE],
+        mutationFn: (slug) => OrganizationService.activateOrganization(slug),
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [OrganizationQueryKeys.ORGANIZATION]
+            })
+            closeModal()
+        }
+    })
+}

@@ -31,7 +31,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
                     <div className={styles.item__left}>
                         <Image
                             className={styles.item__image}
-                            src={cardImage}
+                            src={item.image || cardImage}
                             alt="card"
                             width={75}
                             height={75}
@@ -53,7 +53,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
                     <div className={styles.item__left}>
                         <Image
                             className={styles.item__image}
-                            src={cardImage}
+                            src={item.image || cardImage}
                             alt="card"
                             width={75}
                             height={75}

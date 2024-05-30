@@ -39,15 +39,6 @@ const OrderDetailBtns:FC<IProps> = ({isDirty, reset, isDisabled}) => {
                     <Button disabled={!isDisabled} type="submit">Сохранить изменения</Button>
                 </div>
             }
-            {/*<div className={styles.buttons}>*/}
-            {/*    {*/}
-            {/*        isDirty && <>*/}
-            {/*            <Button type="button" className="btn_bordered">Отменить изменения</Button>*/}
-            {/*            <Button type="submit">Сохранить изменения</Button>*/}
-            {/*        </>*/}
-            {/*    }*/}
-
-            {/*</div>*/}
         </div>
     );
 };

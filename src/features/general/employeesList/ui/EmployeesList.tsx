@@ -13,7 +13,7 @@ const EmployeesList:FC<EmployeesListProps> = ({isLoading, data}) => {
    const theme = useThemeStore((state) => state.theme);
 
 
-   if (!data?.length) return <h4 className="h4">У вас еще нет сотрудников</h4>
+   if (!data?.length && !isLoading) return <h4 className="h4">У вас еще нет сотрудников</h4>
 
    return (
        <>

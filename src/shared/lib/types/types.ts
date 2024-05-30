@@ -120,3 +120,9 @@ export type CardType = {
    image: string;
    type: "Order" | "Equipment" | "Service";
 };
+
+export interface IRights{
+   name: string
+   title: string
+   value: string
+}

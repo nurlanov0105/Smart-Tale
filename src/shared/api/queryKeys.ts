@@ -19,18 +19,22 @@ export const OrganizationQueryKeys = {
    ORGANIZATION: "organization/list",
    CREATE_ORGANIZATION: "organization/create",
    ORGANIZATION_DETAILS: "organization-details",
-   VACANCY_DETAILS: "vacancy-details",
+   ORGANIZATION_ACTIVATE: "organization-activate",
    EMPLOYEES: "employees",
+   EMPLOYEE_ORDERS: "employee-orders",
    ADD_EMPLOYEE: "employee/add",
    EMPLOYEE_DETAILS: "employees-details",
    EMPLOYEE_SETTINGS: "employees-settings",
    DELETE_EMPLOYEE: "employee/delete",
+   CHANGE_STATUS: "change-status",
    ADD_POSITION: "add-position",
    POSITIONS: "positions",
    CHANGE_POSITION: "change-position",
    DETAILS_POSITION: "details-position",
    DELETE_POSITION: "details-delete",
    HISTORY: "history",
+   GET_ORDERS: "get-organization-orders",
+   HISTORY_ORDERS: "get-history-orders",
 };
 
 export const EquipmentQueryKeys = {
@@ -70,6 +74,16 @@ export const ServiceQueryKeys = {
 };
 export const ResumeQueryKeys = {
    RESUME: "resume",
+   RESUME_DETAILS: "resume-details",
+   RESUME_UPDATE: "resume-update",
+   RESUME_DELETE: "resume-delete",
    GET_RESUMES: "get-resumes",
    GET_MY_RESUMES: "get-my-resumes",
+};
+export const VacancyQueryKeys = {
+   GET_VACANCIES: "vacancies",
+   VACANCY_DETAILS: "vacancy-details",
+   VACANCY_UPDATE: "vacancy-update",
+   VACANCY_DELETE: "vacancy-delete",
+   VACANCY_SLUG: "vacancy-slug",
 };

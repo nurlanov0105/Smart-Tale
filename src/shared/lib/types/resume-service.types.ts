@@ -5,10 +5,14 @@ export type ResumeType = {
    min_salary: string;
    max_salary: string;
    currency: CurrencyType;
-   // slug: string;
    // organization: OrganizationType;
    // location: string;
    experience: string;
    description?: string;
 
 };
+
+export type UpdateResumeTypes = {
+   data: ResumeType
+   slug: string
+}

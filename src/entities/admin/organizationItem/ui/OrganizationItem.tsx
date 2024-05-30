@@ -1,20 +1,27 @@
-import React, { FC } from "react";
+import React, {FC} from "react";
 import Link from "next/link";
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
-import logo from "@@/logo.svg";
-import { TypesItemOrganization } from "../model/types";
 import Image from "next/image";
 import clsx from "clsx";
-import styles from "./styles.module.scss";
+import logo from "@@/logo.svg";
+import {showModal} from "@/views/modal";
 import { useThemeStore } from "@/shared/themeStore";
+import {MODAL_KEYS, ORGANIZATION_ROUTES} from "@/shared/lib";
+import {Switch} from "@/shared/ui";
+import { TypesItemOrganization } from "../model/types";
+import styles from "./styles.module.scss";
+
 
 const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
+
+   const handleActivate = () => {
+       if (!item.active) showModal(MODAL_KEYS.activateOrganization, {slug: item.slug})
+   }
+
    return (
-      <Link
-         href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + "/item name"}
-         className={clsx(styles.organization, styles[theme])}>
-         <div className={styles.organization__left}>
+      <div
+         className={clsx(styles.organization, item.active && styles.organization_active, styles[theme])}>
+         <Link href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${item.slug}`} className={styles.organization__left}>
             <Image
                className={styles.organization__image}
                src={logo}
@@ -23,26 +30,24 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
                height={75}
             />
             <div className={styles.organization__info}>
-               <h6 className={styles.organization__title}>SmartTale</h6>
-               <p className={styles.organization__text}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad cum
-                  deserunt dolorem ipsum mollitia nesciunt nulla odio pariatur temporibus!
-                  Blanditiis dolorum, ducimus et maxime minus obcaecati perspiciatis sint soluta.
-               </p>
+               <h6 className={styles.organization__title}>{item.title}</h6>
+               <p className={styles.organization__text}>{item.description}</p>
             </div>
-         </div>
+         </Link>
          <div className={styles.organization__bottom}>
-            {item.isActive ? (
-               <span className={clsx(styles.organization__date, styles.organization__date_active)}>
-                  Активен
-               </span>
-            ) : (
-               <span className={styles.organization__date}>Деактивен</span>
-            )}
-            <p className={styles.organization__detail}>Посмотреть детали</p>
+             <span className={clsx(styles.organization__date, item.active && styles.organization__date_active)}>
+                 <p>
+                     {item.active ? "Активен" : "Деактивен"}
+                 </p>
+                 <Switch
+                     checked={item.active}
+                     onCheckedChange={handleActivate}
+                 />
+             </span>
+
+            {/*<p className={styles.organization__detail}>Посмотреть детали</p>*/}
          </div>
-      </Link>
+      </div>
    );
 };
 

@@ -8,6 +8,10 @@
    border-radius: 16px;
    position: relative;
 
+   &_active{
+      box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
+   }
+
    &__left {
       display: flex;
       column-gap: 2.1rem;
@@ -46,7 +50,7 @@
 
       overflow: hidden;
 
-      max-width: 80%;
+      max-width: 80em;
 
       color: $dark-blue;
    }
@@ -59,6 +63,8 @@
       line-height: 1.42;
       letter-spacing: -0.28px;
 
+
+
       @include transition;
 
       &:hover,
@@ -69,15 +75,24 @@
    }
 
    &__date {
-      position: absolute;
-      top: 1.6rem;
-      right: 3.2rem;
+      //position: absolute;
+      //top: 1.6rem;
+      //right: 3.2rem;
 
-      font-size: 14px;
+      font-size: 1.5rem;
+      font-weight: 500;
       line-height: 1.42;
       letter-spacing: -0.28px;
 
       color: $dark-grey;
+
+      display: flex;
+      align-items: center;
+      column-gap: 1rem;
+
+      p{
+         min-width: 6.6rem;
+      }
 
       &_active {
          color: #34c759;
