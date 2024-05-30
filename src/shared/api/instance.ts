@@ -75,6 +75,8 @@ baseApiInstance.interceptors.response.use(
             return baseApiInstance.request(originalRequest);
          } catch (err) {
             console.log(err);
+            CookiesServices.clearTokens();
+            sessionStorage.clear();
          }
 
          return baseApiInstance(originalRequest);
