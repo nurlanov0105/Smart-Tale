@@ -85,7 +85,7 @@
 
    &__theme {
       cursor: pointer;
-      width: 24px;
+      width: 38px;
    }
 
    .light {
@@ -93,14 +93,26 @@
    }
 
    &__sun{
+      width: 100%;
+      border-radius: 50%;
+      padding: 0.8rem;
+      font-size: 5rem;
       &:hover{
          color: yellow;
+         //color: $black-theme;
+         background-color: $grey;
+
       }
    }
    &__moon{
+      width: 100%;
+      font-size: 5rem;
+      border-radius: 50%;
+      padding: 0.8rem;
       &:hover{
-         color: $dark-blue;
-         fill: $dark-blue;
+         //color: $dark-blue;
+
+         background-color: $white-theme;
       }
    }
 }

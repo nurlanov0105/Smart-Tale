@@ -1,9 +1,8 @@
-type item = {
-    id: number
-    type: string
-    isActive: boolean
-}
+import {OrganizationsTypes} from "@/widgets/admin/adminOrganization/model/types";
+import {Dispatch, SetStateAction} from "react";
+
+
 
 export type TypesItemOrganization = {
-    item: item
+    item: OrganizationsTypes
 }

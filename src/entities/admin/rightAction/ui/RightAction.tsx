@@ -1,4 +1,4 @@
-import React, {FC, memo, useEffect} from "react";
+import React, {FC, memo} from "react";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/themeStore";
 import {InputField} from "@/shared/ui";
@@ -13,7 +13,7 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
         event.preventDefault();
         event.stopPropagation();
     };
-
+    const handleChange = () => {}
 
    return (
       <li onClick={handleChildClick} className={clsx(styles.item, styles[theme], isDisabled && styles.item__disabled)}>
@@ -21,6 +21,9 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
             <span>
                 <InputField
                     {...register(action.name)}
+                    onChange={handleChange}
+                    defaultChecked={Boolean(action.value)}
+                    checked={isDisabled && Boolean(action.value)}
                     type="checkbox"
                     isBordered={true}
                 />
@@ -31,4 +34,4 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
    );
 };
 
-export default RightAction;
+export default memo(RightAction);

@@ -4,32 +4,34 @@ import { useRouter } from "next/navigation";
 import { EmptyContent } from "@/entities/admin/emptyContent";
 import { OrganizationItem } from "@/entities/admin/organizationItem";
 import { GlobalLoading } from "@/shared/ui";
+import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
 import { useOrganization } from "../model/useOrganization";
 import styles from "./styles.module.scss";
-import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+import {ORGANIZATION_ROUTES} from "@/shared/lib";
 
 const AdminOrganization = () => {
-   const [dataList, setData] = useState([
-      { id: 1, type: "order", isActive: true },
-      { id: 2, type: "order", isActive: false },
-      { id: 3, type: "order", isActive: false },
-      { id: 4, type: "order", isActive: false },
-      { id: 5, type: "order", isActive: false },
-      { id: 6, type: "order", isActive: false },
-   ]);
 
    const { data, isLoading, isError, isSuccess } = useOrganization();
 
+   const [loading, setLoading] = useState(true)
+
    const { replace } = useRouter();
+
+   const isMe = true
+
    useEffect(() => {
       if (isSuccess && data) {
          console.log(data);
-         // replace(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + "/name")
+         if (!isMe){
+            replace(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${data[data?.length - 1].slug}`)
+         }else {
+            setLoading(false)
+         }
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isSuccess]);
 
-   if (isLoading) return <GlobalLoading />;
+   if (isLoading || loading) return <GlobalLoading />;
 
    return (
       <>
@@ -38,9 +40,12 @@ const AdminOrganization = () => {
          ) : (
             <div className={styles.list}>
                <h4 className="h4">Список организаций</h4>
-               {dataList.map((item) => (
-                  <OrganizationItem key={item.id} item={item} />
-               ))}
+               {data.map((item) => (
+                  <OrganizationItem
+                      key={item.slug}
+                      item={item}
+                  />
+               )).reverse()}
             </div>
          )}
       </>

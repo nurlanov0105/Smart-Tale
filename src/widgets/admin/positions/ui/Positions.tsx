@@ -3,14 +3,12 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { PositionItem } from "@/entities/admin/positionItem";
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
+import {EmptyContent} from "@/entities/admin/emptyContent";
+import { ORGANIZATION_ROUTES, usePositions } from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
 import {Button, GlobalLoading} from "@/shared/ui";
-
-import {usePositions} from "../model/usePositions";
-import styles from "./styles.module.scss";
-import {EmptyContent} from "@/entities/admin/emptyContent";
 import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+import styles from "./styles.module.scss";
 
 const Positions = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -21,8 +19,8 @@ const Positions = () => {
    };
 
 
-   const {data, isLoading, isError} = usePositions()
-   if (isLoading) return <GlobalLoading type="full"/>
+   const {data, isLoading, isError, isPending} = usePositions()
+   if (isLoading || isPending) return <GlobalLoading type="full"/>
    if (isError) return <h3 className="h3">Упс, произошла ошибка</h3>
 
    return (

@@ -1,12 +1,6 @@
 import {useForm} from "react-hook-form";
-import {useMutation} from "@tanstack/react-query";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService} from "@/shared/lib";
-import {AddPositionRequestTypes, AddPositionTypes} from "@/shared/lib/types/organizations-service.types";
-import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
-import {toast} from "react-toastify";
-import {useAddPositionQuery, useChangePositionQuery} from "@/features/admin/positionForm/model/hooks/useQueries";
-import {useParams} from "next/navigation";
+import {AddPositionTypes} from "@/shared/lib";
+import {useAddPositionQuery} from "./useQueries";
 
 export const useAddPosition = () => {
     const {

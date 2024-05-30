@@ -13,7 +13,7 @@ import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
 
-import {useResume} from "../model/useResume";
+import {useAddResume} from "../model/useAddResume";
 import {RESUME_FORM_NAMES} from "../model/consts";
 import styles from "./styles.module.scss";
 
@@ -28,7 +28,7 @@ const ResumeForm: FC = () => {
       isValid,
       control,
       errors
-   } = useResume()
+   } = useAddResume()
 
    return (
       <form
@@ -54,7 +54,7 @@ const ResumeForm: FC = () => {
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
                <Controller
-                   name={RESUME_FORM_NAMES.graphic}
+                   name={RESUME_FORM_NAMES.schedule}
                    control={control}
                    defaultValue={graphicsFilter[0]}
                    rules={{ required: "Выберите график работы" }}
@@ -64,7 +64,7 @@ const ResumeForm: FC = () => {
                            onChange={field.onChange}
                            data={graphicsFilter}
                            type={SELECT_TYPES.vacancy}
-                           error={errors?.graphic?.message}
+                           error={errors?.schedule?.message}
                        />
                    )}
                />
@@ -73,7 +73,7 @@ const ResumeForm: FC = () => {
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
                <Controller
-                   name={RESUME_FORM_NAMES.city}
+                   name={RESUME_FORM_NAMES.location}
                    control={control}
                    defaultValue={cityFilter[0]}
                    rules={{ required: "Выберите город" }}
@@ -83,7 +83,7 @@ const ResumeForm: FC = () => {
                            onChange={field.onChange}
                            data={cityFilter}
                            type={SELECT_TYPES.vacancy}
-                           error={errors?.city?.message}
+                           error={errors?.location?.message}
                        />
                    )}
                />

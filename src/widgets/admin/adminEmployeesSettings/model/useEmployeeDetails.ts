@@ -1,8 +1,7 @@
 import {useForm} from "react-hook-form";
-import type {EmployeeDetailsTypes} from "@/shared/lib/types/organizations-service.types";
-import {usePositions} from "@/widgets/admin/positions/model/usePositions";
+import {usePositions, EmployeeDetailsTypes} from "@/shared/lib";
 import {defaultValuesEmployeeDetails} from "../model/helper";
-import {useEmployeeQuery} from "./useEmployeeQuery";
+import {useChangeStatus, useEmployeeQuery} from "./useEmployeeQuery";
 
 export const useEmployeeDetails = (slug: string) => {
 
@@ -20,6 +19,8 @@ export const useEmployeeDetails = (slug: string) => {
     })
 
     const {data, isError, isLoading, isSuccess} = useEmployeeQuery(slug)
+
+    // const changeStatus = useChangeStatus(slug)
 
     const {
         data: positions,

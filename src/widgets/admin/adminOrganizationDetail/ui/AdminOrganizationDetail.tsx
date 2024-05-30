@@ -14,14 +14,15 @@ import { getOrganizationDate } from "../model/helper";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import {useEmployees} from "@/widgets/admin/adminEmployees/model/useEmployees";
+import {useParams} from "next/navigation";
 
 const AdminOrganizationDetail = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const slug = "neobisteam";
+   const {slug} = useParams()
    const [type, setType] = useState(valuesData[0].postValue);
 
-   const { data, isLoading, isError } = useOrganizationDetails(slug);
+   const { data, isLoading, isError } = useOrganizationDetails(slug.toString());
 
     const getEmployees = useEmployees(type)
 

@@ -7,7 +7,7 @@ import { ORGANIZATION_ROUTES, MODAL_KEYS } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import userIcon from "@@/imgs/form/user.svg";
 
-const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) => {
+const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slug }) => {
    const handleAvatarClick = () => {
       if (!disabled) {
          showModal(MODAL_KEYS.changeAvatar);
@@ -26,7 +26,7 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) =
             <h3 className={styles.form__name}>{name}</h3>
             {isAdmin ? (
                <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS + "/emplyessDetailsName"}
+                  href={ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS + `/${slug}`}
                   className={styles.form__photoSpan}>
                   Личные данные
                </Link>

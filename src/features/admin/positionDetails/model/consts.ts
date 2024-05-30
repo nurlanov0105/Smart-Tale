@@ -1,3 +1,4 @@
+
 export const POSITIONS_FORM_NAMES = {
     title: "title",
     description: "description",
@@ -6,5 +7,7 @@ export const POSITIONS_FORM_NAMES = {
 
 export const defaultValuesPosition = {
     title: "Загрузка...",
-    description: "Загрузка..."
+    description: "Загрузка...",
+
 }
+

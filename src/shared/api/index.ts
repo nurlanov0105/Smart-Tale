@@ -18,6 +18,7 @@ import {
    ResumeQueryKeys,
 } from "./queryKeys";
 
+export {VacancyQueryKeys} from "./queryKeys"
 export {
    BASE_URL,
    authApiInstance,

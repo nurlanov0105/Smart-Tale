@@ -33,7 +33,7 @@ export const useChangePositionQuery = () => {
 
 export const useGetPositionDetails = (slug: string) => {
     return useQuery<GetPositionTypes>({
-        queryKey: [OrganizationQueryKeys.DETAILS_POSITION],
+        queryKey: [OrganizationQueryKeys.DETAILS_POSITION, slug],
         queryFn: () => OrganizationService.getPositionDetails(slug),
     })
 }

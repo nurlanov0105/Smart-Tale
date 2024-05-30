@@ -15,7 +15,7 @@ export type VacancyCardType = {
    organization: OrganizationType;
    location: string;
    experience: string;
-   schedule?: string;
+   schedule: string;
    description?: string;
 };
 
@@ -28,4 +28,5 @@ export type VacancyItemProps = {
 
 export type ResumeRequestTypes ={
    reset: UseFormReset<ResumeFormTypes>
+   slug: string
 }

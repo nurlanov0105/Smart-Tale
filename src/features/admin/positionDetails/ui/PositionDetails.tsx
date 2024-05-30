@@ -2,9 +2,8 @@
 
 import React from "react";
 import clsx from "clsx";
-import {useParams} from "next/navigation";
 import {showModal} from "@/views/modal";
-import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
+import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import { useThemeStore } from "@/shared/themeStore";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import {MODAL_KEYS, ValidationsSchemasService} from "@/shared/lib";
@@ -17,9 +16,9 @@ import styles from "./styles.module.scss";
 const PositionDetails = () => {
 
     const theme = useThemeStore((state) => state.theme);
-    const params = useParams()
+
     const handleDelete = () => {
-        showModal(MODAL_KEYS.deletePosition, {slug: "shveya"})
+        showModal(MODAL_KEYS.deletePosition, {slug: slug.toString()})
     }
 
     const {
@@ -27,14 +26,16 @@ const PositionDetails = () => {
         isLoading,
         data,
         isSuccess,
+        slug,
 
         handleSubmit,
         register,
         isValid,
-        reset
+        reset,
+        watch
     } = usePositionDetails()
 
-    useInitialPositionData({data, isSuccess, reset})
+    const {actions} = useInitialPositionData({data, isSuccess, reset})
 
     return (
         <form onSubmit={handleSubmit} className={clsx(styles.position, styles[theme])}>
@@ -54,7 +55,7 @@ const PositionDetails = () => {
                 <div className={styles.position__fieldset}>
                     <h4 className="h4">Выдача прав доступа</h4>
                     <ul className={styles.position__list}>
-                        {rightsActionsData.map((action) => (
+                        {(isLoading ? rightsActionsData : actions)?.map((action) => (
                             <RightAction register={register} action={action} key={action.title} />
                         ))}
                     </ul>
