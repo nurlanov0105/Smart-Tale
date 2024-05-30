@@ -1,14 +1,26 @@
-"use strict";
+"use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import { EquipmentQueryKeys } from "@/shared/api";
 
 interface Props {
-   fetchFunction: (page: number, tab?: string, param_tab?: string) => Promise<any>;
+   fetchFunction: ({
+      page,
+      tab,
+      param_tab,
+      slug,
+   }: {
+      page: number;
+      tab?: string;
+      param_tab?: string;
+      slug?: string;
+   }) => Promise<any>;
 
+   queryKey: string;
    tab?: string;
    param_tab?: string;
-   queryKey: string;
+   slug?: string;
 }
 
 export interface IData {
@@ -28,14 +40,14 @@ const options = {
    threshold: 0.5,
 };
 
-export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab }: Props) => {
+export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab, slug }: Props) => {
    const observerTarget = useRef<HTMLDivElement>(null);
    // const scrollTarget = useRef<HTMLDivElement>(null);
    // const [showBtn, setShowbtn] = useState(false);
 
    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError, isLoading } =
       useInfiniteQuery({
-         queryKey: [queryKey, param_tab, tab],
+         queryKey: [queryKey, param_tab, tab, slug],
          queryFn: ({ pageParam }) => fetchData({ pageParam }),
          initialPageParam: 1,
          getNextPageParam: (lastPage) => (lastPage.hasNextPage ? lastPage.nextPage : undefined),
@@ -67,15 +79,23 @@ export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab }: P
    }, [observerTarget, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
    const fetchData = async ({ pageParam = 1 }) => {
-      const res = await fetchFunction(pageParam, param_tab ? param_tab : "");
+      const res = await fetchFunction({
+         page: pageParam,
+         param_tab: param_tab ? param_tab : "",
+         slug: slug ? slug : "",
+      });
       if (!res) {
          throw new Error("Ошибка при получении данных");
       }
       console.log(res);
       return {
-         data: param_tab || tab ? res.data : res.data.data,
+         data: param_tab ? res.data : res.data.data,
          nextPage: pageParam + 1,
-         hasNextPage: tab ? res.has_next_page : res.data.has_next_page,
+         hasNextPage: param_tab
+            ? res.has_next_page
+            : queryKey === EquipmentQueryKeys.EQUIPMENTS
+            ? res.data.has_next_page
+            : res.has_next_page,
       };
    };
 

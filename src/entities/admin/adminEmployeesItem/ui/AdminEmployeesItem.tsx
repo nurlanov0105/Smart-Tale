@@ -10,11 +10,11 @@ import avatar from "@@/imgs/auth/auth-1.jpg";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
-import {currenciesMap} from "@/widgets/user/createVacancy/model/values.data";
+import { currenciesMap } from "@/widgets/user/createVacancy/model/values.data";
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
-   const currency = currenciesMap[item.currency as keyof typeof currenciesMap]
+   const currency = currenciesMap[item.currency as keyof typeof currenciesMap];
 
    return (
       <div className={clsx(styles.item, styles[theme])}>
@@ -23,7 +23,9 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
                <h5 className={styles.item__subtitle}>Заказ</h5>
                <p className={styles.item__title}>{item.title}</p>
                <p className={styles.item__text}>{item.description}</p>
-               <p className={styles.item__price}>{item.price} {currency.value}</p>
+               <p className={styles.item__price}>
+                  {item.price} {currency.value}
+               </p>
             </div>
             <div>
                <p className={styles.item__date}>Принял 10 апреля 2024</p>

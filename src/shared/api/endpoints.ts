@@ -36,7 +36,7 @@ export const EquipmentsEndpoints = {
    UPDATE_EQUIPMENT: "/equipment/change/",
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
-   GET_MY_ADS: "/my-ads/",
+   GET_MY_ADS: "/my-ads",
    GET_MY_EQUIPMENT: "/equipment/",
 
    HIDE_EQUIPMENT: "/hide-equipment/",
@@ -61,6 +61,8 @@ export const UserEndpoints = {
    MY_PROFILE_CHANGE: "/my-profile",
    SUBSCRIBE: "/subscribe",
    COMMON_USER: "/u/",
+   COMMON_USER_ADS: "/u-ads/",
+   SEARCH: "/ads-search",
 };
 
 export const VacancyEndpoints = {

@@ -6,7 +6,7 @@ import { CardsSection } from "@/widgets/user/cardsSection";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import { EquipmentService, SkeletonTypes } from "@/shared/lib";
+import { EquipmentService, SkeletonTypes, UserService, announcementTabs } from "@/shared/lib";
 import { AvatarSkeleton, GlobalLoading } from "@/shared/ui";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
@@ -24,13 +24,7 @@ const User = () => {
    const slug = pathname.split("/")[2];
 
    const { isError, isPending: isLoading, data } = useGetCommonUser(slug);
-
-   // if (!isLoading) {
-   //    console.log(data);
-   // }
-
-   // const isLoading = false,
-   //    isError = false;
+   const [type, setType] = useState(announcementTabs[0].postValue);
 
    if (isError) {
       return <ErrorMessage />;
@@ -81,12 +75,14 @@ const User = () => {
          )}
 
          <div className={styles.user__bottom}>
-            {/* <Tabs type={type} setType={setType} values={data} variant="secondary" /> */}
+            <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
          <CardsSection
-            fetchFunction={EquipmentService.getEquipments}
+            fetchFunction={UserService.getCommonUserAds}
             queryKey={UserQueryKeys.COMMON_USER}
             type={SkeletonTypes.standart}
+            slug={slug}
+            param_tab={type}
          />
       </div>
    );

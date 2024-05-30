@@ -20,7 +20,7 @@ export const cityFilter = [
    { value: "Джалал-Абад", postValue: "Джалал-Абад" },
    { value: "Баткен", postValue: "Баткен" },
    // { value: "Иссык-Куль", postValue: "issyk-kul" },
-   { value: "Нарын", postValue: "naryn" },
+   { value: "Нарын", postValue: "Нарын" },
    { value: "Каракол", postValue: "Каракол" },
 ];
 

@@ -1,0 +1,16 @@
+.organization {
+   &__date {
+      display: inline-block;
+      margin: 2.4rem 0 0;
+      padding: 4px 1.6rem;
+
+      border-radius: 8px;
+      background-color: rgb(232, 232, 232);
+   }
+}
+
+.dark {
+   .organization__date {
+      background-color: $black-theme;
+   }
+}
