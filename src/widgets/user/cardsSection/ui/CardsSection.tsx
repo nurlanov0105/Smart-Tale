@@ -6,16 +6,28 @@ import { ObserverSection } from "@/entities/general/observerSection";
 import { CommonSkeleton } from "@/shared/ui";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
 import { CardSectionProps } from "../model/types";
-import styles from "./styles.module.scss";
 import { CardType } from "@/shared/lib";
+import styles from "./styles.module.scss";
 
-const CardsSection: FC<CardSectionProps> = ({ fetchFunction, queryKey, tab, type }) => {
+const CardsSection: FC<CardSectionProps> = ({
+   fetchFunction,
+   queryKey,
+   param_tab,
+   tab,
+   slug,
+   type,
+}) => {
    const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
       fetchFunction,
       queryKey,
       tab,
+      slug,
+      param_tab,
    });
 
+   if (!isLoading) {
+      console.log("data isLoading -", data);
+   }
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (

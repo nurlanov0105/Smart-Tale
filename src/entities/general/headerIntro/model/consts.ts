@@ -2,7 +2,7 @@ import { ORGANIZATION_ROUTES, DASHBOARD, MARKETPLACE, ROUTES } from "@/shared/li
 import { WORK } from "@/shared/lib/routes.config";
 
 export const PathData: any = {
-   ["/orders/search"]: {
+   [ROUTES.SEARCH]: {
       path: "SmartTale",
       name: "Поиск",
    },
@@ -60,6 +60,10 @@ export const PathData: any = {
       path: "Работа/Резюме",
       name: "Резюме",
    },
+   [WORK.RESUME_DETAILS]: {
+      path: "Работа/Детали Резюме",
+      name: "Детали Резюме",
+   },
    [WORK.RESUMES]: {
       path: "Работа/Список Резюме",
       name: "Список Резюме",
@@ -78,21 +82,29 @@ export const PathData: any = {
    },
 
    [ROUTES.ANNOUNCEMENT_DETAILS_ORDER]: {
-      path: "Мои объявления/Детали заказа",
+      path: "Маркетплейс/Детали заказа",
       name: "Детали заказа",
    },
    [ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT]: {
-      path: "Мои объявления/Детали оборудования",
+      path: "Маркетплейс/Детали оборудования",
       name: "Детали оборудования",
    },
    [ROUTES.ANNOUNCEMENT_DETAILS_SERVICE]: {
-      path: "Мои объявления/Детали услуги",
+      path: "Маркетплейс/Детали услуги",
       name: "Детали услуги",
    },
 
-   [ROUTES.CARD_DETAILS]: {
-      path: "Маркетплейс/Детали объявления",
-      name: "Детали объявления",
+   [ROUTES.CARD_DETAILS_ORDER]: {
+      path: "Маркетплейс/Детали заказа",
+      name: "Детали заказа",
+   },
+   [ROUTES.CARD_DETAILS_EQUIPMENT]: {
+      path: "Маркетплейс/Детали оборудования",
+      name: "Детали оборудования",
+   },
+   [ROUTES.CARD_DETAILS_SERVICE]: {
+      path: "Маркетплейс/Детали услуги",
+      name: "Детали услуги",
    },
    [ROUTES.NOTICES]: {
       path: "Личный кабинет/Уведомления",
@@ -102,19 +114,19 @@ export const PathData: any = {
       path: "SmartTale",
       name: "Пользователь",
    },
+   [ROUTES.ORGANIZATIONS_OTHER_DETAIL]: {
+      path: "SmartTale",
+      name: "Организация",
+   },
 
    [ORGANIZATION_ROUTES.CURRENT_ORDERS]: {
       path: "Организация/Текущие заказы",
       name: "Текущие заказы",
    },
-   [ORGANIZATION_ROUTES.HISTORY_USER]: {
-      path: "Организация/История",
-      name: "История",
-   },
 
    [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {
-      path: "Организация/Список организаций",
-      name: "Список организаций",
+      path: "Организация/Детали организации",
+      name: "Детали организации",
    },
    [ORGANIZATION_ROUTES.CREATE_ORGANIZATION]: {
       path: "Организация/Создание организации",
@@ -164,6 +176,10 @@ export const PathData: any = {
    [ORGANIZATION_ROUTES.VACANCY_DETAIL]: {
       path: "Организация/Детали Вакансии",
       name: "Детали Вакансии",
+   },
+   [ORGANIZATION_ROUTES.ANNOUNCEMENT_DETAILS]: {
+      path: "Организация/Детали заказа",
+      name: "Детали заказа",
    },
 
    [ROUTES.SUBSCRIBE]: {

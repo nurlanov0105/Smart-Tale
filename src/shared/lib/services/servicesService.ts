@@ -3,7 +3,7 @@ import { baseApiInstance } from "@/shared/api/instance";
 import { UpdateServiceProps } from "@/shared/lib/types/orders-service.types";
 
 export const ServicesService = {
-   getServices: async (page: number, title?: string) => {
+   getServices: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(ServicesEndpoints.SERVICES, {
          params: {
             page: page,
@@ -28,7 +28,7 @@ export const ServicesService = {
 
       return response;
    },
-   getLikedServices: async (page: number) => {
+   getLikedServices: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(ServicesEndpoints.LIKED_SERVICES, {
          params: {
             page: page,
@@ -56,8 +56,12 @@ export const ServicesService = {
       const response = await baseApiInstance.post(ServicesEndpoints.LIKE_SERVICE);
       return response.data;
    },
-   updateService: async ({serviceSlug, params}: UpdateServiceProps) => {
-      const headers = {"Content-Type": "multipart/form-data"}
-      const response = await baseApiInstance.put(ServicesEndpoints.UPDATE_SERVICE + serviceSlug, params, {headers: headers});
-   }
+   updateService: async ({ serviceSlug, params }: UpdateServiceProps) => {
+      const headers = { "Content-Type": "multipart/form-data" };
+      const response = await baseApiInstance.put(
+         ServicesEndpoints.UPDATE_SERVICE + serviceSlug,
+         params,
+         { headers: headers }
+      );
+   },
 };

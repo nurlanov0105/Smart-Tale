@@ -19,29 +19,6 @@ const SelectDate: FC<DateProps> = ({
    const { days, months, years
    } = useDate2(year, month, day, type, setValue);
 
-
-
-    // const currentMonth = useMemo(() => {
-    //     return months.find((m) => m.postValue === month.postValue);
-    // }, [months, month.postValue]);
-    //
-    // const currentDay = useMemo(() => {
-    //     return days.find((d) => d.postValue === day.postValue);
-    // }, [days, day.postValue]);
-    //
-    // const currentYear = useMemo(() => {
-    //     return years.find((y) => y.postValue === year.postValue);
-    // }, [years, year.postValue]);
-
-
-    // useEffect(() => {
-    //     if (currentDay) setValue("day", currentDay);
-    //     if (currentMonth) setValue("month", currentMonth);
-    //     if (currentYear) setValue("year", currentYear)
-    //
-    //     // eslint-disable-next-line
-    // }, [year.value, month.value, day.value]);
-
    return (
       <div className={styles.date}>
           <Controller

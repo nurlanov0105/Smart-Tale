@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEventHandler, useState } from "react";
-import { useRouter } from "next/navigation";
+import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import searchIcon from "@@/imgs/header/search.svg";
 import { useDebounce, useOutside } from "@/shared/lib";
@@ -12,6 +12,7 @@ import clsx from "clsx";
 const SearchField = () => {
    const theme = useThemeStore((state) => state.theme);
    const setSearch = useSearchStore((state) => state.setSearch);
+   const pathname = usePathname();
 
    const { push } = useRouter();
    const data = [
@@ -36,11 +37,15 @@ const SearchField = () => {
    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
       e.preventDefault();
       if (!searchValue.length) return;
-      setSearch(searchValue);
       setIsShown(false);
-      setSearchValue("");
-      push("/orders/search");
+      // setSearchValue("");
+      push(`/${pathname.slice(1).split("/").join("-")}/search`);
    };
+
+   useEffect(() => {
+      setSearch(debouncedValue);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [debouncedValue]);
 
    return (
       <div className={clsx(styles.search__full, styles[theme])} ref={ref}>
@@ -61,7 +66,7 @@ const SearchField = () => {
                placeholder="Поиск"
                className={styles.search__input}
             />
-            {isShown && debouncedValue && (
+            {/* {isShown && debouncedValue && (
                <ul className={styles.search__list}>
                   {data.map((item) => (
                      <li key={item.id}>
@@ -76,7 +81,7 @@ const SearchField = () => {
                      <h4 className={styles.search__empty}>По вашему запросу ничего не найдено</h4>
                   )}
                </ul>
-            )}
+            )} */}
          </form>
       </div>
    );

@@ -1,9 +1,9 @@
-import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
-import {UseFormRegister, UseFormWatch} from "react-hook-form";
+import {UseFormRegister} from "react-hook-form";
 
 export type TypeRightActions = {
    title: string;
-   name: "organization" | "title" | "description" | typeof RIGHT_ACTIONS[keyof typeof RIGHT_ACTIONS]
+   name: string
+   value: string
 };
 
 export type RightActionProps = {

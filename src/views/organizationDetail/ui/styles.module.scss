@@ -1,0 +1,13 @@
+.section {
+   &__top {
+      padding-bottom: 2.4rem;
+      margin-bottom: 2.4rem;
+      border-bottom: 1px solid #8e8e93;
+   }
+}
+
+.dark {
+   .section__top {
+      border-bottom: 1px solid rgb(50, 54, 56);
+   }
+}

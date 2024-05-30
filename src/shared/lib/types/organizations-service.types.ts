@@ -30,11 +30,18 @@ export interface AddPositionRequestTypes extends RightsTypes{
     organization: string
 }
 
-export interface AddEmployeeTypes extends RightsTypes{
+export interface IRight {
+    name: string
+    title: string
+    value: string
+}
+
+export interface AddEmployeeTypes{
     email: string
-    position: SelectPostTypes
+    position: {value: string, postValue: string, idx: number}
     organization: SelectPostTypes
     positions: SelectPostTypes[]
+    actions: IRight[]
 }
 export interface AddEmployeeRequestTypes{
     email: string
@@ -45,6 +52,7 @@ export interface AddEmployeeRequestTypes{
 interface IPosition extends RightsTypes{
     value: string
     postValue: string
+    idx: number
 }
 
 export interface EmployeeDetailsTypes extends RightsTypes{

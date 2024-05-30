@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useLogin } from "@/features/auth";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
+import { LoginFormValues } from "../types";
 
 export const useLoginForm = () => {
    const {
@@ -8,7 +9,7 @@ export const useLoginForm = () => {
       formState: { errors, isValid },
       handleSubmit,
       reset,
-   } = useForm({
+   } = useForm<LoginFormValues>({
       mode: "onChange",
       criteriaMode: "all",
       shouldFocusError: true,
@@ -16,7 +17,7 @@ export const useLoginForm = () => {
 
    const { mutate: login, isPending } = useLogin(reset);
 
-   const onSubmit = (data: any) => {
+   const onSubmit = (data: LoginFormValues) => {
       console.log(data);
       const params = {
          email: data.email,

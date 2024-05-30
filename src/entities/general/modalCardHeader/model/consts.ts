@@ -26,6 +26,10 @@ export const PathData: any = {
       path: "Маркетплейс/Оборудование",
       name: "Оборудование",
    },
+   [MARKETPLACE.ORDERS]: {
+      path: "Маркетплейс/Заказы",
+      name: "Заказы",
+   },
    [MARKETPLACE.SERVICES]: {
       path: "Маркетплейс/Услуги",
       name: "Услуги",
@@ -35,23 +39,35 @@ export const PathData: any = {
       name: "Разместить заказ",
    },
 
-   [ROUTES.ORDER_DETAILS]: {
-      path: "Маркетплейс/Детали объявления",
-      name: "Детали объявления",
+   [ROUTES.ANNOUNCEMENT_DETAILS_ORDER]: {
+      path: "Мои объявления/Детали заказа",
+      name: "Детали заказа",
+   },
+   [ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT]: {
+      path: "Мои объявления/Детали оборудования",
+      name: "Детали оборудования",
+   },
+   [ROUTES.ANNOUNCEMENT_DETAILS_SERVICE]: {
+      path: "Мои объявления/Детали услуги",
+      name: "Детали услуги",
    },
 
-   [ROUTES.CARD_DETAILS]: {
-      path: "Маркетплейс/Детали объявления",
-      name: "Детали объявления",
+   [ROUTES.CARD_DETAILS_ORDER]: {
+      path: "Маркетплейс/Детали заказа",
+      name: "Детали заказа",
+   },
+   [ROUTES.CARD_DETAILS_EQUIPMENT]: {
+      path: "Маркетплейс/Детали оборудования",
+      name: "Детали оборудования",
+   },
+   [ROUTES.CARD_DETAILS_SERVICE]: {
+      path: "Маркетплейс/Детали услуги",
+      name: "Детали услуги",
    },
 
    [ORGANIZATION_ROUTES.CURRENT_ORDERS]: {
       path: "Организация/Текущие заказы",
       name: "Текущие заказы",
-   },
-   [ORGANIZATION_ROUTES.HISTORY_USER]: {
-      path: "Организация/История",
-      name: "История",
    },
 
    [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {

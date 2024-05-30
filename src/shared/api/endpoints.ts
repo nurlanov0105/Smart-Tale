@@ -36,7 +36,7 @@ export const EquipmentsEndpoints = {
    UPDATE_EQUIPMENT: "/equipment/change/",
    LIKED_EQUIPMENTS: "/liked-equipments",
    SEARCH_EQUIPMENTS: "/equipment/search",
-   GET_MY_ADS: "/my-ads/",
+   GET_MY_ADS: "/my-ads",
    GET_MY_EQUIPMENT: "/equipment/",
 
    HIDE_EQUIPMENT: "/hide-equipment/",
@@ -61,6 +61,8 @@ export const UserEndpoints = {
    MY_PROFILE_CHANGE: "/my-profile",
    SUBSCRIBE: "/subscribe",
    COMMON_USER: "/u/",
+   COMMON_USER_ADS: "/u-ads/",
+   SEARCH: "/ads-search",
 };
 
 export const VacancyEndpoints = {
@@ -68,25 +70,33 @@ export const VacancyEndpoints = {
    VACANCY_FILTER: "/vacancy/filter",
    VACANCY_SEARCH: "/vacancy/search",
    VACANCY_SLUG: "/vacancy",
+   VACANCY_DETAILS: "/vacancy/",
    ADD_VACANCY: "/add-vacancy/",
-   CHANGE_VACANCY: "/change-vacancy",
-   DELETE_VACANCY: "/delete-vacancy",
+   CHANGE_VACANCY: "/change-vacancy/",
+   DELETE_VACANCY: "/delete-vacancy/",
 };
 export const ResumeEndpoints = {
    ADD_RESUME: "/add-resume/",
+   UPDATE_RESUME: "/change-resume/",
+   DELETE_RESUME: "/delete-resume/",
    GET_RESUMES: "/resume/",
+   GET_RESUME_DETAILS: "/resume/",
    GET_MY_RESUMES: "/my-resumes/",
 };
 
 export const OrganizationEndpoints = {
    ORGANIZATION_DETAILS: "/organization/detail/",
    ORGANIZATION_CREATE: "/organization/create",
+   ORGANIZATION_ACTIVATE: "/organization/activate/",
+   GET_ORGANIZATION_ORDERS: "/received-orders-status/",
+   GET_HISTORY_ORDERS: "/my-org-orders",
+   GET_EMPLOYEE_ORDERS: "/employee-order/",
    GET_USER_ORGANIZATIONS: "/organization/list",
    GET_MY_ORGANIZATIONS: "/my-orgs/",
    ADD_EMPLOYEE: "/employee/add",
    GET_EMPLOYEES: "/employee/list",
    EMPLOYEE_DETAILS: "/employee/detail/",
-   DELETE_EMPLOYEE: "/employee/delete",
+   DELETE_EMPLOYEE: "/employee/detail/",
    GET_POSITIONS: "/org-jobs/list",
    DETAILS_POSITION: "/org-jobs/detail/",
    ADD_POSITION: "/org-jobs/add",

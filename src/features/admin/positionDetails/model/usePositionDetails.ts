@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
-import {useChangePositionQuery, useGetPositionDetails} from "@/features/admin/positionForm/model/hooks/useQueries";
-import {AddPositionTypes} from "@/shared/lib/types/organizations-service.types";
 import {useParams} from "next/navigation";
+import {useChangePositionQuery, useGetPositionDetails} from "@/features/admin/positionForm";
+import {AddPositionTypes} from "@/shared/lib";
 import {defaultValuesPosition} from "./consts";
 
 export const usePositionDetails = () => {
@@ -11,21 +11,22 @@ export const usePositionDetails = () => {
         register,
         handleSubmit,
         control,
+        watch,
         formState: {errors, isValid}
     } = useForm<AddPositionTypes>({
         mode: "onBlur",
         defaultValues: defaultValuesPosition
     })
-    const params = useParams()
+    const {slug} = useParams()
 
     const {data, isLoading,
-        isSuccess, isError} = useGetPositionDetails("shveya")
+        isSuccess, isError} = useGetPositionDetails(slug.toString())
 
     const changePosition = useChangePositionQuery()
 
     const onSubmit = (data: AddPositionTypes) => {
         console.log(data)
-        changePosition.mutate({params: data, slug: "shveya"})
+        changePosition.mutate({params: data, slug: slug.toString()})
     }
 
     return {
@@ -39,7 +40,9 @@ export const usePositionDetails = () => {
         errors,
         isValid,
         control,
-        reset
+        reset,
+        watch,
+        slug: slug.toString()
 
     }
 }

@@ -7,13 +7,17 @@
       "build": "next build",
       "start": "next start",
       "lint": "next lint",
+      "test": "jest",
+      "lint:types": "tsc --noEmit",
       "update": "npx jest --updateSnapshot"
    },
    "dependencies": {
       "@hello-pangea/dnd": "^16.6.0",
+      "@radix-ui/react-switch": "^1.0.3",
       "@tanstack/react-query": "^5.29.0",
       "@tanstack/react-query-devtools": "^5.29.0",
       "@types/uuid": "^9.0.8",
+      "add": "^2.0.6",
       "axios": "^1.6.8",
       "clsx": "^2.1.0",
       "date-fns": "^3.6.0",
@@ -34,6 +38,7 @@
       "sass": "^1.74.1",
       "sharp": "^0.33.3",
       "swiper": "^11.1.1",
+      "switch": "^0.0.0",
       "zustand": "^4.5.2"
    },
    "devDependencies": {

@@ -5,9 +5,9 @@ import { EmployeesList } from "@/features/general/employeesList";
 import { EmptyContent } from "@/entities/admin/emptyContent";
 import { Button } from "@/shared/ui";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
-import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+import { EMPTY_CONTENT_TYPES } from "@/shared/lib/constants/consts";
 
-import {useEmployees} from "../model/useEmployees";
+import { useEmployees } from "../model/useEmployees";
 import styles from "./styles.module.scss";
 
 const AdminEmployees = () => {
@@ -16,12 +16,11 @@ const AdminEmployees = () => {
       router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
    };
 
-   const {data, isLoading, isError} = useEmployees()
-
+   const { data, isLoading, isError, isSuccess } = useEmployees();
 
    return (
       <>
-         {!data?.length ? (
+         {isSuccess && !data?.length ? (
             <EmptyContent type={EMPTY_CONTENT_TYPES.employees} />
          ) : (
             <div className={styles.employees__wrapper}>
@@ -32,7 +31,7 @@ const AdminEmployees = () => {
                         <Button onClick={handleRoute}>Пригласите сотрудника</Button>
                      </div>
                   </div>
-                  <EmployeesList data={data} isLoading={isLoading}/>
+                  <EmployeesList data={data} isLoading={isLoading} />
                </div>
             </div>
          )}

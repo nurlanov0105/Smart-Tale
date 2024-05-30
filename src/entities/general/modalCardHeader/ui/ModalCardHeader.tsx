@@ -12,11 +12,17 @@ const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge }) => {
 
    const pathArray = pathname.split("/");
    const slug =
-      pathname.includes("/order-details/") || pathname.includes("/card-details/")
+      pathname.includes("/order-details/1/") ||
+      pathname.includes("/order-details/2/") ||
+      pathname.includes("/order-details/3/") ||
+      pathname.includes("/card-details/1/") ||
+      pathname.includes("/card-details/2/") ||
+      pathname.includes("/card-details/3/")
          ? pathArray.pop()
          : "";
 
    const remainingPath = pathArray.join("/");
+   console.log(remainingPath);
 
    return (
       <div className={clsx(styles.block, isLarge ? styles.block_large : "")}>

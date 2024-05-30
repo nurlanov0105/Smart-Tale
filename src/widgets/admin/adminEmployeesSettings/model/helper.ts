@@ -1,4 +1,6 @@
 import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
+import {RightsTypes} from "@/shared/lib";
+import {rightsActionsData} from "@/entities/admin/rightAction";
 
 export const defaultValuesEmployeeDetails = {
     email: "Загрузка...",
@@ -7,21 +9,29 @@ export const defaultValuesEmployeeDetails = {
     patronymic: "Загрузка...",
     tel: "Загрузка...",
     position: { value: "", postValue: "" },
-    [RIGHT_ACTIONS.CREATE_POSITION]: "false",
-    [RIGHT_ACTIONS.REMOVE_POSITION]: "false",
-    [RIGHT_ACTIONS.UPDATE_ACCESS]: "false",
-    [RIGHT_ACTIONS.ADD_EMPLOYEE]: "false",
-    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "false",
-    [RIGHT_ACTIONS.UPDATE_ORDER]: "false",
-    [RIGHT_ACTIONS.DELETE_ORDER]: "false",
+    // [RIGHT_ACTIONS.CREATE_POSITION]: "false",
+    // [RIGHT_ACTIONS.REMOVE_POSITION]: "false",
+    // [RIGHT_ACTIONS.UPDATE_ACCESS]: "false",
+    // [RIGHT_ACTIONS.ADD_EMPLOYEE]: "false",
+    // [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "false",
+    // [RIGHT_ACTIONS.UPDATE_ORDER]: "false",
+    // [RIGHT_ACTIONS.DELETE_ORDER]: "false",
+    // positions: rightsActionsData
 }
 
-export const rightsActionsMap = {
-    [RIGHT_ACTIONS.UPDATE_ACCESS]: "Изменение прав доступа у ролей",
-    [RIGHT_ACTIONS.ADD_EMPLOYEE]: "Добавление работника",
-    [RIGHT_ACTIONS.UPDATE_ORDER]: "Изменение статуса заказа",
-    [RIGHT_ACTIONS.CREATE_POSITION]: "Создание и выдача Роли",
-    [RIGHT_ACTIONS.DELETE_ORDER]: "Отмена заказа",
-    [RIGHT_ACTIONS.REMOVE_POSITION]: "Удаление роли",
-    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "Удаление сотрудника",
-}
+export const EMPLOYEE_SETTINGS_NAMES = {
+    email: "email",
+    name: "name",
+    lastName: "lastName",
+    patronymic: "patronymic",
+    tel: "tel",
+    position: "position",
+    positions: "positions",
+    [RIGHT_ACTIONS.CREATE_POSITION]: [RIGHT_ACTIONS.CREATE_POSITION],
+    [RIGHT_ACTIONS.REMOVE_POSITION]: [RIGHT_ACTIONS.REMOVE_POSITION],
+    [RIGHT_ACTIONS.UPDATE_ACCESS]: [RIGHT_ACTIONS.UPDATE_ACCESS],
+    [RIGHT_ACTIONS.ADD_EMPLOYEE]: [RIGHT_ACTIONS.ADD_EMPLOYEE],
+    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: [RIGHT_ACTIONS.REMOVE_EMPLOYEE],
+    [RIGHT_ACTIONS.UPDATE_ORDER]: [RIGHT_ACTIONS.UPDATE_ORDER],
+    [RIGHT_ACTIONS.DELETE_ORDER]: [RIGHT_ACTIONS.DELETE_ORDER],
+} as const

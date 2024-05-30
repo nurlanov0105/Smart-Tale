@@ -15,6 +15,7 @@ import { useThemeStore } from "@/shared/themeStore";
 import { ISize, useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { usePathname, useRouter } from "next/navigation";
 import { AnnouncementRoutes } from "../model/consts";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 
 type Props = {
    slug: string;
@@ -61,13 +62,17 @@ const CardModal: FC<Props> = ({ slug, type }) => {
          );
       }
    };
+
+   if (!isPending && !data.data) {
+      return <ErrorMessage />;
+   }
    // description phone_number email size [{id,size}]
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
             {!isError && (
                <CardSlider
-                  images={(!isError && !isPending && data.data.images) || images}
+                  images={(!isError && !isPending && data?.data?.images) || images}
                   isLoading={isPending}
                />
             )}

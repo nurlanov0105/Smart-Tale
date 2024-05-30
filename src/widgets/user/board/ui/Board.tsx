@@ -8,6 +8,7 @@ import { BoardColumn } from "@/features/user/boardColumn";
 import { testDestinationMap, COLUMN_VALUES } from "../model/helper";
 import { toast } from "react-toastify";
 import styles from "./styles.module.scss";
+import {useGetOrganizationOrders} from "@/widgets/user/board/model/useQueries";
 
 const initialColumns = () => {
    const columns: Record<Columns, KanbanOrderProps[]> = {
@@ -22,6 +23,9 @@ const initialColumns = () => {
 const Board = () => {
    const [columns, setColumns] = useState(initialColumns());
 
+   const {data} = useGetOrganizationOrders()
+
+   console.log(data)
    useEffect(() => {
       const fetchData = async () => {
          try {

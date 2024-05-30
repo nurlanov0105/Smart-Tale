@@ -1,8 +1,8 @@
 import {useForm} from "react-hook-form";
-import {CurrencyType, useAddResume} from "@/entities/user/vacancyItem";
+import {CurrencyType, useAddResumeQuery} from "@/entities/user/vacancyItem";
 import {ResumeFormTypes} from "./types";
 
-export const useResume = () => {
+export const useAddResume = () => {
     const {
         reset,
         register,
@@ -13,14 +13,14 @@ export const useResume = () => {
         mode: "onBlur"
     })
 
-    const {mutate, isPending, isError} = useAddResume({reset});
+    const {mutate, isPending, isError} = useAddResumeQuery(reset);
 
     const onSubmit = (data: ResumeFormTypes) => {
         const adapter = {
             ...data,
-            currency: data.graphic.postValue as CurrencyType ,
-            graphic: data.graphic.postValue,
-            city: data.city.postValue
+            currency: data.schedule.postValue as CurrencyType ,
+            graphic: data.schedule.postValue,
+            city: data.location.postValue
         }
         mutate(adapter)
     }
