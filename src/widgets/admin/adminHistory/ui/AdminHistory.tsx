@@ -5,8 +5,9 @@ import { OrderList } from "@/features/general/orderList";
 import { Select } from "@/shared/ui";
 import { employeesHistory, historyValues } from "../model/historyValues";
 import { SelectDate } from "@/entities/general/selectDate";
-import { SkeletonTypes } from "@/shared/lib";
+import { EquipmentService, SkeletonTypes } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import { EquipmentQueryKeys } from "@/shared/api";
 
 const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
@@ -27,7 +28,7 @@ const AdminHistory = () => {
             <h4 className="h4">Пользователь</h4>
          </div>
          <Select
-             //@ts-ignore
+            //@ts-ignore
             selected={selected}
             setSelected={setSelected}
             title="Сотрудник"
@@ -51,11 +52,11 @@ const AdminHistory = () => {
          </div>
 
          <OrderList
-            data={data}
-            isLoading={false}
-            isError={false}
-            isCurrent={type === "current"}
+            fetchFunction={EquipmentService.getMyAds}
+            queryKey={EquipmentQueryKeys.GET_MY_ADS}
             type={SkeletonTypes.listItem}
+            tab={type}
+            isCurrent={type === "current"}
          />
       </section>
    );

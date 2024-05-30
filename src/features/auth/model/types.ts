@@ -1,4 +1,4 @@
-import {FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch} from "react-hook-form";
+import { FieldErrors, UseFormRegister, UseFormTrigger, UseFormWatch } from "react-hook-form";
 
 export type IRegisterRequest = {
    first_name: string;
@@ -20,19 +20,18 @@ export type IEmailVerifyRequest = {
    code: string;
 };
 
-export type IResendCodeRequest = Pick<IEmailVerifyRequest, "email">
+export type IResendCodeRequest = Pick<IEmailVerifyRequest, "email">;
 
-export type IForgotPasswordRequest = Pick<ILoginRequest, "email" | "password">
+export type IForgotPasswordRequest = Pick<ILoginRequest, "email" | "password">;
 
-export type IResetPasswordRequest = Pick<ILoginRequest, "password">
-
+export type IResetPasswordRequest = Pick<ILoginRequest, "password">;
 
 export type registerFormType = {
    email: string;
    firstName: string;
    lastName: string;
    middleName: string;
-   tel: string
+   tel: string;
    password: string;
    rePassword: string;
    rememberMe?: boolean;
@@ -60,14 +59,19 @@ export type LogoutType = {
    refresh: string;
 };
 
-
 export type EmailCheckerProps = {
-   watch: UseFormWatch<any>
-   errors: FieldErrors
-   isValid: boolean
-}
+   watch: UseFormWatch<any>;
+   errors: FieldErrors;
+   isValid: boolean;
+};
 
 export type EffectsProps = {
-   watch: UseFormWatch<any>
-   trigger: UseFormTrigger<any>
+   watch: UseFormWatch<any>;
+   trigger: UseFormTrigger<any>;
+};
+
+export interface LoginFormValues {
+   email: string;
+   password: string;
+   rememberMe: boolean;
 }

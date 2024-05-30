@@ -10,6 +10,7 @@ import { useRememberMe } from "./hooks/useRememberMe";
 import useThemeEffect from "./hooks/useThemeEffect";
 import { useAnnouncementType } from "./hooks/useAnnouncementType";
 import { useSubscribed } from "./hooks/useSubscribed";
+import usePagination from "./hooks/usePagination";
 
 import { CookiesServices } from "./services/cookies.services";
 import { EquipmentService } from "./services/equipmentsService";
@@ -22,8 +23,8 @@ import { OrganizationService } from "./services/organizationService";
 
 import { refreshToken } from "./utils/refreshToken";
 import { categoryData } from "./utils/categoryData";
-import {SELECT_TYPES} from "./constants/ui.consts";
-import {ValidationsSchemasService} from "./services/schemasService";
+import { SELECT_TYPES } from "./constants/ui.consts";
+import { ValidationsSchemasService } from "./services/schemasService";
 import { EnumTokens, InputFieldProps } from "./types/types";
 import type { CardType, AuthorType } from "./types/types";
 
@@ -39,15 +40,15 @@ import {
    announcementTabs,
    EMPTY_CONTENT_TYPES,
    RIGHT_ACTIONS,
-   SKELETON_TYPES
+   SKELETON_TYPES,
 } from "./constants/consts";
 import {
    AnnouncementValues,
    ANNOUNCEMENT_FORM_NAMES,
    sizesTypes,
    sizesDataNumbers,
-   sizesDataLetters
-} from "./constants/announcement.consts"
+   sizesDataLetters,
+} from "./constants/announcement.consts";
 
 export {
    EnumTokens,
@@ -68,6 +69,7 @@ export {
    useAnnouncementType,
    useSubscribed,
    categoryData,
+   usePagination,
    CookiesServices,
    EquipmentService,
    OrdersService,
@@ -86,11 +88,11 @@ export {
    EnglishType,
    ValidationsSchemasService,
    announcementTabs,
-    AnnouncementValues,
-    ANNOUNCEMENT_FORM_NAMES,
-    sizesDataLetters,
-    sizesDataNumbers,
-    sizesTypes,
+   AnnouncementValues,
+   ANNOUNCEMENT_FORM_NAMES,
+   sizesDataLetters,
+   sizesDataNumbers,
+   sizesTypes,
 };
 
 export type { InputFieldProps, CardType, AuthorType };

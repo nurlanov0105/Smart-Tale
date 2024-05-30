@@ -361,5 +361,10 @@
 }
 
 .dark {
-   background: linear-gradient(-90deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%);
+   background: linear-gradient(-90deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%) !important;
+   .skeleton__avatar,
+   .skeleton__name,
+   .skeleton__text {
+      background: linear-gradient(-90deg, #2c2c2c 0%, #3a3a3a 50%, #2c2c2c 100%) !important;
+   }
 }

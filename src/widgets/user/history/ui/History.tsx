@@ -5,8 +5,9 @@ import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import { historyValues } from "../model/values";
 import { SelectDate } from "@/entities/general/selectDate";
-import { SkeletonTypes } from "@/shared/lib";
+import { EquipmentService, SkeletonTypes } from "@/shared/lib";
 import styles from "./styles.module.scss";
+import { EquipmentQueryKeys } from "@/shared/api";
 
 const History: FC = () => {
    const [type, setType] = useState(historyValues[0].postValue);
@@ -36,7 +37,11 @@ const History: FC = () => {
                {/*/>*/}
             </div>
          </div>
-         <OrderList data={data} isError={false} isLoading={false} type={SkeletonTypes.listItem} />
+         <OrderList
+            fetchFunction={EquipmentService.getMyAds}
+            queryKey={EquipmentQueryKeys.GET_MY_ADS}
+            type={SkeletonTypes.listItem}
+         />
       </section>
    );
 };

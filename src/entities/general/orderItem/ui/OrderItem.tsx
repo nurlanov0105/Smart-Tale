@@ -11,92 +11,94 @@ import { showModal } from "@/views/modal";
 import { usePathname } from "next/navigation";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
 import { useThemeStore } from "@/shared/themeStore";
-const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
-    const theme = useThemeStore((state) => state.theme);
-    const title = orderValues[item.type];
-    const router = useRouter();
-    const handleItemClick = () => {
-        if (item.type === "Order") {
-            router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${item.slug}`);
-        } else if (item.type === "Equipment") {
-            router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${item.slug}`);
-        } else {
-            router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${item.slug}`);
-        }
-    };
-    return (
-        <>
-            {item.type === "Equipment" && (
-                <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
-                    <div className={styles.item__left}>
-                        <Image
-                            className={styles.item__image}
-                            src={cardImage}
-                            alt="card"
-                            width={75}
-                            height={75}
-                        />
-                        <div className={styles.item__info}>
-                            <p className={clsx(styles.item__subtitle, styles.item__subtitle_green)}>
-                                {title}
-                            </p>
-                            <h6 className={styles.item__title}>{item.title}</h6>
-                            <p className={styles.item__text}>{item.description}</p>
-                        </div>
-                    </div>
-                    <p className={styles.item__detail}>Посмотреть детали</p>
-                    <span className={styles.item__date}>2 апреля 2024</span>
-                </div>
-            )}
-            {item.type === "Order" && (
-                <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
-                    <div className={styles.item__left}>
-                        <Image
-                            className={styles.item__image}
-                            src={cardImage}
-                            alt="card"
-                            width={75}
-                            height={75}
-                        />
-                        <div className={styles.item__info}>
-                            <p className={styles.item__subtitle}>Заказ</p>
-                            <h6 className={styles.item__title}>{item.title}</h6>
-                            <p className={styles.item__text}>{item.description}</p>
-                        </div>
-                    </div>
-                    <span className={styles.item__date}>2 апреля 2024</span>
-                    <div className={styles.item__box}>
-                        <p className={styles.item__status}>{isCurrent && item.status}</p>
-                        {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
-                    </div>
-                </div>
-            )}
-            {item.type === "Service" && (
-                <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
-                    <div className={styles.item__left}>
-                        <Image
-                            className={styles.item__image}
-                            src={cardImage}
-                            alt="card"
-                            width={75}
-                            height={75}
-                        />
-                        <div className={styles.item__info}>
-                            <p className={clsx(styles.item__subtitle, styles.item__subtitle_primary)}>
-                                Услуга
-                            </p>
-                            <h6 className={styles.item__title}>{item.title}</h6>
-                            <p className={styles.item__text}>{item.description}</p>
-                        </div>
-                    </div>
-                    <span className={styles.item__date}>2 апреля 2024</span>
-                    <div className={styles.item__box}>
-                        <p className={styles.item__status}>{isCurrent && item.status}</p>
-                        {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
-                    </div>
-                </div>
-            )}
-        </>
-    );
+const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
+   const theme = useThemeStore((state) => state.theme);
+   const title = orderValues[item.type];
+   const router = useRouter();
+   const handleItemClick = () => {
+      if (isOrganization) {
+         router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
+      } else if (item.type === "Order") {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${item.slug}`);
+      } else if (item.type === "Equipment") {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${item.slug}`);
+      } else {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${item.slug}`);
+      }
+   };
+   return (
+      <>
+         {item.type === "Equipment" && (
+            <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
+               <div className={styles.item__left}>
+                  <Image
+                     className={styles.item__image}
+                     src={cardImage}
+                     alt="card"
+                     width={75}
+                     height={75}
+                  />
+                  <div className={styles.item__info}>
+                     <p className={clsx(styles.item__subtitle, styles.item__subtitle_green)}>
+                        {title}
+                     </p>
+                     <h6 className={styles.item__title}>{item.title}</h6>
+                     <p className={styles.item__text}>{item.description}</p>
+                  </div>
+               </div>
+               <p className={styles.item__detail}>Посмотреть детали</p>
+               <span className={styles.item__date}>2 апреля 2024</span>
+            </div>
+         )}
+         {item.type === "Order" && (
+            <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
+               <div className={styles.item__left}>
+                  <Image
+                     className={styles.item__image}
+                     src={cardImage}
+                     alt="card"
+                     width={75}
+                     height={75}
+                  />
+                  <div className={styles.item__info}>
+                     <p className={styles.item__subtitle}>Заказ</p>
+                     <h6 className={styles.item__title}>{item.title}</h6>
+                     <p className={styles.item__text}>{item.description}</p>
+                  </div>
+               </div>
+               <span className={styles.item__date}>2 апреля 2024</span>
+               <div className={styles.item__box}>
+                  <p className={styles.item__status}>{isCurrent && item.status}</p>
+                  {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
+               </div>
+            </div>
+         )}
+         {item.type === "Service" && (
+            <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
+               <div className={styles.item__left}>
+                  <Image
+                     className={styles.item__image}
+                     src={cardImage}
+                     alt="card"
+                     width={75}
+                     height={75}
+                  />
+                  <div className={styles.item__info}>
+                     <p className={clsx(styles.item__subtitle, styles.item__subtitle_primary)}>
+                        Услуга
+                     </p>
+                     <h6 className={styles.item__title}>{item.title}</h6>
+                     <p className={styles.item__text}>{item.description}</p>
+                  </div>
+               </div>
+               <span className={styles.item__date}>2 апреля 2024</span>
+               <div className={styles.item__box}>
+                  <p className={styles.item__status}>{isCurrent && item.status}</p>
+                  {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
+               </div>
+            </div>
+         )}
+      </>
+   );
 };
 export default OrderItem;

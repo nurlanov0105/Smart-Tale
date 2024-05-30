@@ -10,22 +10,31 @@ import avatar from "@@/imgs/auth/auth-1.jpg";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import { useRouter } from "next/navigation";
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
+   const router = useRouter();
+
+   const handleClick = () => {
+      router.push(ORGANIZATION_ROUTES.ANNOUNCEMENT_DETAILS + "/Order-name");
+   };
+
    return (
-      <div className={clsx(styles.item, styles[theme])}>
+      <div onClick={handleClick} className={clsx(styles.item, styles[theme])}>
          <div className={styles.item__info}>
             <div>
                <h5 className={styles.item__subtitle}>Заказ №234</h5>
                <p className={styles.item__title}>Сшить костюм</p>
                <p className={styles.item__text}>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                  incididunt...
+                  incididunt... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                  eiusmod tempor incididunt... Lorem ipsum dolor sit amet, consectetur adipiscing
+                  elit, sed do eiusmod tempor incididunt...
                </p>
                <p className={styles.item__price}>1000 сом</p>
             </div>
-            <div>
+            <div className={styles.item__shrink}>
                <p className={styles.item__date}>Принял 10 апреля 2024</p>
             </div>
          </div>

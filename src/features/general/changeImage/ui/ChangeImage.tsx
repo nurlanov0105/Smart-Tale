@@ -31,7 +31,7 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled }) =
                   Личные данные
                </Link>
             ) : (
-               <button onClick={handleAvatarClick} className={styles.form__photoSpan}>
+               <button type="button" onClick={handleAvatarClick} className={styles.form__photoSpan}>
                   Изменить фото профиля
                </button>
             )}

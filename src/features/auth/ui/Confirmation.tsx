@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { OtpInputField } from "@/entities/auth/otpInput";
 import { SendCodeBtn } from "@/entities/auth/sendCodeBtn";
@@ -20,7 +20,7 @@ const ConfirmationForm = () => {
 
    const { sendCode, isLoading, isError } = useSendCode(setType);
 
-   const onSubmit = (e: any) => {
+   const onSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       const values = {
          code: otp,

@@ -40,7 +40,7 @@ export enum ROUTES {
 
    MARKETPLACE_EQUIPMENT = "/marketplace/equipment",
    MARKETPLACE_SERVICES = `/marketplace/services`,
-   MARKETPLACE_ORDER = `/marketplace/order`,
+   MARKETPLACE_ORDER = `/marketplace/orders`,
    MARKETPLACE_CREATE_SERVICE = `/marketplace/create-service`,
 
    DASHBOARD_PROFILE = `/dashboard/profile`,
@@ -61,13 +61,14 @@ export enum ROUTES {
    ANNOUNCEMENT_DETAILS_SERVICE = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
 
    ORGANIZATION_CURRENT_ORDERS = `/organization/current-orders`,
-   ORGANIZATION_HISTORY = `/organization/history-user`,
+   ORGANIZATIONS_OTHER_DETAIL = `/organizations-list`,
+   ORGANIZATION_ANNOUNCEMENT_DETAILS = `/organization/announcement-details`,
+
    MODE = `/mode`,
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
    SEARCH = `/search`,
-
    STRIPE_PAYMENT = `/payment/stripe`,
 }
 
@@ -85,7 +86,7 @@ export enum ORGANIZATION_ROUTES {
    VACANCIES = "/organization/vacancies",
    VACANCY_DETAIL = "/organization/vacancy-detail",
    HISTORY = "/organization/history",
+   ANNOUNCEMENT_DETAILS = "/organization/announcement-details",
 
    CURRENT_ORDERS = `/organization/current-orders`,
-   HISTORY_USER = `/organization/history-user`,
 }

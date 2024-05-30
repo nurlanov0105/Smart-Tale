@@ -1,6 +1,7 @@
 export type ItemProps = {
    item: ItemType;
    isCurrent?: boolean;
+   isOrganization?: boolean;
 };
 
 export type ItemType = {
@@ -9,5 +10,5 @@ export type ItemType = {
    title: string;
    description: string;
    // image: string;
-   status: string
+   status: string;
 };
