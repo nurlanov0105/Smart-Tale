@@ -3,7 +3,7 @@ import React from "react";
 import {Controller} from "react-hook-form";
 import clsx from "clsx";
 import { organizationsData } from "@/features/admin/positionForm";
-import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
+import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import { Button, InputField, Select } from "@/shared/ui";
 import {useThemeStore} from "@/shared/themeStore";
 import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
@@ -11,7 +11,9 @@ import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
 import {useAddEmployee} from "../model/useAddEmployee";
 import {usePositionsEmployee} from "../model/usePositionsEmployee";
 import {ADD_EMPLOYEE_NAMES} from "../model/consts";
+import {useInitialRights} from "../model/useInitialRights";
 import styles from "./styles.module.scss";
+
 
 const EmployeesForm = () => {
 
@@ -30,8 +32,15 @@ const EmployeesForm = () => {
    } = useAddEmployee()
 
     const positions = watch("positions")
+    const position = watch("position")
 
-    const {isErrorPositions, isLoadingPositions} = usePositionsEmployee({reset})
+    const {
+        isErrorPositions,
+        isLoadingPositions,
+        data} = usePositionsEmployee({reset})
+
+    const {actions} = useInitialRights({data, position})
+
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -82,7 +91,7 @@ const EmployeesForm = () => {
             <div>
                <h4 className="h4">Выдача прав доступа</h4>
                <ul className={styles.form__list}>
-                  {rightsActionsData.map((action) => (
+                  {(isLoadingPositions ? rightsActionsData : actions)?.map((action) => (
                      <RightAction isDisabled={true} register={register} action={action} key={action.title} />
                   ))}
                </ul>
@@ -90,7 +99,9 @@ const EmployeesForm = () => {
          </div>
 
          <div className={styles.form__btn}>
-            <Button disabled={isLoading || !isValid} type="submit">Пригласить</Button>
+            <Button disabled={isLoading || !isValid} type="submit">{
+                isLoading ? "Загрузка..." : "Пригласить"
+            }</Button>
          </div>
       </form>
    );

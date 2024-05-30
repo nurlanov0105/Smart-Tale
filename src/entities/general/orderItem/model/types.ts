@@ -1,5 +1,7 @@
+import { EmployeeOrderTypes } from "@/entities/admin/adminEmployeesItem/model/types";
+
 export type ItemProps = {
-   item: ItemType;
+   item: EmployeeOrderTypes;
    isCurrent?: boolean;
    isOrganization?: boolean;
 };
@@ -9,6 +11,10 @@ export type ItemType = {
    slug: string;
    title: string;
    description: string;
-   // image: string;
    status: string;
+
+   created_at: string;
+   price: string;
+   currency: string;
+   image: string;
 };

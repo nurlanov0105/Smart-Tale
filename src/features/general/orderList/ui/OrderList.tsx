@@ -44,9 +44,7 @@ const OrderList: FC<Props> = ({
    ) : isLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
-      data?.map((item: ItemType, i: number) => (
-         <OrderItem key={i} item={item} isCurrent={isCurrent} />
-      ))
+      data?.map((item, i: number) => <OrderItem key={i} item={item} isCurrent={isCurrent} />)
    );
 
    return (

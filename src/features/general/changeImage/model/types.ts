@@ -4,4 +4,5 @@ export type ChangeImageProps = {
    isAdmin?: boolean;
    disabled?: boolean;
    isLoading?: boolean
+   slug?: string
 };

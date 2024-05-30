@@ -60,6 +60,10 @@ export const PathData: any = {
       path: "Работа/Резюме",
       name: "Резюме",
    },
+   [WORK.RESUME_DETAILS]: {
+      path: "Работа/Детали Резюме",
+      name: "Детали Резюме",
+   },
    [WORK.RESUMES]: {
       path: "Работа/Список Резюме",
       name: "Список Резюме",
@@ -121,8 +125,8 @@ export const PathData: any = {
    },
 
    [ORGANIZATION_ROUTES.ORGANIZATION_LIST]: {
-      path: "Организация/Список организаций",
-      name: "Список организаций",
+      path: "Организация/Детали организации",
+      name: "Детали организации",
    },
    [ORGANIZATION_ROUTES.CREATE_ORGANIZATION]: {
       path: "Организация/Создание организации",

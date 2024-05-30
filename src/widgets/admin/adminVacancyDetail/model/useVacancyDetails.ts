@@ -1,10 +1,9 @@
+import {useQuery} from "@tanstack/react-query";
 import {useForm} from "react-hook-form";
-import type {EmployeeDetailsTypes} from "@/shared/lib/types/organizations-service.types";
 import {defaultValuesEmployeeDetails} from "@/widgets/admin/adminEmployeesSettings/model/helper";
 import {VacancyDetailsTypes} from "@/widgets/admin/adminVacancyDetail/model/types";
-import {useQuery} from "@tanstack/react-query";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService} from "@/shared/lib";
+import {VacancyQueryKeys} from "@/shared/api";
+import {VacancyService} from "@/shared/lib";
 
 export const useVacancyDetails = () => {
     const {
@@ -23,7 +22,7 @@ export const useVacancyDetails = () => {
     const slug = ""
 
     const getVacancyDetails =  useQuery({
-        queryKey: [OrganizationQueryKeys.VACANCY_DETAILS, slug],
-        queryFn: () => OrganizationService.getVacancyDetails(slug),
+        queryKey: [VacancyQueryKeys.VACANCY_DETAILS, slug],
+        queryFn: () => VacancyService.getVacancyDetails(slug),
     })
 }

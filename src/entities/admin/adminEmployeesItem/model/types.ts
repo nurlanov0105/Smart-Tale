@@ -1,15 +1,16 @@
 export type ItemProps = {
-    item: item;
+    item: EmployeeOrderTypes;
     isCurrent?: boolean;
 };
 
-type item = {
-    id: number;
+export type EmployeeOrderTypes = {
     type: string;
     status?: string;
-    service: string;
     slug: string;
     title: string;
     description: string;
     created_at: string;
+    price: string
+    currency: string
+    image: string
 };

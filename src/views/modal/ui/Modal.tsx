@@ -18,11 +18,13 @@ import {
    DeleteModal,
    DeleteEmployeeModal,
    ResponsesModal,
+   DeletePositionModal,
+   ActivateOrganizationModal,
+   DeleteResumeModal
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
 import { useThemeStore } from "@/shared/themeStore";
-import DeletePositionModal from "@/features/modals/ui/deletePositionModal/DeletePositionModal";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -48,8 +50,11 @@ const Modal: FC = () => {
       DeleteModal,
       DeleteEmployeeModal,
       ResponsesModal,
-      DeletePositionModal
+      DeletePositionModal,
+      ActivateOrganizationModal,
+      DeleteResumeModal
    };
+
    let RenderComponent;
 
    if (componentName) {

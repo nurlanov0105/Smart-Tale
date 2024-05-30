@@ -1,10 +1,8 @@
 import { baseApiInstance } from "@/shared/api/instance";
-import { OrdersEndpoints } from "@/shared/api";
 import { OrganizationEndpoints } from "@/shared/api/endpoints";
 import {
    AddEmployeeRequestTypes,
    AddPositionRequestTypes,
-   AddPositionTypes,
    ChangePositionQueryTypes,
 } from "@/shared/lib/types/organizations-service.types";
 
@@ -36,16 +34,10 @@ export const OrganizationService = {
       const response = await baseApiInstance.get(OrganizationEndpoints.EMPLOYEE_DETAILS + slug);
       return response.data;
    },
-   getVacancyDetails: async (employeeSlug: string) => {
-      const response = await baseApiInstance.get(
-         OrganizationEndpoints.EMPLOYEE_DETAILS + employeeSlug
-      );
-      return response.data;
-   },
    deleteEmployee: async (employeeSlug: string) => {
-      const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_EMPLOYEE, {
-         data: employeeSlug,
-      });
+      const response = await baseApiInstance.delete(
+         OrganizationEndpoints.DELETE_EMPLOYEE + employeeSlug
+      );
       return response.data;
    },
    addEmployee: async (data: AddEmployeeRequestTypes) => {
@@ -65,13 +57,34 @@ export const OrganizationService = {
       return response.data;
    },
    changePosition: async ({ slug, params }: ChangePositionQueryTypes) => {
+      console.log(1, params);
       const response = await baseApiInstance.put(OrganizationEndpoints.CHANGE_POSITION + slug, {
          data: params,
       });
       return response.data;
    },
+   activateOrganization: async (slug: string) => {
+      const response = await baseApiInstance.put(
+         OrganizationEndpoints.ORGANIZATION_ACTIVATE + slug
+      );
+      return response.data;
+   },
    deletePosition: async (slug: string) => {
       const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_POSITION + slug);
+      return response.data;
+   },
+   getOrganizationsOrders: async () => {
+      const response = await baseApiInstance.get(OrganizationEndpoints.GET_ORGANIZATION_ORDERS);
+      return response.data;
+   },
+   getHistoryOrders: async () => {
+      const response = await baseApiInstance.get(
+         OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=active`
+      );
+      return response.data;
+   },
+   getEmployeeOrders: async (slug: string) => {
+      const response = await baseApiInstance.get(OrganizationEndpoints.GET_EMPLOYEE_ORDERS + slug);
       return response.data;
    },
 };

@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren, useRef } from "react";
+import React, { FC, PropsWithChildren } from "react";
 import { Navbar } from "@/widgets/general/navbar";
 import { Header } from "@/widgets/general/header";
 import { NavbarLine } from "@/entities/general/navbarLine";

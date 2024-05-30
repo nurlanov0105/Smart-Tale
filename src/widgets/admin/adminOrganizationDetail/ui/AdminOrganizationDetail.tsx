@@ -15,14 +15,18 @@ import { useEmployees } from "@/widgets/admin/adminEmployees/model/useEmployees"
 import { EquipmentQueryKeys } from "@/shared/api";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+
+import { useParams } from "next/navigation";
 import { OrganizationIntro } from "@/features/general/organizationIntro";
 
 const AdminOrganizationDetail = () => {
    const theme = useThemeStore((state) => state.theme);
-   const slug = "neobisteam";
+
+   const { slug } = useParams();
    const [type, setType] = useState(valuesData[0].postValue);
 
-   const { data, isLoading, isError } = useOrganizationDetails(slug);
+   const { data, isLoading, isError } = useOrganizationDetails(slug.toString());
+
    const getEmployees = useEmployees(type);
 
    const { day, year, month } = getOrganizationDate(data?.created_at);

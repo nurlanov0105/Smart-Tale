@@ -4,23 +4,18 @@ import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import { Select } from "@/shared/ui";
 import { employeesHistory, historyValues } from "../model/historyValues";
-import { SelectDate } from "@/entities/general/selectDate";
 import { EquipmentService, SkeletonTypes } from "@/shared/lib";
-import styles from "./styles.module.scss";
+
+import { useHistoryOrders } from "../model/useHistoryOrders";
 import { EquipmentQueryKeys } from "@/shared/api";
+import styles from "./styles.module.scss";
 
 const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
    const [selected, setSelected] = useState(employeesHistory[0]);
 
-   const data = [
-      { id: 1, type: "order", status: "В процессе" },
-      { id: 2, type: "order", status: "В процессе" },
-      { id: 3, type: "order", status: "В процессе" },
-      { id: 4, type: "order", status: "В процессе" },
-      { id: 5, type: "order", status: "В процессе" },
-      { id: 6, type: "order", status: "В процессе" },
-   ];
+   const { data } = useHistoryOrders();
+   console.log(data);
 
    return (
       <section className={styles.section}>
@@ -48,6 +43,14 @@ const AdminHistory = () => {
                {/*   setYear={setYear}*/}
                {/*   type="admin"*/}
                {/*/>*/}
+               {/* <SelectDate*/}
+               {/*     setValue={setValue}*/}
+               {/*     control={control}*/}
+               {/*     day={day}*/}
+               {/*     month={month}*/}
+               {/*     year={year}*/}
+               {/*     type="user"*/}
+               {/* />*/}
             </div>
          </div>
 

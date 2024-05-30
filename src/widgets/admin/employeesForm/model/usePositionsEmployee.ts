@@ -1,7 +1,6 @@
-import { PositionResponseTypes, usePositions } from "@/widgets/admin/positions/model/usePositions";
-import { UseFormReset } from "react-hook-form";
-import { AddEmployeeTypes } from "@/shared/lib/types/organizations-service.types";
 import { useEffect } from "react";
+import { UseFormReset } from "react-hook-form";
+import { AddEmployeeTypes, usePositions } from "@/shared/lib";
 
 interface IProps {
    reset: UseFormReset<AddEmployeeTypes>;
@@ -12,8 +11,13 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
 
    useEffect(() => {
       if (isSuccess && data) {
-         const positionsList = data.map((item) => {
-            return { value: item.title, postValue: item.title };
+         const positionsList = data.map((item, idx) => {
+            return {
+               value: item.title,
+               postValue: item.slug,
+               idx,
+               ...item,
+            };
          });
 
          reset({
@@ -27,5 +31,6 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
    return {
       isLoadingPositions: isLoading,
       isErrorPositions: isError,
+      data,
    };
 };
