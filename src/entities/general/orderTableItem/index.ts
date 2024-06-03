@@ -1,2 +1,3 @@
 import OrderTableItem from "./ui/OrderTableItem";
-export { OrderTableItem };
+import type { OrderItemType } from "./model/types";
+export { OrderTableItem, OrderItemType };

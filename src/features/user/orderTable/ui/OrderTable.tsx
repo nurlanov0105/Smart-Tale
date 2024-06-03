@@ -1,7 +1,7 @@
 "use client";
 
 import React, { FC, useEffect } from "react";
-import { OrderTableItem } from "@/entities/general/orderTableItem";
+import { OrderItemType, OrderTableItem } from "@/entities/general/orderTableItem";
 import { OrderCategories } from "../model/values";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
@@ -28,7 +28,7 @@ const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab })
          ))}
       </div>
    ) : (
-      data?.map((item: any, i: number) => <OrderTableItem key={i} />)
+      data?.map((item: OrderItemType, i: number) => <OrderTableItem key={i} item={item} />)
    );
 
    return (

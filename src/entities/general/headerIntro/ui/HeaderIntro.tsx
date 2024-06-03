@@ -5,6 +5,7 @@ import { PathData } from "../model/consts";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import { ROUTES } from "@/shared/lib";
 
 const HeaderIntro = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -36,8 +37,16 @@ const HeaderIntro = () => {
       <div className={clsx(styles.intro, styles[theme])}>
          {!slug ? (
             <>
-               <span>{PathData[pathname]?.path}</span>
-               <h2 className="h2">{PathData[pathname]?.name}</h2>
+               <span>
+                  {pathname.includes("/search")
+                     ? PathData[ROUTES.SEARCH]?.path
+                     : PathData[pathname]?.path}
+               </span>
+               <h2 className="h2">
+                  {pathname.includes("/search")
+                     ? PathData[ROUTES.SEARCH]?.name
+                     : PathData[pathname]?.name}
+               </h2>
             </>
          ) : (
             <>

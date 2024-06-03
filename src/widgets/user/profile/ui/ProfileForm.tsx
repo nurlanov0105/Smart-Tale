@@ -61,9 +61,16 @@ const ProfileForm: FC = () => {
          last_name: lastName,
          middle_name: middleName,
          phone_number: phoneNumber,
-         email,
       };
-      changeProfile(dataSend);
+
+      const formData = new FormData();
+      formData.append("data", JSON.stringify(dataSend));
+      if (image) {
+         formData.append("profile_image", image);
+      }
+
+      console.log(formData);
+      changeProfile(formData);
       setinputDisabled(true);
    };
    const handleDeleteClick = () => {

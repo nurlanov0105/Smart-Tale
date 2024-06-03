@@ -1,8 +1,11 @@
+import { Dispatch, SetStateAction } from "react";
+
 export type ChatProps = {
-    value: string,
-    postValue: string
-}
+   value: string;
+   postValue: string;
+};
 
 export type ChatFormProps = {
-    selected: number
-}
+   selected: number;
+   setIsShowChat: Dispatch<SetStateAction<boolean>>;
+};

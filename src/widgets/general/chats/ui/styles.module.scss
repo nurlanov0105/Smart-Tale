@@ -24,7 +24,6 @@
    &__list {
       overflow-y: scroll;
       height: 60vh;
-
    }
    //&__select {
    //   width: 100%;
@@ -167,10 +166,9 @@
    }
 }
 
-
-.dark{
-   .chats{
-      &__tabs{
+.dark {
+   .chats {
+      &__tabs {
          border-bottom: 1px solid $border-theme;
       }
       &__right {
@@ -194,20 +192,29 @@
    }
 }
 
-
 /* Desktop media */
 @media (min-height: 900px) {
-   .chat{
-      &__row{
+   .chat {
+      &__row {
          height: 60vh;
       }
-      &__chat{
+      &__chat {
          min-height: 85%;
       }
    }
-   .chats{
-      &__list{
+   .chats {
+      &__list {
          height: 65.7vh;
+      }
+   }
+}
+
+/* Tablet Small*/
+@media (max-width: 970px) {
+   .chats {
+      grid-template-columns: 1fr;
+      &_hidden {
+         display: none !important;
       }
    }
 }
@@ -215,17 +222,17 @@
 /* Desktop media */
 
 @media screen and (min-height: 1200px) {
-   .chat{
-      &__row{
+   .chat {
+      &__row {
          height: 70vh;
          max-height: none;
       }
-      &__chat{
+      &__chat {
          min-height: 90%;
       }
    }
-   .chats{
-      &__list{
+   .chats {
+      &__list {
          height: 70vh;
       }
    }

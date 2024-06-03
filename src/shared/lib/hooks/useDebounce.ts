@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 
-export const useDebounce = <T>(value: T, delay = 500) => {
+export const useDebounce = <T>(value: T, delay = 800) => {
    const [debouncedValue, setDebouncedValue] = useState<T>(value);
 
    useEffect(() => {

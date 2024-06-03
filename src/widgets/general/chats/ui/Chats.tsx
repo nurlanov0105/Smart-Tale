@@ -6,7 +6,7 @@ import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";
 import ChatForm from "./ChatForm";
 import styles from "./styles.module.scss";
-import {useThemeStore} from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
 
 const Chats = () => {
@@ -16,21 +16,24 @@ const Chats = () => {
 
    const [selectedChat, setSelectedChat] = useState(0);
    const theme = useThemeStore((state) => state.theme);
+   const [isShowChat, setIsShowChat] = useState(false);
+
+   console.log(isShowChat);
 
    return (
       <>
          <div className={clsx(styles.chats, styles[theme])}>
-            <div className={styles.chats__left}>
+            <div className={clsx(styles.chats__left, isShowChat && styles.chats_hidden)}>
                <div className={styles.chats__tabs}>
                   <Select
-                      //@ts-ignore
+                     //@ts-ignore
                      selected={selectedType}
                      setSelected={setSelectedType}
                      data={chatsFilterType}
                      type="chat"
                   />
                   <Select
-                      //@ts-ignore
+                     //@ts-ignore
                      selected={selectedDate}
                      setSelected={setSelectedDate}
                      data={chatsFilterDate}
@@ -44,12 +47,13 @@ const Chats = () => {
                         selected={selectedChat}
                         setSelected={setSelectedChat}
                         key={item}
+                        setIsShowChat={setIsShowChat}
                      />
                   ))}
                </div>
             </div>
-            <div className={styles.chats__right}>
-               <ChatForm selected={selectedChat} />
+            <div className={clsx(styles.chats__right, !isShowChat && styles.chats_hidden)}>
+               <ChatForm selected={selectedChat} setIsShowChat={setIsShowChat} />
             </div>
          </div>
       </>

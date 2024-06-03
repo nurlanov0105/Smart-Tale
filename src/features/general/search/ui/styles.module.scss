@@ -1,9 +1,9 @@
-.dark{
-   .search{
-      &__list{
+.dark {
+   .search {
+      &__list {
          background: $dark-theme;
       }
-      &__empty{
+      &__empty {
          color: rgb(162, 154, 142);
       }
    }
@@ -17,6 +17,21 @@
       top: 50%;
       left: 2rem;
       transform: translateY(-50%);
+
+      width: 24px;
+      height: 24px;
+      fill: none;
+
+      path {
+         fill: #7a7e9e;
+         transition: color 0.15s ease-in-out;
+      }
+   }
+
+   &__icon_active {
+      path {
+         fill: $common-black;
+      }
    }
 
    &__input {
@@ -39,8 +54,7 @@
       }
    }
 
-   &__list{
-
+   &__list {
       position: absolute;
       top: 100%;
       left: 0;
@@ -54,12 +68,11 @@
 
       z-index: $z3;
 
-
       border-radius: 10px;
       background: $common-white;
       box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
    }
-   &__empty{
+   &__empty {
       padding: 1.5rem 1rem 1rem;
 
       font-size: 1.8rem;
@@ -79,7 +92,7 @@
       &__input {
          width: 100%;
       }
-      &__full{
+      &__full {
          width: 100%;
       }
    }

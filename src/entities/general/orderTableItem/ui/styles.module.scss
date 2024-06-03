@@ -10,6 +10,11 @@
    &:not(:last-child) {
       border-bottom: 1px solid #e9edf7;
    }
+
+   &__link {
+      text-decoration: underline;
+      cursor: pointer;
+   }
 }
 
 .dark {
