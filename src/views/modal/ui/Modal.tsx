@@ -24,7 +24,7 @@ import {
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);

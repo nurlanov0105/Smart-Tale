@@ -8,7 +8,7 @@ import Image from "next/image";
 import styles from "./styles.module.scss";
 import { EquipmentService, SkeletonTypes } from "@/shared/lib";
 import { AvatarSkeleton, GlobalLoading } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import { UserQueryKeys } from "@/shared/api";
 import { usePathname } from "next/navigation";

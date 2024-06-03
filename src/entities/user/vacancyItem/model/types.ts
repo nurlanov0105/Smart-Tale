@@ -19,6 +19,26 @@ export type VacancyCardType = {
    description?: string;
 };
 
+
+
+
+type VacancyItem = {
+   job_title: string;
+   min_salary: string;
+   max_salary: string;
+   currency: CurrencyType;
+   location: string;
+   experience: string;
+   schedule: string;
+   description: string;
+};
+
+export type VacancyUpdateTypes = {
+   data: VacancyItem,
+   slug: string
+}
+
+
 export type VacancyItemProps = {
    item: VacancyCardType;
    typeView?: boolean;

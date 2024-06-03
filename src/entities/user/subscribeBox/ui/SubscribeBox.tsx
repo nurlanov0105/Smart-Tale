@@ -6,7 +6,7 @@ import { showModal } from "@/views/modal";
 import { MODAL_KEYS, ROUTES } from "@/shared/lib";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const SubscribeBox = () => {
    const router = useRouter();

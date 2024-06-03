@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import type { SearchState } from "./types";
 import {persist} from "zustand/middleware";
-import {ThemeState} from "@/shared/themeStore";
+import {ThemeState} from "@/shared/store/themeStore";
 
 // export const useSearchStore = create<SearchState>((set) => ({
 //     searchValue: "",

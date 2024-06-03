@@ -4,7 +4,7 @@ import Image from "next/image";
 import userIcon from "@@/imgs/form/user.svg";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);

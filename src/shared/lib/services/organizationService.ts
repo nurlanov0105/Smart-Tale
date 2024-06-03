@@ -3,7 +3,7 @@ import {OrganizationEndpoints} from "@/shared/api/endpoints";
 import {
     AddEmployeeRequestTypes,
     AddPositionRequestTypes,
-    ChangePositionQueryTypes
+    ChangePositionQueryTypes, UpdateEmployeeTypes
 } from "@/shared/lib/types/organizations-service.types";
 
 export const OrganizationService = {
@@ -51,8 +51,11 @@ export const OrganizationService = {
         return response.data;
     },
     changePosition: async ({slug, params}: ChangePositionQueryTypes) => {
-        console.log(1, params)
-        const response = await baseApiInstance.put(OrganizationEndpoints.CHANGE_POSITION + slug, {data: params});
+        const response = await baseApiInstance.put(OrganizationEndpoints.CHANGE_POSITION + slug + "/", params);
+        return response.data;
+    },
+    updateEmployee: async ({employeeSlug, positionSlug}: UpdateEmployeeTypes) => {
+        const response = await baseApiInstance.put(OrganizationEndpoints.UPDATE_EMPLOYEE + employeeSlug + "/", {"jt_slug": positionSlug});
         return response.data;
     },
     activateOrganization: async (slug: string) => {
@@ -73,6 +76,10 @@ export const OrganizationService = {
     },
     getEmployeeOrders: async (slug: string) => {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_EMPLOYEE_ORDERS + slug);
+        return response.data;
+    },
+    updateOrderStatus: async (parameters: string) => {
+        const response = await baseApiInstance.post(OrganizationEndpoints.UPDATE_ORDER_STATUS + parameters);
         return response.data;
     },
 }

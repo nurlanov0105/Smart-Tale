@@ -9,7 +9,7 @@ import { useWindowSize } from "@/shared/lib";
 import { TypeCategories } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { ChevronDown } from "lucide-react";
 
 const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({

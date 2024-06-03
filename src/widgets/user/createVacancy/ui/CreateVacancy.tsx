@@ -4,10 +4,11 @@ import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import {useAddVacancy} from "@/entities/user/vacancyItem";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
-import { cityFilter, currencies, experienceFilter, graphicsFilter } from "../model/values.data";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import Select2 from "@/shared/ui/select/Select2";
+import {cityFilter, currencies, experienceFilter, graphicsFilter} from "@/shared/lib";
 
 const CreateVacancy: FC = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -61,7 +62,7 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
-               <Select
+               <Select2
                    //@ts-ignore
                   selected={graphicSelected}
                   setSelected={setGraphicSelected}
@@ -86,7 +87,7 @@ const CreateVacancy: FC = () => {
                      type="number"
                   />
                   <div>
-                     <Select
+                     <Select2
                          //@ts-ignore
                         selected={selectCurrency}
                         setSelected={setSelectCurrency}
@@ -99,7 +100,7 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
-               <Select
+               <Select2
                    //@ts-ignore
                   selected={citySelect}
                   setSelected={setCitySelect}

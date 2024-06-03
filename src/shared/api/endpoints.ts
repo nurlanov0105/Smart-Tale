@@ -99,5 +99,7 @@ export const OrganizationEndpoints = {
    DETAILS_POSITION: "/org-jobs/detail/",
    ADD_POSITION: "/org-jobs/add",
    CHANGE_POSITION: "/org-jobs/detail/",
+   UPDATE_EMPLOYEE: "/employee/detail/",
    DELETE_POSITION: "/org-jobs/detail/",
+   UPDATE_ORDER_STATUS: "/update-status/",
 };

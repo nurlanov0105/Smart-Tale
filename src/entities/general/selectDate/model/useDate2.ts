@@ -67,9 +67,12 @@ export const useDate2 = (
 
     const filteredDays = useMemo(() => {
         return days.filter((item) => {
-            if (!year.postValue) return item
+            if (!year.postValue || !month.postValue) return item
             if (month.postValue === currentMonth && year.postValue > currentYear) return item;
-            if (month.postValue === currentMonth) return item.postValue > currentDay;
+            if (month.postValue === currentMonth) {
+
+                return item.postValue > currentDay;
+            }
             return item;
         })
 

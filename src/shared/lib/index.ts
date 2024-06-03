@@ -61,11 +61,42 @@ export type {
    EmployeeDetailsResponseTypes,
    IRight,
    EmployeeDetailsTypes,
-   GetPositionTypes
+   GetPositionTypes,
+   UpdateEmployeeTypes
 } from "./types/organizations-service.types"
 export type {IRights} from "./types/types"
-export {usePositions} from "./hooks/useQueries"
-export type {PositionResponseTypes} from "./types/queries.types"
+
+export type {PositionResponseTypes, EmployeesResponseTypes} from "./types/queries.types"
+export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
+
+export {
+   usePositions,
+   useEmployeeQuery,
+   useEmployeeOrders,
+   useEmployees,
+   useGetPositionDetails
+} from "./hooks/useQueries"
+
+export {useInitialRights} from "./hooks/useInitialRights"
+
+export {
+   graphicsFilter,
+   cityMap,
+   cityFilter,
+   currencies,
+   currenciesMap,
+   experienceFilter,
+   graphicMap,
+   experienceMap,
+   incomeLevelFilter,
+   specializationsFilter,
+   typeSalary
+} from "./constants/vacancyFilters"
+
+export {VacancyFilterStore} from "@/shared/store/filtersStore/filtersStore"
+export {useThemeStore} from "../store/themeStore/useThemeStore"
+
+
 export {
    EnumTokens,
    MARKETPLACE,

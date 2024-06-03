@@ -8,11 +8,11 @@ import { KanbanOrderProps } from "@/widgets/user/board";
 import { boardHeadings } from "../model/consts";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 interface IProps {
    title: string;
-   orders: KanbanOrderProps[];
+   orders: KanbanOrderProps[] | undefined
 }
 const BoardColumn: FC<IProps> = ({ orders, title }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -26,13 +26,13 @@ const BoardColumn: FC<IProps> = ({ orders, title }) => {
              >
             {heading.name}
          </h4>
-         <Droppable droppableId={title.toLowerCase()}>
+         <Droppable droppableId={title}>
             {(provided) => (
                <div
                   className={styles.column__content}
                   ref={provided.innerRef}
                   {...provided.droppableProps}>
-                  {orders.map((order: any, index: number) => (
+                  {orders?.map((order: any, index: number) => (
                      <BoardCard key={order.id} order={order} index={index} />
                   ))}
                   {provided.placeholder}

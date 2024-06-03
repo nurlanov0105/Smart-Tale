@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Controller } from "react-hook-form";
 
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { Button, InputField, PhoneInput, TextArea, Select } from "@/shared/ui";
 import {
    sizesTypes,
@@ -9,10 +9,9 @@ import {
    sizesDataNumbers,
    ANNOUNCEMENT_FORM_NAMES,
    ValidationsSchemasService,
-   AnnouncementValues,
+   AnnouncementValues, currencies,
 } from "@/shared/lib";
 
-import { currencies } from "@/widgets/user/createVacancy/model/values.data";
 import { AddImages } from "@/features/general/addImages";
 import { SelectDate } from "@/entities/general/selectDate";
 import { SizeItem } from "@/entities/user/sizeItem";

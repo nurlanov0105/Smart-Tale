@@ -3,7 +3,7 @@ import React from "react";
 import { showModal } from "@/views/modal";
 import { EnumTokens, MODAL_KEYS, ROUTES, useAuth } from "@/shared/lib";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import Link from "next/link";
 

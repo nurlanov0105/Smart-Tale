@@ -8,4 +8,5 @@ export const ANNOUNCEMENT_DETAILS_POST_NAMES = {
     size: "size",
     deadline: "deadline",
     images: "uploaded_images",
+    deleted_images: "deleted_images",
 }

@@ -10,7 +10,7 @@ import styles from "./styles.module.scss";
 import { showModal } from "@/views/modal";
 import { usePathname } from "next/navigation";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 const OrderItem: FC<ItemProps> = ({ item, isCurrent }) => {
     const theme = useThemeStore((state) => state.theme);
     const title = orderValues[item.type];

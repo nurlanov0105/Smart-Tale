@@ -1,21 +1,24 @@
 "use client";
 import React, { useState } from "react";
-import { Rows2, Rows3, SlidersHorizontal } from "lucide-react";
+import { SlidersHorizontal } from "lucide-react";
 import { VacancyCardType, VacancyItem, useGetVacancies } from "@/entities/user/vacancyItem";
 import { GlobalLoading, Select } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
-import { timeList, typeList, vacancies } from "../model/values.data";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { timeList, typeList } from "../model/values.data";
 import { FiltersVacancies } from "@/features/user/filtersVacancies";
 
 import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 import {TypeViewButtons} from "@/entities/user/typeViewButtons";
+import Select2 from "@/shared/ui/select/Select2";
+import styles from "./styles.module.scss";
 
 const Vacancies = () => {
    const theme = useThemeStore((state) => state.theme);
+
    const [selectedDate, setSelectedDate] = useState(timeList[0]);
    const [selected, setSelected] = useState(typeList[0]);
+
    const [page, setPage] = useState(1);
 
    const [withFilters, setWithFilters] = useState(false);
@@ -23,11 +26,11 @@ const Vacancies = () => {
 
    const handleFilters = () => setWithFilters(!withFilters);
 
-   const { isError, isPending: isLoading, data } = useGetVacancies(page);
-
-   if (!isLoading) {
-      console.log(data);
-   }
+   const {
+       isError,
+       isPending: isLoading,
+       data
+   } = useGetVacancies(page);
 
    return (
       <div className={clsx(styles.vacancies, styles[theme])}>
@@ -38,16 +41,14 @@ const Vacancies = () => {
          <div className={styles.vacancies__filters}>
             <TypeViewButtons typeView={typeView} setTypeView={setTypeView}/>
             <div className={styles.vacancies__selects}>
-               <Select
-                   //@ts-ignore
+               <Select2
                   selected={selectedDate}
                   setSelected={setSelectedDate}
                   data={timeList}
                   type="bordered"
                   classname={styles.vacancies__select}
                />
-               <Select
-                   //@ts-ignore
+               <Select2
                   selected={selected}
                   setSelected={setSelected}
                   data={typeList}
@@ -66,7 +67,7 @@ const Vacancies = () => {
                [styles.vacancies__row]: withFilters,
             })}>
             {isLoading ? (
-               <GlobalLoading />
+               <GlobalLoading type="full"/>
             ) : isError ? (
                <ErrorMessage />
             ) : data.data?.data.length === 0 ? (

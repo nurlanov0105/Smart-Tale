@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import avatar from "@@/imgs/auth/auth-1.jpg";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import {WORK} from "@/shared/lib/routes.config";
 import styles from "./styles.module.scss";
 
@@ -22,8 +22,8 @@ const ResumeMyItem = () => {
             </div>
             <div className={styles.resume__right}>
                 <div className={styles.resume__info}>
-                    <Link href={WORK.RESUME_DETAILS + "/direktor"} className={styles.resume__salary}>Директор</Link>
-                    <Link href={WORK.RESUME_DETAILS + "/direktor"} className={styles.resume__title}>Пранов Адилет Мелсович</Link>
+                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__salary}>Директор</Link>
+                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__title}>Пранов Адилет Мелсович</Link>
                     <p>График работы: Полный рабочий день</p>
                     <p>Опыт работы: от 1года</p>
                     <div className={styles.resume__statisticsWrapper}>
@@ -38,7 +38,7 @@ const ResumeMyItem = () => {
                 </div>
                 <p className={styles.resume__date}>Обновлено 21 мая 2024 в 02:03</p>
                 <div className={styles.resume__buttons}>
-                    <Link href={WORK.RESUME_DETAILS + "/direktor"} className={styles.resume__button}>Посмотреть подробнее</Link>
+                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__button}>Посмотреть подробнее</Link>
                 </div>
             </div>
         </div>

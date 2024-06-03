@@ -1,26 +1,9 @@
-import {ResumeFormTypes} from "./types";
 import {useEffect} from "react";
-import {UseFormReset} from "react-hook-form";
-import {cityMap, currenciesMap, experienceMap, graphicMap} from "@/widgets/user/createVacancy/model/values.data";
+import {cityMap, currenciesMap, experienceMap, graphicMap} from "@/shared/lib";
+import {ResumeDataProps, ResumeItemTypes} from "./types"
 
-interface IProps{
-    isSuccess: boolean
-    resume: ITypes
-    reset: UseFormReset<ResumeFormTypes>
-}
-interface ITypes{
-    job_title: string
-    about_me: string
-    min_salary: string
-    max_salary: string
-    experience: string
-    currency: string
-    schedule: string
-    slug: string
-    location: string
-    author: {last_name: string, middle_name: string, first_name: string}
-}
-export const useInitialResume = ({resume, isSuccess, reset}:IProps) => {
+
+export const useInitialResume = ({resume, isSuccess, reset}:ResumeDataProps) => {
 
     useEffect(() => {
         if (isSuccess && resume){

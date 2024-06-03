@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { Button } from "@/shared/ui";
 import { ChatMessage } from "@/entities/general/chatMessage";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { ChatType } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";

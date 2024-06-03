@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ChatItemProps } from "../model/types";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const ChatItem: FC<ChatItemProps> = ({ item, setSelected, selected }) => {
    const handleSelect = () => setSelected(item);

@@ -3,7 +3,7 @@
 import React, { FC, useEffect } from "react";
 import { OrderTableItem } from "@/entities/general/orderTableItem";
 import { OrderCategories } from "../model/values";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { OrderTableProps } from "../model/types";

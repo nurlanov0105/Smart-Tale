@@ -2,13 +2,13 @@ import React, { FC } from "react";
 import { SelectProps } from "@/shared/lib/types/types";
 import { ChevronDown } from "lucide-react";
 import { useOutside } from "@/shared/lib";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import type { IDateProps } from "@/entities/general/selectDate";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const SelectDateField: FC<SelectProps> = (
+const SelectDateMenu: FC<SelectProps> = (
     {
        title,
        classname,
@@ -61,4 +61,4 @@ const SelectDateField: FC<SelectProps> = (
    );
 };
 
-export default SelectDateField;
+export default SelectDateMenu;

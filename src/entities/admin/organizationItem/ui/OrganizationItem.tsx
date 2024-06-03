@@ -4,7 +4,7 @@ import Image from "next/image";
 import clsx from "clsx";
 import logo from "@@/logo.svg";
 import {showModal} from "@/views/modal";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import {MODAL_KEYS, ORGANIZATION_ROUTES} from "@/shared/lib";
 import {Switch} from "@/shared/ui";
 import { TypesItemOrganization } from "../model/types";

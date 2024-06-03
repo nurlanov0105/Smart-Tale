@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { VacancyItem, useGetVacancySlug } from "@/entities/user/vacancyItem";
 import { vacancies } from "@/widgets/user/vacancies/model/values.data";
 import { GlobalLoading, InputField } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { ErrorMessage } from "@/entities/general/errorMessage";
@@ -12,7 +12,6 @@ import { ErrorMessage } from "@/entities/general/errorMessage";
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
-   console.log(pathname.split("/")[3]);
    const { isError, isFetching, data } = useGetVacancySlug(pathname.split("/")[3]);
 
    if (isFetching) {

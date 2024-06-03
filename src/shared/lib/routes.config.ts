@@ -3,9 +3,10 @@ import { TYPE_ANNOUNCEMENT_DETAIL } from "@/shared/lib/constants/consts";
 export enum WORK {
    VACANCIES = "/work/vacancies",
    CREATE_VACANCY = `/work/create-vacancy`,
-   RESUME = `/work/resume`,
+   RESUME = `/work/create-resume`,
    RESUMES = `/work/resumes`,
-   MY_RESUMES = `/work/resume-list`,
+   MY_RESUMES = `/work/my-resume-list`,
+   RESUME_INFO = `/work/resume-info`,
    RESUME_DETAILS = `/work/resume-details`,
    VACANCY_DETAIL = `/work/vacancy-detail`,
 }

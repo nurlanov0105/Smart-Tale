@@ -13,7 +13,7 @@ export const useInitialPositionData = ({isSuccess, reset, data}: InitialPosition
             })
         }
         // eslint-disable-next-line
-    }, [isSuccess]);
+    }, [isSuccess, data]);
 
     return {actions}
 }

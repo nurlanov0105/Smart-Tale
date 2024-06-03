@@ -16,7 +16,7 @@ export const useInitialEmployeeData = ({reset, data, isSuccess, isSuccessPositio
     useEffect(() => {
         if (isSuccess && isSuccess && data && positions ){
             const positionsList = positions.map((item, idx) => {
-                return {value: item.title, postValue: item.title, idx,  ...item}
+                return {value: item.title, postValue: item.slug, idx,  ...item}
             })
 
             const selectedPosition = positionsList.find(
@@ -31,11 +31,14 @@ export const useInitialEmployeeData = ({reset, data, isSuccess, isSuccessPositio
                 [EMPLOYEE_SETTINGS_NAMES.tel]: data["phone_number"],
                 [EMPLOYEE_SETTINGS_NAMES.positions]: positionsList,
                 [EMPLOYEE_SETTINGS_NAMES.position]: selectedPosition,
+                user_slug: data.user_slug,
+
 
                 ...selectedPosition
             })
         }
 
+        // eslint-disable-next-line
     }, [isSuccess, isSuccessPosition]);
 
 }

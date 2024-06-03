@@ -1,4 +1,4 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {toast} from "react-toastify";
 import {
     AddPositionRequestTypes,
@@ -21,19 +21,4 @@ export const useAddPositionQuery = ({reset}: AddPositionProps) => {
 }
 
 
-export const useChangePositionQuery = () => {
-    return useMutation<any, Error, ChangePositionQueryTypes>({
-        mutationKey: [OrganizationQueryKeys.CHANGE_POSITION],
-        mutationFn: ({slug, params}) => OrganizationService.changePosition({slug, params}),
-        onSuccess: () => {
-            toast.success("Поздравляем! Вы успешно изменили должность!")
-        }
-    })
-}
 
-export const useGetPositionDetails = (slug: string) => {
-    return useQuery<GetPositionTypes>({
-        queryKey: [OrganizationQueryKeys.DETAILS_POSITION, slug],
-        queryFn: () => OrganizationService.getPositionDetails(slug),
-    })
-}

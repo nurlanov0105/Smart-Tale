@@ -5,7 +5,7 @@ import { NoticesContent } from "@/widgets/general/noticesContent";
 import { Tabs } from "@/features/general/tabs";
 import { noticesTabs } from "../model/values.data";
 import styles from "./styles.module.scss";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import clsx from "clsx";
 
 const Notices = () => {

@@ -4,10 +4,8 @@ import { useRouter } from "next/navigation";
 import { EmployeesList } from "@/features/general/employeesList";
 import { EmptyContent } from "@/entities/admin/emptyContent";
 import { Button } from "@/shared/ui";
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
+import {ORGANIZATION_ROUTES, useEmployees} from "@/shared/lib";
 import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
-
-import {useEmployees} from "../model/useEmployees";
 import styles from "./styles.module.scss";
 
 const AdminEmployees = () => {
@@ -16,9 +14,11 @@ const AdminEmployees = () => {
       router.push(ORGANIZATION_ROUTES.INVITE_EMPLOYEES);
    };
 
-   const {data, isLoading, isError, isSuccess} = useEmployees()
-
-
+   const {
+      data,
+      isLoading,
+      isError,
+      isSuccess} = useEmployees()
 
    return (
       <>

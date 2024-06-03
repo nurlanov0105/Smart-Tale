@@ -5,7 +5,7 @@ import Card from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 import clsx from "clsx";
 import { Button, InputField } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import {usePayment} from "../model/usePayment";
 import styles from "./styles.module.scss";
 

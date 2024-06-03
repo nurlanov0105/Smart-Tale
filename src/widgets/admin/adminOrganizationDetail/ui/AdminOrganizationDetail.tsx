@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
+import {useParams} from "next/navigation";
 import { EmployeesList } from "@/features/general/employeesList";
 import { OrderList } from "@/features/general/orderList";
 import { Tabs } from "@/features/general/tabs";
 import { Logo } from "@/entities/general/logo";
-import { useThemeStore } from "@/shared/themeStore";
-import { SkeletonTypes } from "@/shared/lib";
+import { useThemeStore } from "@/shared/store/themeStore";
+import {SkeletonTypes, useEmployees} from "@/shared/lib";
 import { GlobalLoading } from "@/shared/ui";
 
 import { valuesData } from "../model/values.data";
@@ -13,8 +14,6 @@ import { useOrganizationDetails } from "../model/useOrganization";
 import { getOrganizationDate } from "../model/helper";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {useEmployees} from "@/widgets/admin/adminEmployees/model/useEmployees";
-import {useParams} from "next/navigation";
 
 const AdminOrganizationDetail = () => {
    const theme = useThemeStore((state) => state.theme);

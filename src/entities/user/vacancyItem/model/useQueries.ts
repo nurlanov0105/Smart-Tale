@@ -1,17 +1,22 @@
 import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {UseFormReset} from "react-hook-form";
 import { toast } from "react-toastify";
-import { ResumeQueryKeys, ServiceQueryKeys } from "@/shared/api";
-import { ResumeService, VacancyService } from "@/shared/lib";
+import {ResumeQueryKeys, ServiceQueryKeys, VacancyQueryKeys} from "@/shared/api";
+import {ResumeService, VacancyFilterStore, VacancyService} from "@/shared/lib";
 
 import type { ResumeType } from "@/shared/lib/types/resume-service.types";
 import type { VacancyCardType, ResumeRequestTypes } from "./types";
-import {UseFormReset} from "react-hook-form";
 import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
 
 export const useGetVacancies = (page: number) => {
+   const defaultValues = VacancyFilterStore(state => state.defaultValues)
+
    return useQuery({
-      queryFn: () => VacancyService.getVacancies(page),
-      queryKey: [ServiceQueryKeys.SERVICES],
+      queryKey: [VacancyQueryKeys.GET_VACANCIES],
+      queryFn: () => {
+         const filters = ""
+         return VacancyService.getVacancies({page, filters})
+      },
    });
 };
 export const useAddVacancy = () => {

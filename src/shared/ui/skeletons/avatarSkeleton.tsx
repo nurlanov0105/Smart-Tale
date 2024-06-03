@@ -3,7 +3,7 @@
 import React from "react";
 
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const AvatarSkeleton = () => {
    const theme = useThemeStore((state) => state.theme);

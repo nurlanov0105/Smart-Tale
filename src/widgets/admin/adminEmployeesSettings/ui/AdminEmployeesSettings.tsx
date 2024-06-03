@@ -4,12 +4,11 @@ import {useParams} from "next/navigation";
 import {Controller} from "react-hook-form";
 
 import {showModal} from "@/views/modal";
-import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import { AdminBack } from "@/entities/admin/adminBack";
+import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import {Button, InputField, PhoneInput, Select} from "@/shared/ui";
-import {MODAL_KEYS, ValidationsSchemasService} from "@/shared/lib";
-import {useThemeStore} from "@/shared/themeStore";
-import {useInitialRights} from "@/widgets/admin/employeesForm";
+import {MODAL_KEYS, useInitialRights} from "@/shared/lib";
+import {useThemeStore} from "@/shared/store/themeStore";
 
 import {useEmployeeDetails} from "../model/useEmployeeDetails";
 import {useInitialEmployeeData} from "../model/useInitialData";
@@ -48,7 +47,6 @@ const AdminEmployeesSettings = () => {
 
    const {actions} = useInitialRights({data: positions, position: selectedPosition})
 
-   console.log(actions)
 
    return (
       <form onSubmit={handleSubmit} className={styles[theme]}>
@@ -59,18 +57,18 @@ const AdminEmployeesSettings = () => {
                <div className={styles.form__wrapper}>
                   <div className={styles.form__box}>
                      <InputField
-                         {...register(EMPLOYEE_SETTINGS_NAMES.name, ValidationsSchemasService.titleSchema)}
+                         {...register(EMPLOYEE_SETTINGS_NAMES.name)}
                          title="Имя"
                          disabled={true}
                      />
                      <InputField
-                         {...register(EMPLOYEE_SETTINGS_NAMES.lastName, ValidationsSchemasService.titleSchema)}
+                         {...register(EMPLOYEE_SETTINGS_NAMES.lastName)}
                          title="Фамилия"
                          disabled={true}
                      />
                   </div>
                   <InputField
-                      {...register(EMPLOYEE_SETTINGS_NAMES.patronymic, ValidationsSchemasService.titleSchema)}
+                      {...register(EMPLOYEE_SETTINGS_NAMES.patronymic)}
                       title="Отчество"
                       disabled={true}
                   />
@@ -82,7 +80,7 @@ const AdminEmployeesSettings = () => {
                <div className={styles.form__wrapper}>
                   <div className={styles.form__box}>
                      <InputField
-                         {...register(EMPLOYEE_SETTINGS_NAMES.email, ValidationsSchemasService.emailSchema)}
+                         {...register(EMPLOYEE_SETTINGS_NAMES.email)}
                          title="Почта"
                          disabled={true}
                          isLoading={isLoading}
@@ -99,7 +97,6 @@ const AdminEmployeesSettings = () => {
                <legend className={styles.form__title}>Должность сотрудника</legend>
                <Controller
                    control={control}
-                   rules={{required: true}}
                    name={EMPLOYEE_SETTINGS_NAMES.position}
                    render={({field}) => (
                        <Select

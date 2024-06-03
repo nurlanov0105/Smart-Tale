@@ -31,6 +31,7 @@ export const usePositionsEmployee = ({reset}: IProps) => {
                 positions: positionsList,
             })
         }
+        // eslint-disable-next-line
     }, [isSuccess]);
 
     return {

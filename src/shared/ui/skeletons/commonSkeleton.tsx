@@ -3,7 +3,7 @@
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 // enum ClassNameEnum {
 //    standart = "standart",

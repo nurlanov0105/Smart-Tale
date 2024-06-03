@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { HeadingAuth } from "@/entities/auth/headingAuth";
 import { OtpInputField } from "@/entities/auth/otpInput";
 import { SendCodeBtn } from "@/entities/auth/sendCodeBtn";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { useSendCode } from "../model/useQueries";
 import { ProgressBar } from "@/entities/auth/progressBar";
 import { EnumTokens, useThemeEffect } from "@/shared/lib";

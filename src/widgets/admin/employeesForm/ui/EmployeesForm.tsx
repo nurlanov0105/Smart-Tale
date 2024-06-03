@@ -5,13 +5,12 @@ import clsx from "clsx";
 import { organizationsData } from "@/features/admin/positionForm";
 import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import { Button, InputField, Select } from "@/shared/ui";
-import {useThemeStore} from "@/shared/themeStore";
-import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
+import {useThemeStore} from "@/shared/store/themeStore";
+import {SELECT_TYPES, useInitialRights, ValidationsSchemasService} from "@/shared/lib";
 
 import {useAddEmployee} from "../model/useAddEmployee";
 import {usePositionsEmployee} from "../model/usePositionsEmployee";
 import {ADD_EMPLOYEE_NAMES} from "../model/consts";
-import {useInitialRights} from "../model/useInitialRights";
 import styles from "./styles.module.scss";
 
 
