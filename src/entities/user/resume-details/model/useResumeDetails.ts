@@ -22,7 +22,6 @@ export const useResumeDetails = () => {
     const {mutate, isPending} = useUpdateResumeQuery({reset, slug: slug.toString()});
 
     const onSubmit = (data: ResumeFormTypes) => {
-        console.log(data)
         const adapter = {
             ...data,
             currency: data.currency.postValue as CurrencyType,
@@ -34,7 +33,7 @@ export const useResumeDetails = () => {
 
     return {
         handleSubmit: handleSubmit(onSubmit),
-        resume: data?.data,
+        resume: data,
         isLoading,
         isSubmitting: isPending,
         isError,

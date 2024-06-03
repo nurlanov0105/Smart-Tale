@@ -10,8 +10,9 @@ interface IProps{
     isDirty: boolean
     isDisabled: boolean
     reset: UseFormReset<any>
+    isSubmitting: boolean
 }
-const OrderDetailBtns:FC<IProps> = ({isDirty, reset, isDisabled}) => {
+const OrderDetailBtns:FC<IProps> = ({isDirty, reset, isDisabled, isSubmitting}) => {
 
     const handleDeleteClick = () => {
         showModal(MODAL_KEYS.deleteAnnouncement, {slug: "nitki-s-igolkami-2", type: "order"});
@@ -36,7 +37,11 @@ const OrderDetailBtns:FC<IProps> = ({isDirty, reset, isDisabled}) => {
                 isDirty &&
                 <div className={styles.buttons}>
                     <Button onClick={handleReset} type="button" className="btn_bordered">Отменить изменения</Button>
-                    <Button disabled={!isDisabled} type="submit">Сохранить изменения</Button>
+                    <Button disabled={!isDisabled} type="submit">
+                        {
+                            isSubmitting ? "Загрузка..." : "Сохранить изменения"
+                        }
+                    </Button>
                 </div>
             }
         </div>

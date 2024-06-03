@@ -1,22 +1,21 @@
 "use client";
 import React, { useState } from "react";
+import {useParams} from "next/navigation";
 import { EmployeesList } from "@/features/general/employeesList";
 import { OrderList } from "@/features/general/orderList";
 import { Tabs } from "@/features/general/tabs";
-import { Logo } from "@/entities/general/logo";
-import { useThemeStore } from "@/shared/themeStore";
-import { EquipmentService, SkeletonTypes } from "@/shared/lib";
+
+import {SkeletonTypes, useEmployees, EquipmentService} from "@/shared/lib";
+import { useThemeStore } from "@/shared/lib";
 import { GlobalLoading } from "@/shared/ui";
 
 import { valuesData } from "../model/values.data";
 import { useOrganizationDetails } from "../model/useOrganization";
 import { getOrganizationDate } from "../model/helper";
-import { useEmployees } from "@/widgets/admin/adminEmployees/model/useEmployees";
 import { EquipmentQueryKeys } from "@/shared/api";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { useParams } from "next/navigation";
 import { OrganizationIntro } from "@/features/general/organizationIntro";
 
 const AdminOrganizationDetail = () => {

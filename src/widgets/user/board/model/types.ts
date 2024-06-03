@@ -1,9 +1,9 @@
-export type KanbanOrderProps = {
+export interface KanbanOrderProps{
+    deadline: string
+    description:string
     id: number
-    title: string
-    status: string
-    description: string
-    date: string
+    slug:string
+    status:string
+    title:string
 }
-
-export type Columns = 'pending' | 'process' | 'checking' | 'sending' | 'arrived';
+export type Columns = 'Arrived' | 'Checking' | 'Process' | 'Sending' | 'Waiting';

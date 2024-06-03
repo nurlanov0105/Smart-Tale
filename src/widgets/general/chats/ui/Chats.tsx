@@ -5,9 +5,11 @@ import { ChatItem } from "@/entities/general/chatItem";
 import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";
 import ChatForm from "./ChatForm";
-import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
+import Select2 from "@/shared/ui/select/Select2";
+import {SELECT_TYPES} from "@/shared/lib";
+import styles from "./styles.module.scss";
 
 const Chats = () => {
    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -25,19 +27,17 @@ const Chats = () => {
          <div className={clsx(styles.chats, styles[theme])}>
             <div className={clsx(styles.chats__left, isShowChat && styles.chats_hidden)}>
                <div className={styles.chats__tabs}>
-                  <Select
-                     //@ts-ignore
+                  <Select2
                      selected={selectedType}
                      setSelected={setSelectedType}
                      data={chatsFilterType}
-                     type="chat"
+                     type={SELECT_TYPES.chat}
                   />
-                  <Select
-                     //@ts-ignore
+                  <Select2
                      selected={selectedDate}
                      setSelected={setSelectedDate}
                      data={chatsFilterDate}
-                     type="chat"
+                     type={SELECT_TYPES.chat}
                   />
                </div>
                <div className={styles.chats__list}>

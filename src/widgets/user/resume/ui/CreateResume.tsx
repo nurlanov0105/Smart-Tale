@@ -4,7 +4,7 @@ import React from "react";
 import { ResumeForm } from "@/entities/user/resumeForm";
 import styles from "./styles.module.scss";
 
-const Resume = () => {
+const CreateResume = () => {
    return (
       <div className={styles.resume}>
          <ResumeForm  />
@@ -12,4 +12,4 @@ const Resume = () => {
    );
 };
 
-export default Resume;
+export default CreateResume;

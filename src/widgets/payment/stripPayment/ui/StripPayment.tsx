@@ -7,7 +7,7 @@ import { CookiesServices, EnumTokens, MODAL_KEYS, UserService, useRememberMe } f
 import { useEffect, useState } from "react";
 import { Select } from "@/shared/ui";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { useMutation } from "@tanstack/react-query";
 import { showModal } from "@/views/modal";
 

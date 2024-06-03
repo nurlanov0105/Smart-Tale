@@ -2,7 +2,7 @@
 import React from "react";
 import clsx from "clsx";
 import { Button, InputField, TextArea } from "@/shared/ui";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import {ChangeLogo} from "@/entities/user/changeLogo";
 import {ValidationsSchemasService} from "@/shared/lib";
 

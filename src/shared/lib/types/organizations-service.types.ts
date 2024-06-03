@@ -63,6 +63,9 @@ export interface EmployeeDetailsTypes extends RightsTypes{
     tel: string
     position: IPosition
     positions: SelectPostTypes[]
+    user_slug: string
+    slug: string
+
 }
 
 export interface EmployeeDetailsResponseTypes extends RightsTypes{
@@ -72,10 +75,17 @@ export interface EmployeeDetailsResponseTypes extends RightsTypes{
     email: string
     phone_number: string
     job_title: string
+    user_slug: string
+    slug: string
 }
 
 
 export interface ChangePositionQueryTypes{
     slug: string
     params: AddPositionTypes
+}
+
+export interface UpdateEmployeeTypes{
+    employeeSlug: string
+    positionSlug: string
 }

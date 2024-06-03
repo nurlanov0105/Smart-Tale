@@ -3,7 +3,7 @@ import { CardCategoryData } from "../model/consts";
 import { CardCategoryProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const CardCategory: FC<CardCategoryProps> = ({
    handleCategoryClick,

@@ -4,7 +4,7 @@ import React from "react";
 import clsx from "clsx";
 import {showModal} from "@/views/modal";
 import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import {MODAL_KEYS, ValidationsSchemasService} from "@/shared/lib";
 
@@ -22,18 +22,21 @@ const PositionDetails = () => {
     }
 
     const {
-        isLoadingSubmitting,
-        isLoading,
         data,
         isSuccess,
+        isLoading,
+        isLoadingSubmitting,
         slug,
 
         handleSubmit,
         register,
         isValid,
+        isDirty,
+
         reset,
         watch
     } = usePositionDetails()
+
 
     const {actions} = useInitialPositionData({data, isSuccess, reset})
 
@@ -64,6 +67,7 @@ const PositionDetails = () => {
 
             <div className={styles.position__btn}>
                 <Button onClick={handleDelete} className="btn_danger" type="button">Удалить должность</Button>
+
                 <Button disabled={!isValid || isLoading} type="submit">
                     {isLoadingSubmitting ? "Загрузка..." : "Изменить должность"}
                 </Button>

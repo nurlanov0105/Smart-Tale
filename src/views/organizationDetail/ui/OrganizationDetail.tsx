@@ -8,7 +8,7 @@ import { getOrganizationDate } from "@/widgets/admin/adminOrganizationDetail/mod
 import { OrderList } from "@/features/general/orderList";
 import { EquipmentService, SkeletonTypes, announcementTabs } from "@/shared/lib";
 import { EquipmentQueryKeys } from "@/shared/api";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import { Tabs } from "@/features/general/tabs";
 import clsx from "clsx";
 import styles from "./styles.module.scss";

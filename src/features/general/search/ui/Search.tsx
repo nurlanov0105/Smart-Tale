@@ -2,14 +2,16 @@ import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useSearchStore } from "@/features/general/search";
+
 import { useDebounce, useOutside } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
+
 import clsx from "clsx";
-import styles from "./styles.module.scss";
 import searchIcon from "@@/imgs/header/search.svg";
+import styles from "./styles.module.scss";
 
 const SearchField = () => {
-   const theme = useThemeStore((state) => state.theme);
+   const theme = useThemeStore(state => state.theme);
    const setSearch = useSearchStore((state) => state.setSearch);
    const pathname = usePathname();
 

@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { Menu, PanelLeft } from "lucide-react";
 import { useNavbar } from "@/shared/lib";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const NavbarPanel: FC = () => {
    const theme = useThemeStore((state) => state.theme);

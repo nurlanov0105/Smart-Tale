@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
+import React, {useState} from "react";
 import { Controller } from "react-hook-form";
 
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { GlobalLoading, InputField, PhoneInput, TextArea, Select } from "@/shared/ui";
 import {
    sizesTypes,
@@ -12,10 +12,9 @@ import {
    ANNOUNCEMENT_FORM_NAMES,
    AnnouncementValues,
    ValidationsSchemasService,
-   useAnnouncementType, SELECT_TYPES
+   useAnnouncementType, SELECT_TYPES, currencies
 } from "@/shared/lib";
 
-import { currencies } from "@/widgets/user/createVacancy";
 import { AddImages } from "@/features/general/addImages";
 import { SizeItem } from "@/entities/user/sizeItem";
 import { SelectDate } from "@/entities/general/selectDate";
@@ -23,6 +22,7 @@ import { OrderDetailBtns } from "@/entities/user/orderDetailBtns";
 
 import { useAnnouncementDetail } from "../model/hooks/useAnnouncementDetail";
 import { useInitialData } from "../model/hooks/useInitialData";
+import type {AnnouncementImagesTypes} from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -32,15 +32,19 @@ const AnnouncementDetailForm = () => {
 
    const { type, slug } = useAnnouncementType();
 
+   const [images, setImages] = useState<AnnouncementImagesTypes[]>([])
+
    const {
       data,
       isError,
       isLoading,
-      register,
-      errors,
-      isValid,
       isSuccess,
+      isSubmitting,
+
       handleSubmit,
+      errors,
+      register,
+      isValid,
       reset,
       watch,
       control,
@@ -49,9 +53,10 @@ const AnnouncementDetailForm = () => {
    } = useAnnouncementDetail({
       type,
       slug,
+      images
    });
 
-   useInitialData({ reset, type, slug, data, isSuccess });
+   useInitialData({ reset, type, slug, data, isSuccess, setImages});
 
    // const imagesList = watch('images')
    const sizes = watch(ANNOUNCEMENT_FORM_NAMES.sizes);
@@ -235,7 +240,7 @@ const AnnouncementDetailForm = () => {
             </div>
          </div>
 
-         <OrderDetailBtns isDisabled={isValid} reset={reset} isDirty={isDirty} />
+         <OrderDetailBtns isSubmitting={isSubmitting} isDisabled={isValid} reset={reset} isDirty={isDirty} />
       </form>
    );
 };

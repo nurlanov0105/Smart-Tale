@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Image from "next/image";
 import clsx from "clsx";
 import {CREATE_ORGANIZATION_NAMES} from "@/features/admin/organizationForm";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import {ChangeLogoProps} from "../model/types";
 import styles from "./styles.module.scss";
 

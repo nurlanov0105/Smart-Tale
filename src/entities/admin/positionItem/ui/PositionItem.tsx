@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import clsx from "clsx";
 import Link from "next/link";
 import {ORGANIZATION_ROUTES} from "@/shared/lib";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import type {PositionItemProps} from "../model/types";
 import styles from "./styles.module.scss";
 

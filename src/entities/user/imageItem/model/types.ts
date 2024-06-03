@@ -1,10 +1,9 @@
 import {UseFormSetValue} from "react-hook-form";
 import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 
-type image = {
+interface IImage{
     id: number
-    images: string
-    postValue?: string
+    image: File
 }
 
 // export type ImageProps = {
@@ -14,7 +13,7 @@ type image = {
 //     setValue: UseFormSetValue<AnnouncementCreateFormType>
 // }
 export type ImageProps = {
-    images: File[]
+    images: IImage[]
     image: File
     idx: number
     setValue: UseFormSetValue<AnnouncementCreateFormType>

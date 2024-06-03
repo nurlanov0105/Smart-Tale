@@ -7,7 +7,7 @@ import { EnglishType, MODAL_KEYS, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Link from "next/link";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {

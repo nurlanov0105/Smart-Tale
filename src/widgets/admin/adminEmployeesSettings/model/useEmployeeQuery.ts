@@ -1,24 +1,18 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {OrganizationQueryKeys} from "@/shared/api";
 import {OrganizationService} from "@/shared/lib";
+import {toast} from "react-toastify";
 
-export const useEmployeeQuery = (slug: string) => {
-    return useQuery({
-        queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS, slug],
-        queryFn: () => OrganizationService.getEmployeeDetails(slug),
+
+export const useUpdateEmployee = () => {
+    const queryClient = useQueryClient()
+    return useMutation<any, Error, {employeeSlug: string, positionSlug: string}>({
+        mutationKey: [OrganizationQueryKeys.UPDATE_EMPLOYEE],
+        mutationFn: ({employeeSlug, positionSlug}) => OrganizationService.updateEmployee({employeeSlug, positionSlug}),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.EMPLOYEE_SETTINGS]})
+            toast.success("Поздравляем! Вы успешно изменили должность сотрудника!")
+        }
     })
 }
 
-export const useChangeStatus = (slug: string) => {
-    return useMutation({
-        mutationKey: [OrganizationQueryKeys.CHANGE_STATUS, slug],
-        mutationFn: () => OrganizationService.getEmployeeDetails(slug),
-    })
-}
-
-export const useEmployeeOrders = (slug: string) => {
-    return useQuery({
-        queryKey: [OrganizationQueryKeys.EMPLOYEE_ORDERS, slug],
-        queryFn: () => OrganizationService.getEmployeeOrders(slug),
-    })
-}

@@ -16,3 +16,8 @@ export type VacancyDeletetype = {
    slug: string;
    data: string;
 };
+
+export type VacanciesRequestTypes = {
+   page?: number
+   filters: string
+}

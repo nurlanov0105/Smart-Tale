@@ -2,7 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import clsx from "clsx";
 import {WORK} from "@/shared/lib/routes.config";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 
 import {ResumeItemProps} from "../model/types";
 import styles from "@/entities/user/vacancyItem/ui/styles.module.scss";
@@ -13,7 +13,7 @@ const ResumeItem = ({item}: ResumeItemProps) => {
 
     return (
         <Link
-            href={`${WORK.VACANCY_DETAIL}`}
+            href={`${WORK.RESUME_INFO + `/${item.slug}`}`}
             className={clsx(styles.item, styles[theme])}>
             <div className={styles.item__row}>
                 <div>

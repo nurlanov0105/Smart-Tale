@@ -11,7 +11,7 @@ import { closeModal } from "@/views/modal";
 import { images } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { ISize, useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { usePathname, useRouter } from "next/navigation";
 import { AnnouncementRoutes } from "../model/consts";

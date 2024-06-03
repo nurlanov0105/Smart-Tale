@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import {useParams} from "next/navigation";
-import {useChangePositionQuery, useGetPositionDetails} from "@/features/admin/positionForm";
-import {AddPositionTypes} from "@/shared/lib";
+import {AddPositionTypes, useGetPositionDetails} from "@/shared/lib";
+import {useChangePositionQuery} from "../model/useQueries";
 import {defaultValuesPosition} from "./consts";
 
 export const usePositionDetails = () => {
@@ -12,15 +12,18 @@ export const usePositionDetails = () => {
         handleSubmit,
         control,
         watch,
-        formState: {errors, isValid}
+        formState: {errors, isValid, isDirty}
     } = useForm<AddPositionTypes>({
         mode: "onBlur",
         defaultValues: defaultValuesPosition
     })
     const {slug} = useParams()
 
-    const {data, isLoading,
-        isSuccess, isError} = useGetPositionDetails(slug.toString())
+    const {
+        data,
+        isLoading,
+        isSuccess,
+        isError} = useGetPositionDetails(slug.toString())
 
     const changePosition = useChangePositionQuery()
 
@@ -32,9 +35,11 @@ export const usePositionDetails = () => {
     return {
         data,
         isSuccess,
-        handleSubmit: handleSubmit(onSubmit),
         isLoading,
         isLoadingSubmitting: changePosition.isPending,
+        slug: slug.toString(),
+
+        handleSubmit: handleSubmit(onSubmit),
         isError,
         register,
         errors,
@@ -42,7 +47,7 @@ export const usePositionDetails = () => {
         control,
         reset,
         watch,
-        slug: slug.toString()
+        isDirty
 
     }
 }

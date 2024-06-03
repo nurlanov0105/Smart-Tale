@@ -6,7 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    const theme = useThemeStore((state) => state.theme);
