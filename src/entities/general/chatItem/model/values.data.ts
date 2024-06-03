@@ -11,6 +11,10 @@ export const chatsFilterType = [
       value: "Заказы",
       postValue: "orders",
    },
+   {
+      value: "Услуги",
+      postValue: "orders",
+   },
 ];
 
 export const chatsFilterDate = [

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { EquipmentQueryKeys } from "@/shared/api";
+import { EquipmentQueryKeys, UserQueryKeys } from "@/shared/api";
 
 interface Props {
    fetchFunction: ({
@@ -88,14 +88,26 @@ export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab, slu
          throw new Error("Ошибка при получении данных");
       }
       console.log(res);
-      return {
-         data: param_tab ? res.data : res.data.data,
-         nextPage: pageParam + 1,
-         hasNextPage: param_tab
+
+      const data =
+         queryKey === UserQueryKeys.ORDER_HISTORY
+            ? res.data.data
+            : param_tab
+            ? res.data
+            : res.data.data;
+      const hasNextPage =
+         queryKey === UserQueryKeys.ORDER_HISTORY
+            ? res.has_next_page
+            : param_tab
             ? res.has_next_page
             : queryKey === EquipmentQueryKeys.EQUIPMENTS
             ? res.data.has_next_page
-            : res.has_next_page,
+            : res.has_next_page;
+
+      return {
+         data: data,
+         nextPage: pageParam + 1,
+         hasNextPage: hasNextPage,
       };
    };
 

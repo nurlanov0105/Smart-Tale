@@ -3,7 +3,7 @@ import BtnBordered from "./btnBordered/BtnBordered";
 import InputField from "./inputField/InputField";
 import PasswordField from "./inputField/PasswordInput";
 import TextArea from "./textarea/TextArea";
-import SelectDateField from "@/shared/ui/selectDate/SelectDateField";
+import SelectDateMenu from "@/shared/ui/selectDate/SelectDateMenu";
 import Select from "@/shared/ui/select/Select";
 import Emojis from "./emojis/Emojis";
 import CommonSkeleton from "./skeletons/commonSkeleton";
@@ -19,7 +19,7 @@ export {
    InputField,
    PasswordField,
    TextArea,
-   SelectDateField,
+   SelectDateMenu,
    Emojis,
    Select,
    CommonSkeleton,

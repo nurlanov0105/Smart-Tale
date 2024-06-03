@@ -41,7 +41,7 @@ export const useOrderForm = (type: string) => {
       // formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.amount, data.amount.toString())
       if (data.email) formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.email, data.email)
 
-      data?.images.forEach(image => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.images, image))
+      data?.images.forEach(image => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.images, image.image))
 
       if (type === AnnouncementValues.EQUIPMENT) createEquipment.mutate(formData)
       if (type === AnnouncementValues.SERVICE) createService.mutate(formData)

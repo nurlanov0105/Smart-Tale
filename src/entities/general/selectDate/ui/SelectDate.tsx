@@ -1,5 +1,5 @@
 import React, {FC, useMemo} from "react";
-import { SelectDateField } from "@/shared/ui";
+import { SelectDateMenu } from "@/shared/ui";
 import { DateProps } from "../model/types";
 import {Controller} from "react-hook-form";
 import {useDate2} from "@/entities/general/selectDate/model/useDate2";
@@ -15,8 +15,10 @@ const SelectDate: FC<DateProps> = ({
 
     }) => {
 
-
-   const { days, months, years
+   const {
+       days,
+       months,
+       years
    } = useDate2(year, month, day, type, setValue);
 
    return (
@@ -27,7 +29,7 @@ const SelectDate: FC<DateProps> = ({
               defaultValue={day}
               rules={{ required: 'Выберите день' }}
               render={({ field }) => (
-                  <SelectDateField
+                  <SelectDateMenu
                       data={days}
                       value={field.value}
                       setDate={(value) => {
@@ -46,7 +48,7 @@ const SelectDate: FC<DateProps> = ({
               defaultValue={month}
               rules={{ required: 'Выберите месяц' }}
               render={({ field }) => (
-                  <SelectDateField
+                  <SelectDateMenu
                       data={months}
                       value={field.value}
                       setDate={(value) => {
@@ -64,7 +66,7 @@ const SelectDate: FC<DateProps> = ({
               defaultValue={year}
               rules={{ required: 'Выберите год' }}
               render={({ field }) => (
-                  <SelectDateField
+                  <SelectDateMenu
                       data={years}
                       setDate={(value) => {
                           field.onChange(value);

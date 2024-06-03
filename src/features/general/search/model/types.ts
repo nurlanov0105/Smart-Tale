@@ -1,4 +1,4 @@
 export type SearchState = {
-    searchValue: string
-    setSearch: (value: string) => void
-}
+   searchValueLS: string;
+   setSearch: (value: string) => void;
+};

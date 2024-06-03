@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { Tabs } from "@/features/general/tabs";
 import { ChangeImage } from "@/features/general/changeImage";
@@ -6,16 +7,14 @@ import { AdminEmployeesItem } from "@/entities/admin/adminEmployeesItem";
 import { AdminBack } from "@/entities/admin/adminBack";
 import { AvatarSkeleton, CommonSkeleton } from "@/shared/ui";
 import { valuesData } from "../model/values.data";
+import {TypeViewButtons} from "@/entities/user/typeViewButtons";
+import {OrderItem} from "@/entities/general/orderItem";
+import {useParams} from "next/navigation";
+import {EmployeeOrderTypes} from "@/entities/admin/adminEmployeesItem/model/types";
+import {useEmployeeOrders, useEmployeeQuery} from "@/shared/lib";
 import styles from "./styles.module.scss";
 
-import { TypeViewButtons } from "@/entities/user/typeViewButtons";
-import { OrderItem } from "@/entities/general/orderItem";
-import {
-   useEmployeeOrders,
-   useEmployeeQuery,
-} from "@/widgets/admin/adminEmployeesSettings/model/useEmployeeQuery";
-import { useParams } from "next/navigation";
-import { EmployeeOrderTypes } from "@/entities/admin/adminEmployeesItem/model/types";
+
 
 const AdminEmployeesDetails = () => {
    const [type, setType] = useState(valuesData[0].postValue);
@@ -23,9 +22,9 @@ const AdminEmployeesDetails = () => {
 
    const { slug } = useParams();
 
-   const { data, isLoading } = useEmployeeQuery(slug.toString());
+   const {data, isLoading} = useEmployeeQuery(slug.toString())
+
    const orders = useEmployeeOrders(slug.toString());
-   console.log(orders.data);
 
    const readyData = isLoading
       ? [...Array(3)].map((_, i: number) => <CommonSkeleton key={i} type="employees" />)

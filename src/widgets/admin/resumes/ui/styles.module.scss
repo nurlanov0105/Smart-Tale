@@ -94,3 +94,19 @@
     }
   }
 }
+
+.dark{
+  .resumes{
+    &__filter{
+      border: 1px solid $border-theme;
+      color: $white-theme;
+
+      @media (hover: hover) and (pointer: fine){
+        &:hover{
+          filter: brightness(110%);
+
+        }
+      }
+    }
+  }
+}

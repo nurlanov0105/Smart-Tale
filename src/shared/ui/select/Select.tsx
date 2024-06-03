@@ -3,8 +3,8 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import {ChevronDown} from "lucide-react";
 import {useOutside} from "@/shared/lib";
-import {useThemeStore} from "@/shared/themeStore";
-import {employee} from "../../lib/types/types"
+import {useThemeStore} from "@/shared/store/themeStore";
+import {employee, SelectPostTypes} from "../../lib/types/types"
 import {GlobalLoading} from "@/shared/ui";
 
 interface ISelect{
@@ -36,7 +36,7 @@ const Select: FC<ISelect> = (
     const { toggleShow, ref, isShown, setIsShown } = useOutside(false);
 
     const theme = useThemeStore((state) => state.theme);
-    const handleSelect = (selected: employee) => {
+    const handleSelect = (selected: SelectPostTypes) => {
 
         if (typeData === "sizes"){
             if (!value.find((el: employee) => el.postValue === selected.postValue)){
@@ -82,16 +82,16 @@ const Select: FC<ISelect> = (
                             {
                                 isLoading && <GlobalLoading type="default"/>
                             }
-                            {!isLoading && data?.map((employee) => (
+                            {!isLoading && data?.map((item) => (
                                 <button
-                                    onClick={() => handleSelect(employee)}
+                                    onClick={() => handleSelect(item)}
                                     type="button"
                                     className={clsx(styles.select__item, {
                                         [styles.select__item_active]:
-                                        employee.postValue === value?.postValue,
+                                        item.postValue === value?.postValue,
                                     })}
-                                    key={employee.postValue}>
-                                    {employee.value}
+                                    key={item.postValue}>
+                                    {item.value}
                                 </button>
                             ))}
                         </div>

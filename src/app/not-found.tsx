@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import clsx from "clsx";
 
 const NotFound = () => {

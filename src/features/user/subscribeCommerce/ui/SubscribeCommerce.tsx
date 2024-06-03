@@ -13,7 +13,7 @@ import checkIcon from "@@/imgs/commerce/check.svg";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
    const theme = useThemeStore((state) => state.theme);

@@ -17,7 +17,8 @@ export const UserService = {
       });
       return response;
    },
-   changeProfile: async (data: ProfileRequestType) => {
+   // ProfileRequestType
+   changeProfile: async (data: FormData) => {
       const response = await baseApiInstance.put(UserEndpoints.MY_PROFILE_CHANGE, data);
       return response;
    },

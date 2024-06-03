@@ -6,7 +6,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Modal } from "@/views/modal";
 import { ToastContainer } from "react-toastify";
 
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import "react-toastify/scss/main.scss";
 import styles from "./styles.module.scss";
 

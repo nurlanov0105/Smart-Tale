@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
-import {usePositions, EmployeeDetailsTypes} from "@/shared/lib";
+import {usePositions, EmployeeDetailsTypes, useEmployeeQuery} from "@/shared/lib";
 import {defaultValuesEmployeeDetails} from "../model/helper";
-import {useChangeStatus, useEmployeeQuery} from "./useEmployeeQuery";
+import {useUpdateEmployee} from "./useEmployeeQuery";
 
 export const useEmployeeDetails = (slug: string) => {
 
@@ -20,7 +20,7 @@ export const useEmployeeDetails = (slug: string) => {
 
     const {data, isError, isLoading, isSuccess} = useEmployeeQuery(slug)
 
-    // const changeStatus = useChangeStatus(slug)
+    const updateEmployee = useUpdateEmployee()
 
     const {
         data: positions,
@@ -29,7 +29,7 @@ export const useEmployeeDetails = (slug: string) => {
     } = usePositions()
 
     const onSubmit = (data: EmployeeDetailsTypes) => {
-        console.log(data)
+        updateEmployee.mutate({employeeSlug: data.user_slug, positionSlug: data.position.postValue})
     }
 
     return {

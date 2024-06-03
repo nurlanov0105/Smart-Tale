@@ -28,9 +28,10 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
       // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [isSuccess]);
 
-   return {
-      isLoadingPositions: isLoading,
-      isErrorPositions: isError,
-      data,
-   };
-};
+
+    return {
+        isLoadingPositions: isLoading,
+        isErrorPositions: isError,
+        data
+    }
+}

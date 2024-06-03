@@ -6,7 +6,7 @@ import { useWindowSize } from "@/shared/lib";
 import { TypeAdminCategories } from "../model/types";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const AdminItem: FC<TypeAdminCategories> = ({ title, link, Icon, routes }) => {
    const theme = useThemeStore((state) => state.theme);

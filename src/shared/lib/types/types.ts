@@ -40,7 +40,7 @@ export type InputFieldProps = {
    placeholder?: string;
    autoComplete?: string;
    defaultChecked?: boolean;
-   isLoading?: boolean
+   isLoading?: boolean;
 };
 
 export type TextAreaProps = {
@@ -79,9 +79,9 @@ export type employee = {
 };
 
 export type SelectPostTypes = {
-   value: string
-   postValue: string
-}
+   value: string;
+   postValue: string;
+};
 
 export type SelectTypes = {
    selected: employee;
@@ -99,8 +99,8 @@ export type InputPhoneProps = {
 
    error?: string | boolean | undefined;
    classname?: string;
-   isDisabled?: boolean
-   isLoading?: boolean
+   isDisabled?: boolean;
+   isLoading?: boolean;
 };
 
 export type AuthorType = {
@@ -112,6 +112,7 @@ export type AuthorType = {
 
 export type CardType = {
    item: string;
+   title: string;
    slug: string;
    price: string;
    description: string;
@@ -121,8 +122,8 @@ export type CardType = {
    type: "Order" | "Equipment" | "Service";
 };
 
-export interface IRights{
-   name: string
-   title: string
-   value: string
+export interface IRights {
+   name: string;
+   title: string;
+   value: string;
 }

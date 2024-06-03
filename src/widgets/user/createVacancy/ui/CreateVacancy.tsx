@@ -4,11 +4,11 @@ import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { VacancyCardType, useAddVacancy } from "@/entities/user/vacancyItem";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import { useThemeStore } from "@/shared/themeStore";
-import { cityFilter, currencies, experienceFilter, graphicsFilter } from "../model/values.data";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { FormData } from "../model/types";
+import Select2 from "@/shared/ui/select/Select2";
+import {cityFilter, currencies, experienceFilter, graphicsFilter} from "@/shared/lib";
 
 const CreateVacancy: FC = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -62,8 +62,8 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
-               <Select
-                  //@ts-ignore
+
+               <Select2
                   selected={graphicSelected}
                   setSelected={setGraphicSelected}
                   data={graphicsFilter}
@@ -87,8 +87,7 @@ const CreateVacancy: FC = () => {
                      type="number"
                   />
                   <div>
-                     <Select
-                        //@ts-ignore
+                     <Select2
                         selected={selectCurrency}
                         setSelected={setSelectCurrency}
                         data={currencies}
@@ -100,8 +99,8 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
-               <Select
-                  //@ts-ignore
+
+               <Select2
                   selected={citySelect}
                   setSelected={setCitySelect}
                   data={cityFilter}

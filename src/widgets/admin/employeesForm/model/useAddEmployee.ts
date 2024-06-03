@@ -1,10 +1,8 @@
 import {useMutation} from "@tanstack/react-query";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
+import {AddEmployeeRequestTypes, AddEmployeeTypes, OrganizationService} from "@/shared/lib";
 import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService} from "@/shared/lib";
-import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
-import type {AddEmployeeRequestTypes, AddEmployeeTypes} from "@/shared/lib/types/organizations-service.types";
 
 
 export const useAddEmployee = () => {

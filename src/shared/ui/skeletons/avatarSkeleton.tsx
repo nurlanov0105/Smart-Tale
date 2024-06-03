@@ -2,9 +2,9 @@
 
 import React from "react";
 
-import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const AvatarSkeleton = () => {
    const theme = useThemeStore((state) => state.theme);

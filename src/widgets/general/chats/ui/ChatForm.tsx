@@ -9,13 +9,20 @@ import { ChatFormProps } from "../model/types";
 import styles from "./styles.module.scss";
 import { ROUTES } from "@/shared/lib";
 import Link from "next/link";
+import clsx from "clsx";
 
-const ChatForm: FC<ChatFormProps> = ({ selected }) => {
+const ChatForm: FC<ChatFormProps> = ({ selected, setIsShowChat }) => {
+   const handleBack = () => {
+      setIsShowChat(false);
+   };
    return (
-      <div className={styles.chat}>
+      <div className={clsx(styles.chat)}>
          {!!selected && (
             <>
                <div className={styles.chat__user}>
+                  <button type="button" onClick={handleBack}>
+                     Go back
+                  </button>
                   <Link href={ROUTES.USERS + `/user007`} className={styles.chat__block}>
                      <Image
                         className={styles.chat__avatar}
@@ -31,7 +38,7 @@ const ChatForm: FC<ChatFormProps> = ({ selected }) => {
                      <a href="tel:+996755260506">
                         <Phone className={styles.chat__iconPhone} />
                      </a>
-                     <button className={styles.chat__menu}>
+                     <button type="button" className={styles.chat__menu}>
                         <Ellipsis />
                      </button>
                   </div>

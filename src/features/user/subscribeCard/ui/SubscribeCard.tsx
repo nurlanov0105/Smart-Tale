@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { useRouter } from "next/navigation";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { Check } from "lucide-react";
 import { Button } from "@/shared/ui";
 import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";

@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { UserEndpoints } from "@/shared/api";
 import { baseApiInstance } from "@/shared/api/instance";
 import { ModalSlugEndpoints } from "./consts";
+import { AnnouncementTypes } from "@/shared/lib";
 
 const useFetchResource = ({
    type,
@@ -12,6 +13,7 @@ const useFetchResource = ({
    slug: string;
    isDetail?: boolean;
 }) => {
+   console.log(type);
    const queryFn = async () => {
       let url = "";
       if (isDetail) {
@@ -23,8 +25,9 @@ const useFetchResource = ({
       if (!url) {
          throw new Error("No valid URL generated for the query.");
       }
+
       const response = await baseApiInstance.get(url);
-      return response.data;
+      return AnnouncementTypes.service === type ? response : response.data;
    };
 
    const { isPending, isError, data } = useQuery({ queryKey: [type, slug], queryFn });

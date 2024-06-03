@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import bellIcon from "@@/imgs/header/bell-sm.svg";
 import { ROUTES } from "@/shared/lib";
 import Link from "next/link";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const NoticeBtn = () => {
    const theme = useThemeStore((state) => state.theme);

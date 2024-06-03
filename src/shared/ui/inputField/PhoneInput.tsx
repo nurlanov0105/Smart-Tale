@@ -8,7 +8,7 @@ import type {InputPhoneProps} from "@/shared/lib/types/types";
 
 import 'react-phone-number-input/style.css';
 import styles from "./styles.module.scss"
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import clsx from "clsx";
 
 const InputPhone = ({control, classname, error, isDisabled}: InputPhoneProps) => {
@@ -16,6 +16,15 @@ const InputPhone = ({control, classname, error, isDisabled}: InputPhoneProps) =>
         return isValidPhoneNumber(`${value}`) || "Неверный формат номера"
     }
     const theme = useThemeStore(state => state.theme)
+
+    const rules = () => {
+        if (isDisabled) return undefined
+
+        return {
+            required: "Это поле обязательно для заполнения",
+            validate: (value: string) => validate(value)
+        }
+    }
 
     return (
         <div className={styles.fieldWrapper}>
@@ -27,10 +36,7 @@ const InputPhone = ({control, classname, error, isDisabled}: InputPhoneProps) =>
                 disabled={isDisabled}
                 name="tel"
                 control={control}
-                rules={{
-                    required: "Это поле обязательно для заполнения",
-                    validate: (value: string) => validate(value)
-                }}
+                rules={rules()}
                 className={clsx(styles.field__input_bordered, classname, styles[theme], error && styles.field__input_danger)}
             />
 

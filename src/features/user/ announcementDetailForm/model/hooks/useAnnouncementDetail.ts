@@ -12,8 +12,9 @@ import {
 import type {AnnouncementDetailFormType, AnnouncementDetailProps} from "../types";
 import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "../consts";
 import {AnnouncementValues} from "@/shared/lib";
+import {useState} from "react";
 
-export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => {
+export const useAnnouncementDetail = ({type, slug, images}: AnnouncementDetailProps) => {
 
     const { reset,
         register,
@@ -34,16 +35,15 @@ export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => 
     const getEquipment = useGetEquipment(slug, type)
     const getService = useGetService(slug, type)
 
-    const dataByType = {
-        order: getOrder,
-        equipment: getEquipment,
-        service: getService
-    };
-    const responseData = dataByType[type as keyof typeof dataByType]
-
     const updateOrder = useUpdateOrder()
     const updateEquipment = useUpdateEquipment()
     const updateService = useUpdateService()
+
+    const dataMap = {order: getOrder, equipment: getEquipment, service: getService};
+    const updateAnnouncementMap = {order: updateOrder, equipment: updateEquipment, service: updateService};
+
+    const responseData = dataMap[type as keyof typeof dataMap]
+    const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap]
 
     const onSubmit = (data: AnnouncementDetailFormType) => {
         const formData = new FormData();
@@ -56,35 +56,24 @@ export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => 
 
         if (data.email) formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.email, data.email)
 
-        data?.images.forEach(image => {
+        const existingImage = new Set(images.map(dataImage => dataImage.id));
+        const existingDataImage = new Set(data.images.map(dataImage => dataImage.id));
 
-            // const reader = new FileReader();
-            // reader.onload = (e) => {
-            //     const result = e.target?.result;
-            //     const newValue = images ? [...images, files[0]] : [files[0]];
-            //     setImages(newValue)
-            //     setIsLoading(false);
-            //     // if (result) {
-            //     //     const newImage = { value: result as string, postValue: result as string };
-            //     //     const newValue = images ? [...images, newImage] : [newImage];
-            //     //
-            //     //     setImages([files[0]]);
-            //     //     setIsLoading(false);
-            //     // }
-            // };
-            //
-            console.log(image)
-            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image)
-        })
+        data.images.forEach(image => {
+            if (!existingImage.has(image.id)) {
+                formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image.image)
+            }
+        });
+        images.forEach(image => {
+            if (!existingDataImage.has(image.id)) {
+                formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deleted_images, image.id.toString())
+            }
+        });
 
-        if (type === AnnouncementValues.EQUIPMENT) {
-            console.log("equipment", data)
-            updateEquipment.mutate({data: formData, slug: slug})
-        }
-        if (type === AnnouncementValues.SERVICE) {
-            console.log("service", data)
-            updateService.mutate({data: formData, slug: slug})
-        }
+        if (type === AnnouncementValues.EQUIPMENT) updateEquipment.mutate({data: formData, slug: slug})
+
+        if (type === AnnouncementValues.SERVICE) updateService.mutate({data: formData, slug: slug})
+
         if (type === AnnouncementValues.ORDER){
             const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
             const deadline = format(newDate, 'yyyy-MM-dd')
@@ -92,17 +81,16 @@ export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => 
             formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deadline, deadline)
             data?.sizes.forEach(size => formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.size, size.postValue))
 
-            console.log("order", data)
             updateOrder.mutate({data: formData, slug: slug})
         }
     };
-    console.log(responseData && responseData.data)
 
     return {
         data: responseData && responseData.data?.data,
         handleSubmit: handleSubmit(onSubmit),
         isSuccess: responseData.isSuccess,
         isLoading: responseData.isPending,
+        isSubmitting: updateData.isPending,
         isError: responseData.isError,
         register,
         errors,

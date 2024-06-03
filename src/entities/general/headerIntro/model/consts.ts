@@ -64,6 +64,10 @@ export const PathData: any = {
       path: "Работа/Детали Резюме",
       name: "Детали Резюме",
    },
+   [WORK.RESUME_INFO]: {
+      path: "Работа/Детали Резюме",
+      name: "Детали Резюме",
+   },
    [WORK.RESUMES]: {
       path: "Работа/Список Резюме",
       name: "Список Резюме",

@@ -3,8 +3,9 @@
 import { usePathname } from "next/navigation";
 import { PathData } from "../model/consts";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
+import { ROUTES } from "@/shared/lib";
 
 const HeaderIntro = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -24,6 +25,9 @@ const HeaderIntro = () => {
       pathname.includes("/vacancy-detail/") ||
       pathname.includes("/announcement-details/") ||
       pathname.includes("/position-details/") ||
+      pathname.includes("/resume-details/") ||
+      pathname.includes("/resume-info/") ||
+      pathname.includes("/users/")
       pathname.includes("/users/") ||
       pathname.includes("/organizations-list/") ||
       pathname.includes("/organization/announcement-details/") ||
@@ -36,8 +40,16 @@ const HeaderIntro = () => {
       <div className={clsx(styles.intro, styles[theme])}>
          {!slug ? (
             <>
-               <span>{PathData[pathname]?.path}</span>
-               <h2 className="h2">{PathData[pathname]?.name}</h2>
+               <span>
+                  {pathname.includes("/search")
+                     ? PathData[ROUTES.SEARCH]?.path
+                     : PathData[pathname]?.path}
+               </span>
+               <h2 className="h2">
+                  {pathname.includes("/search")
+                     ? PathData[ROUTES.SEARCH]?.name
+                     : PathData[pathname]?.name}
+               </h2>
             </>
          ) : (
             <>

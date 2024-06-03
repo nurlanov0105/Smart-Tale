@@ -13,14 +13,13 @@ const ImageItem:FC<ImageProps> = ({image, idx, images, setValue}) => {
         setValue('images', updatedItems, { shouldValidate: true, shouldDirty: true });
     };
 
-
     return (
         <>
             <Image
                 width={100}
                 height={100}
                 className={styles.item__image}
-                src={URL.createObjectURL(image)} //получаем с бека такой ключ)
+                src={URL.createObjectURL(image)}
                 alt="equipment"
             />
 

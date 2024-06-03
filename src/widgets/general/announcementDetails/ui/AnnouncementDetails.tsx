@@ -1,7 +1,7 @@
 "use client";
 
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import { Button } from "@/shared/ui";
 import clsx from "clsx";
 import Image from "next/image";
