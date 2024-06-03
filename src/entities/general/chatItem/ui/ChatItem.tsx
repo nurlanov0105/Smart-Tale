@@ -6,18 +6,24 @@ import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
 
-const ChatItem: FC<ChatItemProps> = ({ item, setSelected, selected }) => {
+const ChatItem: FC<ChatItemProps> = ({ item, setSelected, selected, setIsShowChat }) => {
    const handleSelect = () => setSelected(item);
    const theme = useThemeStore((state) => state.theme);
 
+   const handleBtnClick = () => {
+      handleSelect();
+      setIsShowChat(true);
+   };
+
    return (
       <button
-         onClick={handleSelect}
+         onClick={handleBtnClick}
          className={clsx(
             styles.item,
             {
                [styles.item_active]: item === selected,
             },
+
             styles[theme]
          )}>
          <div className={styles.item__left}>

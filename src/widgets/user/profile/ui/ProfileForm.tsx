@@ -12,6 +12,7 @@ import { useChangeProfile, useGetProfile } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useUserStore } from "@/entities/general/userInfo";
+import { ProfileData } from "../model/types";
 
 const ProfileForm: FC = () => {
    const {
@@ -19,8 +20,7 @@ const ProfileForm: FC = () => {
       handleSubmit,
       watch,
       formState: { errors },
-   } = useForm();
-   const onSubmit = (data: any) => console.log(data);
+   } = useForm<ProfileData>();
    const [inputDisabled, setinputDisabled] = useState(true);
    const isAuth = useAuth();
    const theme = useThemeStore((state) => state.theme);
@@ -47,15 +47,7 @@ const ProfileForm: FC = () => {
       }
    }, [addImage, data]);
 
-   const handleDeleteClick = () => {
-      showModal(MODAL_KEYS.deleteAccount);
-   };
-
-   const handleChangeClick = () => {
-      setinputDisabled((prev) => !prev);
-   };
-
-   const handleSaveClick = () => {
+   const onSubmit = (data: ProfileData) => {
       console.log({
          firstName,
          lastName,
@@ -63,14 +55,30 @@ const ProfileForm: FC = () => {
          email,
          phoneNumber,
       });
-      const data = {
+
+      const dataSend = {
          first_name: firstName,
          last_name: lastName,
          middle_name: middleName,
          phone_number: phoneNumber,
       };
-      changeProfile(data);
+
+      const formData = new FormData();
+      formData.append("data", JSON.stringify(dataSend));
+      if (image) {
+         formData.append("profile_image", image);
+      }
+
+      console.log(formData);
+      changeProfile(formData);
       setinputDisabled(true);
+   };
+   const handleDeleteClick = () => {
+      showModal(MODAL_KEYS.deleteAccount);
+   };
+
+   const handleChangeClick = () => {
+      setinputDisabled((prev) => !prev);
    };
 
    const handleCancelClick = () => {
@@ -165,19 +173,21 @@ const ProfileForm: FC = () => {
 
          <div className={styles.form__btns}>
             {isAuth && (
-               <Button className="btn_danger" onClick={handleDeleteClick}>
+               <Button type="button" className="btn_danger" onClick={handleDeleteClick}>
                   Удалить аккаунт
                </Button>
             )}
 
             {inputDisabled ? (
-               <Button onClick={handleChangeClick}>Изменить данные</Button>
+               <Button type="button" onClick={handleChangeClick}>
+                  Изменить данные
+               </Button>
             ) : (
                <div className={styles.form__btns}>
-                  <Button onClick={handleCancelClick} className="btn_bordered">
+                  <Button type="button" onClick={handleCancelClick} className="btn_bordered">
                      Отменить изменения
                   </Button>
-                  <Button className="active" onClick={handleSaveClick}>
+                  <Button type="submit" className="active">
                      {isPending ? "Загрузка..." : "Сохранить изменения"}
                   </Button>
                </div>

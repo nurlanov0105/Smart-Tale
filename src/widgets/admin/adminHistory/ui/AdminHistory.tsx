@@ -4,12 +4,12 @@ import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import { employeesHistory, historyValues } from "../model/historyValues";
 import {IDateProps} from "@/entities/general/selectDate";
-import {SkeletonTypes, useEmployees} from "@/shared/lib";
+import {OrdersService, OrganizationService, SELECT_TYPES, SkeletonTypes, useEmployees} from "@/shared/lib";
 import SelectDate2 from "@/entities/general/selectDate/ui/SelectDate2";
 import Select2 from "@/shared/ui/select/Select2";
 import {useHistoryOrders} from "../model/useHistoryOrders";
 import styles from "./styles.module.scss";
-
+import {OrganizationQueryKeys} from "@/shared/api";
 
 const AdminHistory = () => {
    const [type, setType] = useState(historyValues[0].postValue);
@@ -33,8 +33,6 @@ const AdminHistory = () => {
         // eslint-disable-next-line
     }, [isSuccess]);
 
-
-
     const [day, setDay] = useState<IDateProps>({value: 0, postValue: 0})
     const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0})
     const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0})
@@ -45,11 +43,11 @@ const AdminHistory = () => {
             <h4 className="h4">Пользователь</h4>
          </div>
          <Select2
-            selected={selected}
+             selected={selected}
             setSelected={setSelected}
             title="Сотрудник"
             data={employees}
-            type="default"
+            type={SELECT_TYPES.default}
          />
          <div className={styles.section__row}>
             <Tabs type={type} setType={setType} values={historyValues} />
@@ -68,13 +66,23 @@ const AdminHistory = () => {
             </div>
          </div>
 
-         <OrderList
-            data={data?.data?.data}
-            isLoading={false}
-            isError={false}
-            isCurrent={type === "current"}
-            type={SkeletonTypes.listItem}
-         />
+         {/*<OrderList*/}
+         {/*   data={data?.data?.data}*/}
+         {/*   isLoading={false}*/}
+         {/*   isError={false}*/}
+         {/*   isCurrent={type === "current"}*/}
+         {/*   fetchFunction={EquipmentService.getMyAds}*/}
+         {/*   queryKey={EquipmentQueryKeys.GET_MY_ADS}*/}
+         {/*   type={SkeletonTypes.listItem}*/}
+         {/*   tab={type}*/}
+         {/*/>*/}
+          <OrderList
+              fetchFunction={OrganizationService.getHistoryOrders}
+              queryKey={OrganizationQueryKeys.HISTORY_ORDERS}
+              type={SkeletonTypes.listItem}
+              tab={type}
+              isCurrent={type === "current"}
+          />
       </section>
    );
 };

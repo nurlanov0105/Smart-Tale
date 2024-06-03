@@ -6,6 +6,7 @@ import { EmptyContent } from "@/entities/admin/emptyContent";
 import { Button } from "@/shared/ui";
 import {ORGANIZATION_ROUTES, useEmployees} from "@/shared/lib";
 import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+
 import styles from "./styles.module.scss";
 
 const AdminEmployees = () => {
@@ -33,7 +34,7 @@ const AdminEmployees = () => {
                         <Button onClick={handleRoute}>Пригласите сотрудника</Button>
                      </div>
                   </div>
-                  <EmployeesList data={data} isLoading={isLoading}/>
+                  <EmployeesList data={data} isLoading={isLoading} />
                </div>
             </div>
          )}

@@ -1,27 +1,27 @@
 "use client";
 import React from "react";
-import {useParams} from "next/navigation";
-import {Controller} from "react-hook-form";
+import { useParams } from "next/navigation";
+import { Controller } from "react-hook-form";
 
 import {showModal} from "@/views/modal";
 import { AdminBack } from "@/entities/admin/adminBack";
-import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import {Button, InputField, PhoneInput, Select} from "@/shared/ui";
 import {MODAL_KEYS, useInitialRights} from "@/shared/lib";
 import {useThemeStore} from "@/shared/store/themeStore";
+import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
 
-import {useEmployeeDetails} from "../model/useEmployeeDetails";
-import {useInitialEmployeeData} from "../model/useInitialData";
-import {EMPLOYEE_SETTINGS_NAMES} from "../model/helper";
+import { useEmployeeDetails } from "../model/useEmployeeDetails";
+import { useInitialEmployeeData } from "../model/useInitialData";
+import { EMPLOYEE_SETTINGS_NAMES } from "../model/helper";
 import styles from "./styles.module.scss";
 
 const AdminEmployeesSettings = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {slug} = useParams()
+   const { slug } = useParams();
    const handleDelete = () => {
-      showModal(MODAL_KEYS.deleteEmployee, {slug: slug.toString()})
-   }
+      showModal(MODAL_KEYS.deleteEmployee, { slug: slug.toString() });
+   };
 
    const {
       data,
@@ -37,13 +37,13 @@ const AdminEmployeesSettings = () => {
       register,
       control,
       reset,
-      watch
-   } = useEmployeeDetails(slug.toString())
+      watch,
+   } = useEmployeeDetails(slug.toString());
 
-   useInitialEmployeeData({reset, data, isSuccess, positions, isSuccessPosition})
+   useInitialEmployeeData({ reset, data, isSuccess, positions, isSuccessPosition });
 
-   const positionsList = watch(EMPLOYEE_SETTINGS_NAMES.positions)
-   const selectedPosition = watch(EMPLOYEE_SETTINGS_NAMES.position)
+   const positionsList = watch(EMPLOYEE_SETTINGS_NAMES.positions);
+   const selectedPosition = watch(EMPLOYEE_SETTINGS_NAMES.position);
 
    const {actions} = useInitialRights({data: positions, position: selectedPosition})
 
@@ -67,10 +67,12 @@ const AdminEmployeesSettings = () => {
                          disabled={true}
                      />
                   </div>
+
+
                   <InputField
-                      {...register(EMPLOYEE_SETTINGS_NAMES.patronymic)}
-                      title="Отчество"
-                      disabled={true}
+                     {...register(EMPLOYEE_SETTINGS_NAMES.patronymic)}
+                     title="Отчество"
+                     disabled={true}
                   />
                </div>
             </fieldset>
@@ -84,11 +86,12 @@ const AdminEmployeesSettings = () => {
                          title="Почта"
                          disabled={true}
                          isLoading={isLoading}
+
                      />
                      <PhoneInput
-                         classname={styles.form__phoneNumber}
-                         control={control}
-                         isDisabled={true}
+                        classname={styles.form__phoneNumber}
+                        control={control}
+                        isDisabled={true}
                      />
                   </div>
                </div>
@@ -110,21 +113,26 @@ const AdminEmployeesSettings = () => {
                   )}
                />
 
-               <div className={styles.form__wrapper}>
-
-               </div>
+               <div className={styles.form__wrapper}></div>
             </fieldset>
             <fieldset className={styles.form__fieldset}>
                <legend className={styles.form__title}>Права доступа</legend>
                <ul className={styles.form__list}>
                   {(isLoading || isLoadingPosition ? rightsActionsData : actions)?.map((action) => (
-                     <RightAction register={register} action={action} key={action.title} isDisabled={true}/>
+                     <RightAction
+                        register={register}
+                        action={action}
+                        key={action.title}
+                        isDisabled={true}
+                     />
                   ))}
                </ul>
             </fieldset>
          </div>
          <div className={styles.form__btn}>
-            <Button type="button" onClick={handleDelete} className="btn_danger">Удалить сотрудника</Button>
+            <Button type="button" onClick={handleDelete} className="btn_danger">
+               Удалить сотрудника
+            </Button>
             <Button type="submit">Сохранить</Button>
          </div>
       </form>

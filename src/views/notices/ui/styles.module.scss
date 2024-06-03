@@ -1,6 +1,6 @@
 .notice {
    &__container {
-      min-width: 900px;
+      // min-width: 900px;
 
       border: 1px solid #d9dbe3;
       border-radius: 8px;
@@ -40,8 +40,8 @@
    }
 }
 
-.dark{
-   .notice{
+.dark {
+   .notice {
       &__container {
          border: 1px solid $border-theme;
       }

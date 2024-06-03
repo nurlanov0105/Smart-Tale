@@ -2,7 +2,7 @@
 
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import {useAddVacancy} from "@/entities/user/vacancyItem";
+import { VacancyCardType, useAddVacancy } from "@/entities/user/vacancyItem";
 import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
@@ -16,20 +16,20 @@ const CreateVacancy: FC = () => {
    const [graphicSelected, setGraphicSelected] = useState(graphicsFilter[0]);
    const [citySelect, setCitySelect] = useState(cityFilter[0]);
 
-   const {mutate: addVacancy, isPending: isLoading} = useAddVacancy()
+   const { mutate: addVacancy, isPending: isLoading } = useAddVacancy();
 
    const {
       register,
       handleSubmit,
       formState: { errors, isValid },
-   } = useForm({
+   } = useForm<VacancyCardType>({
       mode: "onChange",
       criteriaMode: "all",
       shouldFocusError: true,
    });
    const [selectCurrency, setSelectCurrency] = useState(currencies[0]);
 
-   const handleCreateSubmit = (data: any) => {
+   const handleCreateSubmit = (data: VacancyCardType) => {
       const readyData = { ...data };
       readyData.schedule = graphicSelected.postValue;
       readyData.location = citySelect.postValue;
@@ -62,8 +62,8 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">График работы</h4>
+
                <Select2
-                   //@ts-ignore
                   selected={graphicSelected}
                   setSelected={setGraphicSelected}
                   data={graphicsFilter}
@@ -88,7 +88,6 @@ const CreateVacancy: FC = () => {
                   />
                   <div>
                      <Select2
-                         //@ts-ignore
                         selected={selectCurrency}
                         setSelected={setSelectCurrency}
                         data={currencies}
@@ -100,8 +99,8 @@ const CreateVacancy: FC = () => {
 
             <div className={styles.form__block}>
                <h4 className="h4">Город</h4>
+
                <Select2
-                   //@ts-ignore
                   selected={citySelect}
                   setSelected={setCitySelect}
                   data={cityFilter}

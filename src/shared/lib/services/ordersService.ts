@@ -16,7 +16,7 @@ export const OrdersService = {
       return response.data;
    },
 
-   getOrders: async (page: string) => {
+   getOrders: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
          params: {
             page: page,
@@ -32,7 +32,7 @@ export const OrdersService = {
       });
       return response.data;
    },
-   getLikedOrders: async (page: number) => {
+   getLikedOrders: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_LIKED_ORDERS, {
          params: {
             page: page,
@@ -49,11 +49,11 @@ export const OrdersService = {
       });
       return response.data;
    },
-   getMyOrdersHistory: async (page: number, stage: string) => {
+   getMyOrdersHistory: async ({ page, param_tab }: { page: number; param_tab: string }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS_HISTORY, {
          params: {
             page: page,
-            status: stage,
+            status: param_tab,
          },
       });
       return response.data;

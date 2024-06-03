@@ -5,11 +5,11 @@ import { ChatItem } from "@/entities/general/chatItem";
 import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";
 import ChatForm from "./ChatForm";
-import styles from "./styles.module.scss";
-import {useThemeStore} from "@/shared/store/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
 import Select2 from "@/shared/ui/select/Select2";
 import {SELECT_TYPES} from "@/shared/lib";
+import styles from "./styles.module.scss";
 
 const Chats = () => {
    const data = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -18,11 +18,14 @@ const Chats = () => {
 
    const [selectedChat, setSelectedChat] = useState(0);
    const theme = useThemeStore((state) => state.theme);
+   const [isShowChat, setIsShowChat] = useState(false);
+
+   console.log(isShowChat);
 
    return (
       <>
          <div className={clsx(styles.chats, styles[theme])}>
-            <div className={styles.chats__left}>
+            <div className={clsx(styles.chats__left, isShowChat && styles.chats_hidden)}>
                <div className={styles.chats__tabs}>
                   <Select2
                      selected={selectedType}
@@ -44,12 +47,13 @@ const Chats = () => {
                         selected={selectedChat}
                         setSelected={setSelectedChat}
                         key={item}
+                        setIsShowChat={setIsShowChat}
                      />
                   ))}
                </div>
             </div>
-            <div className={styles.chats__right}>
-               <ChatForm selected={selectedChat} />
+            <div className={clsx(styles.chats__right, !isShowChat && styles.chats_hidden)}>
+               <ChatForm selected={selectedChat} setIsShowChat={setIsShowChat} />
             </div>
          </div>
       </>

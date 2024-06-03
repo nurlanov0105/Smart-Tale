@@ -1,28 +1,30 @@
-import { ChangeEvent, FormEventHandler, useState } from "react";
-import { useRouter } from "next/navigation";
+import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
 import Image from "next/image";
-import searchIcon from "@@/imgs/header/search.svg";
-import { useDebounce, useOutside } from "@/shared/lib";
+import { usePathname, useRouter } from "next/navigation";
 import { useSearchStore } from "@/features/general/search";
-import { SearchItem } from "@/entities/general/searchItem";
-import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/store/themeStore";
+
+import { useDebounce, useOutside } from "@/shared/lib";
+import { useThemeStore } from "@/shared/lib";
+
 import clsx from "clsx";
+import searchIcon from "@@/imgs/header/search.svg";
+import styles from "./styles.module.scss";
 
 const SearchField = () => {
-   const theme = useThemeStore((state) => state.theme);
+   const theme = useThemeStore(state => state.theme);
    const setSearch = useSearchStore((state) => state.setSearch);
+   const pathname = usePathname();
 
    const { push } = useRouter();
-   const data = [
-      { id: 1, title: "Сшить костюм" },
-      { id: 2, title: "Купить пуговицы" },
-      { id: 3, title: "Съесть лапшу" },
-      { id: 4, title: "Построить дом" },
-      { id: 5, title: "Прочитать книгу" },
-      { id: 6, title: "Приготовить ужин" },
-      { id: 7, title: "Закончить поиск" },
-   ];
+   // const data = [
+   //    { id: 1, title: "Сшить костюм" },
+   //    { id: 2, title: "Купить пуговицы" },
+   //    { id: 3, title: "Съесть лапшу" },
+   //    { id: 4, title: "Построить дом" },
+   //    { id: 5, title: "Прочитать книгу" },
+   //    { id: 6, title: "Приготовить ужин" },
+   //    { id: 7, title: "Закончить поиск" },
+   // ];
 
    const [searchValue, setSearchValue] = useState("");
    const debouncedValue = useDebounce(searchValue);
@@ -30,17 +32,25 @@ const SearchField = () => {
 
    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
-      setIsShown(true);
+      setIsShown(false);
+      if (!pathname.includes("/search")) {
+         push(`/${pathname.slice(1).split("/").join("-")}/search`);
+      }
    };
 
    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
       e.preventDefault();
       if (!searchValue.length) return;
-      setSearch(searchValue);
       setIsShown(false);
-      setSearchValue("");
-      push("/orders/search");
+      if (!pathname.includes("/search")) {
+         push(`/${pathname.slice(1).split("/").join("-")}/search`);
+      }
    };
+
+   useEffect(() => {
+      setSearch(debouncedValue);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [debouncedValue]);
 
    return (
       <div className={clsx(styles.search__full, styles[theme])} ref={ref}>
@@ -61,7 +71,7 @@ const SearchField = () => {
                placeholder="Поиск"
                className={styles.search__input}
             />
-            {isShown && debouncedValue && (
+            {/* {isShown && debouncedValue && (
                <ul className={styles.search__list}>
                   {data.map((item) => (
                      <li key={item.id}>
@@ -76,7 +86,7 @@ const SearchField = () => {
                      <h4 className={styles.search__empty}>По вашему запросу ничего не найдено</h4>
                   )}
                </ul>
-            )}
+            )} */}
          </form>
       </div>
    );

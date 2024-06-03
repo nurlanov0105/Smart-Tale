@@ -4,14 +4,14 @@ import { Chats } from "@/widgets/general/chats";
 import { NoticesContent } from "@/widgets/general/noticesContent";
 import { Tabs } from "@/features/general/tabs";
 import { noticesTabs } from "../model/values.data";
-import styles from "./styles.module.scss";
-import {useThemeStore} from "@/shared/store/themeStore";
+import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const Notices = () => {
    const [type, setType] = useState("chats");
 
-    const theme = useThemeStore((state) => state.theme);
+   const theme = useThemeStore((state) => state.theme);
 
    return (
       <div className={clsx(styles.notice, styles[theme])}>

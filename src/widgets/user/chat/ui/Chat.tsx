@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { ChangeEvent, FC, FormEvent, useState } from "react";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { Button } from "@/shared/ui";
 import { ChatMessage } from "@/entities/general/chatMessage";
@@ -13,13 +13,13 @@ const Chat: FC<ChatType> = ({ author }) => {
 
    const [sendMessage, setSendMessage] = useState("");
 
-   const handleSubmit = (e: any) => {
+   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       setSendMessage(message);
    };
 
-   const handleMessageChange = (e: any) => {
+   const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
       setMessage(e.target.value);
    };
 

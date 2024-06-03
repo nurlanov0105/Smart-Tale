@@ -1,15 +1,19 @@
-import {baseApiInstance} from "@/shared/api/instance";
-import {OrganizationEndpoints} from "@/shared/api/endpoints";
+import { baseApiInstance } from "@/shared/api/instance";
+import { OrganizationEndpoints } from "@/shared/api/endpoints";
 import {
     AddEmployeeRequestTypes,
+    ChangePositionQueryTypes,
+    UpdateEmployeeTypes,
     AddPositionRequestTypes,
-    ChangePositionQueryTypes, UpdateEmployeeTypes
-} from "@/shared/lib/types/organizations-service.types";
+} from "@/shared/lib";
 
 export const OrganizationService = {
-    createOrganization: async (params: FormData) => {
-        const headers = { "Content-Type": "multipart/form-data" };
-        const response = await baseApiInstance.post(OrganizationEndpoints.ORGANIZATION_CREATE, params, {
+   createOrganization: async (params: FormData) => {
+      const headers = { "Content-Type": "multipart/form-data" };
+      const response = await baseApiInstance.post(
+         OrganizationEndpoints.ORGANIZATION_CREATE,
+         params,
+         {
             headers: headers,
         });
         return response.data;
@@ -72,7 +76,7 @@ export const OrganizationService = {
     },
     getHistoryOrders: async () => {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=active`);
-        return response.data;
+        return response.data?.data;
     },
     getEmployeeOrders: async (slug: string) => {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_EMPLOYEE_ORDERS + slug);
@@ -81,5 +85,5 @@ export const OrganizationService = {
     updateOrderStatus: async (parameters: string) => {
         const response = await baseApiInstance.post(OrganizationEndpoints.UPDATE_ORDER_STATUS + parameters);
         return response.data;
-    },
-}
+    }
+};

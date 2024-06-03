@@ -3,7 +3,7 @@ import { UpdateEquipmentProps } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
 
 export const EquipmentService = {
-   getEquipments: async (page: number) => {
+   getEquipments: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENTS, {
          params: {
             page: page,
@@ -23,7 +23,7 @@ export const EquipmentService = {
       return response.data;
    },
 
-   getLikedEquipments: async (page: number) => {
+   getLikedEquipments: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.LIKED_EQUIPMENTS, {
          params: {
             page: page,
@@ -39,9 +39,10 @@ export const EquipmentService = {
       });
       return response.data;
    },
-   getMyAds: async (page: number, param_tab: string) => {
+   getMyAds: async ({ page, param_tab }: { page: number; param_tab: string }) => {
+      console.log("param_tab - ", param_tab);
       const params =
-         param_tab !== "all"
+         param_tab && param_tab !== "all"
             ? {
                  page: page,
                  ads: param_tab,
