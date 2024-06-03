@@ -1,13 +1,12 @@
 import { ChangeEvent, FormEventHandler, useEffect, useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import searchIcon from "@@/imgs/header/search.svg";
-import { useDebounce, useOutside } from "@/shared/lib";
+import { usePathname, useRouter } from "next/navigation";
 import { useSearchStore } from "@/features/general/search";
-import { SearchItem } from "@/entities/general/searchItem";
-import styles from "./styles.module.scss";
+import { useDebounce, useOutside } from "@/shared/lib";
 import { useThemeStore } from "@/shared/themeStore";
 import clsx from "clsx";
+import styles from "./styles.module.scss";
+import searchIcon from "@@/imgs/header/search.svg";
 
 const SearchField = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -15,15 +14,15 @@ const SearchField = () => {
    const pathname = usePathname();
 
    const { push } = useRouter();
-   const data = [
-      { id: 1, title: "Сшить костюм" },
-      { id: 2, title: "Купить пуговицы" },
-      { id: 3, title: "Съесть лапшу" },
-      { id: 4, title: "Построить дом" },
-      { id: 5, title: "Прочитать книгу" },
-      { id: 6, title: "Приготовить ужин" },
-      { id: 7, title: "Закончить поиск" },
-   ];
+   // const data = [
+   //    { id: 1, title: "Сшить костюм" },
+   //    { id: 2, title: "Купить пуговицы" },
+   //    { id: 3, title: "Съесть лапшу" },
+   //    { id: 4, title: "Построить дом" },
+   //    { id: 5, title: "Прочитать книгу" },
+   //    { id: 6, title: "Приготовить ужин" },
+   //    { id: 7, title: "Закончить поиск" },
+   // ];
 
    const [searchValue, setSearchValue] = useState("");
    const debouncedValue = useDebounce(searchValue);
@@ -31,15 +30,19 @@ const SearchField = () => {
 
    const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
       setSearchValue(e.target.value);
-      setIsShown(true);
+      setIsShown(false);
+      if (!pathname.includes("/search")) {
+         push(`/${pathname.slice(1).split("/").join("-")}/search`);
+      }
    };
 
    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
       e.preventDefault();
       if (!searchValue.length) return;
       setIsShown(false);
-      // setSearchValue("");
-      push(`/${pathname.slice(1).split("/").join("-")}/search`);
+      if (!pathname.includes("/search")) {
+         push(`/${pathname.slice(1).split("/").join("-")}/search`);
+      }
    };
 
    useEffect(() => {

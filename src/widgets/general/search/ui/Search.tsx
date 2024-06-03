@@ -8,7 +8,7 @@ import { EquipmentQueryKeys } from "@/shared/api";
 import { usePathname } from "next/navigation";
 
 const Search = () => {
-   const searchValue = useSearchStore((state) => state.searchValue);
+   const searchValueLS = useSearchStore((state) => state.searchValueLS);
    const pathname = usePathname();
    const [searchPath] = useState(pathname.slice(1).split("/")[0].replace("-", "/"));
 
@@ -20,7 +20,7 @@ const Search = () => {
          <div className={styles.search__block}>
             <span className={styles.search__title}>
                Поиск по запросу:
-               <span className={styles.search__text}> {searchValue}</span>
+               <span className={styles.search__text}> {searchValueLS}</span>
             </span>
             {/* <span className={styles.search__title}>результаты: 10</span> */}
          </div>
@@ -30,7 +30,7 @@ const Search = () => {
             queryKey={EquipmentQueryKeys.GET_MY_ADS}
             type={SkeletonTypes.listItem}
             ads={type}
-            title={searchValue}
+            title={searchValueLS}
          />
       </div>
    );
