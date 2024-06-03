@@ -2,7 +2,7 @@ import { Logo, OrgnizationDetailsTypes } from "@/entities/general/logo";
 import styles from "./styles.module.scss";
 import { FC } from "react";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/lib";
 
 interface OrganizationIntroProps {
    data: OrgnizationDetailsTypes;

@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { PositionItem } from "@/entities/admin/positionItem";
 import {EmptyContent} from "@/entities/admin/emptyContent";
 import { ORGANIZATION_ROUTES, usePositions } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import {Button, GlobalLoading} from "@/shared/ui";
 import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
 import styles from "./styles.module.scss";

@@ -4,7 +4,7 @@ import React, { FC } from "react";
 import Link from "next/link";
 
 import { ROUTES } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";

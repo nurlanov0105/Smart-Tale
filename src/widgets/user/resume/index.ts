@@ -1,3 +1,3 @@
-import Resume from "./ui/Resume";
+import CreateResume from "./ui/CreateResume";
 
-export {Resume}
+export {CreateResume}

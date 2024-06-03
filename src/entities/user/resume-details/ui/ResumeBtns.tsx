@@ -28,14 +28,11 @@ const ResumeBtns: FC<IProps> = ({isSubmitting, isValid, reset, isDirty}) => {
             </div>
             <div className={styles.form__btns}>
                 {
-                    isDirty &&
-                    <>
-                        <Button onClick={handleReset} type="button" className="btn_danger">Отменить изменения</Button>
-                        <Button type="submit" disabled={!isValid}>
-                            {isSubmitting ? "Загрузка..." : "Сохранить изменения"}
-                        </Button>
-                    </>
+                    isDirty && <Button onClick={handleReset} type="button" className="btn_bordered">Отменить изменения</Button>
                 }
+                <Button type="submit" disabled={!isValid || !isDirty}>
+                    {isSubmitting ? "Загрузка..." : "Изменить резюме"}
+                </Button>
             </div>
         </div>
     );

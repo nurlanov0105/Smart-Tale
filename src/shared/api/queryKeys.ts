@@ -26,7 +26,7 @@ export const OrganizationQueryKeys = {
    EMPLOYEE_DETAILS: "employees-details",
    EMPLOYEE_SETTINGS: "employees-settings",
    DELETE_EMPLOYEE: "employee/delete",
-   CHANGE_STATUS: "change-status",
+   UPDATE_EMPLOYEE: "update-employee",
    ADD_POSITION: "add-position",
    POSITIONS: "positions",
    CHANGE_POSITION: "change-position",
@@ -34,6 +34,7 @@ export const OrganizationQueryKeys = {
    DELETE_POSITION: "details-delete",
    HISTORY: "history",
    GET_ORDERS: "get-organization-orders",
+   UPDATE_STATUS_ORDER: "update-status-orders",
    HISTORY_ORDERS: "get-history-orders",
 };
 
@@ -46,7 +47,7 @@ export const EquipmentQueryKeys = {
    EQUIPMENT_HIDE: "equipment-hide",
    EQUIPMENT_DELETE: "equipment-delete",
    EQUIPMENT_UPDATE: "equipment-updating",
-   GET_MY_EQUIPMENTS: "equipment-updating",
+   GET_MY_EQUIPMENT: "get-my-equipment",
    GET_MY_ADS: "my-ads",
 };
 
@@ -54,6 +55,7 @@ export const OrdersQueryKeys = {
    ORDERS: "orders",
    MY_ORDER_DETAIL: "my-order-detail",
    GET_MY_ORDERS: "my-orders",
+   GET_MY_ORDER: "my-order",
    ORDER_HIDE: "order-hide",
    ORDER_DELETE: "order-delete",
    ORDER_UPDATE: "order-update",
@@ -70,7 +72,7 @@ export const ServiceQueryKeys = {
    UPDATE_SERVICE: "service-update",
    LIKED_SERVICES: "liked-services",
    MY_SERVICES: "my-services",
-   MY_SERVICE: "my-service",
+   GET_MY_SERVICE: "my-service",
 };
 export const ResumeQueryKeys = {
    RESUME: "resume",

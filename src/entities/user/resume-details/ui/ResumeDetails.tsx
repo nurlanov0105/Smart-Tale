@@ -3,21 +3,22 @@
 import React, { FC } from "react";
 import {Controller} from "react-hook-form";
 import clsx from "clsx";
+import { useThemeStore } from "@/shared/store/themeStore";
+import {GlobalLoading, InputField, Select, TextArea} from "@/shared/ui";
 import {
    cityFilter,
    currencies,
    experienceFilter,
    graphicsFilter,
-} from "@/widgets/user/createVacancy";
-import { useThemeStore } from "@/shared/themeStore";
-import {GlobalLoading, InputField, Select, TextArea} from "@/shared/ui";
-import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
+   SELECT_TYPES,
+   ValidationsSchemasService
+} from "@/shared/lib";
 
 import {useResumeDetails} from "../model/useResumeDetails";
 import {RESUME_FORM_NAMES} from "../model/consts";
+import {useInitialResume} from "../model/useInitialData";
+import ResumeBtns from "./ResumeBtns";
 import styles from "./styles.module.scss";
-import {useInitialResume} from "@/entities/user/resume-details/model/useInitialData";
-import ResumeBtns from "@/entities/user/resume-details/ui/ResumeBtns";
 
 const ResumeDetails: FC = () => {
    const theme = useThemeStore((state) => state.theme);

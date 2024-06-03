@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { Button, Emojis } from "@/shared/ui";
-import styles from "./styles.module.scss";
 import { closeModal } from "@/views/modal";
 import { useUserStore } from "@/entities/general/userInfo";
+import styles from "./styles.module.scss";
 
 const ChangeAvatarModal = () => {
    const [image, setImage] = useState("");

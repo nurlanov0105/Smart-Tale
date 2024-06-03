@@ -21,7 +21,7 @@ export const ResumeService = {
    },
    getResumeDetails: async (slug: string) => {
       const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUME_DETAILS + slug);
-      return response;
+      return response?.data;
    },
    getMyResumes: async () => {
       const response = await baseApiInstance.get(ResumeEndpoints.GET_MY_RESUMES);

@@ -1,14 +1,20 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
-import {EquipmentQueryKeys, OrganizationQueryKeys, ResumeQueryKeys, ServiceQueryKeys} from "@/shared/api";
+import {
+    EquipmentQueryKeys,
+    OrganizationQueryKeys,
+    ResumeQueryKeys,
+    ServiceQueryKeys,
+    VacancyQueryKeys
+} from "@/shared/api";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
 import {
     EquipmentService,
     OrdersService,
     OrganizationService,
     ServicesService,
-    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService
+    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService, VacancyService
 } from "@/shared/lib";
 import {closeModal} from "@/views/modal";
 import {WORK} from "@/shared/lib/routes.config";
@@ -127,6 +133,23 @@ export const useDeletePosition = () => {
         }
     })
 }
+
+export const useDeleteVacancy = () => {
+    const {replace} = useRouter()
+    return useMutation<any, Error, string>({
+        mutationKey: [VacancyQueryKeys.VACANCY_DELETE],
+        mutationFn: (slug) => VacancyService.deleteVacancy(slug),
+        onSuccess: () => {
+            toast.success("Вакансия было удалена")
+            replace(WORK.VACANCIES)
+        },
+        onError: () => {
+            toast.error("Произошла ошибка при удалении, попробуйте еще раз")
+            console.log("error")
+        }
+    })
+}
+
 
 export const useDeleteResume = () => {
     const {replace} = useRouter()

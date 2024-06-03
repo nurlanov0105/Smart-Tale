@@ -1,5 +1,5 @@
 import type {EffectsProps} from "@/features/auth/model/types";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import {useEffect, useRef} from "react";
 import {useDebounce} from "@/shared/lib";
 

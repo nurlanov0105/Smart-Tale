@@ -1,20 +1,25 @@
 import { FC } from "react";
-import Image from "next/image";
 import { CardProps } from "../model/types";
 
-import timeIcon from "@@/imgs/board/time.svg";
 import { Draggable } from "@hello-pangea/dnd";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import {Clock4} from "lucide-react";
+import {getDate, getMonth} from "date-fns";
+import {monthsForDate} from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 const BoardCard: FC<CardProps> = ({ order, index }) => {
    const theme = useThemeStore((state) => state.theme);
-   const { id, title, description, date } = order;
+
+   const { id, title, description, deadline } = order;
+
+   const day = getDate(deadline ?? "")
+   const monthIndex = getMonth(deadline ?? "")
+   const month = monthsForDate()[monthIndex]
 
    return (
-      <Draggable draggableId={order.id.toString()} index={index}>
+      <Draggable draggableId={id.toString()} index={index}>
          {(provided, snapshot) => (
             <div
                className={clsx(
@@ -28,13 +33,15 @@ const BoardCard: FC<CardProps> = ({ order, index }) => {
                {...provided.dragHandleProps}>
                <div className={styles.card__top}>
                   <h4 className="h4">
-                     {title} = {id}
+                     {title}
                   </h4>
                   <p className="commonGreyText">{description}</p>
                </div>
                <div className={styles.card__date}>
                   <span><Clock4/></span>
-                  <p>{date}</p>
+                  <p>
+                     {day} {month.value}
+                  </p>
                </div>
             </div>
          )}

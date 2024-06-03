@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const ChatSkeleton: FC<{ type?: string }> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);

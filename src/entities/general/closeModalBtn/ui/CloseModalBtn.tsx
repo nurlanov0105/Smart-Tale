@@ -2,7 +2,7 @@ import React from "react";
 import { X } from "lucide-react";
 import styles from "./styles.module.scss";
 import { closeModal } from "@/views/modal";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 
 const CloseModalBtn = () => {

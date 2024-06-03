@@ -3,15 +3,16 @@
 import React, { FC } from "react";
 import {Controller} from "react-hook-form";
 import clsx from "clsx";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { Button, InputField, Select, TextArea } from "@/shared/ui";
 import {
    cityFilter,
    currencies,
    experienceFilter,
    graphicsFilter,
-} from "@/widgets/user/createVacancy";
-import { useThemeStore } from "@/shared/themeStore";
-import { Button, InputField, Select, TextArea } from "@/shared/ui";
-import {SELECT_TYPES, ValidationsSchemasService} from "@/shared/lib";
+   SELECT_TYPES,
+   ValidationsSchemasService
+} from "@/shared/lib";
 
 import {useAddResume} from "../model/useAddResume";
 import {RESUME_FORM_NAMES} from "../model/consts";

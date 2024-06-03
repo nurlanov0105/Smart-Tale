@@ -1,8 +1,8 @@
 import React from 'react';
-import {Resume} from "@/widgets/user/resume";
+import {CreateResume} from "@/widgets/user/resume";
 
 const ResumePage = () => {
-    return <Resume/>
+    return <CreateResume/>
 };
 
 export default ResumePage;

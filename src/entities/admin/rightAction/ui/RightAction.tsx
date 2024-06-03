@@ -1,6 +1,6 @@
 import React, {FC, memo} from "react";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import {InputField} from "@/shared/ui";
 import type {RightActionProps} from "../model/types";
 import styles from "./styles.module.scss";
@@ -22,7 +22,7 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
                 <InputField
                     {...register(action.name)}
                     onChange={handleChange}
-                    defaultChecked={Boolean(action.value)}
+                    //defaultChecked={!isDisabled && Boolean(action.value)}
                     checked={isDisabled && Boolean(action.value)}
                     type="checkbox"
                     isBordered={true}

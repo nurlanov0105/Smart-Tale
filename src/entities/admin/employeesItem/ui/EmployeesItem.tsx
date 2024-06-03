@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import {EmployeesResponseTypes} from "@/features/general/employeesList/model/types";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
@@ -35,6 +35,10 @@ const EmployeesItem = ({
          </td>
          <td>
             <div className={styles.item__td}>
+                {
+                    !order?.length && <h4>Заказов нет</h4>
+                }
+
                 {
                     order?.slice(0, 3).map(order =>
                         <p key={order.slug}>{order.title}</p>

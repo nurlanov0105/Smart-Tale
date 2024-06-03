@@ -22,27 +22,32 @@ export const useInitialEmployeeData = ({
    isSuccessPosition,
    positions,
 }: IProps) => {
-   useEffect(() => {
-      if (isSuccess && isSuccess && data && positions) {
-         const positionsList = positions.map((item, idx) => {
-            return { value: item.title, postValue: item.title, idx, ...item };
-         });
 
-         const selectedPosition = positionsList.find((pos) => pos.value === data.job_title);
+    useEffect(() => {
+        if (isSuccess && isSuccess && data && positions) {
+            const positionsList = positions.map((item, idx) => {
+                return {value: item.title, postValue: item.slug, idx, ...item}
+            })
 
-         reset({
-            [EMPLOYEE_SETTINGS_NAMES.email]: data.email,
-            [EMPLOYEE_SETTINGS_NAMES.name]: data.first_name,
-            [EMPLOYEE_SETTINGS_NAMES.lastName]: data.last_name,
-            [EMPLOYEE_SETTINGS_NAMES.patronymic]: data.middle_name,
-            [EMPLOYEE_SETTINGS_NAMES.tel]: data["phone_number"],
-            [EMPLOYEE_SETTINGS_NAMES.positions]: positionsList,
-            [EMPLOYEE_SETTINGS_NAMES.position]: selectedPosition,
+            const selectedPosition = positionsList.find((pos) => pos.value === data.job_title);
 
-            ...selectedPosition,
-         });
-      }
+            reset({
+                [EMPLOYEE_SETTINGS_NAMES.email]: data.email,
+                [EMPLOYEE_SETTINGS_NAMES.name]: data.first_name,
+                [EMPLOYEE_SETTINGS_NAMES.lastName]: data.last_name,
+                [EMPLOYEE_SETTINGS_NAMES.patronymic]: data.middle_name,
+                [EMPLOYEE_SETTINGS_NAMES.tel]: data["phone_number"],
+                [EMPLOYEE_SETTINGS_NAMES.positions]: positionsList,
+                [EMPLOYEE_SETTINGS_NAMES.position]: selectedPosition,
+                user_slug: data.user_slug,
 
-      // eslint-disable-next-line
-   }, [isSuccess, isSuccessPosition]);
-};
+
+                ...selectedPosition
+            })
+        }
+
+        // eslint-disable-next-line
+    }, [isSuccess, isSuccessPosition]);
+
+
+}

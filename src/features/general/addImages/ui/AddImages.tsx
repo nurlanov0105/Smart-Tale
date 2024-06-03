@@ -4,15 +4,19 @@ import { LoaderCircle } from "lucide-react";
 import { ImageItem } from "@/entities/user/imageItem";
 import { DragDropContext, Draggable, Droppable, DropResult } from "@hello-pangea/dnd";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import {UseFormSetValue} from "react-hook-form";
 import {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
 import {employee} from "@/shared/lib/types/types";
 
+export interface IImage{
+    id: number
+    image: File
+}
 interface IImages {
-    setImages: (value: File[]) => void;
-    images: File[]
+    setImages: (value: IImage[]) => void;
+    images: IImage[]
     setValue: UseFormSetValue<any>
 }
 
@@ -29,8 +33,9 @@ const AddImages: FC<IImages> = ({  images, setImages, setValue }) => {
             setIsLoading(true);
             const reader = new FileReader();
             reader.onload = (e) => {
-                const result = e.target?.result;
-                const newValue = images ? [...images, files[0]] : [files[0]];
+                //const result = e.target?.result;
+                const newFile = {id: Date.now(), image: files[0]}
+                const newValue = images ? [...images, newFile] : [newFile];
                 setImages(newValue)
                 setIsLoading(false);
                 // if (result) {
@@ -82,8 +87,8 @@ const AddImages: FC<IImages> = ({  images, setImages, setValue }) => {
                                             <ImageItem
                                                 images={images}
                                                 setValue={setValue}
-                                                key={image.name}
-                                                image={image}
+                                                key={image?.image?.name}
+                                                image={image.image}
                                                 idx={idx}
                                             />
                                         </div>

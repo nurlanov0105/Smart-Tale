@@ -1,7 +1,5 @@
 "use client"
 import React, {useState} from 'react';
-import styles from "./styles.module.scss";
-import {TypeViewButtons} from "@/entities/user/typeViewButtons";
 import {GlobalLoading, Select} from "@/shared/ui";
 import {timeList, typeList} from "@/widgets/user/vacancies/model/values.data";
 import {SlidersHorizontal} from "lucide-react";
@@ -10,11 +8,15 @@ import {FiltersVacancies} from "@/features/user/filtersVacancies";
 import {useGetResumes} from "@/widgets/admin/resumes/model/useGetResumes";
 import {ResumeItem} from "@/entities/admin/resumeItem";
 import {ResumeCardType} from "@/entities/admin/resumeItem/model/types";
+import Select2 from "@/shared/ui/select/Select2";
+import {useThemeStore} from "@/shared/store/themeStore";
+import styles from "./styles.module.scss";
 
 const Resumes = () => {
+    const theme = useThemeStore(state => state.theme)
+
     const [selectedDate, setSelectedDate] = useState(timeList[0]);
     const [selected, setSelected] = useState(typeList[0]);
-    const [page, setPage] = useState(1);
 
     const [withFilters, setWithFilters] = useState(false);
 
@@ -25,22 +27,20 @@ const Resumes = () => {
     if (isLoading) return <GlobalLoading type="full"/>
 
     return (
-        <div className={styles.resumes}>
+        <div className={clsx(styles.resumes, styles[theme])}>
             <div className={styles.resumes__title}>
                 <h4 className="h4">Найдено 12 резюме</h4>
             </div>
             <div className={styles.resumes__filters}>
                 <div className={styles.resumes__selects}>
-                    <Select
-                        //@ts-ignore
+                    <Select2
                         selected={selectedDate}
                         setSelected={setSelectedDate}
                         data={timeList}
                         type="bordered"
                         classname={styles.resumes__select}
                     />
-                    <Select
-                        //@ts-ignore
+                    <Select2
                         selected={selected}
                         setSelected={setSelected}
                         data={typeList}

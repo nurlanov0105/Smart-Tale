@@ -1,13 +1,12 @@
 import React, {FC} from "react";
 
-import { employeesCategories } from "../model/values.data";
 import { EmployeesItem } from "@/entities/admin/employeesItem";
-import { useThemeStore } from "@/shared/themeStore";
-import {CommonSkeleton, GlobalLoading} from "@/shared/ui";
-import {useEmployees} from "../model/useEmployees";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { GlobalLoading} from "@/shared/ui";
 import clsx from "clsx";
+import { employeesCategories } from "../model/values.data";
+import {EmployeesListProps} from "../model/types";
 import styles from "./styles.module.scss";
-import {EmployeesListProps} from "@/features/general/employeesList/model/types";
 
 const EmployeesList:FC<EmployeesListProps> = ({isLoading, data}) => {
    const theme = useThemeStore((state) => state.theme);

@@ -3,7 +3,7 @@ import { BtnBordered } from "@/shared/ui";
 import { ButtonsProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const Tabs: FC<ButtonsProps> = ({ type, setType, values, variant }) => {
    const theme = useThemeStore((state) => state.theme);

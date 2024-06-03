@@ -13,7 +13,7 @@ import { Logo } from "@/entities/general/logo";
 import { MARKETPLACE, ROUTES, useAuth, useNavbar } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const Navbar = () => {
    // theme

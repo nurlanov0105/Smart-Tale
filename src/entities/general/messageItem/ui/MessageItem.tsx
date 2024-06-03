@@ -4,7 +4,7 @@ import { CheckCheck } from "lucide-react";
 import { messagesData } from "../model/values.data";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 
 const MessageItem: FC<MessageTypes> = ({ message, idx }) => {
    const theme = useThemeStore((state) => state.theme);

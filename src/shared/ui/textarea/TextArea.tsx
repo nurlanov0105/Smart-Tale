@@ -4,7 +4,7 @@
 import React, { forwardRef } from "react";
 import {TextAreaProps} from "@/shared/lib/types/types";
 import clsx from "clsx";
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 import styles from "./styles.module.scss";
 
 const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>((props, ref) => {

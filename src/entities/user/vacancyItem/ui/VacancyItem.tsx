@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { BriefcaseBusiness } from "lucide-react";
 import { VacancyItemProps } from "../model/types";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import Link from "next/link";
 import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
@@ -50,7 +50,7 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
 
          {isAdmin && (
             <Link
-               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/${item.slug}`}
+               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/utyuzhnik`}
                className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__row}>
                   <div>

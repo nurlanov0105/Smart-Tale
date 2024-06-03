@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import clsx from "clsx";
 import styles from "./styles.module.scss"
-import {useThemeStore} from "@/shared/themeStore";
+import {useThemeStore} from "@/shared/store/themeStore";
 
 
 const AdminResponseItem:FC<{ item: any }> = ({item}) => {

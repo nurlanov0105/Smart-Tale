@@ -3,7 +3,7 @@
 import React from "react";
 import clsx from "clsx";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import {ValidationsSchemasService} from "@/shared/lib";
 

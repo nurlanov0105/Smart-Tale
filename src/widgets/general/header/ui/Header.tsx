@@ -11,7 +11,7 @@ import Link from "next/link";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { useOrdersStore } from "@/entities/general/navbarPanel";
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { useEffect } from "react";
 
 const Header = () => {

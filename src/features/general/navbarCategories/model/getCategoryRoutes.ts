@@ -35,6 +35,7 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
          id: 2,
          Icon: Clipboard,
          isShow: authorized || subscribed,
+
          routes: [
             {
                parentId: 2,

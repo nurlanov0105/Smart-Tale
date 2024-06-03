@@ -5,12 +5,12 @@ import { ItemProps } from "../model/types";
 import { Button } from "@/shared/ui";
 import Image from "next/image";
 import Link from "next/link";
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
+import {currenciesMap, ORGANIZATION_ROUTES} from "@/shared/lib";
 import avatar from "@@/imgs/auth/auth-1.jpg";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
-import { currenciesMap } from "@/widgets/user/createVacancy/model/values.data";
+
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);

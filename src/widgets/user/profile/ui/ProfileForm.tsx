@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { showModal } from "@/views/modal";
 import { ChangeImage } from "@/features/general/changeImage";
 import { MODAL_KEYS, useAuth } from "@/shared/lib";
-import { useThemeStore } from "@/shared/themeStore";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { useChangeProfile, useGetProfile } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
