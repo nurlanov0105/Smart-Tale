@@ -1,3 +1,4 @@
-import User from "./ui/User"
+import User from "./ui/User";
+import { useGetCommonUserAds } from "./model/useQueries";
 
-export {User}
+export { User, useGetCommonUserAds };

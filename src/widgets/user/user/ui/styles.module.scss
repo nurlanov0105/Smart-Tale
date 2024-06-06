@@ -7,9 +7,6 @@
       column-gap: 2rem;
    }
    &__bottom {
-      border: 1px solid #d9dbe3;
-      border-radius: 8px;
-
       margin: 5rem 0 2.5rem;
    }
 
@@ -55,6 +52,6 @@
 
 .dark {
    .user__bottom {
-      border: 1px solid $border-theme;
+      // border: 1px solid $border-theme;
    }
 }

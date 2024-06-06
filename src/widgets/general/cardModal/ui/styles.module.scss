@@ -51,6 +51,10 @@
       display: flex;
       align-items: center;
       column-gap: 1.6rem;
+
+      button {
+         flex-shrink: 0;
+      }
    }
 
    &__btn {
