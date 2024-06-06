@@ -36,6 +36,10 @@ const ProfileForm: FC = () => {
    const { isError, isPending: isLoading, data } = useGetProfile();
    const { mutate: changeProfile, isPending } = useChangeProfile();
 
+   if (!isLoading) {
+      console.log(data);
+   }
+
    useEffect(() => {
       if (data) {
          addImage(data.data.profile_image);
@@ -47,32 +51,24 @@ const ProfileForm: FC = () => {
       }
    }, [addImage, data]);
 
-   const onSubmit = (data: ProfileData) => {
-      console.log({
-         firstName,
-         lastName,
-         middleName,
-         email,
-         phoneNumber,
-      });
-
-      const dataSend = {
-         first_name: firstName,
-         last_name: lastName,
-         middle_name: middleName,
-         phone_number: phoneNumber,
-      };
-
+   const onSubmit = async (data: ProfileData) => {
       const formData = new FormData();
-      formData.append("data", JSON.stringify(dataSend));
+      formData.append("first_name", firstName);
+      formData.append("last_name", lastName);
+      formData.append("middle_name", middleName);
+      formData.append("phone_number", phoneNumber);
+      formData.append("email", email);
       if (image) {
          formData.append("profile_image", image);
       }
 
-      console.log(formData);
-      changeProfile(formData);
-      setinputDisabled(true);
+      if (formData) {
+         // console.log(formData);
+         changeProfile(formData);
+         setinputDisabled(true);
+      }
    };
+
    const handleDeleteClick = () => {
       showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.deleteAccount});
    };
@@ -173,7 +169,7 @@ const ProfileForm: FC = () => {
 
          <div className={styles.form__btns}>
             {isAuth && (
-               <Button type="button" className="btn_danger" onClick={handleDeleteClick}>
+               <Button type="button" classType="btn_danger" onClick={handleDeleteClick}>
                   Удалить аккаунт
                </Button>
             )}
@@ -184,7 +180,7 @@ const ProfileForm: FC = () => {
                </Button>
             ) : (
                <div className={styles.form__btns}>
-                  <Button type="button" onClick={handleCancelClick} className="btn_bordered">
+                  <Button type="button" onClick={handleCancelClick} classType="btn_bordered">
                      Отменить изменения
                   </Button>
                   <Button type="submit" className="active">

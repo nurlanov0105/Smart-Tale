@@ -15,6 +15,7 @@ export type ModalProps = {
    type?: string;
    componentName?: string
    isLightBg?: boolean | null;
+   author?: string | null;
 };
 
 export type ModalState = {

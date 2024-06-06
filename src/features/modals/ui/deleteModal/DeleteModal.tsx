@@ -12,10 +12,8 @@ const DeleteModal = () => {
    const remeberMe = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
 
    const handleDeleteClick = () => {
-
       deleteAcc("");
    };
-
 
    return (
       <div className={styles.modal}>
@@ -28,9 +26,7 @@ const DeleteModal = () => {
             </h3>
             <p className="greyText">Все данные будут удалены!</p>
             <div className={styles.modal__btns}>
-               <Button className="btn_bordered" onClick={closeModal}>
-                  Нет
-               </Button>
+               <Button classType="btn_bordered">Нет</Button>
                <Button onClick={handleDeleteClick}>{isPending ? "Загрузка..." : "Да"}</Button>
             </div>
          </div>

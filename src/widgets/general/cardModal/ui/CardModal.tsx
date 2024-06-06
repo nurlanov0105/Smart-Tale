@@ -9,13 +9,14 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
 import { images } from "@/shared/lib";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { ISize, useFetchResource, usePathStore } from "@/features/user/standartCard";
 import { usePathname, useRouter } from "next/navigation";
 import { AnnouncementRoutes } from "../model/consts";
 import { ErrorMessage } from "@/entities/general/errorMessage";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
+import { useBuyEquipment } from "../model/useQueries";
 
 type Props = {
    slug: string;
@@ -28,11 +29,13 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    const router = useRouter();
 
    const { isPending, isError, data } = useFetchResource({ type, slug });
+   const { mutate: buyEquipment, isPending: isLoading } = useBuyEquipment();
 
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
    };
+   console.log(type);
 
    const handleBtnClick = () => {
       router.push(AnnouncementRoutes[type] + `/${slug}`);
@@ -67,6 +70,15 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       return <ErrorMessage />;
    }
    // description phone_number email size [{id,size}]
+
+   const handleBuy = () => {
+      buyEquipment(slug);
+   };
+
+   const handleService = () => {};
+
+   const handleOrder = () => {};
+
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
@@ -114,7 +126,16 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                               </Button>
                            ) : (
                               <>
-                                 <Button>Принять заказ</Button>
+                                 {type === AnnouncementTypes.equipment ? (
+                                    <Button onClick={handleBuy}>
+                                       {isLoading ? "Загрузка..." : "Купить"}
+                                    </Button>
+                                 ) : type === AnnouncementTypes.service ? (
+                                    <Button onClick={handleService}>Принять услугу</Button>
+                                 ) : (
+                                    <Button onClick={handleOrder}>Принять заказ</Button>
+                                 )}
+
                                  <Button onClick={handleBtnClick} className={styles.modal__btn}>
                                     Подробнее
                                  </Button>

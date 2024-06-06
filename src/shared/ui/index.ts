@@ -1,5 +1,4 @@
 import Button from "./button/Button";
-import BtnBordered from "./btnBordered/BtnBordered";
 import InputField from "./inputField/InputField";
 import PasswordField from "./inputField/PasswordInput";
 import TextArea from "./textarea/TextArea";
@@ -11,11 +10,10 @@ import AvatarSkeleton from "./skeletons/avatarSkeleton";
 import ChatSkeleton from "./skeletons/ChatSkeleton";
 import GlobalLoading from "./loading/GlobalLoading";
 import PhoneInput from "./inputField/PhoneInput";
-import {Switch} from "@/shared/ui/switch/Switch";
+import { Switch } from "@/shared/ui/switch/Switch";
 
 export {
    Button,
-   BtnBordered,
    InputField,
    PasswordField,
    TextArea,
@@ -27,5 +25,5 @@ export {
    ChatSkeleton,
    GlobalLoading,
    PhoneInput,
-   Switch
+   Switch,
 };

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { BtnBordered } from "@/shared/ui";
+import { Button } from "@/shared/ui";
 import { ButtonsProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
@@ -31,13 +31,14 @@ const Tabs: FC<ButtonsProps> = ({ type, setType, values, variant }) => {
                   {value.value}
                </button>
             ) : (
-               <BtnBordered
+               <Button
                   type="button"
                   key={value.postValue}
+                  classType="btnBorder"
                   onClick={() => handleType(value.postValue)}
                   className={isActive(value.postValue)}>
                   {value.value}
-               </BtnBordered>
+               </Button>
             )
          )}
       </div>
