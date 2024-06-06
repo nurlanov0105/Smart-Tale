@@ -12,10 +12,9 @@ export const useGetVacancies = (page: number) => {
    const defaultValues = VacancyFilterStore(state => state.defaultValues)
 
    return useQuery({
-      queryKey: [VacancyQueryKeys.GET_VACANCIES],
+      queryKey: [VacancyQueryKeys.GET_VACANCIES, defaultValues],
       queryFn: () => {
-         const filters = ""
-         return VacancyService.getVacancies({page, filters})
+         return VacancyService.getVacancies(defaultValues)
       },
    });
 };

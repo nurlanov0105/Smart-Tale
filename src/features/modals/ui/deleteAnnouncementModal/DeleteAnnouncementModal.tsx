@@ -13,10 +13,12 @@ const DeleteAnnouncementModal = (props: ModalProps) => {
         isLoading
     } = useDeleteAnnouncement(props?.type ?? "") //order | equipment
 
+    console.log(props)
     const handleDelete = () => {
         deleteAnnouncement(props.slug ?? "") //slug order | equipment
         closeModal()
     }
+
 
    return (
       <div className={styles.content}>

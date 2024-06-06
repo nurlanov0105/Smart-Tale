@@ -28,14 +28,18 @@ const Vacancies = () => {
 
    const {
        isError,
-       isPending: isLoading,
-       data
+       isPending,
+       isLoading,
+       data,
+       isSuccess
    } = useGetVacancies(page);
+
+   const vacanciesLength = isSuccess ? data?.data.length : 0
 
    return (
       <div className={clsx(styles.vacancies, styles[theme])}>
          <div className={styles.vacancies__title}>
-            <h4 className="h4">Найдено 12 вакансий</h4>
+            <h4 className="h4">Найдено {vacanciesLength} вакансий</h4>
          </div>
 
          <div className={styles.vacancies__filters}>
@@ -61,32 +65,34 @@ const Vacancies = () => {
             </div>
          </div>
 
-         <div
-            className={clsx({
-               [styles.vacancies__withoutFilters]: !withFilters,
-               [styles.vacancies__row]: withFilters,
-            })}>
-            {isLoading ? (
-               <GlobalLoading type="full"/>
-            ) : isError ? (
-               <ErrorMessage />
-            ) : data.data?.data.length === 0 ? (
-               <ErrorMessage isEmpty={true} />
-            ) : (
-               <div className={styles.vacancies__list}>
-                  {data.data?.data?.map((item: VacancyCardType, idx: number) => (
-                     <VacancyItem item={item} key={idx} typeView={typeView} />
-                  ))}
-               </div>
-            )}
+          <div
+              className={clsx({
+                  [styles.vacancies__withoutFilters]: !withFilters,
+                  [styles.vacancies__row]: withFilters,
+              })}>
 
-            <div
-               className={clsx(styles.vacancies__transition, {
-                  [styles.vacancies__transition_show]: withFilters,
-               })}>
-               <FiltersVacancies />
-            </div>
-         </div>
+              <div className={styles.vacancies__list}>
+                  {
+                      isLoading ? <GlobalLoading type="full"/> :
+                          isError ? <ErrorMessage/> :
+                            !data?.data.length && <ErrorMessage isEmpty={true}/>
+                  }
+
+                  {
+                      data?.data?.map((item: VacancyCardType, idx: number) => (
+                          <VacancyItem item={item} key={idx} typeView={typeView}/>
+                      ))
+                  }
+
+              </div>
+
+              <div
+                  className={clsx(styles.vacancies__transition, {
+                      [styles.vacancies__transition_show]: withFilters,
+                  })}>
+                  <FiltersVacancies/>
+              </div>
+          </div>
       </div>
    );
 };

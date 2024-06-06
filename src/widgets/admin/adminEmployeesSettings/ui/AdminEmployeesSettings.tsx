@@ -20,7 +20,7 @@ const AdminEmployeesSettings = () => {
 
    const { slug } = useParams();
    const handleDelete = () => {
-      showModal(MODAL_KEYS.deleteEmployee, { slug: slug.toString() });
+      showModal(MODAL_KEYS.confirmationModal, { slug: slug.toString(), componentName: MODAL_KEYS.deleteEmployee });
    };
 
    const {

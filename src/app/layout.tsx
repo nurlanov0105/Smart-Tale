@@ -1,15 +1,36 @@
-import type { Metadata } from "next";
+import type {Metadata, Viewport} from "next";
 
 import clsx from "clsx";
 import { sf_pro, dm_sans } from "@/shared/scss/base/fonts";
+import { Provider } from "@/views/providers";
 import "@/shared/scss/index.scss";
 
-export const metadata: Metadata = {
-   title: "SmartTale",
-   description: "Мониторинг и управление швейным производством",
-};
+// export const metadata: Metadata = {
+//    title: "SmartTale",
+//    description: "Мониторинг и управление швейным производством",
+// };
 
-import { Provider } from "@/views/providers";
+export const metadata: Metadata = {
+    title: "SmartTale",
+    description: "Мониторинг и управление швейным производством",
+    generator: "Next.js",
+    manifest: "/manifest.json",
+    keywords: ["nextjs", "pwa", "next-pwa"],
+    authors: [
+        { name: "Pranov Adilet" },
+        {name: "Nursultan Nurlanov",},
+    ],
+    icons: [
+        { rel: "apple-touch-icon", url: "/logo.svg" },
+        { rel: "icon", url: "/logo.svg" },
+    ],
+};
+export const viewport: Viewport = {
+    minimumScale: 1,
+    initialScale: 1,
+    width: "device-width",
+    viewportFit: "cover",
+}
 
 export default function RootLayout({
    children,

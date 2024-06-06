@@ -13,6 +13,7 @@ export type ModalProps = {
    slug?: string;
    // type?: "order" | "equipment" | "service";
    type?: string;
+   componentName?: string
    isLightBg?: boolean | null;
 };
 

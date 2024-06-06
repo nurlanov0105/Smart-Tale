@@ -240,7 +240,16 @@ const AnnouncementDetailForm = () => {
             </div>
          </div>
 
-         <OrderDetailBtns isSubmitting={isSubmitting} isDisabled={isValid} reset={reset} isDirty={isDirty} />
+         <OrderDetailBtns
+             type={type}
+             slug={slug}
+
+             reset={reset}
+
+             isSubmitting={isSubmitting}
+             isDisabled={isValid}
+             isDirty={isDirty}
+         />
       </form>
    );
 };

@@ -43,6 +43,7 @@ const usePagination = ({
    ads,
    title,
 }: UsePaginationOptions): UsePaginationResult => {
+
    const [currentPage, setCurrentPage] = useState(1);
    const [totalPages, setTotalPages] = useState(1);
    const [data, setData] = useState<ItemType[]>([]);

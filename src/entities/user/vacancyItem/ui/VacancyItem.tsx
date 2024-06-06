@@ -50,15 +50,13 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
 
          {isAdmin && (
             <Link
-               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/utyuzhnik`}
+               href={`${ORGANIZATION_ROUTES.VACANCY_DETAIL}/${item.slug}`}
                className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__row}>
                   <div>
                      <h4 className={styles.item__title}>{item.job_title}</h4>
                      <h3 className={styles.item__salary}>
-                        {item.min_salary}
-                        {item.currency} - {item.max_salary}
-                        {item.currency}
+                        {Math.round(+item.min_salary)} - {Math.round(+item.max_salary)} {item.currency}
                      </h3>
                   </div>
                   <div>
@@ -69,9 +67,6 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
                      <BriefcaseBusiness className={styles.item__icon} />
                      {item.experience}
                   </div>
-                  <div>
-                     <p className={styles.item__description}>{item.experience}</p>
-                  </div>
 
                   <div>
                      {/*<span className={styles.item__block}>Откликнитесь среди первых</span>*/}
@@ -80,7 +75,9 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin }) => {
                <div>
                   <button className={styles.item__button}>Подробнее</button>
                </div>
-               <div className={styles.item__responses}>+2 отклика</div>
+               <div className={styles.item__responses}>{
+                  !!item.response_count && `+${item.response_count} отклика`
+               }</div>
             </Link>
          )}
       </>

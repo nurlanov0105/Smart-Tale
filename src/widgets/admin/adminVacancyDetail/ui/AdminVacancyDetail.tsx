@@ -26,7 +26,7 @@ const AdminVacancyDetail = () => {
         showModal(MODAL_KEYS.responsesUsers)
     }
     const handleDelete = () => {
-        showModal(MODAL_KEYS.deleteAnnouncement)
+        showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.deleteAnnouncement})
     }
 
     const {

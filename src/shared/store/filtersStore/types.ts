@@ -1,4 +1,4 @@
-export interface DefaultTypes{
+export interface DefaultFilterTypes{
     schedule: string[],
     incomeLevel: string,
     location: string[],
@@ -8,10 +8,10 @@ export interface DefaultTypes{
 
 interface SetterType {
     value: string
-    key: keyof DefaultTypes
+    key: keyof DefaultFilterTypes
 }
 export interface FilterStoreTypes{
-    defaultValues: DefaultTypes
+    defaultValues: DefaultFilterTypes
     setter: (value: SetterType) => void
     //setGraphic: (value: string) => void
 }

@@ -20,7 +20,8 @@ import {
    ResponsesModal,
    DeletePositionModal,
    ActivateOrganizationModal,
-   DeleteResumeModal
+   DeleteResumeModal,
+   ConfirmationModal, InfoModal
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
@@ -35,7 +36,10 @@ const Modal: FC = () => {
       closeModal
    } = useModalStore();
 
+
    const componentsLookUp: Record<string, React.ComponentType<any>> = {
+      ConfirmationModal,
+      InfoModal,
       SubscribeModal,
       ChangeAvatarModal,
       DeleteAnnouncementModal,
