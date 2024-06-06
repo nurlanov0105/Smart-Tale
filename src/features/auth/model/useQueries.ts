@@ -9,6 +9,7 @@ import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
 import { cookies } from "next/headers";
+import Cookies from "js-cookie";
 
 export const useRegister = (reset: UseFormReset<any>) => {
    const router = useRouter();
@@ -112,7 +113,11 @@ export const useDeleteAccount = () => {
    const router = useRouter();
 
    return useMutation({
-      mutationFn: authApi.deleteAccount,
+      mutationFn: (token: string) => {
+         const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
+         const data = {refresh: refreshToken || ""};
+         return authApi.deleteAccount(data)
+      },
       onSuccess: () => {
          closeModal();
          CookiesServices.clearTokens();

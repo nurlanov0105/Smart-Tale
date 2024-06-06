@@ -1,11 +1,14 @@
 .item {
    display: grid;
-   grid-template-columns: repeat(4, 1fr);
-   padding: 2rem;
+   grid-template-columns: repeat(5, 1fr);
 
+   align-items: center;
+
+   padding: 2rem;
    a {
       text-decoration-line: underline;
    }
+
 
    &:not(:last-child) {
       border-bottom: 1px solid #e9edf7;
@@ -14,6 +17,13 @@
    &__link {
       text-decoration: underline;
       cursor: pointer;
+   }
+   &__status{
+      display: inline-flex;
+
+      padding: 1rem 3.5rem;
+      border-radius: 4px;
+      color: $dark-theme;
    }
 }
 
@@ -30,5 +40,9 @@
       &:hover {
          color: $common-white !important;
       }
+   }
+
+   .item__status{
+      color: $white-theme;
    }
 }

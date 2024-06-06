@@ -1,8 +1,7 @@
-import {OrganizationsTypes} from "@/widgets/admin/adminOrganization/model/types";
-import {Dispatch, SetStateAction} from "react";
+import {OrganizationsTypes, OrganizationItem} from "@/widgets/admin/adminOrganization/model/types";
 
 
 
 export type TypesItemOrganization = {
-    item: OrganizationsTypes
+    item: OrganizationItem
 }

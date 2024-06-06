@@ -1,14 +1,16 @@
-import React from 'react';
+import React, {FC} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import avatar from "@@/imgs/auth/auth-1.jpg";
 import {useThemeStore} from "@/shared/store/themeStore";
-import {WORK} from "@/shared/lib/routes.config";
+import {ROUTES, WORK} from "@/shared/lib/routes.config";
 import styles from "./styles.module.scss";
+import {ResumeItemTypes} from "../model/types";
 
-const ResumeMyItem = () => {
+const ResumeMyItem: FC<ResumeItemTypes> = ({job_title, experience, slug, author}) => {
     const theme = useThemeStore(state => state.theme)
+
     return (
         <div className={clsx(styles.resume__item, styles[theme])}>
             <div className={styles.resume__left}>
@@ -22,10 +24,14 @@ const ResumeMyItem = () => {
             </div>
             <div className={styles.resume__right}>
                 <div className={styles.resume__info}>
-                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__salary}>Директор</Link>
-                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__title}>Пранов Адилет Мелсович</Link>
+                    <Link href={WORK.RESUME_INFO + `/${slug}`} className={styles.resume__salary}>{job_title}</Link>
+                    <Link href={ROUTES.USERS + `/${author.slug}`} className={styles.resume__title}>
+                        {
+                            `${author.last_name} ${author.first_name}`
+                        }
+                    </Link>
                     <p>График работы: Полный рабочий день</p>
-                    <p>Опыт работы: от 1года</p>
+                    <p>Опыт работы: {experience}</p>
                     <div className={styles.resume__statisticsWrapper}>
                         <h4 className="h4">Статистика за неделю</h4>
                         <div className={styles.resume__statistics}>
@@ -38,7 +44,7 @@ const ResumeMyItem = () => {
                 </div>
                 <p className={styles.resume__date}>Обновлено 21 мая 2024 в 02:03</p>
                 <div className={styles.resume__buttons}>
-                    <Link href={WORK.RESUME_INFO + "/direktor"} className={styles.resume__button}>Посмотреть подробнее</Link>
+                    <Link href={WORK.RESUME_INFO + `/${slug}`} className={styles.resume__button}>Посмотреть подробнее</Link>
                 </div>
             </div>
         </div>

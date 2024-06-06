@@ -1,5 +1,6 @@
 import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
 import {ORGANIZATION_ROUTES} from "@/shared/lib";
+import {WORK} from "@/shared/lib/routes.config";
 
 export const dataMap = {
     [EMPTY_CONTENT_TYPES.organization]: {
@@ -19,6 +20,12 @@ export const dataMap = {
         description: "Создайте новые должности \n и назначайте их сотрудникам",
         button: "Создать",
         route: ORGANIZATION_ROUTES.ADD_POSITION
+    },
+    [EMPTY_CONTENT_TYPES.resume]: {
+        title: "Тут еще нет резюме",
+        description: "Создайте своё резюме и разместите \n его, чтобы другие видели",
+        button: "Создать",
+        route: WORK.RESUME
     },
 
 }

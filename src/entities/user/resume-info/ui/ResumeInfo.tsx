@@ -31,8 +31,6 @@ const ResumeInfo: FC = () => {
 
     const {data} = useGetProfile()
 
-    const handleDelete = () => showModal(MODAL_KEYS.deleteResume, {slug: slug})
-    const handleHide = () => showModal(MODAL_KEYS.hideAnnouncement, {slug: slug})
     const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`)
 
 
@@ -113,10 +111,6 @@ const ResumeInfo: FC = () => {
 
 
             <div className={styles.form__btnsWrapper}>
-                {/*<div className={styles.form__btns}>*/}
-                {/*    <Button onClick={handleHide} type="button">Скрыть резюме</Button>*/}
-                {/*    <Button onClick={handleDelete} type="button" className="btn_danger">Удалить резюме</Button>*/}
-                {/*</div>*/}
 
             </div>
             <div className={styles.form__btns}>

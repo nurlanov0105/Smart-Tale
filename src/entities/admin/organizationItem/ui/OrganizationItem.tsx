@@ -15,7 +15,12 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleActivate = () => {
-       if (!item.active) showModal(MODAL_KEYS.activateOrganization, {slug: item.slug})
+       if (!item.active) {
+           showModal(
+               MODAL_KEYS.confirmationModal,
+               {slug: item.slug, componentName: MODAL_KEYS.activateOrganization}
+           )
+       }
    }
 
    return (
