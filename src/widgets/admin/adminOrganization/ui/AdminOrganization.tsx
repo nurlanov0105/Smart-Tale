@@ -23,7 +23,7 @@ const AdminOrganization = () => {
       if (isSuccess && data) {
 
          if (!isMe){
-            const dataRoute = data?.find(organization => organization.active)
+            const dataRoute = data["my-orgs"].find(organization => organization.active)
             replace(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${dataRoute?.slug}`)
          } else {
             setLoading(false)
@@ -34,14 +34,16 @@ const AdminOrganization = () => {
 
    if (isLoading || loading) return <GlobalLoading />;
 
+   const organizations = data && data["my-orgs"]
+
    return (
       <>
-         {!data?.length ? (
+         {!organizations?.length ? (
             <EmptyContent type={EMPTY_CONTENT_TYPES.organization} />
          ) : (
             <div className={styles.list}>
                <h4 className="h4">Список организаций</h4>
-               {data.map((item) => (
+               {organizations?.map((item) => (
                   <OrganizationItem
                       key={item.slug}
                       item={item}

@@ -14,50 +14,39 @@ import axios from "axios";
 
 export const authApi = {
    register: async (params: IRegisterRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.REGISTER, params);
-      return response;
+      return await authApiInstance.post(AuthEndpoints.REGISTER, params);
    },
 
    login: async (params: ILoginRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.LOGIN, params);
-      return response;
+      return await authApiInstance.post(AuthEndpoints.LOGIN, params);
    },
 
    emailVerify: async (params: IEmailVerifyRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.EMAIL_CONFIRMATION, params);
-      return response;
+      return await authApiInstance.post(AuthEndpoints.EMAIL_CONFIRMATION, params);
    },
 
    emailAvailable: async (email: string) => {
-      const response = await authApiInstance.post(AuthEndpoints.EMAIL_AVAILABLE, email, {
-         headers: { "Content-Type": "text/plain" },
-      });
-      return response;
+      return await authApiInstance.post(AuthEndpoints.EMAIL_AVAILABLE, email, {headers: { "Content-Type": "text/plain" },});
    },
 
    resendCode: async (email: IResendCodeRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.RESEND_CODE, email);
-      return response;
+      return await authApiInstance.post(AuthEndpoints.RESEND_CODE, email);
    },
 
    sendForgotPassword: async (params: IForgotPasswordRequest) => {
-      const response = await authApiInstance.post(AuthEndpoints.FORGOT_PASSWORD, params);
-      return response;
+      return await authApiInstance.post(AuthEndpoints.FORGOT_PASSWORD, params);
    },
 
    resetPassword: async (params: IResetPasswordRequest) => {
-      const response = await authApiInstance.put(AuthEndpoints.RESET_PASSWORD, params);
-      return response;
+      return  await authApiInstance.put(AuthEndpoints.RESET_PASSWORD, params);
    },
 
    logout: async (params: LogoutType) => {
-      const response = await baseApiInstance.post(AuthEndpoints.LOGOUT, params);
-      return response;
+      return await baseApiInstance.post(AuthEndpoints.LOGOUT, params);
    },
 
    deleteAccount: async (data: { refresh: string }) => {
-      const response = await baseApiInstance.delete(AuthEndpoints.DELETE_ACCOUNT, { data });
-      return response;
+      return await baseApiInstance.delete(AuthEndpoints.DELETE_ACCOUNT, { data });
    },
    refreshToken: async (refresh: { refresh: string }) => {
       const data = { refresh: `Bearer ${refresh}` };

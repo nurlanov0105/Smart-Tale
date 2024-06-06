@@ -9,3 +9,4 @@ export const useModalStore = create<ModalState>((set) => ({
       set({ isOpen: true, componentName, props: props }),
    closeModal: () => set({ isOpen: false, componentName: null, props: null}),
 }));
+

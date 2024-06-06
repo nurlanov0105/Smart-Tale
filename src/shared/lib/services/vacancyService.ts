@@ -3,42 +3,28 @@ import { VacancyEndpoints } from "@/shared/api";
 import { baseApiInstance } from "@/shared/api/instance";
 import type {FilterVacancyType, VacanciesRequestTypes} from "../types/vacancy-service.types";
 import {VacancyUpdateTypes} from "@/entities/user/vacancyItem/model/types";
+import {DefaultFilterTypes} from "@/shared/store/filtersStore/types";
 
 export const VacancyService = {
-   getVacancies: async ({page, filters}: VacanciesRequestTypes) => {
+   getVacancies: async (data: DefaultFilterTypes) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY, {
          params: {
-            page,
+            job_title: data.job_title,
+            location: data.location,
+            schedule: data.schedule,
+            experience: data.experience,
          },
       });
-      return response;
+      return response.data;
    },
-   getFilteredVacancies: async ({
-      job_title,
-      organization__title,
-      experience,
-      location,
-      schedule,
-      currency,
-      min_salary,
-      max_salary,
-      days,
-      week,
-      month,
-   }: FilterVacancyType) => {
+   getOrganizationVacancies: async () => {
+      const response = await baseApiInstance.get(VacancyEndpoints.ORGANIZATION_VACANCIES)
+      return response.data
+   },
+   getFilteredVacancies: async (data: FilterVacancyType) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_FILTER, {
          params: {
-            job_title,
-            organization__title,
-            experience,
-            location,
-            schedule,
-            currency,
-            min_salary,
-            max_salary,
-            days,
-            week,
-            month,
+           ...data
          },
       });
       return response;
@@ -63,7 +49,11 @@ export const VacancyService = {
    },
    deleteVacancy: async (slug: string) => {
       const response = await baseApiInstance.delete(VacancyEndpoints.DELETE_VACANCY + slug);
-      return response;
+      return response.data;
+   },
+   hideVacancy: async (slug: string) => {
+      const response = await baseApiInstance.put(VacancyEndpoints.HIDE_VACANCY + slug);
+      return response.data;
    },
    searchVacancy: async (job_title: string) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_SEARCH, {

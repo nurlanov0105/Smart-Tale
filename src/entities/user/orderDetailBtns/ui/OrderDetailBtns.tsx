@@ -11,37 +11,36 @@ interface IProps {
    isDisabled: boolean;
    reset: UseFormReset<any>;
    isSubmitting: boolean;
+   type: string;
+   slug: string;
 }
-const OrderDetailBtns: FC<IProps> = ({ isDirty, reset, isDisabled, isSubmitting }) => {
+const OrderDetailBtns: FC<IProps> = ({ isDirty, reset, isDisabled, isSubmitting, type }) => {
    const handleDeleteClick = () => {
-      showModal(MODAL_KEYS.deleteAnnouncement, { slug: "nitki-s-igolkami-2", type: "order" });
+      showModal(MODAL_KEYS.confirmationModal, {
+         slug: "nitki-s-igolkami-2",
+         type,
+         componentName: MODAL_KEYS.deleteAnnouncement,
+      });
    };
    const handleHideClick = () => {
-      showModal(MODAL_KEYS.hideAnnouncement, { slug: "nitki-s-igolkami-2", type: "order" });
+      showModal(MODAL_KEYS.confirmationModal, {
+         slug: "nitki-s-igolkami-2",
+         type,
+         componentName: MODAL_KEYS.hideAnnouncement,
+      });
    };
    const handleReset = () => reset();
 
    return (
-      <div className={styles.buttons__wrapper}>
-         <div className={styles.buttons}>
-            <Button type="button" classType="btn_danger" onClick={handleDeleteClick}>
-               Удалить
-            </Button>
-            <Button type="button" onClick={handleHideClick}>
-               Скрыть объявление
-            </Button>
-         </div>
-
+      <div className={styles.buttons}>
          {isDirty && (
-            <div className={styles.buttons}>
-               <Button onClick={handleReset} type="button" classType="btn_bordered">
-                  Отменить изменения
-               </Button>
-               <Button disabled={!isDisabled} type="submit">
-                  {isSubmitting ? "Загрузка..." : "Сохранить изменения"}
-               </Button>
-            </div>
+            <Button onClick={handleReset} type="button" classType="btn_bordered">
+               Отменить изменения
+            </Button>
          )}
+         <Button disabled={!isDisabled || !isDirty} type="submit">
+            {isSubmitting ? "Загрузка..." : "Изменить объявление"}
+         </Button>
       </div>
    );
 };

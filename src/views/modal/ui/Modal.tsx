@@ -20,7 +20,9 @@ import {
    ResponsesModal,
    DeletePositionModal,
    ActivateOrganizationModal,
-   DeleteResumeModal
+   DeleteResumeModal,
+   ConfirmationModal,
+   InfoModal,
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
@@ -28,14 +30,11 @@ import { useThemeStore } from "@/shared/store/themeStore";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);
-   const {
-      isOpen,
-      componentName,
-      props,
-      closeModal
-   } = useModalStore();
+   const { isOpen, componentName, props, closeModal } = useModalStore();
 
    const componentsLookUp: Record<string, React.ComponentType<any>> = {
+      ConfirmationModal,
+      InfoModal,
       SubscribeModal,
       ChangeAvatarModal,
       DeleteAnnouncementModal,
@@ -52,7 +51,7 @@ const Modal: FC = () => {
       ResponsesModal,
       DeletePositionModal,
       ActivateOrganizationModal,
-      DeleteResumeModal
+      DeleteResumeModal,
    };
 
    let RenderComponent;
@@ -61,7 +60,7 @@ const Modal: FC = () => {
       const SelectedComponent = componentsLookUp[componentName] as React.ElementType;
 
       if (SelectedComponent) {
-         RenderComponent = <SelectedComponent{...props}/>;
+         RenderComponent = <SelectedComponent {...props} />;
       }
    }
 
@@ -71,7 +70,9 @@ const Modal: FC = () => {
       <div
          className={clsx(styles.modal, isOpen ? styles.active : "", styles[theme])}
          onClick={closeModal}>
-         <div className={clsx(styles.content, props?.isLightBg ? "lightBg" : "")} onClick={handleClick}>
+         <div
+            className={clsx(styles.content, props?.isLightBg ? "lightBg" : "")}
+            onClick={handleClick}>
             <CloseModalBtn />
             <div className={styles.modal__inner}>{RenderComponent}</div>
          </div>

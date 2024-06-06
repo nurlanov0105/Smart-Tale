@@ -111,6 +111,7 @@ const FiltersVacancies = () => {
                                     onChange={() => setter({value: experience.postValue, key: "experience"})}
                                     isBordered={true}
                                     type="radio"
+                                    name="experience"
                                     classname={styles.filter__radio}
                                 />
                             </span>

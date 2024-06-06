@@ -4,6 +4,7 @@ import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
 export type CurrencyType = "Сом" | "USD" | "Рубль";
 export type OrganizationType = {
    title: string;
+   slug: string
 };
 
 export type VacancyCardType = {
@@ -17,6 +18,7 @@ export type VacancyCardType = {
    experience: string;
    schedule: string;
    description?: string;
+   response_count: string
 };
 
 

@@ -24,7 +24,7 @@ const Resumes = () => {
     const {data, isLoading} = useGetResumes()
     const handleFilters = () => setWithFilters(!withFilters);
 
-    if (isLoading) return <GlobalLoading type="full"/>
+    //if (isLoading) return <GlobalLoading type="full"/>
 
     return (
         <div className={clsx(styles.resumes, styles[theme])}>
@@ -60,7 +60,7 @@ const Resumes = () => {
                 })}>
                 {
                     <div className={styles.resumes__list}>
-                        {data?.data?.data?.map((item: ResumeCardType, idx: number) => (
+                        {data?.data?.map((item: ResumeCardType, idx: number) => (
                             <ResumeItem item={item} key={idx}/>
                         ))}
                     </div>

@@ -23,7 +23,7 @@ export const OrdersEndpoints = {
    APPLY_ORDER: "/order-apply",
    LIKE_ORDER: "/like-order/",
    BOOKING_ORDER: "/order-book/",
-   DELETE_ORDER: "/order-delete/",
+   DELETE_ORDER: "/order-confirmationModal/",
    HIDE_ORDER: "/order-hide/",
    UPDATE_ORDER: "/update-order/",
    UPDATE_ORDER_STATUS: "/update-status/",
@@ -68,6 +68,7 @@ export const UserEndpoints = {
 
 export const VacancyEndpoints = {
    VACANCY: "/vacancy",
+   ORGANIZATION_VACANCIES: "/org-vacancy",
    VACANCY_FILTER: "/vacancy/filter",
    VACANCY_SEARCH: "/vacancy/search",
    VACANCY_SLUG: "/vacancy",
@@ -75,14 +76,16 @@ export const VacancyEndpoints = {
    ADD_VACANCY: "/add-vacancy/",
    CHANGE_VACANCY: "/change-vacancy/",
    DELETE_VACANCY: "/delete-vacancy/",
+   HIDE_VACANCY: "/vacancy-hide/",
 };
 export const ResumeEndpoints = {
    ADD_RESUME: "/add-resume/",
    UPDATE_RESUME: "/change-resume/",
    DELETE_RESUME: "/delete-resume/",
+   HIDE_RESUME: "/resume/hide/",
    GET_RESUMES: "/resume/",
    GET_RESUME_DETAILS: "/resume/",
-   GET_MY_RESUMES: "/my-resumes/",
+   GET_MY_RESUMES: "/my-resume/",
 };
 
 export const OrganizationEndpoints = {
@@ -105,4 +108,10 @@ export const OrganizationEndpoints = {
    UPDATE_EMPLOYEE: "/employee/detail/",
    DELETE_POSITION: "/org-jobs/detail/",
    UPDATE_ORDER_STATUS: "/update-status/",
+};
+
+export const ChatsEndpoints = {
+   CONVERSATION_START: "/conversation/start/",
+   CONVERSATIONS: "/conversations/",
+   MESSAGES: "/messages/",
 };

@@ -14,6 +14,8 @@ import ResponsesModal from "./ui/responsesModal/ResponsesModal";
 import DeletePositionModal from "./ui/deletePositionModal/DeletePositionModal"
 import ActivateOrganizationModal from "./ui/activateOrganizationModal/ActivateOrganizationModal"
 import DeleteResumeModal from "./ui/deleteResume/DeleteResumeModal";
+import ConfirmationModal from "./ui/confirmationModal/ConfirmationModal"
+import InfoModal from "./ui/infoModal/InfoModal";
 
 export {
    SubscribeModal,
@@ -31,5 +33,7 @@ export {
    ResponsesModal,
    ActivateOrganizationModal,
    DeletePositionModal,
-   DeleteResumeModal
+   DeleteResumeModal,
+   ConfirmationModal,
+   InfoModal
 };

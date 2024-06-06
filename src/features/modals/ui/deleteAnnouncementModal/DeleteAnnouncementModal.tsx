@@ -8,6 +8,7 @@ import { closeModal, ModalProps } from "@/views/modal";
 const DeleteAnnouncementModal = (props: ModalProps) => {
    const { deleteAnnouncement, isError, isLoading } = useDeleteAnnouncement(props?.type ?? ""); //order | equipment
 
+   console.log(props);
    const handleDelete = () => {
       deleteAnnouncement(props.slug ?? ""); //slug order | equipment
       closeModal();

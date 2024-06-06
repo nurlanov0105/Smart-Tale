@@ -1,6 +1,7 @@
 import { ResumeEndpoints } from "@/shared/api";
 import { baseApiInstance } from "@/shared/api/instance";
 import {ResumeType, UpdateResumeTypes} from "../types/resume-service.types";
+import {DefaultFilterTypes} from "@/shared/store/filtersStore/types";
 
 export const ResumeService = {
    addResume: async (data: ResumeType) => {
@@ -15,16 +16,27 @@ export const ResumeService = {
       const response = await baseApiInstance.post(ResumeEndpoints.DELETE_RESUME + slug, {data: slug} );
       return response;
    },
-   getResumes: async () => {
-      const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES);
+   hideResume: async (slug: string) => {
+      const response = await baseApiInstance.post(ResumeEndpoints.HIDE_RESUME + slug, {data: slug} );
       return response;
+   },
+   getResumes: async (data: DefaultFilterTypes) => {
+      const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES, {
+         params: {
+            job_title: data.job_title,
+            location: data.location,
+            schedule: data.schedule,
+            experience: data.experience,
+         },
+      });
+      return response.data;
    },
    getResumeDetails: async (slug: string) => {
       const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUME_DETAILS + slug);
-      return response?.data;
+      return response.data;
    },
    getMyResumes: async () => {
       const response = await baseApiInstance.get(ResumeEndpoints.GET_MY_RESUMES);
-      return response;
+      return response.data;
    }
 };

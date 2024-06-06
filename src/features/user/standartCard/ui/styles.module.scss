@@ -119,7 +119,9 @@
    }
    .card {
       &__btn {
-         background: $black-theme;
+         button {
+            background: $black-theme;
+         }
       }
    }
 }

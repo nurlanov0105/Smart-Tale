@@ -27,8 +27,6 @@ const ResumeInfo: FC = () => {
 
    const { data } = useGetProfile();
 
-   const handleDelete = () => showModal(MODAL_KEYS.deleteResume, { slug: slug });
-   const handleHide = () => showModal(MODAL_KEYS.hideAnnouncement, { slug: slug });
    const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`);
 
    if (isLoading) return <GlobalLoading type="full" />;
@@ -60,11 +58,6 @@ const ResumeInfo: FC = () => {
                      <span>{data?.data?.phone_number}</span>
                   </div>
                </div>
-            </div>
-
-            <div className={styles.form__position}>
-               <h3 className="h3">{resume?.job_title}</h3>
-               {/*<h3 className="h3">{create-resume.min_salary}-{create-resume.max_salary} {create-resume.currency}</h3>*/}
             </div>
 
             <div className={styles.form__block}>

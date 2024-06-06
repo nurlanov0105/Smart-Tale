@@ -26,8 +26,6 @@ const VacancyDetail = () => {
       return <ErrorMessage isEmpty={true} />;
    }
 
-   console.log(data);
-
    return (
       <div className={clsx(styles.detail, styles[theme])}>
          <div className={styles.detail__left}>
