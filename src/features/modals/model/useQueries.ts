@@ -26,10 +26,12 @@ export const useHideEquipment = () => {
       mutationKey: [OrdersQueryKeys.ORDER_HIDE],
       mutationFn: (slug) => EquipmentService.hideEquipment(slug),
       onSuccess: () => {
-         toast.success("Вы успешно скрыли оборудование");
+          closeModal()
+          toast.success("Вы успешно скрыли оборудование");
       },
       onError: () => {
-         console.log("error");
+          closeModal()
+          console.log("error");
       },
    });
 };
@@ -40,9 +42,11 @@ export const useHideOrder = () => {
       mutationKey: [EquipmentQueryKeys.EQUIPMENT_HIDE],
       mutationFn: (slug) => OrdersService.hideOrder(slug),
       onSuccess: () => {
+          closeModal()
          toast.success("Вы успешно скрыли заказ");
       },
       onError: () => {
+          closeModal()
          console.log("error");
       },
    });
@@ -54,10 +58,12 @@ export const useHideService = () => {
       mutationKey: [ServiceQueryKeys.HIDE_SERVICE],
       mutationFn: (slug) => ServicesService.hideService(slug),
       onSuccess: () => {
-         toast.success("Вы успешно скрыли услугу");
+          closeModal()
+          toast.success("Вы успешно скрыли услугу");
       },
       onError: () => {
-         console.log("error");
+          closeModal()
+          console.log("error");
       },
    });
 };
@@ -65,13 +71,15 @@ export const useHideService = () => {
 export const useDeleteEquipment = () => {
    const queryClient = useQueryClient();
    return useMutation<any, Error, string>({
-      mutationKey: [OrdersQueryKeys.ORDER_DELETE],
+      mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
       mutationFn: (slug) => EquipmentService.deleteEquipment(slug),
       onSuccess: () => {
          toast.success("Вы успешно удалили оборудование");
+         closeModal()
       },
       onError: () => {
          console.log("error");
+         closeModal()
       },
    });
 };
@@ -79,13 +87,15 @@ export const useDeleteEquipment = () => {
 export const useDeleteOrder = () => {
    const queryClient = useQueryClient();
    return useMutation<any, Error, string>({
-      mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
+      mutationKey: [OrdersQueryKeys.ORDER_DELETE],
       mutationFn: (slug) => OrdersService.deleteOrder(slug),
       onSuccess: () => {
          toast.success("Вы успешно удалили заказ");
+         closeModal()
       },
       onError: () => {
          console.log("error");
+         closeModal()
       },
    });
 };
@@ -97,7 +107,7 @@ export const useDeleteEmployee = () => {
       mutationFn: (slug) => OrganizationService.deleteEmployee(slug),
       onSuccess: () => {
          toast.success("Сотрудник был удалён!");
-          push(ORGANIZATION_ROUTES.EMPLOYEES)
+         push(ORGANIZATION_ROUTES.EMPLOYEES)
       },
       onError: () => {
          console.log("error");
@@ -150,6 +160,22 @@ export const useDeleteVacancy = () => {
     })
 }
 
+export const useHideVacancy = () => {
+    const queryClient = useQueryClient();
+    return useMutation<any, Error, string>({
+        mutationKey: [VacancyQueryKeys.VACANCY_DELETE],
+        mutationFn: (slug) => VacancyService.hideVacancy(slug),
+        onSuccess: () => {
+            closeModal()
+            toast.success("Вы успешно скрыли услугу");
+        },
+        onError: () => {
+            closeModal()
+            console.log("error");
+        },
+    });
+};
+
 
 export const useDeleteResume = () => {
     const {replace} = useRouter()
@@ -159,13 +185,30 @@ export const useDeleteResume = () => {
         onSuccess: () => {
             toast.success("Резюме было удалено")
             replace(WORK.MY_RESUMES)
+            closeModal()
         },
         onError: () => {
             console.log("error")
-        }
+            closeModal()
+        },
     })
 }
 
+export const useHideResume = () => {
+    const queryClient = useQueryClient();
+    return useMutation<any, Error, string>({
+        mutationKey: [ResumeQueryKeys.RESUME],
+        mutationFn: (slug) => ResumeService.hideResume(slug),
+        onSuccess: () => {
+            closeModal()
+            toast.success("Вы успешно скрыли услугу");
+        },
+        onError: () => {
+            closeModal()
+            console.log("error");
+        },
+    });
+};
 
 export const useActiveOrganization = () => {
     const queryClient = useQueryClient()

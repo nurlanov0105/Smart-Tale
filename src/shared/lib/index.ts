@@ -66,9 +66,17 @@ export type {
    UpdateEmployeeTypes
 } from "./types/organizations-service.types"
 export type {IRights} from "./types/types"
+export type {DefaultFilterTypes} from "../store/filtersStore/types"
 
 export type {PositionResponseTypes, EmployeesResponseTypes} from "./types/queries.types"
 export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
+
+
+export { ChatsService} from "./services/chatsService"
+
+export { ChatsQueryKeys} from "../api/queryKeys"
+export { ChatsEndpoints} from "../api/endpoints"
+
 
 export {
    usePositions,
@@ -94,7 +102,7 @@ export {
    typeSalary
 } from "./constants/vacancyFilters"
 
-export {VacancyFilterStore} from "@/shared/store/filtersStore/filtersStore"
+export {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore"
 export {useThemeStore} from "../store/themeStore/useThemeStore"
 
 

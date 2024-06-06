@@ -10,6 +10,8 @@ export type OrderItemType = {
    slug: string;
    title: string;
    type: string;
+   status: string
+   deadline: string
    author: {
       slug: string;
       first_name: string;

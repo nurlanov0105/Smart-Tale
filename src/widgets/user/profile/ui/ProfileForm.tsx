@@ -74,7 +74,7 @@ const ProfileForm: FC = () => {
       setinputDisabled(true);
    };
    const handleDeleteClick = () => {
-      showModal(MODAL_KEYS.deleteAccount);
+      showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.deleteAccount});
    };
 
    const handleChangeClick = () => {

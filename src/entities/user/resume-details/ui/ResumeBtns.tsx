@@ -17,8 +17,8 @@ const ResumeBtns: FC<IProps> = ({isSubmitting, isValid, reset, isDirty}) => {
     const handleReset = () => reset()
 
     const {slug} = useParams()
-    const handleDelete = () => showModal(MODAL_KEYS.deleteResume, {slug: slug.toString()})
-    const handleHide = () => showModal(MODAL_KEYS.hideAnnouncement, {slug: slug.toString()})
+    const handleDelete = () => showModal(MODAL_KEYS.confirmationModal, {slug: slug.toString(), componentName: MODAL_KEYS.deleteResume})
+    const handleHide = () => showModal(MODAL_KEYS.confirmationModal, {slug: slug.toString(), componentName: MODAL_KEYS.hideResume})
 
     return (
         <div className={styles.form__btnsWrapper}>

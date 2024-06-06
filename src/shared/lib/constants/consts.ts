@@ -32,6 +32,12 @@ export const MODAL_KEYS = {
    deleteResume: "DeleteResumeModal",
    responsesUsers: "ResponsesModal",
    activateOrganization: "ActivateOrganizationModal",
+   deleteModal: "DeleteModal",
+   confirmationModal: "ConfirmationModal",
+   infoModal: "InfoModal",
+   hideResume: "HideResume",
+   hideVacancy: "hideVacancy",
+   deleteVacancy: "deleteVacancy",
 };
 
 export const SKELETON_TYPES = {
@@ -103,7 +109,8 @@ export const RIGHT_ACTIONS = {
 export const EMPTY_CONTENT_TYPES = {
    organization: "organization",
    employees: "employees",
-   positions: "positions"
+   positions: "positions",
+   resume: "resume"
 } as const
 
 export const rightsActionsMap: RightsTypes = {
