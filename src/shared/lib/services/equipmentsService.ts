@@ -88,4 +88,9 @@ export const EquipmentService = {
       );
       return response.data;
    },
+
+   buyEquipment: async (slug: string) => {
+      const response = await baseApiInstance.post(EquipmentsEndpoints.BUY_EQUIPMENT + slug);
+      return response.data;
+   },
 };

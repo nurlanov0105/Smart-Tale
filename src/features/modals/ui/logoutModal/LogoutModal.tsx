@@ -35,7 +35,7 @@ const LogoutModal = () => {
             </h3>
             <p className="greyText">Все данные будут сохранены!</p>
             <div className={styles.modal__btns}>
-               <Button className="btn_bordered" onClick={handleClose}>
+               <Button classType="btn_bordered" onClick={handleClose}>
                   Нет
                </Button>
                <Button disabled={isPending} onClick={handleLogout}>

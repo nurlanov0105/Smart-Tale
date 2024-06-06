@@ -8,3 +8,17 @@ export const useGetCommonUser = (slug: string) => {
       queryKey: [UserQueryKeys.COMMON_USER, slug],
    });
 };
+export const useGetCommonUserAds = ({
+   slug,
+   page,
+   param_tab,
+}: {
+   slug: string;
+   page: number;
+   param_tab: string;
+}) => {
+   return useQuery({
+      queryFn: () => UserService.getCommonUserAds({ slug, page, param_tab }),
+      queryKey: [UserQueryKeys.COMMON_USER_ADS, slug],
+   });
+};

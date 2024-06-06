@@ -12,7 +12,7 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import { UserQueryKeys } from "@/shared/api";
 import { usePathname } from "next/navigation";
-import { useGetCommonUser } from "../model/useQueries";
+import { useGetCommonUser, useGetCommonUserAds } from "../model/useQueries";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 
 import userIcon from "@@/imgs/form/user.svg";
@@ -24,11 +24,8 @@ const User = () => {
    const slug = pathname.split("/")[2];
 
    const { isError, isPending: isLoading, data } = useGetCommonUser(slug);
-   const [type, setType] = useState(announcementTabs[0].postValue);
 
-   if (isError) {
-      return <ErrorMessage />;
-   }
+   const [type, setType] = useState(announcementTabs[0].postValue);
 
    if (!isLoading) {
       console.log(data);
@@ -44,6 +41,8 @@ const User = () => {
       <div className={clsx(styles.user, styles[theme])}>
          {isLoading ? (
             <AvatarSkeleton />
+         ) : isError ? (
+            <ErrorMessage />
          ) : (
             <div className={styles.user__top}>
                <div
