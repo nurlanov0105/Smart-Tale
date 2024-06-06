@@ -12,6 +12,7 @@ export const UserQueryKeys = {
    CREATE_EQUIPMENT: "create-equipment",
    CREATE_SERVICE: "create-service",
    COMMON_USER: "common-user",
+   COMMON_USER_ADS: "common-user-ads",
    SUBSCRIBE: "subscribe",
 };
 

@@ -14,6 +14,7 @@ export type ModalProps = {
    // type?: "order" | "equipment" | "service";
    type?: string;
    isLightBg?: boolean | null;
+   author?: string | null;
 };
 
 export type ModalState = {

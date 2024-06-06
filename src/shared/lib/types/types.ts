@@ -10,6 +10,7 @@ export enum EnumTokens {
    REMEMBER_ME = "remember-me",
    SUBSCRIBE_TYPE = "subscribe-type",
    SUBSCRIBED_DATA = "subscribed-data",
+   CARD_AUTHOR = "card-author",
 }
 
 export type OrganizationValuesProps = {

@@ -35,7 +35,7 @@ const DeleteModal = () => {
             </h3>
             <p className="greyText">Все данные будут удалены!</p>
             <div className={styles.modal__btns}>
-               <Button className="btn_bordered" onClick={handleCancel}>
+               <Button classType="btn_bordered" onClick={handleCancel}>
                   Нет
                </Button>
                <Button onClick={handleDeleteClick}>{isPending ? "Загрузка..." : "Да"}</Button>

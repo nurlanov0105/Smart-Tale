@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { EquipmentQueryKeys, UserQueryKeys } from "@/shared/api";
+import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 
 interface Props {
    fetchFunction: ({
@@ -96,13 +97,11 @@ export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab, slu
             ? res.data
             : res.data.data;
       const hasNextPage =
-         queryKey === UserQueryKeys.ORDER_HISTORY
+         queryKey === UserQueryKeys.ORDER_HISTORY || queryKey === OrdersQueryKeys.ORDERS
             ? res.has_next_page
             : param_tab
             ? res.has_next_page
-            : queryKey === EquipmentQueryKeys.EQUIPMENTS
-            ? res.data.has_next_page
-            : res.has_next_page;
+            : res.data.has_next_page;
 
       return {
          data: data,

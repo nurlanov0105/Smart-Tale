@@ -6,23 +6,10 @@ import { PathData } from "../model/consts";
 import { ModalheaderProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { usePathSlug } from "../../headerIntro";
 
 const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge }) => {
-   const pathname = usePathname() as string;
-
-   const pathArray = pathname.split("/");
-   const slug =
-      pathname.includes("/order-details/1/") ||
-      pathname.includes("/order-details/2/") ||
-      pathname.includes("/order-details/3/") ||
-      pathname.includes("/card-details/1/") ||
-      pathname.includes("/card-details/2/") ||
-      pathname.includes("/card-details/3/")
-         ? pathArray.pop()
-         : "";
-
-   const remainingPath = pathArray.join("/");
-   console.log(remainingPath);
+   const { pathname, slug, remainingPath } = usePathSlug();
 
    return (
       <div className={clsx(styles.block, isLarge ? styles.block_large : "")}>

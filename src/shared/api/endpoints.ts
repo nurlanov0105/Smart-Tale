@@ -42,6 +42,7 @@ export const EquipmentsEndpoints = {
    HIDE_EQUIPMENT: "/hide-equipment/",
    DELETE_EQUIPMENT: "/equipment/delete/",
    GET_MY_ANNOUNCEMENTS: "/my-ads/",
+   BUY_EQUIPMENT: "/sold-equipment/",
 };
 
 export const ServicesEndpoints = {

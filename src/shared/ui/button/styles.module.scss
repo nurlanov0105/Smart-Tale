@@ -147,6 +147,70 @@
    }
 }
 
+.btnBorder {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   padding: 0.9rem 1.6rem;
+   border-radius: 0.8rem;
+   border: 0.5px solid #000;
+   overflow: hidden;
+
+   span {
+      color: $common-black;
+
+      font-size: 14px;
+      line-height: 1.57;
+   }
+   @include transition;
+
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         background-color: $primary-color;
+         transform: translateY(1px);
+      }
+   }
+
+   &:active {
+      background-color: $primary-color;
+      transform: translateY(1.5px);
+   }
+
+   &:disabled {
+      background-color: rgb(210, 182, 70);
+      cursor: default;
+   }
+
+   &.active {
+      background-color: $primary-color;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $primary-color;
+         }
+      }
+
+      &:active {
+         background-color: $primary-color;
+      }
+
+      &:disabled {
+         background-color: rgb(210, 182, 70);
+         cursor: default;
+      }
+   }
+
+   &_card {
+      padding: 0.8rem 1.6rem;
+
+      span {
+         font-size: 16px;
+         line-height: 1.37;
+      }
+   }
+}
+
 //Laptop
 @media (max-width: 1739px) {
    .btn {

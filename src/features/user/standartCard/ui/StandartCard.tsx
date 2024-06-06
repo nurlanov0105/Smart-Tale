@@ -1,9 +1,9 @@
 "use client";
 
 import { FC } from "react";
-import { BtnBordered } from "@/shared/ui";
+import { Button } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import { EnglishType, MODAL_KEYS, ROUTES } from "@/shared/lib";
+import { CookiesServices, EnglishType, EnumTokens, MODAL_KEYS, ROUTES } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Link from "next/link";
@@ -14,7 +14,12 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleClick = () => {
-      showModal(MODAL_KEYS.card, { slug: item.slug, type: EnglishType[item.type] });
+      showModal(MODAL_KEYS.card, {
+         slug: item.slug,
+         type: EnglishType[item.type],
+      });
+
+      CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item.author?.slug });
    };
 
    if (!item) {
@@ -51,11 +56,11 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
             )}
             <div className={styles.card__descr}>{item.description}</div>
 
-            <BtnBordered
-               className={clsx("btn-bordered__card", styles.card__btn)}
-               onClick={handleClick}>
-               Подробнее
-            </BtnBordered>
+            <div className={styles.card__btn}>
+               <Button classType="btnBorder_card" onClick={handleClick}>
+                  Подробнее
+               </Button>
+            </div>
          </div>
       </div>
    );

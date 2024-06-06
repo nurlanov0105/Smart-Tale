@@ -46,7 +46,7 @@ const CardsSection: FC<CardSectionProps> = ({
             observerTarget={observerTarget}
          />
          {/* {showBtn && (
-            <Button className="btn_fixed" onClick={goTop}>
+            <Button classType="btn_fixed" onClick={goTop}>
                <ArrowUpIcon />
             </Button>
          )} */}
