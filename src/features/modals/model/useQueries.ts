@@ -223,3 +223,20 @@ export const useActiveOrganization = () => {
         }
     })
 }
+
+export const useDeleteOrganization = () => {
+    const {replace} = useRouter()
+    return useMutation<any, Error, string>({
+        mutationKey: [OrganizationQueryKeys.DELETE_ORGANIZATION],
+        mutationFn: (slug) => OrganizationService.deleteOrganization(slug),
+        onSuccess: () => {
+            toast.success("Организация было удалена")
+            replace(ORGANIZATION_ROUTES.ORGANIZATION_LIST)
+            closeModal()
+        },
+        onError: () => {
+            console.log("error")
+            closeModal()
+        },
+    })
+}

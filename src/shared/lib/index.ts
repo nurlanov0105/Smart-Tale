@@ -73,8 +73,10 @@ export type { IRights } from "./types/types";
 export type { DefaultFilterTypes } from "../store/filtersStore/types";
 export type { LikedEquipsParams } from "./types/equiments-service.types";
 
-export type { PositionResponseTypes, EmployeesResponseTypes } from "./types/queries.types";
-export type { VacanciesRequestTypes } from "./types/vacancy-service.types";
+
+export type {PositionResponseTypes, EmployeesResponseTypes, OrganizationDetailsTypes} from "./types/queries.types"
+export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
+
 
 export { ChatsService } from "./services/chatsService";
 
@@ -87,7 +89,9 @@ export {
    useEmployeeOrders,
    useEmployees,
    useGetPositionDetails,
-} from "./hooks/useQueries";
+   useOrganizationDetails
+} from "./hooks/useQueries"
+
 
 export { useInitialRights } from "./hooks/useInitialRights";
 
@@ -102,11 +106,13 @@ export {
    experienceMap,
    incomeLevelFilter,
    specializationsFilter,
-   typeSalary,
-} from "./constants/vacancyFilters";
+   typeSalary
+} from "./constants/vacancyFilters"
 
-export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
-export { useThemeStore } from "../store/themeStore/useThemeStore";
+export {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore"
+export {useThemeStore} from "../store/themeStore/useThemeStore"
+export {cloudImageToFile} from "./utils/imageToFile"
+;
 
 export {
    EnumTokens,

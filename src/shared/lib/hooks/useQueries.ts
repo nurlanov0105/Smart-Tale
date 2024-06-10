@@ -1,6 +1,12 @@
-import {useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService, PositionResponseTypes, EmployeesResponseTypes, GetPositionTypes} from "@/shared/lib";
+import {
+    OrganizationService,
+    PositionResponseTypes,
+    EmployeesResponseTypes,
+    GetPositionTypes,
+    OrganizationDetailsTypes
+} from "@/shared/lib";
 
 export const usePositions = () => {
     return useQuery<PositionResponseTypes[]>({
@@ -35,4 +41,12 @@ export const useEmployeeQuery = (slug: string) => {
         queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS, slug],
         queryFn: () => OrganizationService.getEmployeeDetails(slug),
     })
+}
+
+export const useOrganizationDetails = (slug: string) => {
+    return useQuery<OrganizationDetailsTypes>({
+        queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS, slug],
+        queryFn: () => OrganizationService.getOrganizationDetails(slug),
+    })
+
 }

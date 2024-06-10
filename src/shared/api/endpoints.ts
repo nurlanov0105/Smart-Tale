@@ -68,7 +68,7 @@ export const UserEndpoints = {
 };
 
 export const VacancyEndpoints = {
-   VACANCY: "/vacancy",
+   VACANCY: "/vacancy/?",
    ORGANIZATION_VACANCIES: "/org-vacancy",
    VACANCY_FILTER: "/vacancy/filter",
    VACANCY_SEARCH: "/vacancy/search",
@@ -92,6 +92,8 @@ export const ResumeEndpoints = {
 export const OrganizationEndpoints = {
    ORGANIZATION_DETAILS: "/organization/detail/",
    ORGANIZATION_CREATE: "/organization/create",
+   ORGANIZATION_UPDATE: "/organization/detail/",
+   ORGANIZATION_DELETE: "/organization/detail/",
    ORGANIZATION_ACTIVATE: "/organization/activate/",
    GET_ORGANIZATION_ORDERS: "/received-orders-status/",
    GET_HISTORY_ORDERS: "/my-org-orders",

@@ -6,18 +6,10 @@ import {useThemeStore} from "@/shared/store/themeStore";
 import {ChangeLogoProps} from "../model/types";
 import styles from "./styles.module.scss";
 
-const ChangeLogo = ({register, setValue}: ChangeLogoProps) => {
+const ChangeLogo = ({handleFileChange, image}: ChangeLogoProps) => {
 
     const theme = useThemeStore((state) => state.theme);
 
-    const [image, setImage] = useState<File | null>(null)
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-        if (files){
-            setImage(files[0])
-            setValue(CREATE_ORGANIZATION_NAMES.logo, files[0], { shouldValidate: true });
-        }
-    }
 
     return (
         <>
@@ -43,7 +35,6 @@ const ChangeLogo = ({register, setValue}: ChangeLogoProps) => {
                 </div>
             </div>
             <input
-                {...register(CREATE_ORGANIZATION_NAMES.logo)}
                 id="file"
                 accept="image/*,.png,.jpg"
                 className="visually-hidden"

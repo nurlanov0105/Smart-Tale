@@ -22,14 +22,15 @@ export const usePathSlug = () => {
       pathname.includes("/resume-details/") ||
       pathname.includes("/resume-info/") ||
       pathname.includes("/users/") ||
-      pathname.includes("/users/") ||
-      pathname.includes("/organizations-list/") ||
-      pathname.includes("/organization/announcement-details/") ||
-      pathname.includes("/resume-details/") ||
-      pathname.includes("/work/vacancy-detail/") ||
-      pathname.includes("/work/resume-info/")
-         ? pathArray.pop()
-         : "";
+   pathname.includes("/organizations-list/") ||
+   pathname.includes("/organization-settings/") ||
+   pathname.includes("/organization/announcement-details/") ||
+   pathname.includes("/resume-details/") ||
+   pathname.includes("/work/vacancy-detail/") ||
+   pathname.includes("/work/resume-info/")
+      ? pathArray.pop()
+      : "";
+
    const remainingPath = pathArray.join("/");
 
    return { pathname, slug, remainingPath };

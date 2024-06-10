@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { closeModal } from "@/views/modal";
 import { IEmailVerifyRequest } from "@/features/auth/model/types";
-import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
+import {CookiesServices, EnumTokens, ROUTES, useRememberMe} from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
 import { cookies } from "next/headers";
@@ -98,8 +98,16 @@ export const useResendCode = () => {
    };
 };
 export const useLogout = () => {
+   const { isRemember } = useRememberMe();
+   let refreshToken;
+   if (isRemember) {
+      refreshToken = CookiesServices.getCookiesValue(EnumTokens.REFRESH_TOKEN) || "";
+   } else {
+      refreshToken = sessionStorage.getItem(EnumTokens.REFRESH_TOKEN) || "";
+   }
+
    return useMutation({
-      mutationFn: authApi.logout,
+      mutationFn: (token: string) => authApi.logout({refresh: refreshToken}),
       onSuccess: () => {
          closeModal();
          CookiesServices.clearTokens();

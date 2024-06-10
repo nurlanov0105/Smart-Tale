@@ -1,0 +1,37 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+    border-bottom: 1px solid $dark-grey;
+    padding-bottom: 1.6rem;
+    margin-bottom: 2rem;
+    margin-top: 1.3rem;
+  }
+  &__margin {
+    margin: 2rem 0;
+  }
+  &__button {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    justify-content: flex-end;
+  }
+}
+
+.dark{
+  .form{
+    &__row{
+      border-bottom: 1px solid $border-theme
+    }
+    &__margin label{
+      border: 1px solid $border-theme;
+    }
+  }
+
+}

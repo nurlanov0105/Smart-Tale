@@ -18,6 +18,11 @@ export const OrganizationService = {
         });
         return response.data;
     },
+    updateOrganization: async (data: any, slug: string) => {
+        const headers = { "Content-Type": "multipart/form-data" };
+        const response = await baseApiInstance.put(OrganizationEndpoints.ORGANIZATION_DETAILS + slug, data, {headers: headers,});
+        return response.data;
+    },
     getOrganizationsList: async () => {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_MY_ORGANIZATIONS, {});
         return response.data;
@@ -70,12 +75,16 @@ export const OrganizationService = {
         const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_POSITION + slug);
         return response.data;
     },
+    deleteOrganization: async (slug: string) => {
+        const response = await baseApiInstance.delete(OrganizationEndpoints.ORGANIZATION_DELETE + slug);
+        return response.data;
+    },
     getOrganizationsOrders: async () => {
         const response = await baseApiInstance.get(OrganizationEndpoints.GET_ORGANIZATION_ORDERS);
         return response.data;
     },
     getHistoryOrders: async () => {
-        const response = await baseApiInstance.get(OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=active`);
+        const response = await baseApiInstance.get(OrganizationEndpoints.GET_HISTORY_ORDERS);
         return response.data?.data;
     },
     getEmployeeOrders: async (slug: string) => {

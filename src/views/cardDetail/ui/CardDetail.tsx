@@ -77,11 +77,11 @@ const CardDetail = () => {
    };
 
    const handleLikeClick = () => {
-      if (type === "equipment") {
+      if (type === AnnouncementTypes.equipment) {
          likeEquipment(slug);
-      } else if (type === "order") {
+      } else if (type === AnnouncementTypes.order) {
          likeOrder(slug);
-      } else if (type === "service") {
+      } else if (type === AnnouncementTypes.service) {
          likeService(slug);
       }
    };

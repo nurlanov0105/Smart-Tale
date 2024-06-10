@@ -32,16 +32,22 @@ const OrderDetailBtns: FC<IProps> = ({ isDirty, reset, isDisabled, isSubmitting,
    const handleReset = () => reset();
 
    return (
-      <div className={styles.buttons}>
-         {isDirty && (
-            <Button onClick={handleReset} type="button" classType="btn_bordered">
-               Отменить изменения
-            </Button>
-         )}
-         <Button disabled={!isDisabled || !isDirty} type="submit">
-            {isSubmitting ? "Загрузка..." : "Изменить объявление"}
-         </Button>
-      </div>
+       <div className={styles.buttons__wrapper}>
+          <div className={styles.buttons}>
+             <Button onClick={handleHideClick} type="button" classType="btn_bordered">Скрыть</Button>
+             <Button onClick={handleDeleteClick} type="button" classType="btn_bordered">Удалить</Button>
+          </div>
+          <div className={styles.buttons}>
+             {isDirty && (
+                 <Button onClick={handleReset} type="button" classType="btn_bordered">
+                    Отменить изменения
+                 </Button>
+             )}
+             <Button disabled={!isDisabled || !isDirty} type="submit">
+                {isSubmitting ? "Загрузка..." : "Изменить объявление"}
+             </Button>
+          </div>
+       </div>
    );
 };
 

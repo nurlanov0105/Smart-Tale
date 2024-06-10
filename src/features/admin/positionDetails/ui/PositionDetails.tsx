@@ -17,7 +17,7 @@ const PositionDetails = () => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleDelete = () => {
-      showModal(MODAL_KEYS.deletePosition, { slug: slug.toString() });
+      showModal(MODAL_KEYS.confirmationModal, { slug: slug.toString(), componentName: MODAL_KEYS.deletePosition });
    };
 
    const {
