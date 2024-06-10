@@ -30,9 +30,9 @@ const useFetchResource = ({
       return AnnouncementTypes.service === type ? response : response.data;
    };
 
-   const { isPending, isError, data } = useQuery({ queryKey: [type, slug], queryFn });
+   const { isPending, isError, isSuccess, data } = useQuery({ queryKey: [type, slug], queryFn });
 
-   return { isPending, isError, data };
+   return { isPending, isError, isSuccess, data };
 };
 
 export default useFetchResource;

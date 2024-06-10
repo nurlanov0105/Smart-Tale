@@ -34,7 +34,7 @@ const Tabs: FC<ButtonsProps> = ({ type, setType, values, variant }) => {
                <Button
                   type="button"
                   key={value.postValue}
-                  classType="btnBorder"
+                  classType={isActive(value.postValue) ? "btnBorder_active" : "btnBorder"}
                   onClick={() => handleType(value.postValue)}
                   className={isActive(value.postValue)}>
                   {value.value}

@@ -15,16 +15,16 @@ const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
       <>
          {type === "organization" ? (
             <div className={clsx(styles.logo, styles[theme])}>
-               <Link href={ROUTES.MARKETPLACE_EQUIPMENT}>
+               <div>
                   <Image
                      className={styles.logo__imageOrganization}
-                     src={logo}
+                     src={data?.logo ? data?.logo : ""}
                      alt="logo"
                      width={70}
                      height={70}
                      priority
                   />
-               </Link>
+               </div>
                <h1 className="h1">{data?.title}</h1>
                <p className={styles.logo__text}>{data?.description}</p>
             </div>

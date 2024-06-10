@@ -1,12 +1,12 @@
-import { StandartCard } from "@/features/user/standartCard";
-import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { FC, useRef } from "react";
+import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
+import { StandartCard } from "@/features/user/standartCard";
+import { CommonSkeleton } from "@/shared/ui";
+import { SliderCardsProps } from "../model/types";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import "swiper/css";
-import { SliderCardsProps } from "../model/types";
-import { CommonSkeleton } from "@/shared/ui";
 
 const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading }) => {
    const swiperRef = useRef<any>(null);

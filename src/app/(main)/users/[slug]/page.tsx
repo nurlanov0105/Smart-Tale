@@ -1,5 +1,5 @@
+import { User } from "@/views/user";
 import React from "react";
-import { User } from "@/widgets/user/user";
 
 const UserPage = () => {
    return <User />;

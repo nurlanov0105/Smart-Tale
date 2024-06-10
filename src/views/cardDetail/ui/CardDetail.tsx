@@ -1,38 +1,58 @@
 "use client";
 
 import React, { useState } from "react";
+import { useGetCommonUserAds } from "@/widgets/user/cardsSection";
 import { SliderCards } from "@/widgets/user/sliderCards";
 import { Chat } from "@/widgets/user/chat";
 import { CardSlider } from "@/features/general/cardSlider";
-import { ModalCardHeader } from "@/entities/general/modalCardHeader";
+import { useBuyEquipment, useOrderApply } from "@/widgets/general/cardModal";
 import { CardCategory } from "@/features/general/cardCategory";
-import { ISize, useFetchResource } from "@/features/user/standartCard";
+import {
+   ISize,
+   useFetchResource,
+   useLikeEquipment,
+   useLikeOrder,
+   useLikeService,
+} from "@/features/user/standartCard";
+import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 import { Button, CommonSkeleton, GlobalLoading } from "@/shared/ui";
 import {
+   AnnouncementTypes,
    CookiesServices,
    EnumTokens,
+   OrdersService,
    SkeletonTypes,
    images,
    useAnnouncementType,
 } from "@/shared/lib";
-import { useGetCommonUserAds } from "@/widgets/user/user";
 
 import styles from "./styles.module.scss";
-import { ErrorMessage } from "@/entities/general/errorMessage";
-import { useModalStore } from "@/views/modal/model/modalState";
+import { FeedbackList } from "@/widgets/general/feedbackList";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
    const { type, slug } = useAnnouncementType();
    const author = CookiesServices.getCookiesValue(EnumTokens.CARD_AUTHOR);
-   const { isError, isPending: isLoading, data } = useFetchResource({ type, slug, isDetail: true });
+   const {
+      isError,
+      isPending: isLoading,
+      isSuccess,
+      data,
+   } = useFetchResource({ type, slug, isDetail: true });
 
    const {
       isError: isAdsError,
       isPending: isAdsLoading,
       data: isAdsData,
    } = useGetCommonUserAds({ slug: author || "", page: 1, param_tab: "all" });
+
+   const { mutate: buyEquipment, isPending: isbuyEquipmentLoading } = useBuyEquipment();
+   const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
+   const { mutate: likeEquipment, isPending: likeEquipmentLoading } = useLikeEquipment(slug);
+   const { mutate: likeOrder, isPending: likeOrderLoading } = useLikeOrder(slug);
+   const { mutate: likeService, isPending: likeServiceLoading } = useLikeService(slug);
 
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
@@ -45,6 +65,26 @@ const CardDetail = () => {
    if (isLoading) {
       return <GlobalLoading type="full" />;
    }
+
+   const handleBuy = () => {
+      buyEquipment(slug);
+   };
+
+   const handleService = () => {};
+
+   const handleOrder = () => {
+      orderApply(slug);
+   };
+
+   const handleLikeClick = () => {
+      if (type === "equipment") {
+         likeEquipment(slug);
+      } else if (type === "order") {
+         likeOrder(slug);
+      } else if (type === "service") {
+         likeService(slug);
+      }
+   };
 
    const categoryData = (selectedCategory: string) => {
       if (selectedCategory === "Описание") {
@@ -107,6 +147,7 @@ const CardDetail = () => {
                            </div>
                         )}
                      </div>
+                     {type === "order" && isSuccess && <FeedbackList slug={data.data.slug} />}
                   </div>
                </div>
                <div className={styles.detail__right}>
@@ -121,7 +162,22 @@ const CardDetail = () => {
                   <div className={styles.detail__chat}>
                      <Chat author={data.data.author} />
                   </div>
-                  <Button classType="btnBorder">В избранные</Button>
+                  {type === AnnouncementTypes.equipment ? (
+                     <Button onClick={handleBuy}>
+                        {isbuyEquipmentLoading ? "Загрузка..." : "Купить"}
+                     </Button>
+                  ) : type === AnnouncementTypes.service ? (
+                     <Button onClick={handleService}>Принять услугу</Button>
+                  ) : (
+                     <Button onClick={handleOrder}>
+                        {isOrderLoading ? "Загрузка..." : "Принять заказ"}
+                     </Button>
+                  )}
+                  <Button classType="btnBorder" onClick={handleLikeClick}>
+                     {likeEquipmentLoading || likeOrderLoading || likeServiceLoading
+                        ? "Загрузка..."
+                        : "В избранные"}
+                  </Button>
                </div>
             </div>
          )}

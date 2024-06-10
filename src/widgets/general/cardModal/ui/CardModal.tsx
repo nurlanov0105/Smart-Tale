@@ -16,7 +16,7 @@ import { AnnouncementRoutes } from "../model/consts";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useBuyEquipment } from "../model/useQueries";
+import { useBuyEquipment, useOrderApply } from "../model/useQueries";
 
 type Props = {
    slug: string;
@@ -30,6 +30,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
 
    const { isPending, isError, data } = useFetchResource({ type, slug });
    const { mutate: buyEquipment, isPending: isLoading } = useBuyEquipment();
+   const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
 
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const handleCategoryClick = (category: string) => {
@@ -69,6 +70,10 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    if (!isPending && !data.data) {
       return <ErrorMessage />;
    }
+
+   if (!isPending) {
+      console.log(data);
+   }
    // description phone_number email size [{id,size}]
 
    const handleBuy = () => {
@@ -77,7 +82,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
 
    const handleService = () => {};
 
-   const handleOrder = () => {};
+   const handleOrder = () => {
+      orderApply(slug);
+   };
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>
@@ -127,13 +134,22 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                            ) : (
                               <>
                                  {type === AnnouncementTypes.equipment ? (
-                                    <Button onClick={handleBuy}>
-                                       {isLoading ? "Загрузка..." : "Купить"}
+                                    <Button
+                                       onClick={handleBuy}
+                                       disabled={data.data?.sale_status === "Equipment sold"}>
+                                       {isLoading
+                                          ? "Загрузка..."
+                                          : AnnouncementTypes.equipment === type &&
+                                            data.data?.sale_status === "Equipment sold"
+                                          ? "Продано"
+                                          : "Купить"}
                                     </Button>
                                  ) : type === AnnouncementTypes.service ? (
                                     <Button onClick={handleService}>Принять услугу</Button>
                                  ) : (
-                                    <Button onClick={handleOrder}>Принять заказ</Button>
+                                    <Button onClick={handleOrder}>
+                                       {isOrderLoading ? "Загрузка..." : "Принять заказ"}
+                                    </Button>
                                  )}
 
                                  <Button onClick={handleBtnClick} className={styles.modal__btn}>

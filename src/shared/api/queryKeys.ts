@@ -60,7 +60,10 @@ export const OrdersQueryKeys = {
    ORDER_HIDE: "order-hide",
    ORDER_DELETE: "order-confirmationModal",
    ORDER_UPDATE: "order-update",
-   CREATE_ORDER: "order-update",
+   CREATE_ORDER: "order-create",
+   APPLY_ORDER: "apply-order",
+   APPLIED_OERGANIZATIONS: "applied-organizations",
+   LIKED_ORDERS: "liked-orders",
 };
 
 export const ServiceQueryKeys = {
@@ -99,4 +102,3 @@ export const ChatsQueryKeys = {
    CONVERSATIONS: "conversations",
    MESSAGES: "messages",
 };
-

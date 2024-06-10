@@ -18,7 +18,7 @@ const CreateAnnouncement = () => {
             </div>
          </div>
 
-         <h4 className="h4">Информация об оборудовании</h4>
+         <h4 className="h4">Информация об объявлении</h4>
          <OrderForm type={type} />
       </div>
    );
