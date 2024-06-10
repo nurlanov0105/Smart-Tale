@@ -10,6 +10,7 @@ import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { useMutation } from "@tanstack/react-query";
 import { showModal } from "@/views/modal";
+import Select2 from "@/shared/ui/select/Select2";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -62,8 +63,7 @@ const StripPayment = () => {
          <h3 className="h3">Оплата картой</h3>
          <div className={styles.section__content}>
             <div className={styles.section__left}>
-               <Select
-                   //@ts-ignore
+               <Select2
                   selected={selected}
                   setSelected={setSelected}
                   title="Подписки"

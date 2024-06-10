@@ -12,6 +12,7 @@ export const useCreateOrganization = () => {
         handleSubmit,
         control,
         setValue,
+        watch,
         formState: {errors, isValid}
     } = useForm<CreateOrganizationTypes>({
         mode: "onBlur"
@@ -43,11 +44,13 @@ export const useCreateOrganization = () => {
         handleSubmit: handleSubmit(onsSubmit),
         isLoading: isPending,
         isError,
+
         register,
         errors,
         isValid,
         control,
-        setValue
+        setValue,
+        watch
 
     }
 }

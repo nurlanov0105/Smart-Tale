@@ -57,7 +57,7 @@ export const usePayment = () => {
         mutationKey: [UserQueryKeys.SUBSCRIBE],
         mutationFn: (data) => UserService.getSubscription(data),
         onSuccess: () => {
-            showModal(MODAL_KEYS.subscribe)
+            showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.subscribe})
             if (formRef.current) {
                 formRef.current.reset();
             }

@@ -68,7 +68,7 @@ export type {
 export type {IRights} from "./types/types"
 export type {DefaultFilterTypes} from "../store/filtersStore/types"
 
-export type {PositionResponseTypes, EmployeesResponseTypes} from "./types/queries.types"
+export type {PositionResponseTypes, EmployeesResponseTypes, OrganizationDetailsTypes} from "./types/queries.types"
 export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
 
 
@@ -83,7 +83,8 @@ export {
    useEmployeeQuery,
    useEmployeeOrders,
    useEmployees,
-   useGetPositionDetails
+   useGetPositionDetails,
+   useOrganizationDetails
 } from "./hooks/useQueries"
 
 export {useInitialRights} from "./hooks/useInitialRights"
@@ -104,6 +105,7 @@ export {
 
 export {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore"
 export {useThemeStore} from "../store/themeStore/useThemeStore"
+export {cloudImageToFile} from "./utils/imageToFile"
 
 
 export {

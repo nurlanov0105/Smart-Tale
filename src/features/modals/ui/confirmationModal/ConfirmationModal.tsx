@@ -38,7 +38,7 @@ const ConfirmationModal = ({type, componentName, slug}: ModalProps) => {
                     {description}
                 </p>
                 <div className={styles.modal__btns}>
-                    <Button onClick={closeModal} className="btn_bordered">Нет</Button>
+                    <Button onClick={closeModal} classType="btn_bordered">Нет</Button>
                     <Button onClick={handleDelete}>
                         {isPending ? "Загрузка..." : buttonText}
                     </Button>

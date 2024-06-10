@@ -1,5 +1,5 @@
 "use client"
-import React from "react";
+import React, {useCallback} from "react";
 import clsx from "clsx";
 import { Button, InputField, TextArea } from "@/shared/ui";
 import {useThemeStore} from "@/shared/store/themeStore";
@@ -17,12 +17,22 @@ const OrganizationForm = () => {
         handleSubmit,
         register,
         isLoading,
+        watch,
         setValue} = useCreateOrganization()
+
+    const image = watch(CREATE_ORGANIZATION_NAMES.logo)
+
+    const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+        if (files){
+            setValue(CREATE_ORGANIZATION_NAMES.logo, files[0], { shouldValidate: true });
+        }
+    }, [setValue])
 
     return (
         <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
             <h4 className="h4">Ваш логотип</h4>
-            <ChangeLogo register={register} setValue={setValue}/>
+            <ChangeLogo image={image} handleFileChange={handleFileChange}/>
             <div className={styles.form__row}>
                 <h4 className="h4">Информация об организации</h4>
                 <InputField

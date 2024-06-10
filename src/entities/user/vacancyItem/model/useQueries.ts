@@ -11,10 +11,31 @@ import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
 export const useGetVacancies = (page: number) => {
    const defaultValues = VacancyFilterStore(state => state.defaultValues)
 
+   let job_title = ""
+   let schedule = ""
+   let location = ""
+
+   defaultValues.job_title?.map((item) => job_title += `job_title=${item}&`)
+   defaultValues.schedule?.map((item) => schedule += `schedule=${item}&`)
+   defaultValues.location?.map((item) => location += `location=${item}&`)
+
+   const experience = () => {
+      if (defaultValues.experience === "Не имеет значения") return ""
+      if (defaultValues.experience) return `experience=${defaultValues.experience}&`
+      return ""
+   }
+   const incomeLevel = () => {
+      if (defaultValues.incomeLevel === "Не имеет значения") return ""
+      if (defaultValues.incomeLevel) return `incomeLevel=${defaultValues.incomeLevel}&`
+      return ""
+   }
+
+   const params = `${location}${job_title}${schedule}${experience()}`
+
    return useQuery({
       queryKey: [VacancyQueryKeys.GET_VACANCIES, defaultValues],
       queryFn: () => {
-         return VacancyService.getVacancies(defaultValues)
+         return VacancyService.getVacancies(params)
       },
    });
 };

@@ -21,6 +21,11 @@
       margin-bottom: 1.2rem;
    }
 
+   &__block{
+      display: flex;
+      column-gap: 3rem;
+      width: 100%;
+   }
    &__text,
    &__textOrganization {
       color: $dark-grey;

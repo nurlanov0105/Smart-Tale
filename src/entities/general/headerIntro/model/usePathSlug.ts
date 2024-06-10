@@ -24,6 +24,7 @@ export const usePathSlug = () => {
       pathname.includes("/users/");
    pathname.includes("/users/") ||
    pathname.includes("/organizations-list/") ||
+   pathname.includes("/organization-settings/") ||
    pathname.includes("/organization/announcement-details/") ||
    pathname.includes("/resume-details/") ||
    pathname.includes("/work/vacancy-detail/") ||

@@ -1,15 +1,20 @@
 import React, { FC } from "react";
-import logo from "@@/logo.svg";
-import { ROUTES } from "@/shared/lib";
-import type { LogoProps } from "../model/types";
+import { Pencil } from "lucide-react";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 import Link from "next/link";
-import styles from "./styles.module.scss";
-import clsx from "clsx";
+import {ORGANIZATION_ROUTES, ROUTES} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
+import logo from "@@/logo.svg";
+import type { LogoProps } from "../model/types";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    const theme = useThemeStore((state) => state.theme);
+
+   const {push} = useRouter()
+   const handleEdit = () => push(ORGANIZATION_ROUTES.ORGANIZATION_SETTINGS + `/${data?.slug}`)
 
    return (
       <>
@@ -25,7 +30,10 @@ const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
                      priority
                   />
                </Link>
-               <h1 className="h1">{data?.title}</h1>
+              <div className={styles.logo__block}>
+                 <h1 className="h1">{data?.title}</h1>
+                 <button onClick={handleEdit}><Pencil /></button>
+              </div>
                <p className={styles.logo__text}>{data?.description}</p>
             </div>
          ) : (

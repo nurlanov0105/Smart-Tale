@@ -76,6 +76,7 @@ export enum ROUTES {
 export enum ORGANIZATION_ROUTES {
    ORGANIZATION_LIST = "/organization/organization-list",
    ORGANIZATION_DETAILS = "/organization/organization-details",
+   ORGANIZATION_SETTINGS = "/organization/organization-settings",
    CREATE_ORGANIZATION = "/organization/create-organization",
    EMPLOYEES = "/organization/employees",
    EMPLOYEES_DETAILS = "/organization/employees-details",

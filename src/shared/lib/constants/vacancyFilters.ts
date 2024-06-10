@@ -25,10 +25,10 @@ export const cityFilter = [
 ];
 
 export const specializationsFilter = [
-   { value: "Администратор", postValue: "admin" },
-   { value: "Швея", postValue: "seamstress" },
-   { value: "Утюжник", postValue: "iron" },
-   { value: "Менеджер", postValue: "manager" },
+   { value: "Администратор", postValue: "Администратор" },
+   { value: "Швея", postValue: "Швея" },
+   { value: "Утюжник", postValue: "Утюжник" },
+   { value: "Менеджер", postValue: "Менеджер" },
 ];
 
 export const experienceFilter = [
