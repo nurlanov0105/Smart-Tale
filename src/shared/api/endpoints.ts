@@ -20,7 +20,7 @@ export const OrdersEndpoints = {
    GET_MY_ORDERS_HISTORY: "/my-history-orders/",
    GET_MY_ORDER: "/order-detail/",
    GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
-   APPLY_ORDER: "/order-apply",
+   APPLY_ORDER: "/order-apply/",
    LIKE_ORDER: "/like-order/",
    BOOKING_ORDER: "/order-book/",
    DELETE_ORDER: "/order-confirmationModal/",
@@ -43,6 +43,7 @@ export const EquipmentsEndpoints = {
    DELETE_EQUIPMENT: "/equipment/delete/",
    GET_MY_ANNOUNCEMENTS: "/my-ads/",
    BUY_EQUIPMENT: "/sold-equipment/",
+   LIKE_EQUIPMENT: "/equipments/like/",
 };
 
 export const ServicesEndpoints = {

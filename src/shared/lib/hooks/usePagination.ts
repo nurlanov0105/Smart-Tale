@@ -1,39 +1,8 @@
 "use client";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ItemType } from "@/entities/general/orderItem";
-
-interface UsePaginationOptions {
-   fetchFunction: ({
-      page,
-      param_tab,
-      ads,
-      title,
-   }: {
-      page: number;
-      param_tab?: string;
-      ads?: string;
-      title?: string;
-   }) => Promise<any>;
-   queryKey: string;
-   param_tab?: string;
-   tab?: string;
-   ads?: string;
-   title?: string;
-}
-
-interface UsePaginationResult {
-   data: ItemType[];
-   totalPages: number;
-   currentPage: number;
-   isLoading: boolean;
-   isError: boolean;
-   hasNextPage: boolean;
-   fetchNextPage: () => void;
-   fetchPreviousPage: () => void;
-   setCurrentPage: Dispatch<SetStateAction<number>>;
-}
+import { ItemType, UsePaginationOptions, UsePaginationResult } from "../types/usePaginationTypes";
 
 const usePagination = ({
    fetchFunction,
@@ -42,8 +11,8 @@ const usePagination = ({
    tab,
    ads,
    title,
+   slug,
 }: UsePaginationOptions): UsePaginationResult => {
-
    const [currentPage, setCurrentPage] = useState(1);
    const [totalPages, setTotalPages] = useState(1);
    const [data, setData] = useState<ItemType[]>([]);
@@ -61,6 +30,7 @@ const usePagination = ({
             param_tab: param_tab ? param_tab : "",
             ads: ads ? ads : "",
             title: title ? title : "",
+            slug: slug ? slug : "",
          }),
    });
 
@@ -96,6 +66,10 @@ const usePagination = ({
          setCurrentPage((prev) => prev - 1);
       }
    };
+
+   if (!isLoading) {
+      console.log("feedback pag data - ", queryData);
+   }
 
    return {
       data,

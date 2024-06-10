@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
-import styles from "./styles.module.scss";
-import { VacancyItem, useGetVacancySlug } from "@/entities/user/vacancyItem";
+import { usePathname } from "next/navigation";
 import { vacancies } from "@/widgets/user/vacancies/model/values.data";
+import { VacancyItem, useGetVacancySlug } from "@/entities/user/vacancyItem";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 import { GlobalLoading, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
-import { usePathname } from "next/navigation";
-import { ErrorMessage } from "@/entities/general/errorMessage";
+import styles from "./styles.module.scss";
 
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);

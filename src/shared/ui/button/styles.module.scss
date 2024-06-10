@@ -30,7 +30,7 @@
       cursor: default;
    }
 
-   &.active {
+   &_active {
       background-color: $dark-blue;
 
       @media (hover: hover) and (pointer: fine) {
@@ -182,7 +182,7 @@
       cursor: default;
    }
 
-   &.active {
+   &_active {
       background-color: $primary-color;
 
       @media (hover: hover) and (pointer: fine) {
@@ -215,5 +215,47 @@
 @media (max-width: 1739px) {
    .btn {
       padding: 1.6rem 2.5rem;
+   }
+}
+
+.btnBorder.dark {
+   border: 1px solid $dark-grey;
+   span {
+      color: $dark-grey;
+   }
+
+   @media (hover: hover) and (pointer: fine) {
+      &:hover {
+         background-color: rgb(214, 184, 64);
+         transform: translateY(1px);
+
+         span {
+            color: $common-black;
+         }
+      }
+   }
+
+   &:active {
+      background-color: rgb(214, 184, 64);
+
+      span {
+         color: $common-black;
+      }
+   }
+
+   &.active {
+      background-color: rgb(214, 184, 64);
+      span {
+         color: $common-black;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: rgb(214, 184, 64);
+            span {
+               color: $common-black;
+            }
+         }
+      }
    }
 }

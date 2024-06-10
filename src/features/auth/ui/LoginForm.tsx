@@ -11,21 +11,17 @@ import { EmailSchema, passwordSchema } from "../model/schema";
 import { useLoginForm } from "../model/hooks";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { Home } from "lucide-react";
 
 const LoginForm: FC = () => {
    const theme = useThemeEffect();
 
-   const { handleSubmit, register, errors, isValid, isLoading
-   } = useLoginForm();
+   const { handleSubmit, register, errors, isValid, isLoading } = useLoginForm();
 
    const { isRemember, setIsRemember } = useRememberMe();
 
    const handleRememberChange = () => {
       setIsRemember(!isRemember);
    };
-
-
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.auth, styles[theme])}>
@@ -70,9 +66,7 @@ const LoginForm: FC = () => {
                <Link href="/" className={styles.auth__homeLink}>
                   Главная страница
                </Link>
-
             </div>
-
          </div>
       </form>
    );

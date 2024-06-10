@@ -48,11 +48,14 @@ baseApiInstance.interceptors.request.use(
          }
          config.headers["Authorization"] = `Bearer ${accessToken}`;
       }
-       //
-       if (config.url && !config.url.endsWith('logout') && !config.url.endsWith('/')) {
-           config.url += '/';
-       }
-
+      // if (
+      //    config.url &&
+      //    !config.url.endsWith("logout") &&
+      //    !config.url.endsWith("/") &&
+      //    !config.params
+      // ) {
+      //    config.url += "/";
+      // }
 
       return config;
    },
@@ -83,7 +86,7 @@ baseApiInstance.interceptors.response.use(
          return baseApiInstance(originalRequest);
       }
 
-       const alertError = errorCatch(error);
+      const alertError = errorCatch(error);
 
       console.log("Произошла ошибка при запросе: ", alertError);
       toast.error(alertError);

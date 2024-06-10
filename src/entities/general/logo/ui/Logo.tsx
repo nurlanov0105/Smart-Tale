@@ -19,39 +19,40 @@ const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    return (
       <>
          {type === "organization" ? (
-            <div className={clsx(styles.logo, styles[theme])}>
-               <Link href={ROUTES.MARKETPLACE_EQUIPMENT}>
-                  <Image
-                     className={styles.logo__imageOrganization}
-                     src={logo}
-                     alt="logo"
-                     width={70}
-                     height={70}
-                     priority
-                  />
-               </Link>
-              <div className={styles.logo__block}>
-                 <h1 className="h1">{data?.title}</h1>
-                 <button onClick={handleEdit}><Pencil /></button>
-              </div>
-               <p className={styles.logo__text}>{data?.description}</p>
-            </div>
-         ) : (
-            <div className={clsx(styles.logo, styles[theme])}>
-               <Link href={ROUTES.MARKETPLACE_EQUIPMENT}>
-                  <Image
-                     className={styles.logo__image}
-                     src={logo}
-                     alt="logo"
-                     width={70}
-                     height={70}
-                     priority
-                  />
-               </Link>
-               <h1 className="h1">SmartTale</h1>
-               <p className={styles.logo__text}>Мониторинг и управление швейным производством</p>
-            </div>
-         )}
+             <div className={clsx(styles.logo, styles[theme])}>
+                 <div>
+                     <Image
+                         className={styles.logo__imageOrganization}
+                         src={data?.logo ? data?.logo : ""}
+                         alt="logo"
+                         width={70}
+                         height={70}
+                         priority
+                     />
+
+                     <div className={styles.logo__block}>
+                         <h1 className="h1">{data?.title}</h1>
+                         <button onClick={handleEdit}><Pencil /></button>
+                     </div>
+
+                 </div>
+             </div>
+             ) : (
+        <div className={clsx(styles.logo, styles[theme])}>
+            <Link href={ROUTES.MARKETPLACE_EQUIPMENT}>
+                <Image
+                    className={styles.logo__image}
+                    src={logo}
+                    alt="logo"
+                    width={70}
+                    height={70}
+                    priority
+                />
+            </Link>
+            <h1 className="h1">SmartTale</h1>
+            <p className={styles.logo__text}>Мониторинг и управление швейным производством</p>
+        </div>
+    )}
       </>
    );
 };

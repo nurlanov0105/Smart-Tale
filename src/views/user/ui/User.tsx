@@ -1,20 +1,19 @@
 "use client";
 import React, { useState } from "react";
-import { CircleAlert } from "lucide-react";
+import { usePathname } from "next/navigation";
+import Image from "next/image";
 import { Tabs } from "@/features/general/tabs";
 import { CardsSection } from "@/widgets/user/cardsSection";
-import avatar from "@@/logo.svg";
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import { EquipmentService, SkeletonTypes, UserService, announcementTabs } from "@/shared/lib";
-import { AvatarSkeleton, GlobalLoading } from "@/shared/ui";
+import { SkeletonTypes, UserService, announcementTabs } from "@/shared/lib";
+import { AvatarSkeleton } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
-import clsx from "clsx";
 import { UserQueryKeys } from "@/shared/api";
-import { usePathname } from "next/navigation";
-import { useGetCommonUser, useGetCommonUserAds } from "../model/useQueries";
-import { ErrorMessage } from "@/entities/general/errorMessage";
 
+import { CircleAlert } from "lucide-react";
+import { ErrorMessage } from "@/entities/general/errorMessage";
+import { useGetCommonUser } from "../model/useQueries";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 import userIcon from "@@/imgs/form/user.svg";
 
 const User = () => {

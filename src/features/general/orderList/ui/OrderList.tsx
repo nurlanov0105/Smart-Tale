@@ -1,10 +1,13 @@
-import React, { FC, useEffect } from "react";
-import { ItemType, OrderItem } from "@/entities/general/orderItem";
+import React, { FC } from "react";
+import { OrderItem } from "@/entities/general/orderItem";
 import { Props } from "../model/types";
 import styles from "./styles.module.scss";
 import { CommonSkeleton } from "@/shared/ui";
 import { Pagination } from "../../pagination";
 import { usePagination } from "@/shared/lib";
+import { usePathname } from "next/navigation";
+import { VacancyItem } from "@/entities/user/vacancyItem";
+import { ResumeItem } from "@/entities/admin/resumeItem";
 
 const OrderList: FC<Props> = ({
    fetchFunction,
@@ -35,8 +38,10 @@ const OrderList: FC<Props> = ({
       title,
    });
 
+   const pathname = usePathname();
+
    if (!isLoading) {
-      console.log(data);
+      console.log("search res -", data);
    }
 
    const readyData = isError ? (
@@ -44,7 +49,17 @@ const OrderList: FC<Props> = ({
    ) : isLoading ? (
       [...Array(8)].map((_, i: number) => <CommonSkeleton key={i} type={type} />)
    ) : (
-      data?.map((item, i: number) => <OrderItem key={i} item={item} isCurrent={isCurrent} />)
+      data?.map((item, i: number) => {
+         if (pathname.includes("work-vacancies")) {
+            // @ts-ignore
+            return <VacancyItem item={item} key={i} />;
+         } else if (pathname.includes("work-resumes")) {
+            // @ts-ignore
+            return <ResumeItem item={item} key={i} />;
+         } else {
+            return <OrderItem key={i} item={item} isCurrent={isCurrent} />;
+         }
+      })
    );
 
    return (

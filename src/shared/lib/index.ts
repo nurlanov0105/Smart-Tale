@@ -50,8 +50,12 @@ import {
    sizesDataLetters,
 } from "./constants/announcement.consts";
 
-export {rightsActionsData} from "./utils/rightsActionsData"
-export {rightsActionsMap} from "./constants/consts"
+export type { ItemType } from "./types/usePaginationTypes";
+export type { UsePaginationResult } from "./types/usePaginationTypes";
+export type { UsePaginationOptions } from "./types/usePaginationTypes";
+
+export { rightsActionsData } from "./utils/rightsActionsData";
+export { rightsActionsMap } from "./constants/consts";
 export type {
    RightsTypes,
    AddEmployeeTypes,
@@ -63,20 +67,21 @@ export type {
    IRight,
    EmployeeDetailsTypes,
    GetPositionTypes,
-   UpdateEmployeeTypes
-} from "./types/organizations-service.types"
-export type {IRights} from "./types/types"
-export type {DefaultFilterTypes} from "../store/filtersStore/types"
+   UpdateEmployeeTypes,
+} from "./types/organizations-service.types";
+export type { IRights } from "./types/types";
+export type { DefaultFilterTypes } from "../store/filtersStore/types";
+export type { LikedEquipsParams } from "./types/equiments-service.types";
+
 
 export type {PositionResponseTypes, EmployeesResponseTypes, OrganizationDetailsTypes} from "./types/queries.types"
 export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
 
 
-export { ChatsService} from "./services/chatsService"
+export { ChatsService } from "./services/chatsService";
 
-export { ChatsQueryKeys} from "../api/queryKeys"
-export { ChatsEndpoints} from "../api/endpoints"
-
+export { ChatsQueryKeys } from "../api/queryKeys";
+export { ChatsEndpoints } from "../api/endpoints";
 
 export {
    usePositions,
@@ -87,7 +92,8 @@ export {
    useOrganizationDetails
 } from "./hooks/useQueries"
 
-export {useInitialRights} from "./hooks/useInitialRights"
+
+export { useInitialRights } from "./hooks/useInitialRights";
 
 export {
    graphicsFilter,
@@ -106,7 +112,7 @@ export {
 export {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore"
 export {useThemeStore} from "../store/themeStore/useThemeStore"
 export {cloudImageToFile} from "./utils/imageToFile"
-
+;
 
 export {
    EnumTokens,

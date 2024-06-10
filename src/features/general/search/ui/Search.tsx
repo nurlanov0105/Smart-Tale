@@ -11,7 +11,7 @@ import searchIcon from "@@/imgs/header/search.svg";
 import styles from "./styles.module.scss";
 
 const SearchField = () => {
-   const theme = useThemeStore(state => state.theme);
+   const theme = useThemeStore((state) => state.theme);
    const setSearch = useSearchStore((state) => state.setSearch);
    const pathname = usePathname();
 

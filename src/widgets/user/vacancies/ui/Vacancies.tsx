@@ -1,16 +1,16 @@
 "use client";
-import React, { useState } from "react";
-import { SlidersHorizontal } from "lucide-react";
-import { VacancyCardType, VacancyItem, useGetVacancies } from "@/entities/user/vacancyItem";
-import { GlobalLoading, Select } from "@/shared/ui";
-import { useThemeStore } from "@/shared/store/themeStore";
-import { timeList, typeList } from "../model/values.data";
-import { FiltersVacancies } from "@/features/user/filtersVacancies";
 
-import clsx from "clsx";
+import React, { useState } from "react";
+import { FiltersVacancies } from "@/features/user/filtersVacancies";
+import { VacancyCardType, VacancyItem, useGetVacancies } from "@/entities/user/vacancyItem";
+import { TypeViewButtons } from "@/entities/user/typeViewButtons";
 import { ErrorMessage } from "@/entities/general/errorMessage";
-import {TypeViewButtons} from "@/entities/user/typeViewButtons";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { GlobalLoading } from "@/shared/ui";
 import Select2 from "@/shared/ui/select/Select2";
+import { timeList, typeList } from "../model/values.data";
+import { SlidersHorizontal } from "lucide-react";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const Vacancies = () => {
@@ -26,15 +26,9 @@ const Vacancies = () => {
 
    const handleFilters = () => setWithFilters(!withFilters);
 
-   const {
-       isError,
-       isPending,
-       isLoading,
-       data,
-       isSuccess
-   } = useGetVacancies(page);
+   const { isError, isPending, isLoading, data, isSuccess } = useGetVacancies(page);
 
-   const vacanciesLength = isSuccess ? data?.data.length : 0
+   const vacanciesLength = isSuccess ? data?.data.length : 0;
 
    return (
       <div className={clsx(styles.vacancies, styles[theme])}>
@@ -43,7 +37,7 @@ const Vacancies = () => {
          </div>
 
          <div className={styles.vacancies__filters}>
-            <TypeViewButtons typeView={typeView} setTypeView={setTypeView}/>
+            <TypeViewButtons typeView={typeView} setTypeView={setTypeView} />
             <div className={styles.vacancies__selects}>
                <Select2
                   selected={selectedDate}
@@ -65,34 +59,32 @@ const Vacancies = () => {
             </div>
          </div>
 
-          <div
-              className={clsx({
-                  [styles.vacancies__withoutFilters]: !withFilters,
-                  [styles.vacancies__row]: withFilters,
-              })}>
+         <div
+            className={clsx({
+               [styles.vacancies__withoutFilters]: !withFilters,
+               [styles.vacancies__row]: withFilters,
+            })}>
+            <div className={styles.vacancies__list}>
+               {isLoading ? (
+                  <GlobalLoading type="full" />
+               ) : isError ? (
+                  <ErrorMessage />
+               ) : (
+                  !data?.data.length && <ErrorMessage isEmpty={true} />
+               )}
 
-              <div className={styles.vacancies__list}>
-                  {
-                      isLoading ? <GlobalLoading type="full"/> :
-                          isError ? <ErrorMessage/> :
-                            !data?.data.length && <ErrorMessage isEmpty={true}/>
-                  }
+               {data?.data?.map((item: VacancyCardType, idx: number) => (
+                  <VacancyItem item={item} key={idx} typeView={typeView} />
+               ))}
+            </div>
 
-                  {
-                      data?.data?.map((item: VacancyCardType, idx: number) => (
-                          <VacancyItem item={item} key={idx} typeView={typeView}/>
-                      ))
-                  }
-
-              </div>
-
-              <div
-                  className={clsx(styles.vacancies__transition, {
-                      [styles.vacancies__transition_show]: withFilters,
-                  })}>
-                  <FiltersVacancies/>
-              </div>
-          </div>
+            <div
+               className={clsx(styles.vacancies__transition, {
+                  [styles.vacancies__transition_show]: withFilters,
+               })}>
+               <FiltersVacancies />
+            </div>
+         </div>
       </div>
    );
 };

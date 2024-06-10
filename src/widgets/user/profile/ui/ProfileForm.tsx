@@ -59,6 +59,7 @@ const ProfileForm: FC = () => {
       formData.append("phone_number", phoneNumber);
       formData.append("email", email);
       if (image) {
+         console.log(image);
          formData.append("profile_image", image);
       }
 
@@ -70,7 +71,7 @@ const ProfileForm: FC = () => {
    };
 
    const handleDeleteClick = () => {
-      showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.deleteAccount});
+      showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.deleteAccount });
    };
 
    const handleChangeClick = () => {

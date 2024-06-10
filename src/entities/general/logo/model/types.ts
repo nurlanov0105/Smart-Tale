@@ -10,3 +10,4 @@ export type LogoProps = {
     type?: "navbar" | "organization"
     data?: OrganizationDetailsTypes
 }
+
