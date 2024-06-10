@@ -29,7 +29,7 @@ const Search = () => {
             fetchFunction={UserService.search}
             queryKey={EquipmentQueryKeys.GET_MY_ADS}
             type={SkeletonTypes.listItem}
-            ads={type}
+            ads={type ? type : "equipment"}
             title={searchValueLS}
          />
       </div>

@@ -52,8 +52,8 @@ export const ServicesService = {
       const response = await baseApiInstance.post(ServicesEndpoints.HIDE_SERVICE + slug);
       return response.data;
    },
-   likeService: async () => {
-      const response = await baseApiInstance.post(ServicesEndpoints.LIKE_SERVICE);
+   likeService: async (slug: string) => {
+      const response = await baseApiInstance.put(ServicesEndpoints.LIKE_SERVICE + slug);
       return response.data;
    },
    updateService: async ({ serviceSlug, params }: UpdateServiceProps) => {

@@ -10,7 +10,7 @@ import Link from "next/link";
 const AuthBtn = () => {
    const theme = useThemeStore((state) => state.theme);
    const handleLogoutBtn = () => {
-      showModal(MODAL_KEYS.logout);
+      showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.logout});
    };
 
    const isAuth = useAuth();

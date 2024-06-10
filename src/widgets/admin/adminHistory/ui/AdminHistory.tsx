@@ -4,7 +4,7 @@ import { Tabs } from "@/features/general/tabs";
 import { OrderList } from "@/features/general/orderList";
 import { employeesHistory, historyValues } from "../model/historyValues";
 import {IDateProps} from "@/entities/general/selectDate";
-import {OrdersService, OrganizationService, SELECT_TYPES, SkeletonTypes, useEmployees} from "@/shared/lib";
+import {OrganizationService, SELECT_TYPES, SkeletonTypes, useEmployees} from "@/shared/lib";
 import SelectDate2 from "@/entities/general/selectDate/ui/SelectDate2";
 import Select2 from "@/shared/ui/select/Select2";
 import {useHistoryOrders} from "../model/useHistoryOrders";
@@ -37,6 +37,7 @@ const AdminHistory = () => {
     const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0})
     const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0})
 
+    console.log(type)
    return (
       <section className={styles.section}>
          <div className={styles.section__margin}>
@@ -50,7 +51,7 @@ const AdminHistory = () => {
             type={SELECT_TYPES.default}
          />
          <div className={styles.section__row}>
-            <Tabs type={type} setType={setType} values={historyValues} />
+            <Tabs type={type} setType={setType} values={historyValues}/>
             <div className={styles.section__date}>
                <h5>Фильтр по дате принятия заказа</h5>
                <SelectDate2

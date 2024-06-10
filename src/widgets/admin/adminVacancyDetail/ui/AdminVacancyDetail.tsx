@@ -27,15 +27,17 @@ const AdminVacancyDetail = () => {
       showModal(MODAL_KEYS.responsesUsers);
    };
    const handleDelete = () => {
-      showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.deleteAnnouncement });
+      showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.deleteVacancy, slug: id.toString() });
    };
 
    const {
       vacancy,
       isSuccess,
-      isSubmitting,
-      isDirty,
       isLoading,
+      isSubmitting,
+      id,
+
+      isDirty,
       isValid,
 
       handleSubmit,

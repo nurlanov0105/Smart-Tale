@@ -6,21 +6,8 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import {
    ChangeAvatarModal,
-   SubscribeModal,
-   DeleteAnnouncementModal,
-   HideAnnouncementModal,
    InviteEmployeeModal,
-   BuyAnnouncementModal,
-   AcceptAnnouncementModal,
-   RejectAnnouncementModal,
-   RequireAnnouncementModal,
-   LogoutModal,
-   DeleteModal,
-   DeleteEmployeeModal,
    ResponsesModal,
-   DeletePositionModal,
-   ActivateOrganizationModal,
-   DeleteResumeModal,
    ConfirmationModal,
    InfoModal,
 } from "@/features/modals";
@@ -35,23 +22,10 @@ const Modal: FC = () => {
    const componentsLookUp: Record<string, React.ComponentType<any>> = {
       ConfirmationModal,
       InfoModal,
-      SubscribeModal,
       ChangeAvatarModal,
-      DeleteAnnouncementModal,
-      HideAnnouncementModal,
       InviteEmployeeModal,
-      BuyAnnouncementModal,
-      AcceptAnnouncementModal,
-      RejectAnnouncementModal,
-      RequireAnnouncementModal,
-      LogoutModal,
       CardModal,
-      DeleteModal,
-      DeleteEmployeeModal,
       ResponsesModal,
-      DeletePositionModal,
-      ActivateOrganizationModal,
-      DeleteResumeModal,
    };
 
    let RenderComponent;

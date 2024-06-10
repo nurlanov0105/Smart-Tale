@@ -6,15 +6,8 @@ import {VacancyUpdateTypes} from "@/entities/user/vacancyItem/model/types";
 import {DefaultFilterTypes} from "@/shared/store/filtersStore/types";
 
 export const VacancyService = {
-   getVacancies: async (data: DefaultFilterTypes) => {
-      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY, {
-         params: {
-            job_title: data.job_title,
-            location: data.location,
-            schedule: data.schedule,
-            experience: data.experience,
-         },
-      });
+   getVacancies: async (params: string) => {
+      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY + params);
       return response.data;
    },
    getOrganizationVacancies: async () => {
@@ -27,7 +20,7 @@ export const VacancyService = {
            ...data
          },
       });
-      return response;
+      return response.data;
    },
    vacancySlug: async (slug: string) => {
       const response = await baseApiInstance.get<VacancyCardType>(

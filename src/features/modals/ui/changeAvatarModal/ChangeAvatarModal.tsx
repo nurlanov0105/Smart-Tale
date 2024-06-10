@@ -7,13 +7,13 @@ import { useUserStore } from "@/entities/general/userInfo";
 import styles from "./styles.module.scss";
 
 const ChangeAvatarModal = () => {
-   const [image, setImage] = useState("");
+   const [image, setImage] = useState<File | null>(null);
    const [label, setLabel] = useState("+ Загрузить файл");
    const addImage = useUserStore((state) => state.addImage);
 
    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files && e.target.files.length > 0) {
-         setImage(URL.createObjectURL(e.target.files[0]));
+         setImage(e.target.files[0]);
 
          setLabel("Поменять файл");
       }
@@ -36,7 +36,10 @@ const ChangeAvatarModal = () => {
          <label className={styles.content__dragAndDrop}>
             <button className={styles.content__button}>{label}</button>
             {image ? (
-               <div style={{ backgroundImage: `url(${image})` }} className={styles.content__img} />
+               <div
+                  style={{ backgroundImage: `url(${URL.createObjectURL(image)})` }}
+                  className={styles.content__img}
+               />
             ) : (
                <p className={styles.content__format}>Формат JPG, JPEG, PNG</p>
             )}

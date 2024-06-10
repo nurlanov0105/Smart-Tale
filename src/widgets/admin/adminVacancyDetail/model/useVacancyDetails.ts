@@ -55,6 +55,7 @@ export const useVacancyDetails = () => {
         isSuccess,
         updateVacancy: mutate,
         isSubmitting: isPending,
+        id,
 
         register,
         reset,

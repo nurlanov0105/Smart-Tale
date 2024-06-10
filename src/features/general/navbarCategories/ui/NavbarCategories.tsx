@@ -10,7 +10,7 @@ const NavbarCategories: FC = () => {
    const isAuth = useAuth();
    const { isSubscribed, subscribed } = useSubscribed();
 
-   const categories = getCategoryRoutes({ authorized: isAuth, subscribed: true });
+   const categories = getCategoryRoutes({ authorized: isAuth, subscribed: isSubscribed });
 
    return (
       <ul className={styles.list}>

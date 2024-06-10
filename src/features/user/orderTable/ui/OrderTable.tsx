@@ -4,12 +4,12 @@ import React, { FC, useEffect } from "react";
 import { OrderItemType, OrderTableItem } from "@/entities/general/orderTableItem";
 import { OrderCategories } from "../model/values";
 import { useThemeStore } from "@/shared/store/themeStore";
-import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { OrderTableProps } from "../model/types";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
 import { CommonSkeleton } from "@/shared/ui";
 import { ObserverSection } from "@/entities/general/observerSection";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab }) => {
    const theme = useThemeStore((state) => state.theme);
