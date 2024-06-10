@@ -71,6 +71,15 @@ export enum ROUTES {
    SUBSCRIBE = `/subscribe`,
    SEARCH = `/search`,
    STRIPE_PAYMENT = `/payment/stripe`,
+
+   WORK_VACANCIES = "/work/vacancies",
+   WORK_CREATE_VACANCY = `/work/create-vacancy`,
+   WORK_RESUME = `/work/create-resume`,
+   WORK_RESUMES = `/work/resumes`,
+   WORK_MY_RESUMES = `/work/my-resume-list`,
+   WORK_RESUME_INFO = `/work/resume-info`,
+   WORK_RESUME_DETAILS = `/work/resume-details`,
+   WORK_VACANCY_DETAIL = `/work/vacancy-detail`,
 }
 
 export enum ORGANIZATION_ROUTES {

@@ -17,6 +17,8 @@
       width: 7.5rem;
       height: 7.5rem;
       object-fit: cover;
+      border-radius: 10px;
+      overflow: hidden;
    }
    &__price {
       color: $primary-color;
@@ -35,7 +37,7 @@
       &_green {
          color: #34c759;
       }
-      &_primary{
+      &_primary {
          color: $primary-color;
       }
    }

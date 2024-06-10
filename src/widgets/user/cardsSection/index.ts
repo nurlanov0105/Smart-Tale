@@ -1,2 +1,3 @@
 import CardsSection from "./ui/CardsSection";
-export { CardsSection };
+import { useGetCommonUserAds } from "./model/useQueries";
+export { CardsSection, useGetCommonUserAds };

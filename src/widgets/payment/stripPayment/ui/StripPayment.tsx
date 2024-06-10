@@ -28,34 +28,34 @@ const StripPayment = () => {
       }
    }, [isClient, type]);
 
-   // const {
-   //    mutate: subscribe,
-   //    isError,
-   //    isPending,
-   // } = useMutation({
-   //    mutationFn: UserService.subscribe,
-   //    onSuccess: (data: any) => {
-   //       console.log(data);
-   //
-   //       const subData = { subscription: data.new_sub_dt, ["is subscribed"]: true };
-   //       if (isRemember) {
-   //          console.log(subData);
-   //          CookiesServices.setToken({
-   //             keyName: EnumTokens.SUBSCRIBED_DATA,
-   //             value: `${JSON.stringify(subData)}`,
-   //             time: `${60 * 86400}`,
-   //          });
-   //       } else {
-   //          console.log(subData);
-   //          sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
-   //       }
-   //       showModal(MODAL_KEYS.subscribe);
-   //    },
-   // });
-   //
-   // const handleSubscribe = () => {
-   //    subscribe(type);
-   // };
+   const {
+      mutate: subscribe,
+      isError,
+      isPending,
+   } = useMutation({
+      mutationFn: UserService.subscribe,
+      onSuccess: (data: any) => {
+         console.log(data);
+
+         const subData = { subscription: data.new_sub_dt, ["is subscribed"]: true };
+         if (isRemember) {
+            console.log(subData);
+            CookiesServices.setToken({
+               keyName: EnumTokens.SUBSCRIBED_DATA,
+               value: `${JSON.stringify(subData)}`,
+               time: `${60 * 86400}`,
+            });
+         } else {
+            console.log(subData);
+            sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
+         }
+         showModal(MODAL_KEYS.subscribe);
+      },
+   });
+
+   const handleSubscribe = () => {
+      subscribe(dataSubscribe[type].title);
+   };
 
    return (
       <section className={clsx(styles.section, styles[theme])}>
@@ -63,7 +63,7 @@ const StripPayment = () => {
          <div className={styles.section__content}>
             <div className={styles.section__left}>
                <Select
-                   //@ts-ignore
+                  //@ts-ignore
                   selected={selected}
                   setSelected={setSelected}
                   title="Подписки"
@@ -72,7 +72,7 @@ const StripPayment = () => {
                />
                <SubscribeCard type={selected.postValue} isPayment={true} />
             </div>
-            <StripePaymentForm />
+            <StripePaymentForm handleSubscribe={handleSubscribe} isLoading={isPending} />
          </div>
       </section>
    );
