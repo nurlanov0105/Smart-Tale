@@ -140,6 +140,10 @@ export const PathData: any = {
       path: "Организация/Детали организации",
       name: "Детали организации",
    },
+   [ORGANIZATION_ROUTES.ORGANIZATION_SETTINGS]: {
+      path: "Организация/Детали организации",
+      name: "Детали организации",
+   },
    [ORGANIZATION_ROUTES.EMPLOYEES]: {
       path: "Организация/Сотрудники",
       name: "Сотрудники",

@@ -20,7 +20,7 @@ export const OrdersEndpoints = {
    GET_MY_ORDERS_HISTORY: "/my-history-orders/",
    GET_MY_ORDER: "/order-detail/",
    GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
-   APPLY_ORDER: "/order-apply",
+   APPLY_ORDER: "/order-apply/",
    LIKE_ORDER: "/like-order/",
    BOOKING_ORDER: "/order-book/",
    DELETE_ORDER: "/order-confirmationModal/",
@@ -42,6 +42,8 @@ export const EquipmentsEndpoints = {
    HIDE_EQUIPMENT: "/hide-equipment/",
    DELETE_EQUIPMENT: "/equipment/delete/",
    GET_MY_ANNOUNCEMENTS: "/my-ads/",
+   BUY_EQUIPMENT: "/sold-equipment/",
+   LIKE_EQUIPMENT: "/equipments/like/",
 };
 
 export const ServicesEndpoints = {
@@ -66,7 +68,7 @@ export const UserEndpoints = {
 };
 
 export const VacancyEndpoints = {
-   VACANCY: "/vacancy",
+   VACANCY: "/vacancy/?",
    ORGANIZATION_VACANCIES: "/org-vacancy",
    VACANCY_FILTER: "/vacancy/filter",
    VACANCY_SEARCH: "/vacancy/search",
@@ -90,6 +92,8 @@ export const ResumeEndpoints = {
 export const OrganizationEndpoints = {
    ORGANIZATION_DETAILS: "/organization/detail/",
    ORGANIZATION_CREATE: "/organization/create",
+   ORGANIZATION_UPDATE: "/organization/detail/",
+   ORGANIZATION_DELETE: "/organization/detail/",
    ORGANIZATION_ACTIVATE: "/organization/activate/",
    GET_ORGANIZATION_ORDERS: "/received-orders-status/",
    GET_HISTORY_ORDERS: "/my-org-orders",

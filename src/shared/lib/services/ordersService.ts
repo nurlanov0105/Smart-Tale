@@ -3,6 +3,7 @@ import { OrdersEndpoints } from "@/shared/api";
 import type {
    BookingOrderProps,
    CreateOrderTypes,
+   GeneralPropsType,
    UpdateOrderProps,
    UpdateStatusProps,
 } from "../types/orders-service.types";
@@ -64,18 +65,18 @@ export const OrdersService = {
       return response.data;
    },
 
-   getAppliedOrganizations: async (orderSlug: string) => {
-      const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS + orderSlug);
-      return response.data;
+   getAppliedOrganizations: async ({ slug, page }: GeneralPropsType) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_APPLIED_ORGANIZATIONS + slug);
+      return response;
    },
 
    applyOrder: async (orderSlug: string) => {
-      const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug);
+      const response = await baseApiInstance.post(OrdersEndpoints.APPLY_ORDER + orderSlug);
       return response.data;
    },
 
    addOrRemoveOrderFromFavorites: async (orderSlug: string) => {
-      const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug);
+      const response = await baseApiInstance.post(OrdersEndpoints.UPDATE_ORDER + orderSlug);
       return response.data;
    },
 
@@ -109,6 +110,10 @@ export const OrdersService = {
       const response = await baseApiInstance.post(
          `${OrdersEndpoints.UPDATE_ORDER_STATUS + orderSlug}?status=${status}`
       );
+      return response.data;
+   },
+   likeOrder: async (orderSlug: string) => {
+      const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug);
       return response.data;
    },
 };

@@ -1,2 +1,3 @@
 import HeaderIntro from "./ui/HeaderIntro";
-export { HeaderIntro };
+import { usePathSlug } from "./model/usePathSlug";
+export { HeaderIntro, usePathSlug };

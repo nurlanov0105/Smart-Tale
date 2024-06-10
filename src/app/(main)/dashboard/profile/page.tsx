@@ -1,4 +1,4 @@
-import {NextPage} from "next";
+import { NextPage } from "next";
 import { SubscribeCommerce } from "@/features/user/subscribeCommerce";
 import { ProfileForm } from "@/widgets/user/profile";
 import styles from "./styles.module.scss";

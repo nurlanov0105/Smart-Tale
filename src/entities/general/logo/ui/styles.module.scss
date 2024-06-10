@@ -7,6 +7,9 @@
       height: 7rem;
 
       margin-bottom: 2rem;
+      border-radius: 10px;
+      overflow: hidden;
+      object-fit: cover;
    }
 
    &__image,
@@ -21,6 +24,11 @@
       margin-bottom: 1.2rem;
    }
 
+   &__block{
+      display: flex;
+      column-gap: 3rem;
+      width: 100%;
+   }
    &__text,
    &__textOrganization {
       color: $dark-grey;

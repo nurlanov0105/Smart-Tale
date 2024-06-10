@@ -11,9 +11,10 @@ import {
     useHideService,
     useHideVacancy,
     useDeleteVacancy,
-    useDeletePosition
+    useDeletePosition,
+    useDeleteOrganization
 } from "../model/useQueries";
-import {useDeleteAccount} from "@/features/auth";
+import {useDeleteAccount, useLogout} from "@/features/auth";
 
 export const ModalActionsMap = {
     [MODAL_KEYS.deleteResume]: {
@@ -22,6 +23,13 @@ export const ModalActionsMap = {
         buttonText: "Да",
         emoji: "unknown",
         request: () => useDeleteResume
+    },
+    [MODAL_KEYS.deleteOrganization]: {
+        title: "Вы действительно хотите \n удалить организацию?",
+        description: "Все данные будут удалены!",
+        buttonText: "Да",
+        emoji: "unknown",
+        request: () => useDeleteOrganization
     },
     [MODAL_KEYS.deleteAnnouncement]: {
         title: "Удалить объявление?",
@@ -61,6 +69,13 @@ export const ModalActionsMap = {
         emoji: "unknown",
         request: () => useDeleteAccount
     },
+    [MODAL_KEYS.deletePosition]: {
+        title: "Вы действительно хотите \n  удалить должность?",
+        description: "Все данные будут удалены!",
+        buttonText: "Да",
+        emoji: "unknown",
+        request: () => useDeletePosition
+    },
     [MODAL_KEYS.hideResume]: {
         title: "Вы действительно \n хотите скрыть?",
         description: "Резюме больше не будет доступно \n для просмотра в маркетплейсе",
@@ -88,6 +103,13 @@ export const ModalActionsMap = {
         buttonText: "Активировать",
         emoji: "unknown",
         request: () => useActiveOrganization
+    },
+    [MODAL_KEYS.logout]: {
+        title: "Вы действительно \n хотите выйти?",
+        description: "Все данные будут сохранены!",
+        buttonText: "Да",
+        emoji: "unknown",
+        request: () => useLogout
     },
 }
 

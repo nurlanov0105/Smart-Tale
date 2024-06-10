@@ -29,7 +29,7 @@ const SubscribeCommerce: FC<Props> = ({ isSubscribed = false }) => {
                   </div>
                </div>
                <Link href={ROUTES.SUBSCRIBE}>
-                  <Button className="btn_white">Оформить подписку</Button>
+                  <Button classType="btn_white">Оформить подписку</Button>
                </Link>
             </div>
          ) : (

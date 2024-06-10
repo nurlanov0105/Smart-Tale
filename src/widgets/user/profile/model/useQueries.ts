@@ -11,7 +11,10 @@ export const useGetProfile = () => {
 };
 export const useChangeProfile = () => {
    return useMutation({
-      mutationFn: UserService.changeProfile,
+      mutationFn: (data: FormData) => {
+         console.log("data mut - ", data);
+         return UserService.changeProfile(data);
+      },
       mutationKey: [UserQueryKeys.PROFILE],
       onSuccess: (data) => {
          if (data) {

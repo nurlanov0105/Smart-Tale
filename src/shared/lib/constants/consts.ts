@@ -38,6 +38,7 @@ export const MODAL_KEYS = {
    hideResume: "HideResume",
    hideVacancy: "hideVacancy",
    deleteVacancy: "deleteVacancy",
+   deleteOrganization: "deleteOrganization",
 };
 
 export const SKELETON_TYPES = {

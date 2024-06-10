@@ -18,8 +18,11 @@ export const UserService = {
       return response;
    },
    // ProfileRequestType
-   changeProfile: async (data: FormData) => {
-      const response = await baseApiInstance.put(UserEndpoints.MY_PROFILE_CHANGE, data);
+   changeProfile: async (formData: FormData) => {
+      console.log("change profile formdata - ", formData);
+      const response = await baseApiInstance.put(UserEndpoints.MY_PROFILE_CHANGE, formData, {
+         headers: { "Content-Type": "multipart/form-data" },
+      });
       return response;
    },
    subscribe: async (type: string) => {
@@ -49,6 +52,7 @@ export const UserService = {
       page: number;
       param_tab: string;
    }) => {
+      console.log(slug);
       const params =
          param_tab && param_tab !== "all"
             ? {
@@ -56,6 +60,7 @@ export const UserService = {
                  ads: param_tab,
               }
             : { page: page };
+      console.log("slug and param -", slug, params);
       const response = await baseApiInstance.get(UserEndpoints.COMMON_USER_ADS + slug, {
          params,
       });

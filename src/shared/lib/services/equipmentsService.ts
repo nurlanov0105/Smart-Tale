@@ -1,6 +1,7 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
 import { UpdateEquipmentProps } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
+import { LikedEquipsParams } from "../types/equiments-service.types";
 
 export const EquipmentService = {
    getEquipments: async ({ page }: { page: number }) => {
@@ -86,6 +87,15 @@ export const EquipmentService = {
          params,
          { headers: headers }
       );
+      return response.data;
+   },
+
+   buyEquipment: async (slug: string) => {
+      const response = await baseApiInstance.post(EquipmentsEndpoints.BUY_EQUIPMENT + slug + "/");
+      return response.data;
+   },
+   likeEquipment: async (slug: string) => {
+      const response = await baseApiInstance.post(EquipmentsEndpoints.LIKE_EQUIPMENT + slug);
       return response.data;
    },
 };

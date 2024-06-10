@@ -1,27 +1,57 @@
 "use client";
 
-import React, {FC} from "react";
+import React, { FC, useRef, useState } from "react";
 import Card from "react-credit-cards";
-import "react-credit-cards/es/styles-compiled.css";
-import clsx from "clsx";
 import { Button, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
-import {usePayment} from "../model/usePayment";
+import { formatCVC, formatCreditCardNumber, formatExpirationDate } from "../model/formating";
+import { FormState, Props } from "../model/types";
+import "react-credit-cards/es/styles-compiled.css";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-const StripePaymentForm: FC = () => {
+const StripePaymentForm: FC<Props> = ({ handleSubscribe, isLoading }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {
-      handleSubmit,
-      handleInputChange,
-      handleCallback,
-      handleInputFocus,
-      formRef,
-      state,
-      isLoading,
-      isError
-   } = usePayment()
+   const [state, setState] = useState<FormState>({
+      number: "",
+      name: "",
+      expiry: "",
+      cvc: "",
+      issuer: "",
+      focused: "",
+   });
+
+   const formRef = useRef<HTMLFormElement>(null);
+
+   const handleCallback = ({ issuer }: { issuer: string }, isValid: boolean) => {
+      if (isValid) {
+         setState((prevState) => ({ ...prevState, issuer }));
+      }
+   };
+
+   const handleInputFocus = ({ target }: React.FocusEvent<HTMLInputElement>) => {
+      setState((prevState) => ({ ...prevState, focused: target.name }));
+   };
+
+   const handleInputChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+      let { name, value } = target;
+
+      if (name === "number") {
+         value = formatCreditCardNumber(value);
+      } else if (name === "expiry") {
+         value = formatExpirationDate(value);
+      } else if (name === "cvc") {
+         value = formatCVC(value);
+      }
+
+      setState((prevState) => ({ ...prevState, [name]: value }));
+   };
+
+   const handlePaymentSubmit = (e: any) => {
+      e.preventDefault();
+      handleSubscribe();
+   };
 
    return (
       <div key="Payment" className={clsx(styles.formWrapper, styles[theme])}>
@@ -36,7 +66,7 @@ const StripePaymentForm: FC = () => {
             />
          </div>
 
-         <form ref={formRef} onSubmit={handleSubmit} className={styles.form}>
+         <form ref={formRef} onSubmit={handlePaymentSubmit} className={styles.form}>
             <fieldset className={styles.form__fieldset}>
                <InputField
                   type="text"
