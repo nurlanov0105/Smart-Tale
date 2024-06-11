@@ -1,30 +1,29 @@
 "use client";
 
-import React, { FC } from "react";
+import React, {FC} from "react";
 import clsx from "clsx";
-import { useThemeStore } from "@/shared/store/themeStore";
-import { Button, GlobalLoading } from "@/shared/ui";
+import {useThemeStore} from "@/shared/store/themeStore";
+import {Button, GlobalLoading} from "@/shared/ui";
 
-import { useGetProfile } from "@/widgets/user/profile/model/useQueries";
+import {useGetProfile} from "@/widgets/user/profile/model/useQueries";
 import Image from "next/image";
 import avatar from "@@/logo.svg";
-import { useParams, useRouter } from "next/navigation";
-import { showModal } from "@/views/modal";
-import { MODAL_KEYS, ROUTES } from "@/shared/lib";
-import { useResumeDetailsQuery } from "@/entities/user/vacancyItem/model/useQueries";
-import { WORK } from "@/shared/lib/routes.config";
+import {useParams, useRouter} from "next/navigation";
+import {CookiesServices, EnumTokens, ROUTES} from "@/shared/lib";
+import {useResumeDetailsQuery} from "@/entities/user/vacancyItem/model/useQueries";
+import {WORK} from "@/shared/lib/routes.config";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 
 const ResumeInfo: FC = () => {
    const theme = useThemeStore((state) => state.theme);
+   const user_slug = CookiesServices.getCookiesValue(EnumTokens.USER_SLUG)
 
-   const params = useParams();
    const { push } = useRouter();
+   const params = useParams();
    const slug = params.slug.toString();
 
    const { data: resume, isLoading } = useResumeDetailsQuery(slug);
-
    const { data } = useGetProfile();
 
    const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`);
@@ -104,11 +103,14 @@ const ResumeInfo: FC = () => {
             {/*    <Button onClick={handleDelete} type="button" classType="btn_danger">Удалить резюме</Button>*/}
             {/*</div>*/}
          </div>
-         <div className={styles.form__btns}>
-            <Button onClick={handleRoute} type="button">
-               Изменить резюме
-            </Button>
-         </div>
+         {
+             user_slug === data?.data.slug &&
+             <div className={styles.form__btns}>
+                <Button onClick={handleRoute} type="button">
+                   Изменить резюме
+                </Button>
+             </div>
+         }
       </form>
    );
 };

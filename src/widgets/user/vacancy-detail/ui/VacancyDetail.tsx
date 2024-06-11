@@ -8,11 +8,14 @@ import { GlobalLoading, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useResponse} from "@/shared/lib";
 
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    const { isError, isFetching, data } = useGetVacancySlug(pathname.split("/")[3]);
+   const response = useResponse()
+
 
    if (isFetching) {
       return <GlobalLoading />;
@@ -103,8 +106,7 @@ const VacancyDetail = () => {
             <h3 className={styles.detail__title}>Похожие вакансии</h3>
             <div className={styles.detail__vacancies}>
                {vacancies.map((item, idx) => (
-                  // @ts-ignore
-                  <VacancyItem key={idx} item={item} typeView={true} />
+                  <VacancyItem response={response} key={idx} item={item} typeView={true} />
                ))}
             </div>
          </div>

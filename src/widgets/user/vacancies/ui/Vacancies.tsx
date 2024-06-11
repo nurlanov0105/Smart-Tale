@@ -12,6 +12,7 @@ import { timeList, typeList } from "../model/values.data";
 import { SlidersHorizontal } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useResponse} from "@/shared/lib";
 
 const Vacancies = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -27,6 +28,8 @@ const Vacancies = () => {
    const handleFilters = () => setWithFilters(!withFilters);
 
    const { isError, isPending, isLoading, data, isSuccess } = useGetVacancies(page);
+   const response = useResponse()
+
 
    const vacanciesLength = isSuccess ? data?.data.length : 0;
 
@@ -74,7 +77,7 @@ const Vacancies = () => {
                )}
 
                {data?.data?.map((item: VacancyCardType, idx: number) => (
-                  <VacancyItem item={item} key={idx} typeView={typeView} />
+                  <VacancyItem response={response} item={item} key={idx} typeView={typeView} />
                ))}
             </div>
 

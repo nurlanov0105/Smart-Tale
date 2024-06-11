@@ -21,6 +21,15 @@
       border-radius: 4px;
    }
 
+   &__select{
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+
+      overflow: hidden;
+      text-align: left;
+   }
+
    &__relative{
       position: relative;
       width: 100%;

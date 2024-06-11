@@ -1,15 +1,16 @@
 "use client";
 
-import { StripePaymentForm, SubsribesData } from "@/features/payment";
-import styles from "./styles.module.scss";
-import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
-import { CookiesServices, EnumTokens, MODAL_KEYS, UserService, useRememberMe } from "@/shared/lib";
 import { useEffect, useState } from "react";
-import clsx from "clsx";
-import { useThemeStore } from "@/shared/store/themeStore";
 import { useMutation } from "@tanstack/react-query";
 import { showModal } from "@/views/modal";
+import { StripePaymentForm, SubsribesData } from "@/features/payment";
+import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
+import { CookiesServices, EnumTokens, MODAL_KEYS, UserService, useRememberMe } from "@/shared/lib";
+import { useThemeStore } from "@/shared/store/themeStore";
 import Select2 from "@/shared/ui/select/Select2";
+
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -59,9 +60,7 @@ const StripPayment = () => {
          <h3 className="h3">Оплата картой</h3>
          <div className={styles.section__content}>
             <div className={styles.section__left}>
-
                <Select2
-
                   selected={selected}
                   setSelected={setSelected}
                   title="Подписки"

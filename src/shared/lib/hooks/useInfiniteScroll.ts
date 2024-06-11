@@ -9,17 +9,20 @@ interface Props {
    fetchFunction: ({
       page,
       tab,
+      tabType,
       param_tab,
       slug,
    }: {
       page: number;
       tab?: string;
+      tabType?: string;
       param_tab?: string;
       slug?: string;
    }) => Promise<any>;
 
    queryKey: string;
    tab?: string;
+   tabType?: string;
    param_tab?: string;
    slug?: string;
 }
@@ -41,14 +44,21 @@ const options = {
    threshold: 0.5,
 };
 
-export const useInfiniteScroll = ({ fetchFunction, queryKey, param_tab, tab, slug }: Props) => {
+export const useInfiniteScroll = ({
+   fetchFunction,
+   queryKey,
+   param_tab,
+   tab,
+   tabType,
+   slug,
+}: Props) => {
    const observerTarget = useRef<HTMLDivElement>(null);
    // const scrollTarget = useRef<HTMLDivElement>(null);
    // const [showBtn, setShowbtn] = useState(false);
 
    const { data, fetchNextPage, hasNextPage, isFetching, isFetchingNextPage, isError, isLoading } =
       useInfiniteQuery({
-         queryKey: [queryKey, param_tab, tab, slug],
+         queryKey: [queryKey, param_tab, tab, tabType, slug],
          queryFn: ({ pageParam }) => fetchData({ pageParam }),
          initialPageParam: 1,
          getNextPageParam: (lastPage) => (lastPage.hasNextPage ? lastPage.nextPage : undefined),

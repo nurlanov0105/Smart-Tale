@@ -1,5 +1,6 @@
 import React from 'react';
 import {AdminResponseItem} from "@/entities/admin/adminResponseItem";
+import {useGetVacancyResponses} from "../../model/useQueries";
 import styles from "./styles.module.scss";
 
 
@@ -12,6 +13,9 @@ const ResponsesModal = () => {
         {name: "Александр Сергеевич Пушкин", date: "8 мая"},
         {name: "Лев Николаевич Толстой", date: "4 мая"},
     ]
+
+    // const {data} = useGetVacancyResponses()
+
 
     return (
         <div className={styles.modal}>
