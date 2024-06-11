@@ -90,7 +90,9 @@ export const ResumeQueryKeys = {
 };
 export const VacancyQueryKeys = {
    GET_VACANCIES: "vacancies",
-   GET_ORGANIZATION_VACANCIES: "vacancies",
+   GET_VACANCIES_RESPONSES: "vacancy-responses",
+   RESPONSE_VACANCY: "vacancy-response",
+   GET_ORGANIZATION_VACANCIES: "vacancies-organization",
    VACANCY_DETAILS: "vacancy-details",
    VACANCY_UPDATE: "vacancy-update",
    VACANCY_DELETE: "vacancy-delete",

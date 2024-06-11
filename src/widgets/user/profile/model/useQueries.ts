@@ -12,13 +12,11 @@ export const useGetProfile = () => {
 export const useChangeProfile = () => {
    return useMutation({
       mutationFn: (data: FormData) => {
-         console.log("data mut - ", data);
          return UserService.changeProfile(data);
       },
       mutationKey: [UserQueryKeys.PROFILE],
       onSuccess: (data) => {
          if (data) {
-            console.log(data);
             toast.success("Вы успешно редактировали профиль!");
          }
       },
