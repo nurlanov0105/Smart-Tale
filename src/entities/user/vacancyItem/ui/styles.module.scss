@@ -38,9 +38,11 @@
   }
 
   &__title{
+    display: block;
+
     font-size: 1.7rem;
     font-weight: 600;
-    color: #468ffd;
+    color: #468ffd !important;
   }
   &__salary{
     font-size: 2.5rem;
@@ -73,21 +75,33 @@
     overflow: hidden;
   }
   &__button{
+    width: 100%;
     color: $common-white;
     background-color: #5BCF83;
-    padding: 1rem;
+    padding: 1.5rem;
 
     border-radius: 6px;
 
-    margin-top: 1rem;
+    margin-top: 2rem;
 
+    &.active{
+      background-color: transparent;
+      color: #5BCF83;
+      border: 1px solid #5BCF83;
+
+      @media (hover: hover) and (pointer: fine){
+        &:hover{
+          color: $common-white;
+          background-color: #5BCF83;
+        }
+      }
+    }
 
     @media (hover: hover) and (pointer: fine){
       &:hover{
         filter: brightness(110%);
       }
     }
-
   }
 }
 

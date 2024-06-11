@@ -1,11 +1,11 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
-import {OrganizationQueryKeys} from "@/shared/api";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
+import {OrganizationQueryKeys, VacancyQueryKeys} from "@/shared/api";
 import {
     OrganizationService,
     PositionResponseTypes,
     EmployeesResponseTypes,
     GetPositionTypes,
-    OrganizationDetailsTypes
+    OrganizationDetailsTypes, VacancyService
 } from "@/shared/lib";
 
 export const usePositions = () => {
@@ -49,4 +49,15 @@ export const useOrganizationDetails = (slug: string) => {
         queryFn: () => OrganizationService.getOrganizationDetails(slug),
     })
 
+}
+
+export const useResponse = () => {
+    const queryClient = useQueryClient()
+    return useMutation<Error, any, {slug: string}>({
+        mutationKey: [VacancyQueryKeys.RESPONSE_VACANCY],
+        mutationFn: ({slug}) => VacancyService.responseVacancy(slug),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES]})
+        }
+    })
 }

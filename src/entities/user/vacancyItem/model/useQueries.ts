@@ -57,7 +57,7 @@ export const useAddResumeQuery = (reset: UseFormReset<ResumeFormTypes>) => {
 };
 export const useResumeDetailsQuery = (slug: string) => {
    return useQuery({
-      queryKey: [ResumeQueryKeys.RESUME_DETAILS],
+      queryKey: [ResumeQueryKeys.RESUME_DETAILS, slug],
       queryFn: () => ResumeService.getResumeDetails(slug),
    });
 };

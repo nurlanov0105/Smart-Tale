@@ -14,6 +14,10 @@ export const VacancyService = {
       const response = await baseApiInstance.get(VacancyEndpoints.ORGANIZATION_VACANCIES)
       return response.data
    },
+   getVacancyResponses: async () => {
+      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_RESPONSES)
+      return response.data
+   },
    getFilteredVacancies: async (data: FilterVacancyType) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_FILTER, {
          params: {
@@ -30,6 +34,10 @@ export const VacancyService = {
    },
    getVacancyDetails: async (slug: string) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_DETAILS + slug);
+      return response.data;
+   },
+   responseVacancy: async (slug: string) => {
+      const response = await baseApiInstance.post(VacancyEndpoints.RESPONSE_VACANCY + slug, {cover_letter: slug});
       return response.data;
    },
    addVacancy: async (data: VacancyCardType) => {

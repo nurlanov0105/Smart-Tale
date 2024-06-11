@@ -87,13 +87,13 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
          routes: [
             { parentId: 4, subtitle: "Вакансии", link: WORK.VACANCIES },
             { parentId: 4, subtitle: "Резюме", link: WORK.RESUMES },
-            { parentId: 4, subtitle: "Моё резюме", link: WORK.MY_RESUMES, authorized: true },
-            {
-               parentId: 4,
-               subtitle: "Добавить вакансию",
-               link: WORK.CREATE_VACANCY,
-               authorized: true,
-            },
+            { parentId: 4, subtitle: "Мои резюме", link: WORK.MY_RESUMES, authorized: true },
+            // {
+            //    parentId: 4,
+            //    subtitle: "Добавить вакансию",
+            //    link: WORK.CREATE_VACANCY,
+            //    authorized: true,
+            // },
          ].filter((route) => !("authorized" in route) || route.authorized === authorized),
          activeRoutes: [WORK.VACANCY_DETAIL, WORK.RESUME],
       },
