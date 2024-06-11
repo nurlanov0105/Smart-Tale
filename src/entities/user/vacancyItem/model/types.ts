@@ -1,5 +1,6 @@
 import { UseFormReset } from "react-hook-form";
 import { ResumeFormTypes } from "@/entities/user/resumeForm/model/types";
+import {UseMutationResult} from "@tanstack/react-query";
 
 export type CurrencyType = "Сом" | "USD" | "Рубль";
 export type OrganizationType = {
@@ -38,8 +39,9 @@ export type VacancyUpdateTypes = {
 };
 
 export type VacancyItemProps = {
-   item: VacancyCardType;
+   item: any;
    typeView?: boolean;
+   response?: UseMutationResult<Error, any, {slug: string}, unknown>
    isAdmin?: boolean;
 };
 

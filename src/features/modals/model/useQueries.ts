@@ -1,4 +1,4 @@
-import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {useRouter} from "next/navigation";
 import {toast} from "react-toastify";
 import {
@@ -215,8 +215,8 @@ export const useActiveOrganization = () => {
     return useMutation<any, Error, string>({
         mutationKey: [OrganizationQueryKeys.ORGANIZATION_ACTIVATE],
         mutationFn: (slug) => OrganizationService.activateOrganization(slug),
-        onSuccess: () => {
-            queryClient.invalidateQueries({
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({
                 queryKey: [OrganizationQueryKeys.ORGANIZATION]
             })
             closeModal()
@@ -238,5 +238,13 @@ export const useDeleteOrganization = () => {
             console.log("error")
             closeModal()
         },
+    })
+}
+
+
+export const useGetVacancyResponses = () => {
+    return useQuery({
+        queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES],
+        queryFn: () => VacancyService.getVacancyResponses()
     })
 }

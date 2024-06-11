@@ -5,7 +5,7 @@ import { registerFormType } from "@/features/auth";
 export enum EnumTokens {
    ACCESS_TOKEN = "accessToken",
    REFRESH_TOKEN = "refreshToken",
-   USER_ID = "userId",
+   USER_SLUG = "user_slug",
    REGISTER_EMAIL = "register-email",
    REMEMBER_ME = "remember-me",
    SUBSCRIBE_TYPE = "subscribe-type",

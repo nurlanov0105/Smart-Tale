@@ -51,6 +51,7 @@ const AdminEmployeesDetails = () => {
                      name={`${data?.first_name} ${data?.last_name}`}
                      slug={slug.toString()}
                      isAdmin={true}
+                     disabled={true}
                   />
                )}
                <div className={styles.form__tabs}>

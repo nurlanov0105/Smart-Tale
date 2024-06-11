@@ -71,6 +71,8 @@ export const UserEndpoints = {
 export const VacancyEndpoints = {
    VACANCY: "/vacancy/?",
    ORGANIZATION_VACANCIES: "/org-vacancy",
+   VACANCY_RESPONSES: "/vacancy-response-list/",
+   RESPONSE_VACANCY: "/vacancy-response/",
    VACANCY_FILTER: "/vacancy/filter",
    VACANCY_SEARCH: "/vacancy/search",
    VACANCY_SLUG: "/vacancy",
