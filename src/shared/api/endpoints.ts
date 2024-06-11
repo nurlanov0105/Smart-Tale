@@ -65,6 +65,7 @@ export const UserEndpoints = {
    COMMON_USER: "/u/",
    COMMON_USER_ADS: "/u-ads/",
    SEARCH: "/ads-search",
+   FAVOITES_ITEMS: "/liked-items/",
 };
 
 export const VacancyEndpoints = {

@@ -1,6 +1,5 @@
 import { CountryCode } from "libphonenumber-js";
-import {RightsTypes} from "@/shared/lib";
-
+import { RightsTypes } from "@/shared/lib";
 
 const slide01 = "/imgs/slider/01.jpg";
 const slide02 = "/imgs/slider/02.jpg";
@@ -95,7 +94,28 @@ export const announcementTabs = [
       isSubscribed: false,
    },
 ];
-
+export const announcementFavoritesTabs = [
+   {
+      value: "Все объявления",
+      postValue: "all",
+      isSubscribed: true,
+   },
+   {
+      value: "Заказы",
+      postValue: AnnouncementTypes.order + "s",
+      isSubscribed: false,
+   },
+   {
+      value: "Услуги",
+      postValue: AnnouncementTypes.service + "s",
+      isSubscribed: false,
+   },
+   {
+      postValue: AnnouncementTypes.equipment,
+      value: "Оборудования",
+      isSubscribed: false,
+   },
+];
 
 export const RIGHT_ACTIONS = {
    CREATE_POSITION: "flag_create_jobtitle",
@@ -105,14 +125,14 @@ export const RIGHT_ACTIONS = {
    REMOVE_EMPLOYEE: "flag_remove_employee",
    UPDATE_ORDER: "flag_update_order",
    DELETE_ORDER: "flag_delete_order",
-} as const
+} as const;
 
 export const EMPTY_CONTENT_TYPES = {
    organization: "organization",
    employees: "employees",
    positions: "positions",
-   resume: "resume"
-} as const
+   resume: "resume",
+} as const;
 
 export const rightsActionsMap: RightsTypes = {
    [RIGHT_ACTIONS.UPDATE_ACCESS]: "Изменение прав доступа у ролей",
@@ -123,4 +143,3 @@ export const rightsActionsMap: RightsTypes = {
    [RIGHT_ACTIONS.REMOVE_POSITION]: "Удаление роли",
    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "Удаление сотрудника",
 };
-

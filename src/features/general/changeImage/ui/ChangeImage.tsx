@@ -14,11 +14,20 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slu
       }
    };
 
+   console.log("image url check - ", image?.type && URL.createObjectURL(image));
+
    return (
       <fieldset className={styles.form__user}>
          <div
             className={styles.form__avatar}
-            style={{ backgroundImage: image ? `url(${image})` : "" }}
+            style={{
+               backgroundImage:
+                  image && image?.type
+                     ? `url(${URL.createObjectURL(image)})`
+                     : !image?.type
+                     ? `url(${image})`
+                     : "",
+            }}
             onClick={handleAvatarClick}>
             {!image ? <Image src={userIcon} alt="user icon" /> : ""}
          </div>
