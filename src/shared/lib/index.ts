@@ -38,9 +38,7 @@ import {
    images,
    SkeletonTypes,
    announcementTabs,
-   EMPTY_CONTENT_TYPES,
-   RIGHT_ACTIONS,
-   SKELETON_TYPES,
+   announcementFavoritesTabs,
 } from "./constants/consts";
 import {
    AnnouncementValues,
@@ -73,10 +71,12 @@ export type { IRights } from "./types/types";
 export type { DefaultFilterTypes } from "../store/filtersStore/types";
 export type { LikedEquipsParams } from "./types/equiments-service.types";
 
-
-export type {PositionResponseTypes, EmployeesResponseTypes, OrganizationDetailsTypes} from "./types/queries.types"
-export type {VacanciesRequestTypes, } from "./types/vacancy-service.types"
-
+export type {
+   PositionResponseTypes,
+   EmployeesResponseTypes,
+   OrganizationDetailsTypes,
+} from "./types/queries.types";
+export type { VacanciesRequestTypes } from "./types/vacancy-service.types";
 
 export { ChatsService } from "./services/chatsService";
 
@@ -89,9 +89,8 @@ export {
    useEmployeeOrders,
    useEmployees,
    useGetPositionDetails,
-   useOrganizationDetails
-} from "./hooks/useQueries"
-
+   useOrganizationDetails,
+} from "./hooks/useQueries";
 
 export { useInitialRights } from "./hooks/useInitialRights";
 
@@ -106,13 +105,12 @@ export {
    experienceMap,
    incomeLevelFilter,
    specializationsFilter,
-   typeSalary
-} from "./constants/vacancyFilters"
+   typeSalary,
+} from "./constants/vacancyFilters";
 
-export {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore"
-export {useThemeStore} from "../store/themeStore/useThemeStore"
-export {cloudImageToFile} from "./utils/imageToFile"
-;
+export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
+export { useThemeStore } from "../store/themeStore/useThemeStore";
+export { cloudImageToFile } from "./utils/imageToFile";
 
 export {
    EnumTokens,
@@ -157,6 +155,7 @@ export {
    sizesDataLetters,
    sizesDataNumbers,
    sizesTypes,
+   announcementFavoritesTabs,
 };
 
 export type { InputFieldProps, CardType, AuthorType };
