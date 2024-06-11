@@ -1,5 +1,5 @@
 export type ChangeImageProps = {
-   image: File | string | null;
+   image: any;
    name: string;
    isAdmin?: boolean;
    disabled?: boolean;

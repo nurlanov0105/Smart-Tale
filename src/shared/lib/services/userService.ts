@@ -52,7 +52,6 @@ export const UserService = {
       page: number;
       param_tab: string;
    }) => {
-      console.log(slug);
       const params =
          param_tab && param_tab !== "all"
             ? {
@@ -62,6 +61,22 @@ export const UserService = {
             : { page: page };
       console.log("slug and param -", slug, params);
       const response = await baseApiInstance.get(UserEndpoints.COMMON_USER_ADS + slug, {
+         params,
+      });
+      return response.data;
+   },
+   getFavorites: async ({
+      param_tab,
+      page,
+      title,
+   }: {
+      param_tab: string;
+      page: number;
+      title?: string;
+   }) => {
+      const params =
+         param_tab && param_tab !== "all" ? { page, type: param_tab, title } : { page, title };
+      const response = await baseApiInstance.get(UserEndpoints.FAVOITES_ITEMS, {
          params,
       });
       return response.data;

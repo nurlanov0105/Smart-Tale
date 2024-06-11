@@ -12,14 +12,16 @@
 //   }
 //}
 
-.default{
+.default {
    display: flex;
    align-items: center;
    justify-content: center;
    height: 100%;
+
+   margin-top: 3rem;
 }
 
-.full{
+.full {
    position: absolute;
    top: 50%;
    left: 50%;

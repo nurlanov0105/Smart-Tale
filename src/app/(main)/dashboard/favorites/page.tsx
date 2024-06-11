@@ -1,7 +1,12 @@
 "use client";
 
 import { CardsSection } from "@/widgets/user/cardsSection";
-import { SkeletonTypes, announcementTabs } from "@/shared/lib";
+import {
+   SkeletonTypes,
+   UserService,
+   announcementFavoritesTabs,
+   announcementTabs,
+} from "@/shared/lib";
 import { NextPage } from "next";
 import { Tabs } from "@/features/general/tabs";
 import { useState } from "react";
@@ -10,7 +15,7 @@ import styles from "./styles.module.scss";
 import { EquipmentQueryKeys, UserQueryKeys } from "@/shared/api";
 
 const PurchasesPage: NextPage = () => {
-   const [type, setType] = useState(announcementTabs[0].postValue);
+   const [type, setType] = useState(announcementFavoritesTabs[0].postValue);
 
    return (
       <div className={styles.favorites}>
@@ -19,9 +24,9 @@ const PurchasesPage: NextPage = () => {
          </div>
 
          <CardsSection
-            fetchFunction={FavoritesDefineService[type]}
+            fetchFunction={UserService.getFavorites}
             queryKey={UserQueryKeys.FAVORITES}
-            tab={type}
+            param_tab={type}
             type={SkeletonTypes.standart}
          />
       </div>

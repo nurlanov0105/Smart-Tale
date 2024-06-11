@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ObserverSectionProps } from "../model/types";
 import { GlobalLoading } from "@/shared/ui";
 import styles from "./styles.module.scss";
+import clsx from "clsx";
 
 const ObserverSection: FC<ObserverSectionProps> = ({
    isInitialLoading,
@@ -10,7 +11,7 @@ const ObserverSection: FC<ObserverSectionProps> = ({
 }) => {
    return (
       !isInitialLoading && (
-         <div className={styles.sectionoObserver} ref={observerTarget}>
+         <div className={clsx(styles.sectionoObserver)} ref={observerTarget}>
             {isLoading && <GlobalLoading />}
          </div>
       )

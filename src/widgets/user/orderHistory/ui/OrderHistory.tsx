@@ -9,12 +9,12 @@ import { OrdersService } from "@/shared/lib";
 import { UserQueryKeys } from "@/shared/api";
 
 const OrderHistory = () => {
-   const [type, setType] = useState(profileHistoryValues[0].postValue);
+   const [type, setType] = useState(historyValues[0].postValue);
 
    return (
       <section className={styles.section}>
          <div className={styles.section__btns}>
-            <Tabs type={type} setType={setType} values={profileHistoryValues} />
+            <Tabs type={type} setType={setType} values={historyValues} />
          </div>
          <OrderTable
             fetchFunction={OrdersService.getMyOrdersHistory}
