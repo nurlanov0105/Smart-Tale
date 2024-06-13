@@ -5,18 +5,19 @@ import clsx from "clsx";
 import {TypeViewProps} from "../model/types";
 
 const TypeViewButtons = ({typeView, setTypeView}: TypeViewProps) => {
-    const handleTypeView = () => setTypeView(!typeView);
+    const handleView = () => setTypeView(true)
+    const handleUnView = () => setTypeView(false)
 
     return (
         <div className={styles.button__types}>
-            <button onClick={handleTypeView}>
+            <button onClick={handleUnView}>
                 <Rows2
                     className={clsx(styles.button__type, {
                         [styles.button__type_active]: !typeView,
                     })}
                 />
             </button>
-            <button onClick={handleTypeView}>
+            <button onClick={handleView}>
                 <Rows3
                     className={clsx(styles.button__type, {
                         [styles.button__type_active]: typeView,

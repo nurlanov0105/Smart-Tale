@@ -1,9 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt, {Jwt} from "jsonwebtoken";
 import { DASHBOARD, EnumTokens, MARKETPLACE, ROUTES } from "./shared/lib";
 import { WORK } from "@/shared/lib/routes.config";
 import { baseApiInstance } from "@/shared/api/instance";
 
+interface DecodedToken {
+   token_type: string;
+   exp: number;
+   iat: number;
+   jti: string;
+   user_id: number;
+}
 export async function middleware(request: NextRequest, response: NextResponse) {
    const { url, cookies } = request;
 
@@ -26,28 +33,42 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value;
 
    let isSubscribed = true;
-   // let isAuth = false
+   let isAuth = false
+
+   // if (accessToken) {
+   //    try {
+   //       const decodedToken = jwt.decode(accessToken) as DecodedToken
+   //       isAuth = true;
+   //       const currentTimeInSeconds = Math.floor(Date.now() / 1000)
+   //
+   //       if (decodedToken.exp < currentTimeInSeconds) {
+   //          console.log("Токен истек");
+   //       } else {
+   //          console.log(decodedToken.exp < currentTimeInSeconds)
+   //          isAuth = true;
+   //       }
+   //    } catch (error) {
+   //       console.error("Ошибка:", error);
+   //    }
+   // }
    //
    // if (accessToken) {
    //    try {
-   //
-   //       const decodedToken = jwt.verify(accessToken, process.env.NEXT_PUBLIC_JWT_SECRET || "");
+   //       const decodedToken = jwt.decode(accessToken) as DecodedToken
    //       isAuth = true;
+   //       const currentTimeInSeconds = Math.floor(Date.now() / 1000)
    //
-   //       const response = await baseApiInstance.get(`/profile`);
-   //
-   //       const user = response.data;
-   //       isSubscribed = user.isSubscribed;
+   //       if (decodedToken.exp < currentTimeInSeconds) {
+   //          console.log("Токен истек");
+   //       } else {
+   //          isAuth = true;
+   //       }
    //    } catch (error) {
    //       console.error("Ошибка:", error);
    //    }
    // }
 
    const isAuthPage = authRoutes.includes(request.nextUrl.pathname as ROUTES);
-
-   if (!refreshToken && request.nextUrl.pathname.includes(MARKETPLACE.CREATE_ANNOUNCEMENT)) {
-      return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));
-   }
 
    if (!refreshToken && dashboardRoutes.includes(request.nextUrl.pathname as DASHBOARD)) {
       return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));

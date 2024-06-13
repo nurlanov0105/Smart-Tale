@@ -39,7 +39,7 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin, response }
                   </div>
                   {typeView && (
                      <div>
-                        <p className={styles.item__description}>{item.experience}</p>
+                        <p className={styles.item__description}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, perferendis?</p>
                      </div>
                   )}
 
