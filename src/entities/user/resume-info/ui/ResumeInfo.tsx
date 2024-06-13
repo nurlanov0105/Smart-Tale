@@ -41,20 +41,19 @@ const ResumeInfo: FC = () => {
                </div>
                <div>
                   <div className={styles.form__initials}>
-                     {" "}
-                     ФИО:
+                     <span>ФИО:</span>
                      <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>
                         {data?.data?.last_name} {data?.data?.first_name} {data?.data?.middle_name}
                      </Link>
                   </div>
                   <div className={styles.form__initials}>
-                     Почта:
+                     <span>Почта:</span>
                      <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>{data?.data?.email}</Link>
                   </div>
 
                   <div className={styles.form__initials}>
-                     Номер телефона:
-                     <span>{data?.data?.phone_number}</span>
+                     <span>Номер телефона:</span>
+                     <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>{data?.data?.phone_number}</Link>
                   </div>
                </div>
             </div>

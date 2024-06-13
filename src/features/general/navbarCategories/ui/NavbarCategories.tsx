@@ -6,8 +6,7 @@ import { getCategoryRoutes } from "../model/getCategoryRoutes";
 import { useAuth, useSubscribed } from "@/shared/lib";
 import styles from "./styles.module.scss";
 
-const NavbarCategories: FC = () => {
-   const isAuth = useAuth();
+const NavbarCategories: FC<{isAuth: boolean}> = ({isAuth}) => {
    const { isSubscribed, subscribed } = useSubscribed();
 
    const categories = getCategoryRoutes({ authorized: isAuth, subscribed: isSubscribed });

@@ -14,11 +14,14 @@ import { MARKETPLACE, ROUTES, useAuth, useNavbar } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/store/themeStore";
+import {useQueryClient} from "@tanstack/react-query";
 
 const Navbar = () => {
    // theme
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
+
+   const {isAuth, isLoading} = useAuth();
 
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
@@ -31,6 +34,8 @@ const Navbar = () => {
    }, [pathname]);
 
    const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
+
+   if (isLoading) return <div className={styles.navbar}></div>
 
    return (
       <>
@@ -54,7 +59,7 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               <NavbarCategories />
+               <NavbarCategories isAuth={isAuth}/>
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && <SubscribeBox />}

@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
-import { usePathname } from "next/navigation";
-import { vacancies } from "@/widgets/user/vacancies/model/values.data";
-import { VacancyItem, useGetVacancySlug } from "@/entities/user/vacancyItem";
+import {useParams, usePathname} from "next/navigation";
+import {VacancyItem, useGetVacancySlug, useGetVacancies, VacancyCardType} from "@/entities/user/vacancyItem";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 import { GlobalLoading, InputField } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
@@ -12,9 +11,11 @@ import {useResponse} from "@/shared/lib";
 
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
-   const pathname = usePathname();
-   const { isError, isFetching, data } = useGetVacancySlug(pathname.split("/")[3]);
+   const {slug} = useParams<{slug: string}>()
+   const { isError, isFetching, data } = useGetVacancySlug(slug);
    const response = useResponse()
+
+   const vacancies = useGetVacancies(1)
 
 
    if (isFetching) {
@@ -105,9 +106,13 @@ const VacancyDetail = () => {
          <div className={styles.detail__right}>
             <h3 className={styles.detail__title}>Похожие вакансии</h3>
             <div className={styles.detail__vacancies}>
-               {vacancies.map((item, idx) => (
-                  <VacancyItem response={response} key={idx} item={item} typeView={true} />
-               ))}
+               {
+                  vacancies.data?.data
+                   .filter((item: VacancyCardType) => item.slug !== slug)
+                   .map((item : VacancyCardType, idx: number) => (
+                        <VacancyItem response={response} key={idx} item={item} typeView={true} />)
+                   )
+               }
             </div>
          </div>
       </div>

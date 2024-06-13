@@ -18,9 +18,9 @@ import styles from "./styles.module.scss";
 const AdminEmployeesSettings = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const { slug } = useParams();
+   const { slug } = useParams<{slug: string}>();
    const handleDelete = () => {
-      showModal(MODAL_KEYS.confirmationModal, { slug: slug.toString(), componentName: MODAL_KEYS.deleteEmployee });
+      showModal(MODAL_KEYS.confirmationModal, { slug, componentName: MODAL_KEYS.deleteEmployee });
    };
 
    const {
