@@ -9,7 +9,8 @@ import {
    sizesDataNumbers,
    ANNOUNCEMENT_FORM_NAMES,
    ValidationsSchemasService,
-   AnnouncementValues, currencies,
+   AnnouncementValues,
+   currencies,
 } from "@/shared/lib";
 
 import { AddImages } from "@/features/general/addImages";
@@ -24,17 +25,8 @@ import styles from "./styles.module.scss";
 const OrderForm: FC<OrderProps> = ({ type }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const {
-      handleSubmit,
-      isError,
-      isLoading,
-      register,
-      errors,
-      isValid,
-      control,
-      setValue,
-      watch
-   } = useOrderForm(type); //Тип создания(заказа или оборудования)
+   const { handleSubmit, isError, isLoading, register, errors, isValid, control, setValue, watch } =
+      useOrderForm(type); //Тип создания(заказа или оборудования)
 
    const sizes = watch(ANNOUNCEMENT_FORM_NAMES.sizes);
    const sizeType = watch(ANNOUNCEMENT_FORM_NAMES.sizeType, {
@@ -59,7 +51,10 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
             />
             <div className={styles.order__areaWrapper}>
                <TextArea
-                  {...register(ANNOUNCEMENT_FORM_NAMES.description, ValidationsSchemasService.descriptionSchema)}
+                  {...register(
+                     ANNOUNCEMENT_FORM_NAMES.description,
+                     ValidationsSchemasService.descriptionSchema
+                  )}
                   isDisabled={false}
                   error={errors.description?.message}
                   title="Описание"
@@ -70,7 +65,10 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
             <div className={styles.order__block_flex}>
                <div style={{ width: "100%" }}>
                   <InputField
-                     {...register(ANNOUNCEMENT_FORM_NAMES.price, ValidationsSchemasService.priceSchema)}
+                     {...register(
+                        ANNOUNCEMENT_FORM_NAMES.price,
+                        ValidationsSchemasService.priceSchema
+                     )}
                      error={errors.price?.message}
                      classname={styles.order__margin}
                      disabled={false}
@@ -98,15 +96,17 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
                </div>
             </div>
 
-            {
-               type === AnnouncementValues.EQUIPMENT &&
-                <InputField
-                    {...register(ANNOUNCEMENT_FORM_NAMES.amount, ValidationsSchemasService.priceSchema)}
-                    error={errors.amount?.message}
-                    type="number"
-                    title="Количество"
-                />
-            }
+            {type === AnnouncementValues.EQUIPMENT && (
+               <InputField
+                  {...register(
+                     ANNOUNCEMENT_FORM_NAMES.amount,
+                     ValidationsSchemasService.priceSchema
+                  )}
+                  error={errors.amount?.message}
+                  type="number"
+                  title="Количество"
+               />
+            )}
 
             {type === AnnouncementValues.ORDER && (
                <div className={clsx(styles.order__select)}>

@@ -1,0 +1,10 @@
+.btn {
+   img {
+      width: 32px;
+      height: 32px;
+   }
+
+   &:disabled {
+      cursor: default;
+   }
+}

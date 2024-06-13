@@ -1,5 +1,5 @@
-import { CurrencyType, OrganizationType } from "@/entities/user/vacancyItem";
 import { Dispatch, SetStateAction } from "react";
+import { CurrencyType } from "@/shared/lib";
 
 export interface UsePaginationOptions {
    fetchFunction: ({

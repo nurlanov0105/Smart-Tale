@@ -6,7 +6,10 @@ import { EnumTokens } from "../types/types";
 import { useRememberMe } from "./useRememberMe";
 
 export function useSubscribed() {
-   const [subscribed, setSubscribed] = useState(null);
+   const [subscribed, setSubscribed] = useState<{
+      subscription: string;
+      "is subscribed": boolean;
+   } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
    const { isRemember } = useRememberMe();
 

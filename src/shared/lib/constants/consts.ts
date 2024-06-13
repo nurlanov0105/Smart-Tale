@@ -143,3 +143,10 @@ export const rightsActionsMap: RightsTypes = {
    [RIGHT_ACTIONS.REMOVE_POSITION]: "Удаление роли",
    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "Удаление сотрудника",
 };
+
+export const ruCurrency = {
+   Som: "Сом",
+   Ruble: "Руб",
+   USD: "USD",
+   Euro: "Euro",
+};

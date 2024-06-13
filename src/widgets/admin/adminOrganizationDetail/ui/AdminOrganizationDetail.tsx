@@ -1,14 +1,14 @@
 "use client";
 import React, { useState } from "react";
-import {useParams} from "next/navigation";
+import { useParams } from "next/navigation";
 import { OrganizationIntro } from "@/features/general/organizationIntro";
 import { EmployeesList } from "@/features/general/employeesList";
 import { OrderList } from "@/features/general/orderList";
 import { Tabs } from "@/features/general/tabs";
 
-import {SkeletonTypes, useEmployees, EquipmentService} from "@/shared/lib";
+import { SkeletonTypes, useEmployees, EquipmentService, OrganizationService } from "@/shared/lib";
 import { useThemeStore, useOrganizationDetails } from "@/shared/lib";
-import { EquipmentQueryKeys } from "@/shared/api";
+import { EquipmentQueryKeys, OrganizationQueryKeys } from "@/shared/api";
 import { GlobalLoading } from "@/shared/ui";
 
 import { valuesData } from "../model/values.data";
@@ -45,8 +45,8 @@ const AdminOrganizationDetail = () => {
             <EmployeesList data={getEmployees.data} isLoading={getEmployees.isLoading} />
          ) : (
             <OrderList
-               fetchFunction={EquipmentService.getMyAds}
-               queryKey={EquipmentQueryKeys.GET_MY_ADS}
+               fetchFunction={OrganizationService.getHistoryOrders}
+               queryKey={OrganizationQueryKeys.ORGANIZATION_DETAIL_ORDERS}
                type={SkeletonTypes.listItem}
                tab={type}
             />

@@ -29,6 +29,7 @@ const Chat: FC<ChatType> = ({ author }) => {
             <AuthorInfo
                fullName={author?.first_name + " " + author?.last_name}
                avatarImg={author?.profile_image}
+               slug={author?.slug}
                isChat={true}
             />
          </div>
