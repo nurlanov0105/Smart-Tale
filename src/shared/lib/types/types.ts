@@ -111,6 +111,7 @@ export type AuthorType = {
    slug: string;
 };
 
+export type CurrencyType = "Som" | "USD" | "Ruble" | "Euro";
 export type CardType = {
    item: string;
    title: string;
@@ -120,6 +121,7 @@ export type CardType = {
    author: AuthorType;
    liked: string;
    image: string;
+   currency: CurrencyType;
    type: "Order" | "Equipment" | "Service";
 };
 

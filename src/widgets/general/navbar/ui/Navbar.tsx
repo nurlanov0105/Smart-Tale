@@ -2,18 +2,17 @@
 
 import React, { useEffect, useRef } from "react";
 import { NavbarCategories } from "@/features/general/navbarCategories";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { AuthBtn } from "@/entities/general/authBtn";
 import { SubscribeBox } from "@/entities/user/subscribeBox";
+import { Logo } from "@/entities/general/logo";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { MARKETPLACE, ROUTES, useAuth, useNavbar, useSubscribed } from "@/shared/lib";
 
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
-import { Logo } from "@/entities/general/logo";
-import { MARKETPLACE, ROUTES, useAuth, useNavbar } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/store/themeStore";
 
 const Navbar = () => {
    // theme
@@ -23,6 +22,7 @@ const Navbar = () => {
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
+   const { isSubscribed } = useSubscribed();
 
    useEffect(() => {
       if (navbarRef.current && MARKETPLACE.EQUIPMENT === pathname) {
@@ -57,7 +57,7 @@ const Navbar = () => {
                <NavbarCategories />
             </div>
             <div className={styles.navbar__bottom}>
-               {!categoryType && <SubscribeBox />}
+               {!categoryType && !isSubscribed && <SubscribeBox />}
                <AuthBtn />
             </div>
          </nav>

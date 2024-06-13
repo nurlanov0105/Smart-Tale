@@ -25,6 +25,18 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    const refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN)?.value;
    const accessToken = cookies.get(EnumTokens.ACCESS_TOKEN)?.value;
 
+   // const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+   // const isRemember = res === "true";
+   // let accessToken, refreshToken;
+
+   // if (isRemember) {
+   //    accessToken = cookies.get(EnumTokens.ACCESS_TOKEN);
+   //    refreshToken = cookies.get(EnumTokens.REFRESH_TOKEN);
+   // } else {
+   //    accessToken = sessionStorage.getItem(EnumTokens.ACCESS_TOKEN);
+   //    refreshToken = sessionStorage.getItem(EnumTokens.REFRESH_TOKEN);
+   // }
+
    let isSubscribed = true;
    // let isAuth = false
    //
@@ -44,10 +56,6 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    // }
 
    const isAuthPage = authRoutes.includes(request.nextUrl.pathname as ROUTES);
-
-   if (!refreshToken && request.nextUrl.pathname.includes(MARKETPLACE.CREATE_ANNOUNCEMENT)) {
-      return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));
-   }
 
    if (!refreshToken && dashboardRoutes.includes(request.nextUrl.pathname as DASHBOARD)) {
       return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));

@@ -23,6 +23,7 @@ import { OrganizationService } from "./services/organizationService";
 
 import { refreshToken } from "./utils/refreshToken";
 import { categoryData } from "./utils/categoryData";
+import { formattingDate } from "./utils/formattingDate";
 import { SELECT_TYPES } from "./constants/ui.consts";
 import { ValidationsSchemasService } from "./services/schemasService";
 import { EnumTokens, InputFieldProps } from "./types/types";
@@ -39,6 +40,7 @@ import {
    SkeletonTypes,
    announcementTabs,
    announcementFavoritesTabs,
+   ruCurrency,
 } from "./constants/consts";
 import {
    AnnouncementValues,
@@ -70,6 +72,7 @@ export type {
 export type { IRights } from "./types/types";
 export type { DefaultFilterTypes } from "../store/filtersStore/types";
 export type { LikedEquipsParams } from "./types/equiments-service.types";
+export type { CurrencyType } from "./types/types";
 
 export type {
    PositionResponseTypes,
@@ -157,6 +160,8 @@ export {
    sizesDataNumbers,
    sizesTypes,
    announcementFavoritesTabs,
+   ruCurrency,
+   formattingDate,
 };
 
 export type { InputFieldProps, CardType, AuthorType };

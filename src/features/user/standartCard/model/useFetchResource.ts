@@ -16,11 +16,7 @@ const useFetchResource = ({
    console.log(type);
    const queryFn = async () => {
       let url = "";
-      if (isDetail) {
-         url = ModalSlugEndpoints[type] + slug;
-      } else {
-         url = ModalSlugEndpoints[type] + slug;
-      }
+      url = ModalSlugEndpoints[type] + slug;
 
       if (!url) {
          throw new Error("No valid URL generated for the query.");

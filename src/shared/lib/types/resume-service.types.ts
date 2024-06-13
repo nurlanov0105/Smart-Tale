@@ -1,4 +1,4 @@
-import { CurrencyType, OrganizationType } from "@/entities/user/vacancyItem";
+import { CurrencyType } from "@/shared/lib";
 
 export type ResumeType = {
    job_title: string;
@@ -9,10 +9,9 @@ export type ResumeType = {
    // location: string;
    experience: string;
    description?: string;
-
 };
 
 export type UpdateResumeTypes = {
-   data: ResumeType
-   slug: string
-}
+   data: ResumeType;
+   slug: string;
+};
