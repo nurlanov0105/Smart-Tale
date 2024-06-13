@@ -12,6 +12,7 @@ export function useSubscribed() {
    } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
    const { isRemember } = useRememberMe();
+
    let subscribeData: any;
    if (isRemember) {
       subscribeData = Cookies.get(EnumTokens.SUBSCRIBED_DATA);

@@ -19,6 +19,8 @@ const Navbar = () => {
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
+   const { isAuth, isLoading } = useAuth();
+
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname() as string;
    const categoryType = pathname.includes("/admin");
@@ -31,6 +33,8 @@ const Navbar = () => {
    }, [pathname]);
 
    const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
+
+   if (isLoading) return <div className={styles.navbar}></div>;
 
    return (
       <>
@@ -54,7 +58,7 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               <NavbarCategories />
+               <NavbarCategories isAuth={isAuth} />
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && !isSubscribed && <SubscribeBox />}

@@ -33,7 +33,7 @@
 
     margin-bottom: 5px;
 
-    a, span{
+    a{
       text-decoration: underline;
       font-weight: 400;
       margin-left: 5px;
@@ -97,6 +97,20 @@
       border-bottom: 1px solid $border-theme;
     }
 
+    &__info{
+
+      border-bottom: 1px solid $border-theme;
+
+    }
+    &__initials{
+      color: $grey;
+    }
+
+    &__block{
+      h4{
+        color: $grey;
+      }
+    }
 
   }
 }

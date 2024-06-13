@@ -13,7 +13,7 @@ const AuthBtn = () => {
       showModal(MODAL_KEYS.confirmationModal, {componentName: MODAL_KEYS.logout});
    };
 
-   const isAuth = useAuth();
+   const {isAuth} = useAuth();
 
    return isAuth ? (
       <button className={clsx(styles.button, styles[theme])} onClick={handleLogoutBtn}>
