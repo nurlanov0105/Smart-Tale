@@ -7,7 +7,6 @@
 
   border-radius: 10px;
 
-
   //box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   background-color: $common-white;
 
@@ -75,7 +74,7 @@
     overflow: hidden;
   }
   &__button{
-    width: 100%;
+    width: 80%;
     color: $common-white;
     background-color: #5BCF83;
     padding: 1.5rem;

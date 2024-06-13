@@ -59,13 +59,14 @@ const User = () => {
                      {data.data.first_name + " " + data.data.last_name}
                   </h4>
                   <div>
+                     <p className={styles.user__mb}>{data.data.email}</p>
                      <p className={styles.user__text}>Был(а) в сети 3 мин. назад</p>
                   </div>
 
-                  <div className={styles.user__more}>
+                  {/* <div className={styles.user__more}>
                      <CircleAlert />
                      <p>Подробнее</p>
-                  </div>
+                  </div> */}
 
                   {/*<p className={styles.user__text}>На сайте с 01.07.2016</p>*/}
                </div>

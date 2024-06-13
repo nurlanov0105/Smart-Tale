@@ -6,9 +6,13 @@ import { EnumTokens } from "../types/types";
 import { useRememberMe } from "./useRememberMe";
 
 export function useSubscribed() {
-   const [subscribed, setSubscribed] = useState(null);
+   const [subscribed, setSubscribed] = useState<{
+      subscription: string;
+      "is subscribed": boolean;
+   } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
    const { isRemember } = useRememberMe();
+
    let subscribeData: any;
    if (isRemember) {
       subscribeData = Cookies.get(EnumTokens.SUBSCRIBED_DATA);

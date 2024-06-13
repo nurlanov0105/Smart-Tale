@@ -5,6 +5,7 @@
    border-radius: 2rem;
    display: flex;
    flex-direction: column;
+   position: relative;
 
    &__body {
       display: flex;
@@ -109,6 +110,12 @@
       button {
          width: 100%;
       }
+   }
+
+   &__btnLike {
+      position: absolute;
+      top: 2.8rem;
+      right: 2rem;
    }
 }
 

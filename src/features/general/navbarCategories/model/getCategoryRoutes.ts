@@ -19,9 +19,14 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
             { parentId: 1, subtitle: "Профиль", link: DASHBOARD.PROFILE },
             { parentId: 1, subtitle: "Мои объявления", link: DASHBOARD.LISTINGS },
             { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
-            { parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY },
+            {
+               parentId: 1,
+               subtitle: "История заказов",
+               link: DASHBOARD.ORDER_HISTORY,
+               subscribed: true,
+            },
             { parentId: 1, subtitle: "Избранные", link: DASHBOARD.FAVORITES },
-         ].filter((route) => !("authorized" in route) || route.authorized === authorized),
+         ].filter((route) => !("subscribed" in route) || route.subscribed === subscribed),
          activeRoutes: [
             ROUTES.NOTICES,
             ROUTES.ORDER_DETAILS,

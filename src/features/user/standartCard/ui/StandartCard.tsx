@@ -3,15 +3,25 @@
 import { FC } from "react";
 import { Button } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import { CookiesServices, EnglishType, EnumTokens, MODAL_KEYS, ROUTES } from "@/shared/lib";
+import {
+   CookiesServices,
+   EnglishType,
+   EnumTokens,
+   MODAL_KEYS,
+   ROUTES,
+   ruCurrency,
+} from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
+import { usePathname } from "next/navigation";
+import { LikeButton } from "@/entities/general/likeButton";
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
+   const pathname = usePathname();
 
    const handleClick = () => {
       showModal(MODAL_KEYS.card, {
@@ -19,7 +29,15 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
          type: EnglishType[item.type],
       });
 
-      CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item.author?.slug });
+      if (pathname.includes(ROUTES.USERS)) {
+         CookiesServices.setToken({
+            keyName: EnumTokens.CARD_AUTHOR,
+            value: pathname.split("/")[2],
+         });
+      } else {
+         !pathname.includes(ROUTES.CARD_DETAILS) &&
+            CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item.author?.slug });
+      }
    };
 
    if (!item) {
@@ -28,12 +46,15 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
 
    return (
       <div className={clsx(styles.card, styles[theme])}>
+         <div className={styles.card__btnLike}>
+            <LikeButton isLiked={Boolean(item.liked) || false} slug={item.slug} type={item.type} />
+         </div>
          <div className={styles.card__img} style={{ backgroundImage: `url(${item.image})` }} />
          <div className={styles.card__body}>
             <div className={styles.card__order}>
                <h4 className={clsx(styles.card__title, styles.card__title_order)}>{item.title}</h4>
                <h4 className={clsx(styles.card__title, styles.card__title_cost)}>
-                  {Math.round(Number(item.price))} сом
+                  {Math.round(Number(item.price))} {ruCurrency[item.currency]}
                </h4>
             </div>
             {item?.author && (

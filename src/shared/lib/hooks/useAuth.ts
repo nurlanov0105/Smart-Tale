@@ -7,6 +7,7 @@ import { useRememberMe } from "./useRememberMe";
 
 export function useAuth() {
    const [isAuth, setIsAuth] = useState(false);
+   const [isLoading, setIsLoading] = useState(true)
    const { isRemember } = useRememberMe();
    let refreshToken;
    if (isRemember) {
@@ -22,7 +23,8 @@ export function useAuth() {
       } else {
          setIsAuth(false);
       }
+      setIsLoading(false)
    }, [refreshToken]);
 
-   return isAuth;
+   return {isAuth, isLoading};
 }

@@ -20,6 +20,7 @@ export const OrganizationQueryKeys = {
    ORGANIZATION: "organization/list",
    CREATE_ORGANIZATION: "organization/create",
    ORGANIZATION_DETAILS: "organization-details",
+   ORGANIZATION_DETAIL_ORDERS: "organization-detail-orders",
    ORGANIZATION_ACTIVATE: "organization-activate",
    EMPLOYEES: "employees",
    EMPLOYEE_ORDERS: "employee-orders",

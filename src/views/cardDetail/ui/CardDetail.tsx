@@ -1,19 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetCommonUserAds } from "@/widgets/user/cardsSection";
 import { SliderCards } from "@/widgets/user/sliderCards";
 import { Chat } from "@/widgets/user/chat";
 import { CardSlider } from "@/features/general/cardSlider";
 import { useBuyEquipment, useOrderApply } from "@/widgets/general/cardModal";
 import { CardCategory } from "@/features/general/cardCategory";
-import {
-   ISize,
-   useFetchResource,
-   useLikeEquipment,
-   useLikeOrder,
-   useLikeService,
-} from "@/features/user/standartCard";
+import { ISize, useFetchResource } from "@/features/user/standartCard";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { ErrorMessage } from "@/entities/general/errorMessage";
@@ -30,9 +24,10 @@ import {
 
 import styles from "./styles.module.scss";
 import { FeedbackList } from "@/widgets/general/feedbackList";
+import { useLikeEquipment, useLikeOrder, useLikeService } from "@/entities/general/likeButton";
 
 const CardDetail = () => {
-   const [selectedCategory, setSelectedCategory] = useState("ОПИСАНИЕ");
+   const [selectedCategory, setSelectedCategory] = useState("Описание");
    const { type, slug } = useAnnouncementType();
    const author = CookiesServices.getCookiesValue(EnumTokens.CARD_AUTHOR);
    const {
@@ -50,9 +45,9 @@ const CardDetail = () => {
 
    const { mutate: buyEquipment, isPending: isbuyEquipmentLoading } = useBuyEquipment();
    const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
-   const { mutate: likeEquipment, isPending: likeEquipmentLoading } = useLikeEquipment(slug);
-   const { mutate: likeOrder, isPending: likeOrderLoading } = useLikeOrder(slug);
-   const { mutate: likeService, isPending: likeServiceLoading } = useLikeService(slug);
+   const { mutate: likeEquipment, isPending: likeEquipmentLoading } = useLikeEquipment(slug, type);
+   const { mutate: likeOrder, isPending: likeOrderLoading } = useLikeOrder(slug, type);
+   const { mutate: likeService, isPending: likeServiceLoading } = useLikeService(slug, type);
 
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
@@ -147,7 +142,7 @@ const CardDetail = () => {
                            </div>
                         )}
                      </div>
-                     {type === "order" && isSuccess && <FeedbackList slug={data.data.slug} />}
+                     {/* {type === "order" && isSuccess && <FeedbackList slug={data.data.slug} />} */}
                   </div>
                </div>
                <div className={styles.detail__right}>
