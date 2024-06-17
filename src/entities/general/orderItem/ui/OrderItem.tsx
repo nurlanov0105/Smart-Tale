@@ -11,6 +11,7 @@ import styles from "./styles.module.scss";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
 
 import { useThemeStore } from "@/shared/store/themeStore";
+import {boardHeadings} from "@/features/user/boardColumn/model/consts";
 
 const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -29,6 +30,8 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
          router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${item.slug}`);
       }
    };
+
+   const status = boardHeadings[item.status as keyof typeof boardHeadings]
    return (
       <>
          {item.type === "Equipment" && (
@@ -71,7 +74,9 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                </div>
                <span className={styles.item__date}>2 апреля 2024</span>
                <div className={styles.item__box}>
-                  <p className={styles.item__status}>{isCurrent && item.status}</p>
+                  <p style={{
+                     backgroundColor: status?.light && status[theme]
+                  }} className={styles.item__status}>{isCurrent && status?.name}</p>
                   {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
                </div>
             </div>

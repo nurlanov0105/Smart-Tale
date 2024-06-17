@@ -74,7 +74,7 @@
     overflow: hidden;
   }
   &__button{
-    width: 80%;
+    width: 100%;
     color: $common-white;
     background-color: #5BCF83;
     padding: 1.5rem;
@@ -84,14 +84,14 @@
     margin-top: 2rem;
 
     &.active{
-      background-color: transparent;
+      background-color: transparent !important;
       color: #5BCF83;
       border: 1px solid #5BCF83;
 
       @media (hover: hover) and (pointer: fine){
         &:hover{
-          color: $common-white;
-          background-color: #5BCF83;
+          color: $common-white ;
+          background-color: #5BCF83 !important;
         }
       }
     }

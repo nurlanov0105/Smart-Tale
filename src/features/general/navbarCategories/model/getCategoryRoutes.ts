@@ -6,9 +6,12 @@ import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
 interface CategoryArgs {
    authorized: boolean;
    subscribed: boolean;
+   isEmployee: boolean | undefined
+   hasOrganization: boolean | undefined
+
 }
 
-export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): TypeCategories[] =>
+export const getCategoryRoutes = ({ authorized, subscribed, isEmployee }: CategoryArgs): TypeCategories[] =>
    [
       {
          id: 1,
@@ -46,13 +49,14 @@ export const getCategoryRoutes = ({ authorized, subscribed }: CategoryArgs): Typ
                subtitle: "Моя организация",
                link: ORGANIZATION_ROUTES.ORGANIZATION_LIST,
                detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,
+               isShow: true
             },
-            { parentId: 2, subtitle: "Сотрудники", link: ORGANIZATION_ROUTES.EMPLOYEES },
-            { parentId: 2, subtitle: "Должности", link: ORGANIZATION_ROUTES.POSITIONS },
-            { parentId: 2, subtitle: "Текущие заказы", link: ORGANIZATION_ROUTES.CURRENT_ORDERS },
-            { parentId: 2, subtitle: "История вакансий", link: ORGANIZATION_ROUTES.VACANCIES },
-            { parentId: 2, subtitle: "История заказов", link: ORGANIZATION_ROUTES.HISTORY },
-         ].filter((route) => !("authorized" in route) || route.authorized === authorized),
+            { parentId: 2, subtitle: "Сотрудники", link: ORGANIZATION_ROUTES.EMPLOYEES, isShow: isEmployee },
+            { parentId: 2, subtitle: "Должности", link: ORGANIZATION_ROUTES.POSITIONS, isShow: isEmployee },
+            { parentId: 2, subtitle: "Текущие заказы", link: ORGANIZATION_ROUTES.CURRENT_ORDERS, isShow: isEmployee },
+            { parentId: 2, subtitle: "История вакансий", link: ORGANIZATION_ROUTES.VACANCIES, isShow: isEmployee },
+            { parentId: 2, subtitle: "История заказов", link: ORGANIZATION_ROUTES.HISTORY, isShow: isEmployee },
+         ].filter((route) => (!("authorized" in route) || route.authorized === authorized) && route.isShow),
          activeRoutes: [
             ORGANIZATION_ROUTES.CREATE_ORGANIZATION,
             ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,

@@ -226,13 +226,16 @@ export const useActiveOrganization = () => {
 
 export const useDeleteOrganization = () => {
     const {replace} = useRouter()
+    const queryClient = useQueryClient()
     return useMutation<any, Error, string>({
         mutationKey: [OrganizationQueryKeys.DELETE_ORGANIZATION],
         mutationFn: (slug) => OrganizationService.deleteOrganization(slug),
-        onSuccess: () => {
-            toast.success("Организация было удалена")
-            replace(ORGANIZATION_ROUTES.ORGANIZATION_LIST)
+        onSuccess: async () => {
+            await queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION]})
             closeModal()
+            toast.success("Организация было удалена")
+
+            replace(ORGANIZATION_ROUTES.ORGANIZATION_LIST)
         },
         onError: () => {
             console.log("error")

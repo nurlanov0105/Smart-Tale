@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, {useState} from "react";
 import {useParams, usePathname} from "next/navigation";
 import {VacancyItem, useGetVacancySlug, useGetVacancies, VacancyCardType} from "@/entities/user/vacancyItem";
 import { ErrorMessage } from "@/entities/general/errorMessage";
@@ -17,6 +17,13 @@ const VacancyDetail = () => {
 
    const vacancies = useGetVacancies(1)
 
+   const [isResponsed, setIsResponse] = useState(false)
+   const responseButton = !isResponsed ? (response.isPending ? "Загрузка..." : "Откликнуться") : "Отозвать отклик"
+
+   const handleResponse = () => {
+      response.mutate({slug})
+      setIsResponse(!isResponsed)
+   }
 
    if (isFetching) {
       return <GlobalLoading />;
@@ -47,12 +54,18 @@ const VacancyDetail = () => {
                </p>
                <p className={styles.detail__text}>{data?.data?.schedule}</p>
                <div>
-                  <button className={styles.detail__button}>Откликнуться</button>
+                  {/*<button onClick={handleResponse} className={styles.detail__button}>*/}
+                  {/*   Откликнуться*/}
+                  {/*</button>*/}
+
+                  <button onClick={handleResponse} className={clsx(styles.detail__button, isResponsed && styles.active)}>
+                     {responseButton}
+                  </button>
                </div>
             </div>
             <div className={styles.detail__phoneWrapper}>
                <h3 className={styles.detail__title}>
-                  Напишите телефон, чтобы работодатель мог <br /> связаться с вами
+                  Напишите телефон, чтобы работодатель мог <br/> связаться с вами
                </h3>
                <form className={styles.detail__form}>
                   <InputField

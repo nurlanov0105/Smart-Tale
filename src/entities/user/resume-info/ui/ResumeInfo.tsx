@@ -1,6 +1,6 @@
 "use client";
 
-import React, {FC} from "react";
+import React, {FC, useState} from "react";
 import clsx from "clsx";
 import {useThemeStore} from "@/shared/store/themeStore";
 import {Button, GlobalLoading} from "@/shared/ui";
@@ -15,18 +15,20 @@ import {WORK} from "@/shared/lib/routes.config";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 
-const ResumeInfo: FC = () => {
+const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
    const theme = useThemeStore((state) => state.theme);
-   const user_slug = CookiesServices.getCookiesValue(EnumTokens.USER_SLUG)
+   const [isInvited, setIsInvited] = useState(false)
+   const handleInvite = () => {
+      setIsInvited(!isInvited)
+   }
+   const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`);
 
    const { push } = useRouter();
-   const params = useParams();
-   const slug = params.slug.toString();
+   const {slug} = useParams<{slug: string}>();
 
    const { data: resume, isLoading } = useResumeDetailsQuery(slug);
-   const { data } = useGetProfile();
 
-   const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`);
+   const isInvite = userSlug === resume?.author?.slug
 
    if (isLoading) return <GlobalLoading type="full" />;
 
@@ -42,18 +44,18 @@ const ResumeInfo: FC = () => {
                <div>
                   <div className={styles.form__initials}>
                      <span>ФИО:</span>
-                     <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>
-                        {data?.data?.last_name} {data?.data?.first_name} {data?.data?.middle_name}
+                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>
+                        {resume?.author?.last_name} {resume?.author?.first_name} {resume?.author?.middle_name}
                      </Link>
                   </div>
                   <div className={styles.form__initials}>
                      <span>Почта:</span>
-                     <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>{data?.data?.email}</Link>
+                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>{resume?.author?.email}lorem@mail.ru</Link>
                   </div>
 
                   <div className={styles.form__initials}>
                      <span>Номер телефона:</span>
-                     <Link href={ROUTES.USERS + `/${data?.data?.slug}`}>{data?.data?.phone_number}</Link>
+                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>{resume?.author?.phone_number}+996773333333</Link>
                   </div>
                </div>
             </div>
@@ -103,11 +105,21 @@ const ResumeInfo: FC = () => {
             {/*</div>*/}
          </div>
          {
-             user_slug === data?.data.slug &&
+             isInvite &&
              <div className={styles.form__btns}>
-                <Button onClick={handleRoute} type="button">
+                <button className={styles.form__button} onClick={handleRoute} type="button">
                    Изменить резюме
-                </Button>
+                </button>
+             </div>
+         }
+         {
+             !isInvite &&
+             <div className={styles.form__btns}>
+                <button className={clsx(styles.form__button, isInvited && styles.active)} onClick={handleInvite} type="button">
+                   {
+                      isInvited ? "Отозвать приглашение" : "Отправить приглашение"
+                   }
+                </button>
              </div>
          }
       </form>

@@ -73,10 +73,15 @@
    }
 
    &__status {
-      color: $common-black;
       font-size: 1.4rem;
       line-height: 1.42;
       letter-spacing: -0.28px;
+
+      padding: 1rem 3.5rem;
+      margin-top: 1rem;
+
+      border-radius: 4px;
+      color: #181a1b;
    }
 
    &__date {

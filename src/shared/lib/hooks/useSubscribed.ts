@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { EnumTokens } from "../types/types";
-import { useRememberMe } from "./useRememberMe";
 import { usePathname } from "next/navigation";
 import { CookiesServices } from "../services/cookies.services";
 
@@ -15,6 +14,8 @@ export function useSubscribed() {
       "is subscribed": boolean;
    } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
+
+   const [isLoading, setIsLoading] = useState(true)
 
    const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
    const isRemember = res === "true";
@@ -35,7 +36,9 @@ export function useSubscribed() {
             setIsSubscribed(false);
          }
       }
+      setIsLoading(false)
+
    }, [isRemember, pathname]);
 
-   return { subscribed, isSubscribed };
+   return { subscribed, isSubscribed, isLoading };
 }

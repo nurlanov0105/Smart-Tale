@@ -1,8 +1,5 @@
 import {useForm} from "react-hook-form";
-import {useMutation} from "@tanstack/react-query";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService} from "@/shared/lib";
-import {toast} from "react-toastify";
+import {useCreateOrganizationQuery} from "./useQuery";
 import {CreateOrganizationTypes} from "./types";
 
 export const useCreateOrganization = () => {
@@ -18,18 +15,13 @@ export const useCreateOrganization = () => {
         mode: "onBlur"
     })
 
+
+
     const {
         mutate ,
         isPending,
         isError
-    } = useMutation<any, Error, FormData>({
-        mutationKey: [OrganizationQueryKeys.CREATE_ORGANIZATION],
-        mutationFn: (data) => OrganizationService.createOrganization(data),
-        onSuccess: () => {
-            reset()
-            toast.success("Поздравляем! Вы успешно создали организацию!")
-        }
-    })
+    } = useCreateOrganizationQuery()
 
     const onsSubmit = (data: any) => {
         const formData = new FormData()

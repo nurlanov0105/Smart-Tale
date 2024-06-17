@@ -48,7 +48,9 @@ const OrganizationForm = () => {
                 />
             </div>
             <div className={styles.form__button}>
-                <Button type="submit">Создать организацию</Button>
+                <Button type="submit">{
+                    isLoading ? "Загрузка..." : "Создать организацию"
+                }</Button>
             </div>
         </form>
     );

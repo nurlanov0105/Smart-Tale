@@ -8,6 +8,9 @@ import {BASE_URL} from "@/shared/api/instance";
 import {ORGANIZATION_ROUTES} from "@/shared/lib";
 import {OrganizationEndpoints} from "@/shared/api/endpoints";
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+export const runtime = 'edge';
 
 export default async function OrganizationAdminPage () {
    const data: OrganizationsTypes = await fetchOrganization()
@@ -21,23 +24,34 @@ export default async function OrganizationAdminPage () {
 
    if (!myOrganization){
       const otherOrganization = otherOrg.find(organization => organization.active)
-      const route = otherOrganization || otherOrg[0].slug
+      const route = otherOrganization || otherOrg[0]?.slug
 
-      redirect(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${route}`)
+
+      if (route){
+         redirect(ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${route}`)
+      }
    }
 
    return <AdminOrganization organization={data}/>;
 };
 
 
+
 const fetchOrganization = async () => {
    try {
       const accessToken = cookies().get("accessToken")
-      const res = await fetch(BASE_URL + OrganizationEndpoints.GET_MY_ORGANIZATIONS, {
+
+      const timestamp = new Date().getTime()
+      const url = BASE_URL + OrganizationEndpoints.GET_MY_ORGANIZATIONS + `?timestamp=${timestamp}`
+
+      const res = await fetch(url, {
          headers: {
             Authorization: `Bearer ${accessToken?.value}`,
             'Content-Type': 'application/json',
+            'Cache-Control': 'no-cache, no-store, must-revalidate'
          },
+         cache: "no-store",
+
       });
       if (!res.ok){
          throw new Error("Произошла ошибка при запросе")

@@ -4,6 +4,8 @@ import { Header } from "@/widgets/general/header";
 import { NavbarLine } from "@/entities/general/navbarLine";
 import { HeaderIntro } from "@/entities/general/headerIntro";
 import styles from "./styles.module.scss";
+import {cookies} from "next/headers";
+import jwt from "jsonwebtoken";
 
 const MainLayout: FC<PropsWithChildren> = ({ children }) => {
    return (
@@ -12,7 +14,7 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
          <Navbar />
          <div className={styles.main__wrapper}>
             <Header />
-            <div className={styles.main__content}>
+            <div className={styles.main__content} data-id="main">
                <div className={styles.main__intro}>
                   <HeaderIntro />
                </div>

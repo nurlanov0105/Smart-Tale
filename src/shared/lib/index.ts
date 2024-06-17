@@ -119,8 +119,10 @@ export {
    typeSalary,
 } from "./constants/vacancyFilters";
 
+
 export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
 export { useThemeStore } from "../store/themeStore/useThemeStore";
+export { useConfettiStore } from "../store/confettiStore/confettiStore";
 export { cloudImageToFile } from "./utils/imageToFile";
 
 export {

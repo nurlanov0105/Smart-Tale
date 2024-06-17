@@ -1,18 +1,36 @@
-"use client";
+import {BASE_URL, EquipmentQueryKeys, EquipmentsEndpoints} from "@/shared/api";
+import {ErrorMessage} from "@/entities/general/errorMessage";
+import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 
-import { NextPage } from "next";
-import { CardsSection } from "@/widgets/user/cardsSection";
-import { EquipmentService, SkeletonTypes } from "@/shared/lib";
-import { EquipmentQueryKeys } from "@/shared/api";
 
-const EquipmentPage: NextPage = () => {
+
+export default async function EquipmentPage(){
+   const data = await fetchEquipment()
+
+   if (!data) return <ErrorMessage/>
+
    return (
-      <CardsSection
-         fetchFunction={EquipmentService.getEquipments}
-         queryKey={EquipmentQueryKeys.EQUIPMENTS}
-         type={SkeletonTypes.standart}
-      />
+       <CardSection2
+           initialData={data}
+           queryKey={EquipmentQueryKeys.EQUIPMENTS}
+       />
    );
 };
 
-export default EquipmentPage;
+
+const fetchEquipment = async () => {
+   try {
+
+      const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {next: {revalidate: 3600}});
+
+      if (!res.ok){
+         throw new Error("Произошла ошибка при запросе")
+      }
+
+      return res.json();
+
+   } catch (err){
+      console.error('Ошибка при обработке запроса:', err);
+   }
+
+};

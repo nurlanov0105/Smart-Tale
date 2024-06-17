@@ -1,8 +1,8 @@
 import React from "react";
 import {PositionForm} from "@/features/admin/positionForm";
 
-const Page = () => {
+const AddPositionPage = () => {
    return <PositionForm/>;
 };
 
-export default Page;
+export default AddPositionPage;

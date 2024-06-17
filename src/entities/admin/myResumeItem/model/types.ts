@@ -7,4 +7,5 @@ export interface ResumeItemTypes{
     experience: string
     job_title: string
     slug: string
+    updated_at: string
 }
