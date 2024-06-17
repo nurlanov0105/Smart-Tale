@@ -12,7 +12,8 @@ const nextConfig = {
       additionalData: `@import "_vars.scss"; @import "_mixins.scss";`,
    },
    images: {
-      domains: ['res.cloudinary.com']
+      domains: ['res.cloudinary.com'],
+
    },
 };
 

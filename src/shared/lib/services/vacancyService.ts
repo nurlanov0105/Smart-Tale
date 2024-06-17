@@ -6,8 +6,10 @@ import {VacancyUpdateTypes} from "@/entities/user/vacancyItem/model/types";
 import {DefaultFilterTypes} from "@/shared/store/filtersStore/types";
 
 export const VacancyService = {
-   getVacancies: async (params: string) => {
-      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY + params);
+   getVacancies: async (params?: any) => {
+      const response = await baseApiInstance.get(VacancyEndpoints.VACANCY, {
+         // params
+      });
       return response.data;
    },
    getOrganizationVacancies: async () => {

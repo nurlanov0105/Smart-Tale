@@ -35,7 +35,7 @@ export const useGetVacancies = (page: number) => {
    return useQuery({
       queryKey: [VacancyQueryKeys.GET_VACANCIES, defaultValues],
       queryFn: () => {
-         return VacancyService.getVacancies(params)
+         return VacancyService.getVacancies()
       },
    });
 };
@@ -46,11 +46,14 @@ export const useAddVacancy = () => {
    });
 };
 export const useAddResumeQuery = (reset: UseFormReset<ResumeFormTypes>) => {
+   const queryClient = useQueryClient()
    return useMutation({
       mutationFn: (data: ResumeType) => ResumeService.addResume(data),
       mutationKey: [ResumeQueryKeys.RESUME],
       onSuccess: () => {
          reset();
+         window.scroll(0, 0)
+         queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.GET_MY_RESUMES, ResumeQueryKeys.GET_RESUMES]})
          toast.success("Успешно разместили резюме!");
       },
    });

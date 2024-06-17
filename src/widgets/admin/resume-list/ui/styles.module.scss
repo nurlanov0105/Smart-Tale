@@ -6,6 +6,10 @@
 
     padding: 2rem 0;
   }
+  &__top{
+    display: flex;
+    justify-content: space-between;
+  }
   &__title{
     font-size: 1.8rem;
     font-weight: 600;

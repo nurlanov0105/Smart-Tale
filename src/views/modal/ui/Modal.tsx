@@ -14,6 +14,7 @@ import {
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
 import { useThemeStore } from "@/shared/store/themeStore";
+import dynamic from "next/dynamic";
 
 const Modal: FC = () => {
    const theme = useThemeStore((state) => state.theme);

@@ -18,6 +18,8 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const router = useRouter();
 
+   if (!item) return null
+
    const { slug, title, price, booked_at, type,status, deadline  } = item;
 
    const handleItemClick = () => {
@@ -35,7 +37,7 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
     const month = getMonth(deadline ?? "2024")
     const monthFormat = monthsForDate()[month]
 
-   const statusOrder = boardHeadings[status]
+   const statusOrder = boardHeadings["Waiting"]
 
    return (
       <li className={clsx(styles.item, styles[theme])}>

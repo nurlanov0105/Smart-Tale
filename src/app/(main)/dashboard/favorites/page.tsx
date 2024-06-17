@@ -10,12 +10,18 @@ import {
 import { NextPage } from "next";
 import { Tabs } from "@/features/general/tabs";
 import { useState } from "react";
-import { FavoritesDefineService } from "@/widgets/user/cardsSection/model/values.data";
+import { UserQueryKeys } from "@/shared/api";
 import styles from "./styles.module.scss";
-import { EquipmentQueryKeys, UserQueryKeys } from "@/shared/api";
+import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 
 const PurchasesPage: NextPage = () => {
    const [type, setType] = useState(announcementFavoritesTabs[0].postValue);
+
+    const initialData = {
+        data: [],
+        has_next_page: true,
+        next_page_number: 1
+    }
 
    return (
       <div className={styles.favorites}>
@@ -23,12 +29,17 @@ const PurchasesPage: NextPage = () => {
             <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
 
-         <CardsSection
-            fetchFunction={UserService.getFavorites}
-            queryKey={UserQueryKeys.FAVORITES}
-            param_tab={type}
-            type={SkeletonTypes.standart}
-         />
+         {/*<CardsSection*/}
+         {/*   fetchFunction={UserService.getFavorites}*/}
+         {/*   queryKey={UserQueryKeys.FAVORITES}*/}
+         {/*   param_tab={type}*/}
+         {/*   type={SkeletonTypes.standart}*/}
+         {/*/>*/}
+          <CardSection2
+              initialData={initialData}
+              queryKey={UserQueryKeys.FAVORITES}
+              dependencies={{param_tab: type}}
+          />
       </div>
    );
 };

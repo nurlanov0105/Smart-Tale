@@ -8,27 +8,38 @@ import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import {useOrganizationVacancies} from "../model/useAdminVacancies";
 import {WORK} from "@/shared/lib/routes.config";
+import {ErrorMessage} from "@/entities/general/errorMessage";
+import {EmptyContent} from "@/entities/admin/emptyContent";
 
 const AdminVacancies = () => {
    const { push } = useRouter();
    const handleCreate = () => push(WORK.CREATE_VACANCY);
 
-   const {data} = useOrganizationVacancies()
+   const {data, isSuccess} = useOrganizationVacancies()
 
     const vacanciesLength = !data?.length ? 0 : data.length
 
    return (
-      <div className={styles.vacancies}>
-         <div className={styles.vacancies__heading}>
-            <h3 className="h4">Найдено {vacanciesLength} вакансий</h3>
-            <Button onClick={handleCreate}>Добавить вакансию</Button>
-         </div>
-         <div className={styles.vacancies__list}>
-            {data?.map((item: VacancyCardType) => (
-               <VacancyItem item={item} key={item.slug} isAdmin={true} />
-            ))}
-         </div>
-      </div>
+       <>
+           {
+               !data?.length && <EmptyContent type="vacancy"/>
+           }
+
+           {
+               !!data?.length &&
+               <div className={styles.vacancies}>
+                   <div className={styles.vacancies__heading}>
+                       <h3 className="h4">Найдено {vacanciesLength} вакансий</h3>
+                       <Button onClick={handleCreate}>Добавить вакансию</Button>
+                   </div>
+                   <div className={styles.vacancies__list}>
+                       {data?.map((item: VacancyCardType) => (
+                           <VacancyItem item={item} key={item.slug} isAdmin={true}/>
+                       ))}
+                   </div>
+               </div>
+           }
+       </>
    );
 };
 

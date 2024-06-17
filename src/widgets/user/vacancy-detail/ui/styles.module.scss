@@ -43,6 +43,19 @@
     background-color: #0dc267;
     border-radius: 6px;
 
+    &.active{
+      background-color: transparent !important;
+      color: #5BCF83;
+      border: 1px solid #5BCF83;
+
+      @media (hover: hover) and (pointer: fine){
+        &:hover{
+          color: $common-white;
+          background-color: #5BCF83 !important;
+        }
+      }
+    }
+
     @media (hover: hover) and (pointer: fine){
       &:hover{
         filter: brightness(110%);

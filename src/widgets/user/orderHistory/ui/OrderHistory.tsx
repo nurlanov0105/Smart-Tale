@@ -2,7 +2,7 @@
 
 import { Tabs } from "@/features/general/tabs";
 import styles from "./styles.module.scss";
-import { historyValues, profileHistoryValues } from "../model/values.data";
+import { historyValues } from "../model/values.data";
 import { useState } from "react";
 import { OrderTable } from "@/features/user/orderTable";
 import { OrdersService } from "@/shared/lib";

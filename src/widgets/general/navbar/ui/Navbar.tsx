@@ -22,7 +22,7 @@ const Navbar = () => {
    const { isAuth, isLoading } = useAuth();
 
    const navbarRef = useRef<HTMLDivElement>(null);
-   const pathname = usePathname() as string;
+   const pathname = usePathname();
    const categoryType = pathname.includes("/admin");
    const { isSubscribed } = useSubscribed();
 
