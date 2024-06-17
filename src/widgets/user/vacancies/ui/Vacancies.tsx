@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {FC, useState} from "react";
 import { FiltersVacancies } from "@/features/user/filtersVacancies";
 import { VacancyCardType, VacancyItem, useGetVacancies } from "@/entities/user/vacancyItem";
 import { TypeViewButtons } from "@/entities/user/typeViewButtons";
@@ -13,8 +13,14 @@ import { SlidersHorizontal } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import {useResponse} from "@/shared/lib";
+import {useInfinityScroll2} from "@/widgets/user/cardsSection/model/useInfinityScroll2";
 
-const Vacancies = () => {
+
+interface IProps{
+    initialData: any,
+    queryKey: string
+}
+const Vacancies:FC<IProps> = ({initialData, queryKey}) => {
    const theme = useThemeStore((state) => state.theme);
 
    const [selectedDate, setSelectedDate] = useState(timeList[0]);
@@ -27,11 +33,16 @@ const Vacancies = () => {
 
    const handleFilters = () => setWithFilters(!withFilters);
 
-   const { isError, isPending, isLoading, data, isSuccess } = useGetVacancies(page);
+   const {
+       data,
+       isLoading,
+       isError
+   } = useInfinityScroll2({initialData, queryKey})
+
    const response = useResponse()
 
 
-   const vacanciesLength = isSuccess ? data?.data.length : 0;
+   const vacanciesLength = !!data ? data?.length : 0;
 
    return (
       <div className={clsx(styles.vacancies, styles[theme])}>
@@ -73,10 +84,10 @@ const Vacancies = () => {
                ) : isError ? (
                   <ErrorMessage />
                ) : (
-                  !data?.data.length && <ErrorMessage isEmpty={true} />
+                  !data?.length && <ErrorMessage isEmpty={true} />
                )}
 
-               {data?.data?.map((item: VacancyCardType, idx: number) => (
+               {data?.map((item: VacancyCardType, idx: number) => (
                   <VacancyItem response={response} item={item} key={idx} typeView={typeView} />
                ))}
             </div>

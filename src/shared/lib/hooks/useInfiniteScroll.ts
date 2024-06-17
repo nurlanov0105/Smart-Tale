@@ -64,11 +64,6 @@ export const useInfiniteScroll = ({
          getNextPageParam: (lastPage) => (lastPage.hasNextPage ? lastPage.nextPage : undefined),
       });
 
-   if (!isFetching) {
-      console.log(data);
-      // console.log(data ? data.pages.flatMap((page) => page.data) : []);
-   }
-
    useEffect(() => {
       const observer = new IntersectionObserver((entries) => {
          if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
@@ -98,7 +93,6 @@ export const useInfiniteScroll = ({
       if (!res) {
          throw new Error("Ошибка при получении данных");
       }
-      console.log(res);
 
       const data =
          queryKey === UserQueryKeys.ORDER_HISTORY

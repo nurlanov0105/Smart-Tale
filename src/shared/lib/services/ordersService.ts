@@ -19,11 +19,13 @@ export const OrdersService = {
 
    getOrders: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
-         params: {
-            page: page,
-         },
+         params: {page: page}
       });
-      return response.data;
+      return {
+         data: response.data?.data?.data,
+         hasNextPage: response.data.has_next_page,
+         nextPage: response.data.next_page_number
+      };
    },
    getMyOrders: async (page: number) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS, {
@@ -57,7 +59,12 @@ export const OrdersService = {
             status: param_tab,
          },
       });
-      return response.data;
+
+      return {
+         data: response.data?.data?.data,
+         hasNextPage: response.data.has_next_page,
+         nextPage: response.data.next_page_number
+      };
    },
 
    getMyOrder: async (orderSlug: string) => {

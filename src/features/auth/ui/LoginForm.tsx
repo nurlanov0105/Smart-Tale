@@ -19,6 +19,8 @@ const LoginForm: FC = () => {
 
    const { isRemember, setIsRemember } = useRememberMe();
 
+   console.log("isRememberMe - ", isRemember);
+
    const handleRememberChange = () => {
       setIsRemember(!isRemember);
    };

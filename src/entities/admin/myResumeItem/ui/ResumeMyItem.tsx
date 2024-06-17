@@ -7,9 +7,17 @@ import {useThemeStore} from "@/shared/store/themeStore";
 import {ROUTES, WORK} from "@/shared/lib/routes.config";
 import styles from "./styles.module.scss";
 import {ResumeItemTypes} from "../model/types";
+import {getDate, getMonth, getYear} from "date-fns";
+import {monthsForDate} from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
-const ResumeMyItem: FC<ResumeItemTypes> = ({job_title, experience, slug, author}) => {
+const ResumeMyItem: FC<ResumeItemTypes> = ({job_title, experience, slug, author, updated_at}) => {
     const theme = useThemeStore(state => state.theme)
+
+    const day = getDate(updated_at)
+    const month = getMonth(updated_at)
+    const year = getYear(updated_at)
+
+    const monthFormat = monthsForDate()[month]
 
     return (
         <div className={clsx(styles.resume__item, styles[theme])}>
@@ -42,7 +50,7 @@ const ResumeMyItem: FC<ResumeItemTypes> = ({job_title, experience, slug, author}
                     </div>
                     {/*<h4 className={styles.resume__salary}>20 000 - 30 000 сом</h4>*/}
                 </div>
-                <p className={styles.resume__date}>Обновлено 21 мая 2024 в 02:03</p>
+                <p className={styles.resume__date}>Обновлено {day} {monthFormat.value} {year} года</p>
                 <div className={styles.resume__buttons}>
                     <Link href={WORK.RESUME_INFO + `/${slug}`} className={styles.resume__button}>Посмотреть подробнее</Link>
                 </div>

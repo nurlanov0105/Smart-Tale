@@ -119,7 +119,7 @@ export type CardType = {
    price: string;
    description: string;
    author: AuthorType;
-   liked: string;
+   is_liked: string;
    image: string;
    currency: CurrencyType;
    type: "Order" | "Equipment" | "Service";

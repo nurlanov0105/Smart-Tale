@@ -68,7 +68,9 @@ const OrganizationSettings = () => {
             </div>
             <div className={styles.form__button}>
                 <Button onClick={handleDelete} type="button" classType="btn_danger">Удалить организацию</Button>
-                <Button type="submit">Изменить организацию</Button>
+                <Button type="submit">{
+                    isSubmitting ? "Загрузка..." : "Изменить организацию"
+                }</Button>
             </div>
         </form>
     );

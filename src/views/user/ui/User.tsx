@@ -15,6 +15,7 @@ import { useGetCommonUser } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import userIcon from "@@/imgs/form/user.svg";
+import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 
 const User = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -26,15 +27,11 @@ const User = () => {
 
    const [type, setType] = useState(announcementTabs[0].postValue);
 
-   if (!isLoading) {
-      console.log(data);
-   }
-
-   // const data = [
-   //    { value: "Активно", postValue: "active" },
-   //    { value: "Деактивировано", postValue: "nactive" },
-   // ];
-   // const [type, setType] = useState(data[0].postValue);
+    const initialData = {
+        data: [],
+        has_next_page: true,
+        next_page_number: 1
+    }
 
    return (
       <div className={clsx(styles.user, styles[theme])}>
@@ -76,13 +73,18 @@ const User = () => {
          <div className={styles.user__bottom}>
             <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
-         <CardsSection
-            fetchFunction={UserService.getCommonUserAds}
-            queryKey={UserQueryKeys.COMMON_USER}
-            type={SkeletonTypes.standart}
-            slug={slug}
-            param_tab={type}
-         />
+          <CardSection2
+              dependencies={{slug, param_tab: type}}
+              initialData={initialData}
+              queryKey={UserQueryKeys.COMMON_USER}
+          />
+         {/*<CardsSection*/}
+         {/*   fetchFunction={UserService.getCommonUserAds}*/}
+         {/*   queryKey={UserQueryKeys.COMMON_USER}*/}
+         {/*   type={SkeletonTypes.standart}*/}
+         {/*   slug={slug}*/}
+         {/*   param_tab={type}*/}
+         {/*/>*/}
       </div>
    );
 };

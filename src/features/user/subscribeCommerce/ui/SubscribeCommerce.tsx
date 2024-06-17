@@ -17,7 +17,9 @@ import { useThemeStore } from "@/shared/store/themeStore";
 
 const SubscribeCommerce: FC<Props> = () => {
    const theme = useThemeStore((state) => state.theme);
-   const { isSubscribed, subscribed } = useSubscribed();
+   const { isSubscribed, subscribed, isLoading } = useSubscribed();
+
+   if (isLoading) return
 
    return (
       <>

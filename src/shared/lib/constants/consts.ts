@@ -17,6 +17,7 @@ export const MODAL_KEYS = {
    subscribe: "SubscribeModal",
    changeAvatar: "ChangeAvatarModal",
    deleteAnnouncement: "DeleteAnnouncementModal",
+   authNotice: "AuthNotice",
    hideAnnouncement: "HideAnnouncementModal",
    inviteEmployee: "InviteEmployeeModal",
    buyAnnouncement: "BuyAnnouncementModal",
@@ -132,6 +133,7 @@ export const EMPTY_CONTENT_TYPES = {
    employees: "employees",
    positions: "positions",
    resume: "resume",
+   vacancy: "vacancy",
 } as const;
 
 export const rightsActionsMap: RightsTypes = {

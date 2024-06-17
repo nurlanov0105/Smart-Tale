@@ -1,7 +1,6 @@
 import { EquipmentsEndpoints, OrdersEndpoints } from "@/shared/api";
 import { UpdateEquipmentProps } from "@/shared/lib/types/orders-service.types";
 import { baseApiInstance } from "@/shared/api/instance";
-import { LikedEquipsParams } from "../types/equiments-service.types";
 
 export const EquipmentService = {
    getEquipments: async ({ page }: { page: number }) => {
@@ -11,7 +10,11 @@ export const EquipmentService = {
          },
       });
 
-      return response;
+      return {
+         data: response.data?.data,
+         hasNextPage: response.data.has_next_page,
+         nextPage: response.data.next_page_number
+      };
    },
    getEquipmentSlug: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENT_SLUG + slug);

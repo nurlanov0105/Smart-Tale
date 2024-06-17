@@ -1,4 +1,11 @@
-import { MARKETPLACE, DASHBOARD, ROUTES, ORGANIZATION_ROUTES } from "./routes.config";
+import {
+   MARKETPLACE,
+   DASHBOARD,
+   ROUTES,
+   ORGANIZATION_ROUTES,
+   authRoutes,
+   accessRoutes,
+} from "./routes.config";
 import { errorCatch } from "../api/error";
 
 import { useDebounce } from "./hooks/useDebounce";
@@ -112,8 +119,10 @@ export {
    typeSalary,
 } from "./constants/vacancyFilters";
 
+
 export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
 export { useThemeStore } from "../store/themeStore/useThemeStore";
+export { useConfettiStore } from "../store/confettiStore/confettiStore";
 export { cloudImageToFile } from "./utils/imageToFile";
 
 export {
@@ -121,6 +130,8 @@ export {
    MARKETPLACE,
    DASHBOARD,
    ROUTES,
+   authRoutes,
+   accessRoutes,
    ORGANIZATION_ROUTES,
    TYPE_ANNOUNCEMENT_DETAIL,
    useDebounce,

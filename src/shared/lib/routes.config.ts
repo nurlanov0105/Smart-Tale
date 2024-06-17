@@ -57,15 +57,18 @@ export enum ROUTES {
    CARD_DETAILS_EQUIPMENT = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
    CARD_DETAILS_SERVICE = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
 
+   ANNOUNCEMENT_DETAILS = `/announcement-details`,
    ANNOUNCEMENT_DETAILS_ORDER = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
    ANNOUNCEMENT_DETAILS_EQUIPMENT = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
    ANNOUNCEMENT_DETAILS_SERVICE = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
 
+   ORGANIZATION = `/organization`,
    ORGANIZATION_CURRENT_ORDERS = `/organization/current-orders`,
    ORGANIZATIONS_OTHER_DETAIL = `/organizations-list`,
    ORGANIZATION_ANNOUNCEMENT_DETAILS = `/organization/announcement-details`,
 
    MODE = `/mode`,
+   NO_RIGHTS = `/organization/no-rights`,
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
@@ -101,3 +104,24 @@ export enum ORGANIZATION_ROUTES {
 
    CURRENT_ORDERS = `/organization/current-orders`,
 }
+
+export const authRoutes = [
+   ROUTES.SIGN_IN,
+   ROUTES.SIGN_UP,
+   ROUTES.CONFIRMED,
+   ROUTES.CONFIRMATION_REGISTER,
+];
+
+export const accessRoutes = [
+   ROUTES.MARKETPLACE_EQUIPMENT,
+   ROUTES.MARKETPLACE_SERVICES,
+   ROUTES.WORK_VACANCIES,
+   ROUTES.WORK_RESUMES,
+
+   ROUTES.CARD_DETAILS_ORDER,
+   ROUTES.CARD_DETAILS_EQUIPMENT,
+   ROUTES.CARD_DETAILS_SERVICE,
+   ROUTES.USERS,
+   ROUTES.WORK_VACANCY_DETAIL,
+   ROUTES.WORK_RESUME_INFO,
+];

@@ -3,33 +3,42 @@
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import { EnumTokens } from "../types/types";
-import { useRememberMe } from "./useRememberMe";
+import { usePathname } from "next/navigation";
+import { CookiesServices } from "../services/cookies.services";
 
 export function useSubscribed() {
+   const pathname = usePathname();
+
    const [subscribed, setSubscribed] = useState<{
       subscription: string;
       "is subscribed": boolean;
    } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
-   const { isRemember } = useRememberMe();
 
-   let subscribeData: any;
-   if (isRemember) {
-      subscribeData = Cookies.get(EnumTokens.SUBSCRIBED_DATA);
-   } else {
-      subscribeData = sessionStorage.getItem(EnumTokens.SUBSCRIBED_DATA);
-   }
+   const [isLoading, setIsLoading] = useState(true)
+
+   const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+   const isRemember = res === "true";
 
    useEffect(() => {
       const isClient = typeof window === "object";
-      if (isClient && subscribeData) {
-         setSubscribed(JSON.parse(subscribeData));
-         setIsSubscribed(JSON.parse(subscribeData)["is subscribed"]);
-      } else {
-         setSubscribed(null);
-         setIsSubscribed(false);
-      }
-   }, [subscribeData]);
+      if (isClient) {
+         const subscribeData = isRemember
+            ? Cookies.get(EnumTokens.SUBSCRIBED_DATA)
+            : sessionStorage.getItem(EnumTokens.SUBSCRIBED_DATA);
 
-   return { subscribed, isSubscribed };
+         if (subscribeData) {
+            const parsedData = JSON.parse(subscribeData);
+            setSubscribed(parsedData);
+            setIsSubscribed(parsedData["is subscribed"]);
+         } else {
+            setSubscribed(null);
+            setIsSubscribed(false);
+         }
+      }
+      setIsLoading(false)
+
+   }, [isRemember, pathname]);
+
+   return { subscribed, isSubscribed, isLoading };
 }
