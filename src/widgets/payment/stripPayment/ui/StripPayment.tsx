@@ -49,9 +49,8 @@ const StripPayment = () => {
          } else {
             sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
          }
-         queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION]})
 
-         showModal(MODAL_KEYS.subscribe);
+         showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.subscribe });
       },
    });
 

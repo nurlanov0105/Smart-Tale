@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import jwt, {Jwt} from "jsonwebtoken";
+import jwt, { Jwt } from "jsonwebtoken";
 import { DASHBOARD, EnumTokens, MARKETPLACE, ROUTES } from "./shared/lib";
 import { WORK } from "@/shared/lib/routes.config";
 import { baseApiInstance } from "@/shared/api/instance";
@@ -45,7 +45,7 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    // }
 
    let isSubscribed = true;
-   let isAuth = false
+   let isAuth = false;
 
    // if (accessToken) {
    //    try {
@@ -81,27 +81,27 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    //    }
    // }
 
-   const isAuthPage = authRoutes.includes(request.nextUrl.pathname as ROUTES);
+   // const isAuthPage = authRoutes.includes(request.nextUrl.pathname as ROUTES);
 
-   if (!refreshToken && dashboardRoutes.includes(request.nextUrl.pathname as DASHBOARD)) {
-      return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));
-   }
+   // if (!refreshToken && dashboardRoutes.includes(request.nextUrl.pathname as DASHBOARD)) {
+   //    return NextResponse.redirect(new URL(ROUTES.SIGN_IN, url));
+   // }
 
-   if (isAuthPage && refreshToken) {
-      return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
-   }
+   // if (isAuthPage && refreshToken) {
+   //    return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, url));
+   // }
 
    if (request.nextUrl.pathname === "/") {
       return NextResponse.redirect(new URL(MARKETPLACE.EQUIPMENT, request.nextUrl.origin));
    }
 
-   if (!isSubscribed && request.nextUrl.pathname.includes(WORK.CREATE_VACANCY)) {
-      return NextResponse.redirect(new URL(ROUTES.SUBSCRIBE, url));
-   }
+   // if (!isSubscribed && request.nextUrl.pathname.includes(WORK.CREATE_VACANCY)) {
+   //    return NextResponse.redirect(new URL(ROUTES.SUBSCRIBE, url));
+   // }
 
-   if (!isSubscribed && request.nextUrl.pathname.includes("/organization")) {
-      return NextResponse.redirect(new URL("/not-found-bitch", url));
-   }
+   // if (!isSubscribed && request.nextUrl.pathname.includes("/organization")) {
+   //    return NextResponse.redirect(new URL("/not-found-bitch", url));
+   // }
 
    // const subscribedRoutes = [
    //       ORGANIZATION_ROUTES.ORGANIZATION_LIST,

@@ -17,6 +17,7 @@ export const MODAL_KEYS = {
    subscribe: "SubscribeModal",
    changeAvatar: "ChangeAvatarModal",
    deleteAnnouncement: "DeleteAnnouncementModal",
+   authNotice: "AuthNotice",
    hideAnnouncement: "HideAnnouncementModal",
    inviteEmployee: "InviteEmployeeModal",
    buyAnnouncement: "BuyAnnouncementModal",

@@ -10,14 +10,15 @@ import {
    MODAL_KEYS,
    ROUTES,
    ruCurrency,
+   useAuth,
 } from "@/shared/lib";
-import clsx from "clsx";
-import styles from "./styles.module.scss";
 import Link from "next/link";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
 import { usePathname } from "next/navigation";
 import { LikeButton } from "@/entities/general/likeButton";
+import clsx from "clsx";
+import styles from "./styles.module.scss";
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -47,7 +48,11 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
    return (
       <div className={clsx(styles.card, styles[theme])}>
          <div className={styles.card__btnLike}>
-            <LikeButton isLiked={Boolean(item.liked) || false} slug={item.slug} type={item.type} />
+            <LikeButton
+               isLiked={Boolean(item.is_liked) || false}
+               slug={item.slug}
+               type={item.type}
+            />
          </div>
          <div className={styles.card__img} style={{ backgroundImage: `url(${item.image})` }} />
          <div className={styles.card__body}>

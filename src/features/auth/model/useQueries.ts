@@ -5,7 +5,7 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { closeModal } from "@/views/modal";
 import { IEmailVerifyRequest } from "@/features/auth/model/types";
-import {CookiesServices, EnumTokens, ROUTES, useRememberMe} from "@/shared/lib";
+import { CookiesServices, EnumTokens, ROUTES, useRememberMe } from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
 import { cookies } from "next/headers";
@@ -107,7 +107,7 @@ export const useLogout = () => {
    }
 
    return useMutation({
-      mutationFn: (token: string) => authApi.logout({refresh: refreshToken}),
+      mutationFn: (token: string) => authApi.logout({ refresh: refreshToken }),
       onSuccess: () => {
          closeModal();
          CookiesServices.clearTokens();
@@ -123,8 +123,8 @@ export const useDeleteAccount = () => {
    return useMutation({
       mutationFn: (token: string) => {
          const refreshToken = Cookies.get(EnumTokens.REFRESH_TOKEN);
-         const data = {refresh: refreshToken || ""};
-         return authApi.deleteAccount(data)
+         const data = { refresh: refreshToken || "" };
+         return authApi.deleteAccount(data);
       },
       onSuccess: () => {
          closeModal();

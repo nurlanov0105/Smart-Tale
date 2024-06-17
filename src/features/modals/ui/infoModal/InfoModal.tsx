@@ -1,25 +1,40 @@
 import { Button, Emojis } from "@/shared/ui";
-import {ModalProps} from "../../model/types";
-import {modalInfoMap} from "../../model/helper";
+import { ModalProps } from "../../model/types";
+import { modalInfoMap } from "../../model/helper";
+import Link from "next/link";
+import { ROUTES } from "@/shared/lib";
+import { closeModal } from "@/views/modal";
 
-const InfoModal = ({componentName}: ModalProps) => {
-    const {
-        buttonText,
-        emoji,
-        title,
-        description
-    } = modalInfoMap[componentName]
+const InfoModal = ({ componentName }: ModalProps) => {
+   const { buttonText, emoji, title, description, login } = modalInfoMap[componentName];
 
-    return (
-        <div>
-            <Emojis type={emoji as "unknown" | "reverse" | "sad" | "fine" | "holidayStuff" | "okay" | "holidaySmile"} />
-            <div className="modalFlex">
-                <h3 className="h3">{title}</h3>
-                <p className="greyText textMaxWidth">{description}</p>
-                <Button>{buttonText}</Button>
-            </div>
-        </div>
-    );
+   return (
+      <div>
+         <Emojis
+            type={
+               emoji as
+                  | "unknown"
+                  | "reverse"
+                  | "sad"
+                  | "fine"
+                  | "holidayStuff"
+                  | "okay"
+                  | "holidaySmile"
+            }
+         />
+         <div className="modalFlex">
+            <h3 className="h3">{title}</h3>
+            <p className="greyText textMaxWidth">{description}</p>
+            {login ? (
+               <Link href={ROUTES.SIGN_IN} className="btn" onClick={closeModal}>
+                  {login}
+               </Link>
+            ) : (
+               <Button onClick={closeModal}>{buttonText}</Button>
+            )}
+         </div>
+      </div>
+   );
 };
 
 export default InfoModal;
