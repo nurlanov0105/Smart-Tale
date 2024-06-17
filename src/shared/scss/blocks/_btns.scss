@@ -2,14 +2,50 @@
    display: flex;
    align-items: center;
    justify-content: center;
+
+   padding: 1.6rem 3.2rem;
+   border-radius: 1rem;
+   background-color: $dark-blue;
+   overflow: hidden;
+
+   span {
+      color: $common-white;
+      font-weight: 500;
+      line-height: 1.5;
+   }
+   @include transition;
+
    @media (hover: hover) and (pointer: fine) {
       &:hover {
+         background-color: #2b3c9b;
       }
    }
 
    &:active {
+      background-color: #2b3c9b;
    }
 
    &:disabled {
+      background-color: #5261b4;
+      cursor: default;
+   }
+
+   &_active {
+      background-color: $dark-blue;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            background-color: $dark-blue;
+         }
+      }
+
+      &:active {
+         background-color: $dark-blue;
+      }
+
+      &:disabled {
+         background-color: #5261b4;
+         cursor: default;
+      }
    }
 }
