@@ -1,4 +1,11 @@
-import { MARKETPLACE, DASHBOARD, ROUTES, ORGANIZATION_ROUTES } from "./routes.config";
+import {
+   MARKETPLACE,
+   DASHBOARD,
+   ROUTES,
+   ORGANIZATION_ROUTES,
+   authRoutes,
+   accessRoutes,
+} from "./routes.config";
 import { errorCatch } from "../api/error";
 
 import { useDebounce } from "./hooks/useDebounce";
@@ -121,6 +128,8 @@ export {
    MARKETPLACE,
    DASHBOARD,
    ROUTES,
+   authRoutes,
+   accessRoutes,
    ORGANIZATION_ROUTES,
    TYPE_ANNOUNCEMENT_DETAIL,
    useDebounce,
