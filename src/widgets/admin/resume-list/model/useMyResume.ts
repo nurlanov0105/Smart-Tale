@@ -4,8 +4,9 @@ import {ResumeService} from "@/shared/lib";
 import {ResumeItemTypes} from "@/entities/admin/myResumeItem";
 
 export const useGetMyResumes = () => {
-    return useQuery<ResumeItemTypes[]>({
+    return useQuery({
         queryKey: [ResumeQueryKeys.GET_MY_RESUMES],
-        queryFn: () => ResumeService.getMyResumes()
+        queryFn: () => ResumeService.getMyResumes(),
+        select: (data) => data?.data as ResumeItemTypes[]
     })
 }

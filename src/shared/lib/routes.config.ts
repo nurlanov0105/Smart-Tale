@@ -66,6 +66,7 @@ export enum ROUTES {
    ORGANIZATION_ANNOUNCEMENT_DETAILS = `/organization/announcement-details`,
 
    MODE = `/mode`,
+   NO_RIGHTS = `/organization/no-rights`,
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,

@@ -1,0 +1,12 @@
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  p{
+    font-size: 1.9rem;
+    margin-top: 1rem;
+  }
+}

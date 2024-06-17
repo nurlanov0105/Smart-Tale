@@ -1,18 +1,24 @@
 "use client"
-import React, {useState} from 'react';
-import {GlobalLoading, Select} from "@/shared/ui";
+import React, {FC, useState} from 'react';
 import {timeList, typeList} from "@/widgets/user/vacancies/model/values.data";
 import {SlidersHorizontal} from "lucide-react";
 import clsx from "clsx";
 import {FiltersVacancies} from "@/features/user/filtersVacancies";
-import {useGetResumes} from "@/widgets/admin/resumes/model/useGetResumes";
 import {ResumeItem} from "@/entities/admin/resumeItem";
 import {ResumeCardType} from "@/entities/admin/resumeItem/model/types";
 import Select2 from "@/shared/ui/select/Select2";
 import {useThemeStore} from "@/shared/store/themeStore";
 import styles from "./styles.module.scss";
+import {useInfinityScroll2} from "@/widgets/user/cardsSection/model/useInfinityScroll2";
+import {ObserverSection} from "@/entities/general/observerSection";
 
-const Resumes = () => {
+
+interface IProps{
+    initialData: any
+    queryKey: string
+}
+
+const Resumes:FC<IProps> = ({initialData, queryKey}) => {
     const theme = useThemeStore(state => state.theme)
 
     const [selectedDate, setSelectedDate] = useState(timeList[0]);
@@ -21,7 +27,15 @@ const Resumes = () => {
     const [withFilters, setWithFilters] = useState(false);
 
 
-    const {data, isLoading} = useGetResumes()
+    // const {data, isLoading} = useGetResumes()
+
+    const {
+        data,
+        isLoading,
+        isError,
+        observerTarget,
+        isFetchingNextPage
+    } = useInfinityScroll2({initialData, queryKey})
     const handleFilters = () => setWithFilters(!withFilters);
 
     //if (isLoading) return <GlobalLoading type="full"/>
@@ -59,10 +73,17 @@ const Resumes = () => {
                     [styles.resumes__row]: withFilters,
                 })}>
                 {
-                    <div className={styles.resumes__list}>
-                        {data?.data?.map((item: ResumeCardType, idx: number) => (
-                            <ResumeItem item={item} key={idx}/>
-                        ))}
+                    <div>
+                        <div className={styles.resumes__list}>
+                            {data?.map((item: ResumeCardType, idx: number) => (
+                                <ResumeItem item={item} key={idx}/>
+                            ))}
+                        </div>
+                        <ObserverSection
+                            isInitialLoading={isLoading}
+                            isLoading={isFetchingNextPage}
+                            observerTarget={observerTarget}
+                        />
                     </div>
                 }
 

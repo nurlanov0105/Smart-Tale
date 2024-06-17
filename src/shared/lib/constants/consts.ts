@@ -132,6 +132,7 @@ export const EMPTY_CONTENT_TYPES = {
    employees: "employees",
    positions: "positions",
    resume: "resume",
+   vacancy: "vacancy",
 } as const;
 
 export const rightsActionsMap: RightsTypes = {

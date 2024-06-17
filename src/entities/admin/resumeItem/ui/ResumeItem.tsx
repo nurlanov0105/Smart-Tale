@@ -12,11 +12,11 @@ const ResumeItem = ({ item }: ResumeItemProps) => {
 
    return (
       <Link
-         href={`${WORK.RESUME_INFO + `/${item.slug}`}`}
+         href={`${WORK.RESUME_INFO + `/${item?.slug}`}`}
          className={clsx(styles.item, styles[theme])}>
          <div className={styles.item__row}>
             <div>
-               <h4 className={styles.item__title}>{item.job_title}</h4>
+               <h4 className={styles.item__title}>{item?.job_title}</h4>
                <h3 className={styles.item__salary}>
                   {/*{item.min_salary} - {item.max_salary}*/}
                   10 000 - 30 000
@@ -24,7 +24,7 @@ const ResumeItem = ({ item }: ResumeItemProps) => {
             </div>
             <div>
                <h4>
-                  {item.author.first_name} {item.author.last_name} {item.author.middle_name}
+                  {item?.author?.first_name} {item?.author?.last_name} {item?.author?.middle_name}
                </h4>
                <h3>
                   {
@@ -36,7 +36,7 @@ const ResumeItem = ({ item }: ResumeItemProps) => {
             <div className={styles.item__experiance}>
                {/*<BriefcaseBusiness className={styles.item__icon} />*/}
                <p>Опыт работы: </p>
-               {item.experience}
+               {item?.experience}
             </div>
 
             <div>

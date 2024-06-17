@@ -29,7 +29,7 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
          <Link href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${item.slug}`} className={styles.organization__left}>
             <Image
                className={styles.organization__image}
-               src={logo}
+               src={item.logo || logo}
                alt="card"
                width={75}
                height={75}

@@ -1,3 +1,3 @@
 export type EmptyContentProps = {
-    type: "organization" | "employees" | "positions" | "resume"
+    type: "organization" | "employees" | "positions" | "resume" | "vacancy"
 }

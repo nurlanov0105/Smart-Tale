@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import {useMutation, useQueryClient} from "@tanstack/react-query";
 import { showModal } from "@/views/modal";
 import { StripePaymentForm, SubsribesData } from "@/features/payment";
 import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
@@ -11,6 +11,7 @@ import Select2 from "@/shared/ui/select/Select2";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {OrganizationQueryKeys} from "@/shared/api";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -29,6 +30,7 @@ const StripPayment = () => {
       }
    }, [isClient, type]);
 
+   const queryClient = useQueryClient()
    const {
       mutate: subscribe,
       isError,
@@ -47,6 +49,8 @@ const StripPayment = () => {
          } else {
             sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
          }
+         queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION]})
+
          showModal(MODAL_KEYS.subscribe);
       },
    });

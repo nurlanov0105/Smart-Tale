@@ -17,6 +17,8 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin, response }
       response && response.mutate({slug: item.slug})
    }
 
+   if (!item) return
+
    return (
       <>
          {!isAdmin && (

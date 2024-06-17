@@ -11,6 +11,7 @@ export function useSubscribed() {
       "is subscribed": boolean;
    } | null>(null);
    const [isSubscribed, setIsSubscribed] = useState(false);
+   const [isLoading, setIsLoading] = useState(true)
    const { isRemember } = useRememberMe();
 
    let subscribeData: any;
@@ -29,7 +30,8 @@ export function useSubscribed() {
          setSubscribed(null);
          setIsSubscribed(false);
       }
+      setIsLoading(false)
    }, [subscribeData]);
 
-   return { subscribed, isSubscribed };
+   return { subscribed, isSubscribed, isLoading };
 }

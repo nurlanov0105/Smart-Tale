@@ -19,10 +19,10 @@ import styles from "./styles.module.scss";
 const AdminOrganizationDetail = () => {
    const theme = useThemeStore((state) => state.theme);
 
-   const { slug } = useParams();
+   const { slug } = useParams<{slug: string}>();
    const [type, setType] = useState(valuesData[0].postValue);
 
-   const { data, isLoading, isError } = useOrganizationDetails(slug.toString());
+   const { data, isLoading, isError } = useOrganizationDetails(slug);
 
    const getEmployees = useEmployees(type);
 

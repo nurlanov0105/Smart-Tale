@@ -68,13 +68,14 @@ export async function middleware(request: NextRequest, response: NextResponse) {
    //    try {
    //       const decodedToken = jwt.decode(accessToken) as DecodedToken
    //       isAuth = true;
-   //       const currentTimeInSeconds = Math.floor(Date.now() / 1000)
-   //
-   //       if (decodedToken.exp < currentTimeInSeconds) {
-   //          console.log("Токен истек");
-   //       } else {
-   //          isAuth = true;
-   //       }
+   //       console.log(decodedToken)
+   //       // const currentTimeInSeconds = Math.floor(Date.now() / 1000)
+   //       //
+   //       // if (decodedToken.exp < currentTimeInSeconds) {
+   //       //    console.log("Токен истек");
+   //       // } else {
+   //       //    isAuth = true;
+   //       // }
    //    } catch (error) {
    //       console.error("Ошибка:", error);
    //    }

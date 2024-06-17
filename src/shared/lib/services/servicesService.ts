@@ -9,10 +9,12 @@ export const ServicesService = {
             page: page,
          },
       });
-      // const response = await axios.get(
-      //    `https://jsonplaceholder.typicode.com/posts?_limit=12&_page=${page}`
-      // );
-      return response;
+
+      return {
+         data: response.data?.data,
+         hasNextPage: response.data.has_next_page,
+         nextPage: response.data.next_page_number
+      };
    },
    getServiceSlug: async (slug: string) => {
       const response = await baseApiInstance.get(ServicesEndpoints.SERVICE_SLUG + slug);

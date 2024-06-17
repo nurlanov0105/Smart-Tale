@@ -27,5 +27,11 @@ export const dataMap = {
         button: "Создать",
         route: WORK.RESUME
     },
+    [EMPTY_CONTENT_TYPES.vacancy]: {
+        title: "Тут еще нет вакансий",
+        description: "Добавьте новую вакансию и разместите \n её, чтобы другие видели",
+        button: "Добавить",
+        route: WORK.CREATE_VACANCY
+    },
 
 }
