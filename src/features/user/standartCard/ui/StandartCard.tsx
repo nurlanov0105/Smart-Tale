@@ -47,13 +47,14 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
 
    return (
       <div className={clsx(styles.card, styles[theme])}>
-         <div className={styles.card__btnLike}>
-            {/*<LikeButton*/}
-            {/*   isLiked={Boolean(item.is_liked) || false}*/}
-            {/*   slug={item.slug}*/}
-            {/*   type={item.type}*/}
-            {/*/>*/}
-         </div>
+         {/* <div className={styles.card__btnLike}>
+            <LikeButton
+               isLiked={Boolean(item.is_liked) || false}
+               slug={item.slug}
+               type={item.type}
+            />
+         </div> */}
+
          <div className={styles.card__img} style={{ backgroundImage: `url(${item.image})` }} />
          <div className={styles.card__body}>
             <div className={styles.card__order}>
