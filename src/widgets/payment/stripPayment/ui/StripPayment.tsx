@@ -1,17 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { showModal } from "@/views/modal";
 import { StripePaymentForm, SubsribesData } from "@/features/payment";
 import { SubscribeCard, dataSubscribe } from "@/features/user/subscribeCard";
-import { CookiesServices, EnumTokens, MODAL_KEYS, UserService, useRememberMe } from "@/shared/lib";
+import {
+   CookiesServices,
+   EnumTokens,
+   MODAL_KEYS,
+   TWO_MONTH_COOKIES,
+   UserService,
+   useRememberMe,
+} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import Select2 from "@/shared/ui/select/Select2";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {OrganizationQueryKeys} from "@/shared/api";
+import { OrganizationQueryKeys } from "@/shared/api";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -30,7 +37,7 @@ const StripPayment = () => {
       }
    }, [isClient, type]);
 
-   const queryClient = useQueryClient()
+   const queryClient = useQueryClient();
    const {
       mutate: subscribe,
       isError,
@@ -44,7 +51,7 @@ const StripPayment = () => {
             CookiesServices.setToken({
                keyName: EnumTokens.SUBSCRIBED_DATA,
                value: `${JSON.stringify(subData)}`,
-               time: `${60 * 86400}`,
+               time: `${TWO_MONTH_COOKIES}`,
             });
          } else {
             sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));

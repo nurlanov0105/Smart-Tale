@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useLogin } from "@/features/auth";
-import { CookiesServices, EnumTokens } from "@/shared/lib";
+import { CookiesServices, EnumTokens, TWO_MONTH_COOKIES } from "@/shared/lib";
 import { LoginFormValues } from "../types";
 
 export const useLoginForm = () => {
@@ -27,7 +27,7 @@ export const useLoginForm = () => {
       CookiesServices.setToken({
          keyName: EnumTokens.REMEMBER_ME,
          value: `${data.rememberMe}`,
-         time: `${60 * 86400}`,
+         time: `${TWO_MONTH_COOKIES}`,
       });
 
       login(params);

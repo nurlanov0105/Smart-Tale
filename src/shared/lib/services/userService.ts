@@ -52,14 +52,14 @@ export const UserService = {
       page: number;
       param_tab: string;
    }) => {
-      const params = param_tab && param_tab !== "all" && {ads: param_tab}
+      const params = param_tab && param_tab !== "all" && { ads: param_tab };
       const response = await baseApiInstance.get(UserEndpoints.COMMON_USER_ADS + slug, {
-         params: {...params, page}
+         params: { ...params, page },
       });
       return {
          data: response.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
    getFavorites: async ({
@@ -71,15 +71,15 @@ export const UserService = {
       page: number;
       title?: string;
    }) => {
-      const params = param_tab && param_tab !== "all" && {type: param_tab}
+      const params = param_tab && param_tab !== "all" && { type: param_tab };
       const response = await baseApiInstance.get(UserEndpoints.FAVOITES_ITEMS, {
-         params: {page, title, ...params}
+         params: { page, title, ...params },
       });
 
       return {
-         data: response.data?.data?.data,
+         data: response.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
 };

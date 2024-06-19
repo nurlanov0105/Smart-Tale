@@ -1,8 +1,7 @@
 "use client";
+import { ChangeEvent, FC, useEffect, useState, useCallback } from "react";
 
-import { ChangeEvent, FC, useEffect, useState } from "react";
 import { Button, GlobalLoading, InputField } from "@/shared/ui";
-
 import { useForm } from "react-hook-form";
 import { showModal } from "@/views/modal";
 import { ChangeImage } from "@/features/general/changeImage";
@@ -18,56 +17,51 @@ const ProfileForm: FC = () => {
    const {
       register,
       handleSubmit,
-      watch,
       formState: { errors },
    } = useForm<ProfileData>();
-   const [inputDisabled, setinputDisabled] = useState(true);
+   const [inputDisabled, setInputDisabled] = useState(true);
    const isAuth = useAuth();
    const theme = useThemeStore((state) => state.theme);
    const image = useUserStore((state) => state.image);
    const addImage = useUserStore((state) => state.addImage);
 
-   const [firstName, setFirstName] = useState("");
-   const [lastName, setLastName] = useState("");
-   const [middleName, setMiddleName] = useState("");
-   const [email, setEmail] = useState("");
-   const [phoneNumber, setPhoneNumber] = useState("");
+   const [profileData, setProfileData] = useState<ProfileData>({
+      first_name: "",
+      last_name: "",
+      middle_name: "",
+      email: "",
+      phone_number: "",
+   });
 
    const { isError, isPending: isLoading, data } = useGetProfile();
    const { mutate: changeProfile, isPending } = useChangeProfile();
 
-   if (!isLoading) {
-      console.log(data);
-   }
-
    useEffect(() => {
       if (data) {
-         addImage(data.data.profile_image);
-         setFirstName(data.data.first_name);
-         setLastName(data.data.last_name);
-         setMiddleName(data.data.middle_name);
-         setEmail(data.data.email);
-         setPhoneNumber(data.data.phone_number);
+         addImage(data?.data.profile.profile_image);
+         setProfileData({
+            first_name: data?.data.profile.first_name,
+            last_name: data?.data.profile.last_name,
+            middle_name: data?.data.profile.middle_name,
+            email: data?.data.profile.email,
+            phone_number: data?.data.profile.phone_number,
+         });
       }
    }, [addImage, data]);
 
    const onSubmit = async (data: ProfileData) => {
       const formData = new FormData();
-      formData.append("first_name", firstName);
-      formData.append("last_name", lastName);
-      formData.append("middle_name", middleName);
-      formData.append("phone_number", phoneNumber);
-      formData.append("email", email);
-      if (image) {
-         console.log(image);
+      formData.append("first_name", profileData.first_name);
+      formData.append("last_name", profileData.last_name);
+      formData.append("middle_name", profileData.middle_name);
+      formData.append("phone_number", profileData.phone_number);
+      formData.append("email", profileData.email);
+      if (image && typeof image != "string") {
          formData.append("profile_image", image);
       }
 
-      if (formData) {
-         // console.log(formData);
-         changeProfile(formData);
-         setinputDisabled(true);
-      }
+      changeProfile(formData);
+      setInputDisabled(true);
    };
 
    const handleDeleteClick = () => {
@@ -75,43 +69,60 @@ const ProfileForm: FC = () => {
    };
 
    const handleChangeClick = () => {
-      setinputDisabled((prev) => !prev);
+      setInputDisabled((prev) => !prev);
    };
 
    const handleCancelClick = () => {
       if (data) {
-         setFirstName(data.data.first_name);
-         setLastName(data.data.last_name);
-         setMiddleName(data.data.middle_name);
-         setEmail(data.data.email);
-         setPhoneNumber(data.data.phone_number);
+         setProfileData({
+            first_name: data.data.first_name,
+            last_name: data.data.last_name,
+            middle_name: data.data.middle_name,
+            email: data.data.email,
+            phone_number: data.data.phone_number,
+         });
       }
-      setinputDisabled(true);
+      setInputDisabled(true);
    };
+
+   const handleChangeFirstName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+      setProfileData((prevData) => ({
+         ...prevData,
+         first_name: e.target.value,
+      }));
+   }, []);
+
+   const handleChangeLastName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+      setProfileData((prevData) => ({
+         ...prevData,
+         last_name: e.target.value,
+      }));
+   }, []);
+
+   const handleChangeMiddleName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+      setProfileData((prevData) => ({
+         ...prevData,
+         middle_name: e.target.value,
+      }));
+   }, []);
+
+   const handleChangeEmail = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+      setProfileData((prevData) => ({
+         ...prevData,
+         email: e.target.value,
+      }));
+   }, []);
+
+   const handleChangePhoneNumber = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+      setProfileData((prevData) => ({
+         ...prevData,
+         phone_number: e.target.value,
+      }));
+   }, []);
 
    if (isLoading) {
       return <GlobalLoading />;
    }
-
-   // if (!isLoading) {
-   //    console.log(data);
-   // }
-
-   const handleChangeFirstName = (e: ChangeEvent<HTMLInputElement>) => {
-      setFirstName(e.target.value);
-   };
-   const handleChangeLastName = (e: ChangeEvent<HTMLInputElement>) => {
-      setLastName(e.target.value);
-   };
-   const handleChangeMiddleName = (e: ChangeEvent<HTMLInputElement>) => {
-      setMiddleName(e.target.value);
-   };
-   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-      setEmail(e.target.value);
-   };
-   const handleChangePnoneNumber = (e: ChangeEvent<HTMLInputElement>) => {
-      setPhoneNumber(e.target.value);
-   };
 
    return (
       <form className={clsx(styles.form, styles[theme])} onSubmit={handleSubmit(onSubmit)}>
@@ -119,7 +130,7 @@ const ProfileForm: FC = () => {
             <fieldset className={styles.form__fieldset}>
                <legend className={styles.form__title}>Личные данные</legend>
                <ChangeImage
-                  name={`${data?.data.first_name + " " + data?.data.last_name}`}
+                  name={`${profileData.first_name} ${profileData.last_name}`}
                   image={image}
                   disabled={inputDisabled}
                />
@@ -128,20 +139,20 @@ const ProfileForm: FC = () => {
                      <InputField
                         title="Имя"
                         disabled={inputDisabled}
-                        value={firstName}
+                        value={profileData.first_name}
                         onChange={handleChangeFirstName}
                      />
                      <InputField
                         title="Фамилия"
                         disabled={inputDisabled}
-                        value={lastName}
+                        value={profileData.last_name}
                         onChange={handleChangeLastName}
                      />
                   </div>
                   <InputField
                      title="Отчество"
                      disabled={inputDisabled}
-                     value={middleName}
+                     value={profileData.middle_name}
                      onChange={handleChangeMiddleName}
                   />
                </div>
@@ -154,14 +165,14 @@ const ProfileForm: FC = () => {
                      <InputField
                         title="Почта"
                         disabled={inputDisabled}
-                        value={email}
+                        value={profileData.email}
                         onChange={handleChangeEmail}
                      />
                      <InputField
                         title="Номер телефона"
                         disabled={inputDisabled}
-                        value={phoneNumber}
-                        onChange={handleChangePnoneNumber}
+                        value={profileData.phone_number}
+                        onChange={handleChangePhoneNumber}
                      />
                   </div>
                </div>

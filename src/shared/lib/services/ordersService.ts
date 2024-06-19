@@ -19,12 +19,12 @@ export const OrdersService = {
 
    getOrders: async ({ page }: { page: number }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
-         params: {page: page}
+         params: { page: page },
       });
       return {
-         data: response.data?.data?.data,
+         data: response.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
    getMyOrders: async (page: number) => {
@@ -63,7 +63,7 @@ export const OrdersService = {
       return {
          data: response.data?.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
 

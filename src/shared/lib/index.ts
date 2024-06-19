@@ -63,6 +63,8 @@ export type { UsePaginationOptions } from "./types/usePaginationTypes";
 
 export { rightsActionsData } from "./utils/rightsActionsData";
 export { rightsActionsMap } from "./constants/consts";
+export { TWO_MONTH_COOKIES } from "./constants/time.consts";
+
 export type {
    RightsTypes,
    AddEmployeeTypes,
@@ -118,7 +120,6 @@ export {
    specializationsFilter,
    typeSalary,
 } from "./constants/vacancyFilters";
-
 
 export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
 export { useThemeStore } from "../store/themeStore/useThemeStore";
