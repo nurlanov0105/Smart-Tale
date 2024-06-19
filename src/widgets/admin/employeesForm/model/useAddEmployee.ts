@@ -1,8 +1,9 @@
 import {useMutation} from "@tanstack/react-query";
 import {useForm} from "react-hook-form";
 import {toast} from "react-toastify";
-import {AddEmployeeRequestTypes, AddEmployeeTypes, OrganizationService} from "@/shared/lib";
+import {AddEmployeeRequestTypes, AddEmployeeTypes, MODAL_KEYS, OrganizationService, OWNER} from "@/shared/lib";
 import {OrganizationQueryKeys} from "@/shared/api";
+import {showModal} from "@/views/modal";
 
 
 export const useAddEmployee = () => {
@@ -31,6 +32,11 @@ export const useAddEmployee = () => {
     })
 
     const onsSubmit = (data: AddEmployeeTypes) => {
+        if (data.position.value === OWNER){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noInviteOwner})
+            return
+        }
+
         const {
             positions,
             position,

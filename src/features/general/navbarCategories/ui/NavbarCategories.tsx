@@ -3,26 +3,20 @@
 import React, { FC } from "react";
 import { NavbarItem } from "@/entities/user/navbarItem";
 import { getCategoryRoutes } from "../model/getCategoryRoutes";
-import {CookiesServices, useAuth, useSubscribed} from "@/shared/lib";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 import styles from "./styles.module.scss";
-import jwt from "jsonwebtoken";
-import {useOrganization} from "@/widgets/admin/adminOrganization/model/useOrganization";
 
 const NavbarCategories: FC<{isAuth: boolean}> = ({isAuth}) => {
-   const { isSubscribed, subscribed } = useSubscribed();
 
-   const {data} = useOrganization(isAuth)
+   const data = useSubscribeStore(state => state.data)
 
-   const isSubscribedWithOrg = data && !!data["my-orgs"].length
-   const isEmployee = data && (!!data["my-orgs"].length || !!data["other-orgs"].length) || false
+   const isSubscribedWithOrg = !!data?.job_titles?.length
 
    const categories = getCategoryRoutes({
       authorized: isAuth,
-      subscribed: isSubscribed,
-      isEmployee,
+      subscribed: data?.is_subbed || false,
       hasOrganization: isSubscribedWithOrg
    });
-
 
    return (
       <ul className={styles.list}>

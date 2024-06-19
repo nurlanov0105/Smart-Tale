@@ -23,7 +23,7 @@ export const OrdersEndpoints = {
    APPLY_ORDER: "/order-apply/",
    LIKE_ORDER: "/like-order/",
    BOOKING_ORDER: "/order-book/",
-   DELETE_ORDER: "/order-confirmationModal/",
+   DELETE_ORDER: "/order-delete/",
    HIDE_ORDER: "/order-hide/",
    UPDATE_ORDER: "/update-order/",
    UPDATE_ORDER_STATUS: "/update-status/",

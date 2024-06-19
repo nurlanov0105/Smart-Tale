@@ -39,6 +39,10 @@ export const MODAL_KEYS = {
    hideVacancy: "hideVacancy",
    deleteVacancy: "deleteVacancy",
    deleteOrganization: "deleteOrganization",
+   noRights: "noRights",
+   noChangeOwner: "noChangeOwner",
+   noInviteOwner: "noInviteOwner",
+   noChangeDeleteOwner: "noChangeDeleteOwner",
 };
 
 export const SKELETON_TYPES = {
@@ -152,3 +156,5 @@ export const ruCurrency = {
    USD: "USD",
    Euro: "Euro",
 };
+
+export const OWNER = process.env.NEXT_PUBLIC_OWNER
