@@ -1,5 +1,8 @@
-import {ChatTypes} from "@/widgets/general/chats/model/types";
+import { Dispatch, SetStateAction } from "react";
 
 export type ChatItemProps = {
-   item: ChatTypes;
+   item: number;
+   selected: number;
+   setSelected: Dispatch<SetStateAction<number>>;
+   setIsShowChat: Dispatch<SetStateAction<boolean>>;
 };

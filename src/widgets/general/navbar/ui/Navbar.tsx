@@ -13,22 +13,18 @@ import { MARKETPLACE, ROUTES, useAuth, useNavbar, useSubscribed } from "@/shared
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {GlobalLoading} from "@/shared/ui";
 
 const Navbar = () => {
    // theme
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
 
+   const { isAuth, isLoading } = useAuth();
+
    const navbarRef = useRef<HTMLDivElement>(null);
    const pathname = usePathname();
    const categoryType = pathname.includes("/admin");
-
-   const { isAuth, isLoading } = useAuth();
-
-   const { isSubscribe, isLoading: isLoadingSubscribe} = useSubscribed();
-
-   const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
+   const { isSubscribed } = useSubscribed();
 
    useEffect(() => {
       if (navbarRef.current && MARKETPLACE.EQUIPMENT === pathname) {
@@ -36,6 +32,7 @@ const Navbar = () => {
       }
    }, [pathname]);
 
+   const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
 
    if (isLoading) return <div className={styles.navbar}></div>;
 
@@ -61,12 +58,10 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               {
-                  isLoadingSubscribe ? <GlobalLoading type="default"/>: <NavbarCategories isAuth={isAuth} />
-               }
+               <NavbarCategories isAuth={isAuth} />
             </div>
             <div className={styles.navbar__bottom}>
-               {!categoryType && !isSubscribe && <SubscribeBox />}
+               {!categoryType && !isSubscribed && <SubscribeBox />}
                <AuthBtn />
             </div>
          </nav>

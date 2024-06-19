@@ -2,60 +2,52 @@
 import React, { FC } from "react";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
-import {GlobalLoading, TextArea} from "@/shared/ui";
-import {SendHorizontal, Image as ImageIcon, Ellipsis, MessagesSquare, Phone, ArrowLeft, ChevronLeft} from "lucide-react";
+import { TextArea } from "@/shared/ui";
+import { SendHorizontal, Image as ImageIcon, Ellipsis, MessagesSquare, Phone } from "lucide-react";
 import { MessageItem, messagesData } from "@/entities/general/messageItem";
 import { ChatFormProps } from "../model/types";
 import styles from "./styles.module.scss";
 import { ROUTES } from "@/shared/lib";
 import Link from "next/link";
 import clsx from "clsx";
-import {createWebSocket} from "@/shared/lib/hooks/useCreateWebsocket";
-import {useGetMessages} from "@/widgets/general/chats/model/useQueries";
-import {useChatsStore} from "@/shared/store/chatStore/chatsStore";
 
-const ChatForm: FC = () => {
-   const selectedChat = useChatsStore(state => state.selectedChat)
-   const setChats = useChatsStore(state => state.setChatState)
-
-   const {data, isLoading} = useGetMessages(!!selectedChat)
-   const handleBack = () => setChats({isShowChat: false})
-
-   if (isLoading) return <div className={styles.chat}><GlobalLoading/></div>
-
+const ChatForm: FC<ChatFormProps> = ({ selected, setIsShowChat }) => {
+   const handleBack = () => {
+      setIsShowChat(false);
+   };
    return (
-      <div className={styles.chat}>
-         {!!selectedChat && (
+      <div className={clsx(styles.chat)}>
+         {!!selected && (
             <>
                <div className={styles.chat__user}>
+                  <button type="button" onClick={handleBack}>
+                     Go back
+                  </button>
                   <Link href={ROUTES.USERS + `/user007`} className={styles.chat__block}>
                      <Image
-                         className={styles.chat__avatar}
-                         src={avatar}
-                         alt="avatar"
-                         width={30}
-                         height={30}
+                        className={styles.chat__avatar}
+                        src={avatar}
+                        alt="avatar"
+                        width={30}
+                        height={30}
                      />
 
-                     <h4 className="h4">{data?.receiver?.last_name} {data?.receiver?.first_name}</h4>
+                     <h4 className="h4">Tarantino</h4>
                   </Link>
                   <div className={styles.chat__block}>
                      <a href="tel:+996755260506">
-                        <Phone className={styles.chat__iconPhone}/>
+                        <Phone className={styles.chat__iconPhone} />
                      </a>
                      <button type="button" className={styles.chat__menu}>
-                        <Ellipsis/>
+                        <Ellipsis />
                      </button>
                   </div>
                </div>
                <div className={styles.chat__info}>
-                  <button className={styles.chat__back} type="button" onClick={handleBack}>
-                     <ChevronLeft/> <span>Назад</span>
-                  </button>
                   <div className={styles.chat__info__block}>
                      <Image
-                         className={styles.chat__image}
-                        src={data?.receiver?.profile_image || avatar}
+                        className={styles.chat__image}
+                        src={avatar}
                         alt="avatar"
                         width={30}
                         height={30}
@@ -67,18 +59,11 @@ const ChatForm: FC = () => {
 
                <div className={styles.chat__row}>
                   <div className={styles.chat__chat}>
-                     {data && data?.message_set
-                         .map((message, idx) => (
-                           <MessageItem
-                               message={message}
-                               messages={data}
-                               mySlug={data?.initiator?.slug}
-
-                               key={idx}
-                               idx={idx}
-                           />
+                     {messagesData
+                        .map((message, idx) => (
+                           <MessageItem idx={idx} key={idx} message={message} />
                         ))
-                     }
+                        .reverse()}
                   </div>
 
                   <form className={styles.chat__form}>
@@ -101,7 +86,7 @@ const ChatForm: FC = () => {
                </div>
             </>
          )}
-         {!selectedChat && (
+         {!selected && (
             <div className={styles.chat__empty}>
                <MessagesSquare className={styles.chat__iconEmpty} />
                <h3 className="h3">

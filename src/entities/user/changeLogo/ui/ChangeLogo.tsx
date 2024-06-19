@@ -10,6 +10,7 @@ const ChangeLogo = ({handleFileChange, image}: ChangeLogoProps) => {
 
     const theme = useThemeStore((state) => state.theme);
 
+
     return (
         <>
             <div className={clsx(styles.form__images, styles[theme])}>

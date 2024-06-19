@@ -6,7 +6,7 @@ import { showModal } from "@/views/modal";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { Button, InputField, TextArea } from "@/shared/ui";
-import {MODAL_KEYS, OWNER, ValidationsSchemasService} from "@/shared/lib";
+import { MODAL_KEYS, ValidationsSchemasService } from "@/shared/lib";
 
 import { POSITIONS_FORM_NAMES } from "../model/consts";
 import { usePositionDetails } from "../model/usePositionDetails";
@@ -17,10 +17,6 @@ const PositionDetails = () => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleDelete = () => {
-      if (OWNER === data?.title){
-         showModal(MODAL_KEYS.infoModal, { slug: slug.toString(), componentName: MODAL_KEYS.noChangeDeleteOwner })
-         return
-      }
       showModal(MODAL_KEYS.confirmationModal, { slug: slug.toString(), componentName: MODAL_KEYS.deletePosition });
    };
 

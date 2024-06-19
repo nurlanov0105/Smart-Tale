@@ -7,8 +7,6 @@ import { noticesTabs } from "../model/values.data";
 import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import ChatComponent from "@/widgets/general/chats/ui/ChatComponent";
-import ChatComponent2 from "@/widgets/general/chats/ui/ChatComponent2";
 
 const Notices = () => {
    const [type, setType] = useState("chats");
@@ -22,7 +20,7 @@ const Notices = () => {
                <Tabs type={type} setType={setType} values={noticesTabs} variant="secondary" />
             </div>
 
-            {type === "chats" ? <Chats/> : <NoticesContent />}
+            {type === "chats" ? <Chats /> : <NoticesContent />}
          </div>
       </div>
    );

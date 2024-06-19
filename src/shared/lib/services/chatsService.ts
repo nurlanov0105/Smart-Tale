@@ -2,8 +2,8 @@ import {baseApiInstance} from "@/shared/api/instance";
 import {ChatsEndpoints} from "@/shared/api/endpoints";
 
 export const ChatsService = {
-    conversationStart: async ({initiator, receiver}: {initiator?: string, receiver: string}) => {
-        const response = await baseApiInstance.post(ChatsEndpoints.CONVERSATION_START )
+    conversationStart: async () => {
+        const response = await baseApiInstance.post(ChatsEndpoints.CONVERSATION_START)
         return response.data
     },
     getConversations: async () => {

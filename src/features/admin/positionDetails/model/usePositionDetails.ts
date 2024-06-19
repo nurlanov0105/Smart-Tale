@@ -1,9 +1,8 @@
 import {useForm} from "react-hook-form";
 import {useParams} from "next/navigation";
-import {AddPositionTypes, MODAL_KEYS, OWNER, useGetPositionDetails} from "@/shared/lib";
+import {AddPositionTypes, useGetPositionDetails} from "@/shared/lib";
 import {useChangePositionQuery} from "../model/useQueries";
 import {defaultValuesPosition} from "./consts";
-import {showModal} from "@/views/modal";
 
 export const usePositionDetails = () => {
 
@@ -21,7 +20,7 @@ export const usePositionDetails = () => {
     const {slug} = useParams()
 
     const {
-        data: position,
+        data,
         isLoading,
         isSuccess,
         isError} = useGetPositionDetails(slug.toString())
@@ -29,16 +28,12 @@ export const usePositionDetails = () => {
     const changePosition = useChangePositionQuery()
 
     const onSubmit = (data: AddPositionTypes) => {
-        if (position?.title === OWNER){
-            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangeOwner})
-            return
-        }
-
+        console.log(data)
         changePosition.mutate({params: data, slug: slug.toString()})
     }
 
     return {
-        data: position,
+        data,
         isSuccess,
         isLoading,
         isLoadingSubmitting: changePosition.isPending,

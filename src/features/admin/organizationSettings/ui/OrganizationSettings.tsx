@@ -10,7 +10,7 @@ import {useUpdateOrganization} from "../model/useUpdateOrganization";
 import {useInitialOrganizationSettings} from "../model/useInitialData";
 import styles from "./styles.module.scss";
 import {showModal} from "@/views/modal";
-import {useParams, useSearchParams} from "next/navigation";
+import {useParams} from "next/navigation";
 import {CREATE_ORGANIZATION_NAMES} from "@/features/admin/organizationForm";
 
 const OrganizationSettings = () => {

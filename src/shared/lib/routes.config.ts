@@ -68,7 +68,7 @@ export enum ROUTES {
    ORGANIZATION_ANNOUNCEMENT_DETAILS = `/organization/announcement-details`,
 
    MODE = `/mode`,
-   NO_RIGHTS = `/no-rights`,
+   NO_RIGHTS = `/organization/no-rights`,
    NOTICES = `/notices`,
    USERS = `/users`,
    SUBSCRIBE = `/subscribe`,
@@ -103,7 +103,6 @@ export enum ORGANIZATION_ROUTES {
    ANNOUNCEMENT_DETAILS = "/organization/announcement-details",
 
    CURRENT_ORDERS = `/organization/current-orders`,
-   NO_RIGHTS = `/organization/no-rights`
 }
 
 export const authRoutes = [

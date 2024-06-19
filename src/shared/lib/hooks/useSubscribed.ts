@@ -1,49 +1,44 @@
 "use client";
 
-import {useGetProfile} from "@/widgets/user/profile/model/useQueries";
-import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
-import {useEffect} from "react";
-import {useAuth} from "@/shared/lib";
-
-
-interface PositionsTypes{
-   organization: string
-   job_title: string
-}
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import { EnumTokens } from "../types/types";
+import { usePathname } from "next/navigation";
+import { CookiesServices } from "../services/cookies.services";
 
 export function useSubscribed() {
-   const {isAuth} = useAuth()
+   const pathname = usePathname();
 
-   const {data, isLoading, isSuccess, isError} = useGetProfile(isAuth)
-   const setSubscribeState = useSubscribeStore(state => state.setSubscribeState)
+   const [subscribed, setSubscribed] = useState<{
+      subscription: string;
+      "is subscribed": boolean;
+   } | null>(null);
+   const [isSubscribed, setIsSubscribed] = useState(false);
+
+   const [isLoading, setIsLoading] = useState(true)
+
+   const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
+   const isRemember = res === "true";
 
    useEffect(() => {
-      if (isSuccess){
-         setSubscribeState({
-            data: data,
-            position: data.job_titles[0],
-            isError: false,
-            isSubscribe: data?.is_subbed,
-         })
+      const isClient = typeof window === "object";
+      if (isClient) {
+         const subscribeData = isRemember
+            ? Cookies.get(EnumTokens.SUBSCRIBED_DATA)
+            : sessionStorage.getItem(EnumTokens.SUBSCRIBED_DATA);
+
+         if (subscribeData) {
+            const parsedData = JSON.parse(subscribeData);
+            setSubscribed(parsedData);
+            setIsSubscribed(parsedData["is subscribed"]);
+         } else {
+            setSubscribed(null);
+            setIsSubscribed(false);
+         }
       }
-      if (isError){
-         setSubscribeState({
-            isError: isError,
-         })
-      }
-      // eslint-disable-next-line
-   }, [isSuccess, data, isError]);
+      setIsLoading(false)
 
-   const isSubscribe = data?.is_subbed
+   }, [isRemember, pathname]);
 
-   const positions = data?.job_titles as PositionsTypes[]
-
-   return {
-      isSubscribe,
-      isLoading,
-      positions,
-      isSuccess,
-      isError,
-      data,
-      subscribed: {subscription: ""} };
+   return { subscribed, isSubscribed, isLoading };
 }

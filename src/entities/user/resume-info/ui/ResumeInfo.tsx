@@ -105,7 +105,7 @@ const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
             {/*</div>*/}
          </div>
          {
-             !isInvite &&
+             isInvite &&
              <div className={styles.form__btns}>
                 <button className={styles.form__button} onClick={handleRoute} type="button">
                    Изменить резюме

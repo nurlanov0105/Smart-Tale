@@ -25,12 +25,15 @@
       overflow-y: scroll;
       height: 60vh;
    }
-   &__emptyTitle{
-      padding: 1.5rem;
-      font-size: 2rem;
-      font-weight: 600;
-      line-height: 1.5;
-   }
+   //&__select {
+   //   width: 100%;
+   //   padding: 0.9rem 1rem !important;
+   //
+   //   border: 1px solid $grey !important;
+   //   border-radius: 10px !important;
+   //   background-color: transparent !important;
+   //
+   //}
 }
 
 .chat {
@@ -46,9 +49,6 @@
       border-bottom: 1px solid #d9dbe3;
    }
 
-   &__back{
-      display: none;
-   }
    &__block {
       display: flex;
       align-items: center;
@@ -216,10 +216,6 @@
       &_hidden {
          display: none !important;
       }
-   }
-   .chat__back{
-      display: flex;
-      align-items: center;
    }
 }
 

@@ -1,30 +1,30 @@
 import React, { FC } from "react";
-import { CheckCheck } from "lucide-react";
-import clsx from "clsx";
-import { useThemeStore } from "@/shared/store/themeStore";
-import {useGetDates} from "@/shared/lib";
 import { MessageTypes } from "../model/types";
+import { CheckCheck } from "lucide-react";
+import { messagesData } from "../model/values.data";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useThemeStore } from "@/shared/store/themeStore";
 
-const MessageItem: FC<MessageTypes> = ({ message, idx, mySlug, messages }) => {
+const MessageItem: FC<MessageTypes> = ({ message, idx }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const isMe = mySlug === message?.sender?.slug;
+   const myId = 1; // типо мой айди
+   const isMe = myId === message.id;
    const prevMessage = () => {
-      if (idx === 0) return false;
-      return messages?.message_set[idx - 1].sender.slug === message?.sender?.slug;
+      if (idx === messagesData.length - 1) return false;
+      return messagesData[idx + 1].id === message.id; //проверяем если последнее сообщение было написано тем же
+      // человеком, тозакорючка не нужна, иначе нужна
    };
-
-   const { minutes, hours} = useGetDates(message?.timestamp)
 
    return (
       <>
          {isMe && (
             <div className={clsx(styles.myMessage, prevMessage() && styles.none, styles[theme])}>
                <div className={styles.myMessage__message}>
-                  <span className={styles.myMessage__text}>{message?.text}</span>
+                  <span className={styles.myMessage__text}>{message.text}</span>
                   <div className={styles.myMessage__block}>
-                     <p className={styles.myMessage__time}>{hours}:{minutes}</p>
+                     <p className={styles.myMessage__time}>{message.time}</p>
                      <p className={styles.myMessage__icon}>
                         <CheckCheck />
                      </p>
@@ -35,8 +35,8 @@ const MessageItem: FC<MessageTypes> = ({ message, idx, mySlug, messages }) => {
          {!isMe && (
             <div className={clsx(styles.message, prevMessage() && styles.none, styles[theme])}>
                <div className={styles.message__message}>
-                  <p className={styles.myMessage__text}>{message?.text}</p>
-                  <p className={styles.message__time}>{hours}:{minutes}</p>
+                  <p className={styles.myMessage__text}>{message.text}</p>
+                  <p className={styles.message__time}>{message.time}</p>
                </div>
             </div>
          )}

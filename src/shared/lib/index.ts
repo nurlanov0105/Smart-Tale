@@ -62,7 +62,7 @@ export type { UsePaginationResult } from "./types/usePaginationTypes";
 export type { UsePaginationOptions } from "./types/usePaginationTypes";
 
 export { rightsActionsData } from "./utils/rightsActionsData";
-export { rightsActionsMap, OWNER } from "./constants/consts";
+export { rightsActionsMap } from "./constants/consts";
 export type {
    RightsTypes,
    AddEmployeeTypes,
@@ -76,14 +76,6 @@ export type {
    GetPositionTypes,
    UpdateEmployeeTypes,
 } from "./types/organizations-service.types";
-
-export type {
-   ProfileDataTypes,
-    ProfileRequestTypes,
-    UserPositionTypes,
-    ProfileRequestType
-} from "./types/user-service.types"
-
 export type { IRights } from "./types/types";
 export type { DefaultFilterTypes } from "../store/filtersStore/types";
 export type { LikedEquipsParams } from "./types/equiments-service.types";
@@ -111,9 +103,7 @@ export {
    useResponse,
 } from "./hooks/useQueries";
 
-
 export { useInitialRights } from "./hooks/useInitialRights";
-export { useGetDates } from "./hooks/useGetDates";
 
 export {
    graphicsFilter,

@@ -21,7 +21,7 @@ const RightAction: FC<RightActionProps> = ({action, register, isDisabled}) => {
             <span>
                 <InputField
                     {...register(action.name)}
-                    // onChange={handleChange}
+                    onChange={handleChange}
                     //defaultChecked={!isDisabled && Boolean(action.value)}
                     checked={isDisabled && Boolean(action.value)}
                     type="checkbox"

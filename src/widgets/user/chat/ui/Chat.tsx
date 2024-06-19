@@ -6,19 +6,15 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import { ChatType } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {useStartChat} from "@/widgets/general/chats/model/useQueries";
 
 const Chat: FC<ChatType> = ({ author }) => {
    const theme = useThemeStore((state) => state.theme);
    const [message, setMessage] = useState("");
 
    const [sendMessage, setSendMessage] = useState("");
-   const {mutate} = useStartChat()
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
-      mutate(author?.slug || "")
 
       setSendMessage(message);
    };

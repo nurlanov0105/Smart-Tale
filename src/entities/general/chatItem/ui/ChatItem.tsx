@@ -5,20 +5,14 @@ import { ChatItemProps } from "../model/types";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
-import {useChatsStore} from "@/shared/store/chatStore/chatsStore";
 
-
-
-const ChatItem: FC<ChatItemProps> = ({ item }) => {
+const ChatItem: FC<ChatItemProps> = ({ item, setSelected, selected, setIsShowChat }) => {
+   const handleSelect = () => setSelected(item);
    const theme = useThemeStore((state) => state.theme);
-   const setChat = useChatsStore(state => state.setChatState)
-   const selectedChat = useChatsStore(state => state.selectedChat)
 
    const handleBtnClick = () => {
-       setChat({
-           selectedChat: item.receiver.slug,
-           isShowChat: true
-       })
+      handleSelect();
+      setIsShowChat(true);
    };
 
    return (
@@ -27,7 +21,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          className={clsx(
             styles.item,
             {
-               [styles.item_active]: item.receiver.slug === selectedChat,
+               [styles.item_active]: item === selected,
             },
 
             styles[theme]
@@ -35,14 +29,14 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          <div className={styles.item__left}>
             <Image
                className={styles.item__avatar}
-               src={item?.receiver?.profile_image || avatar}
+               src={avatar}
                alt="avatar"
                width={30}
                height={30}
             />
             <div>
                <h4 className="h4">Швейная машинка</h4>
-               <p className={styles.item__text}>{item?.last_message}</p>
+               <p className={styles.item__text}>Ага, тебе тоже</p>
             </div>
          </div>
          <div className={styles.item__right}>
