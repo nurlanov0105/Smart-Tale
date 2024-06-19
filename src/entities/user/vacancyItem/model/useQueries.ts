@@ -7,6 +7,7 @@ import {ResumeService, VacancyFilterStore, VacancyService} from "@/shared/lib";
 import type { ResumeType } from "@/shared/lib/types/resume-service.types";
 import type { VacancyCardType, ResumeRequestTypes } from "./types";
 import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
+import {useRouter} from "next/navigation";
 
 export const useGetVacancies = (page: number) => {
    const defaultValues = VacancyFilterStore(state => state.defaultValues)
@@ -40,9 +41,13 @@ export const useGetVacancies = (page: number) => {
    });
 };
 export const useAddVacancy = () => {
+   const {push} = useRouter()
    return useMutation({
       mutationFn: (data: VacancyCardType) => VacancyService.addVacancy(data),
       mutationKey: [ServiceQueryKeys.SERVICES],
+      onSuccess: () => {
+
+      }
    });
 };
 export const useAddResumeQuery = (reset: UseFormReset<ResumeFormTypes>) => {

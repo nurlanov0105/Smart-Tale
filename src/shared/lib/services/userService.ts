@@ -9,7 +9,7 @@ export const UserService = {
    },
    getProfile: async () => {
       const response = await baseApiInstance.get(UserEndpoints.MY_PROFILE);
-      return response;
+      return response.data;
    },
    getSubscription: async (subscription: string) => {
       const response = await baseApiInstance.put(UserEndpoints.SUBSCRIBE, {
@@ -77,7 +77,7 @@ export const UserService = {
       });
 
       return {
-         data: response.data?.data?.data,
+         data: response.data?.data,
          hasNextPage: response.data.has_next_page,
          nextPage: response.data.next_page_number
       };

@@ -100,7 +100,7 @@ export const OrdersService = {
    },
 
    hideOrder: async (orderSlug: string) => {
-      const response = await baseApiInstance.post(OrdersEndpoints.HIDE_ORDER + orderSlug);
+      const response = await baseApiInstance.put(OrdersEndpoints.HIDE_ORDER + orderSlug);
       return response.data;
    },
 

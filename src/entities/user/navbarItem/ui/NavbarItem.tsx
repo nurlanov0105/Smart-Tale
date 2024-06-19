@@ -11,6 +11,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { ChevronDown } from "lucide-react";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    routes,
@@ -22,17 +23,27 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
 }) => {
    const theme = useThemeStore((state) => state.theme);
    const toggleHidden = useOrdersStore((state) => state.toggleHidden);
+   const position = useSubscribeStore((state) => state.position);
+
    const pathname = usePathname();
-   const [isShow, setIsShow] = useState(true);
    const windowSize = useWindowSize();
-   const [height, setHeight] = useState<number | undefined>(undefined);
+
    const contentRef = useRef<HTMLDivElement>(null);
+   const [isShow, setIsShow] = useState(true);
+   const [height, setHeight] = useState<number | undefined>(undefined);
 
    useEffect(() => {
       if (contentRef.current) {
          setHeight(isShow ? contentRef.current.scrollHeight : 0);
       }
-   }, [isShow, routes]);
+
+      const withoutOrgHeight = 33
+      if (isShow && !position?.organization && title === "Организация"){
+         setHeight(withoutOrgHeight)
+      }
+
+      // eslint-disable-next-line
+   }, [isShow, routes, position]);
 
    const handleClickClose = () => {
       if (windowSize.width && windowSize.width <= 900) {
@@ -43,22 +54,6 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    const handleToggleClick = () => {
       setIsShow((prev) => !prev);
    };
-
-   // const filteredItems = routes.map((item) => {
-   //    if (isAuth || !item.authorized) {
-   //       return (
-   //          <Link
-   //             onClick={handleClickClose}
-   //             href={item.link}
-   //             key={item.subtitle}
-   //             className={clsx(styles.category__item, {
-   //                [styles.category__item_active]: item.link === pathname,
-   //             })}>
-   //             {item.subtitle}
-   //          </Link>
-   //       );
-   //    }
-   // });
 
    return (
       <li className={clsx(styles.category_item, styles[theme])}>

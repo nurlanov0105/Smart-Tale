@@ -5,7 +5,7 @@ import {
     EquipmentQueryKeys,
     OrganizationQueryKeys,
     ResumeQueryKeys,
-    ServiceQueryKeys,
+    ServiceQueryKeys, UserQueryKeys,
     VacancyQueryKeys
 } from "@/shared/api";
 import {OrdersQueryKeys} from "@/shared/api/queryKeys";
@@ -14,7 +14,7 @@ import {
     OrdersService,
     OrganizationService,
     ServicesService,
-    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService, VacancyService
+    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService, VacancyService, DASHBOARD
 } from "@/shared/lib";
 import {closeModal} from "@/views/modal";
 import {WORK} from "@/shared/lib/routes.config";
@@ -201,7 +201,7 @@ export const useHideResume = () => {
         mutationFn: (slug) => ResumeService.hideResume(slug),
         onSuccess: () => {
             closeModal()
-            toast.success("Вы успешно скрыли услугу");
+            toast.success("Вы успешно скрыли резюме");
         },
         onError: () => {
             closeModal()
@@ -230,8 +230,9 @@ export const useDeleteOrganization = () => {
     return useMutation<any, Error, string>({
         mutationKey: [OrganizationQueryKeys.DELETE_ORGANIZATION],
         mutationFn: (slug) => OrganizationService.deleteOrganization(slug),
-        onSuccess: async () => {
-            await queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION]})
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION, UserQueryKeys.PROFILE]})
+            queryClient.invalidateQueries({queryKey: [UserQueryKeys.PROFILE]})
             closeModal()
             toast.success("Организация было удалена")
 

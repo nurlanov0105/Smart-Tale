@@ -3,17 +3,19 @@
 import React, {FC, useEffect} from "react";
 import { EmptyContent } from "@/entities/admin/emptyContent";
 import { OrganizationItem } from "@/entities/admin/organizationItem";
-import { Button } from "@/shared/ui";
+import {Button, GlobalLoading} from "@/shared/ui";
 import { EMPTY_CONTENT_TYPES } from "@/shared/lib/constants/consts";
 import {ORGANIZATION_ROUTES, useConfettiStore} from "@/shared/lib";
 import { useRouter } from "next/navigation";
 import { OrganizationsTypes } from "../model/types";
 import styles from "./styles.module.scss";
 import {ConfettiComponent} from "@/entities/general/confetti";
+import {useOrganization} from "@/widgets/admin/adminOrganization/model/useOrganization";
 
-const AdminOrganization: FC<{ organization: OrganizationsTypes }> = ({ organization }) => {
-   // const { data, isLoading, isError, isSuccess } = useOrganization();
-   const organizations = organization && organization["my-orgs"];
+const AdminOrganization: FC = () => {
+
+   const {data, isLoading, isError, isSuccess} = useOrganization()
+   const organizations = data && data["my-orgs"];
 
    const isShow = useConfettiStore(state => state.isShow)
    const endConfetti = useConfettiStore(state => state.endConfetti)
@@ -27,8 +29,10 @@ const AdminOrganization: FC<{ organization: OrganizationsTypes }> = ({ organizat
             endConfetti();
          }, 7000);
       }
+      // eslint-disable-next-line
    }, []);
 
+   if (isLoading) return <GlobalLoading type="default"/>
 
    return (
       <>
