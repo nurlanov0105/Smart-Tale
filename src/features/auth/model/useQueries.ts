@@ -5,7 +5,13 @@ import { useMutation } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { closeModal } from "@/views/modal";
 import { IEmailVerifyRequest } from "@/features/auth/model/types";
-import { CookiesServices, EnumTokens, ROUTES, useRememberMe } from "@/shared/lib";
+import {
+   CookiesServices,
+   EnumTokens,
+   ROUTES,
+   TWO_MONTH_COOKIES,
+   useRememberMe,
+} from "@/shared/lib";
 import { authApi } from "./services";
 import { UseFormReset } from "react-hook-form";
 import { cookies } from "next/headers";
@@ -47,7 +53,7 @@ export const useLogin = (reset: UseFormReset<any>) => {
                CookiesServices.setToken({
                   keyName: EnumTokens.SUBSCRIBED_DATA,
                   value: `${JSON.stringify(data.data.data)}`,
-                  time: `${60 * 86400}`,
+                  time: `${TWO_MONTH_COOKIES}`,
                });
             } else {
                sessionStorage.setItem(EnumTokens.ACCESS_TOKEN, data.data.access);
