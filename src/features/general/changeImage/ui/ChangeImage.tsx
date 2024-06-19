@@ -1,3 +1,5 @@
+"use client";
+
 import React, { FC } from "react";
 import { showModal } from "@/views/modal";
 import Image from "next/image";
