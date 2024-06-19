@@ -18,11 +18,10 @@ import Select2 from "@/shared/ui/select/Select2";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { OrganizationQueryKeys } from "@/shared/api";
+import { OrganizationQueryKeys, UserQueryKeys } from "@/shared/api";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
-   const isRemember = useRememberMe();
 
    const isClient = typeof window === "object";
    const [type, setType] = useState("base");
@@ -44,20 +43,11 @@ const StripPayment = () => {
       isPending,
    } = useMutation({
       mutationFn: UserService.subscribe,
-      onSuccess: (data: any) => {
-         const subData = { subscription: data.new_sub_dt, ["is subscribed"]: true };
-         if (isRemember) {
-            console.log(subData);
-            CookiesServices.setToken({
-               keyName: EnumTokens.SUBSCRIBED_DATA,
-               value: `${JSON.stringify(subData)}`,
-               time: `${TWO_MONTH_COOKIES}`,
-            });
-         } else {
-            sessionStorage.setItem(EnumTokens.SUBSCRIBED_DATA, JSON.stringify(subData));
-         }
 
-         showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.subscribe });
+      onSuccess: () => {
+         // queryClient.removeQueries({queryKey: [UserQueryKeys.PROFILE]})
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.PROFILE] });
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.subscribe });
       },
    });
 

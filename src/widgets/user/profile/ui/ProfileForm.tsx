@@ -38,13 +38,13 @@ const ProfileForm: FC = () => {
 
    useEffect(() => {
       if (data) {
-         addImage(data?.data.profile.profile_image);
+         addImage(data?.profile.profile_image);
          setProfileData({
-            first_name: data?.data.profile.first_name,
-            last_name: data?.data.profile.last_name,
-            middle_name: data?.data.profile.middle_name,
-            email: data?.data.profile.email,
-            phone_number: data?.data.profile.phone_number,
+            first_name: data?.profile.first_name,
+            last_name: data?.profile.last_name,
+            middle_name: data?.profile.middle_name,
+            email: data?.profile.email,
+            phone_number: data?.profile.phone_number,
          });
       }
    }, [addImage, data]);
@@ -75,11 +75,11 @@ const ProfileForm: FC = () => {
    const handleCancelClick = () => {
       if (data) {
          setProfileData({
-            first_name: data.data.first_name,
-            last_name: data.data.last_name,
-            middle_name: data.data.middle_name,
-            email: data.data.email,
-            phone_number: data.data.phone_number,
+            first_name: data.profile.first_name,
+            last_name: data.profile.last_name,
+            middle_name: data.profile.middle_name,
+            email: data.profile.email,
+            phone_number: data.profile.phone_number,
          });
       }
       setInputDisabled(true);
@@ -130,7 +130,7 @@ const ProfileForm: FC = () => {
             <fieldset className={styles.form__fieldset}>
                <legend className={styles.form__title}>Личные данные</legend>
                <ChangeImage
-                  name={`${profileData.first_name} ${profileData.last_name}`}
+                  name={`${data?.profile.first_name + " " + data?.profile.last_name}`}
                   image={image}
                   disabled={inputDisabled}
                />

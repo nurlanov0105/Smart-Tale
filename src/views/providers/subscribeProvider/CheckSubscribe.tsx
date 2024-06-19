@@ -1,26 +1,53 @@
-"use client"
+"use client";
 
-import React, {FC, PropsWithChildren} from 'react';
-import {TypeComponentOrganizationFields} from "./types";
-import {useRouter} from "next/navigation";
-import {useGetProfile} from "@/widgets/user/profile/model/useQueries";
-import {ROUTES, useAuth} from "@/shared/lib";
+import React, { FC, PropsWithChildren, useEffect } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import { ORGANIZATION_ROUTES, OWNER, ROUTES } from "@/shared/lib";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { TypeComponentOrganizationFields } from "./types";
 
-const CheckSubscribe:FC<PropsWithChildren<TypeComponentOrganizationFields>> = ({children, Component: {isSubscribe}}) => {
+const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = ({ children }) => {
+   const pathname = usePathname();
+   const { replace } = useRouter();
 
-    const {replace} = useRouter()
+   const data = useSubscribeStore((state) => state.data);
+   const isError = useSubscribeStore((state) => state.isError);
+   const position = useSubscribeStore((state) => state.position);
 
-    // const {data} = useGetProfile()
+   useEffect(() => {
+      if (!!data) {
+         const isSubscribe = data?.is_subbed;
+         const hasPositions = false;
 
-    const isSubscribed = true
-    const {isAuth} = useAuth()
+         if (!hasPositions && !isSubscribe) {
+            replace(ORGANIZATION_ROUTES.NO_RIGHTS);
+            return;
+         }
 
+         const isOwner = position?.job_title === OWNER;
 
-    if (isSubscribed && isSubscribe) return <>{children}</>
+         if (hasPositions && !isOwner && pathname === ORGANIZATION_ROUTES.ORGANIZATION_LIST) {
+            const url = ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${position?.organization}`;
+            replace(url);
+            return;
+         }
 
-    replace(ROUTES.SUBSCRIBE)
+         if (!isSubscribe) {
+            replace(ROUTES.SUBSCRIBE);
+            return;
+         }
+      }
+      if (isError) {
+         replace(ROUTES.NO_RIGHTS);
+         return;
+      }
 
-    return null
+      // eslint-disable-next-line
+   }, [data, isError, pathname, replace]);
+
+   if (data?.is_subbed) return <>{children}</>;
+
+   return null;
 };
 
 export default CheckSubscribe;

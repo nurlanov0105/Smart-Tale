@@ -25,7 +25,6 @@ export default function Provider({ children }: PropsWithChildren) {
    const pathname = usePathname();
 
    const { isAuth, isLoading } = useAuth();
-   const { isSubscribed } = useSubscribed();
 
    const res = CookiesServices.getCookiesValue(EnumTokens.REMEMBER_ME);
    const isRemember = res === "true";
@@ -65,7 +64,7 @@ export default function Provider({ children }: PropsWithChildren) {
       //    redirect(ROUTES.SIGN_IN);
       // }
       // eslint-disable-next-line react-hooks/exhaustive-deps
-   }, [isAuth, isSubscribed, pathname, isRemember]);
+   }, [isAuth, pathname, isRemember]);
 
    const [queryClient] = useState(
       () =>

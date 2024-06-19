@@ -1,15 +1,27 @@
-import Image from "next/image";
-import styles from "./styles.module.scss";
-import bellIcon from "@@/imgs/header/bell-sm.svg";
-import { ROUTES } from "@/shared/lib";
-import Link from "next/link";
+"use client"
+
+import {useRouter} from "next/navigation";
+import {MODAL_KEYS, ROUTES, useAuth} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
+import {showModal} from "@/views/modal";
+import styles from "./styles.module.scss";
 
 const NoticeBtn = () => {
    const theme = useThemeStore((state) => state.theme);
+    const {push} = useRouter()
+
+    const {isAuth} = useAuth()
+
+   const handleRoute = () => {
+       if (!isAuth) {
+           showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.authNotice})
+           return
+       }
+       push(ROUTES.NOTICES)
+   }
 
    return (
-      <Link href={ROUTES.NOTICES} className={styles[theme]}>
+      <button onClick={handleRoute} className={styles[theme]}>
          <svg className={styles.bell} viewBox="0 0 31 30" fill="none">
             <path
                d="M23.6799 9.46657C23.6799 7.3537 22.8126 5.32737 21.2688 3.83335C19.725 2.33933 17.6311 1.5 15.4478 1.5C13.2645 1.5 11.1706 2.33933 9.6268 3.83335C8.08298 5.32737 7.21567 7.3537 7.21567 9.46657C7.21567 18.7609 3.09961 21.4164 3.09961 21.4164H27.796C27.796 21.4164 23.6799 18.7609 23.6799 9.46657Z"
@@ -23,7 +35,7 @@ const NoticeBtn = () => {
                strokeLinejoin="round"
             />
          </svg>
-      </Link>
+      </button>
    );
 };
 

@@ -5,7 +5,7 @@ import { StandartCard } from "@/features/user/standartCard";
 import { ObserverSection } from "@/entities/general/observerSection";
 import {ScrollTopButton} from "@/entities/general/scrollTopBtn";
 import {CommonSkeleton} from "@/shared/ui";
-import {CardType, SkeletonTypes} from "@/shared/lib";
+import {CardType, ServicesService, SkeletonTypes} from "@/shared/lib";
 import {useInfinityScroll2} from "@/widgets/user/cardsSection/model/useInfinityScroll2";
 import {ErrorMessage} from "@/entities/general/errorMessage";
 import styles from "./styles.module.scss";
@@ -30,6 +30,14 @@ const CardsSection2: FC<IProps> = ({initialData, queryKey, dependencies}) => {
         isLoading,
         isError
     } = useInfinityScroll2({initialData, queryKey, dependencies})
+
+    // const getServices = async () => {
+    //     const services = await ServicesService.getServices({page: 1})
+    //     console.log(services)
+    // }
+    // getServices()
+    //
+    // console.log(initialData)
 
     const readyData = () => {
         if (isError) {

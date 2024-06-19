@@ -25,6 +25,7 @@ export const useUpdateOrganization = (isEdited: boolean) => {
 
     const queryClient = useQueryClient()
 
+
     const {
         mutate ,
         isPending,
