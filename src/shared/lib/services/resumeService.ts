@@ -17,7 +17,7 @@ export const ResumeService = {
       return response;
    },
    hideResume: async (slug: string) => {
-      const response = await baseApiInstance.post(ResumeEndpoints.HIDE_RESUME + slug, {data: slug} );
+      const response = await baseApiInstance.put(ResumeEndpoints.HIDE_RESUME + slug, {data: slug} );
       return response;
    },
    getResumes: async (data?: DefaultFilterTypes) => {

@@ -1,4 +1,4 @@
 export type UserType = {
-   image: File | null;
-   addImage: (image: File) => void;
+   image:  string | File | null | undefined;
+   addImage: (image:  string | File | null | undefined) => void;
 };

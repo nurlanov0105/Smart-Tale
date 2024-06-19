@@ -1,14 +1,17 @@
 import { UserQueryKeys } from "@/shared/api";
-import { UserService } from "@/shared/lib";
+import {ProfileRequestTypes, UserService} from "@/shared/lib";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
-export const useGetProfile = () => {
-   return useQuery({
-      queryFn: UserService.getProfile,
+
+export const useGetProfile = (isAuth?: boolean) => {
+   return useQuery<ProfileRequestTypes>({
       queryKey: [UserQueryKeys.PROFILE],
+      queryFn: UserService.getProfile,
+      enabled: isAuth
    });
 };
+
 export const useChangeProfile = () => {
    return useMutation({
       mutationFn: (data: FormData) => {

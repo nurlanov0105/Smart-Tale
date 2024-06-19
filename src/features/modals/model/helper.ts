@@ -145,6 +145,30 @@ export const modalInfoMap = {
       buttonText: "Понятно",
       emoji: "holidayStuff",
    },
+   [MODAL_KEYS.noRights]: {
+      title: "У вас недостаточно прав \n для этого действия!",
+      description: "Пожалуйста, свяжитесь с владельцем для получения прав.",
+      buttonText: "Понятно",
+      emoji: "unknown",
+   },
+   [MODAL_KEYS.noChangeOwner]: {
+      title: "Должность основателя \n нельзя поменять!",
+      description: "Вы можете только передать \n её другому сотруднику",
+      buttonText: "Понятно",
+      emoji: "unknown",
+   },
+   [MODAL_KEYS.noChangeDeleteOwner]: {
+      title: "Должность основателя \n нельзя удалить!",
+      description: "Вы можете только передать \n её другому сотруднику",
+      buttonText: "Понятно",
+      emoji: "unknown",
+   },
+   [MODAL_KEYS.noInviteOwner]: {
+      title: "Вы не можете пригласить \n сотрудника на должность \n основателя!",
+      description: "Пожалуйста, выберите  другую роль для сотрудника!",
+      buttonText: "Понятно",
+      emoji: "unknown",
+   },
    [MODAL_KEYS.authNotice]: {
       title: "Вам нужно авторизоваться!",
       description: "Если у вас есть аккаунт то войдите, если нет то пройдите регистрацию",

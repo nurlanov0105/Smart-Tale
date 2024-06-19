@@ -1,11 +1,13 @@
 import React from "react";
-import { TYPE_ANNOUNCEMENT_DETAIL} from "@/shared/lib";
+import {EnumTokens} from "@/shared/lib";
 import {BASE_URL, ServiceQueryKeys, ServicesEndpoints} from "@/shared/api";
 import {ErrorMessage} from "@/entities/general/errorMessage";
 import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
+import {cookies} from "next/headers";
 
 export default async function EquipmentPage(){
    const data = await fetchServices()
+   // const data2 = Posts()
 
    if (!data) return <ErrorMessage/>
 
@@ -16,12 +18,27 @@ export default async function EquipmentPage(){
        />
    );
 };
+//
+// function Posts() {
+//    return  useQuery({
+//       queryKey: ['posts'],
+//       queryFn: fetchServices,
+//    })
+// }
+
 
 
 const fetchServices = async () => {
+   const accessToken = cookies().get(EnumTokens.ACCESS_TOKEN)
    try {
 
-      const res = await fetch(BASE_URL + ServicesEndpoints.SERVICES, {next: {revalidate: 3600}});
+      const res = await fetch(BASE_URL + ServicesEndpoints.SERVICES, {
+         cache: "no-cache",
+         headers: {
+            Authorization: `Bearer ${accessToken?.value}`,
+            'Content-Type': 'application/json',
+         },
+      });
 
       if (!res.ok){
          throw new Error("Произошла ошибка при запросе")
@@ -32,5 +49,4 @@ const fetchServices = async () => {
    } catch (err){
       console.error('Ошибка при обработке запроса:', err);
    }
-
 };
