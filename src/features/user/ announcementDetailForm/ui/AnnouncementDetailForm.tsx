@@ -1,7 +1,7 @@
 "use client";
 
-import React, {useState} from "react";
-import { Controller } from "react-hook-form";
+import React from "react";
+import {Controller, useFormContext, useWatch} from "react-hook-form";
 
 import { useThemeStore } from "@/shared/store/themeStore";
 import { GlobalLoading, InputField, PhoneInput, TextArea, Select } from "@/shared/ui";
@@ -22,7 +22,7 @@ import { OrderDetailBtns } from "@/entities/user/orderDetailBtns";
 
 import { useAnnouncementDetail } from "../model/hooks/useAnnouncementDetail";
 import { useInitialData } from "../model/hooks/useInitialData";
-import type {AnnouncementImagesTypes} from "../model/types";
+import type {AnnouncementDetailFormType} from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
@@ -32,42 +32,26 @@ const AnnouncementDetailForm = () => {
 
    const { type, slug } = useAnnouncementType();
 
-   const [images, setImages] = useState<AnnouncementImagesTypes[]>([])
-
    const {
       data,
+      handleSubmit,
+
       isError,
       isLoading,
       isSuccess,
-      isSubmitting,
+   } = useAnnouncementDetail({type, slug});
 
-      handleSubmit,
-      errors,
-      register,
-      isValid,
-      reset,
-      watch,
-      control,
-      isDirty,
-      setValue,
-   } = useAnnouncementDetail({
-      type,
-      slug,
-      images
-   });
+   const {
+      formState: { errors, isValid, isDirty},
+      register, reset,
+      control, setValue,
+   } = useFormContext<AnnouncementDetailFormType>()
 
-   useInitialData({ reset, type, slug, data, isSuccess, setImages});
+   useInitialData({ reset, type, slug, data, isSuccess});
 
-   // const imagesList = watch('images')
-   const sizes = watch(ANNOUNCEMENT_FORM_NAMES.sizes);
-   const sizeType = watch(ANNOUNCEMENT_FORM_NAMES.sizeType, {
-      value: sizesTypes[0].value,
-      postValue: sizesTypes[0].postValue,
-   });
+   const sizes = useWatch({control, name: ANNOUNCEMENT_FORM_NAMES.sizes});
+   const sizeType = useWatch({control, name: ANNOUNCEMENT_FORM_NAMES.sizeType});
 
-   const year = watch(ANNOUNCEMENT_FORM_NAMES.year) || { value: 0, postValue: 0 };
-   const month = watch(ANNOUNCEMENT_FORM_NAMES.month) || { value: "", postValue: 0 };
-   const day = watch(ANNOUNCEMENT_FORM_NAMES.day) || { value: 0, postValue: 0 };
 
    if (isLoading) return <GlobalLoading type="full" />;
    if (isError) return <h3 className="h3">...Упс, произошла ошибка на сервере</h3>;
@@ -130,7 +114,7 @@ const AnnouncementDetailForm = () => {
                            onChange={field.onChange}
                            typeData="sizes"
                            data={
-                              sizeType.postValue === "letter" ? sizesDataLetters : sizesDataNumbers
+                              sizeType?.postValue === "letter" ? sizesDataLetters : sizesDataNumbers
                            }
                            type={SELECT_TYPES.vacancy}
                            error={errors?.sizes?.message}
@@ -197,14 +181,7 @@ const AnnouncementDetailForm = () => {
                <div className={styles.order__block_row}>
                   <h4 className="h4">Крайняя дата выполнения</h4>
                   <div>
-                     <SelectDate
-                        setValue={setValue}
-                        control={control}
-                        day={day}
-                        month={month}
-                        year={year}
-                        type="user"
-                     />
+                     <SelectDate type="user"/>
                   </div>
                   {errors.day?.message ||
                      errors.month?.message ||
@@ -240,16 +217,7 @@ const AnnouncementDetailForm = () => {
             </div>
          </div>
 
-         <OrderDetailBtns
-             type={type}
-             slug={slug}
-
-             reset={reset}
-
-             isSubmitting={isSubmitting}
-             isDisabled={isValid}
-             isDirty={isDirty}
-         />
+         <OrderDetailBtns type={type} slug={slug}/>
       </form>
    );
 };

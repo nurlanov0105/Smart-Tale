@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { OrderForm } from "@/features/user/orderForm";
 import { Tabs } from "@/features/general/tabs";
 import { orderDetailsValues } from "../model/values";
+import CreateAnnouncementContext from "./useFormContext";
 import styles from "./styles.module.scss";
 
 const CreateAnnouncement = () => {
@@ -19,7 +20,9 @@ const CreateAnnouncement = () => {
          </div>
 
          <h4 className="h4">Информация об объявлении</h4>
-         <OrderForm type={type} />
+          <CreateAnnouncementContext>
+              <OrderForm type={type} />
+          </CreateAnnouncementContext>
       </div>
    );
 };

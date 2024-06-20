@@ -1,70 +1,37 @@
-import { useForm } from "react-hook-form";
-import {format} from "date-fns";
+import {useFormContext} from "react-hook-form";
 import {AnnouncementValues} from "@/shared/lib";
-import { useCreateEquipment, useCreateOrder, useCreateService } from "./useQueries";
+import {useCreateAnnouncement} from "./useQueries";
 import type {AnnouncementCreateFormType} from "../types";
-import {CREATE_ANNOUNCEMENT_POST_NAMES} from "../consts";
+import {buildAnnouncementFormData} from "../helper";
 
 export const useOrderForm = (type: string) => {
-
    const {
       reset,
-      register,
-      handleSubmit,
-      watch,
-      control,
-      setValue,
-      formState: { errors, isValid },
-   } = useForm<AnnouncementCreateFormType>(
-       {
-          mode: "onChange",
-          criteriaMode: "all",
-          shouldFocusError: true,
-       }
-   );
+      handleSubmit
+   } = useFormContext<AnnouncementCreateFormType>();
 
-   const createOrder = useCreateOrder(reset);
-   const createEquipment = useCreateEquipment(reset);
-   const createService = useCreateService(reset);
-
-   const createAnnouncementByType = {order: createOrder, equipment: createEquipment, service: createService};
-   const createAnnouncement = createAnnouncementByType[type as keyof typeof createAnnouncementByType]
+   const createAnnouncement = useCreateAnnouncement(type, reset)
 
    const onSubmit = (data: AnnouncementCreateFormType) => {
-      const formData = new FormData();
+      const formData = buildAnnouncementFormData(data, type);
 
-      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.title, data.title)
-      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.description, data.description)
-      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.price, data.price.toString())
-      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.currency, data.currency.postValue)
-      formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.tel, data.tel)
-      // formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.amount, data.amount.toString())
-      if (data.email) formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.email, data.email)
-
-      data?.images.forEach(image => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.images, image.image))
-
-      if (type === AnnouncementValues.EQUIPMENT) createEquipment.mutate(formData)
-      if (type === AnnouncementValues.SERVICE) createService.mutate(formData)
-      if (type === AnnouncementValues.ORDER){
-         const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
-         const deadline = format(newDate, 'yyyy-MM-dd')
-
-         formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.deadline, deadline)
-         data?.sizes.forEach(size => formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.size, size.postValue))
-
-         createOrder.mutate(formData)
+      switch (type) {
+         case AnnouncementValues.EQUIPMENT:
+            createAnnouncement.mutate(formData);
+            break;
+         case AnnouncementValues.SERVICE:
+            createAnnouncement.mutate(formData);
+            break;
+         case AnnouncementValues.ORDER:
+            createAnnouncement.mutate(formData);
+            break;
+         default:
+            break;
       }
    };
 
    return {
       handleSubmit: handleSubmit(onSubmit),
       isLoading: createAnnouncement?.isPending,
-      isError: createAnnouncement?.isError,
-      register,
-      errors,
-      isValid,
-      watch,
-      control,
-      setValue
    };
 };

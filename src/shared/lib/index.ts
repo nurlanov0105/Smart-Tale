@@ -114,6 +114,7 @@ export {
 
 export { useInitialRights } from "./hooks/useInitialRights";
 export { useGetDates } from "./hooks/useGetDates";
+export { useScrollTop } from "./hooks/useScrollTop";
 
 export {
    graphicsFilter,

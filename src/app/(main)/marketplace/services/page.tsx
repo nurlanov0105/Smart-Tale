@@ -33,7 +33,7 @@ const fetchServices = async () => {
    try {
 
       const res = await fetch(BASE_URL + ServicesEndpoints.SERVICES, {
-         cache: "no-cache",
+         next: {revalidate: 10},
          headers: {
             Authorization: `Bearer ${accessToken?.value}`,
             'Content-Type': 'application/json',

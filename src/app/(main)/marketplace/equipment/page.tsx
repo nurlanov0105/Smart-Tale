@@ -3,7 +3,6 @@ import {ErrorMessage} from "@/entities/general/errorMessage";
 import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 
 
-
 export default async function EquipmentPage(){
    const data = await fetchEquipment()
 
@@ -21,7 +20,7 @@ export default async function EquipmentPage(){
 const fetchEquipment = async () => {
    try {
 
-      const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {next: {revalidate: 3600}});
+      const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {next: {revalidate: 5}});
 
       if (!res.ok){
          throw new Error("Произошла ошибка при запросе")

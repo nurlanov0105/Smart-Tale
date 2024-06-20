@@ -18,7 +18,6 @@ export const ServicesService = {
    },
    getServiceSlug: async (slug: string) => {
       const response = await baseApiInstance.get(ServicesEndpoints.SERVICE_SLUG + slug);
-
       return response;
    },
    getMyServices: async (page: number) => {
