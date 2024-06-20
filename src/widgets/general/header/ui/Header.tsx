@@ -12,7 +12,9 @@ import { NavbarPanel } from "@/entities/general/navbarPanel";
 import { useOrdersStore } from "@/entities/general/navbarPanel";
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import { useThemeStore } from "@/shared/store/themeStore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+// import { onMessageListener, requestForToken } from "../../../../../firebase-config";
+import { toast } from "react-toastify";
 
 const Header = () => {
    // theme
@@ -24,6 +26,28 @@ const Header = () => {
 
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);
+
+   // FCM state
+   // const [notification, setNotification] = useState<{ title: string; body: string } | null>(null);
+
+   // useEffect(() => {
+   //    requestForToken();
+
+   //    const unsubscribe = onMessageListener()
+   //       .then((payload: any) => {
+   //          setNotification({
+   //             title: payload.notification.title,
+   //             body: payload.notification.body,
+   //          });
+   //          toast.info(`${payload.notification.title} - ${payload.notification.body}`);
+   //       })
+   //       .catch((err) => console.log("failed: ", err));
+
+   //    return () => {
+   //       // @ts-ignore
+   //       unsubscribe();
+   //    };
+   // }, []);
 
    return (
       <header className={clsx(styles.header, styles.header_mb, styles[theme])}>

@@ -36,7 +36,7 @@ const Navbar = () => {
       }
    }, [pathname]);
 
-   if (isLoading) return <div className={styles.navbar}></div>;
+   // if (isLoading) return <div className={styles.navbar}></div>;
 
    return (
       <>

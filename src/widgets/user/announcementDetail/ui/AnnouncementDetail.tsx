@@ -9,7 +9,7 @@ const AnnouncementDetail: FC = () => {
    return (
       <div className={styles.order}>
          <CreateAnnouncementContext>
-             <AnnouncementDetailForm />
+            <AnnouncementDetailForm />
          </CreateAnnouncementContext>
       </div>
    );
