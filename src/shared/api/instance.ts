@@ -1,6 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { CookiesServices, EnumTokens, refreshToken, errorCatch } from "../lib";
+import {CookiesServices, EnumTokens, refreshToken, errorCatch, ROUTES} from "../lib";
+import {showModal} from "@/views/modal";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
@@ -81,6 +82,7 @@ baseApiInstance.interceptors.response.use(
             console.log(err);
             CookiesServices.clearTokens();
             sessionStorage.clear();
+            window.location.href = ROUTES.SIGN_IN;
          }
 
          return baseApiInstance(originalRequest);

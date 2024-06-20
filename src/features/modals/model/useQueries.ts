@@ -27,6 +27,7 @@ export const useHideEquipment = () => {
       mutationFn: (slug) => EquipmentService.hideEquipment(slug),
       onSuccess: () => {
           closeModal()
+          queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENT]})
           toast.success("Вы успешно скрыли оборудование");
       },
       onError: () => {
@@ -44,6 +45,7 @@ export const useHideOrder = () => {
       onSuccess: () => {
           closeModal()
          toast.success("Вы успешно скрыли заказ");
+          queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
       },
       onError: () => {
           closeModal()
@@ -59,6 +61,7 @@ export const useHideService = () => {
       mutationFn: (slug) => ServicesService.hideService(slug),
       onSuccess: () => {
           closeModal()
+          queryClient.invalidateQueries({queryKey: [ServiceQueryKeys.GET_MY_SERVICE]})
           toast.success("Вы успешно скрыли услугу");
       },
       onError: () => {

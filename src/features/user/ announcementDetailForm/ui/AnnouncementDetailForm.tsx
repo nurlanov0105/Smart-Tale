@@ -38,6 +38,7 @@ const AnnouncementDetailForm = () => {
       handleSubmit,
 
       isError,
+      isSubmitting,
       isLoading,
       isSuccess,
    } = useAnnouncementDetail({type, slug});
@@ -102,7 +103,6 @@ const AnnouncementDetailForm = () => {
                               onChange={field.onChange}
                               data={sizesTypes}
                               type={SELECT_TYPES.vacancy}
-                              error={errors?.sizes?.message}
                            />
                         )}
                      />
@@ -114,128 +114,131 @@ const AnnouncementDetailForm = () => {
                   <h4 className="h4">Крайняя дата выполнения</h4>
                   <div>
                      <SelectDate type="user"/>
-                      {type === AnnouncementValues.ORDER && (
-                          <div className={clsx(styles.order__select)}>
-                              <h4 className="h4">Размеры</h4>
-                              <Controller
-                                  name={ANNOUNCEMENT_FORM_NAMES.sizes}
-                                  control={control}
-                                  defaultValue={[]}
-                                  rules={{ required: "Выберите размер" }}
-                                  render={({ field }) => (
-                                      <Select
-                                          value={field.value}
-                                          onChange={field.onChange}
-                                          typeData="sizes"
-                                          data={
-                                              sizeType?.postValue === "letter"
-                                                  ? sizesDataLetters
-                                                  : sizesDataNumbers
-                                          }
-                                          type={SELECT_TYPES.vacancy}
-                                          error={errors?.sizes?.message}
-                                      />
-                                  )}
-                              />
-                              {errors && (
-                                  <p className={clsx(styles.order__error, styles.order__error_margin)}>
-                                      {errors.sizes?.message}
-                                  </p>
-                              )}
+                     <div className={clsx(styles.order__select)}>
+                        <h4 className="h4">Размеры</h4>
+                        <Controller
+                            name={ANNOUNCEMENT_FORM_NAMES.sizes}
+                            control={control}
+                            defaultValue={[]}
+                            rules={{required: "Выберите размер"}}
+                            render={({field}) => (
+                                <Select
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    typeData="sizes"
+                                    data={
+                                       sizeType?.postValue === "letter"
+                                           ? sizesDataLetters
+                                           : sizesDataNumbers
+                                    }
+                                    type={SELECT_TYPES.vacancy}
+                                    error={errors?.sizes?.message}
+                                />
+                            )}
+                        />
 
-                              {!!sizes?.length && (
-                                  <ul className={styles.order__sizes}>
-                                      {sizes?.map((size, idx) => (
-                                          <SizeItem
-                                              sizes={sizes}
-                                              key={idx}
-                                              size={size}
-                                              setValue={setValue}
-                                              idx={idx}
-                                          />
-                                      ))}
-                                  </ul>
-                              )}
-                          </div>
-                      )}
+                        {errors && (
+                            <p className={clsx(styles.order__error, styles.order__error_margin)}>
+                               {errors.sizes?.message}
+                            </p>
+                        )}
+
+                        {!!sizes?.length && (
+                            <ul className={styles.order__sizes}>
+                               {sizes?.map((size, idx) => (
+                                   <SizeItem
+                                       sizes={sizes}
+                                       key={idx}
+                                       size={size}
+                                       setValue={setValue}
+                                       idx={idx}
+                                   />
+                               ))}
+                            </ul>
+                        )}
+                     </div>
                   </div>
+               </div>
+            )}
+
+               <div>
                   <h4 className={clsx(styles.order__margin, "h4")}>Стоимость</h4>
                   <div className={styles.order__block_flex}>
                      <InputField
-                        {...register(
-                           ANNOUNCEMENT_FORM_NAMES.price,
-                           ValidationsSchemasService.priceSchema
-                        )}
-                        type="number"
-                        disabled={isLoading}
-                        error={!!errors.price?.message}
-                        isBordered={true}
-                        classname={styles.order__input}
+                         {...register(
+                             ANNOUNCEMENT_FORM_NAMES.price,
+                             ValidationsSchemasService.priceSchema
+                         )}
+                         type="number"
+                         disabled={isLoading}
+                         error={!!errors.price?.message}
+                         isBordered={true}
+                         classname={styles.order__input}
                      />
                      <div>
                         <Controller
-                           name={ANNOUNCEMENT_FORM_NAMES.currency}
-                           control={control}
-                           rules={{ required: "Выберите валюту" }}
-                           render={({ field }) => (
-                              <Select
-                                 value={field.value}
-                                 onChange={field.onChange}
-                                 data={currencies}
-                                 type={SELECT_TYPES.auth}
-                                 classname={clsx(
-                                    styles.order__currency,
-                                    errors.price?.message && styles.order__currency_error
-                                 )}
-                              />
-                           )}
+                            name={ANNOUNCEMENT_FORM_NAMES.currency}
+                            control={control}
+                            rules={{required: "Выберите валюту"}}
+                            render={({field}) => (
+                                <Select
+                                    value={field.value}
+                                    onChange={field.onChange}
+                                    data={currencies}
+                                    type={SELECT_TYPES.auth}
+                                    classname={clsx(
+                                        styles.order__currency,
+                                        errors.price?.message && styles.order__currency_error
+                                    )}
+                                />
+                            )}
                         />
                      </div>
                   </div>
                   {errors && <p className={clsx(styles.order__error)}>{errors.price?.message}</p>}
+
                </div>
-            )}
 
                {type === AnnouncementValues.ORDER && (
-                  <div className={styles.order__block_row}>
-                     <h4 className="h4">Крайняя дата выполнения</h4>
-                <SelectDate type="user"/>
+                   <div className={styles.order__block_row}>
+                      <h4 className="h4">Крайняя дата выполнения</h4>
+                      <SelectDate type="user"/>
 
-                     {errors.day?.message ||
-                        errors.month?.message ||
-                        (errors.year?.message && (
-                           <p className={clsx(styles.order__error)}>Выберите дату</p>
-                        ))}
-                  </div>
+                      {errors.day?.message ||
+                          errors.month?.message ||
+                          (errors.year?.message && (
+                              <p className={clsx(styles.order__error)}>Выберите дату</p>
+                          ))}
+                   </div>
                )}
                <div className={styles.order__block}>
                   <h4 className="h4">Галерея фотографий</h4>
 
                   <Controller
-                     name={ANNOUNCEMENT_FORM_NAMES.images}
-                     control={control}
-                     render={({ field }) => (
-                        <AddImages
-                           images={field.value}
-                           setImages={field.onChange}
-                           setValue={setValue}
-                        />
-                     )}
+                      name={ANNOUNCEMENT_FORM_NAMES.images}
+                      control={control}
+                      render={({field}) => (
+                          <AddImages
+                              images={field.value}
+                              setImages={field.onChange}
+                              setValue={setValue}
+                          />
+                      )}
                   />
                </div>
                <div className={styles.order__block_gap}>
                   <h4 className="h4">Контактная информация</h4>
 
                   <PhoneInput
-                     error={errors.tel?.message}
-                     classname={styles.order__phoneInput}
-                     control={control}
+                      error={errors.tel?.message}
+                      classname={styles.order__phoneInput}
+                      control={control}
                   />
                </div>
             </div>
 
 
-         <OrderDetailBtns type={type} slug={slug}/>
+         <OrderDetailBtns isSubmitting={isSubmitting} type={type}/>
          </form>
       </>
    );

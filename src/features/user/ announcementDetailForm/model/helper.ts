@@ -1,7 +1,9 @@
 import {format} from "date-fns";
-import {AnnouncementValues} from "@/shared/lib";
-import type {AnnouncementDetailFormType} from "./types";
-import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "@/features/user/ announcementDetailForm/model/consts";
+import {AnnouncementValues, cloudImageToFile, currenciesMap, useGetDates} from "@/shared/lib";
+import {monthsList} from "@/entities/general/selectDate/model/helper";
+import type {AnnouncementDetailFormType, ImageTypes} from "./types";
+import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "./consts";
+
 
 export const buildAnnouncementFormData = (data: AnnouncementDetailFormType, type: string): FormData => {
     const formData = new FormData();
@@ -14,17 +16,19 @@ export const buildAnnouncementFormData = (data: AnnouncementDetailFormType, type
 
     if (data.email) formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.email, data.email)
 
-    const existingImage = new Set(data.initialImages.map(dataImage => dataImage.id));
-    const existingDataImage = new Set(data.images.map(dataImage => dataImage.id));
+    const initialImages = new Set(data?.initialImages?.map(dataImage => dataImage?.id));
+    const newImages = new Set(data?.images?.map(dataImage => dataImage?.id));
+
+
+    data.initialImages.map(image => {
+        if (!newImages.has(image.id)) {
+            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deleted_images, String(image.id))
+        }
+    })
 
     data.images.forEach(image => {
-        if (!existingImage.has(image.id)) {
+        if (!initialImages.has(image.id)) {
             formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image.image)
-        }
-    });
-    data.images.forEach(image => {
-        if (!existingDataImage.has(image.id)) {
-            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deleted_images, image.id.toString())
         }
     });
 
@@ -38,3 +42,49 @@ export const buildAnnouncementFormData = (data: AnnouncementDetailFormType, type
 
     return formData;
 };
+
+interface IProps{
+    data: any
+    type: string
+}
+interface ISize{
+    id: number
+    size: string
+}
+
+export const useResetAnnouncementData = async ({data, type}: IProps) => {
+
+    const {day, year , month} = useGetDates(data?.deadline ?? "2024")
+
+    const monthValue = monthsList()[month];
+
+    const images = await Promise.all(data?.images.map(async (item: ImageTypes) => {
+        const file = await cloudImageToFile(item.images, Date.now().toString());
+        return {id: item.id, image: file};
+    }));
+    const sizes = data?.size?.map((item: ISize) => {
+        return { value: item?.size, postValue: item?.size }
+    })
+
+    let resetData: any = {
+        title: data.title,
+        tel: data["phone_number"],
+        price: data.price,
+        email: data.email,
+        description: data.description,
+        currency: currenciesMap[data.currency as keyof typeof currenciesMap],
+        images: images,
+        initialImages: images,
+    }
+    if (type === AnnouncementValues.ORDER){
+        resetData = {
+            ...resetData,
+            month: { value: monthValue?.value, postValue: month + 1 },
+            day: { value: day, postValue: day },
+            year: { value: year, postValue: year },
+            sizes: sizes
+        }
+    }
+
+    return resetData
+}
