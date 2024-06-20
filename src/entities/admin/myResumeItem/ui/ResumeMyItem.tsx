@@ -7,15 +7,17 @@ import {useThemeStore} from "@/shared/store/themeStore";
 import {ROUTES, WORK} from "@/shared/lib/routes.config";
 import styles from "./styles.module.scss";
 import {ResumeItemTypes} from "../model/types";
-import {getDate, getMonth, getYear} from "date-fns";
 import {monthsForDate} from "@/widgets/admin/adminOrganizationDetail/model/helper";
+import {useGetDates} from "@/shared/lib";
 
 const ResumeMyItem: FC<ResumeItemTypes> = ({job_title, experience, slug, author, updated_at}) => {
     const theme = useThemeStore(state => state.theme)
 
-    const day = getDate(updated_at)
-    const month = getMonth(updated_at)
-    const year = getYear(updated_at)
+    const {
+        day,
+        month,
+        year
+    } = useGetDates(updated_at ?? "2024")
 
     const monthFormat = monthsForDate()[month]
 

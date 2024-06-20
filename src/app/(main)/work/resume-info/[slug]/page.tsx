@@ -3,8 +3,7 @@ import {ResumeInfo} from "@/entities/user/resume-info";
 import {cookies} from "next/headers";
 
 const ResumeInfoPage = () => {
-    const userSlug = cookies().get("user_slug")
-    return <ResumeInfo userSlug={userSlug?.value}/>
+    return <ResumeInfo/>
 };
 
 export default ResumeInfoPage;

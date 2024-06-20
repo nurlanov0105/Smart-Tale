@@ -1,25 +1,28 @@
-import React, {FC, useMemo} from "react";
+import React, {FC} from "react";
 import { SelectDateMenu } from "@/shared/ui";
 import { DateProps } from "../model/types";
-import {Controller} from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
 import {useDate2} from "@/entities/general/selectDate/model/useDate2";
 import styles from "./styles.module.scss";
+import {ANNOUNCEMENT_FORM_NAMES} from "@/shared/lib";
 
-const SelectDate: FC<DateProps> = ({
-        month,
-        control,
-        year,
-        day,
+const SelectDate: FC<DateProps> = ({type = "admin"}) => {
+
+    const {
         setValue,
-        type = "admin", //user будем только передавать, admin по дефолту
+        control,
+        watch
+    } = useFormContext()
 
-    }) => {
+    const year = watch(ANNOUNCEMENT_FORM_NAMES.year) || { value: 0, postValue: 0 };
+    const month = watch(ANNOUNCEMENT_FORM_NAMES.month) || { value: "", postValue: 0 };
+    const day = watch(ANNOUNCEMENT_FORM_NAMES.day) || { value: 0, postValue: 0 };
 
    const {
        days,
        months,
        years
-   } = useDate2(year, month, day, type, setValue);
+   } = useDate2({year: year, month: month, day: day, type, setValue});
 
    return (
       <div className={styles.date}>

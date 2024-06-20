@@ -17,7 +17,6 @@ const fetchServices = async () => {
    const accessToken = cookies().get(EnumTokens.ACCESS_TOKEN);
    try {
       const res = await fetch(BASE_URL + ServicesEndpoints.SERVICES, {
-         cache: "no-cache",
          headers: {
             Authorization: `Bearer ${accessToken?.value}`,
             "Content-Type": "application/json",

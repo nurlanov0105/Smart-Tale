@@ -7,7 +7,6 @@ import {IImage} from "@/features/general/addImages/ui/AddImages";
 export type AnnouncementDetailProps = {
     type: string
     slug: string
-    images: AnnouncementImagesTypes[]
 }
 
 export type AnnouncementImagesTypes = {
@@ -25,6 +24,7 @@ export type AnnouncementDetailFormType = {
     sizeType: SelectPostTypes;
     sizes: SelectPostTypes[];
     images: IImage[];
+    initialImages: AnnouncementImagesTypes[]
     day: IDateProps;
     month: IDateProps;
     year: IDateProps;
@@ -35,7 +35,6 @@ export type InitialDataProps = {
     type: string
     data: any
     isSuccess: boolean
-    setImages: Dispatch<SetStateAction<AnnouncementImagesTypes[]>>
 }
 
 export type ImageTypes = {

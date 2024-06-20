@@ -60,7 +60,7 @@ export const EquipmentService = {
 
    getMyEquipment: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + slug);
-      return response.data;
+      return response.data?.data;
    },
    searchEquipment: async (search: string) => {
       const response = await baseApiInstance.post(EquipmentsEndpoints.SEARCH_EQUIPMENTS, {
