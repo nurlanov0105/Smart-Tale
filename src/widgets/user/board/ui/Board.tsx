@@ -1,28 +1,27 @@
 "use client";
 
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { toast } from "react-toastify";
 import type { Columns } from "../model/types";
 import { BoardColumn } from "@/features/user/boardColumn";
 import { testDestinationMap, COLUMN_VALUES } from "../model/helper";
-import {useGetOrganizationOrders, useUpdateStatusOrder} from "../model/useQueries";
+import { useGetOrganizationOrders, useUpdateStatusOrder } from "../model/useQueries";
 import styles from "./styles.module.scss";
-import {GlobalLoading} from "@/shared/ui";
-
+import { GlobalLoading } from "@/shared/ui";
 
 const Board = () => {
-   const {data, isSuccess, isError, isLoading} = useGetOrganizationOrders()
+   const { data, isSuccess, isError, isLoading } = useGetOrganizationOrders();
 
-   const updateStatus = useUpdateStatusOrder()
+   const updateStatus = useUpdateStatusOrder();
 
    const [columns, setColumns] = useState(data);
 
    useEffect(() => {
-      if (isSuccess && data){
-         setColumns(data)
+      if (isSuccess && data) {
+         setColumns(data);
       }
-       // eslint-disable-next-line
+      // eslint-disable-next-line
    }, [isSuccess, updateStatus.isError]);
 
    const onDragEnd = (result: DropResult) => {
@@ -31,33 +30,31 @@ const Board = () => {
       if (!destination) {
          return;
       }
-     if (!columns) return;
+      if (!columns) return;
 
-
-       // Получаем информацию о перемещаемом заказе
-     const movedOrder = columns[source.droppableId as Columns][source.index];
-
+      // Получаем информацию о перемещаемом заказе
+      const movedOrder = columns[source.droppableId as Columns][source.index];
 
       if (destination.droppableId === source.droppableId) {
          const column = [...columns[source.droppableId as Columns]];
          const movedOrder = column.splice(source.index, 1)[0]; // Удаляем перемещаемый заказ из исходной колонки
          column.splice(destination.index, 0, movedOrder); // Вставляем его на новую позицию
          setColumns((prevColumns) => {
-             if (!prevColumns) return
+            if (!prevColumns) return;
 
-             return {
-                 ...prevColumns,
-                 [source.droppableId]: column,
-             }
+            return {
+               ...prevColumns,
+               [source.droppableId]: column,
+            };
          });
 
          return;
       }
 
-       if (updateStatus.isPending) {
-           toast.warning("Пожалуйста, подождите пока сервер обработает предыдущий запрос")
-           return;
-       }
+      if (updateStatus.isPending) {
+         toast.warning("Пожалуйста, подождите пока сервер обработает предыдущий запрос");
+         return;
+      }
 
       const sourceId = testDestinationMap[source.droppableId];
 
@@ -65,7 +62,6 @@ const Board = () => {
          toast.warning(sourceId.alert);
          return;
       }
-
 
       // Удаляем перемещаемый заказ из исходной колонки
       const updatedSourceColumn = [...columns[source.droppableId as Columns]];
@@ -85,21 +81,21 @@ const Board = () => {
          return;
       }
 
-       updateStatus.mutate({orderSlug: movedOrder.slug, status: destination.droppableId})
+      updateStatus.mutate({ orderSlug: movedOrder.slug, status: destination.droppableId });
       // Обновляем состояние колонок
       setColumns((prevColumns) => {
-          if (!prevColumns) return
+         if (!prevColumns) return;
 
-          return {
-              ...prevColumns,
-              [source.droppableId]: updatedSourceColumn,
-              [destination.droppableId]: updatedDestinationColumn,
-          }
+         return {
+            ...prevColumns,
+            [source.droppableId]: updatedSourceColumn,
+            [destination.droppableId]: updatedDestinationColumn,
+         };
       });
    };
 
-   if (isLoading) return <GlobalLoading type="full"/>
-   if (isError) return <h3 className="h3">Упс, произошла ошибка при получении данных</h3>
+   if (isLoading) return <GlobalLoading type="full" />;
+   if (isError) return <h3 className="h3">Упс, произошла ошибка при получении данных</h3>;
 
    return (
       <DragDropContext onDragEnd={onDragEnd}>
