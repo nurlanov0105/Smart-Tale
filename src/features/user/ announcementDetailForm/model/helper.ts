@@ -28,7 +28,6 @@ export const buildAnnouncementFormData = (data: AnnouncementDetailFormType, type
         }
     });
 
-
     if (type === AnnouncementValues.ORDER) {
         const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
         const deadline = format(newDate, 'yyyy-MM-dd')

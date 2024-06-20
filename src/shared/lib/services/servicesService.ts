@@ -13,7 +13,7 @@ export const ServicesService = {
       return {
          data: response.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
    getServiceSlug: async (slug: string) => {

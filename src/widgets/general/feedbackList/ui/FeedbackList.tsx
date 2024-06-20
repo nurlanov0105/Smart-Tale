@@ -20,9 +20,6 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug }) => {
       mutate({ orderSlug: slug, organizationSlug: orgSlug });
    };
 
-   if (!isLoading) {
-      console.log(data);
-   }
 
    return (
       <div className={styles.feedback}>
@@ -31,7 +28,10 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug }) => {
             {isSuccess &&
                data.data.map((item: any) => (
                   <li key={item.slug} className={styles.feedback__item}>
-                     <span>{item.title}</span>
+                     <div className={styles.feedback__flex}>
+                        <b>Организация:</b>
+                        <span>{item.title}</span>
+                     </div>
                      <Button onClick={() => handleBookOrder(item.slug)}>
                         {isPending ? "Загрузка..." : "Выбрать"}
                      </Button>

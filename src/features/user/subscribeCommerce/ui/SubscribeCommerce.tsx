@@ -14,12 +14,17 @@ import styles from "./styles.module.scss";
 import Link from "next/link";
 import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const SubscribeCommerce: FC<Props> = () => {
    const theme = useThemeStore((state) => state.theme);
-   const { isSubscribe, isLoading, subscribed } = useSubscribed();
 
-   if (isLoading) return
+   const isSubscribe = useSubscribeStore((state) => state.isSubscribe);
+   const subscribedData = useSubscribeStore((state) => state.data);
+
+   if (!subscribedData) {
+      return <div></div>;
+   }
 
    return (
       <>
@@ -41,7 +46,7 @@ const SubscribeCommerce: FC<Props> = () => {
                <Image src={checkIcon} alt="check icon" width={20} height={20} />
                <div className={styles.box__col}>
                   <h4>Подписка оформлена</h4>
-                  {subscribed && <p>Срок: до {formattingDate(subscribed?.subscription)}</p>}
+                  {subscribedData && <p>Срок: до {formattingDate(subscribedData?.subscription)}</p>}
                </div>
             </div>
          )}

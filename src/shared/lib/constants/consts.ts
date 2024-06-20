@@ -157,4 +157,4 @@ export const ruCurrency = {
    Euro: "Euro",
 };
 
-export const OWNER = process.env.NEXT_PUBLIC_OWNER
+export const OWNER = "Основатель";

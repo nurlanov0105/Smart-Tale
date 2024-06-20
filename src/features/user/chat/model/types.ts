@@ -7,4 +7,5 @@ export type AuthorType = {
 
 export type ChatType = {
    author: AuthorType;
+   isModal?: boolean;
 };

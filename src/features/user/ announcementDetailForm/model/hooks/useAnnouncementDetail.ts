@@ -14,6 +14,7 @@ export const useAnnouncementDetail = ({type, slug}: AnnouncementDetailProps) => 
     const responseData = useAnnouncementDetailsType(slug, type)
     const updateData = useAnnouncementAction(type)
 
+    console.log(responseData?.data)
     const onSubmit = (data: AnnouncementDetailFormType) => {
         const formData = buildAnnouncementFormData(data, type);
 

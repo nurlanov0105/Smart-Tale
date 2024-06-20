@@ -13,7 +13,7 @@ import { MARKETPLACE, ROUTES, useAuth, useNavbar, useSubscribed } from "@/shared
 import { LogIn, Moon, ShieldCheck, SunMoon } from "lucide-react";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import {GlobalLoading} from "@/shared/ui";
+import { GlobalLoading } from "@/shared/ui";
 
 const Navbar = () => {
    // theme
@@ -26,7 +26,7 @@ const Navbar = () => {
 
    const { isAuth, isLoading } = useAuth();
 
-   const { isSubscribe, isLoading: isLoadingSubscribe} = useSubscribed();
+   const { isSubscribe, isLoading: isLoadingSubscribe } = useSubscribed();
 
    const { hidden, hover, handleMouseOut, handleMouseOver, handleOverlayClick } = useNavbar();
 
@@ -35,7 +35,6 @@ const Navbar = () => {
          navbarRef.current.scrollTop = navbarRef.current.scrollHeight;
       }
    }, [pathname]);
-
 
    if (isLoading) return <div className={styles.navbar}></div>;
 
@@ -61,9 +60,11 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               {
-                  isLoadingSubscribe ? <GlobalLoading type="default"/>: <NavbarCategories isAuth={isAuth} />
-               }
+               {isLoadingSubscribe ? (
+                  <GlobalLoading type="default" />
+               ) : (
+                  <NavbarCategories isAuth={isAuth} />
+               )}
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && !isSubscribe && <SubscribeBox />}

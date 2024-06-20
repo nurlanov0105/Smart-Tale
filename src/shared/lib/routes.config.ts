@@ -49,6 +49,7 @@ export enum ROUTES {
    DASHBOARD_PURCHASES = `/dashboard/purchases`,
    DASHBOARD_ORDER_HISTORY = `/dashboard/order-history`,
    DASHBOARD_ORGANIZATION = `/dashboard/organization`,
+   DASHBOARD_FAVORITES = `/dashboard/favorites`,
 
    ORDER_DETAILS = "/order-details",
    CARD_DETAILS = "/card-details",
@@ -103,7 +104,7 @@ export enum ORGANIZATION_ROUTES {
    ANNOUNCEMENT_DETAILS = "/organization/announcement-details",
 
    CURRENT_ORDERS = `/organization/current-orders`,
-   NO_RIGHTS = `/organization/no-rights`
+   NO_RIGHTS = `/organization/no-rights`,
 }
 
 export const authRoutes = [

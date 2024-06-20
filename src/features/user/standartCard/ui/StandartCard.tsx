@@ -2,7 +2,7 @@
 
 import { FC } from "react";
 import { Button } from "@/shared/ui";
-import { showModal } from "@/views/modal";
+import { closeModal, showModal } from "@/views/modal";
 import {
    CookiesServices,
    EnglishType,
@@ -15,14 +15,25 @@ import {
 import Link from "next/link";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LikeButton } from "@/entities/general/likeButton";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
+   const currentUser = useSubscribeStore((state) => state.data);
+   const router = useRouter();
+
+   const handleRoute = () => {
+      if (currentUser?.profile.slug === item.author?.slug) {
+         return router.push(ROUTES.DASHBOARD_PROFILE);
+      } else {
+         router.push(ROUTES.USERS + `/${item.author?.slug}`);
+      }
+   };
 
    const handleClick = () => {
       showModal(MODAL_KEYS.card, {
@@ -47,13 +58,18 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
 
    return (
       <div className={clsx(styles.card, styles[theme])}>
-         <div className={styles.card__btnLike}>
-            {/*<LikeButton*/}
-            {/*   isLiked={Boolean(item.is_liked) || false}*/}
-            {/*   slug={item.slug}*/}
-            {/*   type={item.type}*/}
-            {/*/>*/}
-         </div>
+         {pathname.includes(ROUTES.DASHBOARD_FAVORITES) ? (
+            <div className={styles.card__btnLike}>
+               <LikeButton
+                  isLiked={Boolean(item.is_liked) || false}
+                  slug={item.slug}
+                  type={item.type}
+               />
+            </div>
+         ) : (
+            ""
+         )}
+
          <div className={styles.card__img} style={{ backgroundImage: `url(${item.image})` }} />
          <div className={styles.card__body}>
             <div className={styles.card__order}>
@@ -63,7 +79,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
                </h4>
             </div>
             {item?.author && (
-               <Link href={ROUTES.USERS + `/${item.author?.slug}`} className={styles.card__author}>
+               <button onClick={handleRoute} className={styles.card__author}>
                   <div
                      className={styles.card__avatar}
                      style={{
@@ -78,7 +94,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
                      </h5>
                      <div className={styles.card__notice}>Автор объявления</div>
                   </div>
-               </Link>
+               </button>
             )}
             <div className={styles.card__descr}>{item.description}</div>
 

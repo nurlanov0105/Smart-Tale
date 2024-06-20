@@ -6,9 +6,9 @@ import ChatForm from "./ChatForm";
 import { useThemeStore } from "@/shared/lib";
 import clsx from "clsx";
 import Select2 from "@/shared/ui/select/Select2";
-import {SELECT_TYPES} from "@/shared/lib";
-import {ChatsList} from "@/features/general/chatsList";
-import {useChatsStore} from "@/shared/store/chatStore/chatsStore";
+import { SELECT_TYPES } from "@/shared/lib";
+import { ChatsList } from "@/features/general/chatsList";
+import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 import styles from "./styles.module.scss";
 
 const Chats = () => {
@@ -36,7 +36,7 @@ const Chats = () => {
                      type={SELECT_TYPES.chat}
                   />
                </div>
-               <ChatsList/>
+               <ChatsList />
             </div>
             <div className={clsx(styles.chats__right, !isShowChat && styles.chats_hidden)}>
                <ChatForm />

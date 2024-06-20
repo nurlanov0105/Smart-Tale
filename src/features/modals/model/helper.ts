@@ -116,9 +116,9 @@ export const ModalActionsMap = {
 
 export const modalInfoMap = {
    [MODAL_KEYS.acceptAnnouncement]: {
-      title: " Поздравляем!\n Вы приняли заказ!",
-      description: "Ваш заказ отображается в вашем личном кабинете",
-      buttonText: "Посмотреть",
+      title: "Вы отправили заявку!",
+      description: "Ваш заказ находится на рассмотрении",
+      buttonText: "Понятно",
       emoji: "holidaySmile",
    },
    [MODAL_KEYS.buyAnnouncement]: {

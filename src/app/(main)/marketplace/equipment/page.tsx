@@ -1,6 +1,7 @@
-import {BASE_URL, EquipmentQueryKeys, EquipmentsEndpoints} from "@/shared/api";
-import {ErrorMessage} from "@/entities/general/errorMessage";
+import { BASE_URL, EquipmentQueryKeys, EquipmentsEndpoints } from "@/shared/api";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
+
 
 
 export default async function EquipmentPage(){
@@ -16,20 +17,18 @@ export default async function EquipmentPage(){
    );
 };
 
-
 const fetchEquipment = async () => {
    try {
+      const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {
+         next: { revalidate: 5 },
+      });
 
-      const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {next: {revalidate: 5}});
-
-      if (!res.ok){
-         throw new Error("Произошла ошибка при запросе")
+      if (!res.ok) {
+         throw new Error("Произошла ошибка при запросе");
       }
 
       return res.json();
-
-   } catch (err){
-      console.error('Ошибка при обработке запроса:', err);
+   } catch (err) {
+      console.error("Ошибка при обработке запроса:", err);
    }
-
 };

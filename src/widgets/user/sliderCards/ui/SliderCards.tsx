@@ -35,21 +35,19 @@ const SliderCards: FC<SliderCardsProps> = ({ data, type, isLoading }) => {
             </div>
          </div>
          <div className={styles.section__content}>
-            <div>
-               <Swiper spaceBetween={16} slidesPerView="auto" onSwiper={onSwiper}>
-                  {isLoading
-                     ? [...Array(8)].map((item: any, i: number) => (
-                          <SwiperSlide key={i} className={styles.section__card}>
-                             <CommonSkeleton key={i} type={type} />
-                          </SwiperSlide>
-                       ))
-                     : data.map((item: any, i: number) => (
-                          <SwiperSlide key={i} className={styles.section__card}>
-                             <StandartCard item={item} />
-                          </SwiperSlide>
-                       ))}
-               </Swiper>
-            </div>
+            <Swiper spaceBetween={16} slidesPerView="auto" onSwiper={onSwiper}>
+               {isLoading
+                  ? [...Array(8)].map((item: any, i: number) => (
+                       <SwiperSlide key={i} className={styles.section__card}>
+                          <CommonSkeleton key={i} type={type} />
+                       </SwiperSlide>
+                    ))
+                  : data.map((item: any, i: number) => (
+                       <SwiperSlide key={i} className={styles.section__card}>
+                          <StandartCard item={item} />
+                       </SwiperSlide>
+                    ))}
+            </Swiper>
          </div>
       </section>
    );

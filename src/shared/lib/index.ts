@@ -62,6 +62,7 @@ export type { UsePaginationResult } from "./types/usePaginationTypes";
 export type { UsePaginationOptions } from "./types/usePaginationTypes";
 
 export { rightsActionsData } from "./utils/rightsActionsData";
+export { TWO_MONTH_COOKIES } from "./constants/time.consts";
 export { rightsActionsMap, OWNER } from "./constants/consts";
 export type {
    RightsTypes,
@@ -79,10 +80,10 @@ export type {
 
 export type {
    ProfileDataTypes,
-    ProfileRequestTypes,
-    UserPositionTypes,
-    ProfileRequestType
-} from "./types/user-service.types"
+   ProfileRequestTypes,
+   UserPositionTypes,
+   ProfileRequestType,
+} from "./types/user-service.types";
 
 export type { IRights } from "./types/types";
 export type { DefaultFilterTypes } from "../store/filtersStore/types";
@@ -111,7 +112,6 @@ export {
    useResponse,
 } from "./hooks/useQueries";
 
-
 export { useInitialRights } from "./hooks/useInitialRights";
 export { useGetDates } from "./hooks/useGetDates";
 export { useScrollTop } from "./hooks/useScrollTop";
@@ -129,7 +129,6 @@ export {
    specializationsFilter,
    typeSalary,
 } from "./constants/vacancyFilters";
-
 
 export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
 export { useThemeStore } from "../store/themeStore/useThemeStore";

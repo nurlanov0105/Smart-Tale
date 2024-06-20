@@ -13,7 +13,7 @@ export const EquipmentService = {
       return {
          data: response.data?.data,
          hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number
+         nextPage: response.data.next_page_number,
       };
    },
    getEquipmentSlug: async (slug: string) => {
@@ -60,7 +60,7 @@ export const EquipmentService = {
 
    getMyEquipment: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.GET_MY_EQUIPMENT + slug);
-      return response.data;
+      return response.data?.data;
    },
    searchEquipment: async (search: string) => {
       const response = await baseApiInstance.post(EquipmentsEndpoints.SEARCH_EQUIPMENTS, {

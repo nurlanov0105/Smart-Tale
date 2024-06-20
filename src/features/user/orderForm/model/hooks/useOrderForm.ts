@@ -1,8 +1,8 @@
 import {useFormContext} from "react-hook-form";
-import {AnnouncementValues} from "@/shared/lib";
 import {useCreateAnnouncement} from "./useQueries";
-import type {AnnouncementCreateFormType} from "../types";
 import {buildAnnouncementFormData} from "../helper";
+import { AnnouncementValues } from "@/shared/lib";
+import type { AnnouncementCreateFormType } from "../types";
 
 export const useOrderForm = (type: string) => {
    const {
@@ -27,11 +27,13 @@ export const useOrderForm = (type: string) => {
             break;
          default:
             break;
+
       }
    };
 
    return {
       handleSubmit: handleSubmit(onSubmit),
       isLoading: createAnnouncement?.isPending,
+      isError: createAnnouncement?.isError,
    };
 };
