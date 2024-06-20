@@ -23,7 +23,7 @@ const fetchOrder = async () => {
             "Content-Type": "application/json",
          },
          // cache: "force-cache",
-         next: { revalidate: 3600 },
+         next: { revalidate: 5 },
       });
 
       if (!res.ok) {

@@ -22,7 +22,7 @@ export const OrdersService = {
          params: { page: page },
       });
       return {
-         data: response.data?.data,
+         data: response.data?.data.data,
          hasNextPage: response.data.has_next_page,
          nextPage: response.data.next_page_number,
       };

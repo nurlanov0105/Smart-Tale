@@ -7,14 +7,12 @@ import { AdminEmployeesItem } from "@/entities/admin/adminEmployeesItem";
 import { AdminBack } from "@/entities/admin/adminBack";
 import { AvatarSkeleton, CommonSkeleton } from "@/shared/ui";
 import { valuesData } from "../model/values.data";
-import {TypeViewButtons} from "@/entities/user/typeViewButtons";
-import {OrderItem} from "@/entities/general/orderItem";
-import {useParams} from "next/navigation";
-import {EmployeeOrderTypes} from "@/entities/admin/adminEmployeesItem/model/types";
-import {useEmployeeOrders, useEmployeeQuery} from "@/shared/lib";
+import { TypeViewButtons } from "@/entities/user/typeViewButtons";
+import { OrderItem } from "@/entities/general/orderItem";
+import { useParams } from "next/navigation";
+import { EmployeeOrderTypes } from "@/entities/admin/adminEmployeesItem/model/types";
+import { useEmployeeOrders, useEmployeeQuery } from "@/shared/lib";
 import styles from "./styles.module.scss";
-
-
 
 const AdminEmployeesDetails = () => {
    const [type, setType] = useState(valuesData[0].postValue);
@@ -22,7 +20,11 @@ const AdminEmployeesDetails = () => {
 
    const { slug } = useParams();
 
-   const {data, isLoading} = useEmployeeQuery(slug.toString())
+   const { data, isLoading } = useEmployeeQuery(slug.toString());
+
+   if (!isLoading) {
+      console.log(data);
+   }
 
    const orders = useEmployeeOrders(slug.toString());
 
@@ -47,7 +49,7 @@ const AdminEmployeesDetails = () => {
                   </div>
                ) : (
                   <ChangeImage
-                     image="sd"
+                     image={data?.profile_image}
                      name={`${data?.first_name} ${data?.last_name}`}
                      slug={slug.toString()}
                      isAdmin={true}

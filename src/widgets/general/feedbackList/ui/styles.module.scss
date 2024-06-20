@@ -21,4 +21,10 @@
 
       color: $common-black;
    }
+
+   &__flex {
+      display: flex;
+      flex-direction: column;
+      row-gap: 0.6rem;
+   }
 }

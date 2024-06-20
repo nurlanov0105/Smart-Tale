@@ -1,60 +1,79 @@
 "use client";
+
 import React, { FC } from "react";
-import avatar from "@@/logo.svg";
-import Image from "next/image";
-import {GlobalLoading, TextArea} from "@/shared/ui";
-import {SendHorizontal, Image as ImageIcon, Ellipsis, MessagesSquare, Phone, ArrowLeft, ChevronLeft} from "lucide-react";
-import { MessageItem, messagesData } from "@/entities/general/messageItem";
-import { ChatFormProps } from "../model/types";
-import styles from "./styles.module.scss";
-import { ROUTES } from "@/shared/lib";
 import Link from "next/link";
+import Image from "next/image";
+import { useGetMessages } from "@/widgets/general/chats/model/useQueries";
+import { MessageItem, messagesData } from "@/entities/general/messageItem";
+import { GlobalLoading, TextArea } from "@/shared/ui";
+import { createWebSocket } from "@/shared/lib/hooks/useCreateWebsocket";
+import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
+import { ROUTES } from "@/shared/lib";
+
+import { ChatFormProps } from "../model/types";
+import {
+   SendHorizontal,
+   Image as ImageIcon,
+   Ellipsis,
+   MessagesSquare,
+   Phone,
+   ArrowLeft,
+   ChevronLeft,
+} from "lucide-react";
+import avatar from "@@/logo.svg";
 import clsx from "clsx";
-import {createWebSocket} from "@/shared/lib/hooks/useCreateWebsocket";
-import {useGetMessages} from "@/widgets/general/chats/model/useQueries";
-import {useChatsStore} from "@/shared/store/chatStore/chatsStore";
+import styles from "./styles.module.scss";
 
 const ChatForm: FC = () => {
-   const selectedChat = useChatsStore(state => state.selectedChat)
-   const setChats = useChatsStore(state => state.setChatState)
+   const selectedChat = useChatsStore((state) => state.selectedChat);
+   const setChats = useChatsStore((state) => state.setChatState);
 
-   const {data, isLoading} = useGetMessages(!!selectedChat)
-   const handleBack = () => setChats({isShowChat: false})
+   const { data, isLoading } = useGetMessages(!!selectedChat);
+   const handleBack = () => setChats({ isShowChat: false });
 
-   if (isLoading) return <div className={styles.chat}><GlobalLoading/></div>
+   if (isLoading)
+      return (
+         <div className={styles.chat}>
+            <GlobalLoading />
+         </div>
+      );
 
    return (
       <div className={styles.chat}>
          {!!selectedChat && (
             <>
                <div className={styles.chat__user}>
-                  <Link href={ROUTES.USERS + `/user007`} className={styles.chat__block}>
+                  <Link
+                     href={ROUTES.USERS + `/${data?.receiver?.slug}`}
+                     className={styles.chat__block}>
                      <Image
-                         className={styles.chat__avatar}
-                         src={avatar}
-                         alt="avatar"
-                         width={30}
-                         height={30}
+                        className={styles.chat__avatar}
+                        src={avatar}
+                        alt="avatar"
+                        width={30}
+                        height={30}
                      />
 
-                     <h4 className="h4">{data?.receiver?.last_name} {data?.receiver?.first_name}</h4>
+                     <h4 className="h4">
+                        {data?.receiver?.last_name} {data?.receiver?.first_name}
+                     </h4>
                   </Link>
                   <div className={styles.chat__block}>
                      <a href="tel:+996755260506">
-                        <Phone className={styles.chat__iconPhone}/>
+                        <Phone className={styles.chat__iconPhone} />
                      </a>
                      <button type="button" className={styles.chat__menu}>
-                        <Ellipsis/>
+                        <Ellipsis />
                      </button>
                   </div>
                </div>
                <div className={styles.chat__info}>
                   <button className={styles.chat__back} type="button" onClick={handleBack}>
-                     <ChevronLeft/> <span>Назад</span>
+                     <ChevronLeft /> <span>Назад</span>
                   </button>
                   <div className={styles.chat__info__block}>
                      <Image
-                         className={styles.chat__image}
+                        className={styles.chat__image}
                         src={data?.receiver?.profile_image || avatar}
                         alt="avatar"
                         width={30}
@@ -67,18 +86,16 @@ const ChatForm: FC = () => {
 
                <div className={styles.chat__row}>
                   <div className={styles.chat__chat}>
-                     {data && data?.message_set
-                         .map((message, idx) => (
+                     {data &&
+                        data?.message_set.map((message, idx) => (
                            <MessageItem
-                               message={message}
-                               messages={data}
-                               mySlug={data?.initiator?.slug}
-
-                               key={idx}
-                               idx={idx}
+                              message={message}
+                              messages={data}
+                              mySlug={data?.initiator?.slug}
+                              key={idx}
+                              idx={idx}
                            />
-                        ))
-                     }
+                        ))}
                   </div>
 
                   <form className={styles.chat__form}>

@@ -15,7 +15,7 @@ export default async function EquipmentPage() {
 const fetchEquipment = async () => {
    try {
       const res = await fetch(BASE_URL + EquipmentsEndpoints.EQUIPMENTS, {
-         next: { revalidate: 3600 },
+         next: { revalidate: 5 },
       });
 
       if (!res.ok) {
