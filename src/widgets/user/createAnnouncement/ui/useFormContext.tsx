@@ -1,3 +1,4 @@
+"use client"
 import React, {FC, PropsWithChildren} from 'react';
 import {FormProvider, useForm} from "react-hook-form";
 import type {AnnouncementCreateFormType} from "@/features/user/orderForm/model/types";
@@ -5,10 +6,11 @@ import type {AnnouncementCreateFormType} from "@/features/user/orderForm/model/t
 interface IProps{
     mode?: "onBlur" | "onChange" | "onSubmit" | "onTouched" | "all"
 }
-const CreateAnnouncementContext:FC<PropsWithChildren<IProps>> = ({children, mode}) => {
+const CreateAnnouncementContext:FC<PropsWithChildren<IProps>> = ({children, mode = "onBlur"}) => {
+
     const methods = useForm<AnnouncementCreateFormType>(
         {
-            mode: mode ?? "onBlur",
+            mode: mode,
             criteriaMode: "all",
             shouldFocusError: true,
         }

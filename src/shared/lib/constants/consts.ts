@@ -38,12 +38,16 @@ export const MODAL_KEYS = {
    infoModal: "InfoModal",
    hideResume: "HideResume",
    hideVacancy: "hideVacancy",
+   unHideVacancy: "unHideVacancy",
    deleteVacancy: "deleteVacancy",
    deleteOrganization: "deleteOrganization",
    noRights: "noRights",
    noChangeOwner: "noChangeOwner",
    noInviteOwner: "noInviteOwner",
    noChangeDeleteOwner: "noChangeDeleteOwner",
+   noOrganizationOrders: "noOrganizationOrders",
+   noChangeChoice: "noChangeChoice",
+   error: "error",
 };
 
 export const SKELETON_TYPES = {

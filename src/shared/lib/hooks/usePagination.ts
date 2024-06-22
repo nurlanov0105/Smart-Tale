@@ -36,7 +36,6 @@ const usePagination = ({
 
    useEffect(() => {
       if (queryData) {
-         console.log(queryData);
          const fetchedTotalPages =
             param_tab || tab ? queryData?.total_pages : queryData?.data?.total_pages || 1;
          if (fetchedTotalPages !== totalPages) {
@@ -66,10 +65,6 @@ const usePagination = ({
          setCurrentPage((prev) => prev - 1);
       }
    };
-
-   if (!isLoading) {
-      console.log("feedback pag data - ", queryData);
-   }
 
    return {
       data,

@@ -39,7 +39,7 @@ export const useEmployeeOrders = (slug: string) => {
 
 export const useEmployeeQuery = (slug: string) => {
    return useQuery({
-      queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS, slug],
+      queryKey: [OrganizationQueryKeys.EMPLOYEE_SETTINGS, slug],
       queryFn: () => OrganizationService.getEmployeeDetails(slug),
    });
 };
@@ -57,6 +57,7 @@ export const useResponse = () => {
       mutationKey: [VacancyQueryKeys.RESPONSE_VACANCY],
       mutationFn: ({ slug }) => VacancyService.responseVacancy(slug),
       onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [VacancyQueryKeys.VACANCY_SLUG] });
          queryClient.invalidateQueries({ queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES] });
       },
    });

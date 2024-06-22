@@ -10,7 +10,8 @@ import AvatarSkeleton from "./skeletons/avatarSkeleton";
 import ChatSkeleton from "./skeletons/ChatSkeleton";
 import GlobalLoading from "./loading/GlobalLoading";
 import PhoneInput from "./inputField/PhoneInput";
-import { Switch } from "@/shared/ui/switch/Switch";
+import { Switch } from "./switch/Switch";
+import PriceFormat from "./price/PriceFormat";
 
 export {
    Button,
@@ -26,4 +27,5 @@ export {
    GlobalLoading,
    PhoneInput,
    Switch,
+   PriceFormat
 };

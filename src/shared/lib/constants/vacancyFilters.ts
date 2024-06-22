@@ -57,7 +57,7 @@ export const graphicMap = {
    "Неполный день": { value: "Неполный день", postValue: "Неполный день" },
    "Частичная занятость": { value: "Частичная занятость", postValue: "Частичная занятость" },
    "Гибкий график": { value: "Гибкий график", postValue: "Гибкий график" },
-   Удаленно: { value: "Удаленно", postValue: "Удаленно" },
+   "Удаленно": { value: "Удаленно", postValue: "Удаленно" },
 };
 export const experienceMap = {
    "Без опыта": { value: "Без опыта", postValue: "Без опыта" },

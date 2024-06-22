@@ -1,30 +1,22 @@
-import {useForm} from "react-hook-form";
+import {useForm, useFormContext} from "react-hook-form";
 import {useParams} from "next/navigation";
 import {AddPositionTypes, MODAL_KEYS, OWNER, useGetPositionDetails} from "@/shared/lib";
 import {useChangePositionQuery} from "../model/useQueries";
 import {defaultValuesPosition} from "./consts";
 import {showModal} from "@/views/modal";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
+import type {AnnouncementDetailFormType} from "@/features/user/ announcementDetailForm/model/types";
 
-export const usePositionDetails = () => {
-
-    const {
-        reset,
-        register,
-        handleSubmit,
-        control,
-        watch,
-        formState: {errors, isValid, isDirty}
-    } = useForm<AddPositionTypes>({
-        mode: "onBlur",
-        defaultValues: defaultValuesPosition
-    })
-    const {slug} = useParams()
+export const usePositionDetails = (slug: string) => {
+    const {handleSubmit} = useFormContext<AddPositionTypes>()
+    const userPosition = useSubscribeStore(state => state.position)
 
     const {
         data: position,
         isLoading,
         isSuccess,
-        isError} = useGetPositionDetails(slug.toString())
+        isError} = useGetPositionDetails(slug)
 
     const changePosition = useChangePositionQuery()
 
@@ -33,26 +25,21 @@ export const usePositionDetails = () => {
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangeOwner})
             return
         }
-
+        if (!userPosition[RIGHT_ACTIONS.UPDATE_ACCESS]){
+           showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+           return
+        }
         changePosition.mutate({params: data, slug: slug.toString()})
     }
 
     return {
         data: position,
+        handleSubmit: handleSubmit(onSubmit),
+        slug,
+
         isSuccess,
         isLoading,
-        isLoadingSubmitting: changePosition.isPending,
-        slug: slug.toString(),
-
-        handleSubmit: handleSubmit(onSubmit),
+        isSubmitting: changePosition.isPending,
         isError,
-        register,
-        errors,
-        isValid,
-        control,
-        reset,
-        watch,
-        isDirty
-
     }
 }

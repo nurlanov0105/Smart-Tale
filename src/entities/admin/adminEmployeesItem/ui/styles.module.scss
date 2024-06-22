@@ -2,7 +2,6 @@
    background-color: $common-white;
    border-radius: 16px;
    padding: 3.2rem;
-   cursor: pointer;
 
    &__info {
       display: flex;
@@ -10,6 +9,9 @@
       padding-bottom: 2rem;
       border-bottom: 1px solid $dark-grey;
       column-gap: 1.6rem;
+   }
+   &__pointer{
+      cursor: pointer;
    }
 
    &__shrink {

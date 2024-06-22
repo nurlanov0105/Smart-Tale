@@ -32,7 +32,7 @@ export const VacancyService = {
       const response = await baseApiInstance.get<VacancyCardType>(
          VacancyEndpoints.VACANCY_SLUG + "/" + slug
       );
-      return response;
+      return response.data;
    },
    getVacancyDetails: async (slug: string) => {
       const response = await baseApiInstance.get(VacancyEndpoints.VACANCY_DETAILS + slug);
@@ -53,7 +53,7 @@ export const VacancyService = {
       return response;
    },
    deleteVacancy: async (slug: string) => {
-      const response = await baseApiInstance.delete(VacancyEndpoints.DELETE_VACANCY + slug);
+      const response = await baseApiInstance.post(VacancyEndpoints.DELETE_VACANCY + slug);
       return response.data;
    },
    hideVacancy: async (slug: string) => {

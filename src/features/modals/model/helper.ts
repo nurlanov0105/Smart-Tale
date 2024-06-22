@@ -16,8 +16,19 @@ import {
    useDeleteOrganization,
 } from "../model/useQueries";
 import { useDeleteAccount, useLogout } from "@/features/auth";
+import {useBookOrder} from "@/widgets/general/feedbackList/model/useQuieries";
 
-export const ModalActionsMap = {
+type RequestFunction = () => any;
+type RequestFunctionWithParam = (type?: string) => any;
+
+interface ModalAction {
+   title: string;
+   description: string;
+   buttonText: string;
+   emoji: string;
+   request: RequestFunction | RequestFunctionWithParam ;
+}
+export const ModalActionsMap: { [key: string]: ModalAction } = {
    [MODAL_KEYS.deleteResume]: {
       title: "Вы действительно хотите \n удалить резюме?",
       description: "Все данные будут удалены!",
@@ -31,6 +42,13 @@ export const ModalActionsMap = {
       buttonText: "Да",
       emoji: "unknown",
       request: () => useDeleteOrganization,
+   },
+   [MODAL_KEYS.noChangeChoice]: {
+      title: "Вы действительно хотите \n выбрать данную организацию?",
+      description: "Изменить выбор уже будет нельзя",
+      buttonText: "Выбрать",
+      emoji: "unknown",
+      request: () => useBookOrder,
    },
    [MODAL_KEYS.deleteAnnouncement]: {
       title: "Удалить объявление?",
@@ -91,15 +109,22 @@ export const ModalActionsMap = {
    },
    [MODAL_KEYS.hideResume]: {
       title: "Вы действительно \n хотите скрыть?",
-      description: "Резюме больше не будет доступно \n для просмотра в маркетплейсе",
+      description: "Резюме больше не будет доступно \n для просмотра ",
       buttonText: "Да",
       emoji: "unknown",
       request: () => useHideResume,
    },
    [MODAL_KEYS.hideVacancy]: {
       title: "Вы действительно \n хотите скрыть?",
-      description: "Вакансия больше не будет доступна \n для просмотра в маркетплейсе",
-      buttonText: "Да",
+      description: "Вакансия больше не будет доступна \n для просмотра ",
+      buttonText: "Скрыть",
+      emoji: "unknown",
+      request: () => useHideVacancy,
+   },
+   [MODAL_KEYS.unHideVacancy]: {
+      title: "Вы действительно \n хотите показать вакансию?",
+      description: "Вакансия снова будет \n  доступна для просмотра",
+      buttonText: "Показать",
       emoji: "unknown",
       request: () => useHideVacancy,
    },
@@ -133,6 +158,12 @@ export const modalInfoMap = {
       buttonText: "Понятно",
       emoji: "holidaySmile",
    },
+   [MODAL_KEYS.noOrganizationOrders]: {
+      title: "Тут пока нет заказов",
+      description: "Добавьте новые заказы \n и они появятся тут",
+      buttonText: "Понятно",
+      emoji: "holidaySmile",
+   },
    [MODAL_KEYS.buyAnnouncement]: {
       title: " Поздравляем!\n Вы купили оборудование!",
       description: "Подробная информация отправлена вам на почту",
@@ -160,6 +191,12 @@ export const modalInfoMap = {
    [MODAL_KEYS.noRights]: {
       title: "У вас недостаточно прав \n для этого действия!",
       description: "Пожалуйста, свяжитесь с владельцем для получения прав.",
+      buttonText: "Понятно",
+      emoji: "unknown",
+   },
+   [MODAL_KEYS.error]: {
+      title: "Произошла ошибка \n при получении данных!",
+      description: "Пожалуйста, попробуйте еще раз через некоторое время.",
       buttonText: "Понятно",
       emoji: "unknown",
    },

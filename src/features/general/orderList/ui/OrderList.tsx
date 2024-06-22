@@ -40,10 +40,6 @@ const OrderList: FC<Props> = ({
 
    const pathname = usePathname();
 
-   if (!isLoading) {
-      console.log("search res -", data);
-   }
-
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (

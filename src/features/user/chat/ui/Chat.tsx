@@ -15,13 +15,14 @@ const Chat: FC<ChatType> = ({ author, isModal }) => {
    const currentUser = useSubscribeStore((state) => state.data);
 
    const [sendMessage, setSendMessage] = useState("");
-   const { mutate } = useStartChat();
+   const { mutate, isPending } = useStartChat();
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
       mutate(author?.slug || "");
 
+      setMessage("")
       setSendMessage(message);
    };
 
@@ -53,7 +54,11 @@ const Chat: FC<ChatType> = ({ author, isModal }) => {
                   value={message}
                   onChange={handleMessageChange}
                />
-               <Button disabled={currentUser?.profile.slug === author?.slug}>Отправить</Button>
+               <Button disabled={currentUser?.profile.slug === author?.slug}>
+                  {
+                     isPending ? "Загрузка..." : "Отправить"
+                  }
+               </Button>
             </form>
          </div>
       </div>

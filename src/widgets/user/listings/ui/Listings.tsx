@@ -11,7 +11,7 @@ import { EquipmentQueryKeys } from "@/shared/api";
 const Listings: FC = () => {
    const [type, setType] = useState(announcementTabs[0].postValue);
 
-   const { data, isLoading, isError } = useListings(type);
+   // const { data, isLoading, isError } = useListings(type);
 
    return (
       <div className={styles.listings}>

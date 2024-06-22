@@ -24,12 +24,14 @@ const OrganizationSettings = () => {
         register,
         control,
         setValue,
+        watch
     } = useFormContext<UpdateOrganizationTypes>()
 
     const {
         data,
         isLoading,
         isSuccess,
+        isSubmitting,
         handleSubmit,
     } = useUpdateOrganization(isEdited)
 
@@ -65,7 +67,7 @@ const OrganizationSettings = () => {
                     type="default"
                 />
             </div>
-            <OrganizationButtons/>
+            <OrganizationButtons isSubmitting={isSubmitting}/>
         </form>
     );
 };

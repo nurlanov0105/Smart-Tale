@@ -1,40 +1,52 @@
 import { FC } from "react";
-import { Button } from "@/shared/ui";
+import {Button, GlobalLoading} from "@/shared/ui";
 import { FeedbackListProps } from "../model/types";
-import { useBookOrder, useGetAppliedOrgs } from "../model/useQuieries";
+import { useGetAppliedOrgs } from "../model/useQuieries";
 import styles from "./styles.module.scss";
+import {showModal} from "@/views/modal";
+import {MODAL_KEYS, ROUTES} from "@/shared/lib";
+import {useRouter} from "next/navigation";
 
-const FeedbackList: FC<FeedbackListProps> = ({ slug }) => {
+const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
    // const { data, totalPages, currentPage, fetchNextPage, fetchPreviousPage, setCurrentPage } =
    //    usePagination({
    //       fetchFunction: OrdersService.getAppliedOrganizations,
    //       queryKey: OrdersQueryKeys.APPLIED_OERGANIZATIONS,
    //       slug,
    //    });
+    const {push} = useRouter()
 
    const { data, isError, isLoading, isSuccess } = useGetAppliedOrgs(slug);
 
-   const { mutate, isPending } = useBookOrder();
-
    const handleBookOrder = (orgSlug: string) => {
-      mutate({ orderSlug: slug, organizationSlug: orgSlug });
+       showModal(MODAL_KEYS.confirmationModal, {
+           componentName: MODAL_KEYS.noChangeChoice,
+           organizationSlug: orgSlug,
+           slug
+       })
    };
+   const handleRoute = (slug?: string) => push(ROUTES.ORGANIZATIONS_OTHER_DETAIL + `/${slug}`)
+
+   if (isBooked) return null
+
+    if (isLoading) return <div className={styles.feedback}><GlobalLoading/></div>
 
    return (
       <div className={styles.feedback}>
-         <h3 className="h3">Список заявок</h3>
+         <h3 className="h4">Список заявок</h3>
          <ul className={styles.feedback__list}>
             {isSuccess &&
                data.data.map((item: any) => (
                   <li key={item.slug} className={styles.feedback__item}>
-                     <div className={styles.feedback__flex}>
+                     <button onClick={() => handleRoute(item?.slug)} className={styles.feedback__flex}>
                         <b>Организация:</b>
                         <span>{item.title}</span>
-                     </div>
+                     </button>
                      <Button onClick={() => handleBookOrder(item.slug)}>
-                        {isPending ? "Загрузка..." : "Выбрать"}
+                         Выбрать
                      </Button>
                   </li>
+
                ))}
          </ul>
          {/* {totalPages > 1 && (

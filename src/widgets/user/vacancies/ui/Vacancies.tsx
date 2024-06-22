@@ -26,8 +26,6 @@ const Vacancies:FC<IProps> = ({initialData, queryKey}) => {
    const [selectedDate, setSelectedDate] = useState(timeList[0]);
    const [selected, setSelected] = useState(typeList[0]);
 
-   const [page, setPage] = useState(1);
-
    const [withFilters, setWithFilters] = useState(false);
    const [typeView, setTypeView] = useState(false);
 
@@ -40,7 +38,6 @@ const Vacancies:FC<IProps> = ({initialData, queryKey}) => {
    } = useInfinityScroll2({initialData, queryKey})
 
    const response = useResponse()
-
 
    const vacanciesLength = !!data ? data?.length : 0;
 

@@ -8,9 +8,6 @@ import { Chat } from "@/features/user/chat";
 import { CardSlider } from "@/features/general/cardSlider";
 import {
    AnnouncementRoutes,
-   CardDetailsRoutes,
-   useBuyEquipment,
-   useOrderApply,
 } from "@/widgets/general/cardModal";
 import { CardCategory } from "@/features/general/cardCategory";
 import { ISize, useFetchResource } from "@/features/user/standartCard";
@@ -29,7 +26,6 @@ import {
 } from "@/shared/lib";
 
 import styles from "./styles.module.scss";
-import { FeedbackList } from "@/widgets/general/feedbackList";
 import { useLikeEquipment, useLikeOrder, useLikeService } from "@/entities/general/likeButton";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 

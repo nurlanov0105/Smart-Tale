@@ -10,6 +10,8 @@ export const ADD_EMPLOYEE_NAMES = {
     deleteOrder: RIGHT_ACTIONS.DELETE_ORDER,
     deleteEmployee: RIGHT_ACTIONS.REMOVE_EMPLOYEE,
     position: "position",
-    organization: "organization"
+    positions: "positions",
+    organization: "organization",
+    organizations: "organizations"
 } as const
 

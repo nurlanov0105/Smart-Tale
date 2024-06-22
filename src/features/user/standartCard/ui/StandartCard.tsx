@@ -1,18 +1,17 @@
 "use client";
 
 import { FC } from "react";
-import { Button } from "@/shared/ui";
-import { closeModal, showModal } from "@/views/modal";
+import dynamic from "next/dynamic";
+
+import {Button} from "@/shared/ui";
+import { showModal } from "@/views/modal";
 import {
    CookiesServices,
    EnglishType,
    EnumTokens,
    MODAL_KEYS,
    ROUTES,
-   ruCurrency,
-   useAuth,
 } from "@/shared/lib";
-import Link from "next/link";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,6 +19,8 @@ import { LikeButton } from "@/entities/general/likeButton";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+
+const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -75,7 +76,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
             <div className={styles.card__order}>
                <h4 className={clsx(styles.card__title, styles.card__title_order)}>{item.title}</h4>
                <h4 className={clsx(styles.card__title, styles.card__title_cost)}>
-                  {Math.round(Number(item.price))} {ruCurrency[item.currency]}
+                  <PriceFormat type={item?.currency} price={+item?.price}/>
                </h4>
             </div>
             {item?.author && (

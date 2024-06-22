@@ -52,7 +52,6 @@ const AnnouncementDetailForm = () => {
    } = useFormContext<AnnouncementDetailFormType>();
 
    useInitialData({ reset, type, slug, data, isSuccess });
-   console.log(data);
 
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
@@ -62,7 +61,7 @@ const AnnouncementDetailForm = () => {
 
    return (
       <>
-         {type === "order" && isSuccess && <FeedbackList slug={slug} />}
+         {type === "order" && isSuccess && <FeedbackList isBooked={data?.is_booked} slug={slug} />}
 
          <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
             <div className={styles.order}>
@@ -239,7 +238,8 @@ const AnnouncementDetailForm = () => {
                </div>
             </div>
 
-            <OrderDetailBtns isHide={data?.hide} isSubmitting={isSubmitting} type={type} />
+         <OrderDetailBtns isHide={data?.hide} isSubmitting={isSubmitting} type={type}/>
+
          </form>
       </>
    );
