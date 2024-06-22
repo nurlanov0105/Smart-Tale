@@ -40,6 +40,7 @@ export interface AddEmployeeTypes{
     email: string
     position: {value: string, postValue: string, idx: number}
     organization: SelectPostTypes
+    organizations: SelectPostTypes[]
     positions: SelectPostTypes[]
     actions: IRight[]
 }

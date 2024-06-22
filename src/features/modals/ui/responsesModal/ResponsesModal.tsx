@@ -13,8 +13,9 @@ const ResponsesModal = () => {
         {name: "Александр Сергеевич Пушкин", date: "8 мая"},
         {name: "Лев Николаевич Толстой", date: "4 мая"},
     ]
-
+    //
     // const {data} = useGetVacancyResponses()
+    // console.log(data)
 
 
     return (

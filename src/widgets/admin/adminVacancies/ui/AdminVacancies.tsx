@@ -3,21 +3,23 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import {VacancyCardType, VacancyItem} from "@/entities/user/vacancyItem";
-import { Button } from "@/shared/ui";
+import {Button, GlobalLoading} from "@/shared/ui";
 import { ORGANIZATION_ROUTES } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import {useOrganizationVacancies} from "../model/useAdminVacancies";
-import {WORK} from "@/shared/lib/routes.config";
 import {ErrorMessage} from "@/entities/general/errorMessage";
 import {EmptyContent} from "@/entities/admin/emptyContent";
 
 const AdminVacancies = () => {
    const { push } = useRouter();
-   const handleCreate = () => push(WORK.CREATE_VACANCY);
+   const handleCreate = () => push(ORGANIZATION_ROUTES.CREATE_VACANCY);
 
-   const {data, isSuccess} = useOrganizationVacancies()
+   const {data, isSuccess, isLoading, isError} = useOrganizationVacancies()
 
     const vacanciesLength = !data?.length ? 0 : data.length
+
+    if (isLoading) return <GlobalLoading type="full"/>
+    if (isError) return <ErrorMessage/>
 
    return (
        <>

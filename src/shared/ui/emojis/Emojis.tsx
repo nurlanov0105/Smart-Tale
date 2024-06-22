@@ -23,6 +23,7 @@ const emojies = {
    unknown: "🤔",
    okay: "🙂",
    holidaySmile: "🥳",
+   ups: "😅"
 };
 
 const Emojis: FC<Props> = ({ type }) => {

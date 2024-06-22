@@ -16,6 +16,6 @@ export const useInitialOrganizationSettings = ({reset, data, isSuccess}: Initial
             initializeData()
 
         }
-
-    }, [isSuccess, data, reset]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isSuccess, data]);
 }

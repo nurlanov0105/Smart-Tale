@@ -1,104 +1,40 @@
-import {useForm} from "react-hook-form";
-import {format} from "date-fns";
+import { useFormContext } from "react-hook-form";
+import { AnnouncementValues } from "@/shared/lib";
+import { useAnnouncementAction, useAnnouncementDetailsType } from "../useQueries";
+import type { AnnouncementDetailFormType, AnnouncementDetailProps } from "../types";
+import { buildAnnouncementFormData } from "../helper";
 
-import {
-    useGetEquipment,
-    useGetOrder,
-    useGetService,
-    useUpdateEquipment,
-    useUpdateOrder,
-    useUpdateService
-} from "../useQueries";
-import type {AnnouncementDetailFormType, AnnouncementDetailProps} from "../types";
-import {ANNOUNCEMENT_DETAILS_POST_NAMES} from "../consts";
-import {AnnouncementValues} from "@/shared/lib";
-import {useState} from "react";
+export const useAnnouncementDetail = ({ type, slug }: AnnouncementDetailProps) => {
+   const { handleSubmit } = useFormContext<AnnouncementDetailFormType>();
 
-export const useAnnouncementDetail = ({type, slug, images}: AnnouncementDetailProps) => {
+   const responseData = useAnnouncementDetailsType(slug, type);
+   const updateData = useAnnouncementAction(type);
 
-    const { reset,
-        register,
-        handleSubmit,
-        control,
-        watch,
-        setValue,
-        formState: {errors, isValid, isDirty}
-    } = useForm<AnnouncementDetailFormType>(
-        {
-            mode: "onChange",
-            criteriaMode: "all",
-            shouldFocusError: true,
-        }
-    )
+   const onSubmit = (data: AnnouncementDetailFormType) => {
+      const formData = buildAnnouncementFormData(data, type);
 
-    const getOrder = useGetOrder(slug, type)
-    const getEquipment = useGetEquipment(slug, type)
-    const getService = useGetService(slug, type)
+      switch (type) {
+         case AnnouncementValues.EQUIPMENT:
+            updateData.mutate({ data: formData, slug });
+            break;
+         case AnnouncementValues.SERVICE:
+            updateData.mutate({ data: formData, slug });
+            break;
+         case AnnouncementValues.ORDER:
+            updateData.mutate({ data: formData, slug });
+            break;
+         default:
+            break;
+      }
+   };
 
-    const updateOrder = useUpdateOrder()
-    const updateEquipment = useUpdateEquipment()
-    const updateService = useUpdateService()
+   return {
+      data: responseData?.data?.data,
+      handleSubmit: handleSubmit(onSubmit),
 
-    const dataMap = {order: getOrder, equipment: getEquipment, service: getService};
-    const updateAnnouncementMap = {order: updateOrder, equipment: updateEquipment, service: updateService};
-
-    const responseData = dataMap[type as keyof typeof dataMap]
-    const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap]
-
-    const onSubmit = (data: AnnouncementDetailFormType) => {
-        const formData = new FormData();
-
-        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.title, data.title)
-        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.description, data.description)
-        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.price, data.price.toString())
-        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.currency, data.currency.postValue)
-        formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.tel, data.tel)
-
-        if (data.email) formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.email, data.email)
-
-        const existingImage = new Set(images.map(dataImage => dataImage.id));
-        const existingDataImage = new Set(data.images.map(dataImage => dataImage.id));
-
-        data.images.forEach(image => {
-            if (!existingImage.has(image.id)) {
-                formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.images, image.image)
-            }
-        });
-        images.forEach(image => {
-            if (!existingDataImage.has(image.id)) {
-                formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deleted_images, image.id.toString())
-            }
-        });
-
-        if (type === AnnouncementValues.EQUIPMENT) updateEquipment.mutate({data: formData, slug: slug})
-
-        if (type === AnnouncementValues.SERVICE) updateService.mutate({data: formData, slug: slug})
-
-        if (type === AnnouncementValues.ORDER){
-            const newDate = new Date(data?.year.postValue, data?.month.postValue - 1, data?.day.postValue)
-            const deadline = format(newDate, 'yyyy-MM-dd')
-
-            formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.deadline, deadline)
-            data?.sizes.forEach(size => formData.append(ANNOUNCEMENT_DETAILS_POST_NAMES.size, size.postValue))
-
-            updateOrder.mutate({data: formData, slug: slug})
-        }
-    };
-
-    return {
-        data: responseData && responseData.data?.data,
-        handleSubmit: handleSubmit(onSubmit),
-        isSuccess: responseData.isSuccess,
-        isLoading: responseData.isPending,
-        isSubmitting: updateData.isPending,
-        isError: responseData.isError,
-        register,
-        errors,
-        isValid,
-        control,
-        reset,
-        watch,
-        setValue,
-        isDirty
-    }
-}
+      isSuccess: responseData?.isSuccess,
+      isSubmitting: updateData?.isPending,
+      isLoading: responseData?.isPending,
+      isError: responseData?.isError,
+   };
+};

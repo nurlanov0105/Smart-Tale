@@ -130,23 +130,27 @@ const ResumeForm: FC = () => {
                <h4 className="h4">Опыт работы</h4>
 
                <div className={styles.form__radios}>
-                  {experienceFilter.map((item) => (
-                     <label key={item.postValue} className={styles.form__label}>
-                        <span>
-                           <InputField
-                              {...register(
-                                 RESUME_FORM_NAMES.experience,
-                                 ValidationsSchemasService.requiredSchema
-                              )}
-                              isBordered={true}
-                              type="radio"
-                              value={item.value}
-                              classname={styles.form__radio}
-                           />
-                        </span>
-                        <p>{item.value}</p>
-                     </label>
-                  ))}
+                  {experienceFilter.map((item) => {
+                     if (item.value !== "Не имеет значения"){
+                        return (
+                            <label key={item.postValue} className={styles.form__label}>
+                               <span>
+                                   <InputField
+                                       {...register(
+                                           RESUME_FORM_NAMES.experience,
+                                           ValidationsSchemasService.requiredSchema
+                                       )}
+                                       isBordered={true}
+                                       type="radio"
+                                       value={item.value}
+                                       classname={styles.form__radio}
+                                   />
+                               </span>
+                               <p>{item.value}</p>
+                            </label>
+                        )
+                     }
+                  })}
                </div>
             </div>
          </div>

@@ -1,16 +1,17 @@
 "use client";
 import {monthsList, daysInCurrentMonth} from "./helper";
-import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { IDateProps } from "./types";
 import {UseFormSetValue} from "react-hook-form";
 
-export const useDate2 = (
+interface IProps{
     year: IDateProps,
     month: IDateProps,
     day: IDateProps,
     type: "user" | "admin",
     setValue: UseFormSetValue<any>
-) => {
+}
+export const useDate2 = ({type, day, year, month, setValue}: IProps) => {
 
     // Список годов
     const yearsList = useCallback(() => {

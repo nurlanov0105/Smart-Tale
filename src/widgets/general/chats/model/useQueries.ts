@@ -1,7 +1,8 @@
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {ChatsQueryKeys} from "@/shared/api/queryKeys";
-import {ChatsService} from "@/shared/lib";
+import {ChatsService, ROUTES} from "@/shared/lib";
 import {ChatTypes, IMessageFullTypes} from "./types";
+import {useRouter} from "next/navigation";
 
 
 export const useGetChats = () => {
@@ -22,8 +23,14 @@ export const useGetMessages = (selectedChat: boolean) => {
 
 
 export const useStartChat = () => {
+    const {push} = useRouter()
+    const queryClient = useQueryClient()
     return useMutation<Error, any, string>({
         mutationKey: [ChatsQueryKeys.CONVERSATION_START],
-        mutationFn: (receiver) => ChatsService.conversationStart({receiver})
+        mutationFn: (slug) => ChatsService.conversationStart(slug),
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [ChatsQueryKeys.CONVERSATIONS]})
+            push(ROUTES.NOTICES)
+        }
     })
 }

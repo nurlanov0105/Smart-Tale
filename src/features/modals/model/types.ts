@@ -6,5 +6,5 @@ export type ModalProps = {
     slug: string
     componentName: string
     type?: string
-
+    organizationSlug?: string
 }

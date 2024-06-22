@@ -25,6 +25,13 @@
     border-bottom: 1px solid $white-theme;
 
   }
+  &__image{
+    width: 80px;
+    height: 80px;
+
+    object-fit: cover;
+    border-radius: 6px;
+  }
 
   &__initials{
     font-size: 1.8rem;

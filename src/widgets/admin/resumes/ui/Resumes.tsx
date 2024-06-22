@@ -26,9 +26,6 @@ const Resumes:FC<IProps> = ({initialData, queryKey}) => {
 
     const [withFilters, setWithFilters] = useState(false);
 
-
-    // const {data, isLoading} = useGetResumes()
-
     const {
         data,
         isLoading,
@@ -37,8 +34,6 @@ const Resumes:FC<IProps> = ({initialData, queryKey}) => {
         isFetchingNextPage
     } = useInfinityScroll2({initialData, queryKey})
     const handleFilters = () => setWithFilters(!withFilters);
-
-    //if (isLoading) return <GlobalLoading type="full"/>
 
     return (
         <div className={clsx(styles.resumes, styles[theme])}>

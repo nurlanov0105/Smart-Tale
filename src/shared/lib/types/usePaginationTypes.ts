@@ -44,14 +44,21 @@ type OwnerType = {
 
 export type ItemType = {
    type: string;
+   status?: string;
    slug: string;
    title: string;
    description: string;
-   status: string;
-   currency: string;
    created_at: string;
-   price: string;
-   image: string;
+   price: string
+   currency: string
+   image: string
+   author: {
+      slug: string,
+      first_name: string,
+      last_name: string,
+      profile_image: null | string
+   },
+
 
    owner?: OwnerType;
    phone_number?: string;

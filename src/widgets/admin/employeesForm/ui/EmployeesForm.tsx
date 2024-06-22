@@ -1,12 +1,11 @@
 "use client";
 import React from "react";
-import {Controller} from "react-hook-form";
+import {Controller, useFormContext, useWatch} from "react-hook-form";
 import clsx from "clsx";
-import { organizationsData } from "@/features/admin/positionForm";
 import {RightAction, rightsActionsData} from "@/entities/admin/rightAction";
 import { Button, InputField, Select } from "@/shared/ui";
 import {useThemeStore} from "@/shared/store/themeStore";
-import {SELECT_TYPES, useInitialRights, ValidationsSchemasService} from "@/shared/lib";
+import {AddEmployeeTypes, SELECT_TYPES, useInitialRights, ValidationsSchemasService} from "@/shared/lib";
 
 import {useAddEmployee} from "../model/useAddEmployee";
 import {usePositionsEmployee} from "../model/usePositionsEmployee";
@@ -17,29 +16,21 @@ import styles from "./styles.module.scss";
 const EmployeesForm = () => {
 
    const theme = useThemeStore((state) => state.theme);
-
-   const {
-      handleSubmit,
-      isError,
-      isValid,
-      register,
-       reset,
-      isLoading,
-       watch,
-      errors,
-      control
-   } = useAddEmployee()
-
-    const positions = watch("positions")
-    const position = watch("position")
-
     const {
-        isErrorPositions,
-        isLoadingPositions,
-        data} = usePositionsEmployee({reset})
+        control,
+        register,
+        reset,
+        formState: {errors, isValid}
+    } = useFormContext<AddEmployeeTypes>()
 
-    const {actions} = useInitialRights({data, position})
+    const position = useWatch({control, name: ADD_EMPLOYEE_NAMES.position})
+    const positions = useWatch({control, name: ADD_EMPLOYEE_NAMES.positions})
+    const organizations = useWatch({control, name: ADD_EMPLOYEE_NAMES.organizations})
 
+    const { data, isLoadingPositions} = usePositionsEmployee({reset})
+    const { actions} = useInitialRights({data, position})
+
+   const { handleSubmit, isLoading} = useAddEmployee()
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -48,15 +39,15 @@ const EmployeesForm = () => {
             <Controller
                 name={ADD_EMPLOYEE_NAMES.organization}
                 control={control}
-                defaultValue={organizationsData[0]}
                 rules={{required: 'Выберите организацию'}}
                 render={({field}) => (
                     <Select
                         value={field.value}
                         onChange={field.onChange}
-                        data={organizationsData}
+                        data={organizations}
                         type={SELECT_TYPES.default}
                         error={errors?.position?.message}
+                        isLoading={isLoadingPositions}
                     />
 
                 )}
@@ -99,7 +90,7 @@ const EmployeesForm = () => {
 
          <div className={styles.form__btn}>
             <Button disabled={isLoading || !isValid} type="submit">{
-                isLoading ? "Загрузка..." : "Пригласить"
+                isLoading ? "Загрузка..." : "Пригласить сотрудника"
             }</Button>
          </div>
       </form>

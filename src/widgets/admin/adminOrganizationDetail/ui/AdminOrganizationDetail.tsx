@@ -6,9 +6,9 @@ import { EmployeesList } from "@/features/general/employeesList";
 import { OrderList } from "@/features/general/orderList";
 import { Tabs } from "@/features/general/tabs";
 
-import { SkeletonTypes, useEmployees, EquipmentService, OrganizationService } from "@/shared/lib";
+import { SkeletonTypes, useEmployees, OrganizationService } from "@/shared/lib";
 import { useThemeStore, useOrganizationDetails } from "@/shared/lib";
-import { EquipmentQueryKeys, OrganizationQueryKeys } from "@/shared/api";
+import {  OrganizationQueryKeys } from "@/shared/api";
 import { GlobalLoading } from "@/shared/ui";
 
 import { valuesData } from "../model/values.data";
