@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
 import { MODAL_KEYS, ROUTES } from "@/shared/lib";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
