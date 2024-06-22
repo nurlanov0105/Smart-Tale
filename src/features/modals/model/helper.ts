@@ -56,6 +56,18 @@ export const ModalActionsMap = {
          return useHideService;
       },
    },
+   [MODAL_KEYS.unHideAnnouncement]: {
+      title: "Показать объявление?",
+      description: "Объявление будет доступно \n для просмотра в маркетплейсе",
+      buttonText: "Показать",
+      emoji: "reverse",
+      request: (type: string | undefined) => {
+         if (type === AnnouncementTypes.order) return useHideOrder;
+         if (type === AnnouncementTypes.equipment) return useHideEquipment;
+
+         return useHideService;
+      },
+   },
    [MODAL_KEYS.deleteEmployee]: {
       title: "Вы действительно хотите \n удалить сотрудника?",
       description: "Сотрудник будет удалён!",

@@ -22,26 +22,20 @@ const LikeButton: FC<Props> = ({ isLiked, slug, type }) => {
    }, [isLiked]);
 
    const handleLikeClick = () => {
-      // if (isAuth) {
-      //    setLocalLike(!localLike);
-      //
-      //    if (type.toLowerCase() === AnnouncementTypes.equipment) {
-      //       likeEquipment(slug);
-      //    } else if (type.toLowerCase() === AnnouncementTypes.order) {
-      //       likeOrder(slug);
-      //    } else if (type.toLowerCase() === AnnouncementTypes.service) {
-      //       likeService(slug);
-      //    }
-      // } else {
-      //    showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.authNotice });
-      // }
-      if (type.toLowerCase() === AnnouncementTypes.equipment) {
-         likeEquipment(slug);
-      } else if (type.toLowerCase() === AnnouncementTypes.order) {
-         likeOrder(slug);
-      } else if (type.toLowerCase() === AnnouncementTypes.service) {
-         likeService(slug);
+      if (isAuth) {
+         setLocalLike(!localLike);
+
+         if (type.toLowerCase() === AnnouncementTypes.equipment) {
+            likeEquipment(slug);
+         } else if (type.toLowerCase() === AnnouncementTypes.order) {
+            likeOrder(slug);
+         } else if (type.toLowerCase() === AnnouncementTypes.service) {
+            likeService(slug);
+         }
+      } else {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.authNotice });
       }
+
       setLocalLike(!localLike);
    };
    return (

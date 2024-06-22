@@ -41,7 +41,6 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
    };
-   console.log(type);
 
    const handleBtnClick = () => {
       if (currentUser?.profile.slug === data.data.author?.slug) {
@@ -83,11 +82,6 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    if (!isPending && !data.data) {
       return <ErrorMessage />;
    }
-
-   if (!isPending) {
-      console.log(data);
-   }
-   // description phone_number email size [{id,size}]
 
    const handleOrder = () => {
       orderApply(slug);

@@ -20,7 +20,6 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug }) => {
       mutate({ orderSlug: slug, organizationSlug: orgSlug });
    };
 
-
    return (
       <div className={styles.feedback}>
          <h3 className="h3">Список заявок</h3>

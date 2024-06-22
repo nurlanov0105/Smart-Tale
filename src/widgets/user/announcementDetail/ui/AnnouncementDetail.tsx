@@ -8,7 +8,7 @@ import CreateAnnouncementContext from "@/widgets/user/createAnnouncement/ui/useF
 const AnnouncementDetail: FC = () => {
    return (
       <div className={styles.order}>
-         <CreateAnnouncementContext>
+         <CreateAnnouncementContext mode="onChange">
             <AnnouncementDetailForm />
          </CreateAnnouncementContext>
       </div>

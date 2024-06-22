@@ -11,7 +11,7 @@ import styles from "./styles.module.scss";
 import { orderValues } from "@/entities/general/orderItem/model/value.data";
 
 import { useThemeStore } from "@/shared/store/themeStore";
-import {boardHeadings} from "@/features/user/boardColumn/model/consts";
+import { boardHeadings } from "@/features/user/boardColumn/model/consts";
 
 const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -23,15 +23,17 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
       if (isOrganization) {
          router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
       } else if (item.type === "Order") {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${item.slug}`);
+         router.push(ROUTES.CARD_DETAILS_ORDER + `/${item.slug}`);
       } else if (item.type === "Equipment") {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${item.slug}`);
+         router.push(ROUTES.CARD_DETAILS_EQUIPMENT + `/${item.slug}`);
       } else {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${item.slug}`);
+         router.push(ROUTES.CARD_DETAILS_SERVICE + `/${item.slug}`);
       }
    };
 
-   const status = boardHeadings[item.status as keyof typeof boardHeadings]
+   const status = boardHeadings[item.status as keyof typeof boardHeadings];
+
+   console.log("statusstatus - ", status);
    return (
       <>
          {item.type === "Equipment" && (
@@ -52,8 +54,10 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                      <p className={styles.item__text}>{item.description}</p>
                   </div>
                </div>
-               <p className={styles.item__detail}>Посмотреть детали</p>
-               <span className={styles.item__date}>2 апреля 2024</span>
+               <div className={styles.item__box}>
+                  <span className={styles.item__date}>2 апреля 2024</span>
+                  <p className={styles.item__detail}>Посмотреть детали</p>
+               </div>
             </div>
          )}
          {item.type === "Order" && (
@@ -72,12 +76,18 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                      <p className={styles.item__text}>{item.description}</p>
                   </div>
                </div>
-               <span className={styles.item__date}>2 апреля 2024</span>
                <div className={styles.item__box}>
-                  <p style={{
-                     backgroundColor: status?.light && status[theme]
-                  }} className={styles.item__status}>{isCurrent && status?.name}</p>
-                  {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
+                  <span className={styles.item__date}>2 апреля 2024</span>
+                  {status?.name && (
+                     <p
+                        style={{
+                           backgroundColor: status?.light && status[theme],
+                        }}
+                        className={styles.item__status}>
+                        {status?.name}
+                     </p>
+                  )}
+                  <p className={styles.item__detail}>Посмотреть детали</p>
                </div>
             </div>
          )}
@@ -99,9 +109,17 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                      <p className={styles.item__text}>{item.description}</p>
                   </div>
                </div>
-               <span className={styles.item__date}>2 апреля 2024</span>
                <div className={styles.item__box}>
-                  <p className={styles.item__status}>{isCurrent && item.status}</p>
+                  <span className={styles.item__date}>2 апреля 2024</span>
+                  {status?.name && (
+                     <p
+                        style={{
+                           backgroundColor: status?.light && status[theme],
+                        }}
+                        className={styles.item__status}>
+                        {status?.name}
+                     </p>
+                  )}
                   {!isCurrent && <p className={styles.item__detail}>Посмотреть детали</p>}
                </div>
             </div>

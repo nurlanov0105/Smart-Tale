@@ -6,10 +6,14 @@ import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
 interface CategoryArgs {
    authorized: boolean;
    subscribed: boolean;
-   hasOrganization: boolean | undefined
+   hasOrganization: boolean | undefined;
 }
 
-export const getCategoryRoutes = ({ authorized, subscribed, hasOrganization }: CategoryArgs): TypeCategories[] =>
+export const getCategoryRoutes = ({
+   authorized,
+   subscribed,
+   hasOrganization,
+}: CategoryArgs): TypeCategories[] =>
    [
       {
          id: 1,
@@ -37,24 +41,69 @@ export const getCategoryRoutes = ({ authorized, subscribed, hasOrganization }: C
          ],
       },
       {
-         title: "Организация",
+         title: "Маркетплейс",
          id: 2,
+         Icon: ShoppingCart,
+         isShow: true,
+         routes: [
+            { parentId: 2, subtitle: "Оборудования", link: MARKETPLACE.EQUIPMENT },
+            { parentId: 2, subtitle: "Заказы", link: MARKETPLACE.ORDERS, authorized: true },
+            { parentId: 2, subtitle: "Услуги", link: MARKETPLACE.SERVICES },
+            {
+               parentId: 2,
+               subtitle: "Разместить объявление",
+               link: MARKETPLACE.CREATE_ANNOUNCEMENT,
+               authorized: true,
+            },
+         ].filter((route) => !("authorized" in route) || route.authorized === authorized),
+         activeRoutes: [ROUTES.CARD_DETAILS],
+      },
+      {
+         title: "Организация",
+         id: 3,
          Icon: Clipboard,
          isShow: authorized && subscribed,
          routes: [
             {
-               parentId: 2,
+               parentId: 3,
                subtitle: "Моя организация",
                link: ORGANIZATION_ROUTES.ORGANIZATION_LIST,
                detailLink: ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,
-               isShow: true
+               isShow: true,
             },
-            { parentId: 2, subtitle: "Сотрудники", link: ORGANIZATION_ROUTES.EMPLOYEES, isShow: hasOrganization },
-            { parentId: 2, subtitle: "Должности", link: ORGANIZATION_ROUTES.POSITIONS, isShow: hasOrganization },
-            { parentId: 2, subtitle: "Текущие заказы", link: ORGANIZATION_ROUTES.CURRENT_ORDERS, isShow: hasOrganization },
-            { parentId: 2, subtitle: "История вакансий", link: ORGANIZATION_ROUTES.VACANCIES, isShow: hasOrganization },
-            { parentId: 2, subtitle: "История заказов", link: ORGANIZATION_ROUTES.HISTORY, isShow: hasOrganization },
-         ].filter((route) => (!("authorized" in route) || route.authorized === authorized) && route.isShow),
+            {
+               parentId: 3,
+               subtitle: "Сотрудники",
+               link: ORGANIZATION_ROUTES.EMPLOYEES,
+               isShow: hasOrganization,
+            },
+            {
+               parentId: 3,
+               subtitle: "Должности",
+               link: ORGANIZATION_ROUTES.POSITIONS,
+               isShow: hasOrganization,
+            },
+            {
+               parentId: 3,
+               subtitle: "Текущие заказы",
+               link: ORGANIZATION_ROUTES.CURRENT_ORDERS,
+               isShow: hasOrganization,
+            },
+            {
+               parentId: 3,
+               subtitle: "История вакансий",
+               link: ORGANIZATION_ROUTES.VACANCIES,
+               isShow: hasOrganization,
+            },
+            {
+               parentId: 3,
+               subtitle: "История заказов",
+               link: ORGANIZATION_ROUTES.HISTORY,
+               isShow: hasOrganization,
+            },
+         ].filter(
+            (route) => (!("authorized" in route) || route.authorized === authorized) && route.isShow
+         ),
          activeRoutes: [
             ORGANIZATION_ROUTES.CREATE_ORGANIZATION,
             ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,
@@ -67,24 +116,6 @@ export const getCategoryRoutes = ({ authorized, subscribed, hasOrganization }: C
             ORGANIZATION_ROUTES.HISTORY,
             ORGANIZATION_ROUTES.POSITION_DETAILS,
          ],
-      },
-      {
-         title: "Маркетплейс",
-         id: 3,
-         Icon: ShoppingCart,
-         isShow: true,
-         routes: [
-            { parentId: 3, subtitle: "Оборудования", link: MARKETPLACE.EQUIPMENT },
-            { parentId: 3, subtitle: "Заказы", link: MARKETPLACE.ORDERS, authorized: true },
-            { parentId: 3, subtitle: "Услуги", link: MARKETPLACE.SERVICES },
-            {
-               parentId: 3,
-               subtitle: "Разместить объявление",
-               link: MARKETPLACE.CREATE_ANNOUNCEMENT,
-               authorized: true,
-            },
-         ].filter((route) => !("authorized" in route) || route.authorized === authorized),
-         activeRoutes: [ROUTES.CARD_DETAILS],
       },
       {
          title: "Работа",

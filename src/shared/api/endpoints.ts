@@ -59,9 +59,9 @@ export const ServicesEndpoints = {
 };
 
 export const UserEndpoints = {
-   MY_PROFILE: "/my-profile",
-   MY_PROFILE_CHANGE: "/my-profile",
-   SUBSCRIBE: "/subscribe",
+   MY_PROFILE: "/my-profile/",
+   MY_PROFILE_CHANGE: "/my-profile/",
+   SUBSCRIBE: "/subscribe/",
    COMMON_USER: "/u/",
    COMMON_USER_ADS: "/u-ads/",
    SEARCH: "/ads-search",

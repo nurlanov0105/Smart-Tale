@@ -19,6 +19,7 @@ export const MODAL_KEYS = {
    deleteAnnouncement: "DeleteAnnouncementModal",
    authNotice: "AuthNotice",
    hideAnnouncement: "HideAnnouncementModal",
+   unHideAnnouncement: "unHideAnnouncementModal",
    inviteEmployee: "InviteEmployeeModal",
    buyAnnouncement: "BuyAnnouncementModal",
    acceptAnnouncement: "AcceptAnnouncementModal",

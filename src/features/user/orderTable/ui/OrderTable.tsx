@@ -8,26 +8,23 @@ import { OrderTableProps } from "../model/types";
 import { CommonSkeleton } from "@/shared/ui";
 import { ObserverSection } from "@/entities/general/observerSection";
 import clsx from "clsx";
-import {useInfinityScroll2} from "@/widgets/user/cardsSection/model/useInfinityScroll2";
 import styles from "./styles.module.scss";
+import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
 
-const OrderTable: FC<OrderTableProps> = ({  queryKey, param_tab }) => {
+const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const initialData = {
-       data: [],
-       has_next_page: true,
-       next_page_number: 1
-   }
+      data: [],
+      has_next_page: true,
+      next_page_number: 1,
+   };
 
-   const {
-       observerTarget,
-       isError,
-       isLoading,
-       isFetchingNextPage,
-       data
-   } = useInfinityScroll2({initialData, queryKey, dependencies: {param_tab} })
-
+   const { observerTarget, isError, isLoading, isFetchingNextPage, data } = useInfiniteScroll({
+      fetchFunction,
+      param_tab,
+      queryKey,
+   });
 
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
@@ -38,7 +35,9 @@ const OrderTable: FC<OrderTableProps> = ({  queryKey, param_tab }) => {
          ))}
       </div>
    ) : (
-      data?.map((item: OrderItemType, i: number) => <OrderTableItem key={i} item={item} />).reverse()
+      data
+         ?.map((item: OrderItemType, i: number) => <OrderTableItem key={i} item={item} />)
+         .reverse()
    );
 
    return (

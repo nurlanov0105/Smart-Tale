@@ -19,7 +19,6 @@ export const useOrderApply = () => {
       mutationKey: [OrdersQueryKeys.APPLIED_OERGANIZATIONS, OrdersQueryKeys.APPLY_ORDER],
       mutationFn: (slug: string) => OrdersService.applyOrder(slug),
       onSuccess: () => {
-         toast.success("Applied Order");
          showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.acceptAnnouncement });
       },
    });
