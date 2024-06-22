@@ -218,6 +218,18 @@ export const modalInfoMap = {
       buttonText: "Понятно",
       emoji: "unknown",
    },
+   [MODAL_KEYS.noChangePosYourself]: {
+      title: "Вы не можете поменять \n должность самому себе!",
+      description: "Надо думать головой прежде чем даже пробывать",
+      buttonText: "Понятно, сори",
+      emoji: "angry",
+   },
+   [MODAL_KEYS.noChangePosOwner]: {
+      title: "Вы не можете поменять \n должность хозяину!",
+      description: "Прячься скорее пока \n тебя не нашли",
+      buttonText: "Спрятаться",
+      emoji: "angry",
+   },
    [MODAL_KEYS.authNotice]: {
       title: "Вам нужно авторизоваться!",
       description: "Если у вас есть аккаунт то войдите, если нет то пройдите регистрацию",

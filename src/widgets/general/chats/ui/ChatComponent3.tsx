@@ -21,13 +21,18 @@ const ChatComponent3 = () => {
     //         }
     //     };
     // }, []);
+    const token = CookiesServices.getTokens().accessToken || ""
+    const headers={
+        token: token
+    }
 
     useEffect(() => {
         const token = CookiesServices.getTokens().accessToken || ""
+
         const client = new Client({
-            brokerURL: `wss://helsinki-backender.org.kg/ws/chat/1/`,
+            brokerURL: `wss://helsinki-backender.org.kg/ws`,
             connectHeaders: {
-                "token": `${token}`,
+                token: `${token}`,
             },
             reconnectDelay: 4000,
             heartbeatIncoming: 4000,
@@ -37,7 +42,7 @@ const ChatComponent3 = () => {
                 client.subscribe('/chat/1/', message =>
                     console.log(`Received: ${message.body}`)
                 );
-                client.publish({ destination: '/chat/2', body: 'First Message' });
+                client.publish({ destination: '/chat/1', body: 'First Message' });
             },
             onStompError: (frame) => {
                 console.log('Broker reported error: ' + frame.headers['message']);
@@ -45,6 +50,8 @@ const ChatComponent3 = () => {
             },
 
         });
+
+        console.log(client.connectHeaders)
 
         client.activate();
     }, []);

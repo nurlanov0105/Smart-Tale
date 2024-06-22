@@ -20,6 +20,7 @@ const InfoModal = ({ componentName }: ModalProps) => {
                   | "holidayStuff"
                   | "okay"
                   | "holidaySmile"
+                  | "angry"
             }
          />
          <div className="modalFlex">

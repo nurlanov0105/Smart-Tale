@@ -47,6 +47,8 @@ export const MODAL_KEYS = {
    noChangeDeleteOwner: "noChangeDeleteOwner",
    noOrganizationOrders: "noOrganizationOrders",
    noChangeChoice: "noChangeChoice",
+   noChangePosYourself: "noChangePosYourself",
+   noChangePosOwner: "noChangePosOwner",
    error: "error",
 };
 

@@ -23,7 +23,7 @@ const nextConfig = {
                   key: "Service-Worker-Allowed",
                   value: "/",
                },
-            ],
+            ]
          },
       ];
    },

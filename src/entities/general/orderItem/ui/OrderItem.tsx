@@ -39,7 +39,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                 <div className={styles.item__left}>
                    <Image
                        className={styles.item__image}
-                       src={item.image || cardImage}
+                       src={item?.image || cardImage}
                        alt="card"
                        width={75}
                        height={75}
