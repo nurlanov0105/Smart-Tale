@@ -1,7 +1,8 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import {CookiesServices, EnumTokens, refreshToken, errorCatch, ROUTES} from "../lib";
+import {CookiesServices, EnumTokens, refreshToken, errorCatch, ROUTES, ORGANIZATION_ROUTES} from "../lib";
 import {showModal} from "@/views/modal";
+import {OrganizationEndpoints} from "@/shared/api/endpoints";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
@@ -52,6 +53,8 @@ baseApiInstance.interceptors.request.use(
       if (
          config.url &&
          !config.url.endsWith("logout") &&
+          !config.url.includes(OrganizationEndpoints.GET_EMPLOYEE_ORDERS) &&
+          !config.url.includes(OrganizationEndpoints.UPDATE_ORDER_STATUS) &&
          !config.url.endsWith("/") &&
          !config.params
       ) {

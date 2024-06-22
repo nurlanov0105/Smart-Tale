@@ -1,57 +1,51 @@
 "use client";
 import React from "react";
-import { Controller } from "react-hook-form";
+import {Controller, useFormContext} from "react-hook-form";
+import {useParams} from "next/navigation";
 import clsx from "clsx";
-import { showModal } from "@/views/modal";
-import { Button, GlobalLoading, InputField, Select, TextArea } from "@/shared/ui";
+import { GlobalLoading, InputField, Select, TextArea } from "@/shared/ui";
 import { useThemeStore } from "@/shared/store/themeStore";
 import {
    cityFilter,
    currencies,
    experienceFilter,
    graphicsFilter,
-   MODAL_KEYS,
    SELECT_TYPES,
    ValidationsSchemasService,
 } from "@/shared/lib";
-
 import { useVacancyDetails } from "../model/useVacancyDetails";
 import { useInitialVacancyData } from "../model/useInitialData";
 import { VACANCY_FORM_NAMES } from "../model/consts";
+import {ErrorMessage} from "@/entities/general/errorMessage";
+import {VacancyDetailsTypes} from "../model/types";
+import VacancyButtons from "./VacancyButton";
 import styles from "./styles.module.scss";
 
 const AdminVacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
+   const { id } = useParams<{id: string}>();
 
-   const handleOpenResponses = () => {
-      showModal(MODAL_KEYS.responsesUsers);
-   };
-   const handleDelete = () => {
-      showModal(MODAL_KEYS.confirmationModal, { componentName: MODAL_KEYS.deleteVacancy, slug: id.toString() });
-   };
+   const {
+      register,
+      reset,
+      control,
+      formState: {errors},
+   } = useFormContext<VacancyDetailsTypes>()
 
    const {
       vacancy,
+      handleSubmit,
+
       isSuccess,
       isLoading,
+      isError,
       isSubmitting,
-      id,
-
-      isDirty,
-      isValid,
-
-      handleSubmit,
-      reset,
-      register,
-      control,
-      errors,
-   } = useVacancyDetails();
+   } = useVacancyDetails(id);
 
    useInitialVacancyData({ vacancy, reset, isSuccess });
 
    if (isLoading) return <GlobalLoading type="full" />;
-
-   const handleReset = () => reset();
+   if (isError) return <ErrorMessage/>;
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -154,41 +148,31 @@ const AdminVacancyDetail = () => {
             </div>
             <div className={styles.form__filter}>
                <h4 className="h4">Опыт работы</h4>
-               {experienceFilter.map((item) => (
-                  <label key={item.postValue} className={styles.form__label}>
-                     <span>
-                        <InputField
-                           {...register(VACANCY_FORM_NAMES.experience)}
-                           value={item.postValue}
-                           isBordered={true}
-                           type="radio"
-                           classname={styles.form__radio}
-                        />
-                     </span>
-                     <p>{item.value}</p>
-                  </label>
-               ))}
+               {experienceFilter.map(({value, postValue}) => {
+                      if (value !== "Не имеет значения"){
+                         return (
+                             <label key={postValue} className={styles.form__label}>
+                                  <span>
+                                      <InputField
+                                          {...register(VACANCY_FORM_NAMES.experience)}
+                                          value={postValue}
+                                          isBordered={true}
+                                          type="radio"
+                                          classname={styles.form__radio}
+                                      />
+                                  </span>
+                                <p>{value}</p>
+                             </label>
+                         )}
+                   })}
             </div>
          </div>
 
-         <div className={styles.form__btnsWrapper}>
-            <Button onClick={handleOpenResponses} type="button">
-               Посмотреть на отклики
-            </Button>
-            <div className={styles.form__btns}>
-               <Button onClick={handleDelete} type="button" classType="btn_danger">
-                  Удалить вакансию
-               </Button>
-               {isDirty && (
-                  <Button onClick={handleReset} classType="btn_bordered" type="button">
-                     Отменить изменения
-                  </Button>
-               )}
-               <Button disabled={!isDirty || !isValid || isSubmitting} type="submit">
-                  {isSubmitting ? "Загрузка..." : "Изменить"}
-               </Button>
-            </div>
-         </div>
+         <VacancyButtons
+             isHide={vacancy?.hide}
+             isSubmitting={isSubmitting}
+             id={id}
+         />
       </form>
    );
 };

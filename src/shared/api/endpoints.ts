@@ -80,7 +80,7 @@ export const VacancyEndpoints = {
    ADD_VACANCY: "/add-vacancy/",
    CHANGE_VACANCY: "/change-vacancy/",
    DELETE_VACANCY: "/delete-vacancy/",
-   HIDE_VACANCY: "/vacancy-hide/",
+   HIDE_VACANCY: "/vacancy/hide/",
 };
 export const ResumeEndpoints = {
    ADD_RESUME: "/add-resume/",

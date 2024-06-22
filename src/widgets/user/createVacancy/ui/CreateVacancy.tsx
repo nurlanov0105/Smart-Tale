@@ -21,6 +21,7 @@ const CreateVacancy: FC = () => {
    const {
       register,
       handleSubmit,
+       reset,
       formState: { errors, isValid },
    } = useForm<VacancyCardType>({
       mode: "onChange",
@@ -35,7 +36,7 @@ const CreateVacancy: FC = () => {
       readyData.location = citySelect.postValue;
 
       if (readyData) {
-         addVacancy(readyData);
+         addVacancy(readyData)
       }
    };
    return (
@@ -110,7 +111,9 @@ const CreateVacancy: FC = () => {
             <div className={styles.form__filter}>
                <h4 className="h4">Опыт работы</h4>
 
-               {experienceFilter.map((item) => (
+               {experienceFilter
+                   .filter(item => item.value !== "Не имеет значения")
+                   .map((item) => (
                   <label key={item.postValue} className={styles.form__label}>
                      <span>
                         <InputField

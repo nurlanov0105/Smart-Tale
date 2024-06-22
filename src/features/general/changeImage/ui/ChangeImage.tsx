@@ -16,8 +16,6 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slu
       }
    };
 
-   console.log("image url check - ", image?.type && URL.createObjectURL(image));
-
    return (
       <fieldset className={styles.form__user}>
          <div

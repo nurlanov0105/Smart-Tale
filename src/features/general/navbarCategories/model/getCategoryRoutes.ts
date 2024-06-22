@@ -20,12 +20,7 @@ export const getCategoryRoutes = ({ authorized, subscribed, hasOrganization }: C
             { parentId: 1, subtitle: "Профиль", link: DASHBOARD.PROFILE },
             { parentId: 1, subtitle: "Мои объявления", link: DASHBOARD.LISTINGS },
             { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
-            {
-               parentId: 1,
-               subtitle: "История заказов",
-               link: DASHBOARD.ORDER_HISTORY,
-               subscribed: true,
-            },
+            {parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY,},
             { parentId: 1, subtitle: "Избранные", link: DASHBOARD.FAVORITES },
          ].filter((route) => !("subscribed" in route) || route.subscribed === subscribed),
          activeRoutes: [

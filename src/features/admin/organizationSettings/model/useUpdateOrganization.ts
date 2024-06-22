@@ -1,12 +1,11 @@
 import {useParams} from "next/navigation";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {useForm, useFormContext} from "react-hook-form";
-import {toast} from "react-toastify";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService, useOrganizationDetails} from "@/shared/lib";
+import {useFormContext} from "react-hook-form";
+import {MODAL_KEYS, OWNER, useOrganizationDetails} from "@/shared/lib";
 import {UpdateOrganizationTypes} from "../model/types";
 import {UPDATE_ORGANIZATION_NAMES} from "../model/consts";
-import {useUpdateOrg} from "@/features/admin/organizationSettings/model/useQueries";
+import {useUpdateOrg} from "./useQueries";
+import {showModal} from "@/views/modal";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 export const useUpdateOrganization = (isEdited: boolean) => {
 
@@ -16,6 +15,7 @@ export const useUpdateOrganization = (isEdited: boolean) => {
     } = useFormContext<UpdateOrganizationTypes>()
 
     const {slug} = useParams<{slug:string}>()
+    const position = useSubscribeStore(state => state.position)
 
     const {
         data,
@@ -23,12 +23,15 @@ export const useUpdateOrganization = (isEdited: boolean) => {
         isError,
         isSuccess} = useOrganizationDetails(slug)
 
-    const {mutate} = useUpdateOrg(reset)
+    const {mutate, isPending} = useUpdateOrg(reset)
 
     const onsSubmit = (data: UpdateOrganizationTypes) => {
+        if (position.job_title !== OWNER){
+            showModal(MODAL_KEYS.infoModal, {slug, componentName: MODAL_KEYS.noRights})
+            return
+        }
         const formData = new FormData()
         Object.entries(data).map(([key, value]) => {
-
             if (!isEdited && key === UPDATE_ORGANIZATION_NAMES.logo){
                 return
             } else {
@@ -43,8 +46,10 @@ export const useUpdateOrganization = (isEdited: boolean) => {
     return {
         handleSubmit: handleSubmit(onsSubmit),
         data,
+
         isLoading,
         isSuccess,
         isError,
+        isSubmitting: isPending
     }
 }

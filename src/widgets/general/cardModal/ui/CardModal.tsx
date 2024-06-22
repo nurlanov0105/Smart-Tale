@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { closeModal } from "@/views/modal";
+import {closeModal, showModal} from "@/views/modal";
 import { CardSlider } from "@/features/general/cardSlider";
 import { CardCategory } from "@/features/general/cardCategory";
 import { Chat } from "@/features/user/chat";
@@ -11,7 +11,7 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { ErrorMessage } from "@/entities/general/errorMessage";
-import { CookiesServices, EnumTokens, images } from "@/shared/lib";
+import {CookiesServices, EnumTokens, images, MODAL_KEYS} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { AnnouncementRoutes, CardDetailsRoutes } from "../model/consts";
@@ -41,7 +41,6 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
    };
-   console.log(type);
 
    const handleBtnClick = () => {
       if (currentUser?.profile.slug === data.data.author?.slug) {
@@ -84,14 +83,30 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       return <ErrorMessage />;
    }
 
-   if (!isPending) {
-      console.log(data);
-   }
-   // description phone_number email size [{id,size}]
-
    const handleOrder = () => {
       orderApply(slug);
    };
+
+   const handleRoute = () => {
+      const type = data?.data?.type?.toLowerCase()
+      const slug = data?.data?.slug
+
+      if (type === AnnouncementTypes.order && slug){
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${slug}`)
+      }
+      if (type === AnnouncementTypes.equipment && slug){
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${slug}`)
+      }
+      if (type === AnnouncementTypes.service && slug){
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${slug}`)
+      }
+
+      closeModal()
+
+      if (!slug){
+         showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.error})
+      }
+   }
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>
@@ -166,8 +181,13 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                                     </Button>
                                  )
                               ) : (
-                                 ""
+                                  ""
                               )}
+
+                              {
+                                  currentUser?.profile.slug === data.data.author?.slug &&
+                                  <Button onClick={handleRoute}>Изменить</Button>
+                              }
 
                               <Button onClick={handleBtnClick} className={styles.modal__btn}>
                                  Подробнее

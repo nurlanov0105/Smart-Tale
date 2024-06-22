@@ -41,7 +41,13 @@ const ResumeInfo: FC = () => {
 
             <div className={styles.form__info}>
                <div>
-                  <Image src={avatar} alt="avatar" width={80} height={80} />
+                  <Image
+                      src={resume?.author?.profile_image || avatar}
+                      alt="avatar"
+                      width={80}
+                      height={80}
+                      className={styles.form__image}
+                  />
                </div>
                <div>
                   <div className={styles.form__initials}>

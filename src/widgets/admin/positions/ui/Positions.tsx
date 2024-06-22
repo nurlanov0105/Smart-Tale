@@ -4,17 +4,24 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import { PositionItem } from "@/entities/admin/positionItem";
 import {EmptyContent} from "@/entities/admin/emptyContent";
-import { ORGANIZATION_ROUTES, usePositions } from "@/shared/lib";
+import {MODAL_KEYS, ORGANIZATION_ROUTES, usePositions} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import {Button, GlobalLoading} from "@/shared/ui";
-import {EMPTY_CONTENT_TYPES} from "@/shared/lib/constants/consts";
+import {EMPTY_CONTENT_TYPES, RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
 import styles from "./styles.module.scss";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import {showModal} from "@/views/modal";
 
 const Positions = () => {
    const theme = useThemeStore((state) => state.theme);
+   const position = useSubscribeStore(state => state.position)
 
    const router = useRouter();
    const handleRoute = () => {
+      // if (!position[RIGHT_ACTIONS.CREATE_POSITION]){
+      //    showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+      //    return
+      // }
       router.push(ORGANIZATION_ROUTES.ADD_POSITION);
    };
 

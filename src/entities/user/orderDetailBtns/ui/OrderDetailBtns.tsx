@@ -1,18 +1,18 @@
 import React, { FC } from "react";
-import {useFormContext, UseFormReset} from "react-hook-form";
+import {useFormContext} from "react-hook-form";
 import { showModal } from "@/views/modal";
-import { AnnouncementCreateFormType } from "@/features/user/orderForm/model/types";
 import { Button } from "@/shared/ui";
 import { MODAL_KEYS } from "@/shared/lib";
-import styles from "./styles.module.scss";
 import type {AnnouncementDetailFormType} from "@/features/user/ announcementDetailForm/model/types";
 import {useParams} from "next/navigation";
+import styles from "./styles.module.scss";
 
 interface IProps {
-   type: string;
-   isSubmitting: boolean
+    type: string;
+    isSubmitting: boolean
+    isHide: boolean
 }
-const OrderDetailBtns: FC<IProps> = ({ type, isSubmitting }) => {
+const OrderDetailBtns: FC<IProps> = ({ type, isSubmitting, isHide }) => {
    const {slug} = useParams<{slug?: string}>()
 
    const {
@@ -24,7 +24,8 @@ const OrderDetailBtns: FC<IProps> = ({ type, isSubmitting }) => {
       showModal(MODAL_KEYS.confirmationModal, {slug, type, componentName: MODAL_KEYS.deleteAnnouncement,});
    };
    const handleHideClick = () => {
-      showModal(MODAL_KEYS.confirmationModal, {slug, type, componentName: MODAL_KEYS.hideAnnouncement,});
+       const typeModal = isHide ? MODAL_KEYS.unHideAnnouncement : MODAL_KEYS.hideAnnouncement
+      showModal(MODAL_KEYS.confirmationModal, {slug, type, componentName: typeModal});
    };
 
    const handleReset = () => reset();
@@ -32,7 +33,11 @@ const OrderDetailBtns: FC<IProps> = ({ type, isSubmitting }) => {
    return (
        <div className={styles.buttons__wrapper}>
           <div className={styles.buttons}>
-             <Button onClick={handleHideClick} type="button" >Скрыть</Button>
+             <Button onClick={handleHideClick} type="button" >
+                 {
+                     isHide ? "Показать" : "Скрыть"
+                 }
+             </Button>
              <Button onClick={handleDeleteClick} type="button" classType="btn_danger">Удалить</Button>
           </div>
           <div className={styles.buttons}>

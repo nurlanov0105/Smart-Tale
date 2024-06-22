@@ -58,7 +58,7 @@ export enum ROUTES {
    CARD_DETAILS_EQUIPMENT = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
    CARD_DETAILS_SERVICE = `/card-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
 
-   ANNOUNCEMENT_DETAILS = `/announcement-details`,
+   ANNOUNCEMENT_DETAILS = `/announcement-details/`,
    ANNOUNCEMENT_DETAILS_ORDER = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.order}`,
    ANNOUNCEMENT_DETAILS_EQUIPMENT = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.equipment}`,
    ANNOUNCEMENT_DETAILS_SERVICE = `/announcement-details/${TYPE_ANNOUNCEMENT_DETAIL.service}`,
@@ -102,6 +102,7 @@ export enum ORGANIZATION_ROUTES {
    VACANCY_DETAIL = "/organization/vacancy-detail",
    HISTORY = "/organization/history",
    ANNOUNCEMENT_DETAILS = "/organization/announcement-details",
+   CREATE_VACANCY = `/organization/create-vacancy`,
 
    CURRENT_ORDERS = `/organization/current-orders`,
    NO_RIGHTS = `/organization/no-rights`,

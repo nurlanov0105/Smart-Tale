@@ -14,21 +14,24 @@ import {
     OrdersService,
     OrganizationService,
     ServicesService,
-    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService, VacancyService, DASHBOARD
+    ORGANIZATION_ROUTES, MODAL_KEYS, ResumeService, VacancyService, DASHBOARD, useScrollTop
 } from "@/shared/lib";
 import {closeModal} from "@/views/modal";
 import {WORK} from "@/shared/lib/routes.config";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 
 export const useHideEquipment = () => {
    const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
+   const {handleScrollToTop} = useScrollTop()
+   return useMutation<any, Error, {slug: string}>({
       mutationKey: [OrdersQueryKeys.ORDER_HIDE],
-      mutationFn: (slug) => EquipmentService.hideEquipment(slug),
+      mutationFn: ({slug}) => EquipmentService.hideEquipment(slug),
       onSuccess: () => {
           closeModal()
+          handleScrollToTop()
           queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENT]})
-          toast.success("Вы успешно скрыли оборудование");
+          toast.success("Успешно!");
       },
       onError: () => {
           closeModal()
@@ -39,12 +42,14 @@ export const useHideEquipment = () => {
 
 export const useHideOrder = () => {
    const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
+   const {handleScrollToTop} = useScrollTop()
+   return useMutation<any, Error, { slug: string }>({
       mutationKey: [EquipmentQueryKeys.EQUIPMENT_HIDE],
-      mutationFn: (slug) => OrdersService.hideOrder(slug),
+      mutationFn: ({slug}) => OrdersService.hideOrder(slug),
       onSuccess: () => {
           closeModal()
-         toast.success("Вы успешно скрыли заказ");
+          handleScrollToTop()
+          toast.success("Успешно!");
           queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
       },
       onError: () => {
@@ -56,13 +61,15 @@ export const useHideOrder = () => {
 
 export const useHideService = () => {
    const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
+   const {handleScrollToTop} = useScrollTop()
+   return useMutation<any, Error, {slug: string}>({
       mutationKey: [ServiceQueryKeys.HIDE_SERVICE],
-      mutationFn: (slug) => ServicesService.hideService(slug),
+      mutationFn: ({slug}) => ServicesService.hideService(slug),
       onSuccess: () => {
           closeModal()
+          handleScrollToTop()
           queryClient.invalidateQueries({queryKey: [ServiceQueryKeys.GET_MY_SERVICE]})
-          toast.success("Вы успешно скрыли услугу");
+          toast.success("Успешно!");
       },
       onError: () => {
           closeModal()
@@ -73,12 +80,15 @@ export const useHideService = () => {
 
 export const useDeleteEquipment = () => {
    const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
+   const {push} = useRouter()
+   return useMutation<any, Error, {slug: string}>({
       mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
-      mutationFn: (slug) => EquipmentService.deleteEquipment(slug),
+      mutationFn: ({slug}) => EquipmentService.deleteEquipment(slug),
       onSuccess: () => {
          toast.success("Вы успешно удалили оборудование");
+         queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_ADS]})
          closeModal()
+          push(DASHBOARD.LISTINGS)
       },
       onError: () => {
          console.log("error");
@@ -89,12 +99,15 @@ export const useDeleteEquipment = () => {
 
 export const useDeleteOrder = () => {
    const queryClient = useQueryClient();
-   return useMutation<any, Error, string>({
+    const {push} = useRouter()
+   return useMutation<any, Error, {slug: string}>({
       mutationKey: [OrdersQueryKeys.ORDER_DELETE],
-      mutationFn: (slug) => OrdersService.deleteOrder(slug),
+      mutationFn: ({slug}) => OrdersService.deleteOrder(slug),
       onSuccess: () => {
          toast.success("Вы успешно удалили заказ");
+         queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_ADS]})
          closeModal()
+          push(DASHBOARD.LISTINGS)
       },
       onError: () => {
          console.log("error");
@@ -105,72 +118,88 @@ export const useDeleteOrder = () => {
 
 export const useDeleteEmployee = () => {
     const {push} = useRouter()
-   return useMutation<any, Error, string>({
+    const queryClient = useQueryClient();
+   return useMutation<any, Error, {slug: string}>({
       mutationKey: [OrganizationQueryKeys.DELETE_EMPLOYEE],
-      mutationFn: (slug) => OrganizationService.deleteEmployee(slug),
+      mutationFn: ({slug}) => OrganizationService.deleteEmployee(slug),
       onSuccess: () => {
          toast.success("Сотрудник был удалён!");
+          queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.EMPLOYEES]})
          push(ORGANIZATION_ROUTES.EMPLOYEES)
       },
       onError: () => {
          console.log("error");
+          closeModal()
       },
    });
 };
 
 export const useDeleteService = () => {
     const queryClient = useQueryClient()
-    return useMutation<any, Error, string>({
+    const {push} = useRouter()
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [ServiceQueryKeys.DELETE_SERVICE],
-        mutationFn: (slug) => ServicesService.deleteService(slug),
+        mutationFn: ({slug}) => ServicesService.deleteService(slug),
         onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_ADS]})
             toast.success("Услуга была удалена")
+            closeModal()
+            push(DASHBOARD.LISTINGS)
         },
         onError: () => {
             console.log("error")
+            closeModal()
         }
     })
 }
 
 export const useDeletePosition = () => {
     const {replace} = useRouter()
-    return useMutation<any, Error, string>({
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [OrganizationQueryKeys.DETAILS_POSITION],
-        mutationFn: (slug) => OrganizationService.deletePosition(slug),
+        mutationFn: ({slug}) => OrganizationService.deletePosition(slug),
         onSuccess: () => {
             toast.success("Долнжость была удалена")
             replace(ORGANIZATION_ROUTES.POSITIONS)
         },
         onError: () => {
             console.log("error")
+            closeModal()
         }
     })
 }
 
 export const useDeleteVacancy = () => {
     const {replace} = useRouter()
-    return useMutation<any, Error, string>({
+    const queryClient = useQueryClient();
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [VacancyQueryKeys.VACANCY_DELETE],
-        mutationFn: (slug) => VacancyService.deleteVacancy(slug),
+        mutationFn: ({slug}) => VacancyService.deleteVacancy(slug),
         onSuccess: () => {
-            toast.success("Вакансия было удалена")
-            replace(WORK.VACANCIES)
+            toast.success("Вакансия было удалена!")
+            queryClient.invalidateQueries({queryKey: [VacancyQueryKeys.GET_ORGANIZATION_VACANCIES]})
+            replace(ORGANIZATION_ROUTES.VACANCIES)
+            closeModal()
         },
         onError: () => {
             toast.error("Произошла ошибка при удалении, попробуйте еще раз")
             console.log("error")
+            closeModal()
         }
     })
 }
 
 export const useHideVacancy = () => {
     const queryClient = useQueryClient();
-    return useMutation<any, Error, string>({
+    const {handleScrollToTop} = useScrollTop()
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [VacancyQueryKeys.VACANCY_DELETE],
-        mutationFn: (slug) => VacancyService.hideVacancy(slug),
+        mutationFn: ({slug}) => VacancyService.hideVacancy(slug),
         onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: [VacancyQueryKeys.VACANCY_DETAILS]})
+            handleScrollToTop()
             closeModal()
-            toast.success("Вы успешно скрыли услугу");
+            toast.success("Успешно!");
         },
         onError: () => {
             closeModal()
@@ -182,12 +211,14 @@ export const useHideVacancy = () => {
 
 export const useDeleteResume = () => {
     const {replace} = useRouter()
-    return useMutation<any, Error, string>({
+    const queryClient = useQueryClient();
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [ResumeQueryKeys.RESUME_DELETE],
-        mutationFn: (slug) => ResumeService.deleteResume(slug),
+        mutationFn: ({slug}) => ResumeService.deleteResume(slug),
         onSuccess: () => {
-            toast.success("Резюме было удалено")
+            toast.success("Резюме было удалено!")
             replace(WORK.MY_RESUMES)
+            queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.GET_MY_RESUMES]})
             closeModal()
         },
         onError: () => {
@@ -199,12 +230,15 @@ export const useDeleteResume = () => {
 
 export const useHideResume = () => {
     const queryClient = useQueryClient();
-    return useMutation<any, Error, string>({
+    const {handleScrollToTop} = useScrollTop()
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [ResumeQueryKeys.RESUME],
-        mutationFn: (slug) => ResumeService.hideResume(slug),
+        mutationFn: ({slug}) => ResumeService.hideResume(slug),
         onSuccess: () => {
+            handleScrollToTop()
+            queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.RESUME_DETAILS]})
+            toast.success("Успешно!");
             closeModal()
-            toast.success("Вы успешно скрыли резюме");
         },
         onError: () => {
             closeModal()
@@ -215,13 +249,14 @@ export const useHideResume = () => {
 
 export const useActiveOrganization = () => {
     const queryClient = useQueryClient()
-    return useMutation<any, Error, string>({
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [OrganizationQueryKeys.ORGANIZATION_ACTIVATE],
-        mutationFn: (slug) => OrganizationService.activateOrganization(slug),
+        mutationFn: ({slug}) => OrganizationService.activateOrganization(slug),
         onSuccess: async () => {
-            await queryClient.invalidateQueries({
-                queryKey: [OrganizationQueryKeys.ORGANIZATION]
-            })
+            await queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION]})
+            await queryClient.invalidateQueries({queryKey: [UserQueryKeys.PROFILE]})
+            queryClient.removeQueries({queryKey: [OrganizationQueryKeys.GET_ORDERS]})
+
             closeModal()
         }
     })
@@ -230,9 +265,9 @@ export const useActiveOrganization = () => {
 export const useDeleteOrganization = () => {
     const {replace} = useRouter()
     const queryClient = useQueryClient()
-    return useMutation<any, Error, string>({
+    return useMutation<any, Error, {slug: string}>({
         mutationKey: [OrganizationQueryKeys.DELETE_ORGANIZATION],
-        mutationFn: (slug) => OrganizationService.deleteOrganization(slug),
+        mutationFn: ({slug}) => OrganizationService.deleteOrganization(slug),
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION, UserQueryKeys.PROFILE]})
             queryClient.invalidateQueries({queryKey: [UserQueryKeys.PROFILE]})
