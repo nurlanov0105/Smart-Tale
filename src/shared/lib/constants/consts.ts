@@ -49,6 +49,7 @@ export const MODAL_KEYS = {
    noChangeChoice: "noChangeChoice",
    noChangePosYourself: "noChangePosYourself",
    noChangePosOwner: "noChangePosOwner",
+   addedPosition: "addedPosition",
    error: "error",
 };
 

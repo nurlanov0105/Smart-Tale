@@ -188,6 +188,12 @@ export const modalInfoMap = {
       buttonText: "Понятно",
       emoji: "holidayStuff",
    },
+   [MODAL_KEYS.addedPosition]: {
+      title: "Новая должность \n сохранена",
+      description: "Вы добавили новую должность \n для организации",
+      buttonText: "Понятно",
+      emoji: "holidayStuff",
+   },
    [MODAL_KEYS.noRights]: {
       title: "У вас недостаточно прав \n для этого действия!",
       description: "Пожалуйста, свяжитесь с владельцем для получения прав.",

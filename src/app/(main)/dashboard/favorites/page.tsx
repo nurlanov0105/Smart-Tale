@@ -17,11 +17,11 @@ import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 const PurchasesPage: NextPage = () => {
    const [type, setType] = useState(announcementFavoritesTabs[0].postValue);
 
-    const initialData = {
-        data: [],
-        has_next_page: true,
-        next_page_number: 1
-    }
+   const initialData = {
+      data: [],
+      has_next_page: true,
+      next_page_number: 1,
+   };
 
    return (
       <div className={styles.favorites}>
@@ -35,11 +35,11 @@ const PurchasesPage: NextPage = () => {
          {/*   param_tab={type}*/}
          {/*   type={SkeletonTypes.standart}*/}
          {/*/>*/}
-          <CardSection2
-              initialData={initialData}
-              queryKey={UserQueryKeys.FAVORITES}
-              dependencies={{param_tab: type}}
-          />
+         <CardSection2
+            initialData={initialData}
+            queryKey={UserQueryKeys.FAVORITES}
+            dependencies={{ param_tab: type }}
+         />
       </div>
    );
 };

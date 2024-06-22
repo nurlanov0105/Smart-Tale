@@ -2,11 +2,6 @@ import { create } from "zustand";
 import { RIGHT_ACTIONS } from "@/shared/lib/constants/consts";
 import { ProfileRequestTypes, RightsTypes, UserPositionTypes } from "@/shared/lib";
 
-interface PositionsTypes extends RightsTypes {
-   organization: string | null;
-   job_title: string | null;
-}
-
 interface SubscribeState {
    isSubscribe: boolean;
    isError: boolean;
@@ -22,6 +17,7 @@ export const useSubscribeStore = create<SubscribeState>((set) => ({
    position: {
       organization: null,
       job_title: null,
+      slug: undefined,
       [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "false",
       [RIGHT_ACTIONS.REMOVE_POSITION]: "false",
       [RIGHT_ACTIONS.DELETE_ORDER]: "false",

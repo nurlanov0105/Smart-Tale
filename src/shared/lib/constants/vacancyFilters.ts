@@ -43,14 +43,14 @@ export const currencies = [
    { value: "сом", postValue: "Som" },
    { value: "₽", postValue: "Ruble" },
    { value: "$", postValue: "USD" },
-   { value: "€", postValue: "Euro " },
+   { value: "€", postValue: "Euro" },
 ];
 
 export const currenciesMap = {
    Som: { value: "сом", postValue: "Som" },
    Ruble: { value: "₽", postValue: "Ruble" },
    USD: { value: "$", postValue: "USD" },
-   Euro: { value: "€", postValue: "Euro " },
+   Euro: { value: "€", postValue: "Euro" },
 };
 export const graphicMap = {
    "Полный день": { value: "Полный день", postValue: "Полный день" },

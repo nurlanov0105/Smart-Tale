@@ -17,10 +17,11 @@ export function useSubscribed() {
    const setSubscribeState = useSubscribeStore((state) => state.setSubscribeState);
 
    useEffect(() => {
-      if (isSuccess) {
+      if (isSuccess && data) {
+         const position = data?.job_titles.find(item => item?.organization === data?.org.title)
          setSubscribeState({
             data: data,
-            position: data.job_titles[0],
+            position: position, //{...position, slug: data?.org.slug}
             isError: false,
             isSubscribe: data?.is_subbed,
          });

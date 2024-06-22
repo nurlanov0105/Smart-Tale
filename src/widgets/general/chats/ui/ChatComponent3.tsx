@@ -30,7 +30,7 @@ const ChatComponent3 = () => {
         const token = CookiesServices.getTokens().accessToken || ""
 
         const client = new Client({
-            brokerURL: `wss://helsinki-backender.org.kg/ws`,
+            brokerURL: `wss://helsinki-backender.org.kg/ws/chat/1/`,
             connectHeaders: {
                 token: `${token}`,
             },

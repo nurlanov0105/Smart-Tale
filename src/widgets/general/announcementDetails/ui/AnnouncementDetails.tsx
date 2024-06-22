@@ -116,7 +116,7 @@ const AnnouncementDetails = () => {
          <div className={styles.item__button}>
             <Button>Добавить сотрудника</Button>
             <Button>Снять заказ с сотрудника</Button>
-            <Button>Завершить Заказ</Button>
+            {/*<Button>Завершить Заказ</Button>*/}
          </div>
       </div>
    );

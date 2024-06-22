@@ -18,6 +18,7 @@ export const useLikeEquipment = (slug: string, type: string) => {
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.EQUIPMENTS] });
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.LIKED_EQUIPMENTS] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.FAVORITES] });
          queryClient.invalidateQueries({
             queryKey: [type, slug],
          });
@@ -41,6 +42,7 @@ export const useLikeOrder = (slug: string, type: string) => {
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.ORDERS] });
          queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.LIKED_ORDERS] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.FAVORITES] });
          queryClient.invalidateQueries({
             queryKey: [type, slug],
          });
@@ -65,6 +67,7 @@ export const useLikeService = (slug: string, type: string) => {
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [ServiceQueryKeys.SERVICES] });
          queryClient.invalidateQueries({ queryKey: [ServiceQueryKeys.LIKED_SERVICES] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.FAVORITES, { type }] });
          queryClient.invalidateQueries({
             queryKey: [type, slug],
          });
