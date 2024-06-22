@@ -76,7 +76,7 @@ export const ModalActionsMap: { [key: string]: ModalAction } = {
    },
    [MODAL_KEYS.unHideAnnouncement]: {
       title: "Показать объявление?",
-      description: "Объявление снова будет доступно \n для просмотра в маркетплейсе",
+      description: "Объявление будет доступно \n для просмотра в маркетплейсе",
       buttonText: "Показать",
       emoji: "reverse",
       request: (type: string | undefined) => {

@@ -47,7 +47,6 @@ const OrderList: FC<Props> = ({
    ) : (
       data?.map((item, i: number) => {
          if (pathname.includes("work-vacancies")) {
-            // @ts-ignore
             return <VacancyItem item={item} key={i} />;
          } else if (pathname.includes("work-resumes")) {
             // @ts-ignore

@@ -6,16 +6,18 @@ import { toast } from "react-toastify";
 import type { Columns } from "../model/types";
 import { BoardColumn } from "@/features/user/boardColumn";
 import { testDestinationMap, COLUMN_VALUES } from "../model/helper";
-import {useGetOrganizationOrders, useUpdateStatusOrder} from "../model/useQueries";
+import { useGetOrganizationOrders, useUpdateStatusOrder } from "../model/useQueries";
 import styles from "./styles.module.scss";
 import {GlobalLoading} from "@/shared/ui";
 import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 import {MODAL_KEYS, RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
 import {showModal} from "@/views/modal";
+import { getMessaging, onMessage } from "firebase/messaging";
+import { CookiesServices, EnumTokens } from "@/shared/lib";
 
 
 const Board = () => {
-   const {data, isSuccess, isError, isLoading} = useGetOrganizationOrders()
+   const { data, isSuccess, isError, isLoading } = useGetOrganizationOrders();
 
    const updateStatus = useUpdateStatusOrder()
     const position = useSubscribeStore(state => state.position)
@@ -34,13 +36,14 @@ const Board = () => {
    },[data])
 
    useEffect(() => {
-      if (isSuccess && data){
+      if (isSuccess && data) {
           setColumns(data)
-          if (!areArrayEmpty()){
+          if (!areArrayEmpty()) {
               showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noOrganizationOrders})
           }
+
       }
-       // eslint-disable-next-line
+      // eslint-disable-next-line
    }, [isSuccess, updateStatus.isError]);
 
    const onDragEnd = (result: DropResult) => {
@@ -56,30 +59,29 @@ const Board = () => {
          return;
      }
 
-       // Получаем информацию о перемещаемом заказе
-     const movedOrder = columns[source.droppableId as Columns][source.index];
-
+      // Получаем информацию о перемещаемом заказе
+      const movedOrder = columns[source.droppableId as Columns][source.index];
 
       if (destination.droppableId === source.droppableId) {
          const column = [...columns[source.droppableId as Columns]];
          const movedOrder = column.splice(source.index, 1)[0]; // Удаляем перемещаемый заказ из исходной колонки
          column.splice(destination.index, 0, movedOrder); // Вставляем его на новую позицию
          setColumns((prevColumns) => {
-             if (!prevColumns) return
+            if (!prevColumns) return;
 
-             return {
-                 ...prevColumns,
-                 [source.droppableId]: column,
-             }
+            return {
+               ...prevColumns,
+               [source.droppableId]: column,
+            };
          });
 
          return;
       }
 
-       if (updateStatus.isPending) {
-           toast.warning("Пожалуйста, подождите пока сервер обработает предыдущий запрос")
-           return;
-       }
+      if (updateStatus.isPending) {
+         toast.warning("Пожалуйста, подождите пока сервер обработает предыдущий запрос");
+         return;
+      }
 
       const sourceId = testDestinationMap[source.droppableId];
 
@@ -87,7 +89,6 @@ const Board = () => {
          toast.warning(sourceId.alert);
          return;
       }
-
 
       // Удаляем перемещаемый заказ из исходной колонки
       const updatedSourceColumn = [...columns[source.droppableId as Columns]];
@@ -107,21 +108,43 @@ const Board = () => {
          return;
       }
 
-       updateStatus.mutate({orderSlug: movedOrder.slug, status: destination.droppableId})
+      updateStatus.mutate({ orderSlug: movedOrder.slug, status: destination.droppableId });
+
+      const fcm_token = localStorage.getItem("fcm_token");
+      console.log("fcm_token", fcm_token);
+
+      fetch("https://fcm.googleapis.com/v1/projects/smarttale-eb313/messages:send", {
+         method: "POST",
+         headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer dcbed192dc7d8ea6481203e4d6ff10a0495c143e`,
+         },
+         body: JSON.stringify({
+            body: JSON.stringify({
+               to: fcm_token,
+               priority: "high",
+               notification: {
+                  title: "Надеюсь работает",
+                  body: "Даааа работаеттт!!",
+               },
+            }),
+         }),
+      });
+
       // Обновляем состояние колонок
       setColumns((prevColumns) => {
-          if (!prevColumns) return
+         if (!prevColumns) return;
 
-          return {
-              ...prevColumns,
-              [source.droppableId]: updatedSourceColumn,
-              [destination.droppableId]: updatedDestinationColumn,
-          }
+         return {
+            ...prevColumns,
+            [source.droppableId]: updatedSourceColumn,
+            [destination.droppableId]: updatedDestinationColumn,
+         };
       });
    };
 
-   if (isLoading) return <GlobalLoading type="full"/>
-   if (isError) return <h3 className="h3">Упс, произошла ошибка при получении данных</h3>
+   if (isLoading) return <GlobalLoading type="full" />;
+   if (isError) return <h3 className="h3">Упс, произошла ошибка при получении данных</h3>;
 
    return (
       <DragDropContext onDragEnd={onDragEnd}>

@@ -3,19 +3,18 @@
 import React, { FC } from "react";
 import { NavbarItem } from "@/entities/user/navbarItem";
 import { getCategoryRoutes } from "../model/getCategoryRoutes";
-import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 import styles from "./styles.module.scss";
 
-const NavbarCategories: FC<{isAuth: boolean}> = ({isAuth}) => {
+const NavbarCategories: FC<{ isAuth: boolean }> = ({ isAuth }) => {
+   const data = useSubscribeStore((state) => state.data);
 
-   const data = useSubscribeStore(state => state.data)
-
-   const isSubscribedWithOrg = !!data?.job_titles?.length
+   const isSubscribedWithOrg = !!data?.job_titles?.length;
 
    const categories = getCategoryRoutes({
       authorized: isAuth,
       subscribed: data?.is_subbed || false,
-      hasOrganization: isSubscribedWithOrg
+      hasOrganization: isSubscribedWithOrg,
    });
 
    return (

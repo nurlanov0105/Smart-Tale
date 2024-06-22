@@ -7,25 +7,30 @@ import type {AnnouncementDetailFormType} from "@/features/user/ announcementDeta
 import {useParams} from "next/navigation";
 import styles from "./styles.module.scss";
 
+
 interface IProps {
-    type: string;
-    isSubmitting: boolean
-    isHide: boolean
+   type: string;
+   isSubmitting: boolean;
+   isHide: boolean;
 }
 const OrderDetailBtns: FC<IProps> = ({ type, isSubmitting, isHide }) => {
-   const {slug} = useParams<{slug?: string}>()
+   const { slug } = useParams<{ slug?: string }>();
 
    const {
-      formState: {isDirty, isValid},
-      reset
-   } = useFormContext<AnnouncementDetailFormType>()
+      formState: { isDirty, isValid },
+      reset,
+   } = useFormContext<AnnouncementDetailFormType>();
 
    const handleDeleteClick = () => {
-      showModal(MODAL_KEYS.confirmationModal, {slug, type, componentName: MODAL_KEYS.deleteAnnouncement,});
+      showModal(MODAL_KEYS.confirmationModal, {
+         slug,
+         type,
+         componentName: MODAL_KEYS.deleteAnnouncement,
+      });
    };
    const handleHideClick = () => {
-       const typeModal = isHide ? MODAL_KEYS.unHideAnnouncement : MODAL_KEYS.hideAnnouncement
-      showModal(MODAL_KEYS.confirmationModal, {slug, type, componentName: typeModal});
+      const typeModal = isHide ? MODAL_KEYS.unHideAnnouncement : MODAL_KEYS.hideAnnouncement;
+      showModal(MODAL_KEYS.confirmationModal, { slug, type, componentName: typeModal });
    };
 
    const handleReset = () => reset();

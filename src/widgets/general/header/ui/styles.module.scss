@@ -92,28 +92,40 @@
       background-color: $bg-color;
    }
 
-   &__sun{
+   &__sun {
       width: 100%;
       border-radius: 50%;
       padding: 0.8rem;
       font-size: 5rem;
-      &:hover{
+      &:hover {
          color: yellow;
          //color: $black-theme;
-         background-color: $border-theme
-
+         background-color: $border-theme;
       }
    }
-   &__moon{
+   &__moon {
       width: 100%;
       font-size: 5rem;
       border-radius: 50%;
       padding: 0.8rem;
-      &:hover{
+      &:hover {
          //color: $dark-blue;
 
          background-color: $white-theme;
       }
+   }
+
+   &_absolute {
+      position: absolute;
+
+      z-index: $z6;
+      top: 30px;
+      right: 50px;
+      max-width: 300px;
+      background-color: pink;
+      padding: 10px;
+
+      transform: translateY(100%);
    }
 }
 

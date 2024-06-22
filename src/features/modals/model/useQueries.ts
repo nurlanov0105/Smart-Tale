@@ -1,14 +1,15 @@
-import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
-import {useRouter} from "next/navigation";
-import {toast} from "react-toastify";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import {
-    EquipmentQueryKeys,
-    OrganizationQueryKeys,
-    ResumeQueryKeys,
-    ServiceQueryKeys, UserQueryKeys,
-    VacancyQueryKeys
+   EquipmentQueryKeys,
+   OrganizationQueryKeys,
+   ResumeQueryKeys,
+   ServiceQueryKeys,
+   UserQueryKeys,
+   VacancyQueryKeys,
 } from "@/shared/api";
-import {OrdersQueryKeys} from "@/shared/api/queryKeys";
+import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 import {
     EquipmentService,
     OrdersService,
@@ -34,8 +35,8 @@ export const useHideEquipment = () => {
           toast.success("Успешно!");
       },
       onError: () => {
-          closeModal()
-          console.log("error");
+         closeModal();
+         console.log("error");
       },
    });
 };
@@ -53,7 +54,7 @@ export const useHideOrder = () => {
           queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
       },
       onError: () => {
-          closeModal()
+         closeModal();
          console.log("error");
       },
    });
@@ -72,8 +73,8 @@ export const useHideService = () => {
           toast.success("Успешно!");
       },
       onError: () => {
-          closeModal()
-          console.log("error");
+         closeModal();
+         console.log("error");
       },
    });
 };
@@ -89,10 +90,11 @@ export const useDeleteEquipment = () => {
          queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_ADS]})
          closeModal()
           push(DASHBOARD.LISTINGS)
+
       },
       onError: () => {
          console.log("error");
-         closeModal()
+         closeModal();
       },
    });
 };
@@ -108,10 +110,11 @@ export const useDeleteOrder = () => {
          queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_ADS]})
          closeModal()
           push(DASHBOARD.LISTINGS)
+
       },
       onError: () => {
          console.log("error");
-         closeModal()
+         closeModal();
       },
    });
 };
@@ -283,10 +286,9 @@ export const useDeleteOrganization = () => {
     })
 }
 
-
 export const useGetVacancyResponses = () => {
-    return useQuery({
-        queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES],
-        queryFn: () => VacancyService.getVacancyResponses()
-    })
-}
+   return useQuery({
+      queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES],
+      queryFn: () => VacancyService.getVacancyResponses(),
+   });
+};

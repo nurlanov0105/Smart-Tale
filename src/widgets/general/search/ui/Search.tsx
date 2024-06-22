@@ -12,6 +12,7 @@ const Search = () => {
    const pathname = usePathname();
    const [searchPath] = useState(pathname.slice(1).split("/")[0].replace("-", "/"));
 
+   console.log("searchPath - ", searchPath);
    const type = DefineSearchParam[("/" + searchPath) as keyof typeof DefineSearchParam];
    console.log("type -- ", type);
 

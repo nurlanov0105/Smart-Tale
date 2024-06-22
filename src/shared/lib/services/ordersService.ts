@@ -27,6 +27,13 @@ export const OrdersService = {
          nextPage: response.data.next_page_number,
       };
    },
+
+   getOrdersClient: async ({ page }: { page: number }) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
+         params: { page: page },
+      });
+      return response.data;
+   },
    getMyOrders: async (page: number) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS, {
          params: {
@@ -56,15 +63,11 @@ export const OrdersService = {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS_HISTORY, {
          params: {
             page: page,
-            status: param_tab,
+            stage: param_tab,
          },
       });
 
-      return {
-         data: response.data?.data?.data,
-         hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number,
-      };
+      return response.data;
    },
 
    getMyOrder: async (orderSlug: string) => {
@@ -120,7 +123,7 @@ export const OrdersService = {
       return response.data;
    },
    likeOrder: async (orderSlug: string) => {
-      const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug);
+      const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug + "/");
       return response.data;
    },
 };
