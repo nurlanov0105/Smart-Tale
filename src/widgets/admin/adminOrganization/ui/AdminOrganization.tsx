@@ -1,24 +1,23 @@
 "use client";
 
-import React, {FC, useEffect} from "react";
+import React, { FC, useEffect } from "react";
 import { EmptyContent } from "@/entities/admin/emptyContent";
 import { OrganizationItem } from "@/entities/admin/organizationItem";
-import {Button, GlobalLoading} from "@/shared/ui";
+import { Button, GlobalLoading } from "@/shared/ui";
 import { EMPTY_CONTENT_TYPES } from "@/shared/lib/constants/consts";
-import {ORGANIZATION_ROUTES, useConfettiStore} from "@/shared/lib";
+import { ORGANIZATION_ROUTES, useConfettiStore } from "@/shared/lib";
 import { useRouter } from "next/navigation";
 import { OrganizationsTypes } from "../model/types";
 import styles from "./styles.module.scss";
-import {ConfettiComponent} from "@/entities/general/confetti";
-import {useOrganization} from "@/widgets/admin/adminOrganization/model/useOrganization";
+import { ConfettiComponent } from "@/entities/general/confetti";
+import { useOrganization } from "@/widgets/admin/adminOrganization/model/useOrganization";
 
 const AdminOrganization: FC = () => {
-
-   const {data, isLoading, isError, isSuccess} = useOrganization()
+   const { data, isLoading, isError, isSuccess } = useOrganization();
    const organizations = data && data["my-orgs"];
 
-   const isShow = useConfettiStore(state => state.isShow)
-   const endConfetti = useConfettiStore(state => state.endConfetti)
+   const isShow = useConfettiStore((state) => state.isShow);
+   const endConfetti = useConfettiStore((state) => state.endConfetti);
 
    const { push } = useRouter();
    const handleAdd = () => push(ORGANIZATION_ROUTES.CREATE_ORGANIZATION);
@@ -32,7 +31,7 @@ const AdminOrganization: FC = () => {
       // eslint-disable-next-line
    }, []);
 
-   if (isLoading) return <GlobalLoading type="default"/>
+   if (isLoading) return <GlobalLoading type="default" />;
 
    return (
       <>
@@ -49,7 +48,7 @@ const AdminOrganization: FC = () => {
                   .reverse()}
             </div>
          )}
-         <ConfettiComponent showConfetti={isShow}/>
+         <ConfettiComponent showConfetti={isShow} />
       </>
    );
 };

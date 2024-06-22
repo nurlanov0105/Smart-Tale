@@ -4,11 +4,11 @@ import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
 import { ChatProps } from "../model/types";
 import ChatForm from "./ChatForm";
 import { useThemeStore } from "@/shared/lib";
-import clsx from "clsx";
 import Select2 from "@/shared/ui/select/Select2";
 import { SELECT_TYPES } from "@/shared/lib";
 import { ChatsList } from "@/features/general/chatsList";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
+import clsx from "clsx";
 import styles from "./styles.module.scss";
 
 const Chats = () => {

@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import {closeModal, showModal} from "@/views/modal";
+import { closeModal, showModal } from "@/views/modal";
 import { CardSlider } from "@/features/general/cardSlider";
 import { CardCategory } from "@/features/general/cardCategory";
 import { Chat } from "@/features/user/chat";
@@ -11,7 +11,7 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { ErrorMessage } from "@/entities/general/errorMessage";
-import {CookiesServices, EnumTokens, images, MODAL_KEYS} from "@/shared/lib";
+import { CookiesServices, EnumTokens, images, MODAL_KEYS } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { AnnouncementRoutes, CardDetailsRoutes } from "../model/consts";
@@ -88,25 +88,25 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    };
 
    const handleRoute = () => {
-      const type = data?.data?.type?.toLowerCase()
-      const slug = data?.data?.slug
+      const type = data?.data?.type?.toLowerCase();
+      const slug = data?.data?.slug;
 
-      if (type === AnnouncementTypes.order && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${slug}`)
+      if (type === AnnouncementTypes.order && slug) {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${slug}`);
       }
-      if (type === AnnouncementTypes.equipment && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${slug}`)
+      if (type === AnnouncementTypes.equipment && slug) {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${slug}`);
       }
-      if (type === AnnouncementTypes.service && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${slug}`)
+      if (type === AnnouncementTypes.service && slug) {
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${slug}`);
       }
 
-      closeModal()
+      closeModal();
 
-      if (!slug){
-         showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.error})
+      if (!slug) {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.error });
       }
-   }
+   };
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>
@@ -176,18 +176,21 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                                  type !== AnnouncementTypes.order ? (
                                     <Button onClick={handleShowChat}>Написать</Button>
                                  ) : (
-                                    <Button onClick={handleOrder}>
-                                       {isOrderLoading ? "Загрузка..." : "Отправить заявку"}
+                                    <Button onClick={handleOrder} disabled={data.data?.is_applied}>
+                                       {isOrderLoading
+                                          ? "Загрузка..."
+                                          : data.data?.is_applied
+                                          ? "Запрос уже отправлен"
+                                          : "Отправить заявку"}
                                     </Button>
                                  )
                               ) : (
-                                  ""
+                                 ""
                               )}
 
-                              {
-                                  currentUser?.profile.slug === data.data.author?.slug &&
-                                  <Button onClick={handleRoute}>Изменить</Button>
-                              }
+                              {currentUser?.profile.slug === data.data.author?.slug && (
+                                 <Button onClick={handleRoute}>Изменить</Button>
+                              )}
 
                               <Button onClick={handleBtnClick} className={styles.modal__btn}>
                                  Подробнее

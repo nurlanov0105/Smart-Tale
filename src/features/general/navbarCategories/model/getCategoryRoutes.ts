@@ -24,7 +24,7 @@ export const getCategoryRoutes = ({
             { parentId: 1, subtitle: "Профиль", link: DASHBOARD.PROFILE },
             { parentId: 1, subtitle: "Мои объявления", link: DASHBOARD.LISTINGS },
             { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
-            {parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY,},
+            { parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY },
             { parentId: 1, subtitle: "Избранные", link: DASHBOARD.FAVORITES },
          ].filter((route) => !("subscribed" in route) || route.subscribed === subscribed),
          activeRoutes: [
@@ -42,7 +42,7 @@ export const getCategoryRoutes = ({
          isShow: true,
          routes: [
             { parentId: 2, subtitle: "Оборудования", link: MARKETPLACE.EQUIPMENT },
-            { parentId: 2, subtitle: "Заказы", link: MARKETPLACE.ORDERS, authorized: true },
+            { parentId: 2, subtitle: "Заказы", link: MARKETPLACE.ORDERS },
             { parentId: 2, subtitle: "Услуги", link: MARKETPLACE.SERVICES },
             {
                parentId: 2,
