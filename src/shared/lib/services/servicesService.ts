@@ -11,14 +11,13 @@ export const ServicesService = {
       });
 
       return {
-         data: response.data,
+         data: response.data?.data,
          hasNextPage: response.data.has_next_page,
          nextPage: response.data.next_page_number,
       };
    },
    getServiceSlug: async (slug: string) => {
       const response = await baseApiInstance.get(ServicesEndpoints.SERVICE_SLUG + slug);
-
       return response;
    },
    getMyServices: async (page: number) => {
@@ -51,7 +50,7 @@ export const ServicesService = {
       return response.data;
    },
    hideService: async (slug: string) => {
-      const response = await baseApiInstance.post(ServicesEndpoints.HIDE_SERVICE + slug);
+      const response = await baseApiInstance.put(ServicesEndpoints.HIDE_SERVICE + slug);
       return response.data;
    },
    likeService: async (slug: string) => {

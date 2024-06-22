@@ -24,7 +24,7 @@ export const useInitialEmployeeData = ({
 }: IProps) => {
 
     useEffect(() => {
-        if (isSuccess && isSuccess && data && positions) {
+        if (isSuccess && isSuccessPosition && data && positions) {
             const positionsList = positions.map((item, idx) => {
                 return {value: item.title, postValue: item.slug, idx, ...item}
             })
@@ -41,13 +41,12 @@ export const useInitialEmployeeData = ({
                 [EMPLOYEE_SETTINGS_NAMES.position]: selectedPosition,
                 user_slug: data.user_slug,
 
-
                 ...selectedPosition
             })
         }
 
         // eslint-disable-next-line
-    }, [isSuccess, isSuccessPosition]);
+    }, [isSuccess, isSuccessPosition, data, positions]);
 
 
 }

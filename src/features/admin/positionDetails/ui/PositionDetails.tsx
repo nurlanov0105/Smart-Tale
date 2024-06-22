@@ -2,45 +2,41 @@
 
 import React from "react";
 import clsx from "clsx";
-import { showModal } from "@/views/modal";
+import {useFormContext} from "react-hook-form";
+import {useParams} from "next/navigation";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
 import { useThemeStore } from "@/shared/store/themeStore";
-import { Button, InputField, TextArea } from "@/shared/ui";
-import {MODAL_KEYS, OWNER, ValidationsSchemasService} from "@/shared/lib";
+import {GlobalLoading, InputField, TextArea} from "@/shared/ui";
+import {AddPositionTypes,ValidationsSchemasService} from "@/shared/lib";
 
 import { POSITIONS_FORM_NAMES } from "../model/consts";
 import { usePositionDetails } from "../model/usePositionDetails";
 import { useInitialPositionData } from "../model/useInitialData";
+import PositionButtons from "./PositionButtons";
 import styles from "./styles.module.scss";
+import {ErrorMessage} from "@/entities/general/errorMessage";
+
 
 const PositionDetails = () => {
    const theme = useThemeStore((state) => state.theme);
+   const {slug} = useParams<{slug: string}>()
 
-   const handleDelete = () => {
-      if (OWNER === data?.title){
-         showModal(MODAL_KEYS.infoModal, { slug: slug.toString(), componentName: MODAL_KEYS.noChangeDeleteOwner })
-         return
-      }
-      showModal(MODAL_KEYS.confirmationModal, { slug: slug.toString(), componentName: MODAL_KEYS.deletePosition });
-   };
+   const {register, reset,} = useFormContext<AddPositionTypes>()
 
    const {
       data,
-      isSuccess,
-      isLoading,
-      isLoadingSubmitting,
-      slug,
-
       handleSubmit,
-      register,
-      isValid,
-      isDirty,
 
-      reset,
-      watch,
-   } = usePositionDetails();
+      isSuccess,
+      isError,
+      isLoading,
+      isSubmitting,
+   } = usePositionDetails(slug);
 
    const { actions } = useInitialPositionData({ data, isSuccess, reset });
+
+   if (isLoading) return <GlobalLoading type="full"/>
+   if (isError) return <ErrorMessage/>
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.position, styles[theme])}>
@@ -70,15 +66,11 @@ const PositionDetails = () => {
             </div>
          </div>
 
-         <div className={styles.position__btn}>
-            <Button onClick={handleDelete} classType="btn_danger" type="button">
-               Удалить должность
-            </Button>
-
-            <Button disabled={!isValid || isLoading} type="submit">
-               {isLoadingSubmitting ? "Загрузка..." : "Изменить должность"}
-            </Button>
-         </div>
+        <PositionButtons
+            isSubmitting={isSubmitting}
+            position={data?.title}
+            slug={slug}
+        />
       </form>
    );
 };

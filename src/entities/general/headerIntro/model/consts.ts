@@ -169,6 +169,10 @@ export const PathData: any = {
       path: "Организация/Должности",
       name: "Должности",
    },
+   [ORGANIZATION_ROUTES.CREATE_VACANCY]: {
+      path: "Организация/Добавить Вакансию",
+      name: "Добавить Вакансию",
+   },
    [ORGANIZATION_ROUTES.ADD_POSITION]: {
       path: "Организация/Должность",
       name: "Должность",
@@ -192,6 +196,10 @@ export const PathData: any = {
    [ORGANIZATION_ROUTES.ANNOUNCEMENT_DETAILS]: {
       path: "Организация/Детали заказа",
       name: "Детали заказа",
+   },
+   [ORGANIZATION_ROUTES.NO_RIGHTS]: {
+      path: "Организация/Уведомления",
+      name: "Уведомления",
    },
 
    [ROUTES.SUBSCRIBE]: {

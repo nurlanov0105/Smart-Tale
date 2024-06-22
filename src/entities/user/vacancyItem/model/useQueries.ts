@@ -2,7 +2,7 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {UseFormReset} from "react-hook-form";
 import { toast } from "react-toastify";
 import {ResumeQueryKeys, ServiceQueryKeys, VacancyQueryKeys} from "@/shared/api";
-import {ResumeService, VacancyFilterStore, VacancyService} from "@/shared/lib";
+import {ResumeService, useScrollTop, VacancyFilterStore, VacancyService} from "@/shared/lib";
 
 import type { ResumeType } from "@/shared/lib/types/resume-service.types";
 import type { VacancyCardType, ResumeRequestTypes } from "./types";
@@ -41,25 +41,29 @@ export const useGetVacancies = (page: number) => {
    });
 };
 export const useAddVacancy = () => {
-   const {push} = useRouter()
+   const {handleScrollToTop} = useScrollTop()
+   const queryClient = useQueryClient()
    return useMutation({
       mutationFn: (data: VacancyCardType) => VacancyService.addVacancy(data),
       mutationKey: [ServiceQueryKeys.SERVICES],
       onSuccess: () => {
-
+         queryClient.invalidateQueries({queryKey: [VacancyQueryKeys.GET_ORGANIZATION_VACANCIES]})
+         handleScrollToTop()
+         toast.success("Вы успешно разместили вакансию!")
       }
    });
 };
 export const useAddResumeQuery = (reset: UseFormReset<ResumeFormTypes>) => {
    const queryClient = useQueryClient()
+   const {handleScrollToTop} = useScrollTop()
    return useMutation({
       mutationFn: (data: ResumeType) => ResumeService.addResume(data),
       mutationKey: [ResumeQueryKeys.RESUME],
       onSuccess: () => {
          reset();
-         window.scroll(0, 0)
+         handleScrollToTop()
          queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.GET_MY_RESUMES, ResumeQueryKeys.GET_RESUMES]})
-         toast.success("Успешно разместили резюме!");
+         toast.success("Вы успешно разместили резюме!");
       },
    });
 };
@@ -72,10 +76,12 @@ export const useResumeDetailsQuery = (slug: string) => {
 
 export const useUpdateResumeQuery = ({reset, slug}: ResumeRequestTypes) => {
    const queryClient = useQueryClient()
+   const {handleScrollToTop} = useScrollTop()
    return useMutation({
       mutationFn: (data: ResumeType) => ResumeService.updateResume({data, slug}),
       mutationKey: [ResumeQueryKeys.RESUME],
       onSuccess: async () => {
+         handleScrollToTop()
          await queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.RESUME_DETAILS]})
          toast.success("Вы успешно обновили резюме!");
          reset()

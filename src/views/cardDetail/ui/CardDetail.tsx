@@ -1,11 +1,14 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { redirect } from "next/navigation";
 import { useGetCommonUserAds } from "@/widgets/user/cardsSection";
 import { SliderCards } from "@/widgets/user/sliderCards";
-import { Chat } from "@/widgets/user/chat";
+import { Chat } from "@/features/user/chat";
 import { CardSlider } from "@/features/general/cardSlider";
-import { useBuyEquipment, useOrderApply } from "@/widgets/general/cardModal";
+import {
+   AnnouncementRoutes,
+} from "@/widgets/general/cardModal";
 import { CardCategory } from "@/features/general/cardCategory";
 import { ISize, useFetchResource } from "@/features/user/standartCard";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
@@ -23,13 +26,15 @@ import {
 } from "@/shared/lib";
 
 import styles from "./styles.module.scss";
-import { FeedbackList } from "@/widgets/general/feedbackList";
 import { useLikeEquipment, useLikeOrder, useLikeService } from "@/entities/general/likeButton";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const { type, slug } = useAnnouncementType();
    const author = CookiesServices.getCookiesValue(EnumTokens.CARD_AUTHOR);
+   const currentUser = useSubscribeStore((state) => state.data);
+
    const {
       isError,
       isPending: isLoading,
@@ -43,32 +48,12 @@ const CardDetail = () => {
       data: isAdsData,
    } = useGetCommonUserAds({ slug: author || "", page: 1, param_tab: "all" });
 
-   const { mutate: buyEquipment, isPending: isbuyEquipmentLoading } = useBuyEquipment();
-   const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
    const { mutate: likeEquipment, isPending: likeEquipmentLoading } = useLikeEquipment(slug, type);
    const { mutate: likeOrder, isPending: likeOrderLoading } = useLikeOrder(slug, type);
    const { mutate: likeService, isPending: likeServiceLoading } = useLikeService(slug, type);
 
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
-   };
-
-   if (isError) {
-      return <h3 className="h3">Упс, произошла ошибка 😅</h3>;
-   }
-
-   if (isLoading) {
-      return <GlobalLoading type="full" />;
-   }
-
-   const handleBuy = () => {
-      buyEquipment(slug);
-   };
-
-   const handleService = () => {};
-
-   const handleOrder = () => {
-      orderApply(slug);
    };
 
    const handleLikeClick = () => {
@@ -104,6 +89,18 @@ const CardDetail = () => {
       }
    };
 
+   if (isError) {
+      return <h3 className="h3">Упс, произошла ошибка 😅</h3>;
+   }
+
+   if (isLoading) {
+      return <GlobalLoading type="full" />;
+   }
+
+   if (currentUser?.profile.slug === data.data.author?.slug) {
+      return redirect(AnnouncementRoutes[type] + `/${slug}`);
+   }
+
    return (
       <div className={styles.detailWrapper}>
          {isError ? (
@@ -118,6 +115,7 @@ const CardDetail = () => {
                   />
 
                   <div className={styles.detail__content}>
+                     <h2 className="h2">{data.data.title}</h2>
                      <AuthorInfo
                         fullName={data.data.author?.first_name + " " + data.data.author?.last_name}
                         avatarImg={data.data.author?.profile_image}
@@ -142,7 +140,6 @@ const CardDetail = () => {
                            </div>
                         )}
                      </div>
-                     {/* {type === "order" && isSuccess && <FeedbackList slug={data.data.slug} />} */}
                   </div>
                </div>
                <div className={styles.detail__right}>
@@ -157,7 +154,22 @@ const CardDetail = () => {
                   <div className={styles.detail__chat}>
                      <Chat author={data.data.author} />
                   </div>
-                  {type === AnnouncementTypes.equipment ? (
+                  <Button
+                     classType={data.data?.is_liked ? "btnBorder_active" : "btnBorder"}
+                     onClick={handleLikeClick}
+                     disabled={
+                        likeEquipmentLoading ||
+                        likeOrderLoading ||
+                        likeServiceLoading ||
+                        currentUser?.profile.slug === data.data.author?.slug
+                     }>
+                     {likeEquipmentLoading || likeOrderLoading || likeServiceLoading
+                        ? "Загрузка..."
+                        : data.data?.is_liked
+                        ? "В избранных"
+                        : "В избранные"}
+                  </Button>
+                  {/* {type === AnnouncementTypes.equipment ? (
                      <Button onClick={handleBuy}>
                         {isbuyEquipmentLoading ? "Загрузка..." : "Купить"}
                      </Button>
@@ -167,12 +179,7 @@ const CardDetail = () => {
                      <Button onClick={handleOrder}>
                         {isOrderLoading ? "Загрузка..." : "Принять заказ"}
                      </Button>
-                  )}
-                  <Button classType="btnBorder" onClick={handleLikeClick}>
-                     {likeEquipmentLoading || likeOrderLoading || likeServiceLoading
-                        ? "Загрузка..."
-                        : "В избранные"}
-                  </Button>
+                  )} */}
                </div>
             </div>
          )}

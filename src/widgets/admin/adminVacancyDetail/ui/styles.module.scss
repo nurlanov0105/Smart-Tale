@@ -135,6 +135,18 @@
       background-color: transparent ;
     }
 
+
+
+  }
+}
+@media screen and (max-width: 530px) {
+  .form{
+    &__btnsWrapper{
+      flex-direction: column-reverse;
+      justify-content: normal;
+      align-items: normal;
+      row-gap: 2rem;
+    }
   }
 }
 

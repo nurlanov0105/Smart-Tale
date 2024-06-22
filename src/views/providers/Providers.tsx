@@ -49,7 +49,6 @@ export default function Provider({ children }: PropsWithChildren) {
       ];
 
       const isDynamicPath = matchPath(dynamicPaths, pathname);
-      console.log(isDynamicPath);
 
       if (
          !isLoading &&

@@ -42,7 +42,7 @@ export const useWs = ({ url, token }: UseWsProps) => {
 };
 
 
-//"use client";
+// "use client";
 //
 // import { useEffect, useRef, useState } from "react";
 // import io from "socket.io-client";
@@ -51,7 +51,7 @@ export const useWs = ({ url, token }: UseWsProps) => {
 //     url: string;
 //     token: string;
 // }
-//
+
 // export const useWs = ({ url, token }: UseWsProps) => {
 //     const [isReady, setIsReady] = useState(false);
 //     const [val, setVal] = useState<any>(null);
@@ -63,6 +63,9 @@ export const useWs = ({ url, token }: UseWsProps) => {
 //         const socketInstance = io(url, {
 //             transports: ['websocket', 'polling', 'flashsocket'],
 //             extraHeaders: {
+//                 token: token
+//             },
+//             auth: {
 //                 token: token
 //             }
 //         });
@@ -94,7 +97,9 @@ export const useWs = ({ url, token }: UseWsProps) => {
 //     }, [url, token]);
 //
 //     const send = (message: any) => {
-//         socket.current.send(message)
+//         if (socket.current){
+//             socket.current.send(message)
+//         }
 //     };
 //
 //     return [isReady, val, send] as const;

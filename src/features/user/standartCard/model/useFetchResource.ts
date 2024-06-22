@@ -13,7 +13,6 @@ const useFetchResource = ({
    slug: string;
    isDetail?: boolean;
 }) => {
-   console.log(type);
    const queryFn = async () => {
       let url = "";
       url = ModalSlugEndpoints[type] + slug;

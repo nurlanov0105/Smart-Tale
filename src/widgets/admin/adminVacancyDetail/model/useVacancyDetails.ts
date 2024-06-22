@@ -1,42 +1,13 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { VacancyDetailsTypes } from "@/widgets/admin/adminVacancyDetail/model/types";
-import { VacancyQueryKeys } from "@/shared/api";
-import { VacancyService } from "@/shared/lib";
-import { useParams } from "next/navigation";
-import { VacancyUpdateTypes } from "@/entities/user/vacancyItem/model/types";
+import {useFormContext} from "react-hook-form";
 import { CurrencyType } from "@/shared/lib";
-import { toast } from "react-toastify";
+import {useUpdateVacancyQuery, useVacancyQuery} from "./useQueries";
+import { VacancyDetailsTypes } from "./types";
 
-export const useVacancyDetails = () => {
-   const {
-      reset,
-      register,
-      handleSubmit,
-      control,
-      watch,
-      formState: { errors, isValid, isDirty },
-      setValue,
-   } = useForm<VacancyDetailsTypes>({
-      mode: "onBlur",
-   });
+export const useVacancyDetails = (id: string) => {
+   const {handleSubmit} = useFormContext<VacancyDetailsTypes>()
 
-   const { id } = useParams();
-
-   const { data, isLoading, isSuccess, isError } = useQuery({
-      queryKey: [VacancyQueryKeys.VACANCY_DETAILS],
-      queryFn: () => VacancyService.getVacancyDetails(id.toString()),
-   });
-   const queryClient = useQueryClient();
-
-   const { mutate, isPending } = useMutation<any, Error, VacancyUpdateTypes>({
-      mutationKey: [VacancyQueryKeys.VACANCY_UPDATE],
-      mutationFn: ({ data, slug }) => VacancyService.changeVacancy({ data, slug }),
-      onSuccess: async () => {
-         await queryClient.invalidateQueries({ queryKey: [VacancyQueryKeys.VACANCY_DETAILS] });
-         toast.success("Поздравляем! Вы успешно обновили вакансию!");
-      },
-   });
+   const { data, isLoading, isSuccess, isError } = useVacancyQuery(id)
+   const { mutate, isPending } = useUpdateVacancyQuery()
 
    const onSubmit = (data: VacancyDetailsTypes) => {
       const adapter = {
@@ -45,24 +16,17 @@ export const useVacancyDetails = () => {
          schedule: data.schedule.postValue,
          location: data.location.postValue,
       };
-      mutate({ data: adapter, slug: id.toString() });
+      mutate({ data: adapter, slug: id });
    };
 
    return {
       handleSubmit: handleSubmit(onSubmit),
       vacancy: data,
+
       isLoading,
       isError,
       isSuccess,
-      updateVacancy: mutate,
       isSubmitting: isPending,
       id,
-
-      register,
-      reset,
-      isDirty,
-      errors,
-      isValid,
-      control,
    };
 };

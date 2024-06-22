@@ -10,22 +10,16 @@ import logo from "@@/logo.svg";
 import type { LogoProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    const theme = useThemeStore((state) => state.theme);
-   const [isMy, setIsMyOrg] = useState(false)
-   ;
+
+   const organization = useSubscribeStore(state => state.data)
+   const isMineOrg = organization?.org?.title === data?.title
 
    const {push} = useRouter()
-
    const handleEdit = () => push(ORGANIZATION_ROUTES.ORGANIZATION_SETTINGS + `/${data?.slug}`)
-
-   const {data: organization} = useOrganization(!!data)
-   const isMyOrganization = organization && organization["my-orgs"]?.some(item => item.slug === data?.slug) || false
-
-   useEffect(() => {
-      setIsMyOrg(isMyOrganization)
-   }, [isMyOrganization])
 
    return (
       <>
@@ -43,7 +37,9 @@ const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
 
                      <div className={styles.logo__block}>
                          <h1 className="h1">{data?.title}</h1>
-                        <button onClick={handleEdit}><Pencil/></button>
+                        {
+                            isMineOrg && <button onClick={handleEdit}><Pencil/></button>
+                        }
                      </div>
 
                  </div>

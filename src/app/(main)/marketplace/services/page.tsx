@@ -7,29 +7,21 @@ import { cookies } from "next/headers";
 
 export default async function EquipmentPage() {
    const data = await fetchServices();
-   // const data2 = Posts()
 
    if (!data) return <ErrorMessage />;
 
    return <CardSection2 initialData={data} queryKey={ServiceQueryKeys.SERVICES} />;
 }
-//
-// function Posts() {
-//    return  useQuery({
-//       queryKey: ['posts'],
-//       queryFn: fetchServices,
-//    })
-// }
 
 const fetchServices = async () => {
    const accessToken = cookies().get(EnumTokens.ACCESS_TOKEN);
    try {
       const res = await fetch(BASE_URL + ServicesEndpoints.SERVICES, {
-         cache: "no-cache",
-         headers: {
-            Authorization: `Bearer ${accessToken?.value}`,
-            "Content-Type": "application/json",
-         },
+         // headers: {
+         //    Authorization: `Bearer ${accessToken?.value}`,
+         //    "Content-Type": "application/json",
+         // },
+         next: { revalidate: 5 },
       });
 
       if (!res.ok) {

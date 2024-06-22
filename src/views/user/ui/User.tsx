@@ -27,11 +27,11 @@ const User = () => {
 
    const [type, setType] = useState(announcementTabs[0].postValue);
 
-    const initialData = {
-        data: [],
-        has_next_page: true,
-        next_page_number: 1
-    }
+   const initialData = {
+      data: [],
+      has_next_page: true,
+      next_page_number: 1,
+   };
 
    return (
       <div className={clsx(styles.user, styles[theme])}>
@@ -57,7 +57,6 @@ const User = () => {
                   </h4>
                   <div>
                      <p className={styles.user__mb}>{data.data.email}</p>
-                     <p className={styles.user__text}>Был(а) в сети 3 мин. назад</p>
                   </div>
 
                   {/* <div className={styles.user__more}>
@@ -73,11 +72,11 @@ const User = () => {
          <div className={styles.user__bottom}>
             <Tabs type={type} setType={setType} values={announcementTabs} />
          </div>
-          <CardSection2
-              dependencies={{slug, param_tab: type}}
-              initialData={initialData}
-              queryKey={UserQueryKeys.COMMON_USER}
-          />
+         <CardSection2
+            dependencies={{ slug, param_tab: type }}
+            initialData={initialData}
+            queryKey={UserQueryKeys.COMMON_USER}
+         />
          {/*<CardsSection*/}
          {/*   fetchFunction={UserService.getCommonUserAds}*/}
          {/*   queryKey={UserQueryKeys.COMMON_USER}*/}
