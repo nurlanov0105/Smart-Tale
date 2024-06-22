@@ -14,8 +14,9 @@ import {useResumeDetailsQuery} from "@/entities/user/vacancyItem/model/useQuerie
 import {WORK} from "@/shared/lib/routes.config";
 import Link from "next/link";
 import styles from "./styles.module.scss";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
-const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
+const ResumeInfo: FC = () => {
    const theme = useThemeStore((state) => state.theme);
    const [isInvited, setIsInvited] = useState(false)
    const handleInvite = () => {
@@ -28,7 +29,8 @@ const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
 
    const { data: resume, isLoading } = useResumeDetailsQuery(slug);
 
-   const isInvite = userSlug === resume?.author?.slug
+   const userSlug = useSubscribeStore(state => state.data?.profile?.slug)
+   const isMyResume = userSlug === resume?.author?.slug
 
    if (isLoading) return <GlobalLoading type="full" />;
 
@@ -39,7 +41,13 @@ const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
 
             <div className={styles.form__info}>
                <div>
-                  <Image src={avatar} alt="avatar" width={80} height={80} />
+                  <Image
+                      src={resume?.author?.profile_image || avatar}
+                      alt="avatar"
+                      width={80}
+                      height={80}
+                      className={styles.form__image}
+                  />
                </div>
                <div>
                   <div className={styles.form__initials}>
@@ -105,21 +113,20 @@ const ResumeInfo: FC<{userSlug: string | undefined}> = ({userSlug}) => {
             {/*</div>*/}
          </div>
          {
-             !isInvite &&
+             isMyResume &&
              <div className={styles.form__btns}>
-                <button className={styles.form__button} onClick={handleRoute} type="button">
-                   Изменить резюме
-                </button>
+                <Button onClick={handleRoute} type="button">Изменить резюме</Button>
              </div>
          }
          {
-             !isInvite &&
+             !isMyResume &&
              <div className={styles.form__btns}>
-                <button className={clsx(styles.form__button, isInvited && styles.active)} onClick={handleInvite} type="button">
+
+                <Button onClick={handleInvite} type="button">
                    {
                       isInvited ? "Отозвать приглашение" : "Отправить приглашение"
                    }
-                </button>
+                </Button>
              </div>
          }
       </form>

@@ -36,7 +36,7 @@ const Navbar = () => {
       }
    }, [pathname]);
 
-   if (isLoading) return <div className={styles.navbar}></div>;
+   // if (isLoading) return <div className={styles.navbar}></div>;
 
    return (
       <>
@@ -60,11 +60,7 @@ const Navbar = () => {
                </div>
             </div>
             <div ref={navbarRef} className={styles.navbar__scrollbox}>
-               {isLoadingSubscribe ? (
-                  <GlobalLoading type="default" />
-               ) : (
-                  <NavbarCategories isAuth={isAuth} />
-               )}
+               <NavbarCategories isAuth={isAuth} />
             </div>
             <div className={styles.navbar__bottom}>
                {!categoryType && !isSubscribe && <SubscribeBox />}

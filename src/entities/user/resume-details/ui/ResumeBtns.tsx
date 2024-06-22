@@ -12,8 +12,9 @@ interface IProps {
    isDirty: boolean;
    isValid: boolean;
    isSubmitting: boolean;
+   isHidden?: boolean;
 }
-const ResumeBtns: FC<IProps> = ({ isSubmitting, isValid, reset, isDirty }) => {
+const ResumeBtns: FC<IProps> = ({ isSubmitting, isValid, reset, isDirty, isHidden }) => {
    const handleReset = () => reset();
 
    const { slug } = useParams();

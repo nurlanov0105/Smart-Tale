@@ -11,7 +11,7 @@ export const EquipmentService = {
       });
 
       return {
-         data: response.data,
+         data: response.data?.data,
          hasNextPage: response.data.has_next_page,
          nextPage: response.data.next_page_number,
       };
@@ -79,7 +79,7 @@ export const EquipmentService = {
       return response.data;
    },
    deleteEquipment: async (slug: string) => {
-      const response = await baseApiInstance.put(EquipmentsEndpoints.DELETE_EQUIPMENT + slug);
+      const response = await baseApiInstance.post(EquipmentsEndpoints.DELETE_EQUIPMENT + slug);
       return response.data;
    },
 

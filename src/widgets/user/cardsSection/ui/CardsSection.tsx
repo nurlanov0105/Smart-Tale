@@ -25,9 +25,6 @@ const CardsSection: FC<CardSectionProps> = ({
       param_tab,
    });
 
-   if (!isLoading) {
-      console.log("data isLoading -", data);
-   }
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (

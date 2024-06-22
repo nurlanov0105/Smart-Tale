@@ -11,6 +11,7 @@ type showModal = {
 
 export type ModalProps = {
    slug?: string;
+   organizationSlug?: string
    // type?: "order" | "equipment" | "service";
    type?: string;
    componentName?: string

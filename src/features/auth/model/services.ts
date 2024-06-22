@@ -26,7 +26,9 @@ export const authApi = {
    },
 
    emailAvailable: async (email: string) => {
-      return await authApiInstance.post(AuthEndpoints.EMAIL_AVAILABLE, email, {headers: { "Content-Type": "text/plain" },});
+      return await authApiInstance.post(AuthEndpoints.EMAIL_AVAILABLE, email, {
+         headers: { "Content-Type": "text/plain" },
+      });
    },
 
    resendCode: async (email: IResendCodeRequest) => {
@@ -38,7 +40,7 @@ export const authApi = {
    },
 
    resetPassword: async (params: IResetPasswordRequest) => {
-      return  await authApiInstance.put(AuthEndpoints.RESET_PASSWORD, params);
+      return await authApiInstance.put(AuthEndpoints.RESET_PASSWORD, params);
    },
 
    logout: async (params: LogoutType) => {

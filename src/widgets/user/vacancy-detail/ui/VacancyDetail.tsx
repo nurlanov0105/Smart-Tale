@@ -8,6 +8,9 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import {useResponse} from "@/shared/lib";
+import dynamic from "next/dynamic";
+
+const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
 
 const VacancyDetail = () => {
    const theme = useThemeStore((state) => state.theme);
@@ -33,7 +36,7 @@ const VacancyDetail = () => {
       return <ErrorMessage />;
    }
 
-   if (!data?.data) {
+   if (!data) {
       return <ErrorMessage isEmpty={true} />;
    }
 
@@ -42,17 +45,24 @@ const VacancyDetail = () => {
          <div className={styles.detail__left}>
             <h3 className={styles.detail__title}>Описание вакансии</h3>
             <div className={styles.detail__vacancy}>
-               <h3 className="h3">{data?.data.job_title}</h3>
+               <h3 className="h3">{data?.job_title}</h3>
 
                <p className={styles.detail__salary}>
-                  от {`${Math.round(+data?.data?.min_salary)}`} до{" "}
-                  {`${Math.round(+data?.data?.max_salary)}`} {data?.data?.currency} на руки
+                  от <PriceFormat
+                   price={+data?.min_salary}
+                   type={data.currency}
+                   variant="number"
+               /> до <PriceFormat
+                   price={+data?.max_salary}
+                   type={data.currency}
+               /> на руки
                </p>
-               <p className={styles.detail__text}>Организация: {data?.data?.organization.title}</p>
+
+               <p className={styles.detail__text}>Организация: {data?.organization.title}</p>
                <p className={styles.detail__text}>
-                  Требуемый опыт работы: {data?.data?.experience}
+                  Требуемый опыт работы: {data?.experience}
                </p>
-               <p className={styles.detail__text}>{data?.data?.schedule}</p>
+               <p className={styles.detail__text}>{data?.schedule}</p>
                <div>
                   {/*<button onClick={handleResponse} className={styles.detail__button}>*/}
                   {/*   Откликнуться*/}
@@ -85,7 +95,7 @@ const VacancyDetail = () => {
                </p>
             </div>
             <div className={styles.detail__info}>
-               <p className={styles.detail__description}>{data?.data?.description}</p>
+               <p className={styles.detail__description}>{data?.description}</p>
                {/* <h4 className="h4">Обязанности:</h4>
                <ul className={styles.detail__list}>
                   <li className={styles.detail__item}>

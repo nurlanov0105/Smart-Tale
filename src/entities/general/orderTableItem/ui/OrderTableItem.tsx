@@ -9,18 +9,18 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import clsx from "clsx";
 import { OrderTableItemProps } from "../model/types";
 import { useRouter } from "next/navigation";
-import {boardHeadings} from "@/features/user/boardColumn/model/consts";
+import { boardHeadings } from "@/features/user/boardColumn/model/consts";
 import styles from "./styles.module.scss";
-import {getDate, getMonth, getYear} from "date-fns";
-import {monthsForDate} from "@/widgets/admin/adminOrganizationDetail/model/helper";
+import { getDate, getMonth, getYear } from "date-fns";
+import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const router = useRouter();
 
-   if (!item) return null
+   if (!item) return null;
 
-   const { slug, title, price, booked_at, type,status, deadline  } = item;
+   const { slug, title, price, booked_at, type, status, deadline } = item;
 
    const handleItemClick = () => {
       if (type === "Order") {
@@ -32,12 +32,17 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
       }
    };
 
-   const day = getDate(deadline ?? "2024")
-   const year = getYear(deadline ?? "2024")
-    const month = getMonth(deadline ?? "2024")
-    const monthFormat = monthsForDate()[month]
+   const deadlineday = getDate(deadline);
+   const deadlineyear = getYear(deadline);
+   const deadlinemonth = getMonth(deadline);
+   const deadlinemonthFormat = monthsForDate()[deadlinemonth];
 
-   const statusOrder = boardHeadings["Waiting"]
+   const day = getDate(booked_at);
+   const year = getYear(booked_at);
+   const month = getMonth(booked_at);
+   const monthFormat = monthsForDate()[month];
+
+   const statusOrder = boardHeadings[status];
 
    return (
       <li className={clsx(styles.item, styles[theme])}>
@@ -45,21 +50,20 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
             {title}
          </span>
          <span>{Math.round(Number(price))} сом</span>
-          <span>
-              {
-                  booked_at
-              }
-              3 апреля 2024 год
-          </span>
          <span>
-             {day} {monthFormat.value} {year} года
+            {day} {monthFormat.value} {year} года
          </span>
          <span>
-             <span className={styles.item__status} style={{
-                 backgroundColor: statusOrder[theme]
-             }}>
-                 {statusOrder.name}
-             </span>
+            {deadlineday} {deadlinemonthFormat.value} {year} года
+         </span>
+         <span>
+            <span
+               className={styles.item__status}
+               style={{
+                  backgroundColor: statusOrder[theme],
+               }}>
+               {statusOrder.name}
+            </span>
          </span>
       </li>
    );

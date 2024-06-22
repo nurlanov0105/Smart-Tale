@@ -31,7 +31,7 @@ export const dataMap = {
         title: "Тут еще нет вакансий",
         description: "Добавьте новую вакансию и разместите \n её, чтобы другие видели",
         button: "Добавить",
-        route: WORK.CREATE_VACANCY
+        route: ORGANIZATION_ROUTES.CREATE_VACANCY
     },
 
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import Link from "next/link";
 import clsx from "clsx";
@@ -6,10 +8,13 @@ import { useThemeStore } from "@/shared/store/themeStore";
 
 import { ResumeItemProps } from "../model/types";
 import styles from "@/entities/user/vacancyItem/ui/styles.module.scss";
+import dynamic from "next/dynamic";
 
+const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
 const ResumeItem = ({ item }: ResumeItemProps) => {
    const theme = useThemeStore((state) => state.theme);
 
+   console.log(item)
    return (
       <Link
          href={`${WORK.RESUME_INFO + `/${item?.slug}`}`}
@@ -19,7 +24,9 @@ const ResumeItem = ({ item }: ResumeItemProps) => {
                <h4 className={styles.item__title}>{item?.job_title}</h4>
                <h3 className={styles.item__salary}>
                   {/*{item.min_salary} - {item.max_salary}*/}
-                  10 000 - 30 000
+                  10 000 - 20 000 KGS
+                  {/*<PriceFormat price={item.min_salary} type={item.currency} variant="number"/> -*/}
+                  {/*<PriceFormat price={item.max_salary} type={item.currency}/>*/}
                </h3>
             </div>
             <div>
@@ -44,7 +51,7 @@ const ResumeItem = ({ item }: ResumeItemProps) => {
             </div>
          </div>
          <div>
-            <button className={styles.item__button}>Отправить приглашение</button>
+            <button className={styles.item__button}>Посмотреть подробнее</button>
          </div>
       </Link>
    );

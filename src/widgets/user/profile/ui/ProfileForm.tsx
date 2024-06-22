@@ -15,7 +15,6 @@ import { ProfileData } from "../model/types";
 
 const ProfileForm: FC = () => {
    const {
-      register,
       handleSubmit,
       formState: { errors },
    } = useForm<ProfileData>();

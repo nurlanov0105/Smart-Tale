@@ -7,9 +7,9 @@ export type ResumeCardType = {
     }
     job_title: string;
     slug: string;
-    // min_salary: string;
-    // max_salary: string;
-    // currency: CurrencyType;
+    min_salary: number;
+    max_salary: number;
+    currency: string;
     // organization: OrganizationType;
     // location: string;
     experience: string;

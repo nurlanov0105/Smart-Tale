@@ -1,24 +1,24 @@
-"use client"
+"use client";
 
-import {useRouter} from "next/navigation";
-import {MODAL_KEYS, ROUTES, useAuth} from "@/shared/lib";
+import { useRouter } from "next/navigation";
+import { MODAL_KEYS, ROUTES, useAuth } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
-import {showModal} from "@/views/modal";
+import { showModal } from "@/views/modal";
 import styles from "./styles.module.scss";
 
 const NoticeBtn = () => {
    const theme = useThemeStore((state) => state.theme);
-    const {push} = useRouter()
+   const { push } = useRouter();
 
-    const {isAuth} = useAuth()
+   const { isAuth } = useAuth();
 
    const handleRoute = () => {
-       if (!isAuth) {
-           showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.authNotice})
-           return
-       }
-       push(ROUTES.NOTICES)
-   }
+      if (!isAuth) {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.authNotice });
+         return;
+      }
+      push(ROUTES.NOTICES);
+   };
 
    return (
       <button onClick={handleRoute} className={styles[theme]}>

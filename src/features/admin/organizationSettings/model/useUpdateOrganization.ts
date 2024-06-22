@@ -1,50 +1,41 @@
 import {useParams} from "next/navigation";
-import {useMutation, useQueryClient} from "@tanstack/react-query";
-import {useForm} from "react-hook-form";
-import {toast} from "react-toastify";
-import {OrganizationQueryKeys} from "@/shared/api";
-import {OrganizationService, useOrganizationDetails} from "@/shared/lib";
+import {useFormContext} from "react-hook-form";
+import {MODAL_KEYS, OWNER, useOrganizationDetails} from "@/shared/lib";
 import {UpdateOrganizationTypes} from "../model/types";
 import {UPDATE_ORGANIZATION_NAMES} from "../model/consts";
+import {useUpdateOrg} from "./useQueries";
+import {showModal} from "@/views/modal";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 export const useUpdateOrganization = (isEdited: boolean) => {
+
     const {
         reset,
-        register,
-        handleSubmit,
-        control,
-        watch,
-        setValue,
-        formState: {errors, isValid}
-    } = useForm<UpdateOrganizationTypes>({
-        mode: "onBlur"
-    })
+        handleSubmit
+    } = useFormContext<UpdateOrganizationTypes>()
 
-    const {slug} = useParams()
-    const {data, isLoading, isError, isSuccess} = useOrganizationDetails(slug.toString())
-
-    const queryClient = useQueryClient()
-
+    const {slug} = useParams<{slug:string}>()
+    const position = useSubscribeStore(state => state.position)
 
     const {
-        mutate ,
-        isPending,
-    } = useMutation<any, Error, {data: any, slug: string}>({
-        mutationKey: [OrganizationQueryKeys.CREATE_ORGANIZATION],
-        mutationFn: ({data, slug}) => OrganizationService.updateOrganization(data, slug),
-        onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.ORGANIZATION_DETAILS]})
-            reset()
-            toast.success("Поздравляем! Вы успешно обновили организацию!")
-        }
-    })
+        data,
+        isLoading,
+        isError,
+        isSuccess} = useOrganizationDetails(slug)
+
+    const {mutate, isPending} = useUpdateOrg(reset)
+
     const onsSubmit = (data: UpdateOrganizationTypes) => {
+        if (position.job_title !== OWNER){
+            showModal(MODAL_KEYS.infoModal, {slug, componentName: MODAL_KEYS.noRights})
+            return
+        }
         const formData = new FormData()
-        Object.entries(data).map(item => {
-            if (!isEdited && item[0] === UPDATE_ORGANIZATION_NAMES.logo){
+        Object.entries(data).map(([key, value]) => {
+            if (!isEdited && key === UPDATE_ORGANIZATION_NAMES.logo){
                 return
             } else {
-                formData.append(item[0], item[1] as string)
+                formData.append(key, value as string)
             }
         })
 
@@ -55,19 +46,10 @@ export const useUpdateOrganization = (isEdited: boolean) => {
     return {
         handleSubmit: handleSubmit(onsSubmit),
         data,
+
         isLoading,
         isSuccess,
-        isSubmitting: isPending,
         isError,
-
-
-        register,
-        watch,
-        reset,
-        errors,
-        isValid,
-        control,
-        setValue
-
+        isSubmitting: isPending
     }
 }

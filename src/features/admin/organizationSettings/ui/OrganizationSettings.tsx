@@ -1,36 +1,41 @@
 "use client"
 import React, {useCallback, useState} from "react";
+import {useFormContext, useWatch} from "react-hook-form";
 import clsx from "clsx";
-import {Button, GlobalLoading, InputField, TextArea} from "@/shared/ui";
+
+import {GlobalLoading, InputField, TextArea} from "@/shared/ui";
 import {useThemeStore} from "@/shared/store/themeStore";
 import {ChangeLogo} from "@/entities/user/changeLogo";
-import {MODAL_KEYS, ValidationsSchemasService} from "@/shared/lib";
+import { ValidationsSchemasService} from "@/shared/lib";
+
 import {UPDATE_ORGANIZATION_NAMES} from "../model/consts";
 import {useUpdateOrganization} from "../model/useUpdateOrganization";
 import {useInitialOrganizationSettings} from "../model/useInitialData";
+import OrganizationButtons from "./OrganizationButtons";
+import type {UpdateOrganizationTypes} from "../model/types";
 import styles from "./styles.module.scss";
-import {showModal} from "@/views/modal";
-import {useParams, useSearchParams} from "next/navigation";
-import {CREATE_ORGANIZATION_NAMES} from "@/features/admin/organizationForm";
 
 const OrganizationSettings = () => {
     const theme = useThemeStore((state) => state.theme);
     const [isEdited, setIsEdited] = useState(false)
-    const {slug} = useParams()
+
+    const {
+        reset,
+        register,
+        control,
+        setValue,
+        watch
+    } = useFormContext<UpdateOrganizationTypes>()
 
     const {
         data,
-        isSubmitting,
         isLoading,
         isSuccess,
-
+        isSubmitting,
         handleSubmit,
-        watch,
-        reset,
-        register,
-        setValue} = useUpdateOrganization(isEdited)
+    } = useUpdateOrganization(isEdited)
 
-    const image = watch(UPDATE_ORGANIZATION_NAMES.logo)
+    const image = useWatch({control, name: UPDATE_ORGANIZATION_NAMES.logo})
 
     useInitialOrganizationSettings({reset, data, isSuccess})
 
@@ -38,13 +43,9 @@ const OrganizationSettings = () => {
         const files = event.target.files;
         if (files){
             setIsEdited(true)
-            setValue(CREATE_ORGANIZATION_NAMES.logo, files[0], { shouldValidate: true });
+            setValue(UPDATE_ORGANIZATION_NAMES.logo, files[0], { shouldValidate: true, shouldDirty: true });
         }
     }, [setValue])
-
-    const handleDelete = useCallback(() => {
-        showModal(MODAL_KEYS.confirmationModal, {slug: slug.toString(), componentName: MODAL_KEYS.deleteOrganization});
-    }, [slug]);
 
     if(isLoading) return <GlobalLoading type="full"/>
 
@@ -66,12 +67,7 @@ const OrganizationSettings = () => {
                     type="default"
                 />
             </div>
-            <div className={styles.form__button}>
-                <Button onClick={handleDelete} type="button" classType="btn_danger">Удалить организацию</Button>
-                <Button type="submit">{
-                    isSubmitting ? "Загрузка..." : "Изменить организацию"
-                }</Button>
-            </div>
+            <OrganizationButtons isSubmitting={isSubmitting}/>
         </form>
     );
 };

@@ -13,4 +13,10 @@ export type EmployeeOrderTypes = {
     price: string
     currency: string
     image: string
+    author: {
+        slug: string,
+        first_name: string,
+        last_name: string,
+        profile_image: null | string
+    },
 };

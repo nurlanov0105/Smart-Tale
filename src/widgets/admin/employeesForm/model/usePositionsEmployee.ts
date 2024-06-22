@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { UseFormReset } from "react-hook-form";
 import { AddEmployeeTypes, usePositions } from "@/shared/lib";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 interface IProps {
    reset: UseFormReset<AddEmployeeTypes>;
@@ -8,6 +9,7 @@ interface IProps {
 
 export const usePositionsEmployee = ({ reset }: IProps) => {
    const { data, isError, isSuccess, isLoading } = usePositions();
+   const profileData = useSubscribeStore(state => state.data)
 
    useEffect(() => {
       if (isSuccess && data) {
@@ -19,10 +21,19 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
                ...item,
             };
          });
+         const organization = profileData?.org.title
+         const organizations = profileData?.job_titles.map(item => {
+             if (item.organization === null) {
+                 return
+             }
+             return {value: item.organization, postValue: item.organization}
+         })
 
          reset({
-            position: positionsList[0],
-            positions: positionsList,
+             position: positionsList[0],
+             positions: positionsList,
+             organization: {value: organization, postValue: organization},
+             organizations: organizations
          });
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

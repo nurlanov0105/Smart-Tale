@@ -1,51 +1,53 @@
 "use client";
 import React from "react";
 import { useParams } from "next/navigation";
-import { Controller } from "react-hook-form";
+import {Controller, useFormContext, useWatch} from "react-hook-form";
 
-import { showModal } from "@/views/modal";
 import { AdminBack } from "@/entities/admin/adminBack";
-import { Button, InputField, PhoneInput, Select } from "@/shared/ui";
-import { MODAL_KEYS, useInitialRights } from "@/shared/lib";
+import {GlobalLoading, InputField, PhoneInput, Select} from "@/shared/ui";
+import {EmployeeDetailsTypes, useInitialRights} from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
+import {ErrorMessage} from "@/entities/general/errorMessage";
 
 import { useEmployeeDetails } from "../model/useEmployeeDetails";
 import { useInitialEmployeeData } from "../model/useInitialData";
 import { EMPLOYEE_SETTINGS_NAMES } from "../model/helper";
+import EmployeeButtons from "./EmployeeButtons";
 import styles from "./styles.module.scss";
 
 const AdminEmployeesSettings = () => {
    const theme = useThemeStore((state) => state.theme);
-
    const { slug } = useParams<{slug: string}>();
-   const handleDelete = () => {
-      showModal(MODAL_KEYS.confirmationModal, { slug, componentName: MODAL_KEYS.deleteEmployee });
-   };
+   const {
+      register,
+      control,
+      reset,
+   } = useFormContext<EmployeeDetailsTypes>()
+
 
    const {
       data,
       isSuccess,
       isError,
       isLoading,
-      positions,
-      isSuccessPosition,
-      isLoadingPosition,
-      setValue,
 
+      positions,
+      isLoadingPosition,
+      isSuccessPosition,
+
+      isSubmitting,
       handleSubmit,
-      register,
-      control,
-      reset,
-      watch,
-   } = useEmployeeDetails(slug.toString());
+   } = useEmployeeDetails(slug);
+
+   const positionsList = useWatch({control, name: EMPLOYEE_SETTINGS_NAMES.positions});
+   const selectedPosition = useWatch({control, name: EMPLOYEE_SETTINGS_NAMES.position});
 
    useInitialEmployeeData({ reset, data, isSuccess, positions, isSuccessPosition });
-
-   const positionsList = watch(EMPLOYEE_SETTINGS_NAMES.positions);
-   const selectedPosition = watch(EMPLOYEE_SETTINGS_NAMES.position);
-
    const { actions } = useInitialRights({ data: positions, position: selectedPosition });
+
+   if (isLoading || isLoadingPosition) return <GlobalLoading type="full"/>
+   if (isError) return <ErrorMessage/>
 
    return (
       <form onSubmit={handleSubmit} className={styles[theme]}>
@@ -126,12 +128,7 @@ const AdminEmployeesSettings = () => {
                </ul>
             </fieldset>
          </div>
-         <div className={styles.form__btn}>
-            <Button type="button" onClick={handleDelete} classType="btn_danger">
-               Удалить сотрудника
-            </Button>
-            <Button type="submit">Сохранить</Button>
-         </div>
+        <EmployeeButtons isSubmitting={isSubmitting} slug={slug}/>
       </form>
    );
 };

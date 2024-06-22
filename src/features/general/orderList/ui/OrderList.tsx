@@ -40,10 +40,6 @@ const OrderList: FC<Props> = ({
 
    const pathname = usePathname();
 
-   if (!isLoading) {
-      console.log("search res -", data);
-   }
-
    const readyData = isError ? (
       <h3 className="h3">Упс, произошла ошибка 😅</h3>
    ) : isLoading ? (
@@ -51,7 +47,6 @@ const OrderList: FC<Props> = ({
    ) : (
       data?.map((item, i: number) => {
          if (pathname.includes("work-vacancies")) {
-            // @ts-ignore
             return <VacancyItem item={item} key={i} />;
          } else if (pathname.includes("work-resumes")) {
             // @ts-ignore

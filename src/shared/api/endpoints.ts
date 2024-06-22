@@ -59,9 +59,9 @@ export const ServicesEndpoints = {
 };
 
 export const UserEndpoints = {
-   MY_PROFILE: "/my-profile",
-   MY_PROFILE_CHANGE: "/my-profile",
-   SUBSCRIBE: "/subscribe",
+   MY_PROFILE: "/my-profile/",
+   MY_PROFILE_CHANGE: "/my-profile/",
+   SUBSCRIBE: "/subscribe/",
    COMMON_USER: "/u/",
    COMMON_USER_ADS: "/u-ads/",
    SEARCH: "/ads-search",
@@ -80,7 +80,7 @@ export const VacancyEndpoints = {
    ADD_VACANCY: "/add-vacancy/",
    CHANGE_VACANCY: "/change-vacancy/",
    DELETE_VACANCY: "/delete-vacancy/",
-   HIDE_VACANCY: "/vacancy-hide/",
+   HIDE_VACANCY: "/vacancy/hide/",
 };
 export const ResumeEndpoints = {
    ADD_RESUME: "/add-resume/",

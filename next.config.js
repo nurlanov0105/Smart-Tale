@@ -12,8 +12,20 @@ const nextConfig = {
       additionalData: `@import "_vars.scss"; @import "_mixins.scss";`,
    },
    images: {
-      domains: ['res.cloudinary.com'],
-
+      domains: ["res.cloudinary.com"],
+   },
+   async headers() {
+      return [
+         {
+            source: "/firebase-messaging-sw.js",
+            headers: [
+               {
+                  key: "Service-Worker-Allowed",
+                  value: "/",
+               },
+            ],
+         },
+      ];
    },
 };
 
@@ -25,5 +37,3 @@ const withPWA = require("next-pwa")({
 });
 
 module.exports = withPWA(nextConfig);
-
-//export default nextConfig;

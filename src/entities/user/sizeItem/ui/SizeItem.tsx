@@ -13,7 +13,7 @@ const SizeItem:FC<ISize> = ({
         idx,
         size,
         setValue,
-        sizes
+        sizes,
 }) => {
 
     const handleRemoveItem = (index: number) => {

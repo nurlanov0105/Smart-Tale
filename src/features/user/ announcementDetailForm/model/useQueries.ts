@@ -1,9 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { EquipmentQueryKeys, ServiceQueryKeys } from "@/shared/api";
-import { EquipmentService, OrdersService, ServicesService } from "@/shared/lib";
+import {EquipmentService, OrdersService, ServicesService, useScrollTop} from "@/shared/lib";
 import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 import {toast} from "react-toastify";
-import {UseFormReset} from "react-hook-form";
 
 export const useGetOrder = (slug: string, type: string) => {
    return useQuery({
@@ -34,12 +33,14 @@ export const useGetService = (slug: string, type: string) => {
 
 export const useUpdateOrder = () => {
    const queryClient = useQueryClient();
+   const {handleScrollToTop} = useScrollTop()
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [OrdersQueryKeys.ORDER_UPDATE],
       mutationFn: ({ data, slug }) => OrdersService.updateOrder({ params: data, orderSlug: slug }),
       onSuccess: async() => {
          await queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
          toast.success("Поздравлям! Вы успешно обновили заказ!");
+         handleScrollToTop
       },
       onError: () => {
          toast.error("Произошла ошибка при запросе, попробуйте еще раз")
@@ -48,12 +49,14 @@ export const useUpdateOrder = () => {
 };
 
 export const useUpdateEquipment = () => {
+   const {handleScrollToTop} = useScrollTop()
    const queryClient = useQueryClient();
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [EquipmentQueryKeys.EQUIPMENT_UPDATE],
       mutationFn: ({ data, slug }) => EquipmentService.updateEquipment({ params: data, equipmentSlug: slug }),
       onSuccess: async () => {
          await queryClient.invalidateQueries({queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENT]})
+         handleScrollToTop()
          toast.success("Поздравлям! Вы успешно обновили оборудование!")
       },
       onError: () => {
@@ -64,6 +67,7 @@ export const useUpdateEquipment = () => {
 
 export const useUpdateService = () => {
    const queryClient = useQueryClient();
+   const {handleScrollToTop} = useScrollTop()
 
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [ServiceQueryKeys.UPDATE_SERVICE],
@@ -71,9 +75,42 @@ export const useUpdateService = () => {
       onSuccess: async () => {
          await queryClient.invalidateQueries({queryKey: [ServiceQueryKeys.GET_MY_SERVICE]})
          toast.success("Поздравлям! Вы успешно обновили услугу!")
+         handleScrollToTop
       },
       onError: () => {
          toast.error("Произошла ошибка при запросе, попробуйте еще раз")
       },
    });
 };
+
+
+export const useAnnouncementDetailsType = (slug: string, type: string) => {
+   const getOrder = useGetOrder(slug, type)
+   const getEquipment = useGetEquipment(slug, type)
+   const getService = useGetService(slug, type)
+
+   const dataMap = {
+      order: getOrder,
+      equipment: getEquipment,
+      service: getService
+   };
+   const responseData = dataMap[type as keyof typeof dataMap]
+
+   return responseData
+}
+
+
+export const useAnnouncementAction = (type: string) => {
+   const updateOrder = useUpdateOrder()
+   const updateEquipment = useUpdateEquipment()
+   const updateService = useUpdateService()
+
+   const updateAnnouncementMap = {
+      order: updateOrder,
+      equipment: updateEquipment,
+      service: updateService
+   };
+   const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap]
+
+   return updateData
+}

@@ -6,8 +6,8 @@ export const ValidationsSchemasService = {
          message: "Поле должно содержать не менее 2 символов",
       },
       maxLength: {
-         value: 25,
-         message: "Поле не должно содержать более 25 символов",
+         value: 50,
+         message: "Поле не должно содержать более 50 символов",
       },
    },
 

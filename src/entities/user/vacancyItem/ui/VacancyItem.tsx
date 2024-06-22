@@ -1,20 +1,27 @@
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import { BriefcaseBusiness } from "lucide-react";
-import { VacancyItemProps } from "../model/types";
-import styles from "./styles.module.scss";
-import { useThemeStore } from "@/shared/store/themeStore";
-import clsx from "clsx";
+import {useRouter} from "next/navigation";
+import dynamic from "next/dynamic";
 import Link from "next/link";
+import clsx from "clsx";
+import { VacancyItemProps } from "../model/types";
+import { useThemeStore } from "@/shared/store/themeStore";
 import { ORGANIZATION_ROUTES, WORK } from "@/shared/lib/routes.config";
-import {Button} from "@/shared/ui";
+import styles from "./styles.module.scss";
+
+const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
 
 const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin, response }) => {
    const theme = useThemeStore((state) => state.theme);
-   const [isResponsed, setIsResponsed] = useState(false)
+   // const [isResponsed, setIsResponsed] = useState(false)
 
-   const handleResponse = () => {
-      setIsResponsed(!isResponsed)
-      response && response.mutate({slug: item.slug})
+   // const handleResponse = () => {
+   //    setIsResponsed(!isResponsed)
+   //    response && response.mutate({slug: item.slug})
+   // }
+   const {push} = useRouter()
+   const handleRoute = () => {
+      push(`${WORK.VACANCY_DETAIL}/${item.slug}`)
    }
 
    if (!item) return
@@ -27,8 +34,10 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin, response }
                   <div>
                      <Link href={`${WORK.VACANCY_DETAIL}/${item.slug}`} className={styles.item__title}>{item.job_title}</Link>
                      <Link href={`${WORK.VACANCY_DETAIL}/${item.slug}`} className={styles.item__salary}>
-                        {`${Math.round(+item.min_salary)}`} - {`${Math.round(+item.max_salary)}`}{" "}
-                        {item.currency}
+                        {/*{`${Math.round(+item.min_salary)}`} - {`${Math.round(+item.max_salary)}`}{" "}*/}
+                        <PriceFormat variant="number" type={item.currency} price={item.min_salary}/> -
+                        <PriceFormat type={item.currency} price={item.max_salary}/>
+                        {/*{item.currency}*/}
                      </Link>
                   </div>
                   <div>
@@ -51,10 +60,10 @@ const VacancyItem: FC<VacancyItemProps> = ({ item, typeView, isAdmin, response }
                </div>
                <div>
 
-                  <button onClick={handleResponse} className={clsx(styles.item__button, isResponsed && styles.active)}>
-                     {
-                        !isResponsed ? "Откликнуться" : "Отозвать отклик"
-                     }
+                  <button onClick={handleRoute} className={clsx(styles.item__button,
+                      // isResponsed && styles.active
+                  )}>
+                     Посмотреть подробнее
                   </button>
                </div>
             </div>

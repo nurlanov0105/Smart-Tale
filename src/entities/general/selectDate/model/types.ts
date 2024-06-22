@@ -7,12 +7,9 @@ export type IDateProps = {
 }
 
 export type DateProps = {
-    control: Control<any, any>
-    setValue: UseFormSetValue<any>
-
-    day: IDateProps
-    month: IDateProps
-    year: IDateProps
+    day?: IDateProps
+    month?: IDateProps
+    year?: IDateProps
     type?: "user" | "admin"
 }
 
