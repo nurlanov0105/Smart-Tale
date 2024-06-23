@@ -16,9 +16,10 @@ import {
    EquipmentQueryKeys,
    ServiceQueryKeys,
    ResumeQueryKeys,
+   NotificationsQueryKeys,
 } from "./queryKeys";
 
-export {VacancyQueryKeys} from "./queryKeys"
+export { VacancyQueryKeys } from "./queryKeys";
 export {
    BASE_URL,
    authApiInstance,
@@ -27,6 +28,7 @@ export {
    EquipmentQueryKeys,
    ServiceQueryKeys,
    ResumeQueryKeys,
+   NotificationsQueryKeys,
    AuthEndpoints,
    EquipmentsEndpoints,
    OrdersEndpoints,

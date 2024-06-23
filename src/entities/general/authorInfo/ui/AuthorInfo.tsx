@@ -14,11 +14,12 @@ const AuthorInfo: FC<AuthorInfoProps> = ({ avatarImg, fullName, isLarge, isChat,
 
    const handleClick = () => {
       closeModal();
-      if (currentUser?.profile.slug === slug) {
-         return router.push(ROUTES.DASHBOARD_PROFILE);
-      } else {
-         router.push(ROUTES.USERS + `/${slug}`);
-      }
+      router.push(ROUTES.USERS + `/${slug}`);
+      // if (currentUser?.profile.slug === slug) {
+      //    return router.push(ROUTES.DASHBOARD_PROFILE);
+      // } else {
+      //    router.push(ROUTES.USERS + `/${slug}`);
+      // }
    };
 
    return (

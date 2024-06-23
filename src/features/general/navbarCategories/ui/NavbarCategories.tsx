@@ -9,7 +9,7 @@ import styles from "./styles.module.scss";
 const NavbarCategories: FC<{ isAuth: boolean }> = ({ isAuth }) => {
    const data = useSubscribeStore((state) => state.data);
 
-   const isSubscribedWithOrg = !!data?.job_titles?.length;
+   const isSubscribedWithOrg = data?.job_titles?.length !== 0;
 
    const categories = getCategoryRoutes({
       authorized: isAuth,

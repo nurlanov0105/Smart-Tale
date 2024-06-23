@@ -5,20 +5,19 @@ import { ItemProps } from "../model/types";
 import { Button } from "@/shared/ui";
 import Image from "next/image";
 import Link from "next/link";
-import {currenciesMap, ORGANIZATION_ROUTES, ROUTES} from "@/shared/lib";
+import { currenciesMap, ORGANIZATION_ROUTES, ROUTES } from "@/shared/lib";
 import avatar from "@@/imgs/auth/auth-1.jpg";
-import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/store/themeStore";
+import { useRouter } from "next/navigation";
 import clsx from "clsx";
-import {useRouter} from "next/navigation";
-
+import styles from "./styles.module.scss";
 
 const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const currency = currenciesMap[item.currency as keyof typeof currenciesMap];
 
-   const {push} = useRouter()
-   const handleRoute = () => push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`)
+   const { push } = useRouter();
+   const handleRoute = () => push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
 
    return (
       <div className={clsx(styles.item, styles[theme])}>

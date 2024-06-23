@@ -40,12 +40,13 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
             return;
          }
 
-         const isOwner = position?.job_title === OWNER;
+         const isOwner = true; //data?.org?.title === OWNER
          if (hasPositions && !isOwner && pathname === ORGANIZATION_ROUTES.ORGANIZATION_LIST) {
-            const url = ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${position?.organization}`;
+            const url = ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${position?.slug}`;
             replace(url);
             return;
          }
+
 
          for (const {route, right} of routes){
             if (pathname.includes(route) && !position[right]){

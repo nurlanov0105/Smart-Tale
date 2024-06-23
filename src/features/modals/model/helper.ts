@@ -16,7 +16,7 @@ import {
    useDeleteOrganization,
 } from "../model/useQueries";
 import { useDeleteAccount, useLogout } from "@/features/auth";
-import {useBookOrder} from "@/widgets/general/feedbackList/model/useQuieries";
+import { useBookOrder } from "@/widgets/general/feedbackList/model/useQuieries";
 
 type RequestFunction = () => any;
 type RequestFunctionWithParam = (type?: string) => any;
@@ -26,7 +26,7 @@ interface ModalAction {
    description: string;
    buttonText: string;
    emoji: string;
-   request: RequestFunction | RequestFunctionWithParam ;
+   request: RequestFunction | RequestFunctionWithParam;
 }
 export const ModalActionsMap: { [key: string]: ModalAction } = {
    [MODAL_KEYS.deleteResume]: {
@@ -162,7 +162,7 @@ export const modalInfoMap = {
       title: "Тут пока нет заказов",
       description: "Добавьте новые заказы \n и они появятся тут",
       buttonText: "Понятно",
-      emoji: "holidaySmile",
+      emoji: "unknown",
    },
    [MODAL_KEYS.buyAnnouncement]: {
       title: " Поздравляем!\n Вы купили оборудование!",
@@ -183,8 +183,14 @@ export const modalInfoMap = {
       emoji: "unknown",
    },
    [MODAL_KEYS.subscribe]: {
-      title: "Ура! \n Подписка уже в пути!",
-      description: "С вами свяжется наш администратор",
+      title: "Ура! \n Вы оформили подписку!",
+      description: "Теперь вы можете создать организацию",
+      buttonText: "Понятно",
+      emoji: "holidayStuff",
+   },
+   [MODAL_KEYS.addedPosition]: {
+      title: "Новая должность \n сохранена",
+      description: "Вы добавили новую должность \n для организации",
       buttonText: "Понятно",
       emoji: "holidayStuff",
    },
@@ -217,6 +223,18 @@ export const modalInfoMap = {
       description: "Пожалуйста, выберите  другую роль для сотрудника!",
       buttonText: "Понятно",
       emoji: "unknown",
+   },
+   [MODAL_KEYS.noChangePosYourself]: {
+      title: "Вы не можете поменять \n должность самому себе!",
+      description: "Надо думать головой прежде чем даже пробывать",
+      buttonText: "Понятно, сори",
+      emoji: "angry",
+   },
+   [MODAL_KEYS.noChangePosOwner]: {
+      title: "Вы не можете поменять \n должность хозяину!",
+      description: "Прячься скорее пока \n тебя не нашли",
+      buttonText: "Спрятаться",
+      emoji: "angry",
    },
    [MODAL_KEYS.authNotice]: {
       title: "Вам нужно авторизоваться!",

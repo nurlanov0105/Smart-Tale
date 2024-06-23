@@ -21,10 +21,10 @@ const OrganizationButtons: FC<IProps> = ({ isSubmitting }) => {
    } = useFormContext<UpdateOrganizationTypes>();
 
    const handleDelete = useCallback(() => {
-      if (position.job_title !== OWNER) {
-         showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noRights });
-         return;
-      }
+      // if (position.job_title !== OWNER) {
+      //    showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noRights });
+      //    return;
+      // }
       showModal(MODAL_KEYS.confirmationModal, {
          slug,
          componentName: MODAL_KEYS.deleteOrganization,

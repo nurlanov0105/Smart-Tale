@@ -8,11 +8,14 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useStartChat } from "@/widgets/general/chats/model/useQueries";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { MODAL_KEYS, useAuth } from "@/shared/lib";
+import { showModal } from "@/views/modal";
 
 const Chat: FC<ChatType> = ({ author, isModal }) => {
    const theme = useThemeStore((state) => state.theme);
    const [message, setMessage] = useState("");
    const currentUser = useSubscribeStore((state) => state.data);
+   const { isAuth } = useAuth();
 
    const [sendMessage, setSendMessage] = useState("");
    const { mutate, isPending } = useStartChat();
@@ -20,10 +23,14 @@ const Chat: FC<ChatType> = ({ author, isModal }) => {
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
 
-      mutate(author?.slug || "");
+      if (isAuth) {
+         mutate(author?.slug || "");
 
-      setMessage("")
-      setSendMessage(message);
+         setMessage("");
+         setSendMessage(message);
+      } else {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.authNotice });
+      }
    };
 
    const handleMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -54,10 +61,8 @@ const Chat: FC<ChatType> = ({ author, isModal }) => {
                   value={message}
                   onChange={handleMessageChange}
                />
-               <Button disabled={currentUser?.profile.slug === author?.slug}>
-                  {
-                     isPending ? "Загрузка..." : "Отправить"
-                  }
+               <Button disabled={!isAuth || currentUser?.profile.slug === author?.slug}>
+                  {isPending ? "Загрузка..." : "Отправить"}
                </Button>
             </form>
          </div>

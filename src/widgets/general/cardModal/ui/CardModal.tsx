@@ -2,7 +2,7 @@
 
 import { FC, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import {closeModal, showModal} from "@/views/modal";
+import { closeModal, showModal } from "@/views/modal";
 import { CardSlider } from "@/features/general/cardSlider";
 import { CardCategory } from "@/features/general/cardCategory";
 import { Chat } from "@/features/user/chat";
@@ -11,7 +11,7 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { ErrorMessage } from "@/entities/general/errorMessage";
-import {CookiesServices, EnumTokens, images, MODAL_KEYS} from "@/shared/lib";
+import { CookiesServices, EnumTokens, images, MODAL_KEYS, useGetDates } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { AnnouncementRoutes, CardDetailsRoutes } from "../model/consts";
@@ -20,6 +20,7 @@ import { useBuyEquipment, useOrderApply } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 type Props = {
    slug: string;
@@ -37,6 +38,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    // const { mutate: buyEquipment, isPending: isLoading } = useBuyEquipment();
    const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
 
+   const { day, month, year } = useGetDates(data?.data?.deadline);
+   const monthFormat = monthsForDate()[month]?.value;
+
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const handleCategoryClick = (category: string) => {
       setSelectedCategory(category);
@@ -46,8 +50,8 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       if (currentUser?.profile.slug === data.data.author?.slug) {
          router.push(AnnouncementRoutes[type] + `/${slug}`);
       } else {
-         router.push(CardDetailsRoutes[type] + `/${slug}`);
       }
+      router.push(CardDetailsRoutes[type] + `/${slug}`);
 
       closeModal();
    };
@@ -79,7 +83,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       }
    };
 
-   if (!isPending && !data.data) {
+   if (!isPending && !data?.data) {
       return <ErrorMessage />;
    }
 
@@ -88,25 +92,14 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    };
 
    const handleRoute = () => {
-      const type = data?.data?.type?.toLowerCase()
-      const slug = data?.data?.slug
+      router.push(AnnouncementRoutes[type] + `/${slug}`);
 
-      if (type === AnnouncementTypes.order && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${slug}`)
-      }
-      if (type === AnnouncementTypes.equipment && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${slug}`)
-      }
-      if (type === AnnouncementTypes.service && slug){
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${slug}`)
-      }
+      closeModal();
 
-      closeModal()
-
-      if (!slug){
-         showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.error})
+      if (!slug) {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.error });
       }
-   }
+   };
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>
@@ -129,6 +122,8 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                      <ModalCardHeader
                         title={data.data.title}
                         cost={`${Math.round(Number(data.data.price))}`}
+                        type={type}
+                        deadline={`${day} ${monthFormat} ${year}`}
                      />
                   </div>
 
@@ -170,24 +165,30 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                               <div className={styles.modal__descr}>
                                  {categoryData(selectedCategory)}
                               </div>
+                              {type === AnnouncementTypes.equipment && (
+                                 <b>В наличие: {data?.data?.quantity}</b>
+                              )}
                            </div>
                            <div className={styles.modal__btns}>
                               {currentUser?.profile.slug !== data.data.author?.slug ? (
                                  type !== AnnouncementTypes.order ? (
                                     <Button onClick={handleShowChat}>Написать</Button>
                                  ) : (
-                                    <Button onClick={handleOrder}>
-                                       {isOrderLoading ? "Загрузка..." : "Отправить заявку"}
+                                    <Button onClick={handleOrder} disabled={data.data?.is_applied}>
+                                       {isOrderLoading
+                                          ? "Загрузка..."
+                                          : data.data?.is_applied
+                                          ? "Запрос уже отправлен"
+                                          : "Отправить заявку"}
                                     </Button>
                                  )
                               ) : (
-                                  ""
+                                 ""
                               )}
 
-                              {
-                                  currentUser?.profile.slug === data.data.author?.slug &&
-                                  <Button onClick={handleRoute}>Изменить</Button>
-                              }
+                              {currentUser?.profile.slug === data.data.author?.slug && (
+                                 <Button onClick={handleRoute}>Изменить</Button>
+                              )}
 
                               <Button onClick={handleBtnClick} className={styles.modal__btn}>
                                  Подробнее

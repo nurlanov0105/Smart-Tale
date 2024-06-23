@@ -1,33 +1,40 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import { ROUTES } from "@/shared/lib";
-import { useRouter } from "next/navigation";
+import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
+import { usePathname, useRouter } from "next/navigation";
 
 import cardImage from "@@/imgs/order/equipment.png";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 
-import { orderValues } from "@/entities/general/orderItem/model/value.data";
+import {
+   defineAnnouncementRoute,
+   defineDetailsRoute,
+   orderValues,
+} from "@/entities/general/orderItem/model/value.data";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { boardHeadings } from "@/features/user/boardColumn/model/consts";
 import { PriceFormat } from "@/shared/ui";
 
 const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    const theme = useThemeStore((state) => state.theme);
+   const pathname = usePathname();
 
    const title = orderValues[item.type];
 
    const router = useRouter();
    const handleItemClick = () => {
+      CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item.author.slug });
       if (isOrganization) {
          router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
-      } else if (item.type === "Order") {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${item.slug}`);
-      } else if (item.type === "Equipment") {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${item.slug}`);
       } else {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${item.slug}`);
+         if (pathname.includes(ROUTES.SEARCH)) {
+            console.log(item.type.toLowerCase());
+            router.push(defineDetailsRoute[item.type.toLowerCase()] + `/${item.slug}`);
+         } else {
+            router.push(defineAnnouncementRoute[item.type.toLowerCase()] + `/${item.slug}`);
+         }
       }
    };
 
@@ -40,7 +47,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
-                     src={item.image || cardImage}
+                     src={item?.image || cardImage}
                      alt="card"
                      width={75}
                      height={75}
@@ -60,12 +67,13 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                <span className={styles.item__date}>2 апреля 2024</span>
             </div>
          )}
+
          {item.type === "Order" && (
             <div onClick={handleItemClick} className={clsx(styles.item, styles[theme])}>
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
-                     src={item.image || cardImage}
+                     src={item?.image || cardImage}
                      alt="card"
                      width={75}
                      height={75}

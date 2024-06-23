@@ -11,7 +11,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { ChevronDown } from "lucide-react";
-import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
    routes,
@@ -37,9 +37,9 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
          setHeight(isShow ? contentRef.current.scrollHeight : 0);
       }
 
-      const withoutOrgHeight = 33
-      if (isShow && !position?.organization && title === "Организация"){
-         setHeight(withoutOrgHeight)
+      const withoutOrgHeight = 33;
+      if (isShow && !position?.organization && title === "Организация") {
+         setHeight(withoutOrgHeight);
       }
 
       // eslint-disable-next-line
@@ -82,20 +82,17 @@ const NavbarItem: FC<TypeCategories & { isAuth: boolean }> = ({
             }}
             ref={contentRef}>
             <div className={styles.category__list}>
-               {
-                  routes.map(item =>
-                      <Link
-                          onClick={handleClickClose}
-                          href={item.link}
-                          key={item.subtitle}
-                          className={clsx(styles.category__item, {
-                             [styles.category__item_active]: item.link === pathname,
-                          })}
-                      >
-                         {item.subtitle}
-                      </Link>
-                  )
-               }
+               {routes.map((item) => (
+                  <Link
+                     onClick={handleClickClose}
+                     href={item.link}
+                     key={item.subtitle}
+                     className={clsx(styles.category__item, {
+                        [styles.category__item_active]: item.link === pathname,
+                     })}>
+                     {item.subtitle}
+                  </Link>
+               ))}
             </div>
          </div>
       </li>

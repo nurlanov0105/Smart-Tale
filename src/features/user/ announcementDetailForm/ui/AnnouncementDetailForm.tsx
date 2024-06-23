@@ -238,8 +238,7 @@ const AnnouncementDetailForm = () => {
                </div>
             </div>
 
-         <OrderDetailBtns isHide={data?.hide} isSubmitting={isSubmitting} type={type}/>
-
+            <OrderDetailBtns isHide={data?.hide} isSubmitting={isSubmitting} type={type} />
          </form>
       </>
    );

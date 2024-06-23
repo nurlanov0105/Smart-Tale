@@ -3,6 +3,7 @@ import {OrganizationQueryKeys, UserQueryKeys} from "@/shared/api";
 import { ORGANIZATION_ROUTES, OrganizationService, useConfettiStore} from "@/shared/lib";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 export const useCreateOrganizationQuery = () => {
     const queryClient = useQueryClient()

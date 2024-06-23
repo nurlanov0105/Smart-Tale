@@ -27,6 +27,7 @@ import { UserService } from "./services/userService";
 import { VacancyService } from "./services/vacancyService";
 import { ResumeService } from "./services/resumeService";
 import { OrganizationService } from "./services/organizationService";
+import { NotificationService } from "./services/notificationService";
 
 import { refreshToken } from "./utils/refreshToken";
 import { categoryData } from "./utils/categoryData";
@@ -56,6 +57,9 @@ import {
    sizesDataNumbers,
    sizesDataLetters,
 } from "./constants/announcement.consts";
+
+// import socket from "./services/socket";
+// export { socket };
 
 export type { ItemType } from "./types/usePaginationTypes";
 export type { UsePaginationResult } from "./types/usePaginationTypes";
@@ -174,6 +178,7 @@ export {
    DefineAnnouncementType,
    EnglishType,
    ValidationsSchemasService,
+   NotificationService,
    announcementTabs,
    AnnouncementValues,
    ANNOUNCEMENT_FORM_NAMES,

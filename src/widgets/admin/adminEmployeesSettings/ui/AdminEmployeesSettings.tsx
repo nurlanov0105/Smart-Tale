@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
 import { useParams } from "next/navigation";
-import {Controller, useFormContext, useWatch} from "react-hook-form";
+import { Controller, useFormContext, useWatch } from "react-hook-form";
 
 import { AdminBack } from "@/entities/admin/adminBack";
-import {GlobalLoading, InputField, PhoneInput, Select} from "@/shared/ui";
-import {EmployeeDetailsTypes, useInitialRights} from "@/shared/lib";
+import { GlobalLoading, InputField, PhoneInput, Select } from "@/shared/ui";
+import { EmployeeDetailsTypes, useInitialRights } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { RightAction, rightsActionsData } from "@/entities/admin/rightAction";
-import {ErrorMessage} from "@/entities/general/errorMessage";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 
 import { useEmployeeDetails } from "../model/useEmployeeDetails";
 import { useInitialEmployeeData } from "../model/useInitialData";
@@ -18,13 +18,8 @@ import styles from "./styles.module.scss";
 
 const AdminEmployeesSettings = () => {
    const theme = useThemeStore((state) => state.theme);
-   const { slug } = useParams<{slug: string}>();
-   const {
-      register,
-      control,
-      reset,
-   } = useFormContext<EmployeeDetailsTypes>()
-
+   const { slug } = useParams<{ slug: string }>();
+   const { register, control, reset } = useFormContext<EmployeeDetailsTypes>();
 
    const {
       data,
@@ -40,14 +35,14 @@ const AdminEmployeesSettings = () => {
       handleSubmit,
    } = useEmployeeDetails(slug);
 
-   const positionsList = useWatch({control, name: EMPLOYEE_SETTINGS_NAMES.positions});
-   const selectedPosition = useWatch({control, name: EMPLOYEE_SETTINGS_NAMES.position});
+   const positionsList = useWatch({ control, name: EMPLOYEE_SETTINGS_NAMES.positions });
+   const selectedPosition = useWatch({ control, name: EMPLOYEE_SETTINGS_NAMES.position });
 
-   useInitialEmployeeData({ reset, data, isSuccess, positions, isSuccessPosition });
+   useInitialEmployeeData({ reset, data: data?.user, isSuccess, positions, isSuccessPosition });
    const { actions } = useInitialRights({ data: positions, position: selectedPosition });
 
-   if (isLoading || isLoadingPosition) return <GlobalLoading type="full"/>
-   if (isError) return <ErrorMessage/>
+   if (isLoading || isLoadingPosition) return <GlobalLoading type="full" />;
+   if (isError) return <ErrorMessage />;
 
    return (
       <form onSubmit={handleSubmit} className={styles[theme]}>
@@ -128,7 +123,7 @@ const AdminEmployeesSettings = () => {
                </ul>
             </fieldset>
          </div>
-        <EmployeeButtons isSubmitting={isSubmitting} slug={slug}/>
+         <EmployeeButtons isSubmitting={isSubmitting} slug={slug} />
       </form>
    );
 };

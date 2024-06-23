@@ -20,13 +20,18 @@ const InfoModal = ({ componentName }: ModalProps) => {
                   | "holidayStuff"
                   | "okay"
                   | "holidaySmile"
+                  | "angry"
             }
          />
          <div className="modalFlex">
             <h3 className="h3">{title}</h3>
             <p className="greyText textMaxWidth">{description}</p>
             {login ? (
-               <Link href={ROUTES.SIGN_IN} className="btn" onClick={closeModal}>
+               <Link
+                  href={ROUTES.SIGN_IN}
+                  className="btn"
+                  onClick={closeModal}
+                  style={{ color: "white !important " }}>
                   {login}
                </Link>
             ) : (

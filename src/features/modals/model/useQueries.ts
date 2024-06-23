@@ -90,9 +90,9 @@ export const useDeleteEquipment = () => {
       mutationKey: [EquipmentQueryKeys.EQUIPMENT_DELETE],
       mutationFn: ({ slug }) => EquipmentService.deleteEquipment(slug),
       onSuccess: () => {
+         closeModal();
          toast.success("Вы успешно удалили оборудование");
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
-         closeModal();
          push(DASHBOARD.LISTINGS);
       },
       onError: () => {
@@ -109,9 +109,9 @@ export const useDeleteOrder = () => {
       mutationKey: [OrdersQueryKeys.ORDER_DELETE],
       mutationFn: ({ slug }) => OrdersService.deleteOrder(slug),
       onSuccess: () => {
+         closeModal();
          toast.success("Вы успешно удалили заказ");
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
-         closeModal();
          push(DASHBOARD.LISTINGS);
       },
       onError: () => {
@@ -128,6 +128,7 @@ export const useDeleteEmployee = () => {
       mutationKey: [OrganizationQueryKeys.DELETE_EMPLOYEE],
       mutationFn: ({ slug }) => OrganizationService.deleteEmployee(slug),
       onSuccess: () => {
+         closeModal();
          toast.success("Сотрудник был удалён!");
          queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEES] });
          push(ORGANIZATION_ROUTES.EMPLOYEES);
@@ -146,9 +147,9 @@ export const useDeleteService = () => {
       mutationKey: [ServiceQueryKeys.DELETE_SERVICE],
       mutationFn: ({ slug }) => ServicesService.deleteService(slug),
       onSuccess: () => {
-         queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
-         toast.success("Услуга была удалена");
          closeModal();
+         toast.success("Услуга была удалена");
+         queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
          push(DASHBOARD.LISTINGS);
       },
       onError: () => {

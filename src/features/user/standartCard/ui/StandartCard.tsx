@@ -3,15 +3,9 @@
 import { FC } from "react";
 import dynamic from "next/dynamic";
 
-import {Button} from "@/shared/ui";
+import { Button } from "@/shared/ui";
 import { showModal } from "@/views/modal";
-import {
-   CookiesServices,
-   EnglishType,
-   EnumTokens,
-   MODAL_KEYS,
-   ROUTES,
-} from "@/shared/lib";
+import { CookiesServices, EnglishType, EnumTokens, MODAL_KEYS, ROUTES } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { StandartCardType } from "../model/types";
 import { usePathname, useRouter } from "next/navigation";
@@ -20,7 +14,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
-const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
+const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), { ssr: false });
 
 const StandartCard: FC<StandartCardType> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -76,7 +70,7 @@ const StandartCard: FC<StandartCardType> = ({ item }) => {
             <div className={styles.card__order}>
                <h4 className={clsx(styles.card__title, styles.card__title_order)}>{item.title}</h4>
                <h4 className={clsx(styles.card__title, styles.card__title_cost)}>
-                  <PriceFormat type={item?.currency} price={+item?.price}/>
+                  <PriceFormat type={item?.currency} price={+item?.price} />
                </h4>
             </div>
             {item?.author && (

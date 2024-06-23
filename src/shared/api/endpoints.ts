@@ -120,4 +120,8 @@ export const ChatsEndpoints = {
    CONVERSATION_START: "/conversation/start/",
    CONVERSATIONS: "/conversations/",
    MESSAGES: "/messages/",
+   NOTIFICATIONS: "/my-notifications/",
+};
+export const NotificaitonEndpoints = {
+   NOTIFICATIONS: "/my-notifications/",
 };

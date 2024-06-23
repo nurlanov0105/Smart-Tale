@@ -106,3 +106,6 @@ export const ChatsQueryKeys = {
    CONVERSATIONS: "conversations",
    MESSAGES: "messages",
 };
+export const NotificationsQueryKeys = {
+   NOTIFICATIONS: "my-notifications",
+};
