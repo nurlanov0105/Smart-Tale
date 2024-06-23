@@ -51,7 +51,7 @@ const Header = () => {
          navigator.serviceWorker
             .register("/firebase-messaging-sw.js")
             .then((registration) => {
-               console.log("Service worker registered successfully: ", registration);
+               // console.log("Service worker registered successfully: ", registration);
             })
             .catch((error) => {
                console.log("Service worker registration failed:", error);

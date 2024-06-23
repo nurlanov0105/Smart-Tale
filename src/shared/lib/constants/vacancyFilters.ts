@@ -43,21 +43,21 @@ export const currencies = [
    { value: "сом", postValue: "Som" },
    { value: "₽", postValue: "Ruble" },
    { value: "$", postValue: "USD" },
-   { value: "€", postValue: "Euro " },
+   { value: "€", postValue: "Euro" },
 ];
 
 export const currenciesMap = {
    Som: { value: "сом", postValue: "Som" },
    Ruble: { value: "₽", postValue: "Ruble" },
    USD: { value: "$", postValue: "USD" },
-   Euro: { value: "€", postValue: "Euro " },
+   Euro: { value: "€", postValue: "Euro" },
 };
 export const graphicMap = {
    "Полный день": { value: "Полный день", postValue: "Полный день" },
    "Неполный день": { value: "Неполный день", postValue: "Неполный день" },
    "Частичная занятость": { value: "Частичная занятость", postValue: "Частичная занятость" },
    "Гибкий график": { value: "Гибкий график", postValue: "Гибкий график" },
-   "Удаленно": { value: "Удаленно", postValue: "Удаленно" },
+   Удаленно: { value: "Удаленно", postValue: "Удаленно" },
 };
 export const experienceMap = {
    "Без опыта": { value: "Без опыта", postValue: "Без опыта" },

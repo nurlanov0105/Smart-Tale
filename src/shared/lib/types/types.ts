@@ -50,6 +50,8 @@ export type TextAreaProps = {
    title?: string;
    isDisabled?: boolean;
    error?: string;
+   value?: string;
+   onChange?: (e: any) => void;
 };
 
 type dateType = {

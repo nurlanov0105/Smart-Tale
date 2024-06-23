@@ -37,7 +37,6 @@ const AdminHistory = () => {
     const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0})
     const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0})
 
-    console.log(type)
    return (
       <section className={styles.section}>
          <div className={styles.section__margin}>

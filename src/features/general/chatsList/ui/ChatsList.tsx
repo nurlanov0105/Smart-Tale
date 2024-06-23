@@ -14,6 +14,10 @@ const ChatsList = () => {
          </div>
       );
 
+   if (!isLoading) {
+      console.log(chats);
+   }
+
    return (
       <div className={styles.chats}>
          {chats?.map((item, idx: number) => (

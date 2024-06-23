@@ -10,8 +10,7 @@ import {
 export const OrganizationService = {
    createOrganization: async (params: FormData) => {
       const headers = { "Content-Type": "multipart/form-data" };
-      const response = await baseApiInstance.post(
-         OrganizationEndpoints.ORGANIZATION_CREATE,
+      const response = await baseApiInstance.post(OrganizationEndpoints.ORGANIZATION_CREATE,
          params,
          {
             headers: headers,

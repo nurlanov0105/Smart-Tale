@@ -1,6 +1,6 @@
 "use client";
 
-import {useCallback, useEffect, useState} from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DragDropContext, DropResult } from "@hello-pangea/dnd";
 import { toast } from "react-toastify";
 import type { Columns } from "../model/types";
@@ -8,40 +8,38 @@ import { BoardColumn } from "@/features/user/boardColumn";
 import { testDestinationMap, COLUMN_VALUES } from "../model/helper";
 import { useGetOrganizationOrders, useUpdateStatusOrder } from "../model/useQueries";
 import styles from "./styles.module.scss";
-import {GlobalLoading} from "@/shared/ui";
-import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
-import {MODAL_KEYS, RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
-import {showModal} from "@/views/modal";
+import { GlobalLoading } from "@/shared/ui";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { MODAL_KEYS, RIGHT_ACTIONS } from "@/shared/lib/constants/consts";
+import { showModal } from "@/views/modal";
 import { getMessaging, onMessage } from "firebase/messaging";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
-
 
 const Board = () => {
    const { data, isSuccess, isError, isLoading } = useGetOrganizationOrders();
 
-   const updateStatus = useUpdateStatusOrder()
-    const position = useSubscribeStore(state => state.position)
+   const updateStatus = useUpdateStatusOrder();
+   const position = useSubscribeStore((state) => state.position);
 
    const [columns, setColumns] = useState(data);
 
    const areArrayEmpty = useCallback(() => {
-      if (data && isSuccess){
-          for (const key in data){
-              if ((data as any)[key]?.length){
-                  return true
-              }
-          }
-          return false
-      }// eslint-disable-next-line
-   },[data])
+      if (data && isSuccess) {
+         for (const key in data) {
+            if ((data as any)[key]?.length) {
+               return true;
+            }
+         }
+         return false;
+      } // eslint-disable-next-line
+   }, [data]);
 
    useEffect(() => {
       if (isSuccess && data) {
-          setColumns(data)
-          if (!areArrayEmpty()) {
-              showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noOrganizationOrders})
-          }
-
+         setColumns(data);
+         if (!areArrayEmpty()) {
+            showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.noOrganizationOrders });
+         }
       }
       // eslint-disable-next-line
    }, [isSuccess, updateStatus.isError]);
@@ -52,12 +50,12 @@ const Board = () => {
       if (!destination) {
          return;
       }
-     if (!columns) return;
+      if (!columns) return;
 
-     if (!position[RIGHT_ACTIONS.UPDATE_ORDER]){
-         showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+      if (!position[RIGHT_ACTIONS.UPDATE_ORDER]) {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.noRights });
          return;
-     }
+      }
 
       // Получаем информацию о перемещаемом заказе
       const movedOrder = columns[source.droppableId as Columns][source.index];
@@ -117,17 +115,16 @@ const Board = () => {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer dcbed192dc7d8ea6481203e4d6ff10a0495c143e`,
+            Authorization: `key=${CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN)}`,
          },
+
          body: JSON.stringify({
-            body: JSON.stringify({
-               to: fcm_token,
-               priority: "high",
-               notification: {
-                  title: "Надеюсь работает",
-                  body: "Даааа работаеттт!!",
-               },
-            }),
+            to: fcm_token,
+            priority: "high",
+            notification: {
+               title: "Надеюсь работает",
+               body: "Даааа работаеттт!!",
+            },
          }),
       });
 
