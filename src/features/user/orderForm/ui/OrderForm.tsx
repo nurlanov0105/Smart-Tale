@@ -209,12 +209,7 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
 
                <Tabs type={contactType} setType={setContactType} values={orderContactValues} />
 
-               <PhoneInput
-                  error={errors.tel?.message}
-                  control={control}
-                  classname={styles.order__phoneInput}
-               />
-               {/* {contactType === ContactValues.tel ? (
+               {contactType === ContactValues.tel ? (
                   <PhoneInput
                      error={errors.tel?.message}
                      control={control}
@@ -233,7 +228,7 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
                      type="email"
                      title="Почта"
                   />
-               )} */}
+               )}
             </div>
          </div>
 

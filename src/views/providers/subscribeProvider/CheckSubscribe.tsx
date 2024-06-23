@@ -36,7 +36,7 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
          const hasPositions = !!data.job_titles?.length;
 
          if (!hasPositions && !isSubscribe) {
-            replace(ROUTES.NO_RIGHTS );
+            replace(ROUTES.NO_RIGHTS);
             return;
          }
 

@@ -1,10 +1,10 @@
 import {
    OrganizationsTypes,
    OrganizationItem,
-   ActiveOrganizationItem,
+   OrganizationActiveTypes,
 } from "@/widgets/admin/adminOrganization/model/types";
 
 export type TypesItemOrganization = {
    item: OrganizationItem;
-   activeOrg?: ActiveOrganizationItem;
+   activeOrg?: OrganizationActiveTypes;
 };

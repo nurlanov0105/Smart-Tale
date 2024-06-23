@@ -13,8 +13,9 @@ import styles from "./styles.module.scss";
 const OrganizationItem: FC<TypesItemOrganization> = ({ item, activeOrg }) => {
    const theme = useThemeStore((state) => state.theme);
 
+   const isActive = item.slug === activeOrg?.org_slug;
    const handleActivate = () => {
-      if (activeOrg?.org_slug !== item.slug) {
+      if (!isActive) {
          showModal(MODAL_KEYS.confirmationModal, {
             slug: item.slug,
             componentName: MODAL_KEYS.activateOrganization,
@@ -26,7 +27,7 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item, activeOrg }) => {
       <div
          className={clsx(
             styles.organization,
-            item.active && styles.organization_active,
+            isActive && styles.organization_active,
             styles[theme]
          )}>
          <Link
@@ -48,13 +49,10 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item, activeOrg }) => {
             <span
                className={clsx(
                   styles.organization__date,
-                  item.active && styles.organization__date_active
+                  isActive && styles.organization__date_active
                )}>
-               <p>{activeOrg?.org_slug === item.slug ? "Активен" : "Деактивен"}</p>
-               <Switch
-                  checked={activeOrg?.org_slug === item.slug}
-                  onCheckedChange={handleActivate}
-               />
+               <p>{isActive ? "Активен" : "Деактивен"}</p>
+               <Switch checked={isActive} onCheckedChange={handleActivate} />
             </span>
 
             {/*<p className={styles.organization__detail}>Посмотреть детали</p>*/}

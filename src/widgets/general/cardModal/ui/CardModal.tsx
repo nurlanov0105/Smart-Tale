@@ -11,7 +11,7 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
 import { AuthorInfo } from "@/entities/general/authorInfo";
 import { ErrorMessage } from "@/entities/general/errorMessage";
-import { CookiesServices, EnumTokens, images, MODAL_KEYS } from "@/shared/lib";
+import { CookiesServices, EnumTokens, images, MODAL_KEYS, useGetDates } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { AnnouncementTypes, DASHBOARD, ROUTES } from "@/shared/lib";
 import { AnnouncementRoutes, CardDetailsRoutes } from "../model/consts";
@@ -20,6 +20,7 @@ import { useBuyEquipment, useOrderApply } from "../model/useQueries";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 type Props = {
    slug: string;
@@ -36,6 +37,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    const { isPending, isError, data } = useFetchResource({ type, slug });
    // const { mutate: buyEquipment, isPending: isLoading } = useBuyEquipment();
    const { mutate: orderApply, isPending: isOrderLoading } = useOrderApply();
+
+   const { day, month, year } = useGetDates(data?.data?.deadline);
+   const monthFormat = monthsForDate()[month]?.value;
 
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const handleCategoryClick = (category: string) => {
@@ -119,7 +123,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                         title={data.data.title}
                         cost={`${Math.round(Number(data.data.price))}`}
                         type={type}
-                        deadline={`15 апреля`}
+                        deadline={`${day} ${monthFormat} ${year}`}
                      />
                   </div>
 

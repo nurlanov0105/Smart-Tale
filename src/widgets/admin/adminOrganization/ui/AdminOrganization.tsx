@@ -14,7 +14,9 @@ import { useOrganization } from "@/widgets/admin/adminOrganization/model/useOrga
 
 const AdminOrganization: FC = () => {
    const { data, isLoading, isError, isSuccess } = useOrganization();
+
    const organizations = data && data.my_orgs;
+   const activeOrg = data && data["orgs_active"].find((item) => item.active);
 
    const isShow = useConfettiStore((state) => state.isShow);
    const endConfetti = useConfettiStore((state) => state.endConfetti);
@@ -45,11 +47,7 @@ const AdminOrganization: FC = () => {
                </div>
                {organizations
                   ?.map((item) => (
-                     <OrganizationItem
-                        key={item.slug}
-                        item={item}
-                        activeOrg={data?.orgs_active[0]}
-                     />
+                     <OrganizationItem activeOrg={activeOrg} key={item.slug} item={item} />
                   ))
                   .reverse()}
             </div>
