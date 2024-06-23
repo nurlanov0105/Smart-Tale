@@ -15,7 +15,9 @@ import {useOrganization} from "@/widgets/admin/adminOrganization/model/useOrgani
 const AdminOrganization: FC = () => {
 
    const {data, isLoading, isError, isSuccess} = useOrganization()
-   const organizations = data && data["my-orgs"];
+
+   const organizations = data && data["my_orgs"];
+   const activeOrg = data && data["orgs_active"].find(item => item.active)
 
    const isShow = useConfettiStore(state => state.isShow)
    const endConfetti = useConfettiStore(state => state.endConfetti)
@@ -45,7 +47,7 @@ const AdminOrganization: FC = () => {
                   <Button onClick={handleAdd}>Добавить организацию</Button>
                </div>
                {organizations
-                  ?.map((item) => <OrganizationItem key={item.slug} item={item} />)
+                  ?.map((item) => <OrganizationItem activeOrg={activeOrg} key={item.slug} item={item} />)
                   .reverse()}
             </div>
          )}

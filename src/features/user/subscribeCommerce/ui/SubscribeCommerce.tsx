@@ -5,8 +5,7 @@ import Image from "next/image";
 
 import commerceBox from "@@/imgs/commerce/01.png";
 import { Button } from "@/shared/ui";
-import { showModal } from "@/views/modal";
-import { MODAL_KEYS, ROUTES, formattingDate, useSubscribed } from "@/shared/lib";
+import { ROUTES, formattingDate } from "@/shared/lib";
 import type { Props } from "../model/types";
 
 import checkIcon from "@@/imgs/commerce/check.svg";
@@ -46,7 +45,11 @@ const SubscribeCommerce: FC<Props> = () => {
                <Image src={checkIcon} alt="check icon" width={20} height={20} />
                <div className={styles.box__col}>
                   <h4>Подписка оформлена</h4>
-                  {subscribedData && <p>Срок: до {formattingDate(subscribedData?.subscription)}</p>}
+                  {subscribedData && <p>Срок: до
+                     {
+                        !!subscribedData?.subscription ? formattingDate(subscribedData?.subscription) : "Навсегда"
+                     }
+                  </p>}
                </div>
             </div>
          )}

@@ -87,7 +87,7 @@ const ChatForm: FC = () => {
                <div className={styles.chat__row}>
                   <div className={styles.chat__chat}>
                      {data &&
-                        data?.message_set.map((message, idx) => (
+                        data?.message_set?.map((message, idx) => (
                            <MessageItem
                               message={message}
                               messages={data}

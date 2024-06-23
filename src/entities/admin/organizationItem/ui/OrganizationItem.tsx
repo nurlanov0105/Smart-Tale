@@ -11,11 +11,12 @@ import { TypesItemOrganization } from "../model/types";
 import styles from "./styles.module.scss";
 
 
-const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
+const OrganizationItem: FC<TypesItemOrganization> = ({ item, activeOrg }) => {
    const theme = useThemeStore((state) => state.theme);
 
+   const isActive = item.slug === activeOrg?.org_slug
    const handleActivate = () => {
-       if (!item.active) {
+       if (!isActive){
            showModal(
                MODAL_KEYS.confirmationModal,
                {slug: item.slug, componentName: MODAL_KEYS.activateOrganization}
@@ -25,7 +26,7 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
 
    return (
       <div
-         className={clsx(styles.organization, item.active && styles.organization_active, styles[theme])}>
+         className={clsx(styles.organization, isActive && styles.organization_active, styles[theme])}>
          <Link href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${item.slug}`} className={styles.organization__left}>
             <Image
                className={styles.organization__image}
@@ -40,12 +41,12 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
             </div>
          </Link>
          <div className={styles.organization__bottom}>
-             <span className={clsx(styles.organization__date, item.active && styles.organization__date_active)}>
+             <span className={clsx(styles.organization__date, isActive && styles.organization__date_active)}>
                  <p>
-                     {item.active ? "Активен" : "Деактивен"}
+                     {isActive ? "Активен" : "Деактивен"}
                  </p>
                  <Switch
-                     checked={item.active}
+                     checked={isActive}
                      onCheckedChange={handleActivate}
                  />
              </span>

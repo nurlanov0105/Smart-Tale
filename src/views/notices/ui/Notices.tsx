@@ -22,7 +22,7 @@ const Notices = () => {
                <Tabs type={type} setType={setType} values={noticesTabs} variant="secondary" />
             </div>
 
-            {type === "chats" ? <ChatComponent3/> : <NoticesContent />}
+            {type === "chats" ? <Chats/> : <NoticesContent />}
          </div>
       </div>
    );
