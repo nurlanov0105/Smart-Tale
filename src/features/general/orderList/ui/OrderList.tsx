@@ -8,6 +8,7 @@ import { usePagination } from "@/shared/lib";
 import { usePathname } from "next/navigation";
 import { VacancyItem } from "@/entities/user/vacancyItem";
 import { ResumeItem } from "@/entities/admin/resumeItem";
+import { ErrorMessage } from "@/entities/general/errorMessage";
 
 const OrderList: FC<Props> = ({
    fetchFunction,
@@ -56,6 +57,10 @@ const OrderList: FC<Props> = ({
          }
       })
    );
+
+   if (!isLoading && !isError && data.length === 0) {
+      return <ErrorMessage isEmpty={true} />;
+   }
 
    return (
       <div className={styles.section}>

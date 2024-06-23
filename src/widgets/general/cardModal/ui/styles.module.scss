@@ -46,6 +46,7 @@
    }
 
    &__descr {
+      max-width: 31rem;
       color: $dark-grey;
       font-size: 14px;
       line-height: 1.57;
@@ -54,7 +55,16 @@
       display: -webkit-box;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
-      overflow: hidden;
+
+      // overflow: hidden;
+      word-wrap: break-word;
+
+      b {
+         display: inline-block;
+         font-size: 14px;
+         letter-spacing: -0.4px;
+         word-wrap: break-word;
+      }
    }
 
    &__btns {

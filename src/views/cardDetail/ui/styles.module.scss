@@ -12,7 +12,7 @@
 .detail {
    display: flex;
    column-gap: 3.6rem;
-   // justify-content: center;
+   justify-content: space-between;
    width: 100%;
 
    &__left {
@@ -42,6 +42,8 @@
    &__descr {
       max-width: 45rem;
       font-size: 1.7rem;
+
+      word-wrap: break-word;
    }
 
    &__chat {

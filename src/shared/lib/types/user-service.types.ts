@@ -22,6 +22,7 @@ export interface ProfileDataTypes{
 export interface UserPositionTypes extends RightsTypes{
    organization: string | null,
    job_title: string | null,
+   slug?: string
 }
 
 export interface ProfileRequestTypes{
@@ -31,5 +32,6 @@ export interface ProfileRequestTypes{
    job_titles: UserPositionTypes[],
    org: {
       title: string
+      slug: string
    }
 }

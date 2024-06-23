@@ -1,5 +1,5 @@
 import {useFormContext} from "react-hook-form";
-import {usePositions, EmployeeDetailsTypes, useEmployeeQuery, MODAL_KEYS} from "@/shared/lib";
+import {usePositions, EmployeeDetailsTypes, useEmployeeQuery, MODAL_KEYS, OWNER} from "@/shared/lib";
 import {useUpdateEmployee} from "./useQueries";
 import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
@@ -8,8 +8,9 @@ import {showModal} from "@/views/modal";
 export const useEmployeeDetails = (slug: string) => {
     const {handleSubmit} = useFormContext<EmployeeDetailsTypes>()
     const position = useSubscribeStore(state => state.position)
+    const dataProfile = useSubscribeStore(state => state.data?.profile)
 
-    const {data, isError, isLoading, isSuccess} = useEmployeeQuery(slug)
+    const {data: employee, isError, isLoading, isSuccess} = useEmployeeQuery(slug)
     const updateEmployee = useUpdateEmployee()
 
     const {
@@ -24,6 +25,14 @@ export const useEmployeeDetails = (slug: string) => {
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
             return
         }
+        if (employee?.user_slug === dataProfile?.slug){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangePosYourself})
+            return
+        }
+        if (employee.job_title === OWNER){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangePosOwner})
+            return;
+        }
         updateEmployee.mutate({
             employeeSlug: data.user_slug,
             positionSlug: data.position.postValue
@@ -31,7 +40,7 @@ export const useEmployeeDetails = (slug: string) => {
     }
 
     return {
-        data: data && data,
+        data: employee && employee,
         isSuccess: isSuccess,
         isLoading: isLoading,
         isError: isError || isErrorPosition,

@@ -26,6 +26,8 @@ const SubscribeCommerce: FC<Props> = () => {
       return <div></div>;
    }
 
+   console.log(subscribedData);
+
    return (
       <>
          {!isSubscribe ? (

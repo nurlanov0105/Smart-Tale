@@ -20,9 +20,9 @@ const CreateAnnouncement = () => {
          </div>
 
          <h4 className="h4">Информация об объявлении</h4>
-          <CreateAnnouncementContext>
-              <OrderForm type={type} />
-          </CreateAnnouncementContext>
+         <CreateAnnouncementContext>
+            <OrderForm type={type} />
+         </CreateAnnouncementContext>
       </div>
    );
 };

@@ -17,12 +17,11 @@ export function useSubscribed() {
    const setSubscribeState = useSubscribeStore((state) => state.setSubscribeState);
 
    useEffect(() => {
-      if (isSuccess) {
-         // @ts-ignore
+      if (isSuccess && data) {
          const position = data?.job_titles.find((item) => item?.organization === data?.org.title);
          setSubscribeState({
             data: data,
-            position: position,
+            position: position, //{...position, slug: data?.org.slug}
             isError: false,
             isSubscribe: data?.is_subbed,
          });

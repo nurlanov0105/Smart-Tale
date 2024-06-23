@@ -96,9 +96,9 @@ export const getCategoryRoutes = ({
                link: ORGANIZATION_ROUTES.HISTORY,
                isShow: hasOrganization,
             },
-         ].filter(
-            (route) => (!("authorized" in route) || route.authorized === authorized) && route.isShow
-         ),
+         ].filter((route) => {
+            return route.isShow == hasOrganization;
+         }),
          activeRoutes: [
             ORGANIZATION_ROUTES.CREATE_ORGANIZATION,
             ORGANIZATION_ROUTES.ORGANIZATION_DETAILS,

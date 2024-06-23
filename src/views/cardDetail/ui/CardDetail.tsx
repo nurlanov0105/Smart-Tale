@@ -6,9 +6,7 @@ import { useGetCommonUserAds } from "@/widgets/user/cardsSection";
 import { SliderCards } from "@/widgets/user/sliderCards";
 import { Chat } from "@/features/user/chat";
 import { CardSlider } from "@/features/general/cardSlider";
-import {
-   AnnouncementRoutes,
-} from "@/widgets/general/cardModal";
+import { AnnouncementRoutes } from "@/widgets/general/cardModal";
 import { CardCategory } from "@/features/general/cardCategory";
 import { ISize, useFetchResource } from "@/features/user/standartCard";
 import { ModalCardHeader } from "@/entities/general/modalCardHeader";
@@ -19,21 +17,25 @@ import {
    AnnouncementTypes,
    CookiesServices,
    EnumTokens,
+   MODAL_KEYS,
    OrdersService,
    SkeletonTypes,
    images,
    useAnnouncementType,
+   useAuth,
 } from "@/shared/lib";
 
 import styles from "./styles.module.scss";
 import { useLikeEquipment, useLikeOrder, useLikeService } from "@/entities/general/likeButton";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import { showModal } from "@/views/modal";
 
 const CardDetail = () => {
    const [selectedCategory, setSelectedCategory] = useState("Описание");
    const { type, slug } = useAnnouncementType();
    const author = CookiesServices.getCookiesValue(EnumTokens.CARD_AUTHOR);
    const currentUser = useSubscribeStore((state) => state.data);
+   const { isAuth } = useAuth();
 
    const {
       isError,
@@ -57,12 +59,16 @@ const CardDetail = () => {
    };
 
    const handleLikeClick = () => {
-      if (type === AnnouncementTypes.equipment) {
-         likeEquipment(slug);
-      } else if (type === AnnouncementTypes.order) {
-         likeOrder(slug);
-      } else if (type === AnnouncementTypes.service) {
-         likeService(slug);
+      if (isAuth) {
+         if (type === AnnouncementTypes.equipment) {
+            likeEquipment(slug);
+         } else if (type === AnnouncementTypes.order) {
+            likeOrder(slug);
+         } else if (type === AnnouncementTypes.service) {
+            likeService(slug);
+         }
+      } else {
+         showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.authNotice });
       }
    };
 
@@ -97,9 +103,9 @@ const CardDetail = () => {
       return <GlobalLoading type="full" />;
    }
 
-   if (currentUser?.profile.slug === data.data.author?.slug) {
-      return redirect(AnnouncementRoutes[type] + `/${slug}`);
-   }
+   // if (currentUser?.profile.slug === data.data.author?.slug) {
+   //    return redirect(AnnouncementRoutes[type] + `/${slug}`);
+   // }
 
    return (
       <div className={styles.detailWrapper}>
@@ -158,6 +164,7 @@ const CardDetail = () => {
                      classType={data.data?.is_liked ? "btnBorder_active" : "btnBorder"}
                      onClick={handleLikeClick}
                      disabled={
+                        !isAuth ||
                         likeEquipmentLoading ||
                         likeOrderLoading ||
                         likeServiceLoading ||

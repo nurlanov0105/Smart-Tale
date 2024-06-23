@@ -1,32 +1,37 @@
-import React, {FC} from "react";
+import React, { FC } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import clsx from "clsx";
 import logo from "@@/logo.svg";
-import {showModal} from "@/views/modal";
+import { showModal } from "@/views/modal";
 import { useThemeStore } from "@/shared/store/themeStore";
-import {MODAL_KEYS, ORGANIZATION_ROUTES} from "@/shared/lib";
-import {Switch} from "@/shared/ui";
+import { MODAL_KEYS, ORGANIZATION_ROUTES } from "@/shared/lib";
+import { Switch } from "@/shared/ui";
 import { TypesItemOrganization } from "../model/types";
 import styles from "./styles.module.scss";
 
-
-const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
+const OrganizationItem: FC<TypesItemOrganization> = ({ item, activeOrg }) => {
    const theme = useThemeStore((state) => state.theme);
 
    const handleActivate = () => {
-       if (!item.active) {
-           showModal(
-               MODAL_KEYS.confirmationModal,
-               {slug: item.slug, componentName: MODAL_KEYS.activateOrganization}
-           )
-       }
-   }
+      if (activeOrg?.org_slug !== item.slug) {
+         showModal(MODAL_KEYS.confirmationModal, {
+            slug: item.slug,
+            componentName: MODAL_KEYS.activateOrganization,
+         });
+      }
+   };
 
    return (
       <div
-         className={clsx(styles.organization, item.active && styles.organization_active, styles[theme])}>
-         <Link href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${item.slug}`} className={styles.organization__left}>
+         className={clsx(
+            styles.organization,
+            item.active && styles.organization_active,
+            styles[theme]
+         )}>
+         <Link
+            href={ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${item.slug}`}
+            className={styles.organization__left}>
             <Image
                className={styles.organization__image}
                src={item.logo || logo}
@@ -40,15 +45,17 @@ const OrganizationItem: FC<TypesItemOrganization> = ({ item }) => {
             </div>
          </Link>
          <div className={styles.organization__bottom}>
-             <span className={clsx(styles.organization__date, item.active && styles.organization__date_active)}>
-                 <p>
-                     {item.active ? "Активен" : "Деактивен"}
-                 </p>
-                 <Switch
-                     checked={item.active}
-                     onCheckedChange={handleActivate}
-                 />
-             </span>
+            <span
+               className={clsx(
+                  styles.organization__date,
+                  item.active && styles.organization__date_active
+               )}>
+               <p>{activeOrg?.org_slug === item.slug ? "Активен" : "Деактивен"}</p>
+               <Switch
+                  checked={activeOrg?.org_slug === item.slug}
+                  onCheckedChange={handleActivate}
+               />
+            </span>
 
             {/*<p className={styles.organization__detail}>Посмотреть детали</p>*/}
          </div>

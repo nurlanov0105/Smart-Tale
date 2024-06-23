@@ -46,8 +46,8 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       if (currentUser?.profile.slug === data.data.author?.slug) {
          router.push(AnnouncementRoutes[type] + `/${slug}`);
       } else {
-         router.push(CardDetailsRoutes[type] + `/${slug}`);
       }
+      router.push(CardDetailsRoutes[type] + `/${slug}`);
 
       closeModal();
    };
@@ -79,7 +79,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       }
    };
 
-   if (!isPending && !data.data) {
+   if (!isPending && !data?.data) {
       return <ErrorMessage />;
    }
 
@@ -88,18 +88,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
    };
 
    const handleRoute = () => {
-      const type = data?.data?.type?.toLowerCase();
-      const slug = data?.data?.slug;
-
-      if (type === AnnouncementTypes.order && slug) {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${slug}`);
-      }
-      if (type === AnnouncementTypes.equipment && slug) {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${slug}`);
-      }
-      if (type === AnnouncementTypes.service && slug) {
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${slug}`);
-      }
+      router.push(AnnouncementRoutes[type] + `/${slug}`);
 
       closeModal();
 
@@ -129,6 +118,8 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                      <ModalCardHeader
                         title={data.data.title}
                         cost={`${Math.round(Number(data.data.price))}`}
+                        type={type}
+                        deadline={`15 апреля`}
                      />
                   </div>
 
@@ -170,6 +161,9 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                               <div className={styles.modal__descr}>
                                  {categoryData(selectedCategory)}
                               </div>
+                              {type === AnnouncementTypes.equipment && (
+                                 <b>В наличие: {data?.data?.quantity}</b>
+                              )}
                            </div>
                            <div className={styles.modal__btns}>
                               {currentUser?.profile.slug !== data.data.author?.slug ? (

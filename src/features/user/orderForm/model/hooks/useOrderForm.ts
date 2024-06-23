@@ -1,16 +1,13 @@
-import {useFormContext} from "react-hook-form";
-import {useCreateAnnouncement} from "./useQueries";
-import {buildAnnouncementFormData} from "../helper";
+import { useFormContext } from "react-hook-form";
+import { useCreateAnnouncement } from "./useQueries";
+import { buildAnnouncementFormData } from "../helper";
 import { AnnouncementValues } from "@/shared/lib";
 import type { AnnouncementCreateFormType } from "../types";
 
 export const useOrderForm = (type: string) => {
-   const {
-      reset,
-      handleSubmit
-   } = useFormContext<AnnouncementCreateFormType>();
+   const { reset, handleSubmit } = useFormContext<AnnouncementCreateFormType>();
 
-   const createAnnouncement = useCreateAnnouncement(type, reset)
+   const createAnnouncement = useCreateAnnouncement(type, reset);
 
    const onSubmit = (data: AnnouncementCreateFormType) => {
       const formData = buildAnnouncementFormData(data, type);
@@ -27,7 +24,6 @@ export const useOrderForm = (type: string) => {
             break;
          default:
             break;
-
       }
    };
 

@@ -6,9 +6,9 @@ import { Tabs } from "@/features/general/tabs";
 import { noticesTabs } from "../model/values.data";
 import { useThemeStore } from "@/shared/lib";
 import ChatComponent2 from "@/widgets/general/chats/ui/ChatComponent2";
+import ChatComponent3 from "@/widgets/general/chats/ui/ChatComponent3";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import ChatComponent3 from "@/widgets/general/chats/ui/ChatComponent3";
 
 const Notices = () => {
    const [type, setType] = useState("chats");

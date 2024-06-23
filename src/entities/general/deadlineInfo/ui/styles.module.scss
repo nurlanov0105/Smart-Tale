@@ -1,0 +1,12 @@
+.block {
+   display: inline-flex;
+   align-items: center;
+   justify-content: center;
+   padding: 4px 1.6rem;
+
+   border-radius: 8px;
+   background-color: $primary-color;
+   color: $common-black;
+   font-size: 14px;
+   letter-spacing: -0.4px;
+}
