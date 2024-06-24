@@ -12,7 +12,6 @@ import { GlobalLoading } from "@/shared/ui";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 import { MODAL_KEYS, RIGHT_ACTIONS } from "@/shared/lib/constants/consts";
 import { showModal } from "@/views/modal";
-import { getMessaging, onMessage } from "firebase/messaging";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
 
 const Board = () => {
@@ -107,26 +106,6 @@ const Board = () => {
       }
 
       updateStatus.mutate({ orderSlug: movedOrder.slug, status: destination.droppableId });
-
-      const fcm_token = localStorage.getItem("fcm_token");
-      console.log("fcm_token", fcm_token);
-
-      fetch("https://fcm.googleapis.com/v1/projects/smarttale-eb313/messages:send", {
-         method: "POST",
-         headers: {
-            "Content-Type": "application/json",
-            Authorization: `key=${CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN)}`,
-         },
-
-         body: JSON.stringify({
-            to: fcm_token,
-            priority: "high",
-            notification: {
-               title: "Надеюсь работает",
-               body: "Даааа работаеттт!!",
-            },
-         }),
-      });
 
       // Обновляем состояние колонок
       setColumns((prevColumns) => {

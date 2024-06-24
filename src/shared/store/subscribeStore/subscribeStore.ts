@@ -25,6 +25,9 @@ export const useSubscribeStore = create<SubscribeState>((set) => ({
       [RIGHT_ACTIONS.UPDATE_ACCESS]: "false",
       [RIGHT_ACTIONS.ADD_EMPLOYEE]: "false",
       [RIGHT_ACTIONS.CREATE_POSITION]: "false",
+      [RIGHT_ACTIONS.CREATE_VACANCY]: "false",
+      [RIGHT_ACTIONS.CHANGE_EMPLOYEE_POSITION]: "false",
+      [RIGHT_ACTIONS.WATCH_EMPLOYEE_SETTINGS]: "false",
    },
    setSubscribeState: (state: Partial<SubscribeState>) => set(state),
 }));

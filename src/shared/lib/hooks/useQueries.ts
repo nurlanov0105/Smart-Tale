@@ -8,6 +8,7 @@ import {
    OrganizationDetailsTypes,
    VacancyService,
 } from "@/shared/lib";
+import {EmployeesRequestTypes} from "@/shared/lib/types/queries.types";
 
 export const usePositions = () => {
    return useQuery<PositionResponseTypes[]>({
@@ -38,7 +39,7 @@ export const useEmployeeOrders = (slug: string) => {
 };
 
 export const useEmployeeQuery = (slug: string) => {
-   return useQuery({
+   return useQuery<EmployeesRequestTypes>({
       queryKey: [OrganizationQueryKeys.EMPLOYEE_SETTINGS, slug],
       queryFn: () => OrganizationService.getEmployeeDetails(slug),
    });

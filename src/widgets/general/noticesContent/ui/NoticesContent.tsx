@@ -4,7 +4,6 @@ import { NoticeEmpty } from "@/entities/general/noticeEmpty";
 import { noticesData, useGetMyNotifications } from "@/entities/general/noticeItem";
 import { NoticesLists } from "@/features/general/noticesLists";
 import styles from "./styles.module.scss";
-import { requestFCMToken } from "@/widgets/general/noticesContent/model/firebase.config";
 import { GlobalLoading } from "@/shared/ui";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 

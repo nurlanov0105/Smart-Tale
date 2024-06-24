@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { Controller, useFieldArray, useFormContext, useWatch } from "react-hook-form";
 
 import { useThemeStore } from "@/shared/store/themeStore";
@@ -36,12 +36,22 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       register,
       control,
       setValue,
+      reset,
+      watch,
       formState: { errors, isValid },
    } = useFormContext<AnnouncementCreateFormType>();
+
+   console.log(watch());
 
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
    const [contactType, setContactType] = useState(orderContactValues[0].postValue);
+
+   useEffect(() => {
+      if (profile?.phone_number) {
+         reset({ tel: profile.phone_number });
+      }
+   }, [profile?.phone_number, reset]);
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -207,10 +217,11 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
                <h4 className="h4">Контактная информация</h4>
 
-               <Tabs type={contactType} setType={setContactType} values={orderContactValues} />
+               {/* <Tabs type={contactType} setType={setContactType} values={orderContactValues} /> */}
 
-               {contactType === ContactValues.tel ? (
+               {/* {contactType === ContactValues.tel ? (
                   <PhoneInput
+                     isDisabled={true}
                      error={errors.tel?.message}
                      control={control}
                      classname={styles.order__phoneInput}
@@ -219,16 +230,20 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
                   <InputField
                      {...register(
                         ANNOUNCEMENT_FORM_NAMES.email,
-                        ValidationsSchemasService.emailSchema
+                        ValidationsSchemasService.emailSchemaNotReq
                      )}
                      error={errors.email?.message}
-                     classname={styles.order__margin}
-                     disabled={false}
+                     disabled={true}
                      value={profile?.email}
                      type="email"
                      title="Почта"
                   />
-               )}
+               )} */}
+               <PhoneInput
+                  error={errors.tel?.message}
+                  control={control}
+                  classname={styles.order__phoneInput}
+               />
             </div>
          </div>
 

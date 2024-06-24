@@ -17,12 +17,8 @@ const Chats = () => {
    const [selectedDate, setSelectedDate] = useState<ChatProps>(chatsFilterDate[0]);
    const selectedChat = useChatsStore((state) => state.selectedChat);
 
-   console.log("selectedChat - ", selectedChat);
-
    const theme = useThemeStore((state) => state.theme);
    const isShowChat = useChatsStore((state) => state.isShowChat);
-
-   useEffect(() => {}, [selectedChat]);
 
    return (
       <>

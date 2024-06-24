@@ -16,12 +16,10 @@ const AdminHistory = () => {
    const [selected, setSelected] = useState(employeesHistory[0]);
    const [employees, setEmployees] = useState([employeesHistory[0]]);
 
-
-    const {data} = useHistoryOrders()
-    const {data: dataEmployees, isSuccess} = useEmployees()
+    const {data: dataEmployees, isSuccess, isLoading} = useEmployees()
 
     useEffect(() => {
-        if (isSuccess && dataEmployees){
+        if (isSuccess && dataEmployees && employees?.length === 1){
             const employeesList = dataEmployees.map(employee => {
                 return {value: `${employee.last_name} ${employee.first_name} ${employee.middle_name}`, postValue: employee.user_slug}
             })
@@ -48,6 +46,7 @@ const AdminHistory = () => {
             title="Сотрудник"
             data={employees}
             type={SELECT_TYPES.default}
+             isLoading={isLoading}
          />
          <div className={styles.section__row}>
             <Tabs type={type} setType={setType} values={historyValues}/>
@@ -82,6 +81,7 @@ const AdminHistory = () => {
               type={SkeletonTypes.listItem}
               tab={type}
               isCurrent={type === "current"}
+              isOrganization={true}
           />
       </section>
    );

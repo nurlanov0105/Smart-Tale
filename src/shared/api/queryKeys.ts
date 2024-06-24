@@ -29,6 +29,7 @@ export const OrganizationQueryKeys = {
    EMPLOYEE_SETTINGS: "employees-settings",
    DELETE_EMPLOYEE: "employee/delete",
    UPDATE_EMPLOYEE: "update-employee",
+   LEAVE_ORGANIZATION: "exit-organization",
    ADD_POSITION: "add-position",
    POSITIONS: "positions",
    CHANGE_POSITION: "change-position",
@@ -108,4 +109,6 @@ export const ChatsQueryKeys = {
 };
 export const NotificationsQueryKeys = {
    NOTIFICATIONS: "my-notifications",
+   DELETE_NOTIFICATION: "notifications-delete",
+   DELETE_ALL_NOTIFICATIONS: "notifications-delete-all",
 };

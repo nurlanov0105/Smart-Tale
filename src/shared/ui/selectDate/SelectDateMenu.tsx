@@ -22,8 +22,12 @@ const SelectDateMenu: FC<SelectProps> = (
 
    const theme = useThemeStore((state) => state.theme);
 
-   const { toggleShow, ref, isShown } = useOutside(false);
+   const { toggleShow, ref, isShown, setIsShown } = useOutside(false);
    const handleSelect = (item: IDateProps) => {
+       if (item.value === value?.value){
+           setIsShown(false)
+           return
+       }
       setDate({ value: item.value, postValue: item.postValue });
       onChange && onChange({ value: item.value, postValue: item.postValue })
       toggleShow();
