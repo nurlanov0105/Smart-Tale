@@ -7,7 +7,7 @@ const ChatComponent2 = () => {
 
     const token = CookiesServices.getTokens().accessToken || ""
 
-    const url = `wss://helsinki-backender.org.kg/ws/chat/2/`
+    const url = `wss://helsinki-backender.org.kg/ws`
     const [isReady, val, send] = useWs({ url, token });
 
     useEffect(() => {

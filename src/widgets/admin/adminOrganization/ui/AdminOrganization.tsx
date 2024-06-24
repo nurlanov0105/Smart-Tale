@@ -31,6 +31,9 @@ const AdminOrganization: FC = () => {
       if (isSubscribe && subscription && positions?.length === MIN_ORGANIZATIONS_CREATING){
          return
       }
+      // if (isSubscribe && !subscription && positions?.length === MIN_ORGANIZATIONS_CREATING){
+      //    return
+      // }
       if (isSubscribe && !subscription && positions?.length === MAX_ORGANIZATIONS_CREATING){
          return
       }

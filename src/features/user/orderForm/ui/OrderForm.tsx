@@ -42,7 +42,6 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
 
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
-   const [contactType, setContactType] = useState(orderContactValues[0].postValue);
 
    useEffect(() => {
       if (profile?.phone_number){
@@ -213,29 +212,11 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
 
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
                <h4 className="h4">Контактная информация</h4>
-
-               <Tabs type={contactType} setType={setContactType} values={orderContactValues} />
-
-               {contactType === ContactValues.tel ? (
-                  <PhoneInput
-                      isDisabled={true}
-                      error={errors.tel?.message}
-                      control={control}
-                      classname={styles.order__phoneInput}
-                  />
-               ) : (
-                  <InputField
-                     {...register(
-                        ANNOUNCEMENT_FORM_NAMES.email,
-                        ValidationsSchemasService.emailSchema
-                     )}
-                     error={errors.email?.message}
-                     disabled={true}
-                     value={profile?.email}
-                     type="email"
-                     title="Почта"
-                  />
-               )}
+               <PhoneInput
+                   error={errors.tel?.message}
+                   control={control}
+                   classname={styles.order__phoneInput}
+               />
             </div>
          </div>
 

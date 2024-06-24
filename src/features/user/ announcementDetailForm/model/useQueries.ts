@@ -33,13 +33,13 @@ export const useGetService = (slug: string, type: string) => {
 
 export const useUpdateOrder = () => {
    const queryClient = useQueryClient();
-   const {handleScrollToTop} = useScrollTop()
+   const {handleScrollToTop} = useScrollTop();
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [OrdersQueryKeys.ORDER_UPDATE],
       mutationFn: ({ data, slug }) => OrdersService.updateOrder({ params: data, orderSlug: slug }),
-      onSuccess: async() => {
-         handleScrollToTop()
-         await queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
+      onSuccess: async(data) => {
+         handleScrollToTop();
+         await queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]});
          toast.success("Поздравлям! Вы успешно обновили заказ!");
       },
       onError: () => {
@@ -93,23 +93,23 @@ export const useAnnouncementDetailsType = (slug: string, type: string) => {
       equipment: getEquipment,
       service: getService
    };
-   const responseData = dataMap[type as keyof typeof dataMap]
+   const responseData = dataMap[type as keyof typeof dataMap];
 
    return responseData
-}
+};
 
 
 export const useAnnouncementAction = (type: string) => {
-   const updateOrder = useUpdateOrder()
-   const updateEquipment = useUpdateEquipment()
-   const updateService = useUpdateService()
+   const updateOrder = useUpdateOrder();
+   const updateEquipment = useUpdateEquipment();
+   const updateService = useUpdateService();
 
    const updateAnnouncementMap = {
       order: updateOrder,
       equipment: updateEquipment,
       service: updateService
    };
-   const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap]
+   const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap];
 
    return updateData
-}
+};
