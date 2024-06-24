@@ -11,7 +11,7 @@ import {
    MODAL_KEYS,
    TWO_MONTH_COOKIES,
    UserService,
-   useRememberMe,
+   useRememberMe, DASHBOARD,
 } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import Select2 from "@/shared/ui/select/Select2";
@@ -19,10 +19,12 @@ import Select2 from "@/shared/ui/select/Select2";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { OrganizationQueryKeys, UserQueryKeys } from "@/shared/api";
+import {useRouter} from "next/navigation";
 
 const StripPayment = () => {
    const theme = useThemeStore((state) => state.theme);
 
+   const {push} = useRouter()
    const isClient = typeof window === "object";
    const [type, setType] = useState("base");
    const [selected, setSelected] = useState(SubsribesData[type as keyof typeof SubsribesData]);
@@ -46,6 +48,7 @@ const StripPayment = () => {
 
       onSuccess: () => {
          // queryClient.removeQueries({queryKey: [UserQueryKeys.PROFILE]})
+         push(DASHBOARD.PROFILE)
          queryClient.invalidateQueries({ queryKey: [UserQueryKeys.PROFILE] });
          showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.subscribe });
       },

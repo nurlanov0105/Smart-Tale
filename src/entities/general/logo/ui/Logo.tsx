@@ -15,9 +15,9 @@ import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 const Logo: FC<LogoProps> = ({ type = "navbar", data }) => {
    const theme = useThemeStore((state) => state.theme);
 
-   const organization = useSubscribeStore(state => state.data)
+   const slug = useSubscribeStore(state => state.data?.profile.slug)
 
-   const isMineOrg = organization?.job_titles.some(item => item.organization === data?.slug)
+   const isMineOrg = slug === data?.owner?.slug
 
    const {push} = useRouter()
    const handleEdit = () => push(ORGANIZATION_ROUTES.ORGANIZATION_SETTINGS + `/${data?.slug}`)

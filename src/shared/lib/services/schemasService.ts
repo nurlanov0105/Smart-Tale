@@ -37,6 +37,13 @@ export const ValidationsSchemasService = {
          message: "Неверный формат email",
       },
    },
+   emailSchemaNotReq: {
+      required: "Поле обязательно для заполнения",
+      pattern: {
+         value: /^[^ ]+@[^ ]+\.[a-z]{2,5}$/,
+         message: "Неверный формат email",
+      },
+   },
    telSchema: {
       required: "Поле обязательно для заполнения",
       minLength: {

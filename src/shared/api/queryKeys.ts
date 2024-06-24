@@ -29,6 +29,7 @@ export const OrganizationQueryKeys = {
    EMPLOYEE_SETTINGS: "employees-settings",
    DELETE_EMPLOYEE: "employee/delete",
    UPDATE_EMPLOYEE: "update-employee",
+   LEAVE_ORGANIZATION: "exit-organization",
    ADD_POSITION: "add-position",
    POSITIONS: "positions",
    CHANGE_POSITION: "change-position",

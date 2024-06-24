@@ -1,5 +1,6 @@
 export type Props = {
    isCurrent?: boolean;
+   isOrganization?: boolean
    type: string;
    fetchFunction: any;
    queryKey: string;

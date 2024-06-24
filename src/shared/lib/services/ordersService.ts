@@ -21,11 +21,12 @@ export const OrdersService = {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
          params: { page: page },
       });
-      return {
-         data: response.data?.data.data,
-         hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number,
-      };
+      // return {
+      //    data: response.data?.data.data,
+      //    hasNextPage: response.data.has_next_page,
+      //    nextPage: response.data.next_page_number,
+      // };
+      return response.data;
    },
 
    getOrdersClient: async ({ page }: { page: number }) => {

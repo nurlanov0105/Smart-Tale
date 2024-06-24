@@ -14,6 +14,7 @@ import {
    useDeleteVacancy,
    useDeletePosition,
    useDeleteOrganization,
+   useLeaveOrganization
 } from "../model/useQueries";
 import { useDeleteAccount, useLogout } from "@/features/auth";
 import { useBookOrder } from "@/widgets/general/feedbackList/model/useQuieries";
@@ -92,6 +93,13 @@ export const ModalActionsMap: { [key: string]: ModalAction } = {
       buttonText: "Да",
       emoji: "unknown",
       request: () => useDeleteEmployee,
+   },
+   [MODAL_KEYS.leaveOrganization]: {
+      title: "Вы действительно хотите \n покинуть организацию?",
+      description: "Все данные будут удалены!",
+      buttonText: "Покинуть",
+      emoji: "unknown",
+      request: () => useLeaveOrganization,
    },
    [MODAL_KEYS.deleteAccount]: {
       title: "Вы действительно \n хотите удалить?",

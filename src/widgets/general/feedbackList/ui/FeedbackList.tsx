@@ -40,12 +40,16 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
       return <></>;
    }
 
+    if (!data?.data?.length) {
+        return null
+    }
+
    return (
       <div className={styles.feedback}>
          <h3 className="h4">Список заявок</h3>
          <ul className={styles.feedback__list}>
             {isSuccess &&
-               data.data.map((item: any) => (
+               data?.data?.map((item: any) => (
                   <li key={item.slug} className={styles.feedback__item}>
                      <button
                         onClick={() => handleRoute(item?.slug)}

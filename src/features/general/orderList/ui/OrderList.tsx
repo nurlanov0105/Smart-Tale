@@ -19,6 +19,7 @@ const OrderList: FC<Props> = ({
    title,
    type,
    isCurrent,
+    isOrganization
 }) => {
    const {
       data,
@@ -53,7 +54,7 @@ const OrderList: FC<Props> = ({
             // @ts-ignore
             return <ResumeItem item={item} key={i} />;
          } else {
-            return <OrderItem key={i} item={item} isCurrent={isCurrent} />;
+            return <OrderItem key={i} item={item} isCurrent={isCurrent} isOrganization={isOrganization}/>;
          }
       })
    );

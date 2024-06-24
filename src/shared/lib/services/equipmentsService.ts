@@ -10,11 +10,13 @@ export const EquipmentService = {
          },
       });
 
-      return {
-         data: response.data?.data,
-         hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number,
-      };
+      // return {
+      //    data: response.data?.data,
+      //    hasNextPage: response.data.has_next_page,
+      //    nextPage: response.data.next_page_number,
+      // };
+
+      return response;
    },
    getEquipmentSlug: async (slug: string) => {
       const response = await baseApiInstance.get(EquipmentsEndpoints.EQUIPMENT_SLUG + slug);
