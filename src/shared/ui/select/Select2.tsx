@@ -5,6 +5,7 @@ import {useOutside} from "@/shared/lib";
 import {useThemeStore} from "@/shared/store/themeStore";
 import {SelectPostTypes} from "../../lib/types/types"
 import styles from "./styles.module.scss";
+import {GlobalLoading} from "@/shared/ui";
 
 interface ISelect{
     data: SelectPostTypes[] | undefined,
@@ -12,6 +13,7 @@ interface ISelect{
     setSelected: Dispatch<SetStateAction<SelectPostTypes>>
     title?: string
     classname?: string
+    isLoading?: boolean
     type: "transparent" | "default" | "chat" | "vacancy" | "bordered" | "auth"
 }
 const Select: FC<ISelect> = (
@@ -22,6 +24,7 @@ const Select: FC<ISelect> = (
         setSelected,
         type,
         classname,
+        isLoading
     }
 ) => {
     const { toggleShow, ref, isShown, setIsShown } = useOutside(false);
@@ -30,6 +33,7 @@ const Select: FC<ISelect> = (
         setSelected(employee);
         setIsShown(false)
     };
+
     return (
         <div className={clsx(styles.select__wrapper, styles[theme])} ref={ref}>
             <div className={clsx(styles.select, styles[type], classname)}>
@@ -45,9 +49,13 @@ const Select: FC<ISelect> = (
                                 [styles.select__icon_active]: isShown
                             })}/>
                     </button>
+
                     {isShown && (
                         <div className={styles.select__menu}>
-                            {data?.map((employee) => (
+                            {
+                                isLoading && <GlobalLoading type="default"/>
+                            }
+                            {!isLoading && data?.map((employee) => (
                                 <button
                                     onClick={() => handleSelect(employee)}
                                     type="button"

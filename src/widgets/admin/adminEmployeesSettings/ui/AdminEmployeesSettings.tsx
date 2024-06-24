@@ -38,7 +38,7 @@ const AdminEmployeesSettings = () => {
    const positionsList = useWatch({ control, name: EMPLOYEE_SETTINGS_NAMES.positions });
    const selectedPosition = useWatch({ control, name: EMPLOYEE_SETTINGS_NAMES.position });
 
-   useInitialEmployeeData({ reset, data: data?.user, isSuccess, positions, isSuccessPosition });
+   useInitialEmployeeData({ reset, data, isSuccess, positions, isSuccessPosition });
    const { actions } = useInitialRights({ data: positions, position: selectedPosition });
 
    if (isLoading || isLoadingPosition) return <GlobalLoading type="full" />;

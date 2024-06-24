@@ -30,7 +30,7 @@ export const useAddEmployee = () => {
       }
       const adapter = {
          email: data.email,
-         org_slug: "neobisteam20", //data.organization.postValue
+         org_slug: data.organization.postValue,
          jt_slug: data.position.postValue,
       };
 

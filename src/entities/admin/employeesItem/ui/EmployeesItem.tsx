@@ -21,6 +21,8 @@ const EmployeesItem = ({
 
     const theme = useThemeStore((state) => state.theme);
 
+    const isActive = status === "Авторизован"
+
    return (
       <tr className={clsx(styles.item, styles[theme])}>
          <td>
@@ -50,7 +52,7 @@ const EmployeesItem = ({
             <span>{job_title}</span>
          </td>
          <td>
-            <span>{status}</span>
+            <span className={clsx(isActive && styles.active, styles.item__status)}>{status}</span>
          </td>
       </tr>
    );

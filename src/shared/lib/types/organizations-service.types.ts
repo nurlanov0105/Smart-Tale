@@ -11,6 +11,9 @@ export interface RightsTypes{
     [RIGHT_ACTIONS.UPDATE_ACCESS]: string,
     [RIGHT_ACTIONS.REMOVE_POSITION]: string,
     [RIGHT_ACTIONS.UPDATE_ORDER]: string,
+    [RIGHT_ACTIONS.CREATE_VACANCY]: string,
+    [RIGHT_ACTIONS.WATCH_EMPLOYEE_SETTINGS]: string,
+    [RIGHT_ACTIONS.CHANGE_EMPLOYEE_POSITION]: string,
 }
 
 export interface GetPositionTypes extends RightsTypes{

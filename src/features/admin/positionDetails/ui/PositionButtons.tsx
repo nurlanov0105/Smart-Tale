@@ -20,11 +20,11 @@ const PositionButtons: FC<IProps> = ({position, slug, isSubmitting}) => {
 
     const handleDelete = () => {
         if (!myPosition[RIGHT_ACTIONS.REMOVE_POSITION]){
-            showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noRights })
+            showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.noRights })
             return
         }
         if (OWNER === position){
-            showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noChangeDeleteOwner })
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangeDeleteOwner })
             return
         }
 

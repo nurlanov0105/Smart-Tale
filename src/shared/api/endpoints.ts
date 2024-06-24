@@ -98,6 +98,7 @@ export const OrganizationEndpoints = {
    ORGANIZATION_UPDATE: "/organization/detail/",
    ORGANIZATION_DELETE: "/organization/detail/",
    ORGANIZATION_ACTIVATE: "/organization/activate/",
+   LEAVE_ORGANIZATION: "/employee/exit/",
    GET_ORGANIZATION_ORDERS: "/received-orders-status/",
    GET_HISTORY_ORDERS: "/my-org-orders",
    GET_EMPLOYEE_ORDERS: "/employee-order/",

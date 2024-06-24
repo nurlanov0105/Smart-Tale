@@ -12,7 +12,6 @@ export const useGetChats = () => {
 };
 
 export const useGetMessages = (selectedChat: string) => {
-   console.log("use get mess - ", selectedChat);
    return useQuery<IMessageFullTypes>({
       queryKey: [ChatsQueryKeys.MESSAGES, selectedChat],
       queryFn: () => ChatsService.getMessages(selectedChat),

@@ -38,9 +38,9 @@ export const useUpdateOrder = () => {
       mutationKey: [OrdersQueryKeys.ORDER_UPDATE],
       mutationFn: ({ data, slug }) => OrdersService.updateOrder({ params: data, orderSlug: slug }),
       onSuccess: async() => {
+         handleScrollToTop()
          await queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]})
          toast.success("Поздравлям! Вы успешно обновили заказ!");
-         handleScrollToTop
       },
       onError: () => {
          toast.error("Произошла ошибка при запросе, попробуйте еще раз")
@@ -68,14 +68,13 @@ export const useUpdateEquipment = () => {
 export const useUpdateService = () => {
    const queryClient = useQueryClient();
    const {handleScrollToTop} = useScrollTop()
-
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [ServiceQueryKeys.UPDATE_SERVICE],
       mutationFn: ({ data, slug }) => ServicesService.updateService({ params: data, serviceSlug: slug }),
       onSuccess: async () => {
+         handleScrollToTop()
          await queryClient.invalidateQueries({queryKey: [ServiceQueryKeys.GET_MY_SERVICE]})
          toast.success("Поздравлям! Вы успешно обновили услугу!")
-         handleScrollToTop
       },
       onError: () => {
          toast.error("Произошла ошибка при запросе, попробуйте еще раз")

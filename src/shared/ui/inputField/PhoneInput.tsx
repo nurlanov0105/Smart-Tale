@@ -11,7 +11,7 @@ import styles from "./styles.module.scss"
 import {useThemeStore} from "@/shared/store/themeStore";
 import clsx from "clsx";
 
-const InputPhone = ({control, classname, error, isDisabled}: InputPhoneProps) => {
+const InputPhone = ({control, classname, error, isDisabled, defaultValue}: InputPhoneProps) => {
     const validate = (value: string) => {
         return isValidPhoneNumber(`${value}`) || "Неверный формат номера"
     }
@@ -30,6 +30,7 @@ const InputPhone = ({control, classname, error, isDisabled}: InputPhoneProps) =>
         <div className={styles.fieldWrapper}>
             <PhoneInputWithCountry
                 international
+                defaultValue={defaultValue}
                 limitMaxLength={true}
                 countries={COUNTRIES}
                 defaultCountry="KG"

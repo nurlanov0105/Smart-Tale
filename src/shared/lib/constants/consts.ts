@@ -30,6 +30,7 @@ export const MODAL_KEYS = {
    deleteAccount: "DeleteModal",
    deletePosition: "DeletePositionModal",
    deleteEmployee: "DeleteEmployeeModal",
+   leaveOrganization: "leaveOrganization",
    deleteResume: "DeleteResumeModal",
    responsesUsers: "ResponsesModal",
    activateOrganization: "ActivateOrganizationModal",
@@ -138,6 +139,9 @@ export const RIGHT_ACTIONS = {
    REMOVE_EMPLOYEE: "flag_remove_employee",
    UPDATE_ORDER: "flag_update_order",
    DELETE_ORDER: "flag_delete_order",
+   CREATE_VACANCY: "flag_create_vacancy",
+   WATCH_EMPLOYEE_SETTINGS: "flag_employee_detail_access",
+   CHANGE_EMPLOYEE_POSITION: "flag_change_employee_job",
 } as const;
 
 export const EMPTY_CONTENT_TYPES = {
@@ -156,6 +160,9 @@ export const rightsActionsMap: RightsTypes = {
    [RIGHT_ACTIONS.DELETE_ORDER]: "Отмена заказа",
    [RIGHT_ACTIONS.REMOVE_POSITION]: "Удаление роли",
    [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "Удаление сотрудника",
+   [RIGHT_ACTIONS.CREATE_VACANCY]: "Создание вакансии",
+   [RIGHT_ACTIONS.WATCH_EMPLOYEE_SETTINGS]: "Просмотр личной информации сотрудников",
+   [RIGHT_ACTIONS.CHANGE_EMPLOYEE_POSITION]: "Изменение должностей у сотрудников",
 };
 
 export const ruCurrency = {

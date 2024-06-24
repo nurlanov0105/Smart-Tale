@@ -31,6 +31,7 @@ const EmployeesForm = () => {
     const { actions} = useInitialRights({data, position})
 
    const { handleSubmit, isLoading} = useAddEmployee()
+    
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>

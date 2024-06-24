@@ -85,6 +85,12 @@ export const OrganizationService = {
       );
       return response.data;
    },
+   leaveOrganization: async (orgSlug: string) => {
+      const response = await baseApiInstance.delete(OrganizationEndpoints.LEAVE_ORGANIZATION, {
+         data: {org_slug: orgSlug}
+      });
+      return response.data;
+   },
    deletePosition: async (slug: string) => {
       const response = await baseApiInstance.delete(OrganizationEndpoints.DELETE_POSITION + slug);
       return response.data;

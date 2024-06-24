@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, {FC, useEffect, useState} from "react";
 import { Controller, useFieldArray, useFormContext, useWatch } from "react-hook-form";
 
 import { useThemeStore } from "@/shared/store/themeStore";
@@ -36,12 +36,19 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       register,
       control,
       setValue,
+       reset,
       formState: { errors, isValid },
    } = useFormContext<AnnouncementCreateFormType>();
 
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
    const [contactType, setContactType] = useState(orderContactValues[0].postValue);
+
+   useEffect(() => {
+      if (profile?.phone_number){
+         reset({tel: profile.phone_number})
+      }
+   }, [profile?.phone_number, reset]);
 
    return (
       <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
@@ -211,9 +218,10 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
 
                {contactType === ContactValues.tel ? (
                   <PhoneInput
-                     error={errors.tel?.message}
-                     control={control}
-                     classname={styles.order__phoneInput}
+                      isDisabled={true}
+                      error={errors.tel?.message}
+                      control={control}
+                      classname={styles.order__phoneInput}
                   />
                ) : (
                   <InputField
@@ -222,8 +230,7 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
                         ValidationsSchemasService.emailSchema
                      )}
                      error={errors.email?.message}
-                     classname={styles.order__margin}
-                     disabled={false}
+                     disabled={true}
                      value={profile?.email}
                      type="email"
                      title="Почта"

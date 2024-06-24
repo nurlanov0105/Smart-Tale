@@ -8,6 +8,8 @@ import Link from "next/link";
 import { ORGANIZATION_ROUTES, MODAL_KEYS } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import userIcon from "@@/imgs/form/user.svg";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import {useRouter} from "next/navigation";
 
 const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slug }) => {
    const handleAvatarClick = () => {
@@ -15,6 +17,15 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slu
          showModal(MODAL_KEYS.changeAvatar);
       }
    };
+   const {push} = useRouter()
+   const hasAccess = useSubscribeStore(state => state.position.flag_employee_detail_access)
+    const handleRoute = () => {
+       if (!hasAccess){
+           showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+           return
+       }
+        push(ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS + `/${slug}`)
+    }
 
    return (
       <fieldset className={styles.form__user}>
@@ -34,11 +45,11 @@ const ChangeImage: FC<ChangeImageProps> = ({ image, name, isAdmin, disabled, slu
          <div className={styles.form__userBox}>
             <h3 className={styles.form__name}>{name}</h3>
             {isAdmin ? (
-               <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_SETTINGS + `/${slug}`}
+               <button
+                  onClick={handleRoute}
                   className={styles.form__photoSpan}>
                   Личные данные
-               </Link>
+               </button>
             ) : (
                <button type="button" onClick={handleAvatarClick} className={styles.form__photoSpan}>
                   Изменить фото профиля
