@@ -23,6 +23,10 @@ const PositionButtons: FC<IProps> = ({position, slug, isSubmitting}) => {
             showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.noRights })
             return
         }
+        if (myPosition?.job_title === slug){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+            return
+        }
         if (OWNER === position){
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangeDeleteOwner })
             return

@@ -20,14 +20,19 @@ export const usePositionDetails = (slug: string) => {
 
     const changePosition = useChangePositionQuery()
 
+
     const onSubmit = (data: AddPositionTypes) => {
+        if (!userPosition[RIGHT_ACTIONS.UPDATE_ACCESS]){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+            return
+        }
+        if (userPosition?.job_title === slug){
+            showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
+            return
+        }
         if (position?.title === OWNER){
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangeOwner})
             return
-        }
-        if (!userPosition[RIGHT_ACTIONS.UPDATE_ACCESS]){
-           showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
-           return
         }
         changePosition.mutate({params: data, slug: slug.toString()})
     }
