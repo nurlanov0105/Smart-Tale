@@ -64,5 +64,6 @@ export const ServicesService = {
          params,
          { headers: headers }
       );
+      return response.data;
    },
 };

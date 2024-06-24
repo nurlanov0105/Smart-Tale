@@ -1,116 +1,127 @@
 "use client";
 
-import { ORGANIZATION_ROUTES } from "@/shared/lib";
+import { ORGANIZATION_ROUTES, ROUTES, useGetDates } from "@/shared/lib";
 import { useThemeStore } from "@/shared/lib";
-import { Button } from "@/shared/ui";
+import { Button, GlobalLoading, PriceFormat } from "@/shared/ui";
 import clsx from "clsx";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./styles.module.scss";
 import avatar from "@@/imgs/auth/auth-1.jpg";
+import { usePathname } from "next/navigation";
+import { useGetOrderEmployees } from "@/features/admin/adminEmployeesItem";
+import {
+   useAddEmployeeOrder,
+   useGetOrderDetail,
+   useRemoveEmployeeOrder,
+} from "@/features/admin/adminEmployeesItem/model/useQueries";
+import { ErrorMessage } from "@/entities/general/errorMessage";
+import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 const AnnouncementDetails = () => {
+   const pathname = usePathname();
+
+   const orderSlug = pathname.substring(pathname.lastIndexOf("/") + 1);
+
+   const {
+      data: orderData,
+      isLoading: orderisLoading,
+      isError: orderisError,
+   } = useGetOrderDetail(orderSlug);
+   const {
+      data: employeesData,
+      isLoading: employeesisLoading,
+      isError: employeesisError,
+   } = useGetOrderEmployees(orderSlug);
+
+   const { mutate: addEmployee, isPending: addIsLoading } = useAddEmployeeOrder();
+   const { mutate: removeEmployee, isPending: removeIsLoading } = useRemoveEmployeeOrder();
+
    const theme = useThemeStore((state) => state.theme);
+
+   const { day, month, year } = useGetDates(
+      orderData?.data?.booked_at ? orderData?.data?.booked_at : ""
+   );
+   const monthFormat = monthsForDate()[month]?.value;
+
+   if (!employeesisLoading) {
+      console.log("employeesData", employeesData);
+   }
+
+   if (orderisLoading) {
+      return <GlobalLoading />;
+   }
+
+   if (orderisError) {
+      return <ErrorMessage />;
+   }
+
    return (
       <div className={clsx(styles.item, styles[theme])}>
          <div className={styles.item__info}>
             <div>
-               <h5 className={styles.item__subtitle}>Заказ №234</h5>
-               <p className={styles.item__title}>Сшить костюм</p>
-               <p className={styles.item__text}>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Obcaecati, officiis modi
-                  corrupti perspiciatis quo voluptate molestiae autem? Quos est cumque facilis.
-                  Recusandae illo dolores explicabo, sequi velit doloremque incidunt perspiciatis!
+               <h5 className={styles.item__subtitle}>Заказ </h5>
+               <p className={styles.item__title}>{orderData?.data?.title}</p>
+               <p className={styles.item__text}>{orderData?.data?.description}</p>
+               <p className={styles.item__price}>
+                  <PriceFormat type={orderData?.data?.currency} price={+orderData?.data?.price} />
                </p>
-               <p className={styles.item__price}>1000 сом</p>
             </div>
             <div className={styles.item__shrink}>
-               <p className={styles.item__date}>Принял 10 апреля 2024</p>
+               <p className={styles.item__date}>Принял {`${day} ${monthFormat} ${year}`}</p>
             </div>
          </div>
          <div className={styles.item__border}>
             <h4 className="h4">Сотрудники</h4>
             <div className={styles.item__employees}>
-               <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                  className={styles.item__employee}>
-                  <Image
-                     className={styles.item__image}
-                     src={avatar}
-                     alt="avatar"
-                     width={48}
-                     height={48}
-                  />
-                  <div>
-                     <h4 className="h4">Кирилл Олейников</h4>
-                     <p className={styles.item__salary}>ЗП 900 сом</p>
-                  </div>
-               </Link>
-
-               <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                  className={styles.item__employee}>
-                  <Image
-                     className={styles.item__image}
-                     src={avatar}
-                     alt="avatar"
-                     width={48}
-                     height={48}
-                  />
-                  <div>
-                     <h4 className="h4">Кирилл Олейников</h4>
-                     <p className={styles.item__salary}>ЗП 900 сом</p>
-                  </div>
-               </Link>
-
-               <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                  className={styles.item__employee}>
-                  <Image
-                     className={styles.item__image}
-                     src={avatar}
-                     alt="avatar"
-                     width={48}
-                     height={48}
-                  />
-                  <div>
-                     <h4 className="h4">Кирилл Олейников</h4>
-                     <p className={styles.item__salary}>ЗП 900 сом</p>
-                  </div>
-               </Link>
-               <Link
-                  href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                  className={styles.item__employee}>
-                  <Image
-                     className={styles.item__image}
-                     src={avatar}
-                     alt="avatar"
-                     width={48}
-                     height={48}
-                  />
-                  <div>
-                     <h4 className="h4">Кирилл Олейников</h4>
-                     <p className={styles.item__salary}>ЗП 900 сом</p>
-                  </div>
-               </Link>
+               {employeesisLoading ? (
+                  <GlobalLoading />
+               ) : employeesisError ? (
+                  <ErrorMessage />
+               ) : (
+                  <Link
+                     href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
+                     className={styles.item__employee}>
+                     <Image
+                        className={styles.item__image}
+                        src={avatar}
+                        alt="avatar"
+                        width={48}
+                        height={48}
+                     />
+                     <div>
+                        <h4 className="h4">Кирилл Олейников</h4>
+                        <p className={styles.item__salary}>
+                           <PriceFormat
+                              type={orderData?.data?.currency}
+                              price={+orderData?.data?.price}
+                           />
+                        </p>
+                     </div>
+                  </Link>
+               )}
             </div>
          </div>
          <div className={styles.item__border}>
             <h4 className="h4">Заказчик</h4>
             <div className={styles.item__employees}>
-               <div className={styles.item__employee}>
+               <Link
+                  href={ROUTES.USERS + "/" + orderData?.data?.author?.slug}
+                  className={styles.item__employee}>
                   <Image
                      className={styles.item__image}
-                     src={avatar}
+                     src={orderData?.data?.author?.profile_image || avatar}
                      alt="avatar"
                      width={48}
                      height={48}
                   />
                   <div>
-                     <h4 className="h4">Олег Васильев</h4>
-                     <p className={styles.item__salary}>+996 700 010 101</p>
+                     <h4 className="h4">
+                        {orderData?.data?.author?.last_name} {orderData?.data?.author?.first_name}
+                     </h4>
+                     <p className={styles.item__salary}>{orderData?.data?.author?.phone_number}</p>
                   </div>
-               </div>
+               </Link>
             </div>
          </div>
          <div className={styles.item__button}>
