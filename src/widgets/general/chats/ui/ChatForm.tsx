@@ -8,7 +8,7 @@ import { MessageItem, messagesData } from "@/entities/general/messageItem";
 import { GlobalLoading, TextArea } from "@/shared/ui";
 import { createWebSocket } from "@/shared/lib/hooks/useCreateWebsocket";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
-import { ROUTES } from "@/shared/lib";
+import { ROUTES, socket } from "@/shared/lib";
 
 import { ChatFormProps } from "../model/types";
 import {

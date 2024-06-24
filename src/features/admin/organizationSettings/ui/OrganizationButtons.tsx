@@ -10,10 +10,11 @@ import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore"
 
 interface IProps {
    isSubmitting: boolean;
+   ownerSlug: string | undefined
 }
-const OrganizationButtons: FC<IProps> = ({ isSubmitting }) => {
+const OrganizationButtons: FC<IProps> = ({ isSubmitting, ownerSlug }) => {
    const { slug } = useParams<{ slug: string }>();
-   const position = useSubscribeStore((state) => state.position);
+   const profileSlug = useSubscribeStore((state) => state.data?.profile.slug);
 
    const {
       reset,
@@ -21,10 +22,10 @@ const OrganizationButtons: FC<IProps> = ({ isSubmitting }) => {
    } = useFormContext<UpdateOrganizationTypes>();
 
    const handleDelete = useCallback(() => {
-      // if (position.job_title !== OWNER) {
-      //    showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noRights });
-      //    return;
-      // }
+      if (profileSlug !== ownerSlug) {
+         showModal(MODAL_KEYS.infoModal, { slug, componentName: MODAL_KEYS.noRights });
+         return;
+      }
       showModal(MODAL_KEYS.confirmationModal, {
          slug,
          componentName: MODAL_KEYS.deleteOrganization,

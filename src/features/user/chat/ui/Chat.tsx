@@ -6,7 +6,7 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import { ChatType } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useStartChat } from "@/widgets/general/chats/model/useQueries";
+import {useGetMessages, useStartChat} from "@/widgets/general/chats/model/useQueries";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 import { MODAL_KEYS, useAuth } from "@/shared/lib";
 import { showModal } from "@/views/modal";
@@ -19,6 +19,7 @@ const Chat: FC<ChatType> = ({ author, isModal }) => {
 
    const [sendMessage, setSendMessage] = useState("");
    const { mutate, isPending } = useStartChat();
+
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();

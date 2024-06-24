@@ -58,8 +58,8 @@ import {
    sizesDataLetters,
 } from "./constants/announcement.consts";
 
-// import socket from "./services/socket";
-// export { socket };
+import socket from "./services/socket";
+export { socket };
 
 export type { ItemType } from "./types/usePaginationTypes";
 export type { UsePaginationResult } from "./types/usePaginationTypes";

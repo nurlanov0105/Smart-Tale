@@ -104,6 +104,7 @@ export type InputPhoneProps = {
    classname?: string;
    isDisabled?: boolean;
    isLoading?: boolean;
+   defaultValue?: string
 };
 
 export type AuthorType = {

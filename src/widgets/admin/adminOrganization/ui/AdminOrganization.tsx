@@ -7,10 +7,11 @@ import { Button, GlobalLoading } from "@/shared/ui";
 import { EMPTY_CONTENT_TYPES } from "@/shared/lib/constants/consts";
 import { ORGANIZATION_ROUTES, useConfettiStore } from "@/shared/lib";
 import { useRouter } from "next/navigation";
-import { OrganizationsTypes } from "../model/types";
-import styles from "./styles.module.scss";
 import { ConfettiComponent } from "@/entities/general/confetti";
 import { useOrganization } from "@/widgets/admin/adminOrganization/model/useOrganization";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import {ErrorMessage} from "@/entities/general/errorMessage";
+import styles from "./styles.module.scss";
 
 const AdminOrganization: FC = () => {
    const { data, isLoading, isError, isSuccess } = useOrganization();
@@ -18,8 +19,23 @@ const AdminOrganization: FC = () => {
    const organizations = data && data.my_orgs;
    const activeOrg = data && data["orgs_active"].find((item) => item.active);
 
+   const positions = useSubscribeStore(state => state.data?.job_titles)
+   const isSubscribe = useSubscribeStore(state => state.isSubscribe)
+   const subscription = useSubscribeStore(state => state.data?.subscription)
    const isShow = useConfettiStore((state) => state.isShow);
    const endConfetti = useConfettiStore((state) => state.endConfetti);
+
+   const MAX_ORGANIZATIONS_CREATING = 5;
+   const MIN_ORGANIZATIONS_CREATING = 1;
+   const isShowButton = () => {
+      if (isSubscribe && subscription && positions?.length === MIN_ORGANIZATIONS_CREATING){
+         return
+      }
+      if (isSubscribe && !subscription && positions?.length === MAX_ORGANIZATIONS_CREATING){
+         return
+      }
+      return true
+   }
 
    const { push } = useRouter();
    const handleAdd = () => push(ORGANIZATION_ROUTES.CREATE_ORGANIZATION);
@@ -34,6 +50,7 @@ const AdminOrganization: FC = () => {
    }, []);
 
    if (isLoading) return <GlobalLoading type="default" />;
+   if (isError) return <ErrorMessage/>;
 
    return (
       <>
@@ -43,7 +60,9 @@ const AdminOrganization: FC = () => {
             <div className={styles.list}>
                <div className={styles.list__top}>
                   <h4 className="h4">Список организаций</h4>
-                  <Button onClick={handleAdd}>Добавить организацию</Button>
+                  {
+                      isShowButton() && <Button onClick={handleAdd}>Добавить организацию</Button>
+                  }
                </div>
                {organizations
                   ?.map((item) => (

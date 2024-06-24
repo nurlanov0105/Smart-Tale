@@ -290,6 +290,20 @@ export const useDeleteOrganization = () => {
    });
 };
 
+export const useLeaveOrganization= () => {
+   const queryClient = useQueryClient()
+   const {push} = useRouter()
+   return useMutation<any, Error, { slug: string }>({
+      mutationKey: [OrganizationQueryKeys.LEAVE_ORGANIZATION],
+      mutationFn: ({slug}) => OrganizationService.leaveOrganization(slug),
+      onSuccess: () => {
+         push(DASHBOARD.PROFILE)
+         queryClient.invalidateQueries({queryKey: [UserQueryKeys.PROFILE]})
+         toast.success("Поздравляем! Вы успешно покинули организацию!")
+      }
+   })
+}
+
 export const useGetVacancyResponses = () => {
    return useQuery({
       queryKey: [VacancyQueryKeys.GET_VACANCIES_RESPONSES],

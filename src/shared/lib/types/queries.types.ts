@@ -18,6 +18,20 @@ export interface EmployeesResponseTypes{
     order: {title: string, slug: string}[]
 }
 
+
+export interface EmployeesRequestTypes{
+    user: {
+        first_name: string,
+        last_name: string,
+        middle_name: string,
+        slug: string,
+        profile_image: null | string
+        phone_number: string,
+        email: string
+    },
+    job_title: PositionResponseTypes
+}
+
 export interface OrganizationDetailsTypes{
     created_at: string
     description: string

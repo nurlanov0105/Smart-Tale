@@ -30,7 +30,6 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
          router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
       } else {
          if (pathname.includes(ROUTES.SEARCH)) {
-            console.log(item.type.toLowerCase());
             router.push(defineDetailsRoute[item.type.toLowerCase()] + `/${item.slug}`);
          } else {
             router.push(defineAnnouncementRoute[item.type.toLowerCase()] + `/${item.slug}`);
