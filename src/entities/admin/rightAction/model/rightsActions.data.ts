@@ -23,6 +23,16 @@ export const rightsActionsData: TypeRightActions[] = [
       value: ""
    },
    {
+      title: "Просмотр личной информации сотрудников",
+      name: RIGHT_ACTIONS.WATCH_EMPLOYEE_SETTINGS,
+      value: ""
+   },
+   {
+      title: "Изменение должностей у сотрудников",
+      name: RIGHT_ACTIONS.CHANGE_EMPLOYEE_POSITION,
+      value: ""
+   },
+   {
       title: "Удаление сотрудника",
       name: RIGHT_ACTIONS.REMOVE_EMPLOYEE,
       value: ""
@@ -37,6 +47,11 @@ export const rightsActionsData: TypeRightActions[] = [
       name: RIGHT_ACTIONS.DELETE_ORDER,
       value: ""
    },
+   {
+      title: "Создание вакансии",
+      name: RIGHT_ACTIONS.CREATE_VACANCY,
+      value: ""
+   }
 ];
 
 

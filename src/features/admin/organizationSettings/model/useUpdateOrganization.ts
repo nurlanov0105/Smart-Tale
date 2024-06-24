@@ -15,7 +15,7 @@ export const useUpdateOrganization = (isEdited: boolean) => {
     } = useFormContext<UpdateOrganizationTypes>()
 
     const {slug} = useParams<{slug:string}>()
-    const position = useSubscribeStore(state => state.position)
+    const PROFILE_SLUG = useSubscribeStore(state => state.data?.profile.slug)
 
     const {
         data,
@@ -25,13 +25,13 @@ export const useUpdateOrganization = (isEdited: boolean) => {
 
     const {mutate, isPending} = useUpdateOrg(reset)
 
-    const onsSubmit = (data: UpdateOrganizationTypes) => {
-        if (position.job_title !== OWNER){
+    const onsSubmit = (submitData: UpdateOrganizationTypes) => {
+        if (PROFILE_SLUG !== data?.owner?.slug){
             showModal(MODAL_KEYS.infoModal, {slug, componentName: MODAL_KEYS.noRights})
             return
         }
         const formData = new FormData()
-        Object.entries(data).map(([key, value]) => {
+        Object.entries(submitData).map(([key, value]) => {
             if (!isEdited && key === UPDATE_ORGANIZATION_NAMES.logo){
                 return
             } else {

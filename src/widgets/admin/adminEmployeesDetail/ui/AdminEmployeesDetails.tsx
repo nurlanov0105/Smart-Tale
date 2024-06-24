@@ -3,18 +3,19 @@
 import React, { useState } from "react";
 import { Tabs } from "@/features/general/tabs";
 import { ChangeImage } from "@/features/general/changeImage";
-import { AdminEmployeesItem } from "@/entities/admin/adminEmployeesItem";
+import { AdminEmployeesItem } from "@/features/admin/adminEmployeesItem";
 import { AdminBack } from "@/entities/admin/adminBack";
 import { AvatarSkeleton, CommonSkeleton, Emojis } from "@/shared/ui";
 import { valuesData } from "../model/values.data";
 import { TypeViewButtons } from "@/entities/user/typeViewButtons";
 import { OrderItem } from "@/entities/general/orderItem";
 import { useParams } from "next/navigation";
-import { EmployeeOrderTypes } from "@/entities/admin/adminEmployeesItem/model/types";
+
 import { CardType, useEmployeeOrders, useEmployeeQuery } from "@/shared/lib";
 import styles from "./styles.module.scss";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 import { StandartCard } from "@/features/user/standartCard";
+import { EmployeeOrderTypes } from "@/features/admin/adminEmployeesItem/model/types";
 
 const AdminEmployeesDetails = () => {
    const [type, setType] = useState(valuesData[0].postValue);

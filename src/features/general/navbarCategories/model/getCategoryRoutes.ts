@@ -57,7 +57,7 @@ export const getCategoryRoutes = ({
          title: "Организация",
          id: 3,
          Icon: Clipboard,
-         isShow: authorized && subscribed,
+         isShow: subscribed || (authorized && hasOrganization),
          routes: [
             {
                parentId: 3,
@@ -97,7 +97,7 @@ export const getCategoryRoutes = ({
                isShow: hasOrganization,
             },
          ].filter((route) => {
-            return route.isShow == hasOrganization;
+            return route.isShow;
          }),
          activeRoutes: [
             ORGANIZATION_ROUTES.CREATE_ORGANIZATION,

@@ -67,7 +67,7 @@ const OrganizationSettings = () => {
                     type="default"
                 />
             </div>
-            <OrganizationButtons isSubmitting={isSubmitting}/>
+            <OrganizationButtons ownerSlug={data?.owner?.slug} isSubmitting={isSubmitting}/>
         </form>
     );
 };

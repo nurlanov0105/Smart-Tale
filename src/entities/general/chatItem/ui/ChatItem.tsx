@@ -16,7 +16,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
 
    const handleBtnClick = () => {
       setChat({
-         selectedChat: item.receiver.slug,
+         selectedChat: item.id,
          isShowChat: true,
       });
    };

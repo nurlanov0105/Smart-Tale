@@ -21,11 +21,12 @@ export const OrdersService = {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_ORDERS, {
          params: { page: page },
       });
-      return {
-         data: response.data?.data.data,
-         hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number,
-      };
+      // return {
+      //    data: response.data?.data.data,
+      //    hasNextPage: response.data.has_next_page,
+      //    nextPage: response.data.next_page_number,
+      // };
+      return response.data;
    },
 
    getOrdersClient: async ({ page }: { page: number }) => {
@@ -79,6 +80,10 @@ export const OrdersService = {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_APPLIED_ORGANIZATIONS + slug);
       return response;
    },
+   getOrderEmployees: async (slug: string) => {
+      const response = await baseApiInstance.get(OrdersEndpoints.ORDER_EMPLOYEES + slug);
+      return response.data;
+   },
 
    applyOrder: async (orderSlug: string) => {
       const response = await baseApiInstance.post(OrdersEndpoints.APPLY_ORDER + orderSlug);
@@ -124,6 +129,30 @@ export const OrdersService = {
    },
    likeOrder: async (orderSlug: string) => {
       const response = await baseApiInstance.post(OrdersEndpoints.LIKE_ORDER + orderSlug + "/");
+      return response.data;
+   },
+   addEmployeeOrder: async ({
+      orderSlug,
+      employeeSlug,
+   }: {
+      orderSlug: string;
+      employeeSlug: string;
+   }) => {
+      const response = await baseApiInstance.post(
+         OrdersEndpoints.ADD_EMPLOYEE_ORDER + orderSlug + "/" + employeeSlug
+      );
+      return response.data;
+   },
+   removeEmployeeOrder: async ({
+      orderSlug,
+      employeeSlug,
+   }: {
+      orderSlug: string;
+      employeeSlug: string;
+   }) => {
+      const response = await baseApiInstance.post(
+         OrdersEndpoints.REMOVE_EMPLOYEE_ORDER + orderSlug + "/" + employeeSlug
+      );
       return response.data;
    },
 };

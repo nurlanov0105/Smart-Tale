@@ -21,7 +21,7 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
                ...item,
             };
          });
-         const organization = profileData?.org.title
+         const organization = profileData?.org
          const organizations = profileData?.job_titles.map(item => {
              if (item.organization === null) {
                  return
@@ -32,7 +32,7 @@ export const usePositionsEmployee = ({ reset }: IProps) => {
          reset({
              position: positionsList[0],
              positions: positionsList,
-             organization: {value: organization, postValue: organization},
+             organization: {value: organization?.title, postValue: organization?.slug},
              organizations: organizations
          });
       }

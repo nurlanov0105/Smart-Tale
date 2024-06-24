@@ -25,11 +25,11 @@ export const useEmployeeDetails = (slug: string) => {
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noRights})
             return
         }
-        if (employee?.user_slug === dataProfile?.slug){
+        if (employee?.user?.slug === dataProfile?.slug){
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangePosYourself})
             return
         }
-        if (employee.job_title === OWNER){
+        if (employee?.job_title?.title === OWNER){
             showModal(MODAL_KEYS.infoModal, {componentName: MODAL_KEYS.noChangePosOwner})
             return;
         }
