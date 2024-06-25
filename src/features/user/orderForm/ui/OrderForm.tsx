@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {FC, useEffect} from "react";
 import { Controller, useFieldArray, useFormContext, useWatch } from "react-hook-form";
 
 import { useThemeStore } from "@/shared/store/themeStore";
@@ -21,9 +21,6 @@ import { useOrderForm } from "../model/hooks/useOrderForm";
 import type { AnnouncementCreateFormType, OrderProps } from "../model/types";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { Tabs } from "@/features/general/tabs";
-import { orderDetailsValues } from "@/widgets/user/createAnnouncement/model/values";
-import { ContactValues, orderContactValues } from "../model/consts";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const OrderForm: FC<OrderProps> = ({ type }) => {
@@ -36,20 +33,16 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
       register,
       control,
       setValue,
-      reset,
-      watch,
+       reset,
       formState: { errors, isValid },
    } = useFormContext<AnnouncementCreateFormType>();
 
-   console.log(watch());
-
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
-   const [contactType, setContactType] = useState(orderContactValues[0].postValue);
 
    useEffect(() => {
-      if (profile?.phone_number) {
-         reset({ tel: profile.phone_number });
+      if (profile?.phone_number){
+         reset({tel: profile.phone_number})
       }
    }, [profile?.phone_number, reset]);
 
@@ -217,33 +210,32 @@ const OrderForm: FC<OrderProps> = ({ type }) => {
             <div className={clsx(styles.order__block, styles.order__block_gap)}>
                <h4 className="h4">Контактная информация</h4>
 
-               {/* <Tabs type={contactType} setType={setContactType} values={orderContactValues} /> */}
-
-               {/* {contactType === ContactValues.tel ? (
-                  <PhoneInput
-                     isDisabled={true}
-                     error={errors.tel?.message}
-                     control={control}
-                     classname={styles.order__phoneInput}
-                  />
-               ) : (
-                  <InputField
-                     {...register(
-                        ANNOUNCEMENT_FORM_NAMES.email,
-                        ValidationsSchemasService.emailSchemaNotReq
-                     )}
-                     error={errors.email?.message}
-                     disabled={true}
-                     value={profile?.email}
-                     type="email"
-                     title="Почта"
-                  />
-               )} */}
                <PhoneInput
-                  error={errors.tel?.message}
-                  control={control}
-                  classname={styles.order__phoneInput}
+                   error={errors.tel?.message}
+                   control={control}
+                   classname={styles.order__phoneInput}
                />
+               {/*<Tabs type={contactType} setType={setContactType} values={orderContactValues} />*/}
+
+               {/*{contactType === ContactValues.tel ? (*/}
+               {/*   <PhoneInput*/}
+               {/*       error={errors.tel?.message}*/}
+               {/*       control={control}*/}
+               {/*       classname={styles.order__phoneInput}*/}
+               {/*   />*/}
+               {/*) : (*/}
+               {/*   <InputField*/}
+               {/*      {...register(*/}
+               {/*         ANNOUNCEMENT_FORM_NAMES.email,*/}
+               {/*         ValidationsSchemasService.emailSchema*/}
+               {/*      )}*/}
+               {/*      error={errors.email?.message}*/}
+               {/*      disabled={true}*/}
+               {/*      value={profile?.email}*/}
+               {/*      type="email"*/}
+               {/*      title="Почта"*/}
+               {/*   />*/}
+               {/*)}*/}
             </div>
          </div>
 

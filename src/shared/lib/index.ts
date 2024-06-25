@@ -119,6 +119,7 @@ export {
 export { useInitialRights } from "./hooks/useInitialRights";
 export { useGetDates } from "./hooks/useGetDates";
 export { useScrollTop } from "./hooks/useScrollTop";
+export { useRightsActions } from "./hooks/useRightsActions";
 
 export {
    graphicsFilter,
@@ -137,6 +138,8 @@ export {
 export { VacancyFilterStore } from "@/shared/store/filtersStore/workFiltersStore";
 export { useThemeStore } from "../store/themeStore/useThemeStore";
 export { useConfettiStore } from "../store/confettiStore/confettiStore";
+export { useSlugStore } from "../store/slugStore/slugStore";
+export type { SlugStoreTypes } from "../store/slugStore/types";
 export { cloudImageToFile } from "./utils/imageToFile";
 
 export {

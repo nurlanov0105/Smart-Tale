@@ -11,9 +11,12 @@ import { SubscribeCardProps } from "../model/types";
 
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 const SubscribeCard: FC<SubscribeCardProps> = ({ type, isPayment = false }) => {
    const theme = useThemeStore((state) => state.theme);
+   const isSubscribe = useSubscribeStore(state => state.isSubscribe);
+   const subscription = useSubscribeStore(state => state.data?.subscription);
    //    const handleSubscribeClick = () => {
    //       showModal(MODAL_KEYS.subscribe);
    //    };
@@ -77,7 +80,12 @@ const SubscribeCard: FC<SubscribeCardProps> = ({ type, isPayment = false }) => {
                   <h4 className={styles.card__cost}>{data.price} сом</h4>
                   <span className={styles.card__oldCost}>{data.oldPrice} сом</span>
                </div>
-               <Button onClick={handleBuyClick}>Приобрести</Button>
+               <Button disabled={isSubscribe} onClick={handleBuyClick}>
+                  {
+                     !isSubscribe ? "Приобрести" : "Куплено"
+                  }
+
+               </Button>
             </div>
          )}
       </div>

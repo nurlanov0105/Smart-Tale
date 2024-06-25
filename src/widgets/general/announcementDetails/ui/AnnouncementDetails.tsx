@@ -1,6 +1,6 @@
 "use client";
 
-import { ORGANIZATION_ROUTES, ROUTES, useGetDates } from "@/shared/lib";
+import { MODAL_KEYS, ORGANIZATION_ROUTES, ROUTES, useEmployees, useGetDates } from "@/shared/lib";
 import { useThemeStore } from "@/shared/lib";
 import { Button, GlobalLoading, PriceFormat } from "@/shared/ui";
 import clsx from "clsx";
@@ -17,11 +17,14 @@ import {
 } from "@/features/admin/adminEmployeesItem/model/useQueries";
 import { ErrorMessage } from "@/entities/general/errorMessage";
 import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
+import { showModal } from "@/views/modal";
+import { useState } from "react";
+import { CircleX, X } from "lucide-react";
 
 const AnnouncementDetails = () => {
    const pathname = usePathname();
-
    const orderSlug = pathname.substring(pathname.lastIndexOf("/") + 1);
+   const [showMinus, setShowMinus] = useState(false);
 
    const {
       data: orderData,
@@ -34,8 +37,36 @@ const AnnouncementDetails = () => {
       isError: employeesisError,
    } = useGetOrderEmployees(orderSlug);
 
-   const { mutate: addEmployee, isPending: addIsLoading } = useAddEmployeeOrder();
    const { mutate: removeEmployee, isPending: removeIsLoading } = useRemoveEmployeeOrder();
+   const {
+      data: usersData,
+      isLoading: usersIsLoading,
+      isError: usersIsError,
+      isSuccess: usersIsSuccess,
+   } = useEmployees();
+
+   const handleAddClick = () => {
+      showModal(MODAL_KEYS.infoListModal, {
+         componentName: MODAL_KEYS.usersListModal,
+         data: {
+            data: usersData ? usersData : [],
+            slug: orderSlug,
+         },
+         type: "users",
+      });
+   };
+
+   const handleShowMinus = () => {
+      setShowMinus((prev) => !prev);
+   };
+
+   const handleRemoveEmployee = (userSlug: string) => {
+      removeEmployee({ employeeSlug: userSlug, orderSlug: orderSlug });
+   };
+
+   if (!usersIsLoading) {
+      console.log("usersData", usersData);
+   }
 
    const theme = useThemeStore((state) => state.theme);
 
@@ -79,26 +110,39 @@ const AnnouncementDetails = () => {
                ) : employeesisError ? (
                   <ErrorMessage />
                ) : (
-                  <Link
-                     href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                     className={styles.item__employee}>
-                     <Image
-                        className={styles.item__image}
-                        src={avatar}
-                        alt="avatar"
-                        width={48}
-                        height={48}
-                     />
-                     <div>
-                        <h4 className="h4">Кирилл Олейников</h4>
-                        <p className={styles.item__salary}>
-                           <PriceFormat
-                              type={orderData?.data?.currency}
-                              price={+orderData?.data?.price}
+                  employeesData?.map((item: any) => (
+                     <div
+                        key={item?.user_profile}
+                        className={clsx(styles.item__user, showMinus && styles.item__userPadding)}>
+                        <Link
+                           href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_profile}
+                           className={styles.item__employee}>
+                           <Image
+                              className={styles.item__image}
+                              src={item?.image ? item?.image : avatar}
+                              alt="avatar"
+                              width={48}
+                              height={48}
                            />
-                        </p>
+                           <div>
+                              <h4 className="h4">{item?.user_profile}</h4>
+                              <p className={styles.item__salary}>
+                                 {item.job_title}
+                                 {/* <PriceFormat type={item?.currency} price={+item?.price} /> */}
+                              </p>
+                           </div>
+                        </Link>
+
+                        {showMinus && (
+                           <button
+                              className={styles.item__btnMinus}
+                              type="button"
+                              onClick={() => handleRemoveEmployee(item?.user_profile)}>
+                              <CircleX />
+                           </button>
+                        )}
                      </div>
-                  </Link>
+                  ))
                )}
             </div>
          </div>
@@ -125,8 +169,8 @@ const AnnouncementDetails = () => {
             </div>
          </div>
          <div className={styles.item__button}>
-            <Button>Добавить сотрудника</Button>
-            <Button>Снять заказ с сотрудника</Button>
+            <Button onClick={handleAddClick}>Добавить сотрудника</Button>
+            <Button onClick={handleShowMinus}>Снять заказ с сотрудника</Button>
             {/*<Button>Завершить Заказ</Button>*/}
          </div>
       </div>

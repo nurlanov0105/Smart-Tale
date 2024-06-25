@@ -2,7 +2,6 @@
 
 import { HeaderIntro } from "@/entities/general/headerIntro";
 import { NoticeBtn } from "@/entities/general/noticeBtn";
-import { useThemeEffect } from "@/shared/lib";
 
 import { Search } from "@/features/general/search";
 import { NavbarPanel } from "@/entities/general/navbarPanel";
@@ -16,7 +15,6 @@ const Header = () => {
    // theme
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
-   useThemeEffect();
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);
 

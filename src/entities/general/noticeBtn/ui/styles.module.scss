@@ -1,3 +1,28 @@
+.btn {
+   position: relative;
+   display: inline-flex;
+   align-items: center;
+
+   width: 30px;
+   height: 30px;
+
+   &__notice {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      width: 16px;
+      height: 18px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: #ff3b30;
+      z-index: $z2;
+
+      color: $common-white;
+      font-size: 12px;
+   }
+}
+
 .bell {
    flex-shrink: 0;
    cursor: pointer;

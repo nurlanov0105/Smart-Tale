@@ -1,6 +1,8 @@
-import { NotificationsQueryKeys } from "@/shared/api";
-import { NotificationService } from "@/shared/lib";
+import { NotificationsQueryKeys, OrganizationQueryKeys } from "@/shared/api";
+import { NotificationService, OrganizationService } from "@/shared/lib";
+import { showModal } from "@/views/modal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export const useGetMyNotifications = () => {
    return useQuery({
@@ -8,7 +10,7 @@ export const useGetMyNotifications = () => {
       queryFn: NotificationService.getMyNotifications,
    });
 };
-export const useDeleteNotification = (id: string) => {
+export const useDeleteNotification = () => {
    const queryClient = useQueryClient();
    return useMutation({
       mutationKey: [NotificationsQueryKeys.DELETE_NOTIFICATION],
@@ -18,6 +20,7 @@ export const useDeleteNotification = (id: string) => {
       },
    });
 };
+
 export const useDeleteAllNotifications = () => {
    const queryClient = useQueryClient();
    return useMutation({
@@ -25,6 +28,50 @@ export const useDeleteAllNotifications = () => {
       mutationFn: NotificationService.deleteAllNotifications,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+      },
+   });
+};
+
+export const useReadNotification = () => {
+   const queryClient = useQueryClient();
+   return useMutation({
+      mutationKey: [NotificationsQueryKeys.READ_NOTIFICATION],
+      mutationFn: NotificationService.readNotification,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+      },
+   });
+};
+export const useReadAllNotifications = () => {
+   const queryClient = useQueryClient();
+   return useMutation({
+      mutationKey: [NotificationsQueryKeys.READ_ALL_NOTIFICATIONS],
+      mutationFn: NotificationService.readAllNotifications,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+      },
+   });
+};
+
+export const useEmployeeApply = () => {
+   const queryClient = useQueryClient();
+   return useMutation({
+      mutationKey: [OrganizationQueryKeys.EMPLOYEE_APPLY],
+      mutationFn: OrganizationService.employeeApply,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         toast.success("Вы успешно приняли приглашение");
+      },
+   });
+};
+export const useEmployeeDecline = () => {
+   const queryClient = useQueryClient();
+   return useMutation({
+      mutationKey: [OrganizationQueryKeys.EMPLOYEE_DECLINE],
+      mutationFn: OrganizationService.employeeDecline,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         toast.success("Вы отклонили приглашение");
       },
    });
 };

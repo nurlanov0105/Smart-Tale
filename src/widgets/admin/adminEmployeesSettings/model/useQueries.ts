@@ -1,6 +1,6 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {OrganizationQueryKeys} from "@/shared/api";
-import {DASHBOARD, OrganizationService, useScrollTop} from "@/shared/lib";
+import {DASHBOARD, errorCatch, OrganizationService, useScrollTop} from "@/shared/lib";
 import {toast} from "react-toastify";
 
 
@@ -14,6 +14,11 @@ export const useUpdateEmployee = () => {
             handleScrollToTop()
             queryClient.invalidateQueries({queryKey: [OrganizationQueryKeys.EMPLOYEE_SETTINGS]})
             toast.success("Поздравляем! Вы успешно изменили должность сотрудника!")
+        },
+        onError: (error) => {
+            const errorMessage = errorCatch(error);
+            toast.error(errorMessage);
+            console.log("Error " + errorMessage );
         }
     })
 }

@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 import { OrdersService } from "@/shared/lib";
 import { toast } from "react-toastify";
@@ -12,6 +12,7 @@ export const useGetAppliedOrgs = (slug: string) => {
 };
 
 export const useBookOrder = () => {
+   const queryClient = useQueryClient();
    return useMutation<any, Error, {slug: string, organizationSlug: string}>({
       mutationFn: (variables) => OrdersService.bookingOrder({
          orderSlug: variables.slug ,
@@ -19,6 +20,8 @@ export const useBookOrder = () => {
       }),
       mutationKey: [OrdersQueryKeys.APPLIED_OERGANIZATIONS],
       onSuccess: () => {
+         queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.GET_MY_ORDER]});
+         queryClient.invalidateQueries({queryKey: [OrdersQueryKeys.APPLIED_OERGANIZATIONS]});
          toast.success("Выбрана организация для выполения заказа");
          closeModal()
       },

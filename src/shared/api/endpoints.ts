@@ -118,6 +118,8 @@ export const OrganizationEndpoints = {
    UPDATE_EMPLOYEE: "/employee/detail/",
    DELETE_POSITION: "/org-jobs/detail/",
    UPDATE_ORDER_STATUS: "/update-status/",
+   EMPLOYEE_APPLY: "/employee/apply/",
+   EMPLOYEE_DECLINE: "/employee/decline/",
 };
 
 export const ChatsEndpoints = {
@@ -129,4 +131,6 @@ export const NotificaitonEndpoints = {
    NOTIFICATIONS: "/notifications/list/",
    DELETE_NOTIFICATION: "/notifications/delete/",
    DELETE_ALL_NOTIFICATIONS: "/notifications/delete/all/",
+   READ_NOTIFICATION: "/notification/read/",
+   READ_ALL_NOTIFICATIONS: "/notificationslist/read/",
 };

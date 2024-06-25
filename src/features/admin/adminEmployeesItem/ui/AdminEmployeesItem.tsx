@@ -53,24 +53,27 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
                ) : isError ? (
                   <ErrorMessage />
                ) : (
-                  <Link
-                     href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/employessDetailName"}
-                     className={styles.item__employee}>
-                     <Image
-                        className={styles.item__image}
-                        src={avatar}
-                        alt="avatar"
-                        width={48}
-                        height={48}
-                     />
-                     <div>
-                        <h4 className="h4">Кирилл Олейников</h4>
-                        <p className={styles.item__salary}>
-                           {" "}
-                           <PriceFormat type={item?.currency} price={+item?.price} />
-                        </p>
-                     </div>
-                  </Link>
+                  data?.map((item: any) => (
+                     <Link
+                        key={item?.user_profile}
+                        href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_profile}
+                        className={styles.item__employee}>
+                        <Image
+                           className={styles.item__image}
+                           src={item?.image ? item?.image : avatar}
+                           alt="avatar"
+                           width={48}
+                           height={48}
+                        />
+                        <div>
+                           <h4 className="h4">{item?.user_profile}</h4>
+                           <p className={styles.item__salary}>
+                              {item.job_title}
+                              {/* <PriceFormat type={item?.currency} price={+item?.price} /> */}
+                           </p>
+                        </div>
+                     </Link>
+                  ))
                )}
             </div>
          </div>

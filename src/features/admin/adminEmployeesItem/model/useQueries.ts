@@ -1,6 +1,8 @@
 import { OrganizationQueryKeys } from "@/shared/api";
-import { OrdersService } from "@/shared/lib";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { OrdersService, OrganizationService } from "@/shared/lib";
+import { closeModal } from "@/views/modal";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export const useGetOrderEmployees = (slug: string) => {
    return useQuery({
@@ -16,14 +18,36 @@ export const useGetOrderDetail = (slug: string) => {
 };
 
 export const useAddEmployeeOrder = () => {
+   const queryClient = useQueryClient();
    return useMutation({
       mutationFn: OrdersService.addEmployeeOrder,
-      mutationKey: [OrganizationQueryKeys.EMPLOYEE_ORDERS],
+      mutationKey: [OrganizationQueryKeys.ADD_EMPLOYEE_ORDER],
+      onSuccess: () => {
+         closeModal();
+         toast.success("Сотрудник был успешно выбран");
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEE_ORDERS] });
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEES] });
+      },
    });
 };
 export const useRemoveEmployeeOrder = () => {
+   const queryClient = useQueryClient();
+
    return useMutation({
       mutationFn: OrdersService.removeEmployeeOrder,
-      mutationKey: [OrganizationQueryKeys.EMPLOYEE_ORDERS],
+      mutationKey: [OrganizationQueryKeys.REMOVE_EMPLOYEE_ORDER],
+      onSuccess: () => {
+         closeModal();
+         toast.success("Сотрудник был успешно снят с заказа");
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEE_ORDERS] });
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEES] });
+      },
+   });
+};
+
+export const useGetCurrentOrders = (type: string) => {
+   return useQuery({
+      queryKey: [OrganizationQueryKeys.HISTORY_ORDERS],
+      queryFn: () => OrganizationService.getHistoryOrders(type),
    });
 };
