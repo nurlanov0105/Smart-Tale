@@ -33,7 +33,7 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
    useEffect(() => {
       if (!!data) {
          const isSubscribe = data?.is_subbed;
-         const hasPositions = !!data.job_titles?.length;
+         const hasPositions = !!data.job_titles?.filter(item => item.active).length;
 
          if (!hasPositions && !isSubscribe) {
             replace(ROUTES.NO_RIGHTS);
@@ -41,6 +41,7 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
          }
 
          const isOwner = data?.org.founder === data?.profile.slug; //data?.org?.title === OWNER
+
          if (hasPositions && !isOwner && pathname === ORGANIZATION_ROUTES.ORGANIZATION_LIST) {
             const url = ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${position?.slug}`;
             replace(url);

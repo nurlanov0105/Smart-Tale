@@ -72,6 +72,10 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       return <ErrorMessage />;
    }
 
+   // if (isError){
+   //    return <ErrorMessage />;
+   // }
+
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>

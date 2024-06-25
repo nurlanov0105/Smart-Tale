@@ -1,57 +1,46 @@
 import React, { useEffect, useState } from 'react';
-import {createWebsocket} from '@/shared/lib/hooks/useWs2';
-import {Client} from "@stomp/stompjs";
-import {CookiesServices} from "@/shared/lib";
+import {CookiesServices, EnumTokens} from "@/shared/lib";
+import {Message} from "postcss";
 
 const ChatComponent3 = () => {
-    // const [client, setClient] = useState<null | Client>(null);
-    //
-    // useEffect(() => {
-    //     const newClient = createWebsocket();
-    //
-    //     if (!newClient.connected) {
-    //         newClient.activate();
-    //     }
-    //
-    //     setClient(newClient);
-    //
-    //     return () => {
-    //         if (newClient.connected) {
-    //             newClient.deactivate();
-    //         }
-    //     };
-    // }, []);
-    const token = CookiesServices.getTokens().accessToken || ""
-    const headers={
-        token: token
-    }
-
+    const [messages, setMessages] = useState<Message[]>([]);
     useEffect(() => {
-        const token = CookiesServices.getTokens().accessToken || ""
 
-        const client = new Client({
-            brokerURL: `wss://helsinki-backender.org.kg/ws/notifications/32/?token=${token}`,
-            // connectHeaders: {
-            //     token: `${token}`,
-            // },
-            reconnectDelay: 4000,
-            heartbeatIncoming: 4000,
-            heartbeatOutgoing: 4000,
+        const token = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
 
-            onConnect: (frame) => {
-                client.subscribe('/chat/1/', message =>
-                    console.log(`Received: ${message.body}`)
-                );
-                client.publish({ destination: '/chat/1', body: 'First Message' });
-            },
-            onStompError: (frame) => {
-                console.log('Broker reported error: ' + frame.headers['message']);
-                console.log('Additional details: ' + frame.body);
-            },
+        const url = ` wss://helsinki-backender.org.kg/ws/chat/15/?token=${token}`;
 
-        });
+        const ws = new WebSocket(url);
 
-        client.activate();
+        ws.onopen = () => {
+            console.log("WebSocket connection established");
+        };
+
+        ws.onmessage = (event) => {
+            console.log("Received message:", JSON.parse(event.data));
+            // const newNotification = JSON.parse(event.data).notifications;
+            // if (newNotification) {
+            //     setMessages((prevNotifications) => [...newNotification, ...prevNotifications]);
+            // }
+        };
+        ws.onerror = (error) => {
+           console.error("WebSocket error:", error);
+        };
+
+        ws.onclose = () => {
+            console.log("WebSocket connection closed");
+        };
+
+        // if (depencies?.deleteSuccess) {
+        //     return () => {
+        //         ws.close();
+        //     };
+        // }
+
+        return () => {
+            ws.close();
+            setMessages([]);
+        };
     }, []);
 
 

@@ -23,6 +23,7 @@ export interface UserPositionTypes extends RightsTypes {
    organization: string | undefined;
    job_title: string | undefined;
    slug: string | undefined;
+   active: string | undefined;
 }
 
 export interface ProfileRequestTypes {

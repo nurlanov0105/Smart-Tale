@@ -34,8 +34,6 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
    const [notifications, setNotifications] = useState<any[]>([]);
    // const [wsnotifications, setwsNotifications] = useState<any[]>([]);
    const profileId = useSubscribeStore((state) => state.data?.profile?.id);
-   console.log("notifications - ", notifications);
-   console.log("profileId - ", profileId);
 
    const { data: initialNotifications, isError, isLoading, isPending } = useGetMyNotifications();
 
@@ -94,6 +92,6 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
       notifications,
       isError,
       isLoading,
-      wsnotifications: notifications.filter((item) => item.read == false),
+      wsnotifications: notifications.filter((item) => !item.read),
    };
 };

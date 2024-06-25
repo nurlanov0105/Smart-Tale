@@ -16,6 +16,7 @@ export const useSubscribeStore = create<SubscribeState>((set) => ({
    isError: false,
    position: {
       organization: undefined ,
+      active: undefined,
       job_title: undefined,
       slug: undefined,
       [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "false",

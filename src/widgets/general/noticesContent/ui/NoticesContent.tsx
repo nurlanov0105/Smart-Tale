@@ -48,10 +48,6 @@ const NoticesContent = () => {
       return <ErrorMessage />;
    }
 
-   if (!isLoading) {
-      console.log("endpoint notices - ", notifications);
-   }
-
    return (
       <div className={styles.notices}>
          {notifications?.length ? (
