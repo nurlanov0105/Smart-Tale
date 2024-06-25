@@ -1,24 +1,23 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import { chatsFilterType, chatsFilterDate } from "@/entities/general/chatItem";
-import { ChatProps } from "../model/types";
+import React from "react";
 import ChatForm from "./ChatForm";
 import { useThemeStore } from "@/shared/lib";
-import Select2 from "@/shared/ui/select/Select2";
-import { SELECT_TYPES } from "@/shared/lib";
 import { ChatsList } from "@/features/general/chatsList";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 import clsx from "clsx";
-import styles from "./styles.module.scss";
 import { MessagesSquare } from "lucide-react";
+import {useWs} from "@/shared/lib/hooks/useWebsockets";
+import styles from "./styles.module.scss";
 
 const Chats = () => {
-   const [selectedType, setSelectedType] = useState<ChatProps>(chatsFilterType[0]);
-   const [selectedDate, setSelectedDate] = useState<ChatProps>(chatsFilterDate[0]);
-   const selectedChat = useChatsStore((state) => state.selectedChat);
+   // const [selectedType, setSelectedType] = useState<ChatProps>(chatsFilterType[0]);
+   // const [selectedDate, setSelectedDate] = useState<ChatProps>(chatsFilterDate[0]);
+   // const selectedChat = useChatsStore((state) => state.selectedChat);
 
    const theme = useThemeStore((state) => state.theme);
    const isShowChat = useChatsStore((state) => state.isShowChat);
+
+
 
    return (
       <>

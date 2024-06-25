@@ -21,8 +21,6 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
       });
    };
 
-   console.log(item);
-
    return data?.profile.slug === item.initiator.slug ? (
       <button
          onClick={handleBtnClick}

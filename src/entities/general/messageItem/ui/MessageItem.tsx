@@ -11,11 +11,13 @@ const MessageItem: FC<MessageTypes> = ({ message, idx, mySlug, messages }) => {
 
    const isMe = mySlug === message?.sender?.slug;
    const prevMessage = () => {
-      if (idx === 0) return false;
+      if (idx === 0) {
+         return false;
+      }
       return messages?.message_set[idx - 1].sender.slug === message?.sender?.slug;
    };
 
-   const { minutes, hours} = useGetDates(message?.timestamp)
+   const { minutes, hours} = useGetDates(message?.timestamp);
 
    return (
       <>
