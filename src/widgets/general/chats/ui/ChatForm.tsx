@@ -29,6 +29,7 @@ import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 const ChatForm: FC = () => {
    const selectedChat = useChatsStore((state) => state.selectedChat);
    const id = useSubscribeStore(state => state.data?.profile.id)
+   const slug = useSubscribeStore(state => state.data?.profile.slug)
    const setChats = useChatsStore((state) => state.setChatState);
    const [isSended, setIsSended] = useState(false)
 
@@ -63,10 +64,21 @@ const ChatForm: FC = () => {
          </div>
       );
 
+   const isMe = () => {
+      if (slug === data?.initiator.slug){
+         return data?.receiver
+      }
+      return data?.initiator
+   }
+
+   if (!isMe()){
+      return
+   }
+
    return (
       <div className={styles.chat}>
          <div className={styles.chat__user}>
-            <Link href={ROUTES.USERS + `/${data?.receiver?.slug}`} className={styles.chat__block}>
+            <Link href={ROUTES.USERS + `/${isMe()?.slug}`} className={styles.chat__block}>
                <Image
                   className={styles.chat__avatar}
                   src={avatar}
@@ -76,7 +88,7 @@ const ChatForm: FC = () => {
                />
 
                <h4 className="h4">
-                  {data?.receiver?.last_name} {data?.receiver?.first_name}
+                  {isMe()?.last_name} {isMe()?.first_name}
                </h4>
             </Link>
             <div className={styles.chat__block}>
@@ -95,7 +107,7 @@ const ChatForm: FC = () => {
             <div className={styles.chat__info__block}>
                <Image
                   className={styles.chat__image}
-                  src={data?.receiver?.profile_image || avatar}
+                  src={isMe()?.profile_image || avatar}
                   alt="avatar"
                   width={30}
                   height={30}
@@ -111,7 +123,7 @@ const ChatForm: FC = () => {
                      <MessageItem
                         message={message}
                         messages={data}
-                        mySlug={data?.initiator?.slug}
+                        mySlug={isMe()?.slug}
                         key={idx}
                         idx={idx}
                      />
