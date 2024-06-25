@@ -2,26 +2,65 @@
    position: relative;
 
    display: flex;
-   align-items: center;
-   justify-content: space-between;
-   column-gap: 1.6rem;
-
+   flex-direction: column;
+   gap: 1rem;
    padding: 1.6rem;
    background-color: $common-white;
    border-radius: 12px;
+
+   &_active {
+      background-color: rgb(231, 248, 244);
+   }
+
+   &__content {
+      display: flex;
+      align-items: flex-start;
+      column-gap: 1.6rem;
+   }
+
+   &__outer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-grow: 1;
+      column-gap: 1.6rem;
+   }
+   &__inner {
+      display: flex;
+      align-items: flex-start;
+      column-gap: 1.6rem;
+   }
 
    &__row {
       display: flex;
       align-items: center;
       column-gap: 1.6rem;
    }
+
+   &__block {
+      display: flex;
+      flex-direction: column;
+   }
+
+   &__bottom {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      gap: 1rem;
+   }
+
    &__avatar {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       width: 5.2rem;
       height: 5.2rem;
       border-radius: 50%;
       background-color: $primary-color;
       overflow: hidden;
       position: relative;
+      color: $common-black;
 
       img {
          position: absolute;
@@ -31,19 +70,121 @@
       }
    }
 
+   &__avatarDarkGreen {
+      background-color: #c5e6ff;
+   }
+   &__avatarLightGreen {
+      background-color: #c3fffb;
+   }
+   &__avatarYellow {
+      background-color: #fffba1;
+   }
+   &__avatarGreen {
+      background-color: #e6ffa1;
+   }
+
    &__author {
+   }
+
+   &__new {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      overflow: hidden;
+      background-color: $primary-color;
    }
 
    &__title {
       display: -webkit-box;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
+      font-size: 14px;
+      color: $dark-grey;
 
       overflow: hidden;
 
-      max-width: 50%;
-
       line-height: 1.6;
+   }
+
+   &__title_more {
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+      overflow: unset;
+   }
+
+   &__date {
+      flex-shrink: 0;
+      font-size: 14px;
+      color: $dark-grey;
+      font-weight: 400;
+   }
+
+   &__btns {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-grow: 1;
+      flex-wrap: wrap;
+      gap: 1rem;
+   }
+
+   &__hideBtn {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      cursor: pointer;
+
+      @include transition;
+
+      @media (hover: hover) and (pointer: fine) {
+         &:hover {
+            transform: translateY(-4px);
+         }
+      }
+
+      &:active {
+      }
+   }
+
+   &__btn {
+      width: 24px;
+      height: 24px;
+
+      cursor: pointer;
+   }
+
+   &__settings {
+      position: absolute;
+      top: 0;
+      right: 48px;
+
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      background-color: $common-white;
+      padding: 2px 4px;
+
+      li {
+         font-size: 2rem;
+         padding: 6px 10px;
+
+         @include transition;
+         cursor: pointer;
+
+         @media (hover: hover) and (pointer: fine) {
+            &:hover {
+               background-color: $primary-color;
+            }
+         }
+
+         &:active {
+            background-color: $primary-color;
+         }
+      }
    }
 
    @include transition;
@@ -73,6 +214,29 @@
 
    &:active {
       background-color: #10362f;
+   }
+
+   &_active {
+      background-color: #10362f;
+   }
+
+   &__btn {
+      color: $dark-grey;
+   }
+   &__avatar {
+      color: $dark-grey !important;
+   }
+   &__avatarDarkGreen {
+      background-color: #b4d0e6;
+   }
+   &__avatarLightGreen {
+      background-color: #9dd6d2;
+   }
+   &__avatarYellow {
+      background-color: #c8c47c;
+   }
+   &__avatarGreen {
+      background-color: #bfd77f;
    }
 }
 

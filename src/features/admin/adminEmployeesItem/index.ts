@@ -3,6 +3,13 @@ import {
    useGetOrderEmployees,
    useAddEmployeeOrder,
    useRemoveEmployeeOrder,
+   useGetCurrentOrders,
 } from "./model/useQueries";
 
-export { AdminEmployeesItem, useGetOrderEmployees, useAddEmployeeOrder, useRemoveEmployeeOrder };
+export {
+   AdminEmployeesItem,
+   useGetOrderEmployees,
+   useAddEmployeeOrder,
+   useRemoveEmployeeOrder,
+   useGetCurrentOrders,
+};

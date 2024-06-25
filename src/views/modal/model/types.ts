@@ -11,12 +11,13 @@ type showModal = {
 
 export type ModalProps = {
    slug?: string;
-   organizationSlug?: string
+   organizationSlug?: string;
    // type?: "order" | "equipment" | "service";
    type?: string;
-   componentName?: string
+   componentName?: string;
    isLightBg?: boolean | null;
    author?: string | null;
+   data?: { data: any[]; slug: string };
 };
 
 export type ModalState = {

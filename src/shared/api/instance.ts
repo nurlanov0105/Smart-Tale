@@ -61,6 +61,7 @@ baseApiInstance.interceptors.request.use(
          config.url &&
          !config.url.endsWith("logout") &&
          !config.url.includes(AuthEndpoints.DELETE_ACCOUNT) &&
+         !config.url.includes(OrganizationEndpoints.GET_HISTORY_ORDERS) &&
          !config.url.includes(OrganizationEndpoints.GET_EMPLOYEE_ORDERS) &&
          !config.url.includes(OrganizationEndpoints.UPDATE_ORDER_STATUS) &&
          !config.url.endsWith("/") &&

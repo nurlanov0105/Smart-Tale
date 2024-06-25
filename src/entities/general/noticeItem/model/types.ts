@@ -1,9 +1,15 @@
 export type NoticesDataType = {
-   imageUrl: string;
-   author: string;
+   description: string;
+   id: 1;
+   read: false;
+   recipient: { slug: string };
+   timestamp: string;
    title: string;
-   date: string;
-   id: number;
+   type?: string;
+   image?: string;
+   imageUrl?: string;
+   author?: string;
+   org_slug?: string;
 };
 
 export type NoticeItemProps = {

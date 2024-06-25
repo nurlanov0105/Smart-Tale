@@ -21,7 +21,7 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
-import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
+import { RIGHT_ACTIONS } from "@/shared/lib/constants/consts";
 
 type Props = {
    slug: string;
@@ -100,7 +100,7 @@ const CardModal: FC<Props> = ({ slug, type }) => {
          showModal(MODAL_KEYS.infoModal, { componentName: MODAL_KEYS.error });
       }
    };
-   const hasAccess = useSubscribeStore(state => state.position?.flag_update_order)
+   const hasAccess = useSubscribeStore((state) => state.position?.flag_update_order);
 
    return (
       <div className={clsx(styles.modal, styles[theme])}>

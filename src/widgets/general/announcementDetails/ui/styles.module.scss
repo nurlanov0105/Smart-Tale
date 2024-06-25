@@ -78,6 +78,25 @@
       margin-top: 2rem;
       justify-content: flex-end;
    }
+
+   &__user {
+      position: relative;
+   }
+   &__userPadding {
+      padding-right: 3.2rem;
+   }
+
+   &__btnMinus {
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: $z2;
+
+      color: $danger-color;
+
+      width: 24px;
+      height: 24px;
+   }
 }
 
 .dark {
