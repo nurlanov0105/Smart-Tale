@@ -30,10 +30,10 @@ const ChatComponent3 = () => {
         const token = CookiesServices.getTokens().accessToken || ""
 
         const client = new Client({
-            brokerURL: `wss://helsinki-backender.org.kg/ws/chat/1/`,
-            connectHeaders: {
-                token: `${token}`,
-            },
+            brokerURL: `wss://helsinki-backender.org.kg/ws/notifications/32/?token=${token}`,
+            // connectHeaders: {
+            //     token: `${token}`,
+            // },
             reconnectDelay: 4000,
             heartbeatIncoming: 4000,
             heartbeatOutgoing: 4000,
@@ -50,8 +50,6 @@ const ChatComponent3 = () => {
             },
 
         });
-
-        console.log(client.connectHeaders)
 
         client.activate();
     }, []);

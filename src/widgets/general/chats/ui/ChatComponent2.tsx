@@ -1,13 +1,13 @@
-"use client"
+"use client";
 import React, {useEffect, useRef} from 'react';
 import {useWs} from "@/shared/lib/hooks/useWebsockets";
 import {CookiesServices, EnumTokens} from "@/shared/lib";
 
 const ChatComponent2 = () => {
 
-    const token = CookiesServices.getTokens().accessToken || ""
+    const token = CookiesServices.getTokens().accessToken || "";
 
-    const url = `wss://helsinki-backender.org.kg/ws`
+    const url = `wss://helsinki-backender.org.kg/ws/notifications/32/?token=${token}`;
     const [isReady, val, send] = useWs({ url, token });
 
     useEffect(() => {

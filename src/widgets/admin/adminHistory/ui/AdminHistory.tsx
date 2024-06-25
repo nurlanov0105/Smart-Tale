@@ -31,9 +31,9 @@ const AdminHistory = () => {
         // eslint-disable-next-line
     }, [isSuccess]);
 
-    const [day, setDay] = useState<IDateProps>({value: 0, postValue: 0})
-    const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0})
-    const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0})
+    const [day, setDay] = useState<IDateProps>({value: 0, postValue: 0});
+    const [month, setMonth] = useState<IDateProps>({value: "", postValue: 0});
+    const [year, setYear] = useState<IDateProps>({value: 0, postValue: 0});
 
    return (
       <section className={styles.section}>

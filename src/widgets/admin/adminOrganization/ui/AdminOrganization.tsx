@@ -19,9 +19,10 @@ const AdminOrganization: FC = () => {
    const organizations = data && data.my_orgs;
    const activeOrg = data && data["orgs_active"].find((item) => item.active);
 
-   const positions = useSubscribeStore(state => state.data?.job_titles)
-   const isSubscribe = useSubscribeStore(state => state.isSubscribe)
-   const subscription = useSubscribeStore(state => state.data?.subscription)
+   const positions = useSubscribeStore(state => state.data?.job_titles);
+   const isSubscribe = useSubscribeStore(state => state.isSubscribe);
+   const subscription = useSubscribeStore(state => state.data?.subscription);
+   const dataProfile = useSubscribeStore(state => state.data);
    const isShow = useConfettiStore((state) => state.isShow);
    const endConfetti = useConfettiStore((state) => state.endConfetti);
 
@@ -31,14 +32,18 @@ const AdminOrganization: FC = () => {
       if (isSubscribe && subscription && positions?.length === MIN_ORGANIZATIONS_CREATING){
          return
       }
-      // if (isSubscribe && !subscription && positions?.length === MIN_ORGANIZATIONS_CREATING){
-      //    return
-      // }
+      if (isSubscribe && !subscription &&
+          positions?.length === MIN_ORGANIZATIONS_CREATING &&
+          dataProfile?.profile.slug !== dataProfile?.org.founder)
+      {
+         return
+      }
+
       if (isSubscribe && !subscription && positions?.length === MAX_ORGANIZATIONS_CREATING){
          return
       }
       return true
-   }
+   };
 
    const { push } = useRouter();
    const handleAdd = () => push(ORGANIZATION_ROUTES.CREATE_ORGANIZATION);
@@ -67,11 +72,9 @@ const AdminOrganization: FC = () => {
                       isShowButton() && <Button onClick={handleAdd}>Добавить организацию</Button>
                   }
                </div>
-               {organizations
-                  ?.map((item) => (
+               {organizations?.map((item) => (
                      <OrganizationItem activeOrg={activeOrg} key={item.slug} item={item} />
-                  ))
-                  .reverse()}
+               ))}
             </div>
          )}
          <ConfettiComponent showConfetti={isShow} />

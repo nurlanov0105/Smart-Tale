@@ -21,12 +21,15 @@ export const OrdersEndpoints = {
    GET_MY_ORDER: "/order-detail/",
    GET_APPLIED_ORGANIZATIONS: "/applied-orgs/",
    APPLY_ORDER: "/order-apply/",
+   ORDER_EMPLOYEES: "/order-employees/",
    LIKE_ORDER: "/like-order/",
    BOOKING_ORDER: "/order-book/",
    DELETE_ORDER: "/order-delete/",
    HIDE_ORDER: "/order-hide/",
    UPDATE_ORDER: "/update-order/",
    UPDATE_ORDER_STATUS: "/update-status/",
+   ADD_EMPLOYEE_ORDER: "/order-add-employee/",
+   REMOVE_EMPLOYEE_ORDER: "/order-remove-employee/",
 };
 
 export const EquipmentsEndpoints = {
@@ -121,8 +124,9 @@ export const ChatsEndpoints = {
    CONVERSATION_START: "/conversation/start/",
    CONVERSATIONS: "/conversations/",
    MESSAGES: "/messages/",
-   NOTIFICATIONS: "/my-notifications/",
 };
 export const NotificaitonEndpoints = {
-   NOTIFICATIONS: "/my-notifications/",
+   NOTIFICATIONS: "/notifications/list/",
+   DELETE_NOTIFICATION: "/notifications/delete/",
+   DELETE_ALL_NOTIFICATIONS: "/notifications/delete/all/",
 };

@@ -58,8 +58,8 @@ import {
    sizesDataLetters,
 } from "./constants/announcement.consts";
 
-// import socket from "./services/socket";
-// export { socket };
+import socket from "./services/socket";
+export { socket };
 
 export type { ItemType } from "./types/usePaginationTypes";
 export type { UsePaginationResult } from "./types/usePaginationTypes";
@@ -119,6 +119,7 @@ export {
 export { useInitialRights } from "./hooks/useInitialRights";
 export { useGetDates } from "./hooks/useGetDates";
 export { useScrollTop } from "./hooks/useScrollTop";
+export { useRightsActions } from "./hooks/useRightsActions";
 
 export {
    graphicsFilter,

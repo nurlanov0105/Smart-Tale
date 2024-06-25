@@ -18,10 +18,17 @@ export function useSubscribed() {
 
    useEffect(() => {
       if (isSuccess && data) {
-         const position = data?.job_titles.find((item) => item?.organization === data?.org.title);
+         const position = data?.job_titles.find((item) => {
+            return item?.organization === data?.org.title
+         });
+         const updatedPosition = {
+            ...position,
+            slug: data.org.slug
+         };
          setSubscribeState({
             data: data,
-            position: position, //{...position, slug: data?.org.slug}
+            //@ts-ignore
+            position: updatedPosition, //{...position, slug: data?.org.slug}
             isError: false,
             isSubscribe: data?.is_subbed,
          });

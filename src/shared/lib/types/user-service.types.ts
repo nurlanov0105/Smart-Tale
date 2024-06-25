@@ -17,12 +17,13 @@ export interface ProfileDataTypes{
    profile_image?: string | null | File | undefined,
    email: string,
    slug: string
+   id: string
 }
 
 export interface UserPositionTypes extends RightsTypes{
-   organization: string | null,
-   job_title: string | null,
-   slug?: string
+   organization: string  | undefined,
+   job_title: string  | undefined,
+   slug: string | undefined
 }
 
 export interface ProfileRequestTypes{
@@ -33,5 +34,6 @@ export interface ProfileRequestTypes{
    org: {
       title: string
       slug: string
+      founder: string
    }
 }

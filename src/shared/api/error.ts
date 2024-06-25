@@ -6,4 +6,4 @@ export const errorCatch = (error: any): string => {
             ? message[0]
             : message
         : error.message
-}
+};

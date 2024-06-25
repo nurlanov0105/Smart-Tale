@@ -8,12 +8,14 @@ export interface UsePaginationOptions {
       ads,
       title,
       slug,
+       tab,
    }: {
       page: number;
       param_tab?: string;
       ads?: string;
       title?: string;
       slug?: string;
+      tab?: string
    }) => Promise<any>;
    queryKey: string;
    param_tab?: string;

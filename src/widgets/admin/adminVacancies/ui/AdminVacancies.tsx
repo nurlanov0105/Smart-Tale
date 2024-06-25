@@ -27,8 +27,12 @@ const AdminVacancies = () => {
 
     const vacanciesLength = !data?.length ? 0 : data.length
 
-    if (isLoading) return <GlobalLoading type="full"/>
-    if (isError) return <ErrorMessage/>
+    if (isLoading) {
+        return <GlobalLoading type="full"/>
+    }
+    if (isError) {
+        return <ErrorMessage/>
+    }
 
    return (
        <>

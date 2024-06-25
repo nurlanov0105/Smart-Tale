@@ -109,4 +109,6 @@ export const ChatsQueryKeys = {
 };
 export const NotificationsQueryKeys = {
    NOTIFICATIONS: "my-notifications",
+   DELETE_NOTIFICATION: "notifications-delete",
+   DELETE_ALL_NOTIFICATIONS: "notifications-delete-all",
 };

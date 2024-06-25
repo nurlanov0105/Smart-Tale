@@ -10,11 +10,12 @@ export const ServicesService = {
          },
       });
 
-      return {
-         data: response.data?.data,
-         hasNextPage: response.data.has_next_page,
-         nextPage: response.data.next_page_number,
-      };
+      // return {
+      //    data: response.data?.data,
+      //    hasNextPage: response.data.has_next_page,
+      //    nextPage: response.data.next_page_number,
+      // };
+      return response;
    },
    getServiceSlug: async (slug: string) => {
       const response = await baseApiInstance.get(ServicesEndpoints.SERVICE_SLUG + slug);
@@ -64,5 +65,6 @@ export const ServicesService = {
          params,
          { headers: headers }
       );
+      return response.data;
    },
 };

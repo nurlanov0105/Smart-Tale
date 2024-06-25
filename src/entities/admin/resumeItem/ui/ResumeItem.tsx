@@ -13,8 +13,6 @@ import dynamic from "next/dynamic";
 const PriceFormat = dynamic(() => import("@/shared/ui/price/PriceFormat"), {ssr: false})
 const ResumeItem = ({ item }: ResumeItemProps) => {
    const theme = useThemeStore((state) => state.theme);
-
-   console.log(item)
    return (
       <Link
          href={`${WORK.RESUME_INFO + `/${item?.slug}`}`}
