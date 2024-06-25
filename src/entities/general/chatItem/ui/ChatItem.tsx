@@ -33,12 +33,14 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
     }
 
    return isMe() ? (
+
       <button
          onClick={handleBtnClick}
          className={clsx(
             styles.item,
             {
                [styles.item_active]: isMe().slug === selectedChat,
+
             },
 
             styles[theme]
@@ -47,12 +49,14 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
             <Image
                className={styles.item__avatar}
                src={isMe()?.profile_image || avatar}
+
                alt="avatar"
                width={30}
                height={30}
             />
             <div>
                <h4 className="h4">{isMe()?.first_name + " " + isMe().last_name}</h4>
+
                <p className={styles.item__text}>{item?.last_message}</p>
             </div>
          </div>
