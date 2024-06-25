@@ -20,7 +20,7 @@ import {
    ResumeService,
    VacancyService,
    DASHBOARD,
-   useScrollTop,
+   useScrollTop, errorCatch,
 } from "@/shared/lib";
 import { closeModal } from "@/views/modal";
 import { WORK } from "@/shared/lib/routes.config";
@@ -38,10 +38,12 @@ export const useHideEquipment = () => {
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENT] });
          toast.success("Успешно!");
       },
-      onError: () => {
-         closeModal();
-         console.log("error");
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -57,10 +59,12 @@ export const useHideOrder = () => {
          toast.success("Успешно!");
          queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.GET_MY_ORDER] });
       },
-      onError: () => {
-         closeModal();
-         console.log("error");
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -76,10 +80,12 @@ export const useHideService = () => {
          queryClient.invalidateQueries({ queryKey: [ServiceQueryKeys.GET_MY_SERVICE] });
          toast.success("Успешно!");
       },
-      onError: () => {
-         closeModal();
-         console.log("error");
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -95,10 +101,12 @@ export const useDeleteEquipment = () => {
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
          push(DASHBOARD.LISTINGS);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -114,10 +122,12 @@ export const useDeleteOrder = () => {
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
          push(DASHBOARD.LISTINGS);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -133,10 +143,12 @@ export const useDeleteEmployee = () => {
          queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEES] });
          push(ORGANIZATION_ROUTES.EMPLOYEES);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -152,10 +164,12 @@ export const useDeleteService = () => {
          queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
          push(DASHBOARD.LISTINGS);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -168,10 +182,12 @@ export const useDeletePosition = () => {
          toast.success("Долнжость была удалена");
          replace(ORGANIZATION_ROUTES.POSITIONS);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -187,11 +203,12 @@ export const useDeleteVacancy = () => {
          replace(ORGANIZATION_ROUTES.VACANCIES);
          closeModal();
       },
-      onError: () => {
-         toast.error("Произошла ошибка при удалении, попробуйте еще раз");
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -207,10 +224,12 @@ export const useHideVacancy = () => {
          closeModal();
          toast.success("Успешно!");
       },
-      onError: () => {
-         closeModal();
-         console.log("error");
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -226,10 +245,12 @@ export const useDeleteResume = () => {
          queryClient.invalidateQueries({ queryKey: [ResumeQueryKeys.GET_MY_RESUMES] });
          closeModal();
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -245,10 +266,12 @@ export const useHideResume = () => {
          toast.success("Успешно!");
          closeModal();
       },
-      onError: () => {
-         closeModal();
-         console.log("error");
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -264,6 +287,12 @@ export const useActiveOrganization = () => {
 
          closeModal();
       },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
@@ -283,26 +312,34 @@ export const useDeleteOrganization = () => {
 
          replace(ORGANIZATION_ROUTES.ORGANIZATION_LIST);
       },
-      onError: () => {
-         console.log("error");
-         closeModal();
-      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
+      }
    });
 };
 
 export const useLeaveOrganization= () => {
-   const queryClient = useQueryClient()
-   const {push} = useRouter()
+   const queryClient = useQueryClient();
+   const {push} = useRouter();
    return useMutation<any, Error, { slug: string }>({
       mutationKey: [OrganizationQueryKeys.LEAVE_ORGANIZATION],
       mutationFn: ({slug}) => OrganizationService.leaveOrganization(slug),
       onSuccess: () => {
-         push(DASHBOARD.PROFILE)
+         push(DASHBOARD.PROFILE);
          queryClient.invalidateQueries({queryKey: [UserQueryKeys.PROFILE]})
          toast.success("Поздравляем! Вы успешно покинули организацию!")
+      },
+      onError: (error) => {
+         const errorMessage = errorCatch(error);
+         toast.error(errorMessage);
+         console.log("Error " + errorMessage );
+         closeModal()
       }
    })
-}
+};
 
 export const useGetVacancyResponses = () => {
    return useQuery({

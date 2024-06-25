@@ -18,9 +18,9 @@ const OrganizationForm = () => {
         register,
         isLoading,
         watch,
-        setValue} = useCreateOrganization()
+        setValue} = useCreateOrganization();
 
-    const image = watch(CREATE_ORGANIZATION_NAMES.logo)
+    const image = watch(CREATE_ORGANIZATION_NAMES.logo);
 
     const handleFileChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;

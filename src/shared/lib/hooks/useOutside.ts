@@ -1,8 +1,8 @@
-'use client'
+"use client";
 import { useEffect, useRef, useState } from "react";
 
 export const useOutside = (defaultState: boolean) => {
-   const ref = useRef<HTMLDivElement>(null);
+   const ref = useRef<HTMLDivElement | HTMLUListElement | any>(null);
    const [isShown, setIsShown] = useState(defaultState);
 
    const handleClickOutside = (event: MouseEvent) => {

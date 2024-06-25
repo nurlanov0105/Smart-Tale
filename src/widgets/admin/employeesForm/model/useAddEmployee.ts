@@ -17,7 +17,7 @@ export const useAddEmployee = () => {
       mutate: inviteEmployee,
       isPending,
       isError,
-   } = useAddEmployeeQuery(reset)
+   } = useAddEmployeeQuery(reset);
 
    const onsSubmit = (data: AddEmployeeTypes) => {
       if (!subscribeData[RIGHT_ACTIONS.ADD_EMPLOYEE]){

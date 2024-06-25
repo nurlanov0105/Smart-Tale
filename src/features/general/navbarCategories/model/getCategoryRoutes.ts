@@ -42,7 +42,7 @@ export const getCategoryRoutes = ({
          isShow: true,
          routes: [
             { parentId: 2, subtitle: "Оборудования", link: MARKETPLACE.EQUIPMENT },
-            { parentId: 2, subtitle: "Заказы", link: MARKETPLACE.ORDERS },
+            { parentId: 2, subtitle: "Заказы", link: MARKETPLACE.ORDERS, authorized: true },
             { parentId: 2, subtitle: "Услуги", link: MARKETPLACE.SERVICES },
             {
                parentId: 2,

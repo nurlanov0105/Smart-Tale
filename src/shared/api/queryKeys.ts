@@ -40,6 +40,10 @@ export const OrganizationQueryKeys = {
    GET_ORDERS: "get-organization-orders",
    UPDATE_STATUS_ORDER: "update-status-orders",
    HISTORY_ORDERS: "get-history-orders",
+   ADD_EMPLOYEE_ORDER: "add-employee-order",
+   REMOVE_EMPLOYEE_ORDER: "remove-employee-order",
+   EMPLOYEE_APPLY: "employee-apply",
+   EMPLOYEE_DECLINE: "employee-decline",
 };
 
 export const EquipmentQueryKeys = {
@@ -111,4 +115,6 @@ export const NotificationsQueryKeys = {
    NOTIFICATIONS: "my-notifications",
    DELETE_NOTIFICATION: "notifications-delete",
    DELETE_ALL_NOTIFICATIONS: "notifications-delete-all",
+   READ_NOTIFICATION: "notifications-read/",
+   READ_ALL_NOTIFICATIONS: "notifications-read-all",
 };

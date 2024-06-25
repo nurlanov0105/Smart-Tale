@@ -3,4 +3,18 @@
    min-width: 100%;
    padding: 3rem;
    overflow-y: auto;
+
+   &__btns {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 3rem;
+   }
+
+   &__span {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+   }
 }

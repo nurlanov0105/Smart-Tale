@@ -3,10 +3,7 @@ import { CREATE_ANNOUNCEMENT_POST_NAMES } from "@/features/user/orderForm/model/
 import { format } from "date-fns";
 import { AnnouncementValues } from "@/shared/lib";
 
-export const buildAnnouncementFormData = (
-   data: AnnouncementCreateFormType,
-   type: string
-): FormData => {
+export const buildAnnouncementFormData = (data: AnnouncementCreateFormType, type: string): FormData => {
    const formData = new FormData();
 
    formData.append(CREATE_ANNOUNCEMENT_POST_NAMES.title, data.title);
