@@ -3,6 +3,7 @@ import { ChatsQueryKeys } from "@/shared/api/queryKeys";
 import { ChatsService, ROUTES } from "@/shared/lib";
 import { ChatTypes, IMessageFullTypes } from "./types";
 import { useRouter } from "next/navigation";
+import {closeModal} from "@/views/modal";
 
 export const useGetChats = () => {
    return useQuery<ChatTypes[]>({
@@ -28,6 +29,7 @@ export const useStartChat = () => {
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [ChatsQueryKeys.CONVERSATIONS] });
          push(ROUTES.NOTICES);
+         closeModal()
       },
    });
 };

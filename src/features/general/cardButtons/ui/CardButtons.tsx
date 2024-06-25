@@ -6,6 +6,7 @@ import {AnnouncementRoutes, CardDetailsRoutes, useOrderApply} from "@/widgets/ge
 import {closeModal, showModal} from "@/views/modal";
 import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 import styles from "./styles.module.scss";
+import {useStartChat} from "@/widgets/general/chats/model/useQueries";
 
 interface Props {
     authorSlug: string
@@ -18,6 +19,8 @@ interface Props {
 const CardButtons:FC<Props> = ({authorSlug, isApplied, slug, type, handleShowChat}) => {
     const router = useRouter();
     const { mutate, isPending } = useOrderApply();
+
+    const { mutate: startChat, isPending: isLoading } = useStartChat();
 
     const currentUser = useSubscribeStore((state) => state.data);
     const hasAccess = useSubscribeStore(state => state.position?.flag_update_order);
@@ -37,6 +40,9 @@ const CardButtons:FC<Props> = ({authorSlug, isApplied, slug, type, handleShowCha
         router.push(CardDetailsRoutes[type] + `/${slug}`);
         closeModal();
     };
+    const handeRouteChat = () => {
+        startChat(authorSlug)
+    }
 
     const isApplyText = isApplied ? "Запрос уже отправлен" : "Отправить заявку";
 
@@ -47,7 +53,7 @@ const CardButtons:FC<Props> = ({authorSlug, isApplied, slug, type, handleShowCha
 
         if (type === AnnouncementTypes.order){
             if (!hasAccess) {
-                return <Button onClick={handleShowChat}>Написать</Button>
+                return <Button onClick={handeRouteChat}>Написать</Button>
             }
             return (
                 <Button onClick={handleOrder} disabled={isApplied}>
@@ -56,7 +62,7 @@ const CardButtons:FC<Props> = ({authorSlug, isApplied, slug, type, handleShowCha
             )
         }
 
-        return <Button onClick={handleShowChat}>Написать</Button>
+        return <Button onClick={handeRouteChat}>Написать</Button>
     };
 
     return (
