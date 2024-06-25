@@ -123,7 +123,7 @@ const ChatForm: FC = () => {
                      <MessageItem
                         message={message}
                         messages={data}
-                        mySlug={isMe()?.slug}
+                        mySlug={isMe()?.slug || ""}
                         key={idx}
                         idx={idx}
                      />
