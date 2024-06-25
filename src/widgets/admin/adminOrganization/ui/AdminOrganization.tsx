@@ -22,6 +22,7 @@ const AdminOrganization: FC = () => {
    const positions = useSubscribeStore((state) => state.data?.job_titles);
    const isSubscribe = useSubscribeStore((state) => state.isSubscribe);
    const subscription = useSubscribeStore((state) => state.data?.subscription);
+   const dataProfile = useSubscribeStore((state) => state.data);
    const isShow = useConfettiStore((state) => state.isShow);
    const endConfetti = useConfettiStore((state) => state.endConfetti);
 
@@ -29,6 +30,14 @@ const AdminOrganization: FC = () => {
    const MIN_ORGANIZATIONS_CREATING = 1;
    const isShowButton = () => {
       if (isSubscribe && subscription && positions?.length === MIN_ORGANIZATIONS_CREATING) {
+         return;
+      }
+      if (
+         isSubscribe &&
+         !subscription &&
+         positions?.length === MIN_ORGANIZATIONS_CREATING &&
+         dataProfile?.profile.slug !== dataProfile?.org.founder
+      ) {
          return;
       }
 
@@ -63,11 +72,9 @@ const AdminOrganization: FC = () => {
                   <h4 className="h4">Список организаций</h4>
                   {isShowButton() && <Button onClick={handleAdd}>Добавить организацию</Button>}
                </div>
-               {organizations
-                  ?.map((item) => (
-                     <OrganizationItem activeOrg={activeOrg} key={item.slug} item={item} />
-                  ))
-                  .reverse()}
+               {organizations?.map((item) => (
+                  <OrganizationItem activeOrg={activeOrg} key={item.slug} item={item} />
+               ))}
             </div>
          )}
          <ConfettiComponent showConfetti={isShow} />

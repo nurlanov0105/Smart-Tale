@@ -106,9 +106,10 @@ export const OrganizationService = {
       const response = await baseApiInstance.get(OrganizationEndpoints.GET_ORGANIZATION_ORDERS);
       return response.data;
    },
-   getHistoryOrders: async (type?: string) => {
+
+   getHistoryOrders: async (type?: any) => {
       const response = await baseApiInstance.get(
-         OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=${type}`
+         OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=${type.tab}`
       );
       return response.data?.data;
    },

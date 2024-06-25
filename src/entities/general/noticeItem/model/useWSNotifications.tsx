@@ -35,6 +35,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
    // const [wsnotifications, setwsNotifications] = useState<any[]>([]);
    const profileId = useSubscribeStore((state) => state.data?.profile?.id);
    console.log("notifications - ", notifications);
+   console.log("profileId - ", profileId);
 
    const { data: initialNotifications, isError, isLoading, isPending } = useGetMyNotifications();
 
@@ -45,7 +46,11 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
    }, [initialNotifications]);
 
    useEffect(() => {
+      if (!profileId) {
+         return;
+      }
       const token = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+
       const url = `wss://helsinki-backender.org.kg/ws/notifications/${profileId}/?token=${token}`;
 
       const ws = new WebSocket(url);
@@ -83,7 +88,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
          ws.close();
          // setwsNotifications([]);
       };
-   }, [isPending, depencies?.deleteSuccess, depencies?.readSuccess]);
+   }, [isPending, depencies?.deleteSuccess, depencies?.readSuccess, profileId]);
 
    return {
       notifications,

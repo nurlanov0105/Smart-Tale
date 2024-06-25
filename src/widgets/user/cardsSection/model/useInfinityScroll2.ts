@@ -32,6 +32,11 @@ interface IProps {
       tabType?: string;
       param_tab?: string;
       slug?: string;
+      schedule?: string[],
+      incomeLevel?: string,
+      location?: string[],
+      job_title?: string[],
+      experience?: string
    };
 }
 interface QueryFunctionTypes {

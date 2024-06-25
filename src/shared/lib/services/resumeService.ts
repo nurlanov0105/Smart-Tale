@@ -20,8 +20,16 @@ export const ResumeService = {
       const response = await baseApiInstance.put(ResumeEndpoints.HIDE_RESUME + slug, {data: slug} );
       return response;
    },
-   getResumes: async (data?: DefaultFilterTypes) => {
-      const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES, {
+   getResumes: async (data: DefaultFilterTypes) => {
+      // job_title, location и schedule
+      const { experience, incomeLevel, location, job_title, schedule} = data
+      const locationData = location.join(",");
+      const positionsData = job_title.join(",")
+      const scheduleData = schedule.join(",");
+      const needPositionComma = !!job_title.length ? "," : "";
+      const needLocationComma = !!location.length ? "," : "";
+      const params = "?params=" + locationData + needLocationComma + positionsData + needPositionComma + scheduleData
+      const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES + params, {
          // params: {
          //    job_title: data.job_title,
          //    location: data.location,

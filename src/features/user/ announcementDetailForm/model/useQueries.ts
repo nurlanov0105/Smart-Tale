@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { EquipmentQueryKeys, ServiceQueryKeys } from "@/shared/api";
 import {
-   EquipmentService,
+   EquipmentService, errorCatch,
    OrdersService,
    ROUTES,
    ServicesService,
@@ -42,19 +42,17 @@ export const useUpdateOrder = () => {
    const queryClient = useQueryClient();
    const router = useRouter();
    const { handleScrollToTop } = useScrollTop();
-
    return useMutation<any, Error, { data: FormData; slug: string }>({
       mutationKey: [OrdersQueryKeys.ORDER_UPDATE],
       mutationFn: ({ data, slug }) => OrdersService.updateOrder({ params: data, orderSlug: slug }),
       onSuccess: async (data) => {
-         console.log(data);
-
-         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${data.slug}`);
+         handleScrollToTop();
          await queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.ORDERS] });
          await queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.GET_MY_ORDERS] });
+         await queryClient.invalidateQueries({ queryKey: [OrdersQueryKeys.GET_MY_ORDER] });
          await queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
          toast.success("Поздравлям! Вы успешно обновили заказ!");
-         handleScrollToTop();
+         router.push(ROUTES.ANNOUNCEMENT_DETAILS_ORDER + `/${data.slug}`);
       },
       onError: () => {
          toast.error("Произошла ошибка при запросе, попробуйте еще раз");
@@ -72,14 +70,17 @@ export const useUpdateEquipment = () => {
       mutationFn: ({ data, slug }) =>
          EquipmentService.updateEquipment({ params: data, equipmentSlug: slug }),
       onSuccess: async (data) => {
+         handleScrollToTop();
          router.push(ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT + `/${data.slug}`);
+         await queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_EQUIPMENT] });
          await queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.EQUIPMENTS] });
          await queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
-         handleScrollToTop();
          toast.success("Поздравлям! Вы успешно обновили оборудование!");
       },
-      onError: () => {
-         toast.error("Произошла ошибка при запросе, попробуйте еще раз");
+      onError: (error) => {
+         const alertError = errorCatch(error);
+         console.log("Произошла ошибка при запросе: ", alertError);
+         toast.error(alertError);
       },
    });
 };
@@ -98,6 +99,7 @@ export const useUpdateService = () => {
          router.push(ROUTES.ANNOUNCEMENT_DETAILS_SERVICE + `/${data.slug}`);
          await queryClient.invalidateQueries({ queryKey: [ServiceQueryKeys.MY_SERVICES] });
          await queryClient.invalidateQueries({ queryKey: [EquipmentQueryKeys.GET_MY_ADS] });
+         await queryClient.invalidateQueries({ queryKey: [ServiceQueryKeys.GET_MY_SERVICE] });
 
          toast.success("Поздравлям! Вы успешно обновили услугу!");
          handleScrollToTop();
@@ -120,8 +122,10 @@ export const useAnnouncementDetailsType = (slug: string, type: string) => {
    };
    const responseData = dataMap[type as keyof typeof dataMap];
 
-   return responseData;
+   return responseData
 };
+
+
 
 export const useAnnouncementAction = (type: string) => {
    const updateOrder = useUpdateOrder();
@@ -135,5 +139,5 @@ export const useAnnouncementAction = (type: string) => {
    };
    const updateData = updateAnnouncementMap[type as keyof typeof updateAnnouncementMap];
 
-   return updateData;
+   return updateData
 };

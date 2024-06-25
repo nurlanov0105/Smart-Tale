@@ -64,6 +64,7 @@ baseApiInstance.interceptors.request.use(
          !config.url.includes(OrganizationEndpoints.GET_HISTORY_ORDERS) &&
          !config.url.includes(OrganizationEndpoints.GET_EMPLOYEE_ORDERS) &&
          !config.url.includes(OrganizationEndpoints.UPDATE_ORDER_STATUS) &&
+         !config.url.includes(OrganizationEndpoints.GET_HISTORY_ORDERS) &&
          !config.url.endsWith("/") &&
          !config.params
       ) {
@@ -99,11 +100,6 @@ baseApiInstance.interceptors.response.use(
 
          return baseApiInstance(originalRequest);
       }
-
-      const alertError = errorCatch(error);
-
-      console.log("Произошла ошибка при запросе: ", alertError);
-      toast.error(alertError);
       return Promise.reject(error);
    }
 );

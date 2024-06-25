@@ -10,6 +10,7 @@ import { ObserverSection } from "@/entities/general/observerSection";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { useInfiniteScroll } from "@/shared/lib/hooks/useInfiniteScroll";
+import {ErrorMessage} from "@/entities/general/errorMessage";
 
 const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -44,13 +45,19 @@ const OrderTable: FC<OrderTableProps> = ({ fetchFunction, queryKey, param_tab })
       <section className={styles.section}>
          <div className={clsx(styles.table, styles[theme])}>
             <div className={styles.table__heading}>
+
                {OrderCategories.map((category) => (
                   <h4 key={category} className={styles.table__title}>
                      {category}
                   </h4>
                ))}
             </div>
-            <ul className={styles.table__list}>{readyData}</ul>
+            <ul className={styles.table__list}>
+               {
+                  !isLoading && !data?.length && <div className={styles.table__error}><ErrorMessage isEmpty={true}/></div>
+               }
+               {readyData}
+            </ul>
          </div>
          <ObserverSection
             isInitialLoading={isLoading}

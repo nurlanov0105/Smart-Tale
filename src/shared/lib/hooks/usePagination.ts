@@ -31,6 +31,7 @@ const usePagination = ({
             ads: ads ? ads : "",
             title: title ? title : "",
             slug: slug ? slug : "",
+            tab: tab ? tab : ""
          }),
    });
 

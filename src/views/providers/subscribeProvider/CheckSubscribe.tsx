@@ -8,7 +8,7 @@ import { TypeComponentOrganizationFields } from "./types";
 import {RIGHT_ACTIONS} from "@/shared/lib/constants/consts";
 
 const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = ({ children }) => {
-   const [isLoading, setIsLoading] = useState(true)
+   const [isLoading, setIsLoading] = useState(true);
 
    const pathname = usePathname();
    const { replace } = useRouter();
@@ -23,12 +23,12 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
          {route: ORGANIZATION_ROUTES.CREATE_VACANCY, right: RIGHT_ACTIONS.CREATE_POSITION},
          {route: ORGANIZATION_ROUTES.ADD_POSITION, right: RIGHT_ACTIONS.CREATE_POSITION},
       ]
-   }, [])
+   }, []);
 
    const handleNoRights = useCallback(() => {
       replace(ORGANIZATION_ROUTES.NO_RIGHTS);
       // eslint-disable-next-line
-   },[])
+   },[]);
 
    useEffect(() => {
       if (!!data) {
@@ -40,7 +40,7 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
             return;
          }
 
-         const isOwner = true; //data?.org?.title === OWNER
+         const isOwner = data?.org.founder === data?.profile.slug; //data?.org?.title === OWNER
          if (hasPositions && !isOwner && pathname === ORGANIZATION_ROUTES.ORGANIZATION_LIST) {
             const url = ORGANIZATION_ROUTES.ORGANIZATION_DETAILS + `/${position?.slug}`;
             replace(url);
@@ -50,7 +50,7 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
 
          for (const {route, right} of routes){
             if (pathname.includes(route) && !position[right]){
-               handleNoRights()
+               handleNoRights();
                return;
             }
          }
@@ -61,12 +61,14 @@ const CheckSubscribe: FC<PropsWithChildren<TypeComponentOrganizationFields>> = (
          return;
       }
 
-      setIsLoading(false)
+      if (!!data){
+         setIsLoading(false)
+      }
 
       // eslint-disable-next-line
    }, [data, isError, pathname, replace]);
 
-   if (isLoading) return null
+   if (isLoading) return null;
 
    return (
        <span>{children}</span>

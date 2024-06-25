@@ -3,12 +3,12 @@ import {SelectTypes} from "@/shared/lib/types/types";
 export const historyValues = [
     {
         value: "Текущие заказы",
-        postValue: "current",
+        postValue: "active",
         isSubscribed: false,
     },
     {
         value: "Завершенные заказы",
-        postValue: "completed",
+        postValue: "finished",
         isSubscribed: false,
     },
 ];

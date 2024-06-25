@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { Controller, useFormContext, useWatch } from "react-hook-form";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { GlobalLoading, InputField, PhoneInput, TextArea, Select } from "@/shared/ui";
@@ -57,10 +57,13 @@ const AnnouncementDetailForm = () => {
 
    const sizes = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizes });
    const sizeType = useWatch({ control, name: ANNOUNCEMENT_FORM_NAMES.sizeType });
-   const [contactType, setContactType] = useState(orderContactValues[0].postValue);
 
-   if (isLoading) return <GlobalLoading type="full" />;
-   if (isError) return <h3 className="h3">...Упс, произошла ошибка на сервере</h3>;
+   if (isLoading) {
+      return <GlobalLoading type="full" />;
+   }
+   if (isError) {
+      return <h3 className="h3">...Упс, произошла ошибка на сервере</h3>;
+   }
 
    return (
       <>
@@ -228,32 +231,12 @@ const AnnouncementDetailForm = () => {
                </div>
                <div className={styles.order__block_gap}>
                   <h4 className="h4">Контактная информация</h4>
-                  {/* <Tabs type={contactType} setType={setContactType} values={orderContactValues} /> */}
 
                   <PhoneInput
                      error={errors.tel?.message}
                      classname={styles.order__phoneInput}
                      control={control}
                   />
-                  {/* 
-                  {contactType === ContactValues.tel ? (
-                     <PhoneInput
-                        error={errors.tel?.message}
-                        classname={styles.order__phoneInput}
-                        control={control}
-                     />
-                  ) : (
-                     <InputField
-                        {...register(
-                           ANNOUNCEMENT_FORM_NAMES.email,
-                           ValidationsSchemasService.emailSchema
-                        )}
-                        error={errors.email?.message}
-                        disabled={true}
-                        type="email"
-                        title="Почта"
-                     />
-                  )} */}
                </div>
             </div>
 
