@@ -21,7 +21,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
       });
    };
 
-   return data?.profile.slug === item.initiator.slug ? (
+   return data?.profile.slug === item.receiver.slug ? (
       <button
          onClick={handleBtnClick}
          className={clsx(
