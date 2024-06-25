@@ -29,7 +29,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          className={clsx(
             styles.item,
             {
-               [styles.item_active]: item.receiver.slug === selectedChat,
+               [styles.item_active]: item.initiator.slug === selectedChat,
             },
 
             styles[theme]
@@ -37,13 +37,13 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          <div className={styles.item__left}>
             <Image
                className={styles.item__avatar}
-               src={item?.receiver?.profile_image || avatar}
+               src={item?.initiator?.profile_image || avatar}
                alt="avatar"
                width={30}
                height={30}
             />
             <div>
-               <h4 className="h4">{item.receiver.first_name + " " + item.receiver.last_name}</h4>
+               <h4 className="h4">{item.initiator.first_name + " " + item.initiator.last_name}</h4>
                <p className={styles.item__text}>{item?.last_message}</p>
             </div>
          </div>

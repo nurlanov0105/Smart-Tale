@@ -17,19 +17,6 @@ interface Props {
    depencies?: DepenciesType;
 }
 
-const filterUniqueNotifications = (notifications: any[]) => {
-   const seen = new Set();
-   return notifications.filter((notification) => {
-      const uniqKey = `${notification.id}-${notification.timestamp}`;
-      if (seen.has(uniqKey)) {
-         return false;
-      } else {
-         seen.add(uniqKey);
-         return true;
-      }
-   });
-};
-
 export const useWSNotifications = (depencies?: DepenciesType) => {
    const [notifications, setNotifications] = useState<any[]>([]);
    // const [wsnotifications, setwsNotifications] = useState<any[]>([]);

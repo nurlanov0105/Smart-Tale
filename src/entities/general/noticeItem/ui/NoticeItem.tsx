@@ -23,7 +23,7 @@ import clsx from "clsx";
 import { Button } from "@/shared/ui";
 
 const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
-   const { title, description, id, read, recipient, timestamp, type, image, org_slug } = item;
+   const { title, description, id, read, recipient, timestamp, type, image, org } = item;
 
    const theme = useThemeStore((state) => state.theme);
    const { ref, isShown, toggleShow } = useOutside(false);
@@ -37,25 +37,24 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    const { mutate: employeeDecline, isPending: declineLoading } = useEmployeeDecline();
 
    const classnames =
-      type === AnnouncementValues.EQUIPMENT
+      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
          ? styles.item__avatarDarkGreen
-         : type === AnnouncementValues.SERVICE
+         : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
          ? styles.item__avatarLightGreen
-         : type === AnnouncementValues.ORDER
+         : type?.toLocaleLowerCase() === AnnouncementValues.ORDER
          ? styles.item__avatarYellow
          : styles.item__avatarGreen;
 
    const Icon =
-      type === AnnouncementValues.EQUIPMENT ? (
+      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT ? (
          <UserRound />
-      ) : type === AnnouncementValues.SERVICE ? (
+      ) : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE ? (
          <Clipboard />
-      ) : AnnouncementValues.ORDER ? (
+      ) : type?.toLocaleLowerCase() === AnnouncementValues.ORDER ? (
          <ShoppingCart />
       ) : (
          <Building />
       );
-
    const handleShowMore = () => {
       setShowMore(true);
    };
@@ -75,10 +74,10 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    };
 
    const handleApplyClick = () => {
-      employeeApply({ org_slug: org_slug || "kamal-proizvodostvo" });
+      employeeApply({ org_slug: org || "" });
    };
    const handleDeclineClick = () => {
-      employeeDecline({ org_slug: org_slug || "kamal-proizvodostvo" });
+      employeeDecline({ org_slug: org || "" });
    };
 
    return (
@@ -129,7 +128,7 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
          {showMore && (
             <div className={styles.item__bottom}>
                {/* "organization" */}
-               {type == undefined && (
+               {type?.toLocaleLowerCase() === "organization" && (
                   <div className={styles.item__btns}>
                      <Button disabled={applyLoading} onClick={handleApplyClick}>
                         Принять

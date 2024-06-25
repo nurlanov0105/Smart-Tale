@@ -10,6 +10,7 @@ export type NoticesDataType = {
    imageUrl?: string;
    author?: string;
    org_slug?: string;
+   org?: string;
 };
 
 export type NoticeItemProps = {

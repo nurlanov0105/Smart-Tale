@@ -58,12 +58,12 @@ const NoticesContent = () => {
             <div className={styles.notices__btns}>
                <Button classType="btnBorder" onClick={handleReadAll} disabled={readLoading}>
                   <span className={styles.notices__span}>
-                     <Eye /> Отметить все прочитанными
+                     <Eye /> {readLoading ? "Загрузка..." : "Отметить все прочитанными"}
                   </span>
                </Button>
                <Button classType="btnBorder" onClick={handleDeleteAll} disabled={deleteLoading}>
                   <span className={styles.notices__span}>
-                     <TrashIcon /> Удалить все уведомления
+                     <TrashIcon /> {deleteLoading ? "Загрузка..." : "Удалить все уведомления"}
                   </span>
                </Button>
             </div>

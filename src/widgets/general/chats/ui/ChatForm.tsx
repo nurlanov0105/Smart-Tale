@@ -107,7 +107,6 @@ const ChatForm: FC = () => {
                   width={30}
                   height={30}
                />
-               <h4 className={styles.chat__title}>Samsung Galaxy A3, Б/у, 16 ГБ</h4>
             </div>
             <h4 className="h4">1 300 СОМ</h4>
          </div>
