@@ -10,6 +10,7 @@ import {
    ResponsesModal,
    ConfirmationModal,
    InfoModal,
+   InfoListModal,
 } from "@/features/modals";
 import { CardModal } from "@/widgets/general/cardModal";
 import { CloseModalBtn } from "@/entities/general/closeModalBtn";
@@ -27,6 +28,7 @@ const Modal: FC = () => {
       InviteEmployeeModal,
       CardModal,
       ResponsesModal,
+      InfoListModal,
    };
 
    let RenderComponent;

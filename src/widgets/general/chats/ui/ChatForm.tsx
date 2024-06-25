@@ -23,31 +23,21 @@ import {
 import avatar from "@@/logo.svg";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
+import {useWs} from "@/shared/lib/hooks/useWebsockets";
+import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
 
 const ChatForm: FC = () => {
    const selectedChat = useChatsStore((state) => state.selectedChat);
+   const id = useSubscribeStore(state => state.data?.profile.id)
    const setChats = useChatsStore((state) => state.setChatState);
+   const [isSended, setIsSended] = useState(false)
 
-   const [messages, setMessages] = useState<string[]>([]);
+   const [isReady, sendWsMessage] = useWs();
+
    const [inputMessage, setInputMessgae] = useState("");
 
-   const { data, isLoading } = useGetMessages(selectedChat ? selectedChat : "");
+   const { data, isLoading } = useGetMessages(selectedChat ? selectedChat : "", isSended);
    const handleBack = () => setChats({ isShowChat: false });
-
-   // useEffect(() => {
-   //    socket.on("message", (message: string) => {
-   //       setMessages((prevMessages) => [...prevMessages, message]);
-   //    });
-
-   //    return () => {
-   //       socket.off("message");
-   //    };
-   // }, []);
-
-   const sendMessage = () => {
-      // socket.emit("message", inputMessage);
-      setInputMessgae("");
-   };
 
    const handleTextarea = (e: any) => {
       setInputMessgae(e.target.value);
@@ -55,8 +45,15 @@ const ChatForm: FC = () => {
 
    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log(inputMessage);
-      sendMessage();
+      if (!!inputMessage.length){
+         const mess = {
+            sender: String(id),
+            message: inputMessage
+         };
+         sendWsMessage(mess)
+      }
+      setIsSended(!isSended)
+      setInputMessgae("")
    };
 
    if (isLoading)
@@ -65,10 +62,6 @@ const ChatForm: FC = () => {
             <GlobalLoading />
          </div>
       );
-
-   if (!isLoading) {
-      console.log(data);
-   }
 
    return (
       <div className={styles.chat}>
@@ -107,7 +100,6 @@ const ChatForm: FC = () => {
                   width={30}
                   height={30}
                />
-               <h4 className={styles.chat__title}>Samsung Galaxy A3, Б/у, 16 ГБ</h4>
             </div>
             <h4 className="h4">1 300 СОМ</h4>
          </div>

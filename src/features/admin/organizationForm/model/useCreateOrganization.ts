@@ -15,7 +15,7 @@ export const useCreateOrganization = () => {
         formState: {errors, isValid}
     } = useForm<CreateOrganizationTypes>({
         mode: "onBlur"
-    })
+    });
 
 
     const {

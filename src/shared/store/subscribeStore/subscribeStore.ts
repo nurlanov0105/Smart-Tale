@@ -6,7 +6,7 @@ interface SubscribeState {
    isSubscribe: boolean;
    isError: boolean;
    data: ProfileRequestTypes | null;
-   position: UserPositionTypes;
+   position: UserPositionTypes
    setSubscribeState: (state: Partial<SubscribeState>) => void;
 }
 
@@ -15,8 +15,9 @@ export const useSubscribeStore = create<SubscribeState>((set) => ({
    data: null,
    isError: false,
    position: {
-      organization: null,
-      job_title: null,
+      organization: undefined ,
+      active: undefined,
+      job_title: undefined,
       slug: undefined,
       [RIGHT_ACTIONS.REMOVE_EMPLOYEE]: "false",
       [RIGHT_ACTIONS.REMOVE_POSITION]: "false",

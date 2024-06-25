@@ -7,13 +7,19 @@ import CardSection2 from "@/widgets/user/cardsSection/ui/CardSection2";
 
 
 export default async function ResumesPage(){
-    const data = await fetchResumes()
-
-    if (!data) return <ErrorMessage/>
+    // const data = await fetchResumes()
+    //
+    // if (!data) return <ErrorMessage/>
 
     return (
-        <Resumes initialData={data} queryKey={ResumeQueryKeys.GET_RESUMES}/>
+        <Resumes initialData={initialData} queryKey={ResumeQueryKeys.GET_RESUMES}/>
     );
+};
+
+const initialData = {
+    data: [],
+    has_next_page: true,
+    next_page_number: 1,
 };
 
 const fetchResumes = async () => {

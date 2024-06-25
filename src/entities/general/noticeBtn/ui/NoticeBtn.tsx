@@ -1,14 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { MODAL_KEYS, ROUTES, useAuth } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { showModal } from "@/views/modal";
 import styles from "./styles.module.scss";
+import { useWSNotifications } from "../../noticeItem";
+import clsx from "clsx";
 
 const NoticeBtn = () => {
    const theme = useThemeStore((state) => state.theme);
    const { push } = useRouter();
+   const { wsnotifications } = useWSNotifications();
+   const pathname = usePathname();
 
    const { isAuth } = useAuth();
 
@@ -20,8 +24,14 @@ const NoticeBtn = () => {
       push(ROUTES.NOTICES);
    };
 
+   console.log("wsnotifications", wsnotifications);
+
    return (
-      <button onClick={handleRoute} className={styles[theme]}>
+      <button onClick={handleRoute} className={clsx(styles[theme], styles.btn)}>
+         {wsnotifications.length && !pathname.includes(ROUTES.NOTICES) ? (
+            <span className={styles.btn__notice}>{wsnotifications.length}</span>
+         ) : null}
+
          <svg className={styles.bell} viewBox="0 0 31 30" fill="none">
             <path
                d="M23.6799 9.46657C23.6799 7.3537 22.8126 5.32737 21.2688 3.83335C19.725 2.33933 17.6311 1.5 15.4478 1.5C13.2645 1.5 11.1706 2.33933 9.6268 3.83335C8.08298 5.32737 7.21567 7.3537 7.21567 9.46657C7.21567 18.7609 3.09961 21.4164 3.09961 21.4164H27.796C27.796 21.4164 23.6799 18.7609 23.6799 9.46657Z"

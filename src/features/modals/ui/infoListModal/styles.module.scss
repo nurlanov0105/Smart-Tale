@@ -1,0 +1,39 @@
+.modal {
+   width: 100%;
+   &__title {
+      margin-bottom: 2rem;
+   }
+}
+
+.list {
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+
+   &__item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      column-gap: 6rem;
+   }
+
+   &__block {
+      display: flex;
+      align-items: center;
+      column-gap: 2rem;
+      row-gap: 1rem;
+   }
+
+   &__img {
+      @include bgImg;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 6px;
+      overflow: hidden;
+   }
+
+   h3 {
+      font-size: 1.8rem;
+   }
+}

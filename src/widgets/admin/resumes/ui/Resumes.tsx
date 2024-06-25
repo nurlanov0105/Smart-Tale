@@ -11,6 +11,7 @@ import {useThemeStore} from "@/shared/store/themeStore";
 import styles from "./styles.module.scss";
 import {useInfinityScroll2} from "@/widgets/user/cardsSection/model/useInfinityScroll2";
 import {ObserverSection} from "@/entities/general/observerSection";
+import {VacancyFilterStore} from "@/shared/store/filtersStore/workFiltersStore";
 
 
 interface IProps{
@@ -20,6 +21,8 @@ interface IProps{
 
 const Resumes:FC<IProps> = ({initialData, queryKey}) => {
     const theme = useThemeStore(state => state.theme)
+    const defaultValues = VacancyFilterStore(state => state.defaultValues)
+
 
     const [selectedDate, setSelectedDate] = useState(timeList[0]);
     const [selected, setSelected] = useState(typeList[0]);
@@ -32,7 +35,8 @@ const Resumes:FC<IProps> = ({initialData, queryKey}) => {
         isError,
         observerTarget,
         isFetchingNextPage
-    } = useInfinityScroll2({initialData, queryKey})
+    } = useInfinityScroll2({initialData, queryKey, dependencies: defaultValues});
+
     const handleFilters = () => setWithFilters(!withFilters);
 
     return (

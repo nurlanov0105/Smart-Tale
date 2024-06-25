@@ -8,4 +8,8 @@ export type Props = {
    tab?: string;
    ads?: string;
    title?: string;
+   day?:number
+   year?: number
+   month?:number
+   employee?:string
 };

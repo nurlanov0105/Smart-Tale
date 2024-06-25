@@ -10,7 +10,8 @@ import {
 export const OrganizationService = {
    createOrganization: async (params: FormData) => {
       const headers = { "Content-Type": "multipart/form-data" };
-      const response = await baseApiInstance.post(OrganizationEndpoints.ORGANIZATION_CREATE,
+      const response = await baseApiInstance.post(
+         OrganizationEndpoints.ORGANIZATION_CREATE,
          params,
          {
             headers: headers,
@@ -32,7 +33,7 @@ export const OrganizationService = {
       return response.data;
    },
    getEmployees: async () => {
-      const response = await baseApiInstance.get(OrganizationEndpoints.GET_EMPLOYEES, {});
+      const response = await baseApiInstance.get(OrganizationEndpoints.GET_EMPLOYEES);
       return response.data;
    },
    getOrganizationDetails: async (slug: string) => {
@@ -87,7 +88,7 @@ export const OrganizationService = {
    },
    leaveOrganization: async (orgSlug: string) => {
       const response = await baseApiInstance.delete(OrganizationEndpoints.LEAVE_ORGANIZATION, {
-         data: {org_slug: orgSlug}
+         data: { org_slug: orgSlug },
       });
       return response.data;
    },
@@ -105,8 +106,11 @@ export const OrganizationService = {
       const response = await baseApiInstance.get(OrganizationEndpoints.GET_ORGANIZATION_ORDERS);
       return response.data;
    },
-   getHistoryOrders: async (type?: string) => {
-      const response = await baseApiInstance.get(OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=${type}`);
+
+   getHistoryOrders: async (type?: any) => {
+      const response = await baseApiInstance.get(
+         OrganizationEndpoints.GET_HISTORY_ORDERS + `?stage=${type.tab}`
+      );
       return response.data?.data;
    },
    getEmployeeOrders: async (slug: string) => {
@@ -117,6 +121,16 @@ export const OrganizationService = {
       const response = await baseApiInstance.post(
          OrganizationEndpoints.UPDATE_ORDER_STATUS + parameters
       );
+      return response.data;
+   },
+   employeeApply: async (data: { org_slug: string }) => {
+      const response = await baseApiInstance.put(OrganizationEndpoints.EMPLOYEE_APPLY, data);
+      return response.data;
+   },
+   employeeDecline: async (data: { org_slug: string }) => {
+      const response = await baseApiInstance.delete(OrganizationEndpoints.EMPLOYEE_DECLINE, {
+         data,
+      });
       return response.data;
    },
 };

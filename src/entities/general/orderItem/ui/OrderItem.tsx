@@ -61,7 +61,9 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                </div>
                {/*<p className={styles.item__detail}>Посмотреть детали</p>*/}
                <p className={styles.item__price}>
-                  <PriceFormat type={item?.currency} price={+item?.price} />
+                  {
+                     item.currency && <PriceFormat type={item?.currency} price={+item?.price} />
+                  }
                </p>
                <span className={styles.item__date}>2 апреля 2024</span>
             </div>

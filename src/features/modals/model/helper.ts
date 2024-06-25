@@ -14,7 +14,7 @@ import {
    useDeleteVacancy,
    useDeletePosition,
    useDeleteOrganization,
-   useLeaveOrganization
+   useLeaveOrganization,
 } from "../model/useQueries";
 import { useDeleteAccount, useLogout } from "@/features/auth";
 import { useBookOrder } from "@/widgets/general/feedbackList/model/useQuieries";
@@ -27,6 +27,7 @@ interface ModalAction {
    description: string;
    buttonText: string;
    emoji: string;
+   type?: string;
    request: RequestFunction | RequestFunctionWithParam;
 }
 export const ModalActionsMap: { [key: string]: ModalAction } = {
@@ -250,5 +251,13 @@ export const modalInfoMap = {
       buttonText: "Понятно",
       emoji: "unknown",
       login: "Войти/Регистрация",
+   },
+   [MODAL_KEYS.orderListModal]: {
+      title: "Список заказов",
+      type: "order",
+   },
+   [MODAL_KEYS.usersListModal]: {
+      title: "Список сотрудников",
+      type: "users",
    },
 };

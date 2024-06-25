@@ -1,6 +1,6 @@
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {OrganizationQueryKeys, UserQueryKeys} from "@/shared/api";
-import { ORGANIZATION_ROUTES, OrganizationService, useConfettiStore} from "@/shared/lib";
+import {errorCatch, ORGANIZATION_ROUTES, OrganizationService, useConfettiStore} from "@/shared/lib";
 import {toast} from "react-toastify";
 import {useRouter} from "next/navigation";
 import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
@@ -22,6 +22,11 @@ export const useCreateOrganizationQuery = () => {
 
             replace(ORGANIZATION_ROUTES.ORGANIZATION_LIST)
 
+        },
+        onError: (error) => {
+            const errorMessage = errorCatch(error);
+            toast.error(errorMessage);
+            console.log("Error " + errorMessage );
         }
     })
 }

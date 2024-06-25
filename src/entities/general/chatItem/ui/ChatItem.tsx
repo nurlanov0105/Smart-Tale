@@ -13,6 +13,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
    const setChat = useChatsStore((state) => state.setChatState);
    const selectedChat = useChatsStore((state) => state.selectedChat);
    const data = useSubscribeStore((state) => state.data);
+   const slug = useSubscribeStore(state => state.data?.profile.slug)
 
    const handleBtnClick = () => {
       setChat({
@@ -20,16 +21,26 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          isShowChat: true,
       });
    };
+   const isMe = () => {
+       if (slug === item.initiator.slug){
+           return item.receiver
+       }
+       return item.initiator
+   }
 
-   console.log(item);
+    if (!isMe()){
+        return
+    }
 
-   return data?.profile.slug === item.initiator.slug ? (
+   return isMe() ? (
+
       <button
          onClick={handleBtnClick}
          className={clsx(
             styles.item,
             {
-               [styles.item_active]: item.receiver.slug === selectedChat,
+               [styles.item_active]: isMe().slug === selectedChat,
+
             },
 
             styles[theme]
@@ -37,13 +48,15 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          <div className={styles.item__left}>
             <Image
                className={styles.item__avatar}
-               src={item?.receiver?.profile_image || avatar}
+               src={isMe()?.profile_image || avatar}
+
                alt="avatar"
                width={30}
                height={30}
             />
             <div>
-               <h4 className="h4">{item.receiver.first_name + " " + item.receiver.last_name}</h4>
+               <h4 className="h4">{isMe()?.first_name + " " + isMe().last_name}</h4>
+
                <p className={styles.item__text}>{item?.last_message}</p>
             </div>
          </div>
@@ -63,7 +76,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          className={clsx(
             styles.item,
             {
-               [styles.item_active]: item.receiver.slug === selectedChat,
+               [styles.item_active]: isMe().slug === selectedChat,
             },
 
             styles[theme]
@@ -71,18 +84,23 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          <div className={styles.item__left}>
             <Image
                className={styles.item__avatar}
-               src={item?.receiver?.profile_image || avatar}
+               src={isMe().profile_image || avatar}
                alt="avatar"
                width={30}
                height={30}
             />
             <div>
                <h4 className="h4">
-                  {data?.profile.slug === item.initiator.slug
-                     ? item.initiator.first_name + " " + item.initiator.last_name
-                     : item.receiver.first_name + " " + item.receiver.last_name}
+                  {data?.profile.slug === isMe().slug
+                     ? isMe().first_name + " " + isMe().last_name
+                     : isMe().first_name + " " + isMe().last_name}
                </h4>
-               <p className={styles.item__text}>{item?.last_message}</p>
+               <p className={styles.item__text}>
+                   {item?.last_message}
+                   {
+                       item.last_message === null && "Тут пусто"
+                   }
+               </p>
             </div>
          </div>
          <div className={styles.item__right}>

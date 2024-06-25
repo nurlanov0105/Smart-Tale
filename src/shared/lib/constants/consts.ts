@@ -52,6 +52,9 @@ export const MODAL_KEYS = {
    noChangePosOwner: "noChangePosOwner",
    addedPosition: "addedPosition",
    error: "error",
+   infoListModal: "InfoListModal",
+   orderListModal: "OrderListModal",
+   usersListModal: "UsersListModal",
 };
 
 export const SKELETON_TYPES = {

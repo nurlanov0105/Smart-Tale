@@ -28,8 +28,12 @@ const AdminOrganizationDetail = () => {
 
    const { day, year, month } = getOrganizationDate(data?.created_at || "2024");
 
-   if (isLoading) return <GlobalLoading type="full" />;
-   if (isError) return <h3 className="h3">Упс, произошла ошибка</h3>;
+   if (isLoading) {
+       return <GlobalLoading type="full" />;
+   }
+   if (isError) {
+       return <h3 className="h3">Упс, произошла ошибка</h3>;
+   }
 
    return (
       <div className={clsx(styles.organization, styles[theme])}>

@@ -1,106 +1,61 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { CookiesServices, EnumTokens } from "@/shared/lib";
+import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 
-interface UseWsProps {
-    url: string;
-    token: string;
+interface IMessage {
+    sender: string;
+    message: string;
 }
 
-export const useWs = ({ url, token }: UseWsProps) => {
+export const useWs = () => {
+    const chatId = useChatsStore(state => state.selectedChat);
     const [isReady, setIsReady] = useState(false);
-    const [val, setVal] = useState<any>(null);
-
-    const ws = useRef<WebSocket | null>(null);
+    const token = CookiesServices.getCookiesValue(EnumTokens.ACCESS_TOKEN);
+    const wsRef = useRef<WebSocket | null>(null);
 
     useEffect(() => {
-        const socket = new WebSocket(url);
+        if (!chatId) {
+            return;
+        }
 
-        socket.onopen = () => {
+        const url = `wss://helsinki-backender.org.kg/ws/chat/${chatId}/?token=${token}`;
+        const ws = new WebSocket(url);
+        wsRef.current = ws;
+
+        ws.onopen = () => {
+            console.log("WebSocket connection established");
             setIsReady(true);
-            socket.send(JSON.stringify({ action: token }));
         };
 
-        socket.onclose = () => setIsReady(false);
-
-        socket.onmessage = (event) => {
-            setVal(JSON.parse(event.data));
+        ws.onmessage = (event) => {
+            const newMessage = JSON.parse(event.data);
         };
 
-        socket.onerror = (error) => {
+        ws.onerror = (error) => {
             console.error("WebSocket error:", error);
+            setIsReady(false);
         };
 
-        ws.current = socket;
+        ws.onclose = () => {
+            console.log("WebSocket connection closed");
+            setIsReady(false);
+        };
 
         return () => {
-            socket.close();
+            ws.close();
+            wsRef.current = null;
         };
-    }, [url, token]);
+    }, [chatId, token]);
 
-    return [isReady, val, ws.current?.send.bind(ws.current)] as const;
+    const sendMessage = (message: IMessage) => {
+        if (wsRef.current && isReady) {
+            wsRef.current.send(JSON.stringify(message));
+        } else {
+            console.error("WebSocket is not ready to send messages");
+        }
+    };
+
+    return [isReady, sendMessage] as const;
 };
-
-
-// "use client";
-//
-// import { useEffect, useRef, useState } from "react";
-// import io from "socket.io-client";
-//
-// interface UseWsProps {
-//     url: string;
-//     token: string;
-// }
-
-// export const useWs = ({ url, token }: UseWsProps) => {
-//     const [isReady, setIsReady] = useState(false);
-//     const [val, setVal] = useState<any>(null);
-//
-//     const socket = useRef<ReturnType<typeof io> | null>(null);
-//
-//     useEffect(() => {
-//
-//         const socketInstance = io(url, {
-//             transports: ['websocket', 'polling', 'flashsocket'],
-//             extraHeaders: {
-//                 token: token
-//             },
-//             auth: {
-//                 token: token
-//             }
-//         });
-//
-//
-//         socketInstance.on("connect", () => {
-//             setIsReady(true);
-//             console.log("Connected to WebSocket server");
-//         });
-//
-//         socketInstance.on("disconnect", () => {
-//             setIsReady(false);
-//             console.log("Disconnected from WebSocket server");
-//         });
-//
-//         socketInstance.on("message", (data) => {
-//             setVal(data);
-//         });
-//
-//         socketInstance.on("connect_error", (error) => {
-//             console.error("WebSocket connection error:", error);
-//         });
-//
-//         socket.current = socketInstance;
-//
-//         return () => {
-//             socketInstance.close();
-//         };
-//     }, [url, token]);
-//
-//     const send = (message: any) => {
-//         if (socket.current){
-//             socket.current.send(message)
-//         }
-//     };
-//
-//     return [isReady, val, send] as const;
-// };
