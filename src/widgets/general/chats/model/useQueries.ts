@@ -12,9 +12,9 @@ export const useGetChats = () => {
    });
 };
 
-export const useGetMessages = (selectedChat: string, isSended: boolean) => {
+export const useGetMessages = (selectedChat: string) => {
    return useQuery<IMessageFullTypes>({
-      queryKey: [ChatsQueryKeys.MESSAGES, selectedChat, isSended],
+      queryKey: [ChatsQueryKeys.MESSAGES, selectedChat],
       queryFn: () => ChatsService.getMessages(selectedChat),
       // enabled: !selectedChat,
    });

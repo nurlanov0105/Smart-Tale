@@ -24,8 +24,6 @@ const NoticeBtn = () => {
       push(ROUTES.NOTICES);
    };
 
-   console.log("wsnotifications", wsnotifications);
-
    return (
       <button onClick={handleRoute} className={clsx(styles[theme], styles.btn)}>
          {wsnotifications.length && !pathname.includes(ROUTES.NOTICES) ? (

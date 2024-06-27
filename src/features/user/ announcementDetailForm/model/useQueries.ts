@@ -9,7 +9,7 @@ import {
 } from "@/shared/lib";
 import { OrdersQueryKeys } from "@/shared/api/queryKeys";
 import { toast } from "react-toastify";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const useGetOrder = (slug: string, type: string) => {
    return useQuery({
