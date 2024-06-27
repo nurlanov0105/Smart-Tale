@@ -12,4 +12,3 @@ const ListingsPage: NextPage = () => {
 };
 
 export default ListingsPage;
-

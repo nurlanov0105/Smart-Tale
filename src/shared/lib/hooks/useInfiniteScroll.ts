@@ -106,7 +106,7 @@ export const useInfiniteScroll = ({
             : param_tab
             ? res.has_next_page
             : res.data.has_next_page;
-
+      console.log("resres - ", data);
       return {
          data: data,
          nextPage: pageParam + 1,

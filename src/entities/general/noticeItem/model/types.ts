@@ -11,6 +11,7 @@ export type NoticesDataType = {
    author?: string;
    org_slug?: string;
    org?: string;
+   target_slug?: string;
 };
 
 export type NoticeItemProps = {

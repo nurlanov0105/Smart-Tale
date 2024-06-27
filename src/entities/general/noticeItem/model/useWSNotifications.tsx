@@ -19,7 +19,7 @@ interface Props {
 
 export const useWSNotifications = (depencies?: DepenciesType) => {
    const [notifications, setNotifications] = useState<any[]>([]);
-   // const [wsnotifications, setwsNotifications] = useState<any[]>([]);
+   const [wsnotifications, setwsNotifications] = useState<any[]>([]);
    const profileId = useSubscribeStore((state) => state.data?.profile?.id);
 
    const { data: initialNotifications, isError, isLoading, isPending } = useGetMyNotifications();
@@ -51,14 +51,12 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
             setNotifications((prevNotifications) => [...newNotification, ...prevNotifications]);
 
             // для показа кол-ва уведомлений
-            // setwsNotifications((prevNotifications) => [...newNotification, ...prevNotifications]);
+            setwsNotifications((prevNotifications) => {
+               const updatedNotification = newNotification?.filter((item: any) => !item.read);
+               return updatedNotification;
+            });
          }
       };
-
-      // const wsnotifications = notifications.filter((item) => item.read == false);
-      // ws.onerror = (error) => {
-      //    console.error("WebSocket error:", error);
-      // };
 
       ws.onclose = () => {
          console.log("WebSocket connection closed");
@@ -71,7 +69,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
       }
       return () => {
          ws.close();
-         // setwsNotifications([]);
+         setwsNotifications([]);
       };
    }, [isPending, depencies?.deleteSuccess, depencies?.readSuccess, profileId]);
 
@@ -79,6 +77,6 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
       notifications,
       isError,
       isLoading,
-      wsnotifications: notifications.filter((item) => !item.read),
+      wsnotifications: wsnotifications,
    };
 };

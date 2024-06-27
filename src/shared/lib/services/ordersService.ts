@@ -35,12 +35,14 @@ export const OrdersService = {
       });
       return response.data;
    },
-   getMyOrders: async (page: number) => {
+   getMyOrders: async ({ page, param_tab }: { page: number; param_tab: string }) => {
       const response = await baseApiInstance.get(OrdersEndpoints.GET_MY_ORDERS, {
          params: {
             page: page,
+            stage: param_tab,
          },
       });
+
       return response.data;
    },
    getLikedOrders: async ({ page }: { page: number }) => {
@@ -153,6 +155,12 @@ export const OrdersService = {
       const response = await baseApiInstance.post(
          OrdersEndpoints.REMOVE_EMPLOYEE_ORDER + orderSlug + "/" + employeeSlug
       );
+      return response.data;
+   },
+   finishOrder: async (orderSlug: string) => {
+      const response = await baseApiInstance.put(OrdersEndpoints.ORDER_FINISH + orderSlug, {
+         order_slug: orderSlug,
+      });
       return response.data;
    },
 };

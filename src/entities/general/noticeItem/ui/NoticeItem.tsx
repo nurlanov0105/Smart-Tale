@@ -15,6 +15,7 @@ import {
    useDeleteNotification,
    useEmployeeApply,
    useEmployeeDecline,
+   useOrderFinish,
    useReadNotification,
 } from "../model/useQueries";
 
@@ -23,7 +24,8 @@ import clsx from "clsx";
 import { Button } from "@/shared/ui";
 
 const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
-   const { title, description, id, read, recipient, timestamp, type, image, org } = item;
+   const { title, description, id, read, recipient, target_slug, timestamp, type, image, org } =
+      item;
 
    const theme = useThemeStore((state) => state.theme);
    const { ref, isShown, toggleShow } = useOutside(false);
@@ -35,22 +37,27 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
 
    const { mutate: employeeApply, isPending: applyLoading } = useEmployeeApply();
    const { mutate: employeeDecline, isPending: declineLoading } = useEmployeeDecline();
+   const { mutate: orderFinish, isPending: finishLoading } = useOrderFinish();
+
+   const isEquipment = type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
+   const isOrder = type?.toLocaleLowerCase() === AnnouncementValues.ORDER
+   const isService = type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
 
    const classnames =
-      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
+       isEquipment
          ? styles.item__avatarDarkGreen
-         : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
+         : isService
          ? styles.item__avatarLightGreen
-         : type?.toLocaleLowerCase() === AnnouncementValues.ORDER
+         : isOrder
          ? styles.item__avatarYellow
          : styles.item__avatarGreen;
 
    const Icon =
-      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT ? (
+       isEquipment ? (
          <UserRound />
-      ) : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE ? (
+      ) : isService ? (
          <Clipboard />
-      ) : type?.toLocaleLowerCase() === AnnouncementValues.ORDER ? (
+      ) : isOrder ? (
          <ShoppingCart />
       ) : (
          <Building />
@@ -80,6 +87,11 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
       employeeDecline({ org_slug: org || "" });
    };
 
+   const handleFinishOrder = () => {
+      readNotice(`${id}`);
+      orderFinish(target_slug ? target_slug : "");
+   };
+
    return (
       <li
          className={clsx(styles.item, styles[theme], !read && styles.item_active)}
@@ -93,7 +105,9 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                      <div className={clsx(styles.item__avatar, classnames)}>{Icon}</div>
                   </div>
                   <div className={styles.item__block}>
-                     <h4 className={clsx("h4", styles.item__author)}>{title}</h4>
+                     <h4 className={clsx("h4", styles.item__author)}>
+                        {title} {description?.includes("Arrived") ? "Ваш заказ прибыл" : ""}
+                     </h4>
                      <h5
                         className={clsx(
                            "h4",
@@ -140,6 +154,16 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                         Отказать
                      </Button>
                   </div>
+               )}
+
+               {!read && description?.includes("Arrived") ? (
+                  <div className={styles.item__btns}>
+                     <Button disabled={applyLoading} onClick={handleFinishOrder}>
+                        {finishLoading ? "Загрузка..." : "Заказ получен"}
+                     </Button>
+                  </div>
+               ) : (
+                  ""
                )}
 
                <button type="button" onClick={handleHideContent} className={styles.item__hideBtn}>
