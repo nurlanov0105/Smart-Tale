@@ -9,11 +9,12 @@ export type ChatFormProps = {
    setIsShowChat: Dispatch<SetStateAction<boolean>>;
 };
 
-interface ChatUserTypes {
+export interface ChatUserTypes {
    first_name: string;
    last_name: string;
    slug: string;
    profile_image: null | string;
+   phone_number: string;
 }
 export interface ChatTypes {
    initiator: ChatUserTypes;
@@ -38,5 +39,6 @@ export interface IMessageTypes {
       last_name: string;
       profile_image: string;
       slug: string;
+      phone_number: string;
    };
 }

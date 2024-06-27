@@ -39,21 +39,25 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    const { mutate: employeeDecline, isPending: declineLoading } = useEmployeeDecline();
    const { mutate: orderFinish, isPending: finishLoading } = useOrderFinish();
 
+   const isEquipment = type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
+   const isOrder = type?.toLocaleLowerCase() === AnnouncementValues.ORDER
+   const isService = type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
+
    const classnames =
-      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
+       isEquipment
          ? styles.item__avatarDarkGreen
-         : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
+         : isService
          ? styles.item__avatarLightGreen
-         : type?.toLocaleLowerCase() === AnnouncementValues.ORDER
+         : isOrder
          ? styles.item__avatarYellow
          : styles.item__avatarGreen;
 
    const Icon =
-      type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT ? (
+       isEquipment ? (
          <UserRound />
-      ) : type?.toLocaleLowerCase() === AnnouncementValues.SERVICE ? (
+      ) : isService ? (
          <Clipboard />
-      ) : type?.toLocaleLowerCase() === AnnouncementValues.ORDER ? (
+      ) : isOrder ? (
          <ShoppingCart />
       ) : (
          <Building />

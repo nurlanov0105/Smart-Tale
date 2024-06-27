@@ -120,10 +120,6 @@
 
       border-top: 1px solid #d9dbe3;
    }
-   &__input > label > input {
-      padding: 1rem !important;
-      border: 1px solid #d9dbe3;
-   }
    &__icon {
       width: 4.2rem;
 
@@ -187,7 +183,8 @@
          border-top: 1px solid $border-theme;
       }
       &__input > label > input {
-         border: 1px solid $border-theme;
+         border: 1px solid $border-theme !important;
+         background-color: $dark-theme !important;
       }
    }
 }

@@ -1,7 +1,6 @@
 import { NotificationsQueryKeys, OrganizationQueryKeys } from "@/shared/api";
 import { OrdersQueryKeys, UserQueryKeys } from "@/shared/api/queryKeys";
 import { NotificationService, OrdersService, OrganizationService, useAuth } from "@/shared/lib";
-import { showModal } from "@/views/modal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
@@ -63,6 +62,7 @@ export const useEmployeeApply = () => {
       mutationFn: OrganizationService.employeeApply,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.PROFILE] });
          toast.success("Вы успешно приняли приглашение");
       },
    });

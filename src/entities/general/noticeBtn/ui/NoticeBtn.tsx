@@ -23,8 +23,7 @@ const NoticeBtn = () => {
       }
       push(ROUTES.NOTICES);
    };
-
-   console.log("wsnotifications", wsnotifications);
+   console.log(wsnotifications)
 
    return (
       <button onClick={handleRoute} className={clsx(styles[theme], styles.btn)}>
