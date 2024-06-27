@@ -6,7 +6,6 @@ import { ChatsList } from "@/features/general/chatsList";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 import clsx from "clsx";
 import { MessagesSquare } from "lucide-react";
-import {useWs} from "@/shared/lib/hooks/useWebsockets";
 import styles from "./styles.module.scss";
 
 const Chats = () => {

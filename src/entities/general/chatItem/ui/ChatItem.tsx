@@ -21,99 +21,95 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
          isShowChat: true,
       });
    };
-   const isMe = () => {
-       if (slug === item.initiator.slug){
-           return item.receiver
-       }
-       return item.initiator
-   }
 
-    if (!isMe()){
-        return
-    }
+    const user = slug === item.initiator.slug ? item.receiver : item.initiator;
 
-   return isMe() ? (
+   return user && (
+       <button
+           onClick={handleBtnClick}
+           className={clsx(
+               styles.item,
+               {
+                   [styles.item_active]: user?.slug === selectedChat,
 
-      <button
-         onClick={handleBtnClick}
-         className={clsx(
-            styles.item,
-            {
-               [styles.item_active]: isMe().slug === selectedChat,
+               },
 
-            },
+               styles[theme]
+           )}>
+           <div className={styles.item__left}>
+               <Image
+                   className={styles.item__avatar}
+                   src={user?.profile_image || avatar}
 
-            styles[theme]
-         )}>
-         <div className={styles.item__left}>
-            <Image
-               className={styles.item__avatar}
-               src={isMe()?.profile_image || avatar}
+                   alt="avatar"
+                   width={30}
+                   height={30}
+               />
+               <div>
+                   <h4 className="h4">{user?.first_name + " " + user.last_name}</h4>
 
-               alt="avatar"
-               width={30}
-               height={30}
-            />
-            <div>
-               <h4 className="h4">{isMe()?.first_name + " " + isMe().last_name}</h4>
+                   <p className={styles.item__text}>
+                       {item?.last_message}
 
-               <p className={styles.item__text}>{item?.last_message}</p>
-            </div>
-         </div>
-         <div className={styles.item__right}>
-            <Image
-               className={styles.item__image}
-               src={avatar}
-               alt="avatar"
-               width={50}
-               height={50}
-            />
-         </div>
-      </button>
-   ) : (
-      <button
-         onClick={handleBtnClick}
-         className={clsx(
-            styles.item,
-            {
-               [styles.item_active]: isMe().slug === selectedChat,
-            },
-
-            styles[theme]
-         )}>
-         <div className={styles.item__left}>
-            <Image
-               className={styles.item__avatar}
-               src={isMe().profile_image || avatar}
-               alt="avatar"
-               width={30}
-               height={30}
-            />
-            <div>
-               <h4 className="h4">
-                  {data?.profile.slug === isMe().slug
-                     ? isMe().first_name + " " + isMe().last_name
-                     : isMe().first_name + " " + isMe().last_name}
-               </h4>
-               <p className={styles.item__text}>
-                   {item?.last_message}
-                   {
-                       item.last_message === null && "Тут пусто"
-                   }
-               </p>
-            </div>
-         </div>
-         <div className={styles.item__right}>
-            <Image
-               className={styles.item__image}
-               src={avatar}
-               alt="avatar"
-               width={50}
-               height={50}
-            />
-         </div>
-      </button>
-   );
+                   </p>
+               </div>
+           </div>
+           {/*<div className={styles.item__right}>*/}
+           {/*   <Image*/}
+           {/*      className={styles.item__image}*/}
+           {/*      src={avatar}*/}
+           {/*      alt="avatar"*/}
+           {/*      width={50}*/}
+           {/*      height={50}*/}
+           {/*   />*/}
+           {/*</div>*/}
+       </button>
+   )
 };
 
 export default ChatItem;
+
+//(
+//       <button
+//          onClick={handleBtnClick}
+//          className={clsx(
+//             styles.item,
+//             {
+//                [styles.item_active]: user.slug === selectedChat,
+//             },
+//
+//             styles[theme]
+//          )}>
+//          <div className={styles.item__left}>
+//             <Image
+//                className={styles.item__avatar}
+//                src={user.profile_image || avatar}
+//                alt="avatar"
+//                width={30}
+//                height={30}
+//             />
+//             <div>
+//                <h4 className="h4">
+//                   {data?.profile.slug === user.slug
+//                      ? user.first_name + " " + user.last_name
+//                      : user.first_name + " " + user.last_name}
+//                </h4>
+//                <p className={styles.item__text}>
+//                    {item?.last_message}
+//                    {
+//                        item.last_message === null && "Тут пусто"
+//                    }
+//                </p>
+//             </div>
+//          </div>
+//          <div className={styles.item__right}>
+//             <Image
+//                className={styles.item__image}
+//                src={avatar}
+//                alt="avatar"
+//                width={50}
+//                height={50}
+//             />
+//          </div>
+//       </button>
+//    );

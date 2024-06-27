@@ -76,6 +76,15 @@ export const EquipmentService = {
       const response = await baseApiInstance.post(OrdersEndpoints.GET_MY_ORDER + id);
       return response.data;
    },
+   MY_PURCHASES: async ({ page }: { page: string }) => {
+      console.log("page", page);
+      const response = await baseApiInstance.get(EquipmentsEndpoints.MY_PURCHASES, {
+         params: {
+            page: page,
+         },
+      });
+      return response;
+   },
    hideEquipment: async (slug: string) => {
       const response = await baseApiInstance.put(EquipmentsEndpoints.HIDE_EQUIPMENT + slug);
       return response.data;

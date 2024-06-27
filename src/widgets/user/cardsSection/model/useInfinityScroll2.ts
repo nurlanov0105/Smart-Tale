@@ -32,11 +32,11 @@ interface IProps {
       tabType?: string;
       param_tab?: string;
       slug?: string;
-      schedule?: string[],
-      incomeLevel?: string,
-      location?: string[],
-      job_title?: string[],
-      experience?: string
+      schedule?: string[];
+      incomeLevel?: string;
+      location?: string[];
+      job_title?: string[];
+      experience?: string;
    };
 }
 interface QueryFunctionTypes {
@@ -69,7 +69,7 @@ const queryFunctionType = (initialData: any) => {
          nestedData: initialData?.data || [],
       },
       [UserQueryKeys.PURCHASES]: {
-         queryFn: EquipmentService.getEquipments,
+         queryFn: EquipmentService.MY_PURCHASES,
          nestedData: initialData?.data || [],
       },
       [ResumeQueryKeys.GET_RESUMES]: {

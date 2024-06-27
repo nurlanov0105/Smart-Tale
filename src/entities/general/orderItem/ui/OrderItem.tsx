@@ -20,19 +20,19 @@ import { PriceFormat } from "@/shared/ui";
 const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
-
+   console.log(item);
    const title = orderValues[item.type];
 
    const router = useRouter();
    const handleItemClick = () => {
-      CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item.author.slug });
+      CookiesServices.setToken({ keyName: EnumTokens.CARD_AUTHOR, value: item?.author?.slug });
       if (isOrganization) {
-         router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item.slug}`);
+         router.push(ROUTES.ORGANIZATION_ANNOUNCEMENT_DETAILS + `/${item?.slug}`);
       } else {
          if (pathname.includes(ROUTES.SEARCH)) {
-            router.push(defineDetailsRoute[item.type.toLowerCase()] + `/${item.slug}`);
+            router.push(defineDetailsRoute[item.type.toLowerCase()] + `/${item?.slug}`);
          } else {
-            router.push(defineAnnouncementRoute[item.type.toLowerCase()] + `/${item.slug}`);
+            router.push(defineAnnouncementRoute[item.type.toLowerCase()] + `/${item?.slug}`);
          }
       }
    };
@@ -46,7 +46,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                <div className={styles.item__left}>
                   <Image
                      className={styles.item__image}
-                     src={item?.image || cardImage}
+                     src={item?.image !== "Images does not exist" ? item?.image : "" || cardImage}
                      alt="card"
                      width={75}
                      height={75}
@@ -61,9 +61,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                </div>
                {/*<p className={styles.item__detail}>Посмотреть детали</p>*/}
                <p className={styles.item__price}>
-                  {
-                     item.currency && <PriceFormat type={item?.currency} price={+item?.price} />
-                  }
+                  {item.currency && <PriceFormat type={item?.currency} price={+item?.price} />}
                </p>
                <span className={styles.item__date}>2 апреля 2024</span>
             </div>

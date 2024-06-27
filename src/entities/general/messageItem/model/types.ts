@@ -1,8 +1,16 @@
-import {IMessageFullTypes, IMessageTypes} from "@/widgets/general/chats/model/types";
+import {ChatUserTypes, IMessageFullTypes, IMessageTypes} from "@/widgets/general/chats/model/types";
+
+
+
+interface IMessageType {
+    sender: ChatUserTypes;
+    text: string;
+    timestamp: string
+}
 
 export type MessageTypes = {
-    message: IMessageTypes
-    messages: IMessageFullTypes
+    message: IMessageType
+    messages: IMessageType[]
     idx: number
     mySlug: string
 }

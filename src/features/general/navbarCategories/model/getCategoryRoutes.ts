@@ -22,8 +22,9 @@ export const getCategoryRoutes = ({
          isShow: authorized,
          routes: [
             { parentId: 1, subtitle: "Профиль", link: DASHBOARD.PROFILE },
+            // { parentId: 1, subtitle: "Мои резюме", link: WORK.MY_RESUMES },
             { parentId: 1, subtitle: "Мои объявления", link: DASHBOARD.LISTINGS },
-            { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
+            // { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
             { parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY },
             { parentId: 1, subtitle: "Избранные", link: DASHBOARD.FAVORITES },
          ].filter((route) => !("subscribed" in route) || route.subscribed === subscribed),
@@ -33,6 +34,8 @@ export const getCategoryRoutes = ({
             ROUTES.SUBSCRIBE,
             ROUTES.ANNOUNCEMENT_DETAILS_ORDER,
             ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT,
+            ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT,
+            // WORK.RESUME,
          ],
       },
       {
@@ -50,8 +53,12 @@ export const getCategoryRoutes = ({
                link: MARKETPLACE.CREATE_ANNOUNCEMENT,
                authorized: true,
             },
+            // { parentId: 1, subtitle: "Резюме", link: WORK.RESUMES },
          ].filter((route) => !("authorized" in route) || route.authorized === authorized),
-         activeRoutes: [ROUTES.CARD_DETAILS],
+         activeRoutes: [
+            ROUTES.CARD_DETAILS,
+            // WORK.RESUMES
+         ],
       },
       {
          title: "Организация",
