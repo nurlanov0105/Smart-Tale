@@ -1,36 +1,36 @@
 "use client";
 
-import React, {FC, useState} from "react";
+import React, { FC, useState } from "react";
 import clsx from "clsx";
-import {useThemeStore} from "@/shared/store/themeStore";
-import {Button, GlobalLoading} from "@/shared/ui";
+import { useThemeStore } from "@/shared/store/themeStore";
+import { Button, GlobalLoading } from "@/shared/ui";
 
-import {useGetProfile} from "@/widgets/user/profile/model/useQueries";
+import { useGetProfile } from "@/widgets/user/profile/model/useQueries";
 import Image from "next/image";
 import avatar from "@@/logo.svg";
-import {useParams, useRouter} from "next/navigation";
-import {CookiesServices, EnumTokens, ROUTES} from "@/shared/lib";
-import {useResumeDetailsQuery} from "@/entities/user/vacancyItem/model/useQueries";
-import {WORK} from "@/shared/lib/routes.config";
+import { useParams, useRouter } from "next/navigation";
+import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
+import { useResumeDetailsQuery } from "@/entities/user/vacancyItem/model/useQueries";
+import { WORK } from "@/shared/lib/routes.config";
 import Link from "next/link";
 import styles from "./styles.module.scss";
-import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
+import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 const ResumeInfo: FC = () => {
    const theme = useThemeStore((state) => state.theme);
-   const [isInvited, setIsInvited] = useState(false)
-   const handleInvite = () => {
-      setIsInvited(!isInvited)
-   }
+   // const [isInvited, setIsInvited] = useState(false)
+   // const handleInvite = () => {
+   //    setIsInvited(!isInvited)
+   // }
    const handleRoute = () => push(WORK.RESUME_DETAILS + `/${slug}`);
 
    const { push } = useRouter();
-   const {slug} = useParams<{slug: string}>();
+   const { slug } = useParams<{ slug: string }>();
 
    const { data: resume, isLoading } = useResumeDetailsQuery(slug);
 
-   const userSlug = useSubscribeStore(state => state.data?.profile?.slug)
-   const isMyResume = userSlug === resume?.author?.slug
+   const userSlug = useSubscribeStore((state) => state.data?.profile?.slug);
+   const isMyResume = userSlug === resume?.author?.slug;
 
    if (isLoading) return <GlobalLoading type="full" />;
 
@@ -42,28 +42,33 @@ const ResumeInfo: FC = () => {
             <div className={styles.form__info}>
                <div>
                   <Image
-                      src={resume?.author?.profile_image || avatar}
-                      alt="avatar"
-                      width={80}
-                      height={80}
-                      className={styles.form__image}
+                     src={resume?.author?.profile_image || avatar}
+                     alt="avatar"
+                     width={80}
+                     height={80}
+                     className={styles.form__image}
                   />
                </div>
                <div>
                   <div className={styles.form__initials}>
                      <span>ФИО:</span>
                      <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>
-                        {resume?.author?.last_name} {resume?.author?.first_name} {resume?.author?.middle_name}
+                        {resume?.author?.last_name} {resume?.author?.first_name}{" "}
+                        {resume?.author?.middle_name}
                      </Link>
                   </div>
                   <div className={styles.form__initials}>
                      <span>Почта:</span>
-                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>{resume?.author?.email}lorem@mail.ru</Link>
+                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>
+                        {resume?.author?.email}lorem@mail.ru
+                     </Link>
                   </div>
 
                   <div className={styles.form__initials}>
                      <span>Номер телефона:</span>
-                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>{resume?.author?.phone_number}+996773333333</Link>
+                     <Link href={ROUTES.USERS + `/${resume?.author?.slug}`}>
+                        {resume?.author?.phone_number}+996773333333
+                     </Link>
                   </div>
                </div>
             </div>
@@ -112,13 +117,14 @@ const ResumeInfo: FC = () => {
             {/*    <Button onClick={handleDelete} type="button" classType="btn_danger">Удалить резюме</Button>*/}
             {/*</div>*/}
          </div>
-         {
-             isMyResume &&
-             <div className={styles.form__btns}>
-                <Button onClick={handleRoute} type="button">Изменить резюме</Button>
-             </div>
-         }
-         {
+         {isMyResume && (
+            <div className={styles.form__btns}>
+               <Button onClick={handleRoute} type="button">
+                  Изменить резюме
+               </Button>
+            </div>
+         )}
+         {/* {
              !isMyResume &&
              <div className={styles.form__btns}>
 
@@ -128,7 +134,7 @@ const ResumeInfo: FC = () => {
                    }
                 </Button>
              </div>
-         }
+         } */}
       </form>
    );
 };
