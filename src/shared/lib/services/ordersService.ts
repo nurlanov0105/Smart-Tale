@@ -157,4 +157,10 @@ export const OrdersService = {
       );
       return response.data;
    },
+   finishOrder: async (orderSlug: string) => {
+      const response = await baseApiInstance.put(OrdersEndpoints.ORDER_FINISH + orderSlug, {
+         order_slug: orderSlug,
+      });
+      return response.data;
+   },
 };

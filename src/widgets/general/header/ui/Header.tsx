@@ -10,11 +10,13 @@ import { Moon, SunMoon } from "lucide-react";
 import { useThemeStore } from "@/shared/store/themeStore";
 import styles from "./styles.module.scss";
 import clsx from "clsx";
+import { useThemeEffect } from "@/shared/lib";
 
 const Header = () => {
    // theme
    const theme = useThemeStore((state) => state.theme);
    const toggleTheme = useThemeStore((state) => state.toggleTheme);
+   useThemeEffect();
    // navbar
    const hidden = useOrdersStore((state) => state.hidden);
 

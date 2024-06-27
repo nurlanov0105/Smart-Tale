@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import Link from "next/link";
 
 import { ROUTES } from "@/shared/lib";

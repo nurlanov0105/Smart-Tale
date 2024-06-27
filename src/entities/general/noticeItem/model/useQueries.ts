@@ -1,5 +1,6 @@
 import { NotificationsQueryKeys, OrganizationQueryKeys } from "@/shared/api";
-import { NotificationService, OrganizationService, useAuth } from "@/shared/lib";
+import { OrdersQueryKeys, UserQueryKeys } from "@/shared/api/queryKeys";
+import { NotificationService, OrdersService, OrganizationService, useAuth } from "@/shared/lib";
 import { showModal } from "@/views/modal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -73,6 +74,21 @@ export const useEmployeeDecline = () => {
       mutationFn: OrganizationService.employeeDecline,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         toast.success("Вы отклонили приглашение");
+      },
+   });
+};
+export const useOrderFinish = () => {
+   const queryClient = useQueryClient();
+   return useMutation({
+      mutationKey: [OrdersQueryKeys.ORDER_FINISH],
+      mutationFn: OrdersService.finishOrder,
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.COMMON_USER_ADS] });
+         queryClient.invalidateQueries({ queryKey: [UserQueryKeys.ORDER_HISTORY] });
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.GET_ORDERS] });
+         queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.HISTORY_ORDERS] });
          toast.success("Вы отклонили приглашение");
       },
    });

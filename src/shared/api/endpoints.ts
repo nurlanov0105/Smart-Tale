@@ -30,6 +30,7 @@ export const OrdersEndpoints = {
    UPDATE_ORDER_STATUS: "/update-status/",
    ADD_EMPLOYEE_ORDER: "/order-add-employee/",
    REMOVE_EMPLOYEE_ORDER: "/order-remove-employee/",
+   ORDER_FINISH: "/order-finish/",
 };
 
 export const EquipmentsEndpoints = {

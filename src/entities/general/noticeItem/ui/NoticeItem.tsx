@@ -15,6 +15,7 @@ import {
    useDeleteNotification,
    useEmployeeApply,
    useEmployeeDecline,
+   useOrderFinish,
    useReadNotification,
 } from "../model/useQueries";
 
@@ -23,7 +24,8 @@ import clsx from "clsx";
 import { Button } from "@/shared/ui";
 
 const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
-   const { title, description, id, read, recipient, timestamp, type, image, org } = item;
+   const { title, description, id, read, recipient, target_slug, timestamp, type, image, org } =
+      item;
 
    const theme = useThemeStore((state) => state.theme);
    const { ref, isShown, toggleShow } = useOutside(false);
@@ -35,6 +37,7 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
 
    const { mutate: employeeApply, isPending: applyLoading } = useEmployeeApply();
    const { mutate: employeeDecline, isPending: declineLoading } = useEmployeeDecline();
+   const { mutate: orderFinish, isPending: finishLoading } = useOrderFinish();
 
    const classnames =
       type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
@@ -80,7 +83,10 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
       employeeDecline({ org_slug: org || "" });
    };
 
-   const handleFinishOrder = () => {};
+   const handleFinishOrder = () => {
+      readNotice(`${id}`);
+      orderFinish(target_slug ? target_slug : "");
+   };
 
    return (
       <li
@@ -146,10 +152,10 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                   </div>
                )}
 
-               {description?.includes("Arrived") ? (
+               {!read && description?.includes("Arrived") ? (
                   <div className={styles.item__btns}>
                      <Button disabled={applyLoading} onClick={handleFinishOrder}>
-                        Заказ получен
+                        {finishLoading ? "Загрузка..." : "Заказ получен"}
                      </Button>
                   </div>
                ) : (

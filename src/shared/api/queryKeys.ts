@@ -71,6 +71,7 @@ export const OrdersQueryKeys = {
    APPLY_ORDER: "apply-order",
    APPLIED_OERGANIZATIONS: "applied-organizations",
    LIKED_ORDERS: "liked-orders",
+   ORDER_FINISH: "order-finish",
 };
 
 export const ServiceQueryKeys = {
