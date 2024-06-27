@@ -6,13 +6,13 @@ import Link from "next/link";
 import { ROUTES } from "@/shared/lib";
 import { useThemeStore } from "@/shared/store/themeStore";
 
-import clsx from "clsx";
 import { OrderTableItemProps } from "../model/types";
 import { useRouter } from "next/navigation";
 import { boardHeadings } from "@/features/user/boardColumn/model/consts";
-import styles from "./styles.module.scss";
 import { getDate, getMonth, getYear } from "date-fns";
 import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
+import styles from "./styles.module.scss";
+import clsx from "clsx";
 
 const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
@@ -51,10 +51,10 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
          </span>
          <span>{Math.round(Number(price))} сом</span>
          <span>
-            {day} {monthFormat.value} {year} года
+            {day} {monthFormat?.value} {year} года
          </span>
          <span>
-            {deadlineday} {deadlinemonthFormat.value} {year} года
+            {deadlineday} {deadlinemonthFormat?.value} {deadlineyear} года
          </span>
          <span>
             <span
@@ -62,7 +62,7 @@ const OrderTableItem: FC<OrderTableItemProps> = ({ item }) => {
                style={{
                   backgroundColor: statusOrder[theme],
                }}>
-               {statusOrder.name}
+               {statusOrder?.name}
             </span>
          </span>
       </li>

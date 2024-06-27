@@ -80,6 +80,8 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
       employeeDecline({ org_slug: org || "" });
    };
 
+   const handleFinishOrder = () => {};
+
    return (
       <li
          className={clsx(styles.item, styles[theme], !read && styles.item_active)}
@@ -93,7 +95,9 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                      <div className={clsx(styles.item__avatar, classnames)}>{Icon}</div>
                   </div>
                   <div className={styles.item__block}>
-                     <h4 className={clsx("h4", styles.item__author)}>{title}</h4>
+                     <h4 className={clsx("h4", styles.item__author)}>
+                        {title} {description?.includes("Arrived") ? "Ваш заказ прибыл" : ""}
+                     </h4>
                      <h5
                         className={clsx(
                            "h4",
@@ -140,6 +144,16 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                         Отказать
                      </Button>
                   </div>
+               )}
+
+               {description?.includes("Arrived") ? (
+                  <div className={styles.item__btns}>
+                     <Button disabled={applyLoading} onClick={handleFinishOrder}>
+                        Заказ получен
+                     </Button>
+                  </div>
+               ) : (
+                  ""
                )}
 
                <button type="button" onClick={handleHideContent} className={styles.item__hideBtn}>

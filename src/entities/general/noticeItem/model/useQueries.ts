@@ -1,13 +1,15 @@
 import { NotificationsQueryKeys, OrganizationQueryKeys } from "@/shared/api";
-import { NotificationService, OrganizationService } from "@/shared/lib";
+import { NotificationService, OrganizationService, useAuth } from "@/shared/lib";
 import { showModal } from "@/views/modal";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 
 export const useGetMyNotifications = () => {
+   const { isAuth } = useAuth();
    return useQuery({
       queryKey: [NotificationsQueryKeys.NOTIFICATIONS],
       queryFn: NotificationService.getMyNotifications,
+      enabled: isAuth,
    });
 };
 export const useDeleteNotification = () => {

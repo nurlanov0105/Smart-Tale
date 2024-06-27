@@ -22,8 +22,9 @@ export const getCategoryRoutes = ({
          isShow: authorized,
          routes: [
             { parentId: 1, subtitle: "Профиль", link: DASHBOARD.PROFILE },
+            { parentId: 1, subtitle: "Мои резюме", link: WORK.MY_RESUMES },
             { parentId: 1, subtitle: "Мои объявления", link: DASHBOARD.LISTINGS },
-            { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
+            // { parentId: 1, subtitle: "Мои покупки", link: DASHBOARD.PURCHASES },
             { parentId: 1, subtitle: "История заказов", link: DASHBOARD.ORDER_HISTORY },
             { parentId: 1, subtitle: "Избранные", link: DASHBOARD.FAVORITES },
          ].filter((route) => !("subscribed" in route) || route.subscribed === subscribed),
@@ -33,6 +34,8 @@ export const getCategoryRoutes = ({
             ROUTES.SUBSCRIBE,
             ROUTES.ANNOUNCEMENT_DETAILS_ORDER,
             ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT,
+            ROUTES.ANNOUNCEMENT_DETAILS_EQUIPMENT,
+            WORK.RESUME,
          ],
       },
       {
@@ -50,8 +53,9 @@ export const getCategoryRoutes = ({
                link: MARKETPLACE.CREATE_ANNOUNCEMENT,
                authorized: true,
             },
+            { parentId: 1, subtitle: "Резюме", link: WORK.RESUMES },
          ].filter((route) => !("authorized" in route) || route.authorized === authorized),
-         activeRoutes: [ROUTES.CARD_DETAILS],
+         activeRoutes: [ROUTES.CARD_DETAILS, WORK.RESUMES],
       },
       {
          title: "Организация",
@@ -84,12 +88,12 @@ export const getCategoryRoutes = ({
                link: ORGANIZATION_ROUTES.CURRENT_ORDERS,
                isShow: hasOrganization,
             },
-            {
-               parentId: 3,
-               subtitle: "История вакансий",
-               link: ORGANIZATION_ROUTES.VACANCIES,
-               isShow: hasOrganization,
-            },
+            // {
+            //    parentId: 3,
+            //    subtitle: "История вакансий",
+            //    link: ORGANIZATION_ROUTES.VACANCIES,
+            //    isShow: hasOrganization,
+            // },
             {
                parentId: 3,
                subtitle: "История заказов",
@@ -112,22 +116,22 @@ export const getCategoryRoutes = ({
             ORGANIZATION_ROUTES.POSITION_DETAILS,
          ],
       },
-      {
-         title: "Работа",
-         id: 4,
-         Icon: BriefcaseBusiness,
-         isShow: true,
-         routes: [
-            { parentId: 4, subtitle: "Вакансии", link: WORK.VACANCIES },
-            { parentId: 4, subtitle: "Резюме", link: WORK.RESUMES },
-            { parentId: 4, subtitle: "Мои резюме", link: WORK.MY_RESUMES, authorized: true },
-            // {
-            //    parentId: 4,
-            //    subtitle: "Добавить вакансию",
-            //    link: WORK.CREATE_VACANCY,
-            //    authorized: true,
-            // },
-         ].filter((route) => !("authorized" in route) || route.authorized === authorized),
-         activeRoutes: [WORK.VACANCY_DETAIL, WORK.RESUME],
-      },
+      // {
+      //    title: "Работа",
+      //    id: 4,
+      //    Icon: BriefcaseBusiness,
+      //    isShow: true,
+      //    routes: [
+      //       { parentId: 4, subtitle: "Вакансии", link: WORK.VACANCIES },
+      //       { parentId: 4, subtitle: "Резюме", link: WORK.RESUMES },
+      //       { parentId: 4, subtitle: "Мои резюме", link: WORK.MY_RESUMES, authorized: true },
+      //       // {
+      //       //    parentId: 4,
+      //       //    subtitle: "Добавить вакансию",
+      //       //    link: WORK.CREATE_VACANCY,
+      //       //    authorized: true,
+      //       // },
+      //    ].filter((route) => !("authorized" in route) || route.authorized === authorized),
+      //    activeRoutes: [WORK.VACANCY_DETAIL, WORK.RESUME],
+      // },
    ].filter((category) => category.isShow);

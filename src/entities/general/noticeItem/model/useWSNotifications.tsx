@@ -1,6 +1,6 @@
 "use client";
 
-import { CookiesServices, EnumTokens } from "@/shared/lib";
+import { CookiesServices, EnumTokens, useAuth } from "@/shared/lib";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 
 import { useEffect, useState } from "react";
