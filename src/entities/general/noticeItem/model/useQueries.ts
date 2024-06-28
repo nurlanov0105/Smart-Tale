@@ -2,6 +2,7 @@ import { NotificationsQueryKeys, OrganizationQueryKeys } from "@/shared/api";
 import { OrdersQueryKeys, UserQueryKeys } from "@/shared/api/queryKeys";
 import { NotificationService, OrdersService, OrganizationService, useAuth } from "@/shared/lib";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { Dispatch, SetStateAction } from "react";
 import { toast } from "react-toastify";
 
 export const useGetMyNotifications = () => {
@@ -23,13 +24,14 @@ export const useDeleteNotification = () => {
    });
 };
 
-export const useDeleteAllNotifications = () => {
+export const useDeleteAllNotifications = (setwsNotifications: Dispatch<SetStateAction<any[]>>) => {
    const queryClient = useQueryClient();
    return useMutation({
       mutationKey: [NotificationsQueryKeys.DELETE_ALL_NOTIFICATIONS],
       mutationFn: NotificationService.deleteAllNotifications,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         setwsNotifications([]);
       },
    });
 };
@@ -44,13 +46,14 @@ export const useReadNotification = () => {
       },
    });
 };
-export const useReadAllNotifications = () => {
+export const useReadAllNotifications = (setwsNotifications: Dispatch<SetStateAction<any[]>>) => {
    const queryClient = useQueryClient();
    return useMutation({
       mutationKey: [NotificationsQueryKeys.READ_ALL_NOTIFICATIONS],
       mutationFn: NotificationService.readAllNotifications,
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: [NotificationsQueryKeys.NOTIFICATIONS] });
+         setwsNotifications([]);
       },
    });
 };
@@ -89,7 +92,7 @@ export const useOrderFinish = () => {
          queryClient.invalidateQueries({ queryKey: [UserQueryKeys.ORDER_HISTORY] });
          queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.GET_ORDERS] });
          queryClient.invalidateQueries({ queryKey: [OrganizationQueryKeys.HISTORY_ORDERS] });
-         toast.success("Вы отклонили приглашение");
+         toast.success("Заказ успешно получен");
       },
    });
 };

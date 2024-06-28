@@ -115,7 +115,7 @@ const AnnouncementDetails = () => {
                         key={item?.user_profile}
                         className={clsx(styles.item__user, showMinus && styles.item__userPadding)}>
                         <Link
-                           href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_profile}
+                           href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_slug}
                            className={styles.item__employee}>
                            <Image
                               className={styles.item__image}
@@ -125,7 +125,7 @@ const AnnouncementDetails = () => {
                               height={48}
                            />
                            <div>
-                              <h4 className="h4">{item?.user_profile}</h4>
+                              <h4 className="h4">{item?.first_name + " " + item?.last_name}</h4>
                               <p className={styles.item__salary}>
                                  {item.job_title}
                                  {/* <PriceFormat type={item?.currency} price={+item?.price} /> */}
@@ -137,7 +137,7 @@ const AnnouncementDetails = () => {
                            <button
                               className={styles.item__btnMinus}
                               type="button"
-                              onClick={() => handleRemoveEmployee(item?.user_profile)}>
+                              onClick={() => handleRemoveEmployee(item?.user_slug)}>
                               <CircleX />
                            </button>
                         )}
