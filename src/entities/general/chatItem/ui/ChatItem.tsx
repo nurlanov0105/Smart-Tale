@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from "react";
+import React, { FC, useEffect } from "react";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
 import { ChatItemProps } from "../model/types";
@@ -7,68 +7,69 @@ import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
-import {usePathname} from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const ChatItem: FC<ChatItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const setChat = useChatsStore((state) => state.setChatState);
    const selectedChat = useChatsStore((state) => state.selectedChat);
-   const slug = useSubscribeStore(state => state.data?.profile.slug)
+   const slug = useSubscribeStore((state) => state.data?.profile.slug);
 
    const handleBtnClick = () => {
-       if (selectedChat === item.id){
-           return
-       }
+      if (selectedChat === item?.id) {
+         return;
+      }
       setChat({
-         selectedChat: item.id,
+         selectedChat: item?.id,
          isShowChat: true,
-          messages: []
+         messages: [],
       });
    };
 
-    const user = slug && slug === item.initiator.slug ? item.receiver : item.initiator;
+   const user = slug && slug === item?.initiator.slug ? item?.receiver : item?.initiator;
 
-   return user?.slug !== slug && (
-       <button
-           onClick={handleBtnClick}
-           className={clsx(
+   if (!item) {
+      return;
+   }
+
+   return (
+      user?.slug !== slug && (
+         <button
+            onClick={handleBtnClick}
+            className={clsx(
                styles.item,
                {
-                   [styles.item_active]: user?.slug === selectedChat,
-
+                  [styles.item_active]: user?.slug === selectedChat,
                },
 
                styles[theme]
-           )}>
-           <div className={styles.item__left}>
+            )}>
+            <div className={styles.item__left}>
                <Image
-                   className={styles.item__avatar}
-                   src={user?.profile_image || avatar}
-
-                   alt="avatar"
-                   width={30}
-                   height={30}
+                  className={styles.item__avatar}
+                  src={user?.profile_image || avatar}
+                  alt="avatar"
+                  width={30}
+                  height={30}
                />
                <div>
-                   <h4 className="h4">{user?.first_name + " " + user.last_name}</h4>
+                  <h4 className="h4">{user?.first_name + " " + user.last_name}</h4>
 
-                   <p className={styles.item__text}>
-                       {item?.last_message}
-
-                   </p>
+                  <p className={styles.item__text}>{item?.last_message}</p>
                </div>
-           </div>
-           {/*<div className={styles.item__right}>*/}
-           {/*   <Image*/}
-           {/*      className={styles.item__image}*/}
-           {/*      src={avatar}*/}
-           {/*      alt="avatar"*/}
-           {/*      width={50}*/}
-           {/*      height={50}*/}
-           {/*   />*/}
-           {/*</div>*/}
-       </button>
-   )
+            </div>
+            {/*<div className={styles.item__right}>*/}
+            {/*   <Image*/}
+            {/*      className={styles.item__image}*/}
+            {/*      src={avatar}*/}
+            {/*      alt="avatar"*/}
+            {/*      width={50}*/}
+            {/*      height={50}*/}
+            {/*   />*/}
+            {/*</div>*/}
+         </button>
+      )
+   );
 };
 
 export default ChatItem;
@@ -101,7 +102,7 @@ export default ChatItem;
 //                <p className={styles.item__text}>
 //                    {item?.last_message}
 //                    {
-//                        item.last_message === null && "Тут пусто"
+//                        item?.last_message === null && "Тут пусто"
 //                    }
 //                </p>
 //             </div>
