@@ -31,6 +31,10 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
    }, [initialNotifications]);
 
    useEffect(() => {
+
+   }, []);
+
+   useEffect(() => {
       if (!profileId) {
          return;
       }

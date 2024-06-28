@@ -10,7 +10,7 @@ const ChatsList = () => {
    const { data: chats, isLoading } = useGetChats();
    const setChat = useChatsStore(state => state.setChatState)
 
-   const pathname = usePathname()
+   const pathname = usePathname();
 
    useEffect(() => {
 
@@ -23,12 +23,13 @@ const ChatsList = () => {
       }
    }, [pathname]);
 
-   if (isLoading)
+   if (isLoading) {
       return (
-         <div className={styles.chats}>
-            <GlobalLoading type="default" />
-         </div>
+          <div className={styles.chats}>
+             <GlobalLoading type="default" />
+          </div>
       );
+   }
 
 
    return (
