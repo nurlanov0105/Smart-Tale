@@ -13,7 +13,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const setChat = useChatsStore((state) => state.setChatState);
    const selectedChat = useChatsStore((state) => state.selectedChat);
-   const slug = useSubscribeStore((state) => state.data?.profile.slug);
+   const slug = useSubscribeStore((state) => state.data?.profile?.slug);
 
    const handleBtnClick = () => {
       if (selectedChat === item?.id) {
