@@ -22,7 +22,7 @@ const NoticesLists: FC<Props> = ({ data }) => {
    return (
       <ul className={styles.list}>
          {filteredData?.map((item: NoticesDataType) => (
-            <NoticeItem key={item.id} item={item} />
+            <NoticeItem key={item?.id} item={item} />
          ))}
       </ul>
    );
