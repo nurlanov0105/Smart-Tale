@@ -331,7 +331,14 @@ export const useLeaveOrganization = () => {
       mutationFn: ({ slug }) => OrganizationService.leaveOrganization(slug),
       onSuccess: () => {
          push(DASHBOARD.PROFILE);
+
          queryClient.invalidateQueries({ queryKey: [UserQueryKeys.PROFILE] });
+         queryClient.removeQueries({ queryKey: [OrganizationQueryKeys.ORGANIZATION] });
+         queryClient.removeQueries({ queryKey: [OrganizationQueryKeys.EMPLOYEES] });
+         queryClient.removeQueries({ queryKey: [OrganizationQueryKeys.POSITIONS] });
+         queryClient.removeQueries({ queryKey: [OrganizationQueryKeys.GET_ORDERS] });
+         queryClient.removeQueries({ queryKey: [OrganizationQueryKeys.HISTORY_ORDERS] });
+
          toast.success("Поздравляем! Вы успешно покинули организацию!");
          closeModal();
       },

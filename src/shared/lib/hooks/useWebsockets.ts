@@ -3,24 +3,22 @@
 import { useEffect, useRef, useState } from "react";
 import { CookiesServices, EnumTokens } from "@/shared/lib";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
-import {ChatUserTypes, IMessageFullTypes} from "@/widgets/general/chats/model/types";
 import {useGetMessages} from "@/widgets/general/chats/model/useQueries";
 import {useSubscribeStore} from "@/shared/store/subscribeStore/subscribeStore";
-
-interface IMessageType {
-    sender: ChatUserTypes;
-    text: string;
-    timestamp: string
-}
 
 interface IMessage{
     sender: string,
     message: string
+
 }
 
 export const useWs = () => {
-    const [messages, setMessages] = useState<IMessageType[]>();
     const [isReady, setIsReady] = useState(false);
+    const [firstRender, setFirstRender] = useState(true)
+
+    const messages = useChatsStore(state => state.messages);
+    const setMessages = useChatsStore(state => state.setChatState);
+
 
     const chatId = useChatsStore(state => state.selectedChat);
     const slug = useSubscribeStore(state => state.data?.profile.slug);
@@ -34,18 +32,27 @@ export const useWs = () => {
         isSuccess
     } = useGetMessages(chatId ? chatId : "");
 
+    const getCurrentTime = () => {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        return `${hours}:${minutes}`;
+    };
+
     useEffect(() => {
         if (isSuccess && data) {
-            setMessages(prevState => {
-                const newData = data.message_set?.map(item => ({
-                    sender: item.sender,
-                    text: item.text,
-                    timestamp: item.timestamp
-                })) || [];
-                return prevState ? [...prevState, ...newData] : newData;
+            const newData = data.message_set?.map(item => ({
+                sender: item.sender.slug,
+                message: item.text,
+                timestamp: item.timestamp,
+                id: item.timestamp + item.text
+            })) || [];
+            setMessages({
+                messages: messages ? messages.concat(newData) : newData
             });
         }
-    }, [isSuccess, data, isError]);
+    }, [isSuccess, isError, chatId]);
+
 
     useEffect(() => {
         if (!chatId) {
@@ -59,12 +66,15 @@ export const useWs = () => {
         ws.onopen = () => {
             console.log("WebSocket connection established");
             setIsReady(true);
+            setFirstRender(false)
         };
 
         ws.onmessage = (event) => {
             const newMessage = JSON.parse(event.data);
             if (newMessage?.sender) {
-                setMessages(prevState => (prevState ? [newMessage, ...prevState] : [newMessage]));
+                setMessages({
+                    messages: [{...newMessage, timestamp: getCurrentTime(), id: Date.now() + newMessage.message}].concat(messages)
+                });
             }
         };
 
@@ -82,7 +92,7 @@ export const useWs = () => {
             ws.close();
             wsRef.current = null;
         };
-    }, [chatId, token]);
+    }, [chatId, token, messages]);
 
 
     const sendMessage = (message: IMessage) => {
@@ -96,10 +106,9 @@ export const useWs = () => {
 
     return {
         isReady,
-        messages,
-        sendMessage,
         user,
         isLoading,
+        sendMessage,
         isError
     } ;
 };

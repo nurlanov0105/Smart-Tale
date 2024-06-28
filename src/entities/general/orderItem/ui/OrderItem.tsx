@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import Image from "next/image";
 import { ItemProps } from "../model/types";
-import { CookiesServices, EnumTokens, ROUTES } from "@/shared/lib";
+import { CookiesServices, EnumTokens, ROUTES, useGetDates } from "@/shared/lib";
 import { usePathname, useRouter } from "next/navigation";
 
 import cardImage from "@@/imgs/order/equipment.png";
@@ -16,12 +16,17 @@ import {
 import { useThemeStore } from "@/shared/store/themeStore";
 import { boardHeadings } from "@/features/user/boardColumn/model/consts";
 import { PriceFormat } from "@/shared/ui";
+import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
 
 const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    const theme = useThemeStore((state) => state.theme);
    const pathname = usePathname();
    console.log(item);
    const title = orderValues[item.type];
+
+   const { day, month, year } = useGetDates(item?.deadline || "");
+
+   const monthFormatted = monthsForDate()[month].value;
 
    const router = useRouter();
    const handleItemClick = () => {
@@ -63,7 +68,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                <p className={styles.item__price}>
                   {item.currency && <PriceFormat type={item?.currency} price={+item?.price} />}
                </p>
-               <span className={styles.item__date}>2 апреля 2024</span>
+               <span className={styles.item__date}>{`${day} ${monthFormatted} ${year}`}</span>
             </div>
          )}
 
@@ -83,7 +88,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                      <p className={styles.item__text}>{item.description}</p>
                   </div>
                </div>
-               <span className={styles.item__date}>2 апреля 2024</span>
+               <span className={styles.item__date}>{`${day} ${monthFormatted} ${year}`}</span>
                <p
                   style={{
                      backgroundColor: isCurrent && status?.light && status[theme],
@@ -122,7 +127,7 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
                   <p className={styles.item__price}>
                      <PriceFormat type={item?.currency} price={+item?.price} />
                   </p>
-                  <span className={styles.item__date}>2 апреля 2024</span>
+                  <span className={styles.item__date}>{`${day} ${monthFormatted} ${year}`}</span>
                   {status?.name && (
                      <p
                         style={{

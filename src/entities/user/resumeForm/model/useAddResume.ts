@@ -17,7 +17,6 @@ export const useAddResume = () => {
    const { mutate, isPending, isError } = useAddResumeQuery(reset);
 
    const onSubmit = (data: ResumeFormTypes) => {
-      console.log(data);
       const adapter = {
          ...data,
          currency: data.currency.postValue as CurrencyType,

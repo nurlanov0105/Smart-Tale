@@ -147,13 +147,13 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                {type?.toLocaleLowerCase() === "organization" && (
                   <div className={styles.item__btns}>
                      <Button disabled={applyLoading} onClick={handleApplyClick}>
-                        Принять
+                        {applyLoading ? "Загрузка..." : "Принять"}
                      </Button>
                      <Button
                         classType="btn_danger"
                         disabled={declineLoading}
                         onClick={handleDeclineClick}>
-                        Отказать
+                        {declineLoading ? "Загрузка..." : "Отказать"}
                      </Button>
                   </div>
                )}

@@ -33,3 +33,19 @@ export const useStartChat = () => {
       },
    });
 };
+
+export const useSendMessage = () => {
+   const { push } = useRouter();
+   const queryClient = useQueryClient();
+   return useMutation<Error, any, { slug: string, message: string }>({
+      mutationKey: [ChatsQueryKeys.CONVERSATION_START],
+      mutationFn: ({slug, message}) => ChatsService.sendMessage(slug, message),
+      onSuccess: () => {
+         queryClient.invalidateQueries({ queryKey: [ChatsQueryKeys.CONVERSATIONS] });
+         push(ROUTES.NOTICES);
+         closeModal()
+      },
+   });
+};
+
+

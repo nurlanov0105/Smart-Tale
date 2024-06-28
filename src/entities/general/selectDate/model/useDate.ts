@@ -15,7 +15,7 @@ export const useDate = (
    // Список годов
    const yearsList = useCallback(() => {
       const yearsList = [];
-      for (let i = 2010; i <= 2030; i++) {
+      for (let i = 2024; i <= 2034; i++) {
          // Пока 2010 и 2030, потом поменяю на +-текущий год
          yearsList.push({ value: i, postValue: i });
       }

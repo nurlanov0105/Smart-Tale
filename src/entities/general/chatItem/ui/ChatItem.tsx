@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, {FC, useEffect} from "react";
 import avatar from "@@/logo.svg";
 import Image from "next/image";
 import { ChatItemProps } from "../model/types";
@@ -7,24 +7,28 @@ import clsx from "clsx";
 import { useThemeStore } from "@/shared/store/themeStore";
 import { useChatsStore } from "@/shared/store/chatStore/chatsStore";
 import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
+import {usePathname} from "next/navigation";
 
 const ChatItem: FC<ChatItemProps> = ({ item }) => {
    const theme = useThemeStore((state) => state.theme);
    const setChat = useChatsStore((state) => state.setChatState);
    const selectedChat = useChatsStore((state) => state.selectedChat);
-   const data = useSubscribeStore((state) => state.data);
    const slug = useSubscribeStore(state => state.data?.profile.slug)
 
    const handleBtnClick = () => {
+       if (selectedChat === item.id){
+           return
+       }
       setChat({
          selectedChat: item.id,
          isShowChat: true,
+          messages: []
       });
    };
 
-    const user = slug === item.initiator.slug ? item.receiver : item.initiator;
+    const user = slug && slug === item.initiator.slug ? item.receiver : item.initiator;
 
-   return user && (
+   return user?.slug !== slug && (
        <button
            onClick={handleBtnClick}
            className={clsx(

@@ -9,7 +9,8 @@ import {
    ORGANIZATION_ROUTES,
 } from "../lib";
 import { showModal } from "@/views/modal";
-import { AuthEndpoints, OrganizationEndpoints } from "@/shared/api/endpoints";
+import {AuthEndpoints, OrganizationEndpoints, ResumeEndpoints} from "@/shared/api/endpoints";
+import {ResumeQueryKeys} from "@/shared/api/queryKeys";
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_API;
 
@@ -65,6 +66,7 @@ baseApiInstance.interceptors.request.use(
          !config.url.includes(OrganizationEndpoints.GET_EMPLOYEE_ORDERS) &&
          !config.url.includes(OrganizationEndpoints.UPDATE_ORDER_STATUS) &&
          !config.url.includes(OrganizationEndpoints.GET_HISTORY_ORDERS) &&
+         !config.url.includes(ResumeEndpoints.GET_RESUMES) &&
          !config.url.endsWith("/") &&
          !config.params
       ) {

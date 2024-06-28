@@ -27,13 +27,14 @@ const ChatForm: FC = () => {
    const slug = useSubscribeStore(state => state.data?.profile.slug);
    const setChats = useChatsStore((state) => state.setChatState);
 
+   const messages = useChatsStore((state) => state.messages);
+
    const {
       isReady,
-      messages,
-      sendMessage,
        isLoading,
        isError,
-       user
+       user,
+       sendMessage
    } = useWs();
 
    const handleBack = () => setChats({ isShowChat: false });
@@ -46,7 +47,7 @@ const ChatForm: FC = () => {
       e.preventDefault();
       if (!!inputMessage.length){
          const mess = {
-            sender: String(id),
+            sender: String(slug),
             message: inputMessage
          };
          sendMessage(mess)
@@ -64,6 +65,7 @@ const ChatForm: FC = () => {
    if (isError){
       return <ErrorMessage/>
    }
+
 
    return (
       <div className={styles.chat}>
@@ -108,10 +110,10 @@ const ChatForm: FC = () => {
 
          <div className={styles.chat__row}>
             <div className={styles.chat__chat}>
+
                { messages?.map((message, idx) => (
                      <MessageItem
                         message={message}
-                        messages={messages}
                         mySlug={slug || ""}
                         key={idx}
                         idx={idx}
@@ -136,6 +138,10 @@ const ChatForm: FC = () => {
                </button>
             </form>
          </div>
+         {
+             !isReady &&
+             <div className={styles.chat__loader}><GlobalLoading/></div>
+         }
       </div>
    );
 };
