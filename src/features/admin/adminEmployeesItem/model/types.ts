@@ -11,6 +11,7 @@ export type EmployeeOrderTypes = {
    description: string;
    created_at: string;
    booked_at?: string;
+   deadline?: string;
    price: string;
    currency: string;
    image: string;

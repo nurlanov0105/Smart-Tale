@@ -27,12 +27,8 @@ const InfoModal = ({ componentName }: ModalProps) => {
             <h3 className="h3">{title}</h3>
             <p className="greyText textMaxWidth">{description}</p>
             {login ? (
-               <Link
-                  href={ROUTES.SIGN_IN}
-                  className="btn"
-                  onClick={closeModal}
-                  style={{ color: "white !important " }}>
-                  {login}
+               <Link href={ROUTES.SIGN_IN} className="btn" onClick={closeModal}>
+                  <span> {login}</span>
                </Link>
             ) : (
                <Button onClick={closeModal}>{buttonText}</Button>

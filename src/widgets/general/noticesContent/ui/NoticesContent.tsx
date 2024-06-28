@@ -16,16 +16,18 @@ import { CookiesServices, EnumTokens } from "@/shared/lib";
 import { Eye, TrashIcon } from "lucide-react";
 
 const NoticesContent = () => {
+   const { setwsNotifications } = useWSNotifications();
+
    const {
       mutate: deleteAllNotices,
       isPending: deleteLoading,
       isSuccess: deleteSuccess,
-   } = useDeleteAllNotifications();
+   } = useDeleteAllNotifications(setwsNotifications);
    const {
       mutate: readAllNotices,
       isPending: readLoading,
       isSuccess: readSuccess,
-   } = useReadAllNotifications();
+   } = useReadAllNotifications(setwsNotifications);
 
    const { notifications, isError, isLoading } = useWSNotifications({
       deleteSuccess,

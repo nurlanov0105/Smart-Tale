@@ -16,8 +16,6 @@ const Chats = () => {
    const theme = useThemeStore((state) => state.theme);
    const isShowChat = useChatsStore((state) => state.isShowChat);
 
-
-
    return (
       <>
          <div className={clsx(styles.chats, styles[theme])}>

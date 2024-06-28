@@ -152,7 +152,8 @@ const CardDetail = () => {
                   <div className={styles.detail__header}>
                      <ModalCardHeader
                         title={data.title}
-                        cost={`${Math.round(data.data.price)}`}
+                        cost={data.data.price}
+                        currency={data?.currency}
                         isLarge={true}
                      />
                   </div>
