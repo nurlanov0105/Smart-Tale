@@ -24,9 +24,12 @@ const OrderItem: FC<ItemProps> = ({ item, isCurrent, isOrganization }) => {
    console.log(item);
    const title = orderValues[item.type];
 
-   const { day, month, year } = useGetDates(item?.deadline || "");
+   const { day, month, year } = useGetDates(item?.deadline || item?.created_at);
 
-   const monthFormatted = monthsForDate()[month].value;
+   if (!month) {
+      return;
+   }
+   const monthFormatted = monthsForDate()[month]?.value;
 
    const router = useRouter();
    const handleItemClick = () => {
