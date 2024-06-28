@@ -92,7 +92,7 @@ export const ResumeEndpoints = {
    UPDATE_RESUME: "/change-resume/",
    DELETE_RESUME: "/delete-resume/",
    HIDE_RESUME: "/resume/hide/",
-   GET_RESUMES: "/resume/",
+   GET_RESUMES: "/resume",
    GET_RESUME_DETAILS: "/resume/",
    GET_MY_RESUMES: "/my-resume/",
 };
@@ -128,6 +128,7 @@ export const ChatsEndpoints = {
    CONVERSATION_START: "/conversation/start/",
    CONVERSATIONS: "/conversations/",
    MESSAGES: "/messages/",
+   SEND_MESSAGE: "/send/message/",
 };
 export const NotificaitonEndpoints = {
    NOTIFICATIONS: "/notifications/list/",

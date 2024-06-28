@@ -1,7 +1,10 @@
 .modal {
-  &__btns {
-    display: flex;
-    align-items: center;
-    column-gap: 8px;
-  }
+   &__btns {
+      display: flex;
+      align-items: center;
+      column-gap: 8px;
+      a {
+         color: $common-white !important;
+      }
+   }
 }

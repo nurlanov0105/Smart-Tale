@@ -52,7 +52,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
 
             // для показа кол-ва уведомлений
             setwsNotifications((prevNotifications) => {
-               const updatedNotification = newNotification?.filter((item: any) => !item.read);
+               const updatedNotification = newNotification?.filter((item: any) => item.read === undefined);
                return updatedNotification;
             });
          }
@@ -65,6 +65,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
       if (depencies?.deleteSuccess) {
          return () => {
             ws.close();
+            setwsNotifications([]);
          };
       }
       return () => {
@@ -78,5 +79,6 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
       isError,
       isLoading,
       wsnotifications: wsnotifications,
+      setwsNotifications,
    };
 };

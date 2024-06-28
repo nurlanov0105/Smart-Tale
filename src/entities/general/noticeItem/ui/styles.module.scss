@@ -240,6 +240,18 @@
    &__avatarGreen {
       background-color: #bfd77f;
    }
+
+   .item__hideBtn {
+      color: $dark-grey;
+
+      svg {
+         color: $dark-grey;
+      }
+
+      span {
+         color: $dark-grey;
+      }
+   }
 }
 
 // Tablet Small media

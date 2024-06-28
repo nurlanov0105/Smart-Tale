@@ -5,7 +5,7 @@ import { ModalActionsMap } from "../../model/helper";
 import { ModalProps } from "../../model/types";
 import styles from "./styles.module.scss";
 
-const ConfirmationModal = ({ type, componentName, slug, organizationSlug}: ModalProps) => {
+const ConfirmationModal = ({ type, componentName, slug, organizationSlug }: ModalProps) => {
    const { buttonText, emoji, title, description, request } =
       ModalActionsMap[componentName as keyof typeof ModalActionsMap];
 
@@ -13,7 +13,7 @@ const ConfirmationModal = ({ type, componentName, slug, organizationSlug}: Modal
 
    const { mutate, isPending } = requestType();
 
-   const handleDelete = () => mutate({slug, organizationSlug});
+   const handleDelete = () => mutate({ slug, organizationSlug });
 
    return (
       <div className={styles.modal}>

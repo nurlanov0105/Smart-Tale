@@ -29,6 +29,7 @@ export const ResumeService = {
       const needPositionComma = !!job_title.length ? "," : "";
       const needLocationComma = !!location.length ? "," : "";
       const params = "?params=" + locationData + needLocationComma + positionsData + needPositionComma + scheduleData
+
       const response = await baseApiInstance.get(ResumeEndpoints.GET_RESUMES + params, {
          // params: {
          //    job_title: data.job_title,
