@@ -46,7 +46,9 @@ const InfoListModal: FC<ModalProps> = ({ componentName, data, type }) => {
                               <h3>{item?.title || `${item?.first_name} ${item?.last_name}`}</h3>
                            </div>
 
-                           <Button onClick={() => handleClick(item?.slug || item?.user_slug)}>
+                           <Button
+                              disabled={orderIsLoading}
+                              onClick={() => handleClick(item?.slug || item?.user_slug)}>
                               {orderIsLoading ? "Загрузка..." : "Выбрать"}
                            </Button>
                         </li>

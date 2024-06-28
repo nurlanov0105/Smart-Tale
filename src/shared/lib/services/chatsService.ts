@@ -16,4 +16,10 @@ export const ChatsService = {
       const response = await baseApiInstance.get(ChatsEndpoints.MESSAGES + selectedChat + "/");
       return response.data;
    },
+   sendMessage: async (slug: string, message: string) => {
+      const response = await baseApiInstance.post(ChatsEndpoints.SEND_MESSAGE + slug, {
+         data: message,
+      });
+      return response.data;
+   },
 };

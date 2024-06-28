@@ -8,6 +8,7 @@ import {
    ChevronUp,
    Clipboard,
    GripVertical,
+   MessageSquare,
    ShoppingCart,
    UserRound,
 } from "lucide-react";
@@ -39,29 +40,30 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    const { mutate: employeeDecline, isPending: declineLoading } = useEmployeeDecline();
    const { mutate: orderFinish, isPending: finishLoading } = useOrderFinish();
 
-   const isEquipment = type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT
-   const isOrder = type?.toLocaleLowerCase() === AnnouncementValues.ORDER
-   const isService = type?.toLocaleLowerCase() === AnnouncementValues.SERVICE
+   const isEquipment = type?.toLocaleLowerCase() === AnnouncementValues.EQUIPMENT;
+   const isOrder = type?.toLocaleLowerCase() === AnnouncementValues.ORDER;
+   const isService = type?.toLocaleLowerCase() === AnnouncementValues.SERVICE;
+   const isChat = type?.toLocaleLowerCase() === "chat";
 
-   const classnames =
-       isEquipment
-         ? styles.item__avatarDarkGreen
-         : isService
-         ? styles.item__avatarLightGreen
-         : isOrder
-         ? styles.item__avatarYellow
-         : styles.item__avatarGreen;
+   const classnames = isEquipment
+      ? styles.item__avatarDarkGreen
+      : isService
+      ? styles.item__avatarLightGreen
+      : isOrder
+      ? styles.item__avatarYellow
+      : styles.item__avatarGreen;
 
-   const Icon =
-       isEquipment ? (
-         <UserRound />
-      ) : isService ? (
-         <Clipboard />
-      ) : isOrder ? (
-         <ShoppingCart />
-      ) : (
-         <Building />
-      );
+   const Icon = isEquipment ? (
+      <UserRound />
+   ) : isService ? (
+      <Clipboard />
+   ) : isOrder ? (
+      <ShoppingCart />
+   ) : isChat ? (
+      <MessageSquare />
+   ) : (
+      <Building />
+   );
    const handleShowMore = () => {
       setShowMore(true);
    };
@@ -81,10 +83,10 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
    };
 
    const handleApplyClick = () => {
-      employeeApply({ org_slug: org || "" });
+      employeeApply({ org_slug: target_slug || "" });
    };
    const handleDeclineClick = () => {
-      employeeDecline({ org_slug: org || "" });
+      employeeDecline({ org_slug: target_slug || "" });
    };
 
    const handleFinishOrder = () => {
@@ -145,13 +147,13 @@ const NoticeItem: FC<NoticeItemProps> = ({ item }) => {
                {type?.toLocaleLowerCase() === "organization" && (
                   <div className={styles.item__btns}>
                      <Button disabled={applyLoading} onClick={handleApplyClick}>
-                        Принять
+                        {applyLoading ? "Загрузка..." : "Принять"}
                      </Button>
                      <Button
                         classType="btn_danger"
                         disabled={declineLoading}
                         onClick={handleDeclineClick}>
-                        Отказать
+                        {declineLoading ? "Загрузка..." : "Отказать"}
                      </Button>
                   </div>
                )}

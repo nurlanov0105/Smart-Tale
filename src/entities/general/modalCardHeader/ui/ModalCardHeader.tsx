@@ -8,9 +8,12 @@ import clsx from "clsx";
 import styles from "./styles.module.scss";
 import { usePathSlug } from "../../headerIntro";
 import { DeadlineInfo } from "../../deadlineInfo";
-import { AnnouncementTypes } from "@/shared/lib";
+import {AnnouncementTypes} from "@/shared/lib";
+import dynamic from "next/dynamic";
 
-const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge, type, deadline }) => {
+const PriceButton = dynamic(() => import("@/shared/ui/price/PriceFormat"))
+
+const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge, currency, type, deadline }) => {
    const { pathname, slug, remainingPath } = usePathSlug();
 
    return (
@@ -23,7 +26,9 @@ const ModalCardHeader: FC<ModalheaderProps> = ({ title, cost, isLarge, type, dea
             <h3 className={styles.block__title}>{title}</h3>
             {type === AnnouncementTypes.order && deadline && <DeadlineInfo deadline={deadline} />}
          </div>
-         <span className={styles.block__cost}>{cost} сом</span>
+         <span className={styles.block__cost}>
+             <PriceButton price={+cost} type={currency}/>
+         </span>
       </div>
    );
 };
