@@ -26,9 +26,9 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
       });
    };
 
-   const user = slug && slug === item?.initiator.slug ? item?.receiver : item?.initiator;
+   const user = slug && slug === item?.initiator?.slug ? item?.receiver : item?.initiator;
 
-   if (!item) {
+   if (!item || !user) {
       return;
    }
 
@@ -53,7 +53,7 @@ const ChatItem: FC<ChatItemProps> = ({ item }) => {
                   height={30}
                />
                <div>
-                  <h4 className="h4">{user?.first_name + " " + user.last_name}</h4>
+                  <h4 className="h4">{user?.first_name + " " + user?.last_name}</h4>
 
                   <p className={styles.item__text}>{item?.last_message}</p>
                </div>

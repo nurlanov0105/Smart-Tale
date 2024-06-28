@@ -67,7 +67,7 @@ const AnnouncementDetailForm = () => {
 
    return (
       <>
-         {type === "order" && isSuccess && <FeedbackList isBooked={data?.is_booked} slug={slug} />}
+         {type === "order" && isSuccess && <FeedbackList org={data?.org_work} isBooked={data?.is_booked} slug={slug} />}
 
          <form onSubmit={handleSubmit} className={clsx(styles.form, styles[theme])}>
             <div className={styles.order}>
