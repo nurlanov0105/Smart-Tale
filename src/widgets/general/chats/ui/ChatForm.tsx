@@ -23,7 +23,6 @@ import {ErrorMessage} from "@/entities/general/errorMessage";
 const ChatForm: FC = () => {
    const [inputMessage, setInputMessgae] = useState("");
 
-   const id = useSubscribeStore(state => state.data?.profile.id);
    const slug = useSubscribeStore(state => state.data?.profile.slug);
    const setChats = useChatsStore((state) => state.setChatState);
 

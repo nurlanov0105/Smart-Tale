@@ -7,7 +7,7 @@ import { showModal } from "@/views/modal";
 import { MODAL_KEYS, ROUTES } from "@/shared/lib";
 import { useRouter } from "next/navigation";
 
-const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
+const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked, org }) => {
    // const { data, totalPages, currentPage, fetchNextPage, fetchPreviousPage, setCurrentPage } =
    //    usePagination({
    //       fetchFunction: OrdersService.getAppliedOrganizations,
@@ -26,8 +26,6 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
       });
    };
    const handleRoute = (slug?: string) => push(ROUTES.ORGANIZATIONS_OTHER_DETAIL + `/${slug}`);
-
-   if (isBooked) return null;
 
    if (isLoading)
       return (
@@ -48,8 +46,11 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
       <div className={styles.feedback}>
          <h3 className="h4">Список заявок</h3>
          <ul className={styles.feedback__list}>
+
             {isSuccess &&
-               data?.data?.map((item: any) => (
+               data?.data
+                   ?.filter((item: any) => org ? item.slug === org : item)
+                ?.map((item: any) => (
                   <li key={item.slug} className={styles.feedback__item}>
                      <button
                         onClick={() => handleRoute(item?.slug)}
@@ -57,7 +58,14 @@ const FeedbackList: FC<FeedbackListProps> = ({ slug, isBooked }) => {
                         <b>Организация:</b>
                         <span>{item.title}</span>
                      </button>
-                     <Button onClick={() => handleBookOrder(item.slug)}>Выбрать</Button>
+                      {
+                          org &&
+                          <Button onClick={() => handleRoute(item.slug)}>Выбрано</Button>
+                      }
+                      {
+                          !org &&
+                          <Button onClick={() => handleBookOrder(item.slug)}>Выбрать</Button>
+                      }
                   </li>
                ))}
          </ul>
