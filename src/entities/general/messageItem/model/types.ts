@@ -2,15 +2,15 @@ import {ChatUserTypes, IMessageFullTypes, IMessageTypes} from "@/widgets/general
 
 
 
-interface IMessageType {
-    sender: ChatUserTypes;
-    text: string;
+export interface IMessageType {
+    sender: string
+    message: string;
     timestamp: string
+    id: number | string
 }
 
 export type MessageTypes = {
     message: IMessageType
-    messages: IMessageType[]
     idx: number
     mySlug: string
 }

@@ -27,7 +27,7 @@ const NoticeBtn = () => {
 
    return (
       <button onClick={handleRoute} className={clsx(styles[theme], styles.btn)}>
-         {wsnotifications?.length && !pathname.includes(ROUTES.NOTICES) ? (
+         {wsnotifications?.length  ? (
             <span className={styles.btn__notice}>{wsnotifications.length}</span>
          ) : null}
 

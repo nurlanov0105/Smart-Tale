@@ -4,4 +4,5 @@ export type ModalheaderProps = {
    isLarge?: boolean;
    type?: string;
    deadline?: string;
+   currency: string;
 };

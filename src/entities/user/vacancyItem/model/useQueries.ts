@@ -2,12 +2,14 @@ import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import {UseFormReset} from "react-hook-form";
 import { toast } from "react-toastify";
 import {ResumeQueryKeys, ServiceQueryKeys, VacancyQueryKeys} from "@/shared/api";
-import {ResumeService, useScrollTop, VacancyFilterStore, VacancyService} from "@/shared/lib";
+import {errorCatch, ResumeService, useScrollTop, VacancyFilterStore, VacancyService} from "@/shared/lib";
 
 import type { ResumeType } from "@/shared/lib/types/resume-service.types";
 import type { VacancyCardType, ResumeRequestTypes } from "./types";
 import {ResumeFormTypes} from "@/entities/user/resumeForm/model/types";
 import {useRouter} from "next/navigation";
+import errorMessage from "@/entities/general/errorMessage/ui/ErrorMessage";
+import error = toast.error;
 
 export const useGetVacancies = (page: number) => {
    const defaultValues = VacancyFilterStore(state => state.defaultValues)
@@ -54,16 +56,20 @@ export const useAddVacancy = () => {
    });
 };
 export const useAddResumeQuery = (reset: UseFormReset<ResumeFormTypes>) => {
-   const queryClient = useQueryClient()
-   const {handleScrollToTop} = useScrollTop()
+   const queryClient = useQueryClient();
+   const {handleScrollToTop} = useScrollTop();
    return useMutation({
       mutationFn: (data: ResumeType) => ResumeService.addResume(data),
       mutationKey: [ResumeQueryKeys.RESUME],
       onSuccess: () => {
-         reset();
-         handleScrollToTop()
-         queryClient.invalidateQueries({queryKey: [ResumeQueryKeys.GET_MY_RESUMES, ResumeQueryKeys.GET_RESUMES]})
+         handleScrollToTop();
+         queryClient.removeQueries({queryKey: [ResumeQueryKeys.GET_MY_RESUMES, ResumeQueryKeys.GET_RESUMES]})
          toast.success("Вы успешно разместили резюме!");
+         reset();
+      },
+      onError: (err) => {
+         const error = errorCatch(err);
+         toast.error(error)
       },
    });
 };

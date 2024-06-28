@@ -52,7 +52,7 @@ export const useWSNotifications = (depencies?: DepenciesType) => {
 
             // для показа кол-ва уведомлений
             setwsNotifications((prevNotifications) => {
-               const updatedNotification = newNotification?.filter((item: any) => !item.read);
+               const updatedNotification = newNotification?.filter((item: any) => item.read === undefined);
                return updatedNotification;
             });
          }

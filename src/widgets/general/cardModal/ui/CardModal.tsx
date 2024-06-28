@@ -16,9 +16,7 @@ import { useThemeStore } from "@/shared/store/themeStore";
 import { AnnouncementTypes } from "@/shared/lib";
 import clsx from "clsx";
 import styles from "./styles.module.scss";
-import { useSubscribeStore } from "@/shared/store/subscribeStore/subscribeStore";
 import { monthsForDate } from "@/widgets/admin/adminOrganizationDetail/model/helper";
-import { RIGHT_ACTIONS } from "@/shared/lib/constants/consts";
 
 type Props = {
    slug: string;
@@ -72,10 +70,6 @@ const CardModal: FC<Props> = ({ slug, type }) => {
       return <ErrorMessage />;
    }
 
-   // if (isError){
-   //    return <ErrorMessage />;
-   // }
-
    return (
       <div className={clsx(styles.modal, styles[theme])}>
          <div className={styles.modal__slider}>
@@ -94,7 +88,8 @@ const CardModal: FC<Props> = ({ slug, type }) => {
                   <div className={styles.modal__header}>
                      <ModalCardHeader
                         title={data.data.title}
-                        cost={`${Math.round(Number(data.data.price))}`}
+                        cost={data.data.price}
+                        currency={data.data.currency}
                         type={type}
                         deadline={`${day} ${monthFormat} ${year}`}
                      />
