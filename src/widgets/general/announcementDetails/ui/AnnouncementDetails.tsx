@@ -71,7 +71,7 @@ const AnnouncementDetails = () => {
    const theme = useThemeStore((state) => state.theme);
 
    const { day, month, year } = useGetDates(
-      orderData?.data?.booked_at ? orderData?.data?.booked_at : ""
+      orderData?.data?.deadline ? orderData?.data?.deadline : ""
    );
    const monthFormat = monthsForDate()[month]?.value;
 
@@ -99,7 +99,7 @@ const AnnouncementDetails = () => {
                </p>
             </div>
             <div className={styles.item__shrink}>
-               <p className={styles.item__date}>Принял {`${day} ${monthFormat} ${year}`}</p>
+               <p className={styles.item__date}>Срок {`${day} ${monthFormat} ${year}`}</p>
             </div>
          </div>
          <div className={styles.item__border}>
@@ -170,7 +170,9 @@ const AnnouncementDetails = () => {
          </div>
          <div className={styles.item__button}>
             <Button onClick={handleAddClick}>Добавить сотрудника</Button>
-            <Button onClick={handleShowMinus}>Снять заказ с сотрудника</Button>
+            <Button onClick={handleShowMinus}>
+               {showMinus ? "Отменить" : "Снять заказ с сотрудника"}{" "}
+            </Button>
             {/*<Button>Завершить Заказ</Button>*/}
          </div>
       </div>

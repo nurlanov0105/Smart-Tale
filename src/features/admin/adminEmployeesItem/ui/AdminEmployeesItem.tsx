@@ -56,7 +56,7 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
                   data?.map((item: any) => (
                      <Link
                         key={item?.user_profile}
-                        href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_profile}
+                        href={ORGANIZATION_ROUTES.EMPLOYEES_DETAILS + "/" + item?.user_slug}
                         className={styles.item__employee}>
                         <Image
                            className={styles.item__image}
@@ -66,7 +66,7 @@ const AdminEmployeesItem: FC<ItemProps> = ({ item }) => {
                            height={48}
                         />
                         <div>
-                           <h4 className="h4">{item?.user_profile}</h4>
+                           <h4 className="h4">{item?.first_name + " " + item?.last_name}</h4>
                            <p className={styles.item__salary}>
                               {item.job_title}
                               {/* <PriceFormat type={item?.currency} price={+item?.price} /> */}
