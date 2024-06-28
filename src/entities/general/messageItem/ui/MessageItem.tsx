@@ -20,10 +20,10 @@ const MessageItem: FC<MessageTypes> = ({ message, idx, mySlug }) => {
       return messages[idx - 1].sender === message?.sender
    };
 
-   const isChecked = !!messages?.length && messages[messages?.length - 1].id === message.id
+   const isChecked = !!messages?.length && messages[messages?.length - 1].id === message.id;
 
    const { minutes, hours} = useGetDates(message?.timestamp);
-   const time = !isNaN(+minutes) ? `${hours}:${minutes}` : message?.timestamp
+   const time = !isNaN(+minutes) ? `${hours}:${minutes}` : message?.timestamp;
 
    return (
       <>

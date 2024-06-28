@@ -3,4 +3,5 @@ export type FeedbackListProps = {
    // queryKey: string;
    slug: string;
    isBooked: boolean
+   org: string
 };
